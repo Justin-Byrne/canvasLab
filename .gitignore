@@ -17,12 +17,14 @@ _dump/
 **/*-{stash-[0-9]}.*
 **/*-{stash-[0-9]}
 
-#Development
+## Development
 Collections
 
 ## Docs
-html-docs
 CHANGECONTROL.md
 build/readme
 readme.sh
 *desired_result*
+
+## Testing
+# tests/

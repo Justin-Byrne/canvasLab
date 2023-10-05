@@ -1,0 +1,118 @@
+$width: 200px;
+
+nav
+{
+    $linkColor:             #b4d4ff;
+    $linkColorHover:        #ddd;
+    $linkBackgroundHover:   #0d6efd;
+    $background:            #133771;
+
+    display:        flex;
+    position:       fixed;
+    flex-wrap:      nowrap;
+    float:          left;
+    min-height:     100vh;
+
+    border-right:   1px solid black;
+
+    overflow-x:     auto;
+    overflow-y:     hidden;
+
+    .nav-wrapper
+    {
+        width:      $width;
+        background: $background;
+        border:     2px solid #262a71;
+
+        .nav-header-image
+        {
+            margin:         0 auto;
+            pointer-events: none;
+            fill:           #37bcff;
+        }
+
+        .btn-toggle
+        {
+            display:            inline-flex;
+            align-items:        center;
+            padding:            .25rem .5rem;
+            font-weight:        600;
+            color:              $linkColor;
+            background-color:   transparent;
+            border:             0;
+
+            &:hover, &:focus
+            {
+                color:              $linkColorHover;
+                background-color:   $linkBackgroundHover;
+            }
+
+            &::before
+            {
+                width:              1.25em;
+                line-height:        0;
+                content:            url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgb(80 150 255)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+                transition:         transform .35s ease;
+                transform-origin:   .5em 50%;
+            }
+
+            &[aria-expanded="true"]
+            {
+                color: $linkColorHover;
+
+                &::before { transform: rotate(90deg); }
+            }
+        }
+
+        .btn-toggle-nav
+        {
+            a
+            {
+                display:            inline-flex;
+                padding:            .1875rem .5rem;
+                margin-top:         .125rem;
+                margin-left:        1.25rem;
+                text-decoration:    none;
+
+                color: $linkColor;
+
+                // background-color: #0d6efd;
+
+                &:hover, &:focus { background-color: $linkBackgroundHover; }
+            }
+        }
+
+        .border-bottom
+        {
+            border-bottom: 2px solid #137ce5 !important;
+        }
+
+        .border-top
+        {
+            border-top: 2px solid #137ce5 !important;
+        }
+    }
+}
+
+main
+{
+    $background:    #289dd7;
+
+    margin-left:    $width;
+    background:     $background;
+
+    .album
+    {
+        .container
+        {
+            margin-top: -50px;
+            margin-bottom: -35px;
+
+            .card
+            {
+                color:      white;
+                background: #1d3c83;
+            }
+        }
+    }
+}

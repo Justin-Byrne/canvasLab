@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.0.1] - 2023-10-05
+### Added
+- **build** tools and assets
+- **test** ui, tools, and assets
+- `Application` class, for core application duties
+- `canvasLab` class, for general canvas duties
+- `PROPERTY_BLOCKS` module, for shared accessors & mutators
+- `UTILITIES` module, for shared utility functions
+- `VALIDATION` module, for shared validation functions
+- `DEBUG` module, for general debug cases
+
 ## [0.0.0] - 2023-10-02
 ### Added
 - Directory structure
@@ -9,9 +20,10 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-| Version | Date       | Commit                                                                   | Comments                                                          |
-| :-----: | :--------: | :----------------------------------------------------------------------: | :---------------------------------------------------------------- |
-| [0.0.0] | 2023-10-02 | CURRENT REVISION 														  | Initial upload.                                                   |
+| Version | Date       | Commit                                                              | Comments                                                                                     |
+| :-----: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
+| [0.0.1] | 2023-10-05 | CURRENT                                                             | Included general build & testing tools, with core classes & modules.                         |
+| [0.0.0] | 2023-10-02 | [5131349](https://github.com/Justin-Byrne/canvasLab/commit/5131349) | Initial upload.                                                                              |
 
 ---
 
