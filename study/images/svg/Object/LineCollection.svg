@@ -1,0 +1,6 @@
+<svg width="20%" height="20%" viewBox="0 0 128 128" version="1.1" xmlns='http://www.w3.org/2000/svg' fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5">
+    <path d="M4,92L92,4" fill="none" stroke="white" stroke-width="6.25" />
+    <g transform="matrix(1,0,0,1,32,31)">
+        <path d="M4,92L92,4" fill="none" stroke="white" stroke-width="6.25" stroke-dasharray="12.5,12.5,0,0" stroke-dashoffset="6.25" />
+    </g>
+</svg>

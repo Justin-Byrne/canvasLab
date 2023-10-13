@@ -4,7 +4,8 @@
 ![forks](https://img.shields.io/github/forks/Justin-Byrne/canvasLab)
 ![stars](https://img.shields.io/github/stars/Justin-Byrne/canvasLab)
 ![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab)
-<img src=https://img.shields.io/badge/Version-0.0.1-green />
+<img src=https://img.shields.io/badge/Version-0.0.2-green />
+<img src=https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab />
 
 HTML5 canvas drawing framework
 
@@ -27,6 +28,9 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   ├── compile.sh
 │   └── watch.sh
 ├── docs
+│   ├── PlantUml
+│   │   ├── Application.txt
+│   │   └── canvasLab.txt
 │   ├── API.md
 │   └── CHANGELOG.md
 ├── script
@@ -40,7 +44,7 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   │   └── classes
 │   │       ├── Application.js
 │   │       └── canvasLab.js
-│   └── canvasLab-v0.0.1.js
+│   └── canvasLab-v0.0.2.js
 ├── LICENSE
 └── README.md
 ```

@@ -1,2 +1,3 @@
 docs/JSDoc/* linguist-vendored
-tests/* linguist-detectable
+docs/PlantUml/* linguist-vendored
+study/* linguist-detectable=false

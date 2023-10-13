@@ -2,18 +2,17 @@ $width: 200px;
 
 nav
 {
-    $linkColor:             #b4d4ff;
-    $linkColorHover:        #ddd;
-    $linkBackgroundHover:   #0d6efd;
-    $background:            #133771;
+    $linkColor:             rgb(255, 255, 255);
+    $linkColorHover:        rgba(255, 255, 255, 0.85);
+    $linkBackgroundHover:   rgb(43, 48, 53);
+    $background:            rgb(57, 63, 69);
+    $border-color:          rgb(73, 80, 87);
 
     display:        flex;
     position:       fixed;
     flex-wrap:      nowrap;
     float:          left;
     min-height:     100vh;
-
-    border-right:   1px solid black;
 
     overflow-x:     auto;
     overflow-y:     hidden;
@@ -22,13 +21,13 @@ nav
     {
         width:      $width;
         background: $background;
-        border:     2px solid #262a71;
+        border:     2px solid rgb(50, 50, 50);
 
         .nav-header-image
         {
             margin:         0 auto;
             pointer-events: none;
-            fill:           #37bcff;
+            fill:           rgba(255, 255, 255, 0.85);
         }
 
         .btn-toggle
@@ -51,7 +50,7 @@ nav
             {
                 width:              1.25em;
                 line-height:        0;
-                content:            url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgb(80 150 255)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+                content:            url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba(255,255,255,.5)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
                 transition:         transform .35s ease;
                 transform-origin:   .5em 50%;
             }
@@ -76,30 +75,25 @@ nav
 
                 color: $linkColor;
 
-                // background-color: #0d6efd;
-
                 &:hover, &:focus { background-color: $linkBackgroundHover; }
+
+                span
+                {
+                    margin-left: 10px;
+                }
             }
         }
 
-        .border-bottom
-        {
-            border-bottom: 2px solid #137ce5 !important;
-        }
+        .border-bottom { border-bottom: 2px solid $border-color !important; }
 
-        .border-top
-        {
-            border-top: 2px solid #137ce5 !important;
-        }
+        .border-top    { border-top:    2px solid $border-color !important; }
     }
 }
 
 main
 {
-    $background:    #289dd7;
-
     margin-left:    $width;
-    background:     $background;
+    background:     rgb(104, 108, 111);
 
     .album
     {
@@ -111,8 +105,17 @@ main
             .card
             {
                 color:      white;
-                background: #1d3c83;
+                background: rgb(57, 63, 69);
+
+                border:     1px solid rgba(255, 255, 255, 0.5) !important;
+                box-shadow: 0px 2px 3px rgba(0, 0, 0, .25) !important;
             }
         }
     }
+}
+
+// ICONS
+.my-icons
+{
+    width: 20%;
 }

@@ -81,7 +81,7 @@ function update_main_file()
 {
     sed -r -i '' -e 's/Version:.+/Version:   '"'${VERSION}'"',/' ${MASTER_FILE}
     sed -r -i '' -e 's/Updated:.+/Updated:   '"'$(date +"%b, %d %Y")'"',/' ${MASTER_FILE}
-    # sed -r -i '' -e 's/canvasLab-v.+/canvasLab-v'${VERSION}'.js"><\/script>/' ../index.html
+    sed -r -i '' -e 's/canvasLab-v.+/canvasLab-v'${VERSION}'.js"><\/script>/' ../study/index.html
 }
 
 function search_folder()
@@ -182,6 +182,44 @@ function compile_jsdoc()
     fi
 }
 
+function compile_plantuml ()
+{
+    declare DEFAULT_PATH=$(pwd)
+
+    declare BUILD_PATH=~/Programs/Python/PlantUml/ClassGenerator/source/app
+
+    declare SOURCE_PATH=~/Programs/HTML5/canvasLab/script/source
+
+    declare OUTPUT_UML=~/Programs/HTML5/canvasLab/docs/PlantUml
+
+    $(rm -r $OUTPUT_UML)
+
+    if command -v python3
+    then
+
+        if cd $BUILD_PATH
+        then
+
+            echo "\n"
+
+            echo "python3 BuildClass.py ${SOURCE_PATH} -m \"png\" ${OUTPUT_UML}"
+
+            # if (python3 BuildClass.py $SOURCE_PATH -l -m "png" $OUTPUT_UML)
+            if (python3 BuildClass.py $SOURCE_PATH -m "png" $OUTPUT_UML)
+                then echo "\n${PROMPT} ${FG_PINK}PlantUML Complete \t\t\t${FG_BLUE}[${OUTPUT_UML}]${NOCOLOR}\n"
+            else
+                NO_ERRORS=false
+            fi
+
+            cd $DEFAULT_PATH
+
+        else
+            NO_ERRORS=false
+        fi
+
+    fi
+}
+
 function complete()
 {
     echo "${FG_YELLOW}ᕕ( ᐛ )ᕗ${NOCOLOR}\t\t\t\t\t${PROMPT} Complete - ${FG_WHITE}${DATE} ${NOCOLOR}@ ${FG_WHITE}${TIME}${NOCOLOR}\n"
@@ -214,5 +252,7 @@ compile_readme
 compile_api
 
 compile_jsdoc
+
+compile_plantuml
 
 complete

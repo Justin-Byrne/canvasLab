@@ -1,0 +1,18 @@
+<svg width="20%" height="20%" viewBox="0 0 128 128" version="1.1" xmlns='http://www.w3.org/2000/svg' fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5">
+    <g transform="matrix(1,0,0,1,36.75,37.5)">
+        <g transform="matrix(0.465909,0,0,0.465909,10.6818,10.6818)">
+            <rect x="20" y="20" width="88" height="88" fill="none" stroke="rgb(128,128,128)" stroke-width="13.41" />
+        </g>
+        <g transform="matrix(1.02439,0,0,0.962963,-1.4878,2.98148)">
+            <path d="M40.5,60.25L61,60.25L61,38.442L81.5,38.442L81.5,80.5L40.5,80.5L40.5,60.25Z" fill="rgb(128,128,128)" stroke="rgb(128,128,128)" stroke-width="6.29" stroke-miterlimit="1" />
+        </g>
+    </g>
+    <g transform="matrix(1,0,0,1,-11.25,-10.5)">
+        <g transform="matrix(0.465909,0,0,0.465909,10.6818,10.6818)">
+            <rect x="20" y="20" width="88" height="88" fill="none" stroke="white" stroke-width="13.41" />
+        </g>
+        <g transform="matrix(1.02439,0,0,0.962963,-1.4878,2.98148)">
+            <path d="M40.5,60.25L61,60.25L61,38.442L81.5,38.442L81.5,80.5L40.5,80.5L40.5,60.25Z" fill="white" stroke="white" stroke-width="6.29" stroke-miterlimit="1" />
+        </g>
+    </g>
+</svg>

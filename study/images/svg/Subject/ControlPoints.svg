@@ -1,0 +1,27 @@
+<svg width="20%" height="20%" viewBox="0 0 128 128" version="1.1" xmlns='http://www.w3.org/2000/svg' fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1">
+    <g transform="matrix(1,0,0,1,-1.5,42.5)">
+        <rect x="15" y="15" width="13" height="13" fill="white" />
+    </g>
+    <g transform="matrix(1,0,0,1,42.5,42.5)">
+        <rect x="15" y="15" width="13" height="13" fill="none" stroke="white" stroke-width="6.25" />
+    </g>
+    <g transform="matrix(1,0,0,1,-1.5,86.5)">
+        <rect x="15" y="15" width="13" height="13" fill="none" stroke="white" stroke-width="6.25" />
+    </g>
+    <g transform="matrix(1,0,0,1,86.5,-1.5)">
+        <rect x="15" y="15" width="13" height="13" fill="none" stroke="white" stroke-width="6.25" />
+    </g>
+    <g transform="matrix(1,0,0,1,86.5,42.5)">
+        <rect x="15" y="15" width="13" height="13" fill="white" />
+    </g>
+    <path d="M57.5,64L20,64" fill="none" stroke="white" stroke-width="4.17" />
+    <g transform="matrix(1,0,0,1,50.5,0)">
+        <path d="M57.5,64L20,64" fill="none" stroke="white" stroke-width="4.17" />
+    </g>
+    <g transform="matrix(1,0,0,1,50.5,0)">
+        <path d="M57.5,26.5C57.606,64.068 20,64 20,64" fill="none" stroke="white" stroke-width="4.17" />
+    </g>
+    <g transform="matrix(-1,1.22465e-16,-1.22465e-16,-1,78,128.5)">
+        <path d="M57.5,26.5C57.606,64.068 20,64 20,64" fill="none" stroke="white" stroke-width="4.17" />
+    </g>
+</svg>

@@ -1,42 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: canvasLab-v0.0.1.js</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: canvasLab-v0.0.1.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>// @program: 		canvasLab 
+// @program: 		canvasLab 
 // @brief: 			HTML5 canvas drawing framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.0.1 
+// @version: 		0.0.2 
 // @license: 		GPL-2.0
 
 "use strict";
  
 /**
- * Base object for shared accessors &amp; mutators
+ * Base object for shared accessors & mutators
  * @namespace       PROPERTY_BLOCKS
  */
 const PROPERTY_BLOCKS =
@@ -432,7 +404,7 @@ const VALIDATION =
     },
     isAlpha ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 1  )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  )  );
     },
     isAspect ( value )
     {
@@ -445,11 +417,11 @@ const VALIDATION =
         let _height = ( value.hasOwnProperty ( 'height' ) ) ? ( typeof value.height === 'number' ) : false;
 
 
-        return ( _aspect || _width &amp;&amp; _height &amp;&amp; _length );
+        return ( _aspect || _width && _height && _length );
     },
     isBlur ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 )  );
     },
     isCanvasLabObject ( value )
     {
@@ -457,7 +429,7 @@ const VALIDATION =
     },
     isDegree ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value &lt;= 360 )  );
+        return (  ( typeof value === 'number' )  &&  ( value <= 360 )  );
     },
     isInDom ( elementId )
     {
@@ -465,7 +437,7 @@ const VALIDATION =
     },
     isNumber ( value )
     {
-        return (  ( typeof value === 'number')  &amp;&amp;  !isNaN ( value )  );
+        return (  ( typeof value === 'number')  &&  !isNaN ( value )  );
     },
     isPoint ( value )
     {
@@ -478,15 +450,15 @@ const VALIDATION =
         let _y      = ( value.hasOwnProperty ( 'y' ) ) ? ( typeof value.y === 'number' ) : false;
 
 
-        return ( _point || _length &amp;&amp; _x &amp;&amp; _y );
+        return ( _point || _length && _x && _y );
     },
     isRadian ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 6.283185307179586 )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 6.283185307179586 )  );
     },
     isRadius ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value > 0 )  );
+        return (  ( typeof value === 'number' )  &&  ( value > 0 )  );
     },
     isRgb ( value )
     {
@@ -514,11 +486,11 @@ const VALIDATION =
     },
     isType ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 1 )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1 )  );
     },
     isWidth ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 )  );
     }
 }
  
@@ -633,7 +605,7 @@ class canvasLab
 
         set state ( canvas )
         {
-            let _canvas = (  ( canvas == undefined )  &amp;&amp;  ( this.#_canvas instanceof CanvasRenderingContext2D )  )
+            let _canvas = (  ( canvas == undefined )  &&  ( this.#_canvas instanceof CanvasRenderingContext2D )  )
 
                               ? this.canvas
 
@@ -674,7 +646,7 @@ class canvasLab
             let _canvases = document.getElementsByTagName ( 'canvas' );
 
 
-            if ( typeof _canvases === 'object' &amp;&amp; this.#_canvases === undefined )
+            if ( typeof _canvases === 'object' && this.#_canvases === undefined )
 
                 for ( let _id in _canvases )
 
@@ -706,8 +678,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Oct, 05 2023',
-            Version:   '0.0.1',
+            Updated:   'Oct, 13 2023',
+            Version:   '0.0.2',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -850,30 +822,7 @@ class Application
 
 let initCanvasLab = ( canvas ) =>
 {
-    if ( typeof canvasLab === 'function' &amp;&amp; typeof window.canvaslab  === 'undefined' )
+    if ( typeof canvasLab === 'function' && typeof window.canvaslab  === 'undefined' )
 
         window.canvaslab = new canvasLab ( canvas );
 }
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="PROPERTY_BLOCKS.html">PROPERTY_BLOCKS</a></li><li><a href="UTILITIES.html">UTILITIES</a></li><li><a href="VALIDATION.html">VALIDATION</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEBUG">DEBUG</a></li><li><a href="global.html#collection">collection</a></li><li><a href="global.html#combined">combined</a></li><li><a href="global.html#discrete">discrete</a></li><li><a href="global.html#draw">draw</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#set">set</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Oct 05 2023 13:09:32 GMT-0700 (Pacific Daylight Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
-</html>

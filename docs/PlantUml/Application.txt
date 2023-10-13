@@ -1,0 +1,22 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Application {
+#_app
+#_dom
+#_post
+__ Setter __
+canvas
+State
+__ Getter __
+canvas
+about
+__ Utility __
+_isInDom
+setState
+clear
+}
+
+@enduml
