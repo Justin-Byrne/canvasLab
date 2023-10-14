@@ -3,12 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [0.0.2] - 2023-10-13
 ### Added
-- Class icons for **study** interface; .afdesign & .svg
+- Class icons for **dev-tools** interface; .afdesign & .svg
 - **PlantUml** folder output for class UML structures
 
 ### Changed
-- **tests** renamed to **study**
-- refined **study** ui appearance & operation
+- **tests** renamed to **dev-tools**
+- refined **dev-tools** ui appearance & operation
 
 ## [0.0.1] - 2023-10-05
 ### Added
@@ -31,7 +31,7 @@ All notable changes to this project will be documented in this file.
 
 | Version | Date       | Commit                                                              | Comments                                                                                     |
 | :-----: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.0.2] | 2023-10-13 | CURRENT                                                             | Added additional resources & visuals to study UI.                                            |
+| [0.0.2] | 2023-10-13 | CURRENT                                                             | Added additional resources & visuals to dev-tools UI. 										|
 | [0.0.1] | 2023-10-05 | [5bd2683](https://github.com/Justin-Byrne/canvasLab/commit/5bd2683) | Included general build & testing tools, with core classes & modules.                         |
 | [0.0.0] | 2023-10-02 | [5131349](https://github.com/Justin-Byrne/canvasLab/commit/5131349) | Initial upload.                                                                              |
 

@@ -81,7 +81,7 @@ function update_main_file()
 {
     sed -r -i '' -e 's/Version:.+/Version:   '"'${VERSION}'"',/' ${MASTER_FILE}
     sed -r -i '' -e 's/Updated:.+/Updated:   '"'$(date +"%b, %d %Y")'"',/' ${MASTER_FILE}
-    sed -r -i '' -e 's/canvasLab-v.+/canvasLab-v'${VERSION}'.js"><\/script>/' ../study/index.html
+    sed -r -i '' -e 's/canvasLab-v.+/canvasLab-v'${VERSION}'.js"><\/script>/' ../dev-test/index.html
 }
 
 function search_folder()
