@@ -1,0 +1,27 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Texts {
+point      {Point}
+canvas     {HTMLCanvasElement}
+__ Setter __
+canvas     <color:gray>{string}</color>
+point
+x
+y
+__ Getter __
+canvas     <color:gray>{string}</color>
+point
+x
+y
+__ Utility __
+super
+_isInDom
+_isPoint
+pushPop
+draw
+}
+
+@enduml

@@ -1,6 +1,40 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2023-10-27
+### Added
+- Object
+	- `Circle` class, for circular objects
+	- `Line` class, for linear objects
+	- `Rectangle` class, for rectangular objects
+	- `Text` class, for textual objects
+
+- Subject
+	- `Anchor` class, for anchoring objects
+	- `Angle` class, for angle properties
+	- `Aspect` class, for aspect properties
+	- `ControlPoints` class, for bezier curve properties
+	- `Fill` class, for fill properties
+	- `Font` class, for base font properties
+	- `Options` class, for grouped option properties
+	- `Point` class, for X & Y coordinate properties
+	- `Shadow` class, for shadow properties
+	- `Stroke` class, for stroke properties
+
+- Collection
+	- `Circles` class, an array class to group circular objects :b: `beta`
+	- `Lines` class, an array class to group linear objects :b: `beta`
+	- `Rectangles` class, an array class to group rectangular objects :b: `beta`
+	- `Texts` class, an array class to group textual objects :b: `beta`
+	- `Group` class, an array class to group any and all object type :b: `beta`
+	- `OptionsCollection` class, an array class to group option properties :b: `beta`
+	- `PointCollection` class, an array class to group point properties :b: `beta`
+	- `ShadowCollection` class, an array class to group shadow properties :b: `beta`
+	- `StrokeCollection` class, an array class to group stroke properties :b: `beta`
+
+### Changed
+- refactored **dev-tools** ui appearance & operation
+
 ## [0.0.2] - 2023-10-13
 ### Added
 - Class icons for **dev-tools** interface; .afdesign & .svg
@@ -31,7 +65,8 @@ All notable changes to this project will be documented in this file.
 
 | Version | Date       | Commit                                                              | Comments                                                                                     |
 | :-----: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.0.2] | 2023-10-13 | CURRENT                                                             | Added additional resources & visuals to dev-tools UI. 										|
+| [0.1.2] | 2023-10-27 | CURRENT                                                             | Added object, subject, & collection classes. 												|
+| [0.0.2] | 2023-10-13 | [5bd2683](https://github.com/Justin-Byrne/canvasLab/commit/5bd2683) | Added additional resources & visuals to dev-tools UI. 										|
 | [0.0.1] | 2023-10-05 | [5bd2683](https://github.com/Justin-Byrne/canvasLab/commit/5bd2683) | Included general build & testing tools, with core classes & modules.                         |
 | [0.0.0] | 2023-10-02 | [5131349](https://github.com/Justin-Byrne/canvasLab/commit/5131349) | Initial upload.                                                                              |
 

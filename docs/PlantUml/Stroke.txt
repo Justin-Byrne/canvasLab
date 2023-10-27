@@ -1,0 +1,31 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Stroke {
+[type=0]      <color:gray>{number}</color>
+[alpha=1]     <color:gray>{number}</color>
+__ Setter __
+type          <color:gray>{number}</color>
+segments      {Array}
+color         <color:gray>{string}</color>
+alpha         <color:gray>{number}</color>
+width         <color:gray>{number}</color>
+__ Getter __
+type          <color:gray>{number}</color>
+segments      {Array}
+color         <color:gray>{string}</color>
+alpha         <color:gray>{number}</color>
+width         <color:gray>{number}</color>
+__ Utility __
+Alpha
+_isType
+_isSegments
+_isRgb
+_isAlpha
+_isWidth
+_getRgb
+}
+
+@enduml

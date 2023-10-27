@@ -1,0 +1,22 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class PointCollection {
+[x=0]     <color:gray>{number}</color>
+[y=0]     <color:gray>{number}</color>
+options   {OptionsCollection}
+__ Setter __
+x         <color:gray>{number}</color>
+y         <color:gray>{number}</color>
+__ Getter __
+x         <color:gray>{number}</color>
+y         <color:gray>{number}</color>
+options   {OptionsCollection}
+__ Utility __
+invert
+_setAll
+}
+
+@enduml

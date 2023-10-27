@@ -1,0 +1,33 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class ShadowCollection {
+color      <color:gray>{string}</color>
+alpha      <color:gray>{number}</color>
+__ Setter __
+color      <color:gray>{string}</color>
+alpha      <color:gray>{number}</color>
+blur       <color:gray>{number}</color>
+offset     {Point}
+x          <color:gray>{number}</color>
+y          <color:gray>{number}</color>
+__ Getter __
+color      <color:gray>{string}</color>
+alpha      <color:gray>{number}</color>
+blur       <color:gray>{number}</color>
+offset     {Point}
+x          <color:gray>{number}</color>
+y          <color:gray>{number}</color>
+__ Utility __
+Alpha
+_isRgb
+_isAlpha
+_isBlur
+_isPoint
+_getRgb
+_setAll
+}
+
+@enduml

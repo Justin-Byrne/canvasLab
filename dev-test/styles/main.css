@@ -1,15 +1,23 @@
+html {
+  background-color: #686c6f; }
+
+body {
+  background-color: #393f45; }
+
 nav {
   display: flex;
-  position: fixed;
+  position: absolute;
   flex-wrap: nowrap;
   float: left;
   min-height: 100vh;
-  overflow-x: auto;
-  overflow-y: hidden; }
+  box-shadow: 1px 0px 5px 0px #7a8085; }
+  nav #nav-icon img {
+    display: block;
+    width: 98px;
+    margin: 0 auto; }
   nav .nav-wrapper {
     width: 200px;
-    background: #393f45;
-    border: 2px solid #323232; }
+    background: #393f45; }
     nav .nav-wrapper .nav-header-image {
       margin: 0 auto;
       pointer-events: none;
@@ -17,7 +25,7 @@ nav {
     nav .nav-wrapper .btn-toggle {
       display: inline-flex;
       align-items: center;
-      padding: .25rem .5rem;
+      padding: 0.25rem 0.75rem 0.25rem .5rem;
       font-weight: 600;
       color: white;
       background-color: transparent;
@@ -26,6 +34,8 @@ nav {
         color: rgba(255, 255, 255, 0.85);
         background-color: #2b3035; }
       nav .nav-wrapper .btn-toggle::before {
+        position: relative;
+        margin-right: 2px;
         width: 1.25em;
         line-height: 0;
         content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba(255,255,255,.5)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
@@ -46,14 +56,27 @@ nav {
         background-color: #2b3035; }
       nav .nav-wrapper .btn-toggle-nav a span {
         margin-left: 10px; }
+      nav .nav-wrapper .btn-toggle-nav a.disabled {
+        pointer-events: none;
+        opacity: 0.65; }
+        nav .nav-wrapper .btn-toggle-nav a.disabled:hover, nav .nav-wrapper .btn-toggle-nav a.disabled:focus {
+          background-color: transparent; }
     nav .nav-wrapper .border-bottom {
       border-bottom: 2px solid #495057 !important; }
     nav .nav-wrapper .border-top {
       border-top: 2px solid #495057 !important; }
+    nav .nav-wrapper li.mb-1 ul > li > a > span {
+      position: relative;
+      top: 2.5px; }
+    nav .nav-wrapper li.mb-1 #documents-collapse ul > li > a > img {
+      position: relative;
+      top: 2px; }
 
 main {
   margin-left: 200px;
-  background: #686c6f; }
+  background: #686c6f;
+  min-height: 100vh;
+  overflow: auto; }
   main .album .container {
     margin-top: -50px;
     margin-bottom: -35px; }
@@ -62,8 +85,91 @@ main {
       background: #393f45;
       border: 1px solid rgba(255, 255, 255, 0.5) !important;
       box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25) !important; }
+      main .album .container .card .card-number {
+        position: absolute;
+        z-index: 100;
+        display: block;
+        width: 42px;
+        padding-left: 8px;
+        font-size: 22px;
+        border: 1px solid #b4b4b4;
+        border-radius: 0px 0px 2px 0px;
+        border-left: none;
+        border-top: none;
+        color: black;
+        background-color: #ccc;
+        box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25) !important; }
+      main .album .container .card .code-view-buttons {
+        color: white;
+        background-color: #325279;
+        border: 1px solid #3c6a7f;
+        box-shadow: 0px 1px 2.5px 0px black; }
+        main .album .container .card .code-view-buttons:hover {
+          background-color: #277289;
+          border-color: #00afff; }
+  main .modal .modal-content {
+    width: 600px;
+    background-color: #393f45;
+    border: 1px solid rgba(88, 88, 88, 0.5) !important;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25) !important; }
+    main .modal .modal-content .modal-header {
+      border-bottom-color: #495057; }
+      main .modal .modal-content .modal-header .modal-title {
+        color: white; }
+      main .modal .modal-content .modal-header .btn-close {
+        background: transparent url("../images/svg/General/x-lg-black.svg"); }
+        main .modal .modal-content .modal-header .btn-close:hover {
+          background: transparent url("../images/svg/General/x-lg-white.svg"); }
+    main .modal .modal-content .modal-body pre {
+      margin: 0; }
+    main .modal .modal-content .modal-footer {
+      border-top-color: #495057; }
+      main .modal .modal-content .modal-footer .btn-primary {
+        background-color: #233652; }
+        main .modal .modal-content .modal-footer .btn-primary img {
+          position: relative;
+          top: -2px;
+          padding-right: 2px; }
+        main .modal .modal-content .modal-footer .btn-primary:hover {
+          background-color: #0a58cc; }
+      main .modal .modal-content .modal-footer .btn-secondary {
+        background-color: #626669;
+        border-color: #383838; }
+        main .modal .modal-content .modal-footer .btn-secondary:hover {
+          background-color: #828283; }
+    main .modal .modal-content #copiedAlert .alert {
+      margin-left: 14px;
+      margin-right: 14px; }
+      main .modal .modal-content #copiedAlert .alert img {
+        position: relative;
+        top: -2px;
+        padding-right: 6px; }
 
 .my-icons {
   width: 20%; }
+
+.my-card-icons {
+  width: 8%;
+  background-color: black;
+  border: 1px solid #3c6a7f;
+  border-radius: 3px;
+  box-shadow: 0px 1px 2.5px 0px black; }
+
+canvas {
+  background-color: white; }
+
+#byrne-systems-logo {
+  width: 100%; }
+  #byrne-systems-logo img {
+    display: block;
+    margin: 0 auto;
+    animation: pulse 2s infinite; }
+@keyframes pulse {
+  0% {
+    opacity: 0.4; }
+  50% {
+    opacity: 0.6; }
+  100% {
+    opacity: 0.4; } }
 
 /*# sourceMappingURL=main.css.map */

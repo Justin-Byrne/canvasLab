@@ -1,0 +1,21 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Fill {
+[alpha=0]   <color:gray>{number}</color>
+__ Setter __
+color       <color:gray>{string}</color>
+alpha       <color:gray>{number}</color>
+__ Getter __
+color       <color:gray>{string}</color>
+alpha       <color:gray>{number}</color>
+__ Utility __
+Alpha
+_isRgb
+_isAlpha
+_getRgb
+}
+
+@enduml

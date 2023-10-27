@@ -1,0 +1,55 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Rectangles {
+point      {Point}
+canvas     {HTMLCanvasElement}
+__ Setter __
+canvas     <color:gray>{string}</color>
+x
+y
+__ Getter __
+canvas     <color:gray>{string}</color>
+x
+y
+__ Utility __
+super
+_isInDom
+pushPop
+draw
+}
+
+Rectangles o-- Point
+Rectangles o-- HTMLCanvasElement
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Point {
+[x=0]         <color:gray>{number}</color>
+[y=0]         <color:gray>{number}</color>
+options       {Options}
+__ Setter __
+x             <color:gray>{number}</color>
+y             <color:gray>{number}</color>
+canvas        <color:gray>{string}</color>
+__ Getter __
+x             <color:gray>{number}</color>
+y             <color:gray>{number}</color>
+canvas        <color:gray>{string}</color>
+options       {Options}
+center        {Point}
+__ Utility __
+_isInDom
+_isAspect
+_drawBorder
+_drawAxis
+drawOptions
+invert
+}
+
+@enduml

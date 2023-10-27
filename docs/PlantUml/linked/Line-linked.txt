@@ -1,0 +1,200 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Line {
+start               {Point}
+end                 {Point}
+stroke              {Stroke}
+shadow              {Shadow}
+canvas              {HTMLCanvasElement}
+__ Setter __
+start               {Point}
+end                 {Point}
+lineCap             <color:gray>{string}</color>
+canvas              <color:gray>{string}</color>
+__ Getter __
+start               {Point}
+end                 {Point}
+stroke              {Stroke}
+shadow              {Shadow}
+lineCap             <color:gray>{string}</color>
+canvas              <color:gray>{string}</color>
+options             {Options}
+controlPoints       {ControlPoints}
+center              {Point}
+__ Utility __
+set
+get
+_isPoint
+_isNumber
+_isDegree
+_isInDom
+_isAspect
+_rotatePoint
+_clearCanvas
+_pointOrSpan
+_setShadow
+_drawBorder
+_drawAxis
+_drawOptions
+drawPoints
+showCoordinates
+showControlPoints
+move
+rotate
+curve
+isThere
+draw
+redraw
+}
+
+Line o-- Point
+Line o-- Stroke
+Line o-- Shadow
+Line o-- HTMLCanvasElement
+Line o-- Options
+Line o-- ControlPoints
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Point {
+[x=0]         <color:gray>{number}</color>
+[y=0]         <color:gray>{number}</color>
+options       {Options}
+__ Setter __
+x             <color:gray>{number}</color>
+y             <color:gray>{number}</color>
+canvas        <color:gray>{string}</color>
+__ Getter __
+x             <color:gray>{number}</color>
+y             <color:gray>{number}</color>
+canvas        <color:gray>{string}</color>
+options       {Options}
+center        {Point}
+__ Utility __
+_isInDom
+_isAspect
+_drawBorder
+_drawAxis
+drawOptions
+invert
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Stroke {
+[type=0]      <color:gray>{number}</color>
+[alpha=1]     <color:gray>{number}</color>
+__ Setter __
+type          <color:gray>{number}</color>
+segments      {Array}
+color         <color:gray>{string}</color>
+alpha         <color:gray>{number}</color>
+width         <color:gray>{number}</color>
+__ Getter __
+type          <color:gray>{number}</color>
+segments      {Array}
+color         <color:gray>{string}</color>
+alpha         <color:gray>{number}</color>
+width         <color:gray>{number}</color>
+__ Utility __
+Alpha
+_isType
+_isSegments
+_isRgb
+_isAlpha
+_isWidth
+_getRgb
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Shadow {
+[alpha=1]   <color:gray>{number}</color>
+__ Setter __
+color       <color:gray>{string}</color>
+alpha       <color:gray>{number}</color>
+blur        <color:gray>{number}</color>
+offset      {Point}
+x           <color:gray>{number}</color>
+y           <color:gray>{number}</color>
+__ Getter __
+color       <color:gray>{string}</color>
+alpha       <color:gray>{number}</color>
+blur        <color:gray>{number}</color>
+offset      {Point}
+x           <color:gray>{number}</color>
+y           <color:gray>{number}</color>
+__ Utility __
+Alpha
+_isRgb
+_isAlpha
+_isBlur
+_isPoint
+_getRgb
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Options {
+[shadow=false]          <color:gray>{boolean}</color>
+[border=false]          <color:gray>{boolean}</color>
+[axis=false]            <color:gray>{boolean}</color>
+[points=false]          <color:gray>{boolean}</color>
+[anchor=false]          <color:gray>{boolean}</color>
+[coordinates=false]     <color:gray>{boolean}</color>
+[controlPoints=false]   <color:gray>{boolean}</color>
+master                  <color:gray>{Object}</color>
+__ Setter __
+shadow                  <color:gray>{boolean}</color>
+border                  <color:gray>{boolean}</color>
+axis                    <color:gray>{boolean}</color>
+anchor                  <color:gray>{boolean}</color>
+coordinates             <color:gray>{boolean}</color>
+controlPoints           <color:gray>{boolean}</color>
+master                  <color:gray>{Object}</color>
+__ Getter __
+shadow                  <color:gray>{boolean}</color>
+border                  <color:gray>{boolean}</color>
+axis                    <color:gray>{boolean}</color>
+anchor                  <color:gray>{boolean}</color>
+coordinates             <color:gray>{boolean}</color>
+controlPoints           <color:gray>{boolean}</color>
+master                  <color:gray>{Object}</color>
+__ Utility __
+_isCanvasLabObject
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class ControlPoints {
+one        {Point}
+two        {Point}
+__ Setter __
+one        {Point}
+two        {Point}
+__ Getter __
+one        {Point}
+two        {Point}
+__ Utility __
+_isPoint
+}
+
+@enduml

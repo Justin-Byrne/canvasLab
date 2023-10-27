@@ -1,0 +1,34 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Group {
+point        {Point}
+lines        {Array}
+circles      {Array}
+rectangles   {Array}
+text         {Array}
+canvas       {HTMLCanvasElement}
+__ Setter __
+point        {Point}
+x            <color:gray>{number}</color>
+y            <color:gray>{number}</color>
+canvas       <color:gray>{string}</color>
+__ Getter __
+point        {Point}
+x            <color:gray>{number}</color>
+y            <color:gray>{number}</color>
+canvas       <color:gray>{string}</color>
+__ Utility __
+super
+_isInDom
+_isPoint
+push
+pop
+drawLines
+drawShapes
+draw
+}
+
+@enduml

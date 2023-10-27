@@ -1,7 +1,84 @@
 #!/bin/sh
-# Script to watch files for changes
+# Script to compile project files
 
-# RESOURCES ########################
+# GLOBAL VARIABLES #############################################################
+
+## PROJECT SPECIFIC ################## ヽ(•‿•)ノ ##################
+
+declare VC_PACKAGE=canvasLab
+
+declare VC_BRIEF="HTML5 canvas drawing framework"
+
+## INPUT #########################################################
+
+declare INPUT_FOLDER=../script/source
+
+## OUTPUT ########################################################
+
+declare OUTPUT_DIRECTORY=../script
+
+declare OUTPUT_JSDOC=../docs/JSDoc.md
+declare OUTPUT_JSDOCS=../docs/JSDoc
+
+### PLANT UML ######################################
+
+declare PLANT_BUILD=~/Programs/Python/PlantUml/ClassGenerator/source/app
+
+declare PLANT_SOURCE=~/Programs/HTML5/canvasLab/script/source
+
+declare PLANT_OUTPUT=~/Programs/HTML5/canvasLab/docs/PlantUml
+
+## MUTATATORS ####################################################
+
+declare LEAD_JS_FILE=${INPUT_FOLDER}/classes/Application.js
+declare LEAD_HTML_FILE='../dev-test/index.html'
+
+## CACHE #########################################################
+
+### FILES ##########################################
+
+declare FILES
+
+# ------------------------------------ #
+# Files to be inserted prior to $FILES #
+# ------------------------------------ #
+declare FILES_HEAD=(
+    "${INPUT_FOLDER}/ancillary/shared/PropertyBlocks.js"
+    "${INPUT_FOLDER}/ancillary/shared/Utilities.js"
+    "${INPUT_FOLDER}/ancillary/shared/Validation.js"
+    "${INPUT_FOLDER}/ancillary/debug.js"
+    "${INPUT_FOLDER}/classes/canvasLab.js"
+)
+
+# ------------------------------------ #
+# Specific folders to loop through     #
+# ------------------------------------ #
+declare FOLDERS=(
+    "${INPUT_FOLDER}/classes/Subject"
+    "${INPUT_FOLDER}/classes/Subject/Collections"
+    "${INPUT_FOLDER}/classes/Object"
+    "${INPUT_FOLDER}/classes/Object/Collections"
+)
+
+# ------------------------------------ #
+# Root application file; if available  #
+# ------------------------------------ #
+declare FILES_FOOT=(
+    "${INPUT_FOLDER}/classes/Application.js"
+)
+
+### GENERAL ########################################
+
+declare NO_ERRORS=true
+
+declare DATE=$(date +"%m-%d-%y")
+declare TIME=$(date +"%r")
+
+declare FILE_REGEX="\.js"
+
+declare VERSION
+
+### PROMPT #########################################
 
 declare FG_RED="\033[1;31m"
 declare FG_GREEN="\033[1;32m"
@@ -14,93 +91,37 @@ declare NOCOLOR="\033[0m"
 
 declare PROMPT="${FG_BLUE}>>${NOCOLOR}"
 
-# GLOBAL VARIABLES #################
+# MAIN #########################################################################
 
-declare VERSION
-
-function get_version()
+main ()
 {
-    VERSION=`head -n4 ../docs/CHANGELOG.md | awk '/## \[/{print $2}'`
+    search_folders
 
-    LENGTH=${#VERSION}
+    clear
 
-    LENGTH=$(($LENGTH-2))
+    get_version
 
-    VERSION=${VERSION:1:$LENGTH}
+    compile_output
+
+    compile_readme
+
+    compile_jsdoc
+
+    compile_jsdocs
+
+    # compile_plantuml
+
+    complete
 }
 
-get_version
+# FUNCTIONS ####################################################################
 
-declare PACKAGE=canvasLab
+## COMPILE #######################################################
 
-declare NO_ERRORS=true
-
-declare DATE=$(date +"%m-%d-%y")
-declare TIME=$(date +"%r")
-
-declare OUTPUT_DIRECTORY=../script
-
-declare OUTPUT_FILE=${PACKAGE}-v${VERSION}.js
-declare OUTPUT_API=../docs/API.md
-declare OUTPUT_JSDOC=../docs/JSDoc
-
-declare OUTPUT="${OUTPUT_DIRECTORY}/${OUTPUT_FILE}"
-
-
-declare INPUT_FOLDER=../script/source
-
-declare MASTER_FILE=${INPUT_FOLDER}/classes/Application.js
-
-declare FILE_REGEX="\.js"
-
-
-declare FILES
-
-declare FILES_HEAD=(
-    "${INPUT_FOLDER}/ancillary/shared/PropertyBlocks.js"
-    "${INPUT_FOLDER}/ancillary/shared/Utilities.js"
-    "${INPUT_FOLDER}/ancillary/shared/Validation.js"
-    "${INPUT_FOLDER}/ancillary/debug.js"
-    "${INPUT_FOLDER}/classes/canvasLab.js"
-)
-
-declare FOLDERS=(
-    "${INPUT_FOLDER}/classes/Subject"
-    "${INPUT_FOLDER}/classes/Subject/Collections"
-    "${INPUT_FOLDER}/classes/Object"
-    "${INPUT_FOLDER}/classes/Object/Collections"
-)
-
-declare FILES_FOOT=(
-    "${INPUT_FOLDER}/classes/Application.js"
-)
-
-# GLOBAL FUNCTIONS #################
-
-function update_main_file()
+function compile_header ()
 {
-    sed -r -i '' -e 's/Version:.+/Version:   '"'${VERSION}'"',/' ${MASTER_FILE}
-    sed -r -i '' -e 's/Updated:.+/Updated:   '"'$(date +"%b, %d %Y")'"',/' ${MASTER_FILE}
-    sed -r -i '' -e 's/canvasLab-v.+/canvasLab-v'${VERSION}'.js"><\/script>/' ../dev-test/index.html
-}
-
-function search_folder()
-{
-    for ENTRY in "${1}"/*
-    do
-        [[ $ENTRY =~ $FILE_REGEX ]] && FILES+="${ENTRY} "
-    done
-}
-
-function insert_file()
-{
-    echo " " | cat - $1 >> $OUTPUT
-}
-
-function render_header()
-{
-    HEADER="// @program: \t\tcanvasLab \\n"
-    HEADER+="// @brief: \t\t\tHTML5 canvas drawing framework \\n"
+    HEADER="// @program: \t\t${VC_PACKAGE} \\n"
+    HEADER+="// @brief: \t\t\t${VC_BRIEF} \\n"
     HEADER+="// @author: \t\tJustin D. Byrne \\n"
     HEADER+="// @email: \t\t\tjustin@byrne-systems.com \\n"
     HEADER+="// @version: \t\t${VERSION} \\n"
@@ -111,20 +132,13 @@ function render_header()
     echo $HEADER > $OUTPUT
 }
 
-function flash_screen()
+function compile_output ()
 {
-    printf '\e[?5h'  # Turn on reverse video
+    update_lead_js_file $LEAD_JS_FILE
 
-    sleep 0.15
+    update_lead_html_file $LEAD_HTML_FILE
 
-    printf '\e[?5l'  # Turn on normal video
-}
-
-function compile_output()
-{
-    update_main_file
-
-    render_header
+    compile_header
 
     for FILE in ${FILES_HEAD[@]}                                # HEAD
     do
@@ -141,12 +155,12 @@ function compile_output()
         insert_file $FILE
     done
 
-    echo "${PROMPT} ${FG_PINK}${PACKAGE} Compiling Complete \t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
+    echo "${PROMPT} ${FG_PINK}${VC_PACKAGE} Compiling Complete \t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
 
     afplay audio/complete.mp3
 }
 
-function compile_readme()
+function compile_readme ()
 {
     if [ -e "readme.sh" ]
     then
@@ -156,26 +170,26 @@ function compile_readme()
     fi
 }
 
-function compile_api()
+function compile_jsdoc ()
 {
     if command -v jsdoc2md
     then
-        if $(jsdoc2md ${OUTPUT} > $OUTPUT_API)
-            then echo "\n${PROMPT} ${FG_PINK}API Complete \t\t\t${FG_BLUE}[${OUTPUT_API}]${NOCOLOR}\n"
+        if $(jsdoc2md ${OUTPUT} > $OUTPUT_JSDOC)
+            then echo "\n${PROMPT} ${FG_PINK}API Complete \t\t\t${FG_BLUE}[${OUTPUT_JSDOC}]${NOCOLOR}\n"
         else
             NO_ERRORS=false
         fi
     fi
 }
 
-function compile_jsdoc()
+function compile_jsdocs ()
 {
-    $(rm -r $OUTPUT_JSDOC)
+    $(rm -r $OUTPUT_JSDOCS)
 
     if command -v jsdoc
     then
-        if (jsdoc --private $OUTPUT -d $OUTPUT_JSDOC)
-            then echo "\n${PROMPT} ${FG_PINK}JSDoc Complete \t\t\t${FG_BLUE}[${OUTPUT_JSDOC}]${NOCOLOR}\n"
+        if (jsdoc --private $OUTPUT -d $OUTPUT_JSDOCS)
+            then echo "\n${PROMPT} ${FG_PINK}JSDoc Complete \t\t\t${FG_BLUE}[${OUTPUT_JSDOCS}]${NOCOLOR}\n"
         else
             NO_ERRORS=false
         fi
@@ -186,27 +200,22 @@ function compile_plantuml ()
 {
     declare DEFAULT_PATH=$(pwd)
 
-    declare BUILD_PATH=~/Programs/Python/PlantUml/ClassGenerator/source/app
 
-    declare SOURCE_PATH=~/Programs/HTML5/canvasLab/script/source
+    $(rm -r $PLANT_OUTPUT)
 
-    declare OUTPUT_UML=~/Programs/HTML5/canvasLab/docs/PlantUml
-
-    $(rm -r $OUTPUT_UML)
 
     if command -v python3
     then
 
-        if cd $BUILD_PATH
+        if cd $PLANT_BUILD
         then
 
             echo "\n"
 
-            echo "python3 BuildClass.py ${SOURCE_PATH} -m \"png\" ${OUTPUT_UML}"
+            echo "python3 BuildClass.py ${PLANT_SOURCE} -m \"png\" -l ${PLANT_OUTPUT}"
 
-            # if (python3 BuildClass.py $SOURCE_PATH -l -m "png" $OUTPUT_UML)
-            if (python3 BuildClass.py $SOURCE_PATH -m "png" $OUTPUT_UML)
-                then echo "\n${PROMPT} ${FG_PINK}PlantUML Complete \t\t\t${FG_BLUE}[${OUTPUT_UML}]${NOCOLOR}\n"
+            if (python3 BuildClass.py $PLANT_SOURCE -m "png" -l $PLANT_OUTPUT)
+                then echo "\n${PROMPT} ${FG_PINK}PlantUML Complete \t\t\t${FG_BLUE}[${PLANT_OUTPUT}]${NOCOLOR}\n"
             else
                 NO_ERRORS=false
             fi
@@ -219,6 +228,70 @@ function compile_plantuml ()
 
     fi
 }
+
+## UPDATE ########################################################
+
+function update_lead_js_file ()
+{
+    sed -r -i '' -e 's/Version:.+/Version:   '"'${VERSION}'"',/' ${1}
+    sed -r -i '' -e 's/Updated:.+/Updated:   '"'$(date +"%b, %d %Y")'"',/' ${1}
+}
+
+function update_lead_html_file ()
+{
+    sed -r -i '' -e 's/'${VC_PACKAGE}'-v.+/'${VC_PACKAGE}'-v'${VERSION}'.js"><\/script>/' ${1}
+}
+
+## GENERAL #######################################################
+
+function get_version ()
+{
+    VERSION=`head -n4 ../docs/CHANGELOG.md | awk '/## \[/{print $2}'`
+
+    LENGTH=${#VERSION}
+
+    LENGTH=$(($LENGTH-2))
+
+    VERSION=${VERSION:1:$LENGTH}
+
+
+    # SET MASTER OUTPUT VARIABLES
+    OUTPUT_MASTER=${VC_PACKAGE}-v${VERSION}.js
+
+    OUTPUT="${OUTPUT_DIRECTORY}/${OUTPUT_MASTER}"
+}
+
+function search_folder ()
+{
+    for ENTRY in "${1}"/*
+    do
+        [[ $ENTRY =~ $FILE_REGEX ]] && FILES+="${ENTRY} "
+    done
+}
+
+function search_folders ()
+{
+    for FOLDER in ${FOLDERS[@]}
+    do
+        search_folder $FOLDER
+    done
+}
+
+function insert_file ()
+{
+    echo " " | cat - $1 >> $OUTPUT
+}
+
+function flash_screen ()
+{
+    printf '\e[?5h'  # Turn on reverse video
+
+    sleep 0.15
+
+    printf '\e[?5l'  # Turn on normal video
+}
+
+## COMPLETE ######################################################
 
 function complete()
 {
@@ -234,25 +307,4 @@ function complete()
     fi
 }
 
-# LOOP THROUGH FOLDERS #############
-
-for FOLDER in ${FOLDERS[@]}
-do
-    search_folder $FOLDER
-done
-
-# COMPILE ##########################
-
-clear
-
-compile_output
-
-compile_readme
-
-compile_api
-
-compile_jsdoc
-
-compile_plantuml
-
-complete
+main

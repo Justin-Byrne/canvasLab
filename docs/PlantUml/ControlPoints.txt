@@ -1,0 +1,19 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class ControlPoints {
+one        {Point}
+two        {Point}
+__ Setter __
+one        {Point}
+two        {Point}
+__ Getter __
+one        {Point}
+two        {Point}
+__ Utility __
+_isPoint
+}
+
+@enduml

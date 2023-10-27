@@ -1,0 +1,20 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Aspect {
+[width=0]      <color:gray>{number}</color>
+[height=0]     <color:gray>{number}</color>
+__ Setter __
+width          <color:gray>{number}</color>
+height         <color:gray>{number}</color>
+__ Getter __
+width          <color:gray>{number}</color>
+height         <color:gray>{number}</color>
+heightCenter   <color:gray>{number}</color>
+widthCenter    <color:gray>{number}</color>
+center         {Point}
+}
+
+@enduml

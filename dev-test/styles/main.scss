@@ -1,27 +1,47 @@
 $width: 200px;
 
+html
+{
+    background-color:   rgb(104, 108, 111);
+}
+
+body
+{
+    $background:        rgb(57, 63, 69);
+
+    background-color:   $background;
+}
+
 nav
 {
     $linkColor:             rgb(255, 255, 255);
     $linkColorHover:        rgba(255, 255, 255, 0.85);
     $linkBackgroundHover:   rgb(43, 48, 53);
     $background:            rgb(57, 63, 69);
-    $border-color:          rgb(73, 80, 87);
+    $borderColor:           rgb(73, 80, 87);
 
     display:        flex;
-    position:       fixed;
+    position:       absolute;
     flex-wrap:      nowrap;
     float:          left;
     min-height:     100vh;
 
-    overflow-x:     auto;
-    overflow-y:     hidden;
+    box-shadow:     1px 0px 5px 0px rgb(122, 128, 133);
+
+    #nav-icon
+    {
+        img
+        {
+            display:    block;
+            width:      98px;
+            margin:     0 auto;
+        }
+    }
 
     .nav-wrapper
     {
         width:      $width;
         background: $background;
-        border:     2px solid rgb(50, 50, 50);
 
         .nav-header-image
         {
@@ -34,7 +54,7 @@ nav
         {
             display:            inline-flex;
             align-items:        center;
-            padding:            .25rem .5rem;
+            padding:            0.25rem 0.75rem 0.25rem .5rem;
             font-weight:        600;
             color:              $linkColor;
             background-color:   transparent;
@@ -48,6 +68,9 @@ nav
 
             &::before
             {
+                position:           relative;
+                margin-right:       2px;
+
                 width:              1.25em;
                 line-height:        0;
                 content:            url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba(255,255,255,.5)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
@@ -81,34 +104,192 @@ nav
                 {
                     margin-left: 10px;
                 }
+
+                &.disabled
+                {
+                    pointer-events: none;
+                    opacity: 0.65;
+
+                    &:hover, &:focus { background-color: transparent; }
+                }
             }
         }
 
-        .border-bottom { border-bottom: 2px solid $border-color !important; }
+        .border-bottom { border-bottom: 2px solid $borderColor !important; }
 
-        .border-top    { border-top:    2px solid $border-color !important; }
+        .border-top    { border-top:    2px solid $borderColor !important; }
+
+        li.mb-1
+        {
+            ul > li > a > span
+            {
+                position:   relative;
+                top:        2.5px;
+            }
+
+            #documents-collapse
+            {
+                ul > li > a > img
+                {
+                    position: relative;
+                    top: 2px;
+                }
+            }
+        }
     }
 }
 
 main
 {
+    $cardBackground:    rgb(57, 63, 69);
+    $borderColor:       rgb(73, 80, 87);
+
     margin-left:    $width;
     background:     rgb(104, 108, 111);
+    min-height:     100vh;
+
+    overflow:       auto;
 
     .album
     {
         .container
         {
-            margin-top: -50px;
-            margin-bottom: -35px;
+            margin-top:     -50px;
+            margin-bottom:  -35px;
 
             .card
             {
                 color:      white;
-                background: rgb(57, 63, 69);
+                background: $cardBackground;
 
                 border:     1px solid rgba(255, 255, 255, 0.5) !important;
                 box-shadow: 0px 2px 3px rgba(0, 0, 0, .25) !important;
+
+                .card-number
+                {
+                    position:           absolute;
+                    z-index:            100;
+                    display:            block;
+
+                    width:              42px;
+                    padding-left:       8px;
+                    font-size:          22px;
+                    border:             1px solid rgb(180, 180, 180);
+                    border-radius:      0px 0px 2px 0px;
+                    border-left:        none;
+                    border-top:         none;
+
+                    color:              black;
+                    background-color:   #ccc;
+                    box-shadow:         0px 2px 3px rgba(0, 0, 0, .25) !important;
+                }
+
+                .code-view-buttons
+                {
+                    color:              white;
+                    background-color:   rgb(50, 82, 121);
+
+                    border:             1px solid rgb(60, 106, 127);
+                    box-shadow:         0px 1px 2.5px 0px black;
+
+                    &:hover
+                    {
+                        background-color:   rgb(39, 114, 137);
+                        border-color:       rgb(0, 175, 255);
+                    }
+                }
+            }
+        }
+    }
+
+    .modal
+    {
+        .modal-content
+        {
+            width: 600px;
+
+            background-color:   $cardBackground;
+            border:             1px solid rgba(88, 88, 88, 0.5) !important;
+            box-shadow:         0px 2px 3px rgba(0, 0, 0, .25) !important;
+
+            .modal-header
+            {
+                border-bottom-color: $borderColor;
+
+                .modal-title
+                {
+                    color: white;
+                }
+
+                .btn-close
+                {
+                    background: transparent url('../images/svg/General/x-lg-black.svg');
+
+                    &:hover
+                    {
+                        background: transparent url('../images/svg/General/x-lg-white.svg');
+                    }
+                }
+            }
+
+            .modal-body
+            {
+                pre
+                {
+                    margin: 0;
+                }
+            }
+
+            .modal-footer
+            {
+                border-top-color: $borderColor;
+
+
+                .btn-primary
+                {
+                    background-color: rgb(35, 54, 82);
+
+                    img
+                    {
+                        position:       relative;
+
+                        top:            -2px;
+                        padding-right:  2px;
+                    }
+
+                    &:hover
+                    {
+                        background-color: rgb(10, 88, 204);
+                    }
+                }
+
+                .btn-secondary
+                {
+                    background-color:   rgb(98, 102, 105);
+                    border-color:       rgb(56, 56, 56);
+
+                    &:hover
+                    {
+                        background-color:   rgb(130, 130, 131);
+                    }
+                }
+            }
+
+            #copiedAlert
+            {
+                .alert
+                {
+                    margin-left: 14px;
+                    margin-right: 14px;
+
+                    img
+                    {
+                        position:       relative;
+
+                        top:            -2px;
+                        padding-right:  6px;
+                    }
+                }
             }
         }
     }
@@ -118,4 +299,39 @@ main
 .my-icons
 {
     width: 20%;
+}
+
+.my-card-icons
+{
+    width:  8%;
+
+    background-color:   black;
+    border:             1px solid rgb(60, 106, 127);
+    border-radius:      3px;
+    box-shadow:         0px 1px 2.5px 0px black;
+}
+
+canvas
+{
+    background-color: white;
+}
+
+#byrne-systems-logo
+{
+    width: 100%;
+
+    img
+    {
+        display:    block;
+        margin:     0 auto;
+
+        animation:  pulse 2s infinite;
+    }
+
+    @keyframes pulse
+    {
+        0%   { opacity: 0.4; }
+        50%  { opacity: 0.6; }
+        100% { opacity: 0.4; }
+    }
 }
