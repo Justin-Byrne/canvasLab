@@ -52,7 +52,7 @@
          * @param           {string} string                     String to convert
          * @return          {string}                            Title case string
          */
-        function _toTitleCase       ( string )
+        function _toTitleCase ( string )
         {
             return string.toLowerCase ( ).split ( ' ' ).map ( function ( word )
             {
@@ -65,7 +65,7 @@
          * @param           {Function} script                   JavaScript function
          * @return          {string}                            Function as a string
          */
-        function _cleanScriptCode   ( script )
+        function _cleanScriptCode ( script )
         {
             script = script.toString ( ).replace ( /\([^{]+{/, '' );
 
@@ -77,34 +77,25 @@
          * @param           {Function} script                   JavaScript function; for card-objects only
          * @return          {string}                            Function as a string
          */
-        function _cleanCode         ( script )
+        function _cleanCode ( script )
         {
-            script     = _cleanScriptCode ( script );
+            let _code   = _cleanScriptCode ( script ).split ( /\n/g );
+
+            let _length = _code.at ( -1 ).match ( /^\s+/ ) [ 0 ].length;
 
 
-            let _temp  = script.split ( /(\s+_[^;]+;)/ );
+            for ( let _line in _code )
 
-            let _code  = [ ];
-
-
-            for ( let _line of _temp )
-            {
-                _line = _line.replace ( /\s+/, '' );
+                _code [ _line ] = _code [ _line ].slice ( _length );
 
 
-                if ( _line != '' )
-
-                    _code.push ( `\n\n    ${_line}` );
-            }
-
-
-            return _code.join ( '' );
+            return _code.join ( '\n' );
         }
 
         /**
          * Clears cards section
          */
-        function _clearCards       ( )
+        function _clearCards ( )
         {
             ////    CARD SECTION    ////////////////////////
 
@@ -125,13 +116,13 @@
         /**
          * Copy code to clipboard
          */
-        async function _copyCode   ( )
+        async function _copyCode ( )
         {
             function _alert ( message, type )
             {
                 let _wrapper       = document.createElement ( 'div' );
 
-                    _wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '<img src="images/svg/General/info.svg" />' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                    _wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '<img src="images/svg/General/info-circle.svg" />' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
 
 
                     document.getElementById ( 'copiedAlert' ).append ( _wrapper );
@@ -170,45 +161,39 @@
          * @param           {Array.<Object>} objects            Array of card-objects
          * @param           {string}         page               Type of page being rendered
          */
-        function _setImagePath           ( objects, page )
+        function _setImagePath ( objects, page )
         {
             let _page = _toTitleCase ( page );
 
 
             for ( let _object of objects )
+            {
+                switch ( _page )
+                {
+                    case 'Circle':       case 'Line':       case 'Rectangle':       case 'Text':
 
-                _object.image = ( [ 'Circle', 'Line', 'Rectangle', 'Text' ].indexOf ( _page ) != -1 )
+                        _object.image = `Object/${_page}`;
 
-                                    ? `Object/${_page}`
+                        break;
 
-                                    : `Subject/${_page}`;
-        }
+                    case `Animation`:    case `Application`:
 
-        /**
-         * Instantiates code for passed card-objects
-         * @param           {Array.<Object>} objects            Array of card-objects
-         */
-        function _setCode                ( objects )
-        {
-            let _codes = [ ]
+                        _object.image = `Handlers/${_page}`;
 
+                        break;
 
-            for ( let _object of objects )
+                    default:
 
-                _codes.push ( `////    ${_object.title}    //////////////////////////\n\n${_object.code}` );
-
-
-            let _wrapper = `( ( window ) =>\n{\n${_codes.join ( '\n\n' )}\n\n} ) ( window );`
-
-
-            eval ( _wrapper );
+                        _object.image = `Subject/${_page}`;
+                }
+            }
         }
 
         /**
          * Sets card section's inner HTML
          * @param           {Array} cards                       Array of HTML templates for each card-object
          */
-        function _setCardSection         ( cards )
+        function _setCardSection ( cards )
         {
             let _cardSection = document.getElementById ( 'test-cards' );
 
@@ -216,9 +201,6 @@
             for ( let _card of cards )
 
                 _cardSection.innerHTML += _card;
-
-
-            initCanvasLab ( );                              // initialize canvasLab
         }
 
         /**
@@ -262,9 +244,9 @@
         /**
          * Sets nav event listeners
          */
-        function _setNavEventListeners   ( )
+        function _setNavEventListeners ( )
         {
-            let _navButtons = document.querySelectorAll ( '.mb-1:nth-child(-n+3) ul.btn-toggle-nav > li > a' );
+            let _navButtons = document.querySelectorAll ( '.mb-1:nth-child(-n+4) ul.btn-toggle-nav > li > a' );
 
 
             for ( let _button of _navButtons )
@@ -275,6 +257,7 @@
 
 
                         let _page = _button.href.match ( /#(\w+)/g ) [ 0 ].replace ( '#', '' ).toLowerCase ( );
+
 
 
                         if ( cardObjects [ _page ] != undefined )
@@ -290,7 +273,7 @@
         /**
          * Sets byrne-systems logo
          */
-        function _setByrneSystemsLogo    ( )
+        function _setByrneSystemsLogo ( )
         {
             let _element = document.getElementById ( 'byrne-systems-logo' );
 
@@ -329,7 +312,7 @@
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          * @return          {Array}                             Array of HTML templates for each card-object
          */
-        function _getCardTemplates    ( cardObjects )
+        function _getCardHTMLTemplates ( cardObjects )
         {
             let _cards = [ ];
 
@@ -373,6 +356,58 @@
         }
 
         /**
+         * Returns a code string with special variable formatting
+         * @param           {string} code                       Code as a string
+         * @param           {number} count                      Card-object number
+         * @return          {string}                            Code string with special variable formatting
+         */
+        function _getSpecialVariables ( code, count )
+        {
+            let _specials = [ '_flow' ];
+
+
+            for ( let _special of _specials )
+            {
+                let _regex = new RegExp ( _special, 'g' );
+
+
+                if ( _regex.test ( code ) )
+                {
+                    switch ( _special )
+                    {
+                        case '_flow':
+
+                            let _lineIndex = /let\s_flow[^=]+=/g.exec ( code ).index;
+
+                            let _headCode  = code.substring ( 0, _lineIndex ).trim ( ) + '\n\n';
+
+                            let _temp      = code.match ( /let\s_flow[^=]+=[^}]+},[^}]+}[^}]+}[^\w]+canvaslab[^;]+;/g ) [ 0 ].split ( /\n/g );
+
+
+                            for ( let _index in _temp )
+
+                                _temp [ _index ] = ( _index > 0 )
+
+                                                   ? _temp [ _index ].slice ( 4 )
+
+                                                   : _temp [ _index ]
+
+
+                            code = _headCode + _temp.join ( '\n' );
+
+
+                            break;
+                    }
+
+                    code = code.replace ( _regex, `${_special}_${count}` );
+                }
+            }
+
+
+            return code;
+        }
+
+        /**
          * Returns rendered HTML for a card-object
          * @param           {Object} cardObject                 Card-object
          * @param           {string} template                   HTML template for card-object
@@ -398,9 +433,11 @@
 
                         _class    = _class.charAt ( 0 ).toUpperCase ( ) + _class.slice ( 1 );
 
-                        _code     = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';${_code}`;
+                        _code     = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;
 
                         _code     = _code.replace ( _regex, `${_variable}_${count}` );
+
+                        _code     = _getSpecialVariables ( _code, count );
 
 
                     cardObject [ _entry ] = _code;
@@ -417,6 +454,24 @@
             return template;
         }
 
+        /**
+         * Returns eval ready code for passed card-objects
+         * @param           {Array.<Object>} objects            Array of card-objects
+         * @return          {string}                            String to be evaluated for all card-objects
+         */
+        function _getCode ( objects, page )
+        {
+            let _codes = [ ]
+
+
+            for ( let _object of objects )
+
+                _codes.push ( `////    ${_object.title}    //////////////////////////\n\n${_object.code}` );
+
+
+            return `( ( window ) =>\n{\n${_codes.join ( '\n\n' )}\n\n} ) ( window );`
+        }
+
     ////////////////////////////////////////////////////////////////////////////
     ////    BUILD FUNCTIONS    /////////////////////////////////////////////////
 
@@ -426,7 +481,7 @@
          * @param           {string} key                        Key of object to copy
          * @return          {Object}                            Copied object
          */
-        function _copyObjectWithKey      ( object, key )
+        function _copyObjectWithKey ( object, key )
         {
             let _result       = JSON.parse ( JSON.stringify ( object [ key ] ) );
 
@@ -452,18 +507,22 @@
 
             _setImagePath   ( _cardObjects, page );
 
-            _setCardSection ( _getCardTemplates ( _cardObjects ) );
-
-            _setCode        ( _cardObjects );
+            _setCardSection ( _getCardHTMLTemplates ( _cardObjects ) );
 
 
             _setModalEventListeners ( );
+
+
+            initCanvasLab ( );                              // initialize canvasLab
+
+
+            eval ( _getCode ( _cardObjects, page ) );
         }
 
         /**
          * Sets the default page
          */
-        function _setDefaultPage  ( )
+        function _setDefaultPage ( )
         {
             if ( window.master != undefined )
 
@@ -530,7 +589,6 @@
 
                 console.error ( '[ ERROR ]: window.cardObjects is not available !');
         }
-
 
         if ( typeof ( window.devTest ) === 'undefined' )
 

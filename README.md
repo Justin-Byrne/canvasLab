@@ -1,9 +1,9 @@
 # canvasLab
 
-![issues](https://img.shields.io/github/issues/Justin-Byrne/canvasLab)
-![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab)
-<img src=https://img.shields.io/badge/Version-0.1.2-green />
-<img src=https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab />
+![issues](https://img.shields.io/github/issues/Justin-Byrne/canvasLab?style=flat-square)
+![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab?style=flat-square)
+<img src="https://img.shields.io/badge/Version-0.1.4-green?style=flat-square" />
+<img src="https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab?style=flat-square" />
 
 HTML5 canvas drawing framework
 
@@ -21,7 +21,7 @@ Migrate to your desired download location, and download this repository to your 
 git clone https://github.com/Justin-Byrne/canvasLab.git
 ```
 
-:link: Link `canvasLab-<version>.js` library to your project
+:paperclip: Link `canvasLab-<version>.js` library to your project
 
 ```html
     <meta ... >
@@ -32,11 +32,13 @@ git clone https://github.com/Justin-Byrne/canvasLab.git
 </head>
 ```
 
+> A standard and minified version of this library can be found under `.\script\distro\`
+
 ## Usage
 
 ### Initialization
 
-:ok_hand: load **canvasLab** through the following initiator
+:truck: Load **canvasLab** through the following initiator
 
 ```javascript
 /**
@@ -68,46 +70,52 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── watch.sh
 ├── docs
 │   ├── CHANGELOG.md
+│   ├── FEATURES.md
 │   └── JSDoc.md
 ├── script
-│   ├── source
-│   │   ├── ancillary
-│   │   │   ├── shared
-│   │   │   │   ├── PropertyBlocks.js
-│   │   │   │   ├── Utilities.js
-│   │   │   │   └── Validation.js
-│   │   │   └── debug.js
-│   │   └── classes
-│   │       ├── Object
-│   │       │   ├── Collections
-│   │       │   │   ├── Circles.js
-│   │       │   │   ├── Group.js
-│   │       │   │   ├── Lines.js
-│   │       │   │   ├── Rectangles.js
-│   │       │   │   └── Texts.js
-│   │       │   ├── Circle.js
-│   │       │   ├── Line.js
-│   │       │   ├── Rectangle.js
-│   │       │   └── Text.js
-│   │       ├── Subject
-│   │       │   ├── Collections
-│   │       │   │   ├── OptionsCollection.js
-│   │       │   │   ├── PointCollection.js
-│   │       │   │   ├── ShadowCollection.js
-│   │       │   │   └── StrokeCollection.js
-│   │       │   ├── Anchor.js
-│   │       │   ├── Angle.js
-│   │       │   ├── Aspect.js
-│   │       │   ├── ControlPoints.js
-│   │       │   ├── Fill.js
-│   │       │   ├── Font.js
-│   │       │   ├── Options.js
-│   │       │   ├── Point.js
-│   │       │   ├── Shadow.js
-│   │       │   └── Stroke.js
-│   │       ├── Application.js
-│   │       └── canvasLab.js
-│   └── canvasLab-v0.1.2.js
+│   ├── distro
+│   │   ├── canvasLab-v0.1.4-min.js
+│   │   └── canvasLab-v0.1.4.js
+│   └── source
+│       ├── ancillary
+│       │   ├── shared
+│       │   │   ├── PropertyBlocks.js
+│       │   │   ├── Utilities.js
+│       │   │   └── Validation.js
+│       │   └── debug.js
+│       └── classes
+│           ├── Handlers
+│           │   ├── Animation.js
+│           │   └── Application.js
+│           ├── Object
+│           │   ├── Collections
+│           │   │   ├── Circles.js
+│           │   │   ├── Group.js
+│           │   │   ├── Lines.js
+│           │   │   ├── Rectangles.js
+│           │   │   └── Texts.js
+│           │   ├── Circle.js
+│           │   ├── Line.js
+│           │   ├── Rectangle.js
+│           │   └── Text.js
+│           ├── Subject
+│           │   ├── Collections
+│           │   │   ├── OptionsCollection.js
+│           │   │   ├── PointCollection.js
+│           │   │   ├── ShadowCollection.js
+│           │   │   └── StrokeCollection.js
+│           │   ├── Anchor.js
+│           │   ├── Angle.js
+│           │   ├── Aspect.js
+│           │   ├── ControlPoints.js
+│           │   ├── Fill.js
+│           │   ├── Font.js
+│           │   ├── Options.js
+│           │   ├── Point.js
+│           │   ├── Shadow.js
+│           │   ├── Stage.js
+│           │   └── Stroke.js
+│           └── canvasLab.js
 ├── LICENSE
 └── README.md
 ```

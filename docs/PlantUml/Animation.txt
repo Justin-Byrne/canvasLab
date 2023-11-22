@@ -1,0 +1,19 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Animation {
+point           {Point}
+canvas          {HTMLCanvasElement}
+__ Setter __
+timing          <color:gray>{string}</color>
+__ Getter __
+timing
+__ Utility __
+animate
+clearInterval
+_draw
+}
+
+@enduml

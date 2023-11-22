@@ -3,26 +3,23 @@
 skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
-class ControlPoints {
-p0          {Point}
-p1          {Point}
-p2          {Point}
-p3          {Point}
+class Application {
+point      {Point}
+canvas     {HTMLCanvasElement}
 __ Setter __
-p0          {Point}
-p1          {Point}
-p2          {Point}
-p3          {Point}
+canvas
+State
 __ Getter __
-p0          {Point}
-p1          {Point}
-p2          {Point}
-p3          {Point}
+canvas
+about
 __ Utility __
-_isNumber
+_isInDom
+setState
+clear
 }
 
-ControlPoints o-- Point
+Application o-- Point
+Application o-- HTMLCanvasElement
 
 
 

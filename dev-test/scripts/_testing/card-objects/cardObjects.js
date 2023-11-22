@@ -133,7 +133,7 @@
                 image: undefined,
                 code: ( ) =>
                 {
-                    _line.curve ( 0, 50, 50, 0 );
+                    _line.curve ( 0, 75, 0, 0 );
 
                     _line.draw ( );
                 }
@@ -841,6 +841,359 @@
                     _text.options.shadow = true;
 
                     _text.draw ( );
+                }
+            },
+        ],
+        anchor:
+        [
+            {
+                title: 'Align',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.draw ( );
+                }
+            },
+            {
+                title: 'Align Top',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'top';
+
+                    _rectangle.draw ( );
+                }
+            },
+            {
+                title: 'Align Top-Right',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'topRight';
+
+                    _rectangle.draw ( );
+                }
+            },
+            {
+                title: 'Align Right',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'right';
+
+                    _rectangle.draw ( );
+                }
+            },
+            {
+                title: 'Align Bottom-Right',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'bottomRight';
+
+                    _rectangle.draw ( );
+                }
+            },
+            {
+                title: 'Align Bottom',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'bottom';
+
+                    _rectangle.draw ( );
+                }
+            },
+            {
+                title: 'Align Bottom-Left',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'bottomLeft';
+
+                    _rectangle.draw ( );
+                }
+            },
+            {
+                title: 'Align Left',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'left';
+
+                    _rectangle.draw ( );
+                }
+            },
+            {
+                title: 'Align Top-Left',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'topLeft';
+
+                    _rectangle.draw ( );
+                }
+            },
+        ],
+        animation:
+        [
+            {
+                title: 'Align',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    let _flow =
+                    {
+                        duration: 3000,
+                        timing ( timeFraction )
+                        {
+                            return timeFraction;
+                        },
+                        draw ( progress )
+                        {
+                            _rectangle.rotate ( progress * 500 );
+                        }
+                    }
+
+                    canvaslab.animate ( _flow );
+                }
+            },
+            {
+                title: 'Align Top',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'top';
+
+                    let _flow =
+                    {
+                        duration: 3000,
+                        timing ( timeFraction )
+                        {
+                            return timeFraction;
+                        },
+                        draw ( progress )
+                        {
+                            _rectangle.rotate ( progress * 500 );
+                        }
+                    }
+
+                    canvaslab.animate ( _flow );
+                }
+            },
+            {
+                title: 'Align Top-Right',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'topRight';
+
+                    let _flow =
+                    {
+                        duration: 3000,
+                        timing ( timeFraction )
+                        {
+                            return timeFraction;
+                        },
+                        draw ( progress )
+                        {
+                            _rectangle.rotate ( progress * 500 );
+                        }
+                    }
+
+                    canvaslab.animate ( _flow );
+                }
+            },
+            {
+                title: 'Align Right',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'right';
+
+                    let _flow =
+                    {
+                        duration: 3000,
+                        timing ( timeFraction )
+                        {
+                            return timeFraction;
+                        },
+                        draw ( progress )
+                        {
+                            _rectangle.rotate ( progress * 500 );
+                        }
+                    }
+
+                    canvaslab.animate ( _flow );
+                }
+            },
+            {
+                title: 'Align Bottom-Right',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'bottomRight';
+
+                    let _flow =
+                    {
+                        duration: 3000,
+                        timing ( timeFraction )
+                        {
+                            return timeFraction;
+                        },
+                        draw ( progress )
+                        {
+                            _rectangle.rotate ( progress * 500 );
+                        }
+                    }
+
+                    canvaslab.animate ( _flow );
+                }
+            },
+            {
+                title: 'Align Bottom',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'bottom';
+
+                    let _flow =
+                    {
+                        duration: 3000,
+                        timing ( timeFraction )
+                        {
+                            return timeFraction;
+                        },
+                        draw ( progress )
+                        {
+                            _rectangle.rotate ( progress * 500 );
+                        }
+                    }
+
+                    canvaslab.animate ( _flow );
+                }
+            },
+            {
+                title: 'Align Bottom-Left',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'bottomLeft';
+
+                    let _flow =
+                    {
+                        duration: 3000,
+                        timing ( timeFraction )
+                        {
+                            return timeFraction;
+                        },
+                        draw ( progress )
+                        {
+                            _rectangle.rotate ( progress * 500 );
+                        }
+                    }
+
+                    canvaslab.animate ( _flow );
+                }
+            },
+            {
+                title: 'Align Left',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'left';
+
+                    let _flow =
+                    {
+                        duration: 3000,
+                        timing ( timeFraction )
+                        {
+                            return timeFraction;
+                        },
+                        draw ( progress )
+                        {
+                            _rectangle.rotate ( progress * 500 );
+                        }
+                    }
+
+                    canvaslab.animate ( _flow );
+                }
+            },
+            {
+                title: 'Align Top-Left',
+                text: 'blah... blah... blah...',
+                image: undefined,
+                code: ( ) =>
+                {
+                    _rectangle.options.anchor = true;
+
+                    _rectangle.anchor.align = 'topLeft';
+
+                    let _flow =
+                    {
+                        duration: 3000,
+                        timing ( timeFraction )
+                        {
+                            return timeFraction;
+                        },
+                        draw ( progress )
+                        {
+                            _rectangle.rotate ( progress * 500 );
+                        }
+                    }
+
+                    canvaslab.animate ( _flow );
                 }
             },
         ]

@@ -111,6 +111,14 @@
 </dd>
 </dl>
 
+## Functions
+
+<dl>
+<dt><a href="#getPropertyAccessors">getPropertyAccessors(string)</a> ⇒ <code>Array.&lt;String&gt;</code></dt>
+<dd><p>Gets property accessors from camel case string  for bracket notation</p>
+</dd>
+</dl>
+
 <a name="Anchor"></a>
 
 ## Anchor
@@ -421,31 +429,39 @@ Get center of aspect
 
 | Name | Type | Description |
 | --- | --- | --- |
-| one | [<code>Point</code>](#Point) | Control point one |
-| two | [<code>Point</code>](#Point) | Control point two |
+| p0 | [<code>Point</code>](#Point) | Control point one |
+| p1 | [<code>Point</code>](#Point) | Control point two |
+| p2 | [<code>Point</code>](#Point) | Control point three |
+| p3 | [<code>Point</code>](#Point) | Control point four |
 
 
 * [ControlPoints](#ControlPoints)
-    * [new ControlPoints(one, two)](#new_ControlPoints_new)
-    * [.one](#ControlPoints+one)
-    * [.one](#ControlPoints+one) ⇒ [<code>Point</code>](#Point)
-    * [.two](#ControlPoints+two)
-    * [.two](#ControlPoints+two) ⇒ [<code>Point</code>](#Point)
+    * [new ControlPoints(p0, p1, p2, p3)](#new_ControlPoints_new)
+    * [.p0](#ControlPoints+p0)
+    * [.p0](#ControlPoints+p0) ⇒ [<code>Point</code>](#Point)
+    * [.p1](#ControlPoints+p1)
+    * [.p1](#ControlPoints+p1) ⇒ [<code>Point</code>](#Point)
+    * [.p2](#ControlPoints+p2)
+    * [.p2](#ControlPoints+p2) ⇒ [<code>Point</code>](#Point)
+    * [.p3](#ControlPoints+p3)
+    * [.p3](#ControlPoints+p3) ⇒ [<code>Point</code>](#Point)
 
 <a name="new_ControlPoints_new"></a>
 
-### new ControlPoints(one, two)
+### new ControlPoints(p0, p1, p2, p3)
 Create control points
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| one | [<code>Point</code>](#Point) | Control point one |
-| two | [<code>Point</code>](#Point) | Control point two |
+| p0 | [<code>Point</code>](#Point) | Control point one |
+| p1 | [<code>Point</code>](#Point) | Control point two |
+| p2 | [<code>Point</code>](#Point) | Control point three |
+| p3 | [<code>Point</code>](#Point) | Control point four |
 
-<a name="ControlPoints+one"></a>
+<a name="ControlPoints+p0"></a>
 
-### controlPoints.one
+### controlPoints.p0
 Set control point one
 
 **Kind**: instance property of [<code>ControlPoints</code>](#ControlPoints)  
@@ -454,17 +470,17 @@ Set control point one
 | --- | --- | --- |
 | value | [<code>Point</code>](#Point) | Control Point ( x, y ) values |
 
-<a name="ControlPoints+one"></a>
+<a name="ControlPoints+p0"></a>
 
-### controlPoints.one ⇒ [<code>Point</code>](#Point)
+### controlPoints.p0 ⇒ [<code>Point</code>](#Point)
 Get control point one
 
 **Kind**: instance property of [<code>ControlPoints</code>](#ControlPoints)  
 **Returns**: [<code>Point</code>](#Point) - Control Point ( x, y ) values  
-<a name="ControlPoints+two"></a>
+<a name="ControlPoints+p1"></a>
 
-### controlPoints.two
-Set control point two
+### controlPoints.p1
+Set control point one
 
 **Kind**: instance property of [<code>ControlPoints</code>](#ControlPoints)  
 
@@ -472,10 +488,46 @@ Set control point two
 | --- | --- | --- |
 | value | [<code>Point</code>](#Point) | Control Point ( x, y ) values |
 
-<a name="ControlPoints+two"></a>
+<a name="ControlPoints+p1"></a>
 
-### controlPoints.two ⇒ [<code>Point</code>](#Point)
-Get control point two
+### controlPoints.p1 ⇒ [<code>Point</code>](#Point)
+Get control point one
+
+**Kind**: instance property of [<code>ControlPoints</code>](#ControlPoints)  
+**Returns**: [<code>Point</code>](#Point) - Control Point ( x, y ) values  
+<a name="ControlPoints+p2"></a>
+
+### controlPoints.p2
+Set control point one
+
+**Kind**: instance property of [<code>ControlPoints</code>](#ControlPoints)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Control Point ( x, y ) values |
+
+<a name="ControlPoints+p2"></a>
+
+### controlPoints.p2 ⇒ [<code>Point</code>](#Point)
+Get control point one
+
+**Kind**: instance property of [<code>ControlPoints</code>](#ControlPoints)  
+**Returns**: [<code>Point</code>](#Point) - Control Point ( x, y ) values  
+<a name="ControlPoints+p3"></a>
+
+### controlPoints.p3
+Set control point one
+
+**Kind**: instance property of [<code>ControlPoints</code>](#ControlPoints)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Control Point ( x, y ) values |
+
+<a name="ControlPoints+p3"></a>
+
+### controlPoints.p3 ⇒ [<code>Point</code>](#Point)
+Get control point one
 
 **Kind**: instance property of [<code>ControlPoints</code>](#ControlPoints)  
 **Returns**: [<code>Point</code>](#Point) - Control Point ( x, y ) values  
@@ -3558,3 +3610,15 @@ Shared validation functions
 DEBUG General debug module
 
 **Kind**: global constant  
+<a name="getPropertyAccessors"></a>
+
+## getPropertyAccessors(string) ⇒ <code>Array.&lt;String&gt;</code>
+Gets property accessors from camel case string  for bracket notation
+
+**Kind**: global function  
+**Returns**: <code>Array.&lt;String&gt;</code> - Array of strings  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| string | <code>string</code> | Camel case string to split |
+

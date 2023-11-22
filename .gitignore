@@ -22,6 +22,7 @@ _dump/
 
 ## Docs
 CHANGECONTROL.md
+FEATURES.md
 build/readme
 readme.sh
 *desired_result*

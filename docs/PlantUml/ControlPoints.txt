@@ -4,16 +4,22 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class ControlPoints {
-one        {Point}
-two        {Point}
+p0          {Point}
+p1          {Point}
+p2          {Point}
+p3          {Point}
 __ Setter __
-one        {Point}
-two        {Point}
+p0          {Point}
+p1          {Point}
+p2          {Point}
+p3          {Point}
 __ Getter __
-one        {Point}
-two        {Point}
+p0          {Point}
+p1          {Point}
+p2          {Point}
+p3          {Point}
 __ Utility __
-_isPoint
+_isNumber
 }
 
 @enduml

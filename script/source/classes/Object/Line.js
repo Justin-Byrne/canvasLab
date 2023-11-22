@@ -13,6 +13,7 @@ class Line
     _end     = new Point;
     _stroke  = new Stroke;
     _shadow  = new Shadow;
+
     _lineCap = 'round';
 
     _canvas  = undefined;
@@ -289,12 +290,11 @@ class Line
          */
         #_setPath ( )
         {
-            if ( this.controlPoints.one.x != 0 || this.controlPoints.one.y != 0 ||
-                 this.controlPoints.two.x != 0 || this.controlPoints.two.y != 0 )
+            if ( this.controlPoints.p0 != 0 || this.controlPoints.p1 != 0 || this.controlPoints.p2 != 0 || this.controlPoints.p3 != 0 )
 
-                this._canvas.bezierCurveTo ( this.controlPoints.one.x + this.start.x, this.controlPoints.one.y + this.start.y,
-                                             this.controlPoints.two.x + this.end.x,   this.controlPoints.two.y + this.end.y,
-                                             this.end.x,                              this.end.y );
+                this._canvas.bezierCurveTo ( this.controlPoints.p0 + this.start.x, this.controlPoints.p1 + this.start.y,
+                                             this.controlPoints.p2 + this.end.x,   this.controlPoints.p3 + this.end.y,
+                                             this.end.x,                           this.end.y );
 
             else
 
@@ -393,18 +393,18 @@ class Line
          */
         showControlPoints ( offset = 10, fontSize = 16 )
         {
-            let _point0 = new Point ( this.start.x,                            this.start.y                            );
+            let _point0 = new Point ( this.start.x,                         this.start.y                         );
 
-            let _point1 = new Point ( this.controlPoints.one.x + this.start.x, this.controlPoints.one.y + this.start.y );
+            let _point1 = new Point ( this.controlPoints.p0 + this.start.x, this.controlPoints.p1 + this.start.y );
 
-            let _point2 = new Point ( this.controlPoints.two.x + this.end.x,   this.controlPoints.two.y + this.end.y   );
+            let _point2 = new Point ( this.controlPoints.p2 + this.end.x,   this.controlPoints.p3 + this.end.y   );
 
-            let _point3 = new Point ( this.end.x,                              this.end.y                              );
+            let _point3 = new Point ( this.end.x,                           this.end.y                           );
 
 
-            let _textStart  = new Text ( _point1.x, _point1.y, `( ${this.#_controlPoints.one.x}, ${this.#_controlPoints.one.y} )` );
+            let _textStart  = new Text ( _point1.x, _point1.y, `( ${this.#_controlPoints.p0}, ${this.#_controlPoints.p1} )` );
 
-            let _textEnd    = new Text ( _point2.x, _point2.y,   `( ${this.#_controlPoints.two.x}, ${this.#_controlPoints.two.y  } )` );
+            let _textEnd    = new Text ( _point2.x, _point2.y,   `( ${this.#_controlPoints.p3}, ${this.#_controlPoints.p4  } )` );
 
 
                 _textStart.canvas         = _textEnd.canvas         = this.canvas;
@@ -567,11 +567,15 @@ class Line
          * [one description]
          * @type {Object}
          */
-        curve ( one = { x: undefined, y: undefined }, two = { x: undefined, y: undefined } )
+        curve ( p0, p1, p2, p3 )
         {
-            [ this.controlPoints.one.x, this.controlPoints.one.y ] = [ one.x, one.y ];
+            this.controlPoints.p0 = p0;
 
-            [ this.controlPoints.two.x, this.controlPoints.two.y ] = [ two.x, two.y ];
+            this.controlPoints.p1 = p1;
+
+            this.controlPoints.p2 = p2;
+
+            this.controlPoints.p3 = p3;
         }
 
         /**

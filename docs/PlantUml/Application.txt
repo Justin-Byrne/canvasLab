@@ -4,9 +4,8 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Application {
-#_app
-#_dom
-#_post
+point      {Point}
+canvas     {HTMLCanvasElement}
 __ Setter __
 canvas
 State

@@ -35,4 +35,26 @@ requestAnimationFrame
 _init
 }
 
+canvasLab o-- Application
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Application {
+point      {Point}
+canvas     {HTMLCanvasElement}
+__ Setter __
+canvas
+State
+__ Getter __
+canvas
+about
+__ Utility __
+_isInDom
+setState
+clear
+}
+
 @enduml

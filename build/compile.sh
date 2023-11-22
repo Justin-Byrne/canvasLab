@@ -15,7 +15,7 @@ declare INPUT_FOLDER=../script/source
 
 ## OUTPUT ########################################################
 
-declare OUTPUT_DIRECTORY=../script
+declare OUTPUT_DIRECTORY=../script/distro
 
 declare OUTPUT_JSDOC=../docs/JSDoc.md
 declare OUTPUT_JSDOCS=../docs/JSDoc
@@ -30,10 +30,14 @@ declare PLANT_OUTPUT=~/Programs/HTML5/canvasLab/docs/PlantUml
 
 ## MUTATATORS ####################################################
 
-declare LEAD_JS_FILE=${INPUT_FOLDER}/classes/Application.js
+declare LEAD_JS_FILE=${INPUT_FOLDER}/classes/Handlers/Application.js
 declare LEAD_HTML_FILE='../dev-test/index.html'
 
 ## CACHE #########################################################
+
+declare HEADER
+
+declare PREAMBLE
 
 ### FILES ##########################################
 
@@ -58,13 +62,14 @@ declare FOLDERS=(
     "${INPUT_FOLDER}/classes/Subject/Collections"
     "${INPUT_FOLDER}/classes/Object"
     "${INPUT_FOLDER}/classes/Object/Collections"
+    "${INPUT_FOLDER}/classes/Handlers"
 )
 
 # ------------------------------------ #
 # Root application file; if available  #
 # ------------------------------------ #
 declare FILES_FOOT=(
-    "${INPUT_FOLDER}/classes/Application.js"
+    # "${INPUT_FOLDER}/classes/Application.js"
 )
 
 ### GENERAL ########################################
@@ -103,6 +108,8 @@ main ()
 
     compile_output
 
+    compile_minified
+
     compile_readme
 
     compile_jsdoc
@@ -132,32 +139,79 @@ function compile_header ()
     echo $HEADER > $OUTPUT
 }
 
+function compile_preamble ()
+{
+    PREAMBLE="\/** \\n"
+    PREAMBLE+=" * ${VC_PACKAGE} - ${VC_BRIEF} \\n"
+    PREAMBLE+=" * Copyright (C) 2023  Justin D. Byrne \\n"
+    PREAMBLE+=" * \\n"
+    PREAMBLE+=" * This library is free software; you can redistribute it and\/or \\n"
+    PREAMBLE+=" * modify it under the terms of the GNU Library General Public \\n"
+    PREAMBLE+=" * License as published by the Free Software Foundation; either \\n"
+    PREAMBLE+=" * version 2 of the License, or (at your option) any later version. \\n"
+    PREAMBLE+=" * \\n"
+    PREAMBLE+=" * This library is distributed in the hope that it will be useful, \\n"
+    PREAMBLE+=" * but WITHOUT ANY WARRANTY; without even the implied warranty of \\n"
+    PREAMBLE+=" * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU \\n"
+    PREAMBLE+=" * Library General Public License for more details. \\n"
+    PREAMBLE+=" * \\n"
+    PREAMBLE+=" * You should have received a copy of the GNU Library General Public \\n"
+    PREAMBLE+=" * License along with this library; if not, write to the \\n"
+    PREAMBLE+=" * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, \\n"
+    PREAMBLE+=" * Boston, MA  02110-1301, USA. \\n"
+    PREAMBLE+=" * \\n"
+    PREAMBLE+=" * Byrne-Systems, hereby disclaims all copyright interest in \\n"
+    PREAMBLE+=" * the library '${VC_PACKAGE}' (${VC_BRIEF}) written \\n"
+    PREAMBLE+=" * by Justin D. Byrne. (justin@byrne-systems.com) \\n"
+    PREAMBLE+=" *\/ \\n\\n"
+}
+
 function compile_output ()
 {
     update_lead_js_file $LEAD_JS_FILE
 
     update_lead_html_file $LEAD_HTML_FILE
 
+
     compile_header
 
-    for FILE in ${FILES_HEAD[@]}                                # HEAD
+
+    for FILE in ${FILES_HEAD[@]}        # HEAD
     do
         insert_file $FILE
     done
 
-    for FILE in ${FILES[@]}                                     # BODY
+    for FILE in ${FILES[@]}             # BODY
     do
         insert_file $FILE
     done
 
-    for FILE in ${FILES_FOOT[@]}                                # FOOT
+    for FILE in ${FILES_FOOT[@]}        # FOOT
     do
         insert_file $FILE
     done
+
 
     echo "${PROMPT} ${FG_PINK}${VC_PACKAGE} Compiling Complete \t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
 
+
     afplay audio/complete.mp3
+}
+
+function compile_minified ()
+{
+    FILE_MIN=${OUTPUT_DIRECTORY}/${VC_PACKAGE}-v${VERSION}-min.js
+
+    if command -v uglifyjs
+    then
+        if $(uglifyjs ${OUTPUT} -o ${FILE_MIN} --compress --mangle reserved=['window']); then
+            echo "\n${PROMPT} ${FG_PINK}${VC_PACKAGE} Minified Complete \t\t${FG_BLUE}[${FILE_MIN}]${NOCOLOR}\n"
+        else
+            NO_ERRORS=false
+        fi
+    fi
+
+    update_minified_js_preamble $FILE_MIN
 }
 
 function compile_readme ()
@@ -175,7 +229,7 @@ function compile_jsdoc ()
     if command -v jsdoc2md
     then
         if $(jsdoc2md ${OUTPUT} > $OUTPUT_JSDOC)
-            then echo "\n${PROMPT} ${FG_PINK}API Complete \t\t\t${FG_BLUE}[${OUTPUT_JSDOC}]${NOCOLOR}\n"
+            then echo "\n${PROMPT} ${FG_PINK}JSDoc Complete \t\t\t${FG_BLUE}[${OUTPUT_JSDOC}]${NOCOLOR}\n"
         else
             NO_ERRORS=false
         fi
@@ -189,7 +243,7 @@ function compile_jsdocs ()
     if command -v jsdoc
     then
         if (jsdoc --private $OUTPUT -d $OUTPUT_JSDOCS)
-            then echo "\n${PROMPT} ${FG_PINK}JSDoc Complete \t\t\t${FG_BLUE}[${OUTPUT_JSDOCS}]${NOCOLOR}\n"
+            then echo "\n${PROMPT} ${FG_PINK}JSDocs Complete \t\t\t${FG_BLUE}[${OUTPUT_JSDOCS}]${NOCOLOR}\n"
         else
             NO_ERRORS=false
         fi
@@ -239,7 +293,14 @@ function update_lead_js_file ()
 
 function update_lead_html_file ()
 {
-    sed -r -i '' -e 's/'${VC_PACKAGE}'-v.+/'${VC_PACKAGE}'-v'${VERSION}'.js"><\/script>/' ${1}
+    sed -r -i '' -e 's/'${VC_PACKAGE}'-v.+/'${VC_PACKAGE}'-v'${VERSION}'-min.js"><\/script>/' ${1}
+}
+
+function update_minified_js_preamble ()
+{
+    compile_preamble
+
+    sed -r -i '' -e 's/"use strict"/'"$PREAMBLE"'"use strict"/' ${1}
 }
 
 ## GENERAL #######################################################
