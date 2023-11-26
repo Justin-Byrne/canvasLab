@@ -32,7 +32,7 @@
     <script src="scripts/highlightJs/highlight.min.js"></script>
 
     <!-- canvasLab @current-revision -->
-    <script src="../script/distro/canvasLab-v0.1.4-min.js"></script>
+    <script src="../script/distro/canvasLab-v0.1.5-min.js"></script>
 
     <!-- User Scripts -->
     <script src="scripts/master.js"></script>
@@ -384,15 +384,323 @@
 
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 
-                            <li>
+                            <li class="mb-2">
 
-                                <a href="#Animation" class="link-dark rounded">
+                                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#animation-collapse" aria-expanded="false">
 
                                     <img src="images/svg/Handlers/Animation.svg" class="my-icons">
 
-                                    <span>Animation</span>
+                                    Animation
 
-                                </a>
+                                </button>
+
+                                <div class="collapse" id="animation-collapse">
+
+                                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#animation-objects-collapse" aria-expanded="false">
+
+                                        Objects
+
+                                    </button>
+
+                                    <div class="collapse" id="animation-objects-collapse">
+
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+
+                                            <li>
+
+                                                <a href="#AnimationLine" class="link-dark rounded">
+
+                                                    <img src="images/svg/Object/Line.svg" class="my-icons">
+
+                                                    <span>Line</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationLineCollection" class="link-dark rounded disabled">
+
+                                                    <img src="images/svg/Object/LineCollection.svg" class="my-icons">
+
+                                                    <span>Line +</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationCircle" class="link-dark rounded">
+
+                                                    <img src="images/svg/Object/Circle.svg" class="my-icons">
+
+                                                    <span>Circle</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationCircleCollection" class="link-dark rounded disabled">
+
+                                                    <img src="images/svg/Object/CircleCollection.svg" class="my-icons">
+
+                                                    <span>Circle +</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationRectangle" class="link-dark rounded">
+
+                                                    <img src="images/svg/Object/Rectangle.svg" class="my-icons">
+
+                                                    <span>Rectangle</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationRectangleCollection" class="link-dark rounded disabled">
+
+                                                    <img src="images/svg/Object/RectangleCollection.svg" class="my-icons">
+
+                                                    <span>Rectangle +</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationText" class="link-dark rounded">
+
+                                                    <img src="images/svg/Object/Text.svg" class="my-icons">
+
+                                                    <span>Text</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationTextCollection" class="link-dark rounded disabled">
+
+                                                    <img src="images/svg/Object/TextCollection.svg" class="my-icons">
+
+                                                    <span>Text +</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationGroup" class="link-dark rounded">
+
+                                                    <img src="images/svg/Object/Group.svg" class="my-icons">
+
+                                                    <span>Group</span>
+
+                                                </a>
+
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#animation-subjects-collapse" aria-expanded="false">
+
+                                        Subjects
+
+                                    </button>
+
+                                    <div class="collapse" id="animation-subjects-collapse">
+
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+
+                                            <li>
+
+                                                <a href="#AnimationAnchor" class="link-dark rounded">
+
+                                                    <img src="images/svg/Subject/Anchor.svg" class="my-icons">
+
+                                                    <span>Anchor</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationAngle" class="link-dark rounded">
+
+                                                    <img src="images/svg/Subject/Angle.svg" class="my-icons">
+
+                                                    <span>Angle</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationAspect" class="link-dark rounded">
+
+                                                    <img src="images/svg/Subject/Aspect.svg" class="my-icons">
+
+                                                    <span>Aspect</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationControlPoints" class="link-dark rounded">
+
+                                                    <img src="images/svg/Subject/ControlPoints.svg" class="my-icons">
+
+                                                    <span>Control Points</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationFill" class="link-dark rounded">
+
+                                                    <img src="images/svg/Subject/Fill.svg" class="my-icons">
+
+                                                    <span>Fill</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationFont" class="link-dark rounded">
+
+                                                    <img src="images/svg/Subject/Font.svg" class="my-icons">
+
+                                                    <span>Font</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationOptions" class="link-dark rounded">
+
+                                                    <img src="images/svg/Subject/Options.svg" class="my-icons">
+
+                                                    <span>Options</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationOptionsCollection" class="link-dark rounded disabled">
+
+                                                    <img src="images/svg/Subject/OptionsCollection.svg" class="my-icons">
+
+                                                    <span>Options +</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationPoint" class="link-dark rounded">
+
+                                                    <img src="images/svg/Subject/Point.svg" class="my-icons">
+
+                                                    <span>Point</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationPointCollection" class="link-dark rounded disabled">
+
+                                                    <img src="images/svg/Subject/PointCollection.svg" class="my-icons">
+
+                                                    <span>Point +</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationShadow" class="link-dark rounded">
+
+                                                    <img src="images/svg/Subject/Shadow.svg" class="my-icons">
+
+                                                    <span>Shadow</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationShadowCollection" class="link-dark rounded disabled">
+
+                                                    <img src="images/svg/Subject/ShadowCollection.svg" class="my-icons">
+
+                                                    <span>Shadow +</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationStroke" class="link-dark rounded">
+
+                                                    <img src="images/svg/Subject/Stroke.svg" class="my-icons">
+
+                                                    <span>Stroke</span>
+
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#AnimationStrokeCollection" class="link-dark rounded disabled">
+
+                                                    <img src="images/svg/Subject/StrokeCollection.svg" class="my-icons">
+
+                                                    <span>Stroke +</span>
+
+                                                </a>
+
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                </div>
 
                             </li>
 

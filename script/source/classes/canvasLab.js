@@ -1,83 +1,15 @@
 class canvasLab
 {
-    _application = new Application;
-    _animations  = [ ];
-
     _canvas   = undefined;
     _canvases = undefined;
     _font     = undefined;
     _state    = undefined;
 
+
+    #application = new Application;
+
     #config =
     {
-        animation:
-        {
-            duration: 1500,         // Default: 1500
-            timing:   undefined,    // Note: defined at creation
-            ease:
-            {
-                in:
-                {
-                    sine:    ( timeFraction ) => 1 - Math.cos ( ( timeFraction * Math.PI ) / 2),
-
-                    cubic:   ( timeFraction ) => timeFraction * timeFraction * timeFraction,
-
-                    quint:   ( timeFraction ) => timeFraction * timeFraction * timeFraction * timeFraction * timeFraction,
-
-                    circ:    ( timeFraction ) => 1 - Math.sqrt ( 1 - Math.pow ( timeFraction, 2 ) ),
-
-                    elastic: ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : - Math.pow ( 2, 10 * timeFraction - 10 ) * Math.sin ( ( timeFraction * 10 - 10.75 ) * ( ( 2 * Math.PI ) / 3 ) ),
-
-                    quad:    ( timeFraction ) => timeFraction * timeFraction,
-
-                    quart:   ( timeFraction ) => timeFraction * timeFraction * timeFraction * timeFraction,
-
-                    expo:    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : Math.pow ( 2, 10 * timeFraction - 10 ),
-
-                    back:    ( timeFraction ) => ( 1.70158 + 1 ) * timeFraction * timeFraction * timeFraction - 1.70158 * timeFraction * timeFraction
-                },
-                out:
-                {
-                    sine:    ( timeFraction ) => Math.sin ( ( timeFraction * Math.PI ) / 2 ),
-
-                    cubic:   ( timeFraction ) => 1 - Math.pow ( 1 - timeFraction, 3 ),
-
-                    quint:   ( timeFraction ) => 1 - Math.pow ( 1 - timeFraction, 5 ),
-
-                    circ:    ( timeFraction ) => Math.sqrt ( 1 - Math.pow ( timeFraction - 1, 2 ) ),
-
-                    elastic: ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : Math.pow ( 2, -10 * timeFraction ) * Math.sin ( ( timeFraction * 10 - 0.75 ) * ( ( 2 * Math.PI ) / 3 ) ) + 1,
-
-                    quad:    ( timeFraction ) => 1 - ( 1 - timeFraction ) * ( 1 - timeFraction ),
-
-                    quart:   ( timeFraction ) => 1 - Math.pow ( 1 - timeFraction, 4 ),
-
-                    expo:    ( timeFraction ) => ( timeFraction === 1 ) ? 1 : 1 - Math.pow ( 2, -10 * timeFraction ),
-
-                    back:    ( timeFraction ) => 1 + ( 1.70158 + 1 ) * Math.pow ( timeFraction - 1, 3 ) + 1.70158 * Math.pow ( timeFraction - 1, 2 )
-                },
-                inout:
-                {
-                    sine:    ( timeFraction ) => - ( Math.cos ( Math.PI * timeFraction ) - 1 ) / 2,
-
-                    cubic:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
-
-                    quint:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
-
-                    circ:    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
-
-                    elastic: ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
-
-                    quad:    ( timeFraction ) => ( timeFraction < 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
-
-                    quart:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
-
-                    expo:    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
-
-                    back:    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
-                }
-            },
-        },
         processing:
         {
             pre: undefined,
@@ -201,31 +133,7 @@ class canvasLab
          */
         animate ( flow = { timing, draw, duration } )
         {
-            let _start = performance.now ( );
-
-
-            requestAnimationFrame (
-                function animate ( time )
-                {
-                    let _timeFraction =  ( time - _start ) / flow.duration;     // timeFraction goes from 0 to 1
-
-
-                    if  ( _timeFraction > 1 )
-
-                        _timeFraction = 1;
-
-
-                    let _progress = flow.timing ( _timeFraction );              // calculate the current animation state
-
-
-                    flow.draw ( _progress );                                    // draw it
-
-
-                    if  ( _timeFraction < 1 )
-
-                        requestAnimationFrame ( animate );
-                }
-            );
+            this.#application.animation = flow;
         }
 
     ////    INITIALIZE  ////////////////////////////////////

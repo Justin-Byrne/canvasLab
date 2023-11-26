@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.5] - 2023-11-26
+### Added
+- `Animation` class, added mutators & accessors for properties
+- `Application` class, added caching of animation instances
+
+### Changed
+- **dev-tools** navigation to include specific drop-down lists for `Handlers`
+- `Animation` class
+  - Migrated all easing animations from `canvasLab` class to protected `#timing` property
+  - Core `animate ( )` function is now here, rather than `canvasLab`
+
 ## [0.1.4] - 2023-11-22
 ### Added
 - Minified version of library, under `./script/distro/`
@@ -9,9 +20,8 @@ All notable changes to this project will be documented in this file.
   - `Animation` test cases :b: `beta`
   - `_getSpecialVariables ( )` function, to return a code string with special variable formatting
   - `_getCode ( )` function, to return eval ready code for passed card-objects
-- `canvasLab` class
-  - `animate ( )` function, to animate onscreen objects in accordance with passed param values :b: `beta`
-  - Various animations & processing declarations within `#config` :b: `beta`
+- `canvasLab` class, `animate ( )` function, to animate onscreen objects in accordance with passed param values :b: `beta`
+- `Animation` class, various pre-defined animations & processing declarations within `#config` :b: `beta`
 
 ### Changed
 - **dev-tools**, refactored `_cleanCode ( )` & `_setImagePath ( )` functions to streamline operations
@@ -83,7 +93,8 @@ All notable changes to this project will be documented in this file.
 
 | Version | Date       | Commit                                                              | Comments                                                                                     |
 | :-----: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.1.4] | 2023-10-27 | CURRENT                                                             | Added foundation for animations.                                                             |
+| [0.1.5] | 2023-11-26 | CURRENT                                                             | Refactored animation functions & expanded dev-tools navigation.                              |
+| [0.1.4] | 2023-11-22 | [0e9813f](https://github.com/Justin-Byrne/canvasLab/commit/0e9813f) | Added foundation for animations.                                                             |
 | [0.1.2] | 2023-10-27 | [6008fb1](https://github.com/Justin-Byrne/canvasLab/commit/6008fb1) | Added object, subject, & collection classes. 												                        |
 | [0.0.2] | 2023-10-13 | [981cdf8](https://github.com/Justin-Byrne/canvasLab/commit/981cdf8) | Added additional resources & visuals to dev-tools UI. 										                    |
 | [0.0.1] | 2023-10-05 | [5bd2683](https://github.com/Justin-Byrne/canvasLab/commit/5bd2683) | Included general build & testing tools, with core classes & modules.                         |

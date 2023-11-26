@@ -20,7 +20,7 @@
 
                                                        <!-- <p class="card-text">{{text}}</p> -->
 
-                                                       <div class="d-flex justify-content-between align-items-center">
+                                                       <div class="card-info">
 
                                                            <div class="btn-group">
 
@@ -28,9 +28,15 @@
 
                                                            </div>
 
-                                                           <span>{{title}}</span>
+                                                           <span class="title">{{title}}</span>
 
-                                                           <img src="images/svg/{{image}}.svg" class="my-card-icons">
+                                                           <span class="icons">
+
+                                                               <img src="images/svg/{{group}}.svg" class="my-card-icons">
+
+                                                               <img src="images/svg/{{image}}.svg" class="my-card-icons">
+
+                                                           </span>
 
                                                        </div>
 
@@ -163,29 +169,22 @@
          */
         function _setImagePath ( objects, page )
         {
-            let _page = _toTitleCase ( page );
+            let _page  = ( typeof ( page ) === 'object' ) ? _toTitleCase ( page [ 1 ] ) : _toTitleCase ( page );
+
+            let _group = ( typeof ( page ) === 'object' ) ? page [ 0 ] : undefined;
 
 
             for ( let _object of objects )
             {
-                switch ( _page )
-                {
-                    case 'Circle':       case 'Line':       case 'Rectangle':       case 'Text':
+                _object.image = ( [ 'Circle', 'Line', 'Rectangle', 'Text' ].includes ( _page ) )
 
-                        _object.image = `Object/${_page}`;
+                                    ? `Object/${_page}`
 
-                        break;
+                                    : `Subject/${_page}`;
 
-                    case `Animation`:    case `Application`:
+                if ( _group != undefined )
 
-                        _object.image = `Handlers/${_page}`;
-
-                        break;
-
-                    default:
-
-                        _object.image = `Subject/${_page}`;
-                }
+                    _object.group = `Handlers/${_toTitleCase ( _group )}`;
             }
         }
 
@@ -246,10 +245,19 @@
          */
         function _setNavEventListeners ( )
         {
-            let _navButtons = document.querySelectorAll ( '.mb-1:nth-child(-n+4) ul.btn-toggle-nav > li > a' );
+            let _objectNSubject = document.querySelectorAll ( '.mb-1:nth-child(-n+4) ul.btn-toggle-nav > li > a' );
+
+            let _animation      = document.querySelectorAll ( '.mb-2:nth-child(-n+4) ul.btn-toggle-nav > li > a' );
 
 
-            for ( let _button of _navButtons )
+            let _buttons = new Array;
+
+                _buttons.push.apply ( _buttons, _objectNSubject );
+
+                _buttons.push.apply ( _buttons, _animation      );
+
+
+            for ( let _button of _buttons )
 
                 _button.addEventListener ( 'click', ( element ) =>
                     {
@@ -258,15 +266,31 @@
 
                         let _page = _button.href.match ( /#(\w+)/g ) [ 0 ].replace ( '#', '' ).toLowerCase ( );
 
+                            _page = ( /animation\w+/.test ( _page ) ) ? [ 'animation', _page.split ( 'animation' ) [ 1 ] ] : _page;
 
 
-                        if ( cardObjects [ _page ] != undefined )
+                        if ( typeof _page === 'object' )
 
-                            _buildAlbumCards ( _page );
+                            switch ( _page.length )
+                            {
+                                case 2:
+
+                                    ( cardObjects [ _page [ 0 ] ] [ _page [ 1 ] ] != undefined )
+
+                                        ? _buildAlbumCards ( _page )
+
+                                        : _setByrneSystemsLogo ( );
+
+                                    break;
+                            }
 
                         else
 
-                            _setByrneSystemsLogo ( );
+                            ( cardObjects [ _page ] != undefined )
+
+                                ? _buildAlbumCards ( _page )
+
+                                : _setByrneSystemsLogo ( );
                     } );
         }
 
@@ -451,6 +475,9 @@
             }
 
 
+            template = ( cardObject [ 'group' ] === undefined ) ? template.replace ( /<img[^\{]+{{group[^>]+>/g, '' ) : template;
+
+
             return template;
         }
 
@@ -483,14 +510,37 @@
          */
         function _copyObjectWithKey ( object, key )
         {
-            let _result       = JSON.parse ( JSON.stringify ( object [ key ] ) );
+            let _result       = undefined;
 
             let _copyFunction = ( func ) => func;
 
 
-            for ( let _entry in object [ key ] )
+            if ( typeof ( key ) === 'object' )
 
-                _result [ _entry ].code = _copyFunction ( object [ key ] [ _entry ].code );
+                switch ( key.length )
+                {
+                    case 2:
+
+                        _result = JSON.parse ( JSON.stringify ( object [ key [ 0 ] ] [ key [ 1 ] ] ) );
+
+
+                        for ( let _entry in object [ key [ 0 ] ] [ key [ 1 ] ] )
+
+                            _result [ _entry ].code = _copyFunction ( object [ key [ 0 ] ] [ key [ 1 ] ] [ _entry ].code );
+
+
+                        break;
+                }
+
+            else
+            {
+                _result = JSON.parse ( JSON.stringify ( object [ key ] ) );
+
+
+                for ( let _entry in object [ key ] )
+
+                    _result [ _entry ].code = _copyFunction ( object [ key ] [ _entry ].code );
+            }
 
 
             return _result;

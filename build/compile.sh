@@ -212,6 +212,8 @@ function compile_minified ()
     fi
 
     update_minified_js_preamble $FILE_MIN
+
+    afplay audio/shrink.mp3
 }
 
 function compile_readme ()

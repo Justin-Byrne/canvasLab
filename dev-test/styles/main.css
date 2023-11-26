@@ -1,5 +1,6 @@
 html {
-  background-color: #686c6f; }
+  background-color: #686c6f;
+  overflow: hidden; }
 
 body {
   background-color: #393f45; }
@@ -71,6 +72,17 @@ nav {
     nav .nav-wrapper li.mb-1 #documents-collapse ul > li > a > img {
       position: relative;
       top: 2px; }
+    nav .nav-wrapper li.mb-2 button {
+      position: relative;
+      left: 10px; }
+    nav .nav-wrapper li.mb-2 #animation-collapse {
+      position: relative;
+      left: 10px; }
+    nav .nav-wrapper li.mb-2 ul > li > a > span {
+      position: relative;
+      top: 2.5px; }
+    nav .nav-wrapper li.mb-2 .btn-toggle-nav a {
+      margin-left: 2.25rem; }
 
 main {
   margin-left: 200px;
@@ -99,14 +111,21 @@ main {
         color: black;
         background-color: #ccc;
         box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25) !important; }
-      main .album .container .card .code-view-buttons {
-        color: white;
-        background-color: #325279;
-        border: 1px solid #3c6a7f;
-        box-shadow: 0px 1px 2.5px 0px black; }
-        main .album .container .card .code-view-buttons:hover {
-          background-color: #277289;
-          border-color: #00afff; }
+      main .album .container .card .card-info {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap; }
+        main .album .container .card .card-info .code-view-buttons {
+          color: white;
+          background-color: #325279;
+          border: 1px solid #3c6a7f;
+          box-shadow: 0px 1px 2.5px 0px black; }
+          main .album .container .card .card-info .code-view-buttons:hover {
+            background-color: #277289;
+            border-color: #00afff; }
+        main .album .container .card .card-info .title {
+          flex-grow: 1;
+          text-align: center; }
   main .modal .modal-content {
     width: 600px;
     background-color: #393f45;
@@ -149,7 +168,7 @@ main {
   width: 20%; }
 
 .my-card-icons {
-  width: 8%;
+  width: 25px;
   background-color: black;
   border: 1px solid #3c6a7f;
   border-radius: 3px;

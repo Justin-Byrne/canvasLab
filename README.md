@@ -2,7 +2,7 @@
 
 ![issues](https://img.shields.io/github/issues/Justin-Byrne/canvasLab?style=flat-square)
 ![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Version-0.1.4-green?style=flat-square" />
+<img src="https://img.shields.io/badge/Version-0.1.5-green?style=flat-square" />
 <img src="https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab?style=flat-square" />
 
 HTML5 canvas drawing framework
@@ -65,6 +65,7 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   ├── audio
 │   │   ├── complete.mp3
 │   │   ├── failure.mp3
+│   │   ├── shrink.mp3
 │   │   └── success.mp3
 │   ├── compile.sh
 │   └── watch.sh
@@ -74,8 +75,8 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── JSDoc.md
 ├── script
 │   ├── distro
-│   │   ├── canvasLab-v0.1.4-min.js
-│   │   └── canvasLab-v0.1.4.js
+│   │   ├── canvasLab-v0.1.5-min.js
+│   │   └── canvasLab-v0.1.5.js
 │   └── source
 │       ├── ancillary
 │       │   ├── shared
@@ -124,4 +125,4 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 
 ![Byrne-Systems](https://github.com/Justin-Byrne/canvasLab/blob/main/images/cube_sm.png)
 
-== Byrne-Systems © 2023 - All rights reserved. ==
+= Byrne-Systems © 2023 - All rights reserved. =

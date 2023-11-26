@@ -1,23 +1,32 @@
 class Application
 {
+    #animations =
+    {
+        id: 0,
+        cache: { }
+    };
+
+    constructor ( )
+    {
+        ////    COMPOSITION     ////////////////////////////
+
+            this._isInDom = VALIDATION.isInDom;
+    }
+
     /**
      * _app                                                     Base application configurations
      * @type                        {Object}
      */
-    #_app =
+    #app =
     {
         debug: false,
-        windows:
-        {
-            about: false
-        },
         about:
         {
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Nov, 22 2023',
-            Version:   '0.1.4',
+            Updated:   'Nov, 26 2023',
+            Version:   '0.1.5',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -26,7 +35,7 @@ class Application
      * _dom                                                         DOM Elements
      * @type                        {Object}
      */
-    #_dom =
+    #dom =
     {
         canvases:  undefined,
         contexts:  { },
@@ -56,7 +65,7 @@ class Application
      * _post()                                                      Post processing data
      * @type                        {Object}
      */
-    #_post =
+    #post =
     {
         canvas:
         {
@@ -76,23 +85,24 @@ class Application
         {
             let _canvases = document.getElementsByTagName ( 'canvas' );
 
-            if ( this.#_dom.canvases === undefined )
+
+            if ( this.#dom.canvases === undefined )
             {
-                this.#_dom.canvases = new Object ( );
+                this.#dom.canvases = new Object ( );
 
                 for ( let _canvas of _canvases )
                 {
-                    this.#_dom.canvases [ _canvas.id ] = document.getElementById ( _canvas.id );
+                    this.#dom.canvases [ _canvas.id ] = document.getElementById ( _canvas.id );
 
-                    this.#_dom.contexts [ _canvas.id ] = document.getElementById ( _canvas.id ).getContext ( "2d" );
+                    this.#dom.contexts [ _canvas.id ] = document.getElementById ( _canvas.id ).getContext ( "2d" );
                 }
             }
 
             if ( this._isInDom ( value ) )
             {
-                this.#_dom.main.canvas  = this.#_dom.canvases [ value ];
+                this.#dom.main.canvas  = this.#dom.canvases [ value ];
 
-                this.#_dom.main.context = this.#_dom.contexts [ value ];
+                this.#dom.main.context = this.#dom.contexts [ value ];
             }
             else
 
@@ -101,28 +111,25 @@ class Application
 
         get canvas ( )
         {
-            return this.#_dom.main.context;
+            return this.#dom.main.context;
         }
 
     ////    [ ABOUT ]   ////////////////////////////////////
 
         get about ( )
         {
-            return this.#_app.about;
+            return this.#app.about;
         }
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom ( elementId )
-        {
-            return ( document.getElementById ( elementId ) != null );
-        }
+        _isInDom ( elementId ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
         setState ( canvasId )
         {
-            this.#_post.canvas.state = this._dom.canvases [ canvasId ].toDataURL ( );
+            this.#post.canvas.state = this._dom.canvases [ canvasId ].toDataURL ( );
 
             this.clear ( canvasId );
 
@@ -131,7 +138,7 @@ class Application
             {
                 let _element = document.createElement ( 'img' );
 
-                    _element.src   = this.#_post.canvas.state;
+                    _element.src   = this.#post.canvas.state;
 
                     _element.id    = 'saved-state';
 
@@ -154,10 +161,33 @@ class Application
                 this._dom.canvases [ canvasId ].height      // Rectangle's Height
             );
         }
+
+    ////    MEDIATOR    ////////////////////////////////////
+
+        /**
+         * Creates a new animation instance
+         * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
+         * @param           {Function} flow.timing              Timing function
+         * @param           {Function} flow.draw                Draw function
+         * @param           {number}   flow.duration            Duration of animation
+         */
+        set animation ( flow = { timing, draw, duration } )
+        {
+            let _animation = new Animation ( flow.timing, flow.draw, flow.duration );
+
+                _animation.animate ( );
+
+
+            this.#animations.cache [ this.#animations.id++ ] = _animation;
+        }
 }
 
 ////    INITIALIZATION  ////////////////////////////////////////////////////////
 
+/**
+ * Initiates canvasLab
+ * @param           {string} [canvas]                   Canvas identifier
+ */
 let initCanvasLab = ( canvas ) =>
 {
     if ( typeof canvasLab === 'function' && typeof window.canvaslab  === 'undefined' )

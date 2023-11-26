@@ -114,8 +114,8 @@
 ## Functions
 
 <dl>
-<dt><a href="#getPropertyAccessors">getPropertyAccessors(string)</a> ⇒ <code>Array.&lt;String&gt;</code></dt>
-<dd><p>Gets property accessors from camel case string  for bracket notation</p>
+<dt><a href="#initCanvasLab">initCanvasLab([canvas])</a></dt>
+<dd><p>Initiates canvasLab</p>
 </dd>
 </dl>
 
@@ -3610,15 +3610,14 @@ Shared validation functions
 DEBUG General debug module
 
 **Kind**: global constant  
-<a name="getPropertyAccessors"></a>
+<a name="initCanvasLab"></a>
 
-## getPropertyAccessors(string) ⇒ <code>Array.&lt;String&gt;</code>
-Gets property accessors from camel case string  for bracket notation
+## initCanvasLab([canvas])
+Initiates canvasLab
 
 **Kind**: global function  
-**Returns**: <code>Array.&lt;String&gt;</code> - Array of strings  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| string | <code>string</code> | Camel case string to split |
+| [canvas] | <code>string</code> | Canvas identifier |
 

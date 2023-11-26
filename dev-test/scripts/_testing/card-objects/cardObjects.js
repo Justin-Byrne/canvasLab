@@ -12,7 +12,6 @@
             {
                 title: 'draw',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.draw ( );
@@ -21,7 +20,6 @@
             {
                 title: 'stroke type',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.stroke.type = 1;
@@ -32,7 +30,6 @@
             {
                 title: 'stroke segments',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.stroke.type = 1;
@@ -45,7 +42,6 @@
             {
                 title: 'stroke color',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.stroke.color = '255, 0, 0';
@@ -56,7 +52,6 @@
             {
                 title: 'stroke alpha',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.stroke.alpha = 0.25;
@@ -67,7 +62,6 @@
             {
                 title: 'stroke width',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.stroke.width = 5;
@@ -78,7 +72,6 @@
             {
                 title: 'stroke cap',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.stroke.width = 5;
@@ -91,7 +84,6 @@
             {
                 title: 'shadow',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.options.shadow = true;
@@ -102,7 +94,6 @@
             {
                 title: 'shadow blur',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.options.shadow = true;
@@ -115,7 +106,6 @@
             {
                 title: 'shadow offset',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.options.shadow = true;
@@ -130,7 +120,6 @@
             {
                 title: 'curve',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.curve ( 0, 75, 0, 0 );
@@ -141,7 +130,6 @@
             {
                 title: 'move',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.move ( 180, 100 );
@@ -150,7 +138,6 @@
             {
                 title: 'rotate',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.rotate ( 45 );
@@ -159,7 +146,6 @@
             {
                 title: 'border',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.options.border = true;
@@ -170,7 +156,6 @@
             {
                 title: 'axis',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.options.axis = true;
@@ -181,7 +166,6 @@
             {
                 title: 'points',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.options.points = true;
@@ -192,7 +176,6 @@
             {
                 title: 'coordinates',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.options.coordinates = true;
@@ -203,7 +186,6 @@
             {
                 title: 'control points',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _line.curve ( 0, -50, -50, 0 );
@@ -219,7 +201,6 @@
             {
                 title: 'draw',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.draw ( );
@@ -228,7 +209,6 @@
             {
                 title: 'radius',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.radius = 50;
@@ -239,7 +219,6 @@
             {
                 title: 'angle start',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.angle.start = 90;
@@ -250,7 +229,6 @@
             {
                 title: 'angle end',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.angle.start = 90;
@@ -263,7 +241,6 @@
             {
                 title: 'angle clockwise',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.angle.start = 90;
@@ -278,7 +255,6 @@
             {
                 title: 'stroke type',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.stroke.type = 1;
@@ -289,7 +265,6 @@
             {
                 title: 'stroke segments',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.stroke.type     = 1;
@@ -302,7 +277,6 @@
             {
                 title: 'stroke color',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.stroke.color = '255, 0, 0';
@@ -313,7 +287,6 @@
             {
                 title: 'stroke alpha',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.stroke.alpha = 0.25;
@@ -324,7 +297,6 @@
             {
                 title: 'stroke width',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.stroke.width = 5;
@@ -335,7 +307,6 @@
             {
                 title: 'fill color',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.fill.color = '255, 0, 0';
@@ -346,7 +317,6 @@
             {
                 title: 'fill alpha',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.fill.color = '255, 0, 0';
@@ -359,7 +329,6 @@
             {
                 title: 'shadow',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.options.shadow = true;
@@ -370,7 +339,6 @@
             {
                 title: 'shadow blur',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.options.shadow = true;
@@ -383,7 +351,6 @@
             {
                 title: 'shadow offset',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.options.shadow = true;
@@ -398,7 +365,6 @@
             {
                 title: 'move',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.move ( 180, 100 );
@@ -407,7 +373,6 @@
             {
                 title: 'rotate',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.rotate ( 45 );
@@ -416,7 +381,6 @@
             {
                 title: 'border',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.options.border = true;
@@ -427,7 +391,6 @@
             {
                 title: 'axis',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.options.axis = true;
@@ -438,7 +401,6 @@
             {
                 title: 'coordinates',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _circle.options.coordinates = true;
@@ -452,7 +414,6 @@
             {
                 title: 'draw',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.draw ( );
@@ -461,7 +422,6 @@
             {
                 title: 'aspect',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.aspect = { width: 200, height: 100 };
@@ -472,7 +432,6 @@
             {
                 title: 'stroke type',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.stroke.type = 1;
@@ -483,7 +442,6 @@
             {
                 title: 'stroke segments',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.stroke.type     = 1;
@@ -496,7 +454,6 @@
             {
                 title: 'stroke color',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.stroke.color = '255, 0, 0';
@@ -507,7 +464,6 @@
             {
                 title: 'stroke alpha',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.stroke.alpha = 0.25;
@@ -518,7 +474,6 @@
             {
                 title: 'stroke width',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.stroke.width = 5;
@@ -529,7 +484,6 @@
             {
                 title: 'fill color',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.fill.color = '255, 0, 0';
@@ -540,7 +494,6 @@
             {
                 title: 'fill alpha',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.fill.color = '255, 0, 0';
@@ -553,7 +506,6 @@
             {
                 title: 'shadow',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.shadow = true;
@@ -564,7 +516,6 @@
             {
                 title: 'shadow blur',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.shadow = true;
@@ -577,7 +528,6 @@
             {
                 title: 'shadow offset',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.shadow = true;
@@ -592,7 +542,6 @@
             {
                 title: 'move',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.move ( 180, 100 );
@@ -601,7 +550,6 @@
             {
                 title: 'rotate',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.rotate ( 45 );
@@ -610,7 +558,6 @@
             {
                 title: 'axis',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.axis = true;
@@ -621,7 +568,6 @@
             {
                 title: 'border',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.border = true;
@@ -635,7 +581,6 @@
             {
                 title: 'draw',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.draw ( );
@@ -644,7 +589,6 @@
             {
                 title: 'text',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.text = '!@#$%^&*'
@@ -655,7 +599,6 @@
             {
                 title: 'type',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.type = 'Courier New';
@@ -666,7 +609,6 @@
             {
                 title: 'size',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.size = 36;
@@ -677,7 +619,6 @@
             {
                 title: 'weight',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.weight = 'italic';
@@ -688,7 +629,6 @@
             {
                 title: 'maxWidth',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.maxWidth = 100;
@@ -699,7 +639,6 @@
             {
                 title: 'offset',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.offset = { x: 0, y: -25 }
@@ -710,7 +649,6 @@
             {
                 title: 'stroke type',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.stroke.type = 1;
@@ -721,7 +659,6 @@
             {
                 title: 'stroke segments',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.stroke.type = 1;
@@ -734,7 +671,6 @@
             {
                 title: 'stroke color',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.stroke.color = '255, 0, 0';
@@ -745,7 +681,6 @@
             {
                 title: 'stroke alpha',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.stroke.alpha = 0.25;
@@ -756,7 +691,6 @@
             {
                 title: 'stroke width',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.stroke.width = 5;
@@ -767,7 +701,6 @@
             {
                 title: 'fill color',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.fill.color = '255, 0, 0';
@@ -778,7 +711,6 @@
             {
                 title: 'fill alpha',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.fill.color = '255, 0, 0';
@@ -791,7 +723,6 @@
             {
                 title: 'shadow',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.options.shadow = true;
@@ -802,7 +733,6 @@
             {
                 title: 'shadow color',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.options.shadow = true;
@@ -813,7 +743,6 @@
             {
                 title: 'shadow alpha',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.options.shadow = true;
@@ -824,7 +753,6 @@
             {
                 title: 'shadow blur',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.options.shadow = true;
@@ -835,7 +763,6 @@
             {
                 title: 'shadow offset',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _text.options.shadow = true;
@@ -849,7 +776,6 @@
             {
                 title: 'Align',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.anchor = true;
@@ -860,7 +786,6 @@
             {
                 title: 'Align Top',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.anchor = true;
@@ -873,7 +798,6 @@
             {
                 title: 'Align Top-Right',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.anchor = true;
@@ -886,7 +810,6 @@
             {
                 title: 'Align Right',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.anchor = true;
@@ -899,7 +822,6 @@
             {
                 title: 'Align Bottom-Right',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.anchor = true;
@@ -912,7 +834,6 @@
             {
                 title: 'Align Bottom',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.anchor = true;
@@ -925,7 +846,6 @@
             {
                 title: 'Align Bottom-Left',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.anchor = true;
@@ -938,7 +858,6 @@
             {
                 title: 'Align Left',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.anchor = true;
@@ -951,7 +870,6 @@
             {
                 title: 'Align Top-Left',
                 text: 'blah... blah... blah...',
-                image: undefined,
                 code: ( ) =>
                 {
                     _rectangle.options.anchor = true;
@@ -963,240 +881,427 @@
             },
         ],
         animation:
-        [
-            {
-                title: 'Align',
-                text: 'blah... blah... blah...',
-                image: undefined,
-                code: ( ) =>
+        {
+            line:
+            [
                 {
-                    _rectangle.options.anchor = true;
-
-                    let _flow =
+                    title: 'draw',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
                     {
-                        duration: 3000,
-                        timing ( timeFraction )
-                        {
-                            return timeFraction;
-                        },
-                        draw ( progress )
-                        {
-                            _rectangle.rotate ( progress * 500 );
-                        }
+                        _line.draw ( );
                     }
-
-                    canvaslab.animate ( _flow );
-                }
-            },
-            {
-                title: 'Align Top',
-                text: 'blah... blah... blah...',
-                image: undefined,
-                code: ( ) =>
+                },
                 {
-                    _rectangle.options.anchor = true;
-
-                    _rectangle.anchor.align = 'top';
-
-                    let _flow =
+                    title: 'stroke type',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
                     {
-                        duration: 3000,
-                        timing ( timeFraction )
-                        {
-                            return timeFraction;
-                        },
-                        draw ( progress )
-                        {
-                            _rectangle.rotate ( progress * 500 );
-                        }
-                    }
+                        _line.stroke.type = 1;
 
-                    canvaslab.animate ( _flow );
-                }
-            },
-            {
-                title: 'Align Top-Right',
-                text: 'blah... blah... blah...',
-                image: undefined,
-                code: ( ) =>
+                        _line.draw ( );
+                    }
+                },
                 {
-                    _rectangle.options.anchor = true;
-
-                    _rectangle.anchor.align = 'topRight';
-
-                    let _flow =
+                    title: 'stroke segments',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
                     {
-                        duration: 3000,
-                        timing ( timeFraction )
-                        {
-                            return timeFraction;
-                        },
-                        draw ( progress )
-                        {
-                            _rectangle.rotate ( progress * 500 );
-                        }
-                    }
+                        _line.stroke.type = 1;
 
-                    canvaslab.animate ( _flow );
-                }
-            },
-            {
-                title: 'Align Right',
-                text: 'blah... blah... blah...',
-                image: undefined,
-                code: ( ) =>
+                        _line.stroke.segments = [ 2, 7, 10 ];
+
+                        _line.draw ( );
+                    }
+                },
                 {
-                    _rectangle.options.anchor = true;
-
-                    _rectangle.anchor.align = 'right';
-
-                    let _flow =
+                    title: 'stroke color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
                     {
-                        duration: 3000,
-                        timing ( timeFraction )
-                        {
-                            return timeFraction;
-                        },
-                        draw ( progress )
-                        {
-                            _rectangle.rotate ( progress * 500 );
-                        }
-                    }
+                        _line.stroke.color = '255, 0, 0';
 
-                    canvaslab.animate ( _flow );
-                }
-            },
-            {
-                title: 'Align Bottom-Right',
-                text: 'blah... blah... blah...',
-                image: undefined,
-                code: ( ) =>
+                        _line.draw ( );
+                    }
+                },
                 {
-                    _rectangle.options.anchor = true;
-
-                    _rectangle.anchor.align = 'bottomRight';
-
-                    let _flow =
+                    title: 'stroke alpha',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
                     {
-                        duration: 3000,
-                        timing ( timeFraction )
-                        {
-                            return timeFraction;
-                        },
-                        draw ( progress )
-                        {
-                            _rectangle.rotate ( progress * 500 );
-                        }
-                    }
+                        _line.stroke.alpha = 0.25;
 
-                    canvaslab.animate ( _flow );
-                }
-            },
-            {
-                title: 'Align Bottom',
-                text: 'blah... blah... blah...',
-                image: undefined,
-                code: ( ) =>
+                        _line.draw ( );
+                    }
+                },
                 {
-                    _rectangle.options.anchor = true;
-
-                    _rectangle.anchor.align = 'bottom';
-
-                    let _flow =
+                    title: 'stroke width',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
                     {
-                        duration: 3000,
-                        timing ( timeFraction )
-                        {
-                            return timeFraction;
-                        },
-                        draw ( progress )
-                        {
-                            _rectangle.rotate ( progress * 500 );
-                        }
-                    }
+                        _line.stroke.width = 5;
 
-                    canvaslab.animate ( _flow );
-                }
-            },
-            {
-                title: 'Align Bottom-Left',
-                text: 'blah... blah... blah...',
-                image: undefined,
-                code: ( ) =>
+                        _line.draw ( );
+                    }
+                },
                 {
-                    _rectangle.options.anchor = true;
-
-                    _rectangle.anchor.align = 'bottomLeft';
-
-                    let _flow =
+                    title: 'stroke cap',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
                     {
-                        duration: 3000,
-                        timing ( timeFraction )
-                        {
-                            return timeFraction;
-                        },
-                        draw ( progress )
-                        {
-                            _rectangle.rotate ( progress * 500 );
-                        }
-                    }
+                        _line.stroke.width = 5;
 
-                    canvaslab.animate ( _flow );
-                }
-            },
-            {
-                title: 'Align Left',
-                text: 'blah... blah... blah...',
-                image: undefined,
-                code: ( ) =>
+                        _line.lineCap = 'butt';
+
+                        _line.draw ( );
+                    }
+                },
                 {
-                    _rectangle.options.anchor = true;
-
-                    _rectangle.anchor.align = 'left';
-
-                    let _flow =
+                    title: 'shadow',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
                     {
-                        duration: 3000,
-                        timing ( timeFraction )
-                        {
-                            return timeFraction;
-                        },
-                        draw ( progress )
-                        {
-                            _rectangle.rotate ( progress * 500 );
-                        }
-                    }
+                        _line.options.shadow = true;
 
-                    canvaslab.animate ( _flow );
-                }
-            },
-            {
-                title: 'Align Top-Left',
-                text: 'blah... blah... blah...',
-                image: undefined,
-                code: ( ) =>
+                        _line.draw ( );
+                    }
+                },
                 {
-                    _rectangle.options.anchor = true;
-
-                    _rectangle.anchor.align = 'topLeft';
-
-                    let _flow =
+                    title: 'shadow blur',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
                     {
-                        duration: 3000,
-                        timing ( timeFraction )
-                        {
-                            return timeFraction;
-                        },
-                        draw ( progress )
-                        {
-                            _rectangle.rotate ( progress * 500 );
-                        }
-                    }
+                        _line.options.shadow = true;
 
-                    canvaslab.animate ( _flow );
+                        _line.shadow.blur = 10;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'shadow offset',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.options.shadow = true;
+
+                        _line.shadow.x = 5;
+
+                        _line.shadow.y = 5;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'curve',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.curve ( 0, 75, 0, 0 );
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'move',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.move ( 180, 100 );
+                    }
+                },
+                {
+                    title: 'rotate',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.rotate ( 45 );
+                    }
+                },
+                {
+                    title: 'border',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.options.border = true;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'axis',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.options.axis = true;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'points',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.options.points = true;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'coordinates',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.options.coordinates = true;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'control points',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.curve ( 0, -50, -50, 0 );
+
+                        _line.options.controlPoints = true;
+
+                        _line.draw ( );
+                    }
+                },
+            ],
+            anchor:
+            [
+                {
+                    title: 'Align',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.options.anchor = true;
+
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing ( timeFraction )
+                            {
+                                let _time = ( time ) => 1 - Math.cos ( ( time * Math.PI ) / 2 );
+
+                                return _time ( timeFraction );
+                            },
+                            draw ( progress )
+                            {
+                                _rectangle.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'Align Top',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.options.anchor = true;
+
+                        _rectangle.anchor.align = 'top';
+
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing ( timeFraction )
+                            {
+                                let _time = ( time ) => ( time === 0 ) ? 0 : ( time === 1 ) ? 1 : ( time < 0.5 ) ? - ( Math.pow ( 2, 20 * time - 10 ) * Math.sin ( ( 20 * time - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * time + 10 ) * Math.sin ( ( 20 * time - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1;
+
+                                return _time ( timeFraction );
+                            },
+                            draw ( progress )
+                            {
+                                _rectangle.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'Align Top-Right',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.options.anchor = true;
+
+                        _rectangle.anchor.align = 'topRight';
+
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing ( timeFraction )
+                            {
+                                return timeFraction;
+                            },
+                            draw ( progress )
+                            {
+                                _rectangle.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'Align Right',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.options.anchor = true;
+
+                        _rectangle.anchor.align = 'right';
+
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing ( timeFraction )
+                            {
+                                return timeFraction;
+                            },
+                            draw ( progress )
+                            {
+                                _rectangle.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'Align Bottom-Right',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.options.anchor = true;
+
+                        _rectangle.anchor.align = 'bottomRight';
+
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing ( timeFraction )
+                            {
+                                return timeFraction;
+                            },
+                            draw ( progress )
+                            {
+                                _rectangle.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'Align Bottom',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.options.anchor = true;
+
+                        _rectangle.anchor.align = 'bottom';
+
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing ( timeFraction )
+                            {
+                                return timeFraction;
+                            },
+                            draw ( progress )
+                            {
+                                _rectangle.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'Align Bottom-Left',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.options.anchor = true;
+
+                        _rectangle.anchor.align = 'bottomLeft';
+
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing ( timeFraction )
+                            {
+                                return timeFraction;
+                            },
+                            draw ( progress )
+                            {
+                                _rectangle.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'Align Left',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.options.anchor = true;
+
+                        _rectangle.anchor.align = 'left';
+
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing ( timeFraction )
+                            {
+                                return timeFraction;
+                            },
+                            draw ( progress )
+                            {
+                                _rectangle.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'Align Top-Left',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.options.anchor = true;
+
+                        _rectangle.anchor.align = 'topLeft';
+
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing ( timeFraction )
+                            {
+                                return timeFraction;
+                            },
+                            draw ( progress )
+                            {
+                                _rectangle.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
                 }
-            },
-        ]
+            ]
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////
