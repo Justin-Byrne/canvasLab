@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.6] - 2023-12-01
+### Added
+- **dev-tools**
+  - `_toggleBottomLinks ( )` function, toggle opacity from bottom links in navigation area
+  - `_setMaster ( )` function, to set the master classes properties
+  - `_getClass ( )` function, to return the likely class name for the passed code
+- `Processing` class, to handle pre & post processing
+
+### Changed
+- **dev-tools**,
+  - Split `_setNavEventListeners ( )` to
+    - `_setNavMainEventListeners ( )` function, to set navigation main event listeners
+    - `_setNavLinkEventListeners ( )` function, to set navigation link event listeners
+  - General UI
+    - Bottom links
+    - Extra off-canvas links
+
 ## [0.1.5] - 2023-11-26
 ### Added
 - `Animation` class, added mutators & accessors for properties
@@ -93,7 +110,8 @@ All notable changes to this project will be documented in this file.
 
 | Version | Date       | Commit                                                              | Comments                                                                                     |
 | :-----: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.1.5] | 2023-11-26 | CURRENT                                                             | Refactored animation functions & expanded dev-tools navigation.                              |
+| [0.1.6] | 2023-12-01 | CURRENT                                                             | Added & refactored various front & back-end features for dev-tools.                          |
+| [0.1.5] | 2023-11-26 | [db2c514](https://github.com/Justin-Byrne/canvasLab/commit/db2c514) | Refactored animation functions & expanded dev-tools navigation.                              |
 | [0.1.4] | 2023-11-22 | [0e9813f](https://github.com/Justin-Byrne/canvasLab/commit/0e9813f) | Added foundation for animations.                                                             |
 | [0.1.2] | 2023-10-27 | [6008fb1](https://github.com/Justin-Byrne/canvasLab/commit/6008fb1) | Added object, subject, & collection classes. 												                        |
 | [0.0.2] | 2023-10-13 | [981cdf8](https://github.com/Justin-Byrne/canvasLab/commit/981cdf8) | Added additional resources & visuals to dev-tools UI. 										                    |

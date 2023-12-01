@@ -25,8 +25,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Nov, 26 2023',
-            Version:   '0.1.5',
+            Updated:   'Dec, 01 2023',
+            Version:   '0.1.6',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -46,11 +46,6 @@ class Application
             xCenter: ( window.innerWidth  /  2 ),
             yCenter: ( window.innerHeight /  2 )
         },
-        main:
-        {
-            canvas:  undefined,
-            context: undefined
-        },
         mouse:
         {
             start:  undefined,
@@ -59,24 +54,6 @@ class Application
             extant: -1,
             offset: { x: 0, y: 0 }
         }
-    }
-
-    /**
-     * _post()                                                      Post processing data
-     * @type                        {Object}
-     */
-    #post =
-    {
-        canvas:
-        {
-            state: undefined
-        },
-        line:
-        {
-            prior: { },
-            cache: { }
-        },
-        redraw: { }
     }
 
     ////    [ CANVAS ]  ////////////////////////////////////
@@ -127,31 +104,6 @@ class Application
 
     ////    UTILITIES   ////////////////////////////////////
 
-        setState ( canvasId )
-        {
-            this.#post.canvas.state = this._dom.canvases [ canvasId ].toDataURL ( );
-
-            this.clear ( canvasId );
-
-
-            if ( ! this._isInDom ( 'saved-state' ) )
-            {
-                let _element = document.createElement ( 'img' );
-
-                    _element.src   = this.#post.canvas.state;
-
-                    _element.id    = 'saved-state';
-
-                    _element.style = 'position: absolute';
-
-
-                    document.getElementById ( canvasId ).parentNode.insertBefore ( _element, document.getElementById ( canvasId ).nextElementSibling );
-            }
-            else
-
-                console.warn ( `"saved-state" does not exist !` );
-        }
-
         clear ( canvasId )
         {
             this._dom.contexts [ canvasId ].clearRect (
@@ -167,13 +119,13 @@ class Application
         /**
          * Creates a new animation instance
          * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
+         * @param           {number}   flow.duration            Duration of animation
          * @param           {Function} flow.timing              Timing function
          * @param           {Function} flow.draw                Draw function
-         * @param           {number}   flow.duration            Duration of animation
          */
-        set animation ( flow = { timing, draw, duration } )
+        set animation ( flow = { duration, timing, draw } )
         {
-            let _animation = new Animation ( flow.timing, flow.draw, flow.duration );
+            let _animation = new Animation ( flow.duration, flow.timing, flow.draw );
 
                 _animation.animate ( );
 

@@ -70,6 +70,8 @@
 <dt><a href="#Texts">Texts</a></dt>
 <dd><p>{Array} Texts                               Collection of Text objects</p>
 </dd>
+<dt><a href="#Animation">Animation</a></dt>
+<dd></dd>
 </dl>
 
 ## Members
@@ -3506,6 +3508,22 @@ Get canvas value
 **Kind**: instance property of [<code>Texts</code>](#Texts)  
 **Returns**: <code>string</code> - Canvas id  
 **See**: [canvas](#combined.canvas)  
+<a name="Animation"></a>
+
+## Animation
+**Kind**: global class  
+<a name="new_Animation_new"></a>
+
+### new Animation(duration, timing, draw)
+Creates an animation instance
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| duration | <code>number</code> | Duration of animation |
+| timing | <code>function</code> | Timing function |
+| draw | <code>function</code> | Draw function |
+
 <a name="discrete"></a>
 
 ## discrete : <code>Object</code>

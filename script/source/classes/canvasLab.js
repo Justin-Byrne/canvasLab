@@ -5,29 +5,10 @@ class canvasLab
     _font     = undefined;
     _state    = undefined;
 
-
     #application = new Application;
 
-    #config =
-    {
-        processing:
-        {
-            pre: undefined,
-            post:
-            {
-                canvas:
-                {
-                    state: undefined
-                },
-                line:
-                {
-                    prior: { },
-                    cache: { }
-                },
-                redraw: { }
-            }
-        }
-    }
+    #processing  = new Processing;
+
 
     constructor ( canvas )
     {
@@ -127,11 +108,11 @@ class canvasLab
         /**
          * Animates onscreen objects in accordance with passed param values
          * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
+         * @param           {number}   flow.duration            Duration of animation
          * @param           {Function} flow.timing              Timing function
          * @param           {Function} flow.draw                Draw function
-         * @param           {number}   flow.duration            Duration of animation
          */
-        animate ( flow = { timing, draw, duration } )
+        animate ( flow = { duration, timing, draw } )
         {
             this.#application.animation = flow;
         }

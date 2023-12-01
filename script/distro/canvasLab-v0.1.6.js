@@ -2,7 +2,7 @@
 // @brief: 			HTML5 canvas drawing framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.1.5 
+// @version: 		0.1.6 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -536,29 +536,10 @@ class canvasLab
     _font     = undefined;
     _state    = undefined;
 
-
     #application = new Application;
 
-    #config =
-    {
-        processing:
-        {
-            pre: undefined,
-            post:
-            {
-                canvas:
-                {
-                    state: undefined
-                },
-                line:
-                {
-                    prior: { },
-                    cache: { }
-                },
-                redraw: { }
-            }
-        }
-    }
+    #processing  = new Processing;
+
 
     constructor ( canvas )
     {
@@ -658,11 +639,11 @@ class canvasLab
         /**
          * Animates onscreen objects in accordance with passed param values
          * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
+         * @param           {number}   flow.duration            Duration of animation
          * @param           {Function} flow.timing              Timing function
          * @param           {Function} flow.draw                Draw function
-         * @param           {number}   flow.duration            Duration of animation
          */
-        animate ( flow = { timing, draw, duration } )
+        animate ( flow = { duration, timing, draw } )
         {
             this.#application.animation = flow;
         }
@@ -5689,7 +5670,7 @@ class Animation
     _draw     = undefined;
     _duration = 2000;
 
-    static #timings =
+    #timings =
     {
         ////    EASE-IN    /////////////////////////////////////
 
@@ -5728,18 +5709,21 @@ class Animation
             'easeInOutBack':    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
     }
 
-    static #tools =
-    { }
-
-    constructor ( timing, draw, duration )
+    /**
+     * Creates an animation instance
+     * @param           {number}   duration                         Duration of animation
+     * @param           {Function} timing                           Timing function
+     * @param           {Function} draw                             Draw function
+     */
+    constructor ( duration, timing, draw )
     {
         ////    COMPOSITION     ////////////////////////////
 
             this._isNumber = VALIDATION.isNumber;
 
+        this.duration = duration;
         this.timing   = timing;
         this.draw     = draw;
-        this.duration = duration;
     }
 
     ////    [ TIMING ]    //////////////////////////////////
@@ -5801,13 +5785,6 @@ class Animation
 
     ////    UTILITIES   ////////////////////////////////////
 
-        /**
-         * Animates onscreen objects in accordance with passed param values
-         * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
-         * @param           {Function} flow.timing              Timing function
-         * @param           {Function} flow.draw                Draw function
-         * @param           {number}   flow.duration            Duration of animation
-         */
         animate ( )
         {
             // @TODO: Check to make sure that _timing, _draw, and _duration are properly set, prior to 'animating' !
@@ -5876,8 +5853,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Nov, 26 2023',
-            Version:   '0.1.5',
+            Updated:   'Dec, 01 2023',
+            Version:   '0.1.6',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -5897,11 +5874,6 @@ class Application
             xCenter: ( window.innerWidth  /  2 ),
             yCenter: ( window.innerHeight /  2 )
         },
-        main:
-        {
-            canvas:  undefined,
-            context: undefined
-        },
         mouse:
         {
             start:  undefined,
@@ -5910,24 +5882,6 @@ class Application
             extant: -1,
             offset: { x: 0, y: 0 }
         }
-    }
-
-    /**
-     * _post()                                                      Post processing data
-     * @type                        {Object}
-     */
-    #post =
-    {
-        canvas:
-        {
-            state: undefined
-        },
-        line:
-        {
-            prior: { },
-            cache: { }
-        },
-        redraw: { }
     }
 
     ////    [ CANVAS ]  ////////////////////////////////////
@@ -5978,31 +5932,6 @@ class Application
 
     ////    UTILITIES   ////////////////////////////////////
 
-        setState ( canvasId )
-        {
-            this.#post.canvas.state = this._dom.canvases [ canvasId ].toDataURL ( );
-
-            this.clear ( canvasId );
-
-
-            if ( ! this._isInDom ( 'saved-state' ) )
-            {
-                let _element = document.createElement ( 'img' );
-
-                    _element.src   = this.#post.canvas.state;
-
-                    _element.id    = 'saved-state';
-
-                    _element.style = 'position: absolute';
-
-
-                    document.getElementById ( canvasId ).parentNode.insertBefore ( _element, document.getElementById ( canvasId ).nextElementSibling );
-            }
-            else
-
-                console.warn ( `"saved-state" does not exist !` );
-        }
-
         clear ( canvasId )
         {
             this._dom.contexts [ canvasId ].clearRect (
@@ -6018,13 +5947,13 @@ class Application
         /**
          * Creates a new animation instance
          * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
+         * @param           {number}   flow.duration            Duration of animation
          * @param           {Function} flow.timing              Timing function
          * @param           {Function} flow.draw                Draw function
-         * @param           {number}   flow.duration            Duration of animation
          */
-        set animation ( flow = { timing, draw, duration } )
+        set animation ( flow = { duration, timing, draw } )
         {
-            let _animation = new Animation ( flow.timing, flow.draw, flow.duration );
+            let _animation = new Animation ( flow.duration, flow.timing, flow.draw );
 
                 _animation.animate ( );
 
@@ -6044,4 +5973,55 @@ let initCanvasLab = ( canvas ) =>
     if ( typeof canvasLab === 'function' && typeof window.canvaslab  === 'undefined' )
 
         window.canvaslab = new canvasLab ( canvas );
+}
+ 
+class Processing
+{
+    #config =
+    {
+        processing:
+        {
+            pre: undefined,
+            post:
+            {
+                canvas:
+                {
+                    state: undefined
+                },
+                line:
+                {
+                    prior: { },
+                    cache: { }
+                },
+                redraw: { }
+            }
+        }
+    }
+
+    ////    UTILITIES   ////////////////////////////////////
+
+        // setState ( canvasId )
+        // {
+        //     this.#post.canvas.state = this._dom.canvases [ canvasId ].toDataURL ( );
+
+        //     this.clear ( canvasId );
+
+
+        //     if ( ! this._isInDom ( 'saved-state' ) )
+        //     {
+        //         let _element = document.createElement ( 'img' );
+
+        //             _element.src   = this.#post.canvas.state;
+
+        //             _element.id    = 'saved-state';
+
+        //             _element.style = 'position: absolute';
+
+
+        //             document.getElementById ( canvasId ).parentNode.insertBefore ( _element, document.getElementById ( canvasId ).nextElementSibling );
+        //     }
+        //     else
+
+        //         console.warn ( `"saved-state" does not exist !` );
+        // }
 }

@@ -204,7 +204,7 @@ function compile_minified ()
 
     if command -v uglifyjs
     then
-        if $(uglifyjs ${OUTPUT} -o ${FILE_MIN} --compress --mangle reserved=['window']); then
+        if $(uglifyjs ${OUTPUT} --source-map -o ${FILE_MIN} --compress --mangle reserved=['window']); then
             echo "\n${PROMPT} ${FG_PINK}${VC_PACKAGE} Minified Complete \t\t${FG_BLUE}[${FILE_MIN}]${NOCOLOR}\n"
         else
             NO_ERRORS=false

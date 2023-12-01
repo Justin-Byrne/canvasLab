@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: canvasLab-v0.1.5.js</title>
+    <title>JSDoc: Source: canvasLab-v0.1.6.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: canvasLab-v0.1.5.js</h1>
+    <h1 class="page-title">Source: canvasLab-v0.1.6.js</h1>
 
     
 
@@ -30,7 +30,7 @@
 // @brief: 			HTML5 canvas drawing framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.1.5 
+// @version: 		0.1.6 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -564,29 +564,10 @@ class canvasLab
     _font     = undefined;
     _state    = undefined;
 
-
     #application = new Application;
 
-    #config =
-    {
-        processing:
-        {
-            pre: undefined,
-            post:
-            {
-                canvas:
-                {
-                    state: undefined
-                },
-                line:
-                {
-                    prior: { },
-                    cache: { }
-                },
-                redraw: { }
-            }
-        }
-    }
+    #processing  = new Processing;
+
 
     constructor ( canvas )
     {
@@ -686,11 +667,11 @@ class canvasLab
         /**
          * Animates onscreen objects in accordance with passed param values
          * @param           {Object}   flow                     Contains timing, draw, &amp; duration values &amp; functions
+         * @param           {number}   flow.duration            Duration of animation
          * @param           {Function} flow.timing              Timing function
          * @param           {Function} flow.draw                Draw function
-         * @param           {number}   flow.duration            Duration of animation
          */
-        animate ( flow = { timing, draw, duration } )
+        animate ( flow = { duration, timing, draw } )
         {
             this.#application.animation = flow;
         }
@@ -5717,7 +5698,7 @@ class Animation
     _draw     = undefined;
     _duration = 2000;
 
-    static #timings =
+    #timings =
     {
         ////    EASE-IN    /////////////////////////////////////
 
@@ -5756,18 +5737,21 @@ class Animation
             'easeInOutBack':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
     }
 
-    static #tools =
-    { }
-
-    constructor ( timing, draw, duration )
+    /**
+     * Creates an animation instance
+     * @param           {number}   duration                         Duration of animation
+     * @param           {Function} timing                           Timing function
+     * @param           {Function} draw                             Draw function
+     */
+    constructor ( duration, timing, draw )
     {
         ////    COMPOSITION     ////////////////////////////
 
             this._isNumber = VALIDATION.isNumber;
 
+        this.duration = duration;
         this.timing   = timing;
         this.draw     = draw;
-        this.duration = duration;
     }
 
     ////    [ TIMING ]    //////////////////////////////////
@@ -5829,13 +5813,6 @@ class Animation
 
     ////    UTILITIES   ////////////////////////////////////
 
-        /**
-         * Animates onscreen objects in accordance with passed param values
-         * @param           {Object}   flow                     Contains timing, draw, &amp; duration values &amp; functions
-         * @param           {Function} flow.timing              Timing function
-         * @param           {Function} flow.draw                Draw function
-         * @param           {number}   flow.duration            Duration of animation
-         */
         animate ( )
         {
             // @TODO: Check to make sure that _timing, _draw, and _duration are properly set, prior to 'animating' !
@@ -5904,8 +5881,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Nov, 26 2023',
-            Version:   '0.1.5',
+            Updated:   'Dec, 01 2023',
+            Version:   '0.1.6',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -5925,11 +5902,6 @@ class Application
             xCenter: ( window.innerWidth  /  2 ),
             yCenter: ( window.innerHeight /  2 )
         },
-        main:
-        {
-            canvas:  undefined,
-            context: undefined
-        },
         mouse:
         {
             start:  undefined,
@@ -5938,24 +5910,6 @@ class Application
             extant: -1,
             offset: { x: 0, y: 0 }
         }
-    }
-
-    /**
-     * _post()                                                      Post processing data
-     * @type                        {Object}
-     */
-    #post =
-    {
-        canvas:
-        {
-            state: undefined
-        },
-        line:
-        {
-            prior: { },
-            cache: { }
-        },
-        redraw: { }
     }
 
     ////    [ CANVAS ]  ////////////////////////////////////
@@ -6006,31 +5960,6 @@ class Application
 
     ////    UTILITIES   ////////////////////////////////////
 
-        setState ( canvasId )
-        {
-            this.#post.canvas.state = this._dom.canvases [ canvasId ].toDataURL ( );
-
-            this.clear ( canvasId );
-
-
-            if ( ! this._isInDom ( 'saved-state' ) )
-            {
-                let _element = document.createElement ( 'img' );
-
-                    _element.src   = this.#post.canvas.state;
-
-                    _element.id    = 'saved-state';
-
-                    _element.style = 'position: absolute';
-
-
-                    document.getElementById ( canvasId ).parentNode.insertBefore ( _element, document.getElementById ( canvasId ).nextElementSibling );
-            }
-            else
-
-                console.warn ( `"saved-state" does not exist !` );
-        }
-
         clear ( canvasId )
         {
             this._dom.contexts [ canvasId ].clearRect (
@@ -6046,13 +5975,13 @@ class Application
         /**
          * Creates a new animation instance
          * @param           {Object}   flow                     Contains timing, draw, &amp; duration values &amp; functions
+         * @param           {number}   flow.duration            Duration of animation
          * @param           {Function} flow.timing              Timing function
          * @param           {Function} flow.draw                Draw function
-         * @param           {number}   flow.duration            Duration of animation
          */
-        set animation ( flow = { timing, draw, duration } )
+        set animation ( flow = { duration, timing, draw } )
         {
-            let _animation = new Animation ( flow.timing, flow.draw, flow.duration );
+            let _animation = new Animation ( flow.duration, flow.timing, flow.draw );
 
                 _animation.animate ( );
 
@@ -6073,6 +6002,57 @@ let initCanvasLab = ( canvas ) =>
 
         window.canvaslab = new canvasLab ( canvas );
 }
+ 
+class Processing
+{
+    #config =
+    {
+        processing:
+        {
+            pre: undefined,
+            post:
+            {
+                canvas:
+                {
+                    state: undefined
+                },
+                line:
+                {
+                    prior: { },
+                    cache: { }
+                },
+                redraw: { }
+            }
+        }
+    }
+
+    ////    UTILITIES   ////////////////////////////////////
+
+        // setState ( canvasId )
+        // {
+        //     this.#post.canvas.state = this._dom.canvases [ canvasId ].toDataURL ( );
+
+        //     this.clear ( canvasId );
+
+
+        //     if ( ! this._isInDom ( 'saved-state' ) )
+        //     {
+        //         let _element = document.createElement ( 'img' );
+
+        //             _element.src   = this.#post.canvas.state;
+
+        //             _element.id    = 'saved-state';
+
+        //             _element.style = 'position: absolute';
+
+
+        //             document.getElementById ( canvasId ).parentNode.insertBefore ( _element, document.getElementById ( canvasId ).nextElementSibling );
+        //     }
+        //     else
+
+        //         console.warn ( `"saved-state" does not exist !` );
+        // }
+}
 </code></pre>
         </article>
     </section>
@@ -6083,13 +6063,13 @@ let initCanvasLab = ( canvas ) =>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="PROPERTY_BLOCKS.html">PROPERTY_BLOCKS</a></li><li><a href="UTILITIES.html">UTILITIES</a></li><li><a href="VALIDATION.html">VALIDATION</a></li></ul><h3>Classes</h3><ul><li><a href="Anchor.html">Anchor</a></li><li><a href="Angle.html">Angle</a></li><li><a href="Aspect.html">Aspect</a></li><li><a href="Circle.html">Circle</a></li><li><a href="Circles.html">Circles</a></li><li><a href="ControlPoints.html">ControlPoints</a></li><li><a href="Fill.html">Fill</a></li><li><a href="Font.html">Font</a></li><li><a href="Group.html">Group</a></li><li><a href="Line.html">Line</a></li><li><a href="Lines.html">Lines</a></li><li><a href="Options.html">Options</a></li><li><a href="OptionsCollection.html">OptionsCollection</a></li><li><a href="Point.html">Point</a></li><li><a href="PointCollection.html">PointCollection</a></li><li><a href="Rectangle.html">Rectangle</a></li><li><a href="Rectangles.html">Rectangles</a></li><li><a href="Shadow.html">Shadow</a></li><li><a href="ShadowCollection.html">ShadowCollection</a></li><li><a href="Stroke.html">Stroke</a></li><li><a href="StrokeCollection.html">StrokeCollection</a></li><li><a href="Text.html">Text</a></li><li><a href="Texts.html">Texts</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEBUG">DEBUG</a></li><li><a href="global.html#collection">collection</a></li><li><a href="global.html#combined">combined</a></li><li><a href="global.html#discrete">discrete</a></li><li><a href="global.html#draw">draw</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#initCanvasLab">initCanvasLab</a></li><li><a href="global.html#set">set</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="PROPERTY_BLOCKS.html">PROPERTY_BLOCKS</a></li><li><a href="UTILITIES.html">UTILITIES</a></li><li><a href="VALIDATION.html">VALIDATION</a></li></ul><h3>Classes</h3><ul><li><a href="Anchor.html">Anchor</a></li><li><a href="Angle.html">Angle</a></li><li><a href="Animation.html">Animation</a></li><li><a href="Aspect.html">Aspect</a></li><li><a href="Circle.html">Circle</a></li><li><a href="Circles.html">Circles</a></li><li><a href="ControlPoints.html">ControlPoints</a></li><li><a href="Fill.html">Fill</a></li><li><a href="Font.html">Font</a></li><li><a href="Group.html">Group</a></li><li><a href="Line.html">Line</a></li><li><a href="Lines.html">Lines</a></li><li><a href="Options.html">Options</a></li><li><a href="OptionsCollection.html">OptionsCollection</a></li><li><a href="Point.html">Point</a></li><li><a href="PointCollection.html">PointCollection</a></li><li><a href="Rectangle.html">Rectangle</a></li><li><a href="Rectangles.html">Rectangles</a></li><li><a href="Shadow.html">Shadow</a></li><li><a href="ShadowCollection.html">ShadowCollection</a></li><li><a href="Stroke.html">Stroke</a></li><li><a href="StrokeCollection.html">StrokeCollection</a></li><li><a href="Text.html">Text</a></li><li><a href="Texts.html">Texts</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEBUG">DEBUG</a></li><li><a href="global.html#collection">collection</a></li><li><a href="global.html#combined">combined</a></li><li><a href="global.html#discrete">discrete</a></li><li><a href="global.html#draw">draw</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#initCanvasLab">initCanvasLab</a></li><li><a href="global.html#set">set</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Sun Nov 26 2023 14:45:14 GMT-0800 (Pacific Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Dec 01 2023 14:19:36 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

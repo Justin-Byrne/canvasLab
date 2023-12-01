@@ -884,190 +884,498 @@
         {
             line:
             [
+                // EASE-IN
+
                 {
-                    title: 'draw',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeInSine',
                     code: ( ) =>
                     {
-                        _line.draw ( );
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'stroke type',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeInCubic',
                     code: ( ) =>
                     {
-                        _line.stroke.type = 1;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInCubic',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'stroke segments',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeInQuint',
                     code: ( ) =>
                     {
-                        _line.stroke.type = 1;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInQuint',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.stroke.segments = [ 2, 7, 10 ];
-
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeInCirc',
                     code: ( ) =>
                     {
-                        _line.stroke.color = '255, 0, 0';
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInCirc',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'stroke alpha',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeInElastic',
                     code: ( ) =>
                     {
-                        _line.stroke.alpha = 0.25;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInElastic',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'stroke width',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeInQuad',
                     code: ( ) =>
                     {
-                        _line.stroke.width = 5;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInQuad',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'stroke cap',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeInQuart',
                     code: ( ) =>
                     {
-                        _line.stroke.width = 5;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInQuart',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.lineCap = 'butt';
-
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'shadow',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeInExpo',
                     code: ( ) =>
                     {
-                        _line.options.shadow = true;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInExpo',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'shadow blur',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeInBack',
                     code: ( ) =>
                     {
-                        _line.options.shadow = true;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInBack',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.shadow.blur = 10;
+                        canvaslab.animate ( _flow );
+                    }
+                },
 
-                        _line.draw ( );
+                // EASE-OUT
+
+                {
+                    title: 'animation',
+                    text: 'easeOutSine',
+                    code: ( ) =>
+                    {
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'shadow offset',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeOutCubic',
                     code: ( ) =>
                     {
-                        _line.options.shadow = true;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInCubic',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.shadow.x = 5;
-
-                        _line.shadow.y = 5;
-
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'curve',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeOutQuint',
                     code: ( ) =>
                     {
-                        _line.curve ( 0, 75, 0, 0 );
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInQuint',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'move',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeOutCirc',
                     code: ( ) =>
                     {
-                        _line.move ( 180, 100 );
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInCirc',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'rotate',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeOutElastic',
                     code: ( ) =>
                     {
-                        _line.rotate ( 45 );
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInElastic',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'border',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeOutQuad',
                     code: ( ) =>
                     {
-                        _line.options.border = true;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInQuad',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'axis',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeOutQuart',
                     code: ( ) =>
                     {
-                        _line.options.axis = true;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInQuart',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'points',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeOutExpo',
                     code: ( ) =>
                     {
-                        _line.options.points = true;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInExpo',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'coordinates',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeOutBack',
                     code: ( ) =>
                     {
-                        _line.options.coordinates = true;
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInBack',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
+                    }
+                },
+
+                // EASE-IN-OUT
+
+                {
+                    title: 'animation',
+                    text: 'easeInOutSine',
+                    code: ( ) =>
+                    {
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title: 'animation',
+                    text: 'easeInOutCubic',
                     code: ( ) =>
                     {
-                        _line.curve ( 0, -50, -50, 0 );
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInCubic',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.options.controlPoints = true;
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'animation',
+                    text: 'easeInOutQuint',
+                    code: ( ) =>
+                    {
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInQuint',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
 
-                        _line.draw ( );
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'animation',
+                    text: 'easeInOutCirc',
+                    code: ( ) =>
+                    {
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInCirc',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'animation',
+                    text: 'easeInOutElastic',
+                    code: ( ) =>
+                    {
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInElastic',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'animation',
+                    text: 'easeInOutQuad',
+                    code: ( ) =>
+                    {
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInQuad',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'animation',
+                    text: 'easeInOutQuart',
+                    code: ( ) =>
+                    {
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInQuart',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'animation',
+                    text: 'easeInOutExpo',
+                    code: ( ) =>
+                    {
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInExpo',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'animation',
+                    text: 'easeInOutBack',
+                    code: ( ) =>
+                    {
+                        let _flow =
+                        {
+                            duration: 3000,
+                            timing: 'easeInBack',
+                            draw ( progress )
+                            {
+                                _line.rotate ( progress * 500 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
                     }
                 },
             ],

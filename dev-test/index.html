@@ -32,7 +32,7 @@
     <script src="scripts/highlightJs/highlight.min.js"></script>
 
     <!-- canvasLab @current-revision -->
-    <script src="../script/distro/canvasLab-v0.1.5-min.js"></script>
+    <script src="../script/distro/canvasLab-v0.1.6-min.js"></script>
 
     <!-- User Scripts -->
     <script src="scripts/master.js"></script>
@@ -58,11 +58,35 @@
 
             <ul class="list-unstyled ps-0">
 
-                <li class="border-top my-3"></li>
+                <li class="border-top my-3"></li>           <!-- Horizontal Line -->
+
+                <div id="extra-buttons" class="container">
+
+                    <button class="btn btn-primary" id="offcanvas" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+
+                        <img src="images/svg/General/eye.svg">
+
+                    </button>
+
+                    <button class="btn btn-primary disabled" id="settings" type="button" data-bs-toggle="settings" data-bs-target="#settingsWithBothOptions" aria-controls="settingsWithBothOptions">
+
+                        <img src="images/svg/General/gear.svg">
+
+                    </button>
+
+                    <button class="btn btn-primary disabled" id="something" type="button" data-bs-toggle="something" data-bs-target="#somethingWithBothOptions" aria-controls="somethingWithBothOptions">
+
+                        <img src="images/svg/General/exclamation-diamond.svg">
+
+                    </button>
+
+                </div>
+
+                <li class="border-top my-3"></li>           <!-- Horizontal Line -->
 
                 <li class="mb-1">
 
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#objects-collapse" aria-expanded="false">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#objects-collapse" aria-expanded="false" data-button-state="closed">
 
                         Objects
 
@@ -182,13 +206,13 @@
 
                         </ul>
 
-                    </div>
+                    </div>  <!-- Objects :: Links -->
 
-                </li>
+                </li>   <!-- Objects -->
 
                 <li class="mb-1">
 
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#subjects-collapse" aria-expanded="false">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#subjects-collapse" aria-expanded="false" data-button-state="closed">
 
                         Subjects
 
@@ -368,25 +392,25 @@
 
                         </ul>
 
-                    </div>
+                    </div>  <!-- Subjects :: Links -->
 
-                </li>
+                </li>   <!-- Subjects -->
 
                 <li class="mb-1">
 
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#core-collapse" aria-expanded="false">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#handlers-collapse" aria-expanded="false" data-button-state="closed">
 
                         Handlers
 
                     </button>
 
-                    <div class="collapse" id="core-collapse">
+                    <div class="collapse" id="handlers-collapse">
 
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 
                             <li class="mb-2">
 
-                                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#animation-collapse" aria-expanded="false">
+                                <button id="animation" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#animation-collapse" aria-expanded="false">
 
                                     <img src="images/svg/Handlers/Animation.svg" class="my-icons">
 
@@ -516,7 +540,7 @@
 
                                         </ul>
 
-                                    </div>
+                                    </div>  <!-- Animation Objects -->
 
                                     <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#animation-subjects-collapse" aria-expanded="false">
 
@@ -698,23 +722,23 @@
 
                                         </ul>
 
-                                    </div>
+                                    </div>  <!-- Animation Subjects -->
 
-                                </div>
+                                </div>  <!-- Animation -->
 
                             </li>
 
                         </ul>
 
-                    </div>
+                    </div>  <!-- Handlers :: Links -->
 
-                </li>
+                </li>   <!-- Handlers -->
 
-                <li class="border-top my-3"></li>
+                <li class="border-top my-3"></li>           <!-- Horizontal Line -->
 
                 <li class="mb-1">
 
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#documents-collapse" aria-expanded="false">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#documents-collapse" aria-expanded="false" data-button-state="closed">
 
                         Documents
 
@@ -786,39 +810,54 @@
 
                         </ul>
 
-                    </div>
+                    </div>  <!-- Documents :: Links -->
 
-                </li>
-
-                <!-- <li class="border-top my-3"></li>
-
-                <li class="mb-1">
-
-                    <button class="btn btn-toggle align-items-center rounded collapsed disabled" data-bs-toggle="collapse" data-bs-target="#settings-collapse" aria-expanded="false">
-
-                        Settings
-
-                    </button>
-
-                    <div class="collapse" id="settings-collapse">
-
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-
-                            <li><a href="#" class="link-dark rounded">One</a></li>
-
-                            <li><a href="#" class="link-dark rounded">Two</a></li>
-
-                            <li><a href="#" class="link-dark rounded">Three</a></li>
-
-                        </ul>
-
-                    </div>
-
-                </li> -->
+                </li>   <!-- Documents -->
 
             </ul>
 
-        </div>
+
+            <div class="offcanvas offcanvas-bottom" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+
+                <div class="offcanvas-header">
+
+                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+                </div>
+
+                <div class="offcanvas-body">
+
+                    <p>Try scrolling the rest of the page to see this option in action.</p>
+
+                </div>
+
+            </div>
+
+            <span class="links">
+
+                <a href="index.html">
+
+                    <img src="images/svg/General/globe.svg">
+
+                </a>
+
+                <a href="https://github.com/Justin-Byrne/canvasLab" target="_blank">
+
+                    <img src="images/svg/General/github.svg">
+
+                </a>
+
+                <a href="http://byrne-systems.com/" target="_blank">
+
+                    <img src="../images/cube_sm.png">
+
+                </a>
+
+            </span>     <!-- .links -->
+
+        </div>  <!-- .nav-wrapper -->
 
     </nav>
 
@@ -829,7 +868,7 @@
 
             <div class="container">
 
-                <div id="test-cards" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div id="test-cards" class="row row-cols-4 g-3">
 
 
                 </div>  <!-- .row -->
@@ -883,11 +922,6 @@
         </div>  <!-- modal -->
 
     </main>
-
-
-    <!-- <script src="scripts/bootstrap/bootstrap.bundle.min.js"></script> -->
-
-    <!-- <script src="scripts/bootstrap/sidebars.js"></script> -->
 
     <!-- <script src="scripts/unit-tests/tests.js"></script> -->
 

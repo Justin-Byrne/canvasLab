@@ -10,7 +10,7 @@
 
         let _cardTemplate = ( )        => `<div class="col">
 
-                                              <div class="card shadow-sm">
+                                              <div class="card">
 
                                                   <div class="card-number">{{number}}</div>
 
@@ -105,18 +105,16 @@
         {
             ////    CARD SECTION    ////////////////////////
 
-            let _cardsSection = document.getElementById ( 'test-cards' );
+                let _cardsSection = document.getElementById ( 'test-cards' );
 
-                _cardsSection.innerHTML = '';
+                    _cardsSection.innerHTML = '';
 
             ////    BYRNE LOGO    //////////////////////////
 
-            let _byrneLogo = document.getElementById ( 'byrne-systems-logo' );
+                let _byrneLogo = document.getElementById ( 'byrne-systems-logo' );
 
 
-            if ( _byrneLogo != null )
-
-                _byrneLogo.remove ( );
+                if ( _byrneLogo ) _byrneLogo.remove ( );
         }
 
         /**
@@ -124,54 +122,104 @@
          */
         async function _copyCode ( )
         {
-            function _alert ( message, type )
-            {
-                let _wrapper       = document.createElement ( 'div' );
-
-                    _wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '<img src="images/svg/General/info-circle.svg" />' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-
-
-                    document.getElementById ( 'copiedAlert' ).append ( _wrapper );
-            }
-
-
             let _code = document.querySelector ( '#modal-code > div > div > div.modal-body > pre > code' ).innerHTML.replace ( /<[^>]+>/g, '' );
 
+            ////    FUNCTIONS    ///////////////////////////////////////////////
 
-            try
-            {
-                await navigator.clipboard.writeText ( _code );
+                /**
+                 * Displays an alert message within the modal
+                 * @param           {string} message                    Message to display
+                 * @param           {string} type                       Type of message; success || failure
+                 */
+                function _alert ( message, type )
+                {
+                    let _wrapper           = document.createElement ( 'div' );
 
-                console.log ( 'Content copied to clipboard' );
-            }
-            catch ( err )
-            {
-                console.error ( 'Failed to copy: ', err );
-            }
-
-
-            _alert ( 'Copied code !', 'success' );
+                        _wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '<img src="images/svg/General/info-circle.svg" />' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
 
 
-            let _alertNode = document.querySelector ( '#copiedAlert' );
+                        document.getElementById ( 'copiedAlert' ).append ( _wrapper );
+                }
+
+            ////    LOGIC    ///////////////////////////////////////////////////
+
+                try
+                {
+                    await navigator.clipboard.writeText ( _code );
+
+                    console.info ( 'Content copied to clipboard' );
+                }
+                catch ( err )
+                {
+                    console.error ( 'Failed to copy: ', err );
+                }
 
 
-            _delay ( 1000 ).then ( ( ) => _alertNode.children [ 0 ].remove ( ) );
+                _alert ( 'Copied code !', 'success' );
+
+                _delay ( 1000 ).then ( ( ) => document.querySelector ( '#copiedAlert' ).children [ 0 ].remove ( ) );
+        }
+
+        /**
+         * Toggles opacity from bottom links in navigation area
+         * @param           {HTMLElement} element               Main button element
+         */
+        function _toggleBottomLinks ( element )
+        {
+            let _links       = document.querySelector ( 'body > nav > div > span.links' );
+
+            let _buttonState = element.target.attributes [ "data-button-state" ].value;
+
+            let _stateCheck  = ( _buttonState === 'closed' && ! _links.classList.contains ( 'fade' ) );
+
+
+            ( _stateCheck ) ? _links.classList.add    ( 'fade' )
+
+                            : _links.classList.remove ( 'fade' );
+
+
+            ( _stateCheck ) ? element.target.setAttribute ( 'data-button-state', 'open'   )
+
+                            : element.target.setAttribute ( 'data-button-state', 'closed' );
+
+
+            ( _stateCheck ) ? element.target.focus ( )
+
+                            : element.target.blur  ( );
         }
 
     ////////////////////////////////////////////////////////////////////////////
     ////    SET FUNCTIONS    ///////////////////////////////////////////////////
 
         /**
+         * Sets the master classes properties
+         * @param           {HTMLElement} button                Button triggered by a Nav Link Event Listener
+         */
+        function _setMaster ( button )
+        {
+            let _page = button.href.match ( /#(\w+)/g ) [ 0 ].replace ( '#', '' ).toLowerCase ( );
+
+                _page = ( /animation\w+/.test ( _page ) )
+
+                            ? [ 'animation', _page.split ( 'animation' ) [ 1 ] ]
+
+                            : _page;
+
+
+            ( typeof _page === 'object' ) ? [ master.group, master.page ] = [ _page [ 0 ], _page [ 1 ] ]
+
+                                          : [ master.group, master.page ] = [ undefined,   _page       ];
+        }
+
+        /**
          * Sets image path for passed card-objects
          * @param           {Array.<Object>} objects            Array of card-objects
-         * @param           {string}         page               Type of page being rendered
          */
-        function _setImagePath ( objects, page )
+        function _setImagePath ( objects )
         {
-            let _page  = ( typeof ( page ) === 'object' ) ? _toTitleCase ( page [ 1 ] ) : _toTitleCase ( page );
+            let _page  = _toTitleCase ( master.page );
 
-            let _group = ( typeof ( page ) === 'object' ) ? page [ 0 ] : undefined;
+            // let _group = ( typeof ( page ) === 'object' ) ? page [ 0 ] : undefined;
 
 
             for ( let _object of objects )
@@ -182,9 +230,10 @@
 
                                     : `Subject/${_page}`;
 
-                if ( _group != undefined )
 
-                    _object.group = `Handlers/${_toTitleCase ( _group )}`;
+                if ( master.group )
+
+                    _object.group = `Handlers/${_toTitleCase ( master.group )}`;
             }
         }
 
@@ -207,7 +256,6 @@
          */
         function _setModalEventListeners ( )
         {
-            // view-buttons
             let _viewButtons = document.getElementsByClassName ( 'code-view-buttons' );
 
 
@@ -233,28 +281,103 @@
                     } );
 
 
-            // copy-button
             let _copyButton = document.querySelector ( '#modal-code > div > div > div.modal-footer > button.btn.btn-primary' );
-
 
                 _copyButton.addEventListener ( 'click', _copyCode );
         }
 
         /**
-         * Sets nav event listeners
+         * Sets navigation main event listeners
          */
-        function _setNavEventListeners ( )
+        function _setNavMainEventListeners ( )
         {
-            let _objectNSubject = document.querySelectorAll ( '.mb-1:nth-child(-n+4) ul.btn-toggle-nav > li > a' );
+            let _mainButtons      = [ ...document.querySelectorAll ( 'nav button.collapsed' ) ];    // Convert: NodeList into Array
 
-            let _animation      = document.querySelectorAll ( '.mb-2:nth-child(-n+4) ul.btn-toggle-nav > li > a' );
+            let _animationButtons =
+            [
+                document.querySelector ( '#animation-collapse > button:nth-child(1)' ),
+                document.querySelector ( '#animation-collapse > button:nth-child(3)' )
+            ]
+
+            let _regex = new RegExp ( 'animation-(\\w+\-)?collapse' );
+
+            ////    FUNCTIONS    ///////////////////////////////////////////////
+
+                /**
+                 * Checks whether ancillary sub animation buttons are collapsible
+                 * @param           {number} index                      Index to check
+                 */
+                function _checkCollapsible ( index )
+                {
+                    if ( ! _animationButtons [ index ].classList.contains ( 'collapsed' ) )
+
+                        _animationButtons [ index ].click ( );
+                }
+
+                /**
+                 * Collapses uncollapsed ancillary buttons, outside of the present button
+                 * @param           {string} present                    data-bs-target attribute
+                 */
+                function _collapseButtons ( present )
+                {
+                    for ( let _button of _mainButtons )
+                    {
+                        if ( _button.getAttribute ( 'data-bs-target' ) === present )
+
+                            continue;
 
 
-            let _buttons = new Array;
+                        if ( ! _button.classList.contains ( 'collapsed' ) )
 
-                _buttons.push.apply ( _buttons, _objectNSubject );
+                            _button.click ( );
+                    }
+                }
 
-                _buttons.push.apply ( _buttons, _animation      );
+            ////    LOGIC    ///////////////////////////////////////////////////
+
+                for ( let _i = 0; _i < _mainButtons.length; _i++ )              // Splice: Animation buttons
+
+                    if ( _regex.test ( _mainButtons [ _i ].getAttribute ( "data-bs-target" ) ) )
+                    {
+                        _mainButtons.splice ( _i, 1 );
+
+                        _i--;
+                    }
+
+
+                for ( let _button of _mainButtons )                             // Add: Event listeners to main buttons
+
+                    _button.addEventListener ( 'click', ( element ) =>
+                        {
+                            _collapseButtons ( element.target.attributes [ "data-bs-target" ].textContent );
+
+                            _toggleBottomLinks ( element );
+                        } );
+
+
+                for ( let _button of _animationButtons )                        // Add: Event listeners to sub Animation buttons
+
+                    _button.addEventListener ( 'click', ( element ) =>
+                        {
+                            let _present = element.target.attributes [ "data-bs-target" ].textContent;
+
+                                _present = _present.match ( _regex ) [ 1 ].replace ( '-', '' );
+
+
+                            ( _present === 'objects' ) ? _checkCollapsible ( 1 ) : _checkCollapsible ( 0 );
+                        } );
+        }
+
+        /**
+         * Sets navigation link event listeners
+         */
+        function _setNavLinkEventListeners ( )
+        {
+            let _buttons =
+            [
+                ... document.querySelectorAll ( '.mb-1:nth-child(-n+4) ul.btn-toggle-nav > li > a' ),
+                ... document.querySelectorAll ( '.mb-2:nth-child(-n+4) ul.btn-toggle-nav > li > a' )
+            ]
 
 
             for ( let _button of _buttons )
@@ -263,34 +386,20 @@
                     {
                         _clearCards ( );
 
-
-                        let _page = _button.href.match ( /#(\w+)/g ) [ 0 ].replace ( '#', '' ).toLowerCase ( );
-
-                            _page = ( /animation\w+/.test ( _page ) ) ? [ 'animation', _page.split ( 'animation' ) [ 1 ] ] : _page;
+                        _setMaster  ( _button );
 
 
-                        if ( typeof _page === 'object' )
+                        ( master.group ) ? ( cardObjects [ master.group ] [ master.page ] )
 
-                            switch ( _page.length )
-                            {
-                                case 2:
+                                               ? _buildAlbumCards     ( )
 
-                                    ( cardObjects [ _page [ 0 ] ] [ _page [ 1 ] ] != undefined )
+                                               : _setByrneSystemsLogo ( )
 
-                                        ? _buildAlbumCards ( _page )
+                                         : ( cardObjects [ master.page ] )
 
-                                        : _setByrneSystemsLogo ( );
+                                               ? _buildAlbumCards     ( )
 
-                                    break;
-                            }
-
-                        else
-
-                            ( cardObjects [ _page ] != undefined )
-
-                                ? _buildAlbumCards ( _page )
-
-                                : _setByrneSystemsLogo ( );
+                                               : _setByrneSystemsLogo ( );
                     } );
         }
 
@@ -302,9 +411,7 @@
             let _element = document.getElementById ( 'byrne-systems-logo' );
 
 
-            if ( _element != null )
-
-                _element.remove ( );
+            if ( _element ) _element.remove ( );
 
             ////////////////////////////////////////////////////////////////////
 
@@ -325,7 +432,7 @@
 
                 _div.appendChild  ( _image );
 
-                _main.appendChild ( _div );
+                _main.appendChild ( _div   );
         }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -358,25 +465,64 @@
         }
 
         /**
+         * Returns the likely class name for the passed code
+         * @param           {string} code                       Code string
+         * @return          {string}                            Likely class name
+         */
+        function _getClass ( code )
+        {
+            let _class  = code.match ( /_(\w+)/ ) [ 1 ];
+
+            let _regex  = new RegExp ( '_(line|circle|rectangle|text)', 'g' );
+
+
+            let _result = ( ! [ 'line', 'rectangle', 'circle', 'text' ].includes ( _class ) )
+
+                              ? ( _regex.test ( code ) )
+
+                                    ? code.match ( _regex ) [ 0 ].replace ( '_', '' )
+
+                                    : _class
+
+                              : _class;
+
+
+            return _toTitleCase ( _result );
+        }
+
+        /**
          * Returns a class initializer for the passed class
-         * @param           {string} object                     Class or object name
+         * @param           {string} className                  Class name
          * @return          {string}                            String for class constructor
          */
-        function _getClassInitializer ( object )
+        function _getClassInitializer ( className )
         {
-            let _class = _toTitleCase ( object );
+            if ( ! master.group )
+
+                switch ( className )
+                {
+                    case 'Line':         return '{ x: 100, y: 50 }, { x: 200, y: 100 }';
+
+                    case 'Circle':       return '{ x: 154, y: 77 }';
+
+                    case 'Rectangle':    return '{ x: 154, y: 77 }';
+
+                    case 'Text':         return '{ x: 154, y: 77 }, \'Text\'';
+                }
 
 
-            switch ( _class )
-            {
-                case 'Line':         return '{ x: 100, y: 50 }, { x: 200, y: 100 }';
+            if ( master.group === 'animation' )
 
-                case 'Circle':       return '{ x: 154, y: 77 }';
+                switch ( className )
+                {
+                    case 'Line':         return '{ x: 100, y: 50 }, { x: 200, y: 100 }';
 
-                case 'Rectangle':    return '{ x: 154, y: 77 }';
+                    case 'Circle':       return '{ x: 154, y: 77 }';
 
-                case 'Text':         return '{ x: 154, y: 77 }, \'Text\'';
-            }
+                    case 'Rectangle':    return '{ x: 154, y: 77 }';
+
+                    case 'Text':         return '{ x: 154, y: 77 }, \'Text\'';
+                }
         }
 
         /**
@@ -405,16 +551,14 @@
 
                             let _headCode  = code.substring ( 0, _lineIndex ).trim ( ) + '\n\n';
 
-                            let _temp      = code.match ( /let\s_flow[^=]+=[^}]+},[^}]+}[^}]+}[^\w]+canvaslab[^;]+;/g ) [ 0 ].split ( /\n/g );
+                            let _temp      = code.match ( /let\s_flow[^,]+,[^,]+[^}]+}[^}]+}[^\w]+canvaslab[^;]+;/g ) [ 0 ].split ( '\n' );
 
 
                             for ( let _index in _temp )
 
-                                _temp [ _index ] = ( _index > 0 )
+                                _temp [ _index ] = ( _index > 0 ) ? _temp [ _index ].slice ( 4 )
 
-                                                   ? _temp [ _index ].slice ( 4 )
-
-                                                   : _temp [ _index ]
+                                                                  : _temp [ _index ]
 
 
                             code = _headCode + _temp.join ( '\n' );
@@ -446,16 +590,14 @@
                 {
                     let _code     = _cleanCode ( cardObject [ _entry ] );
 
-                    let _class    = _code.match ( /_(\w+)/ ) [ 1 ];
+                    let _class    = _getClass ( _code );
 
                     let _init     = _getClassInitializer ( _class );
 
-                    let _variable = `_${_class}`;
+                    let _variable = `_${_class.toLowerCase ( )}`;
 
                     let _regex    = new RegExp ( _variable, 'g' );
 
-
-                        _class    = _class.charAt ( 0 ).toUpperCase ( ) + _class.slice ( 1 );
 
                         _code     = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;
 
@@ -475,7 +617,11 @@
             }
 
 
-            template = ( cardObject [ 'group' ] === undefined ) ? template.replace ( /<img[^\{]+{{group[^>]+>/g, '' ) : template;
+            template = ( cardObject [ 'group' ] === undefined )
+
+                           ? template.replace ( /<img[^\{]+{{group[^>]+>/g, '' )
+
+                           : template;
 
 
             return template;
@@ -486,7 +632,7 @@
          * @param           {Array.<Object>} objects            Array of card-objects
          * @return          {string}                            String to be evaluated for all card-objects
          */
-        function _getCode ( objects, page )
+        function _getCode ( objects )
         {
             let _codes = [ ]
 
@@ -505,42 +651,30 @@
         /**
          * Returns a copied object
          * @param           {Object} object                     Object to copy
-         * @param           {string} key                        Key of object to copy
          * @return          {Object}                            Copied object
          */
-        function _copyObjectWithKey ( object, key )
+        function _copyObjectWithKey ( object )
         {
-            let _result       = undefined;
-
             let _copyFunction = ( func ) => func;
 
+            let _result       = ( master.group )
 
-            if ( typeof ( key ) === 'object' )
+                                  ? JSON.parse ( JSON.stringify ( object [ master.group ] [ master.page ] ) )
 
-                switch ( key.length )
-                {
-                    case 2:
-
-                        _result = JSON.parse ( JSON.stringify ( object [ key [ 0 ] ] [ key [ 1 ] ] ) );
+                                  : JSON.parse ( JSON.stringify ( object [ master.page ] ) );
 
 
-                        for ( let _entry in object [ key [ 0 ] ] [ key [ 1 ] ] )
+            if ( master.group )
 
-                            _result [ _entry ].code = _copyFunction ( object [ key [ 0 ] ] [ key [ 1 ] ] [ _entry ].code );
+                for ( let _entry in object [ master.group ] [ master.page ] )
 
-
-                        break;
-                }
+                    _result [ _entry ].code = _copyFunction ( object [ master.group ] [ master.page ] [ _entry ].code );
 
             else
-            {
-                _result = JSON.parse ( JSON.stringify ( object [ key ] ) );
 
+                for ( let _entry in object [ master.page ] )
 
-                for ( let _entry in object [ key ] )
-
-                    _result [ _entry ].code = _copyFunction ( object [ key ] [ _entry ].code );
-            }
+                    _result [ _entry ].code = _copyFunction ( object [ master.page ] [ _entry ].code );
 
 
             return _result;
@@ -550,12 +684,12 @@
          * Builds album cards for the page passed
          * @param           {string} page                       Page to build
          */
-        function _buildAlbumCards ( page )
+        function _buildAlbumCards ( )
         {
-            let _cardObjects = _copyObjectWithKey ( cardObjects, page );
+            let _cardObjects = _copyObjectWithKey ( cardObjects );
 
 
-            _setImagePath   ( _cardObjects, page );
+            _setImagePath   ( _cardObjects );
 
             _setCardSection ( _getCardHTMLTemplates ( _cardObjects ) );
 
@@ -566,7 +700,7 @@
             initCanvasLab ( );                              // initialize canvasLab
 
 
-            eval ( _getCode ( _cardObjects, page ) );
+            eval ( _getCode ( _cardObjects ) );
         }
 
         /**
@@ -574,7 +708,7 @@
          */
         function _setDefaultPage ( )
         {
-            if ( window.master != undefined )
+            if ( window.master )
 
                 _setByrneSystemsLogo ( );
 
@@ -629,11 +763,13 @@
             window.devTest = _library ( );
 
 
-            if ( typeof ( window.cardObjects ) != 'undefined' )
+            if ( window.cardObjects )
             {
-                _setDefaultPage       ( );
+                _setDefaultPage           ( );
 
-                _setNavEventListeners ( );
+                _setNavMainEventListeners ( );
+
+                _setNavLinkEventListeners ( );
             }
             else
 

@@ -4,7 +4,7 @@ class Animation
     _draw     = undefined;
     _duration = 2000;
 
-    static #timings =
+    #timings =
     {
         ////    EASE-IN    /////////////////////////////////////
 
@@ -43,18 +43,21 @@ class Animation
             'easeInOutBack':    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
     }
 
-    static #tools =
-    { }
-
-    constructor ( timing, draw, duration )
+    /**
+     * Creates an animation instance
+     * @param           {number}   duration                         Duration of animation
+     * @param           {Function} timing                           Timing function
+     * @param           {Function} draw                             Draw function
+     */
+    constructor ( duration, timing, draw )
     {
         ////    COMPOSITION     ////////////////////////////
 
             this._isNumber = VALIDATION.isNumber;
 
+        this.duration = duration;
         this.timing   = timing;
         this.draw     = draw;
-        this.duration = duration;
     }
 
     ////    [ TIMING ]    //////////////////////////////////
@@ -116,13 +119,6 @@ class Animation
 
     ////    UTILITIES   ////////////////////////////////////
 
-        /**
-         * Animates onscreen objects in accordance with passed param values
-         * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
-         * @param           {Function} flow.timing              Timing function
-         * @param           {Function} flow.draw                Draw function
-         * @param           {number}   flow.duration            Duration of animation
-         */
         animate ( )
         {
             // @TODO: Check to make sure that _timing, _draw, and _duration are properly set, prior to 'animating' !

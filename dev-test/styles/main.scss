@@ -1,25 +1,54 @@
+////    FONTS    ///////////////////////////////////////////
+
+@font-face {
+    font-family: 'CascadiaCode';
+        src: url('../fonts/CascadiaCode/otf/CascadiaCode-Regular.otf')          format('otf'),
+             url('../fonts/CascadiaCode/ttf/CascadiaCode.ttf')                  format('truetype');
+        font-weight: normal;
+        font-style:  normal;
+}
+
+@font-face {
+    font-family: 'CourierPrime';
+        src: url('../fonts/CourierPrime/CourierPrime-Regular.ttf')              format('truetype'),
+             url('../fonts/CourierPrime/courierprime-regular-webfont.woff2')    format('woff2');
+        font-weight: normal;
+        font-style:  normal;
+}
+
+@font-face {
+    font-family: 'Laptop';
+        src: url('../fonts/Laptop/labtop-bold-webfont.woff2')                   format('woff2'),
+             url('../fonts/Laptop/Labtop-Bold.ttf')                             format('truetype');
+        font-weight: normal;
+        font-style:  normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+        src: url('../fonts/Roboto/roboto-regular-webfont.woff2')                format('woff2'),
+             url('../fonts/Roboto/Roboto-Regular.ttf')                          format('truetype');
+        font-weight: normal;
+        font-style:  normal;
+}
+
+////    VARIABLES    ///////////////////////////////////////
+
 $width: 200px;
 
-html
-{
-    background-color:   rgb(104, 108, 111);
-    overflow:           hidden;
-}
+////    RULES    ///////////////////////////////////////////
 
-body
-{
-    $background:        rgb(57, 63, 69);
+html { background-color: rgb(104, 108, 111); }
 
-    background-color:   $background;
-}
+body { background-color: rgb(57, 63, 69); }
 
 nav
 {
     $linkColor:             rgb(255, 255, 255);
     $linkColorHover:        rgba(255, 255, 255, 0.85);
-    $linkBackgroundHover:   rgb(43, 48, 53);
-    $background:            rgb(57, 63, 69);
-    $borderColor:           rgb(73, 80, 87);
+    $linkBackgroundHover:   rgba(75, 94, 113, 1);
+    $background:            rgba(0, 28, 55, 0.25);
+    $borderColor:           rgb(98, 115, 132);
 
     display:        flex;
     position:       absolute;
@@ -27,7 +56,8 @@ nav
     float:          left;
     min-height:     100vh;
 
-    box-shadow:     1px 0px 5px 0px rgb(122, 128, 133);
+    border-right:   1px solid rgb(111, 111, 111);
+    box-shadow:     1px 0px 5px 0px rgb(59, 76, 91);
 
     #nav-icon
     {
@@ -36,6 +66,19 @@ nav
             display:    block;
             width:      98px;
             margin:     0 auto;
+
+            &:hover { animation: wiggle 2s linear infinite; }
+        }
+
+        @keyframes wiggle
+        {
+           0%, 7%    { transform: rotateZ(0);      }
+           15%       { transform: rotateZ(-15deg); }
+           20%       { transform: rotateZ(10deg);  }
+           25%       { transform: rotateZ(-10deg); }
+           30%       { transform: rotateZ(6deg);   }
+           35%       { transform: rotateZ(-4deg);  }
+           40%, 100% { transform: rotateZ(0);      }
         }
     }
 
@@ -51,6 +94,43 @@ nav
             fill:           rgba(255, 255, 255, 0.85);
         }
 
+        #extra-buttons
+        {
+            display: flex;
+
+            padding: 0;
+
+            button
+            {
+                background-color:   rgb(47, 92, 119);
+                outline:            1px solid rgba(54, 101, 117, 1);
+                box-shadow:         0px 0px 2px 0px black;
+                border-radius:      1px;
+                border:             none;
+                opacity:            0.6;
+                margin:             0 auto;
+
+                transition:         background-color 1s;
+                transition:         opacity 1s;
+
+                &:focus { box-shadow: none; }
+
+                &:hover
+                {
+                    background-color: rgba(55, 123, 146, 1);
+                    opacity:          1;
+                }
+
+                img { width: 23px; }
+
+                &.disabled
+                {
+                    background-color: rgb(80, 80, 80);
+                    opacity: 0.4;
+                }
+            }
+        }
+
         .btn-toggle
         {
             display:            inline-flex;
@@ -60,11 +140,15 @@ nav
             color:              $linkColor;
             background-color:   transparent;
             border:             0;
+            transition:         background-color 1s;
 
             &:hover, &:focus
             {
                 color:              $linkColorHover;
+
                 background-color:   $linkBackgroundHover;
+
+                box-shadow:         none;
             }
 
             &::before
@@ -96,15 +180,13 @@ nav
                 margin-top:         .125rem;
                 margin-left:        1.25rem;
                 text-decoration:    none;
+                transition:         background-color 1s;
 
-                color: $linkColor;
+                color:              $linkColor;
 
                 &:hover, &:focus { background-color: $linkBackgroundHover; }
 
-                span
-                {
-                    margin-left: 10px;
-                }
+                span { margin-left: 10px; }
 
                 &.disabled
                 {
@@ -116,9 +198,9 @@ nav
             }
         }
 
-        .border-bottom { border-bottom: 2px solid $borderColor !important; }
-
         .border-top    { border-top:    2px solid $borderColor !important; }
+
+        .border-bottom { border-bottom: 2px solid $borderColor !important; }
 
         li.mb-1
         {
@@ -142,8 +224,10 @@ nav
         {
             button
             {
-                position: relative;
-                left:     10px;
+                position:       relative;
+                left:           10px;
+                top:            2px;
+                margin-bottom:  2px;
             }
 
             #animation-collapse
@@ -163,13 +247,47 @@ nav
                 a { margin-left:  2.25rem; }
             }
         }
+
+        .links
+        {
+            display:        flex;
+            position:       absolute;
+            bottom:         14px;
+            width:          83%;
+
+            background:     rgb(28, 38, 47);
+
+            border-radius:  2px;
+
+            opacity:        0.4;
+            transition:     opacity 1s;
+
+            &.fade  { opacity: 0;    }
+
+            &:hover { opacity: 0.85; }
+
+            a
+            {
+                display:         contents;
+                text-decoration: none;
+            }
+
+            img
+            {
+                display: inline-block;
+                width:   25%;
+                margin:  0px auto;
+                padding: 5px 0px;
+            }
+        }
     }
 }
 
 main
 {
-    $cardBackground:    rgb(57, 63, 69);
-    $borderColor:       rgb(73, 80, 87);
+    $cardBackground:    rgba(0, 31, 61, 0.36);
+    $borderColor:       rgb(34, 89, 145);
+    $borderRadius:      0.3rem;
 
     margin-left:    $width;
     background:     rgb(104, 108, 111);
@@ -181,6 +299,8 @@ main
     {
         .container
         {
+            max-width:      2000px;
+
             margin-top:     -50px;
             margin-bottom:  -35px;
 
@@ -189,54 +309,80 @@ main
                 color:      white;
                 background: $cardBackground;
 
-                border:     1px solid rgba(255, 255, 255, 0.5) !important;
-                box-shadow: 0px 2px 3px rgba(0, 0, 0, .25) !important;
+                border:     none;
+                box-shadow: 0px 0px 2px rgba(0, 0, 0, 1) !important;
+
+                border-radius: $borderRadius;
 
                 .card-number
                 {
+                    font-family:        'Roboto';
+                    font-size:          22px;
+                    color:              rgb(83, 93, 126);
+                    text-shadow:        0px 0px 2px white;
+
                     position:           absolute;
                     z-index:            100;
                     display:            block;
 
                     width:              42px;
                     padding-left:       8px;
-                    font-size:          22px;
-                    border:             1px solid rgb(180, 180, 180);
-                    border-radius:      0px 0px 2px 0px;
-                    border-left:        none;
-                    border-top:         none;
+                    border:             1px solid rgb(220, 220, 220);
+                    border-radius:      3px 0px 2px 0px;
 
-                    color:              black;
                     background-color:   #ccc;
-                    box-shadow:         0px 2px 3px rgba(0, 0, 0, .25) !important;
+                    box-shadow:         0px 0px 2px rgba(0, 0, 0, .75) !important;
+                    outline:            1px solid rgb(176, 176, 176);
                 }
 
-                .card-info
+                canvas
                 {
-                    display:   flex;
-                    justify-content: center;
-                    flex-wrap: nowrap;
+                    border-top-left-radius:  $borderRadius;
+                    border-top-right-radius: $borderRadius;
 
-                    .code-view-buttons
+                    background-color: white;
+                }
+
+                .card-body
+                {
+                    border: 0.5px solid rgba(3, 41, 116, .5) !important;
+
+                    border-bottom-color: black !important;
+
+                    border-bottom-left-radius:  $borderRadius;
+                    border-bottom-right-radius: $borderRadius;
+
+                    .card-info
                     {
-                        color:              white;
-                        background-color:   rgb(50, 82, 121);
+                        display:   flex;
+                        justify-content: center;
+                        flex-wrap: nowrap;
 
-                        border:             1px solid rgb(60, 106, 127);
-                        box-shadow:         0px 1px 2.5px 0px black;
-
-                        &:hover
+                        .code-view-buttons
                         {
-                            background-color:   rgb(39, 114, 137);
-                            border-color:       rgb(0, 175, 255);
+                            color:              white;
+                            background-color:   rgb(50, 82, 121);
+
+                            border:             1px solid rgb(60, 106, 127);
+                            box-shadow:         0px 1px 2.5px 0px black;
+
+                            &:hover
+                            {
+                                background-color:   rgb(39, 114, 137);
+                                border-color:       rgb(0, 175, 255);
+                            }
                         }
-                    }
 
-                    .title
-                    {
-                        flex-grow: 1;
+                        .title
+                        {
+                            font-family:    'CascadiaCode';
+                            line-height:    30px;
+                            text-align:     center;
 
-                        text-align: center;
+                            flex-grow:      1;
+
+                            text-shadow:    0px 1px 2px black;
+                        }
                     }
                 }
             }
@@ -245,90 +391,94 @@ main
 
     .modal
     {
-        .modal-content
+        .modal-dialog
         {
-            width: 600px;
+            max-width: 700px;
 
-            background-color:   $cardBackground;
-            border:             1px solid rgba(88, 88, 88, 0.5) !important;
-            box-shadow:         0px 2px 3px rgba(0, 0, 0, .25) !important;
-
-            .modal-header
+            .modal-content
             {
-                border-bottom-color: $borderColor;
+                $modalBackground:   rgba(6, 49, 92, 0.9);
 
-                .modal-title
+                width: 700px;
+
+                background-color:   $modalBackground;
+                border:             1px solid rgba(17, 38, 120, 1) !important;
+                box-shadow:         0px 2px 3px rgba(0, 0, 0, 1) !important;
+
+                .modal-header
                 {
-                    color: white;
-                }
+                    border-bottom-color: $borderColor;
 
-                .btn-close
-                {
-                    background: transparent url('../images/svg/General/x-lg-black.svg');
+                    .modal-title
+                    {
+                        font-family: 'CascadiaCode';
+                        color: white;
+                    }
 
-                    &:hover
+                    .btn-close
                     {
                         background: transparent url('../images/svg/General/x-lg-white.svg');
-                    }
-                }
-            }
 
-            .modal-body
-            {
-                pre
-                {
-                    margin: 0;
-                }
-            }
-
-            .modal-footer
-            {
-                border-top-color: $borderColor;
-
-
-                .btn-primary
-                {
-                    background-color: rgb(35, 54, 82);
-
-                    img
-                    {
-                        position:       relative;
-
-                        top:            -2px;
-                        padding-right:  2px;
-                    }
-
-                    &:hover
-                    {
-                        background-color: rgb(10, 88, 204);
+                        &:hover { background: transparent url('../images/svg/General/x-lg-cyan.svg'); }
                     }
                 }
 
-                .btn-secondary
+                .modal-body
                 {
-                    background-color:   rgb(98, 102, 105);
-                    border-color:       rgb(56, 56, 56);
-
-                    &:hover
+                    pre
                     {
-                        background-color:   rgb(130, 130, 131);
+                        margin:         0;
+                        border-radius:  3px;
                     }
                 }
-            }
 
-            #copiedAlert
-            {
-                .alert
+                .modal-footer
                 {
-                    margin-left: 14px;
-                    margin-right: 14px;
+                    border-top-color: $borderColor;
 
-                    img
+                    .btn-primary
                     {
-                        position:       relative;
+                        background-color:   rgb(16, 43, 70);
+                        border-color:       rgb(43, 97, 177);
 
-                        top:            -2px;
-                        padding-right:  6px;
+                        img
+                        {
+                            position:       relative;
+
+                            top:            -2px;
+                            padding-right:  2px;
+                        }
+
+                        &:hover { background-color: rgb(10, 88, 204); }
+
+                        &:focus { box-shadow: none; }
+                    }
+
+                    .btn-secondary
+                    {
+                        background-color:   rgb(98, 102, 105);
+                        border-color:       rgb(56, 56, 56);
+
+                        &:hover { background-color: rgb(130, 130, 131); }
+
+                        &:focus { box-shadow: none; }
+                    }
+                }
+
+                #copiedAlert
+                {
+                    .alert
+                    {
+                        margin-left: 14px;
+                        margin-right: 14px;
+
+                        img
+                        {
+                            position:       relative;
+
+                            top:            -2px;
+                            padding-right:  6px;
+                        }
                     }
                 }
             }
@@ -338,10 +488,7 @@ main
 
 // ICONS
 
-.my-icons
-{
-    width: 20%;
-}
+.my-icons { width: 20%; }
 
 .my-card-icons
 {
@@ -351,11 +498,6 @@ main
     border:             1px solid rgb(60, 106, 127);
     border-radius:      3px;
     box-shadow:         0px 1px 2.5px 0px black;
-}
-
-canvas
-{
-    background-color: white;
 }
 
 #byrne-systems-logo
@@ -368,6 +510,15 @@ canvas
         margin:     0 auto;
 
         animation:  pulse 2s infinite;
+
+        &:hover { animation: throb 2s ease 0s infinite normal none; }
+
+        @keyframes throb
+        {
+            0%   { transform: scale(1);   opacity: 0.6; }
+            50%  { transform: scale(1.1); opacity: 0.75; }
+            100% { transform: scale(1);   opacity: 0.6; }
+        }
     }
 
     @keyframes pulse
