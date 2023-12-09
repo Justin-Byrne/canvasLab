@@ -19,27 +19,33 @@
     <!-- highlight.js CSS @11.7.0 -->
     <link rel="stylesheet" href="styles/highlightJs/an-old-hope.min.css">
 
-    <!-- User Styles -->
+    <!-- Developer Styles -->
     <link rel="stylesheet" href="styles/main.css">
 
     <!-- //////////////////    SCRIPTS    ////////////////// -->
 
     <!-- Bootstrap @5.1.3 -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
-    <script src="scripts/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="scripts/libs/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- highlight.js @11.7.0 -->
-    <script src="scripts/highlightJs/highlight.min.js"></script>
+    <script src="scripts/libs/highlightJs/highlight.min.js"></script>
+
+    <!-- shadowdown.js @2.1.0 -->
+    <script src="scripts/libs/showdownJs/showdown.min.js"></script>
+
+    <!-- JSDoc Markdown2Json -->
+    <script src="scripts/libs/md2json/md2json.js"></script>
 
     <!-- canvasLab @current-revision -->
-    <script src="../script/distro/canvasLab-v0.1.6-min.js"></script>
+    <script src="../script/distro/canvasLab-v0.1.7-min.js"></script>
 
-    <!-- User Scripts -->
-    <script src="scripts/master.js"></script>
+    <!-- Developer Scripts -->
+    <script src="scripts/testing/master.js"></script>
 
-    <script src="scripts/_testing/card-objects/cardObjects.js"></script>
+    <script src="scripts/testing/card-objects/cardObjects.js"></script>
 
-    <script src="scripts/devTest-v0.0.0.js" defer></script>
+    <script src="scripts/dev-test.js" defer></script>
 
     <script>hljs.highlightAll ( );</script>
 
@@ -58,9 +64,9 @@
 
             <ul class="list-unstyled ps-0">
 
-                <li class="border-top my-3"></li>           <!-- Horizontal Line -->
+                <!-- <li class="border-top my-3"></li>           <!-- Horizontal Line -->
 
-                <div id="extra-buttons" class="container">
+           <!-- <div id="extra-buttons" class="container">
 
                     <button class="btn btn-primary" id="offcanvas" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
 
@@ -80,7 +86,7 @@
 
                     </button>
 
-                </div>
+                </div> -->
 
                 <li class="border-top my-3"></li>           <!-- Horizontal Line -->
 
@@ -100,7 +106,7 @@
 
                                 <a href="#Line" class="link-dark rounded">
 
-                                    <img src="images/svg/Object/Line.svg" class="my-icons">
+                                    <img src="images/svg/Object/Line.svg" class="nav-icons">
 
                                     <span>Line</span>
 
@@ -112,7 +118,7 @@
 
                                 <a href="#LineCollection" class="link-dark rounded disabled">
 
-                                    <img src="images/svg/Object/LineCollection.svg" class="my-icons">
+                                    <img src="images/svg/Object/LineCollection.svg" class="nav-icons">
 
                                     <span>Line +</span>
 
@@ -124,7 +130,7 @@
 
                                 <a href="#Circle" class="link-dark rounded">
 
-                                    <img src="images/svg/Object/Circle.svg" class="my-icons">
+                                    <img src="images/svg/Object/Circle.svg" class="nav-icons">
 
                                     <span>Circle</span>
 
@@ -136,7 +142,7 @@
 
                                 <a href="#CircleCollection" class="link-dark rounded disabled">
 
-                                    <img src="images/svg/Object/CircleCollection.svg" class="my-icons">
+                                    <img src="images/svg/Object/CircleCollection.svg" class="nav-icons">
 
                                     <span>Circle +</span>
 
@@ -148,7 +154,7 @@
 
                                 <a href="#Rectangle" class="link-dark rounded">
 
-                                    <img src="images/svg/Object/Rectangle.svg" class="my-icons">
+                                    <img src="images/svg/Object/Rectangle.svg" class="nav-icons">
 
                                     <span>Rectangle</span>
 
@@ -160,7 +166,7 @@
 
                                 <a href="#RectangleCollection" class="link-dark rounded disabled">
 
-                                    <img src="images/svg/Object/RectangleCollection.svg" class="my-icons">
+                                    <img src="images/svg/Object/RectangleCollection.svg" class="nav-icons">
 
                                     <span>Rectangle +</span>
 
@@ -172,7 +178,7 @@
 
                                 <a href="#Text" class="link-dark rounded">
 
-                                    <img src="images/svg/Object/Text.svg" class="my-icons">
+                                    <img src="images/svg/Object/Text.svg" class="nav-icons">
 
                                     <span>Text</span>
 
@@ -184,7 +190,7 @@
 
                                 <a href="#TextCollection" class="link-dark rounded disabled">
 
-                                    <img src="images/svg/Object/TextCollection.svg" class="my-icons">
+                                    <img src="images/svg/Object/TextCollection.svg" class="nav-icons">
 
                                     <span>Text +</span>
 
@@ -196,7 +202,7 @@
 
                                 <a href="#Group" class="link-dark rounded">
 
-                                    <img src="images/svg/Object/Group.svg" class="my-icons">
+                                    <img src="images/svg/Object/Group.svg" class="nav-icons">
 
                                     <span>Group</span>
 
@@ -226,7 +232,7 @@
 
                                 <a href="#Anchor" class="link-dark rounded">
 
-                                    <img src="images/svg/Subject/Anchor.svg" class="my-icons">
+                                    <img src="images/svg/Subject/Anchor.svg" class="nav-icons">
 
                                     <span>Anchor</span>
 
@@ -238,7 +244,7 @@
 
                                 <a href="#Angle" class="link-dark rounded">
 
-                                    <img src="images/svg/Subject/Angle.svg" class="my-icons">
+                                    <img src="images/svg/Subject/Angle.svg" class="nav-icons">
 
                                     <span>Angle</span>
 
@@ -250,7 +256,7 @@
 
                                 <a href="#Aspect" class="link-dark rounded">
 
-                                    <img src="images/svg/Subject/Aspect.svg" class="my-icons">
+                                    <img src="images/svg/Subject/Aspect.svg" class="nav-icons">
 
                                     <span>Aspect</span>
 
@@ -262,7 +268,7 @@
 
                                 <a href="#ControlPoints" class="link-dark rounded">
 
-                                    <img src="images/svg/Subject/ControlPoints.svg" class="my-icons">
+                                    <img src="images/svg/Subject/ControlPoints.svg" class="nav-icons">
 
                                     <span>Control Points</span>
 
@@ -274,7 +280,7 @@
 
                                 <a href="#Fill" class="link-dark rounded">
 
-                                    <img src="images/svg/Subject/Fill.svg" class="my-icons">
+                                    <img src="images/svg/Subject/Fill.svg" class="nav-icons">
 
                                     <span>Fill</span>
 
@@ -286,7 +292,7 @@
 
                                 <a href="#Font" class="link-dark rounded">
 
-                                    <img src="images/svg/Subject/Font.svg" class="my-icons">
+                                    <img src="images/svg/Subject/Font.svg" class="nav-icons">
 
                                     <span>Font</span>
 
@@ -298,7 +304,7 @@
 
                                 <a href="#Options" class="link-dark rounded">
 
-                                    <img src="images/svg/Subject/Options.svg" class="my-icons">
+                                    <img src="images/svg/Subject/Options.svg" class="nav-icons">
 
                                     <span>Options</span>
 
@@ -310,7 +316,7 @@
 
                                 <a href="#OptionsCollection" class="link-dark rounded disabled">
 
-                                    <img src="images/svg/Subject/OptionsCollection.svg" class="my-icons">
+                                    <img src="images/svg/Subject/OptionsCollection.svg" class="nav-icons">
 
                                     <span>Options +</span>
 
@@ -322,7 +328,7 @@
 
                                 <a href="#Point" class="link-dark rounded">
 
-                                    <img src="images/svg/Subject/Point.svg" class="my-icons">
+                                    <img src="images/svg/Subject/Point.svg" class="nav-icons">
 
                                     <span>Point</span>
 
@@ -334,7 +340,7 @@
 
                                 <a href="#PointCollection" class="link-dark rounded disabled">
 
-                                    <img src="images/svg/Subject/PointCollection.svg" class="my-icons">
+                                    <img src="images/svg/Subject/PointCollection.svg" class="nav-icons">
 
                                     <span>Point +</span>
 
@@ -346,7 +352,7 @@
 
                                 <a href="#Shadow" class="link-dark rounded">
 
-                                    <img src="images/svg/Subject/Shadow.svg" class="my-icons">
+                                    <img src="images/svg/Subject/Shadow.svg" class="nav-icons">
 
                                     <span>Shadow</span>
 
@@ -358,7 +364,7 @@
 
                                 <a href="#ShadowCollection" class="link-dark rounded disabled">
 
-                                    <img src="images/svg/Subject/ShadowCollection.svg" class="my-icons">
+                                    <img src="images/svg/Subject/ShadowCollection.svg" class="nav-icons">
 
                                     <span>Shadow +</span>
 
@@ -370,7 +376,7 @@
 
                                 <a href="#Stroke" class="link-dark rounded">
 
-                                    <img src="images/svg/Subject/Stroke.svg" class="my-icons">
+                                    <img src="images/svg/Subject/Stroke.svg" class="nav-icons">
 
                                     <span>Stroke</span>
 
@@ -382,7 +388,7 @@
 
                                 <a href="#StrokeCollection" class="link-dark rounded disabled">
 
-                                    <img src="images/svg/Subject/StrokeCollection.svg" class="my-icons">
+                                    <img src="images/svg/Subject/StrokeCollection.svg" class="nav-icons">
 
                                     <span>Stroke +</span>
 
@@ -412,7 +418,7 @@
 
                                 <button id="animation" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#animation-collapse" aria-expanded="false">
 
-                                    <img src="images/svg/Handlers/Animation.svg" class="my-icons">
+                                    <img src="images/svg/Handlers/Animation.svg" class="nav-icons">
 
                                     Animation
 
@@ -434,7 +440,7 @@
 
                                                 <a href="#AnimationLine" class="link-dark rounded">
 
-                                                    <img src="images/svg/Object/Line.svg" class="my-icons">
+                                                    <img src="images/svg/Object/Line.svg" class="nav-icons">
 
                                                     <span>Line</span>
 
@@ -446,7 +452,7 @@
 
                                                 <a href="#AnimationLineCollection" class="link-dark rounded disabled">
 
-                                                    <img src="images/svg/Object/LineCollection.svg" class="my-icons">
+                                                    <img src="images/svg/Object/LineCollection.svg" class="nav-icons">
 
                                                     <span>Line +</span>
 
@@ -458,7 +464,7 @@
 
                                                 <a href="#AnimationCircle" class="link-dark rounded">
 
-                                                    <img src="images/svg/Object/Circle.svg" class="my-icons">
+                                                    <img src="images/svg/Object/Circle.svg" class="nav-icons">
 
                                                     <span>Circle</span>
 
@@ -470,7 +476,7 @@
 
                                                 <a href="#AnimationCircleCollection" class="link-dark rounded disabled">
 
-                                                    <img src="images/svg/Object/CircleCollection.svg" class="my-icons">
+                                                    <img src="images/svg/Object/CircleCollection.svg" class="nav-icons">
 
                                                     <span>Circle +</span>
 
@@ -482,7 +488,7 @@
 
                                                 <a href="#AnimationRectangle" class="link-dark rounded">
 
-                                                    <img src="images/svg/Object/Rectangle.svg" class="my-icons">
+                                                    <img src="images/svg/Object/Rectangle.svg" class="nav-icons">
 
                                                     <span>Rectangle</span>
 
@@ -494,7 +500,7 @@
 
                                                 <a href="#AnimationRectangleCollection" class="link-dark rounded disabled">
 
-                                                    <img src="images/svg/Object/RectangleCollection.svg" class="my-icons">
+                                                    <img src="images/svg/Object/RectangleCollection.svg" class="nav-icons">
 
                                                     <span>Rectangle +</span>
 
@@ -506,7 +512,7 @@
 
                                                 <a href="#AnimationText" class="link-dark rounded">
 
-                                                    <img src="images/svg/Object/Text.svg" class="my-icons">
+                                                    <img src="images/svg/Object/Text.svg" class="nav-icons">
 
                                                     <span>Text</span>
 
@@ -518,7 +524,7 @@
 
                                                 <a href="#AnimationTextCollection" class="link-dark rounded disabled">
 
-                                                    <img src="images/svg/Object/TextCollection.svg" class="my-icons">
+                                                    <img src="images/svg/Object/TextCollection.svg" class="nav-icons">
 
                                                     <span>Text +</span>
 
@@ -530,7 +536,7 @@
 
                                                 <a href="#AnimationGroup" class="link-dark rounded">
 
-                                                    <img src="images/svg/Object/Group.svg" class="my-icons">
+                                                    <img src="images/svg/Object/Group.svg" class="nav-icons">
 
                                                     <span>Group</span>
 
@@ -556,7 +562,7 @@
 
                                                 <a href="#AnimationAnchor" class="link-dark rounded">
 
-                                                    <img src="images/svg/Subject/Anchor.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/Anchor.svg" class="nav-icons">
 
                                                     <span>Anchor</span>
 
@@ -568,7 +574,7 @@
 
                                                 <a href="#AnimationAngle" class="link-dark rounded">
 
-                                                    <img src="images/svg/Subject/Angle.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/Angle.svg" class="nav-icons">
 
                                                     <span>Angle</span>
 
@@ -580,7 +586,7 @@
 
                                                 <a href="#AnimationAspect" class="link-dark rounded">
 
-                                                    <img src="images/svg/Subject/Aspect.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/Aspect.svg" class="nav-icons">
 
                                                     <span>Aspect</span>
 
@@ -592,7 +598,7 @@
 
                                                 <a href="#AnimationControlPoints" class="link-dark rounded">
 
-                                                    <img src="images/svg/Subject/ControlPoints.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/ControlPoints.svg" class="nav-icons">
 
                                                     <span>Control Points</span>
 
@@ -604,7 +610,7 @@
 
                                                 <a href="#AnimationFill" class="link-dark rounded">
 
-                                                    <img src="images/svg/Subject/Fill.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/Fill.svg" class="nav-icons">
 
                                                     <span>Fill</span>
 
@@ -616,7 +622,7 @@
 
                                                 <a href="#AnimationFont" class="link-dark rounded">
 
-                                                    <img src="images/svg/Subject/Font.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/Font.svg" class="nav-icons">
 
                                                     <span>Font</span>
 
@@ -628,7 +634,7 @@
 
                                                 <a href="#AnimationOptions" class="link-dark rounded">
 
-                                                    <img src="images/svg/Subject/Options.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/Options.svg" class="nav-icons">
 
                                                     <span>Options</span>
 
@@ -640,7 +646,7 @@
 
                                                 <a href="#AnimationOptionsCollection" class="link-dark rounded disabled">
 
-                                                    <img src="images/svg/Subject/OptionsCollection.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/OptionsCollection.svg" class="nav-icons">
 
                                                     <span>Options +</span>
 
@@ -652,7 +658,7 @@
 
                                                 <a href="#AnimationPoint" class="link-dark rounded">
 
-                                                    <img src="images/svg/Subject/Point.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/Point.svg" class="nav-icons">
 
                                                     <span>Point</span>
 
@@ -664,7 +670,7 @@
 
                                                 <a href="#AnimationPointCollection" class="link-dark rounded disabled">
 
-                                                    <img src="images/svg/Subject/PointCollection.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/PointCollection.svg" class="nav-icons">
 
                                                     <span>Point +</span>
 
@@ -676,7 +682,7 @@
 
                                                 <a href="#AnimationShadow" class="link-dark rounded">
 
-                                                    <img src="images/svg/Subject/Shadow.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/Shadow.svg" class="nav-icons">
 
                                                     <span>Shadow</span>
 
@@ -688,7 +694,7 @@
 
                                                 <a href="#AnimationShadowCollection" class="link-dark rounded disabled">
 
-                                                    <img src="images/svg/Subject/ShadowCollection.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/ShadowCollection.svg" class="nav-icons">
 
                                                     <span>Shadow +</span>
 
@@ -700,7 +706,7 @@
 
                                                 <a href="#AnimationStroke" class="link-dark rounded">
 
-                                                    <img src="images/svg/Subject/Stroke.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/Stroke.svg" class="nav-icons">
 
                                                     <span>Stroke</span>
 
@@ -712,7 +718,7 @@
 
                                                 <a href="#AnimationStrokeCollection" class="link-dark rounded disabled">
 
-                                                    <img src="images/svg/Subject/StrokeCollection.svg" class="my-icons">
+                                                    <img src="images/svg/Subject/StrokeCollection.svg" class="nav-icons">
 
                                                     <span>Stroke +</span>
 
@@ -752,7 +758,7 @@
 
                                 <a href="../docs/JSDoc/index.html" target="_blank" class="link-dark rounded">
 
-                                    <img src="images/svg/General/book.svg" class="my-icons">
+                                    <img src="images/svg/General/book.svg" class="nav-icons">
 
                                     <span>JSDocs</span>
 
@@ -764,7 +770,7 @@
 
                                 <a href="https://github.com/Justin-Byrne/canvasLab/blob/main/docs/JSDoc.md" target="_blank" class="link-dark rounded">
 
-                                    <img src="images/svg/General/file.svg" class="my-icons">
+                                    <img src="images/svg/General/file.svg" class="nav-icons">
 
                                     <span>JSDoc</span>
 
@@ -776,7 +782,7 @@
 
                                 <a href="https://github.com/Justin-Byrne/canvasLab/blob/main/docs/CHANGELOG.md" target="_blank" class="link-dark rounded">
 
-                                    <img src="images/svg/General/journal-check.svg" class="my-icons">
+                                    <img src="images/svg/General/journal-check.svg" class="nav-icons">
 
                                     <span>Changelog</span>
 
@@ -788,7 +794,7 @@
 
                                 <a href="https://github.com/Justin-Byrne/canvasLab/blob/main/README.md" target="_blank" class="link-dark rounded">
 
-                                    <img src="images/svg/General/eye.svg" class="my-icons">
+                                    <img src="images/svg/General/eye.svg" class="nav-icons">
 
                                     <span>ReadMe</span>
 
@@ -800,7 +806,7 @@
 
                                 <a href="https://github.com/Justin-Byrne/canvasLab/blob/main/LICENSE" target="_blank" class="link-dark rounded">
 
-                                    <img src="images/svg/General/asterisk.svg" class="my-icons">
+                                    <img src="images/svg/General/asterisk.svg" class="nav-icons">
 
                                     <span>License</span>
 
@@ -816,24 +822,6 @@
 
             </ul>
 
-
-            <div class="offcanvas offcanvas-bottom" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-
-                <div class="offcanvas-header">
-
-                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
-
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-
-                </div>
-
-                <div class="offcanvas-body">
-
-                    <p>Try scrolling the rest of the page to see this option in action.</p>
-
-                </div>
-
-            </div>
 
             <span class="links">
 
@@ -860,7 +848,6 @@
         </div>  <!-- .nav-wrapper -->
 
     </nav>
-
 
     <main>
 
@@ -920,6 +907,20 @@
             </div>  <!-- modal-dialog -->
 
         </div>  <!-- modal -->
+
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+
+            <div class="offcanvas-body">
+
+            </div>
+
+            <div id="offcanvas-reset">
+
+                <img src="images/svg/General/arrow-bar-up.svg">
+
+            </div>
+
+        </div>
 
     </main>
 

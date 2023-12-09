@@ -10,12 +10,12 @@
   font-style: normal; }
 @font-face {
   font-family: 'Laptop';
-  src: url("../fonts/Laptop/labtop-bold-webfont.woff2") format("woff2"), url("../fonts/Laptop/Labtop-Bold.ttf") format("truetype");
+  src: url("../fonts/Laptop/Labtop-Bold.ttf") format("truetype"), url("../fonts/Laptop/labtop-bold-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../fonts/Roboto/roboto-regular-webfont.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype"), url("../fonts/Roboto/roboto-regular-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal; }
 html {
@@ -96,7 +96,7 @@ nav {
         color: rgba(255, 255, 255, 0.85);
         background-color: #4b5e71;
         box-shadow: none; }
-      nav .nav-wrapper .btn-toggle::before {
+      nav .nav-wrapper .btn-toggle:before {
         position: relative;
         margin-right: 2px;
         width: 1.25em;
@@ -106,7 +106,7 @@ nav {
         transform-origin: .5em 50%; }
       nav .nav-wrapper .btn-toggle[aria-expanded="true"] {
         color: rgba(255, 255, 255, 0.85); }
-        nav .nav-wrapper .btn-toggle[aria-expanded="true"]::before {
+        nav .nav-wrapper .btn-toggle[aria-expanded="true"]:before {
           transform: rotate(90deg); }
     nav .nav-wrapper .btn-toggle-nav a {
       display: inline-flex;
@@ -169,6 +169,8 @@ nav {
         width: 25%;
         margin: 0px auto;
         padding: 5px 0px; }
+    nav .nav-wrapper .nav-icons {
+      width: 20%; }
 
 main {
   margin-left: 200px;
@@ -179,6 +181,14 @@ main {
     max-width: 2000px;
     margin-top: -50px;
     margin-bottom: -35px; }
+    main .album .container .col.blank:nth-child(n + 3) > .blank {
+      opacity: 0; }
+    @media (max-width: 1000px) {
+      main .album .container .col {
+        width: 33.3333333333%; } }
+    @media (max-width: 800px) {
+      main .album .container .col {
+        width: 50%; } }
     main .album .container .card {
       color: white;
       background: rgba(0, 31, 61, 0.36);
@@ -209,24 +219,167 @@ main {
         border-bottom-color: black !important;
         border-bottom-left-radius: 0.3rem;
         border-bottom-right-radius: 0.3rem; }
-        main .album .container .card .card-body .card-info {
-          display: flex;
+        main .album .container .card .card-body .card-title {
+          font-family: 'CascadiaCode';
+          line-height: 30px;
+          text-align: center;
+          text-transform: capitalize;
+          background: rgba(19, 94, 140, 0.65);
+          outline: 1px solid #263c5c;
+          border-radius: 3px;
+          text-shadow: 0px 1px 2px black;
+          box-shadow: inset 0px 0px 4px 0px #363636; }
+        main .album .container .card .card-body .card-buttons {
+          width: 100%;
+          display: inline-block;
           justify-content: center;
           flex-wrap: nowrap; }
-          main .album .container .card .card-body .card-info .code-view-buttons {
+          main .album .container .card .card-body .card-buttons .code-view-buttons {
             color: white;
             background-color: #325279;
             border: 1px solid #3c6a7f;
             box-shadow: 0px 1px 2.5px 0px black; }
-            main .album .container .card .card-body .card-info .code-view-buttons:hover {
+            main .album .container .card .card-body .card-buttons .code-view-buttons:hover {
               background-color: #277289;
               border-color: #00afff; }
-          main .album .container .card .card-body .card-info .title {
-            font-family: 'CascadiaCode';
-            line-height: 30px;
-            text-align: center;
-            flex-grow: 1;
-            text-shadow: 0px 1px 2px black; }
+          main .album .container .card .card-body .card-buttons .icons {
+            float: right;
+            margin-top: 2px; }
+            main .album .container .card .card-body .card-buttons .icons .separator {
+              position: relative;
+              top: 3px;
+              display: inline-block;
+              width: 2px;
+              margin-left: 1px;
+              background-color: #00936f;
+              border-radius: 2px; }
+            main .album .container .card .card-body .card-buttons .icons .card-icons {
+              width: 25px;
+              height: 25px;
+              background-color: black;
+              border: 1px solid #3c6a7f;
+              border-radius: 3px;
+              box-shadow: 0px 1px 2.5px 0px black;
+              transition: background-color 1s; }
+              main .album .container .card .card-body .card-buttons .icons .card-icons:hover {
+                background-color: #11625f;
+                cursor: pointer; }
+            main .album .container .card .card-body .card-buttons .icons ul.easing-functions {
+              display: block;
+              max-height: 200px;
+              overflow: auto;
+              position: absolute;
+              left: 24px;
+              padding-left: 0;
+              margin: 10px 0 0 0;
+              z-index: 200;
+              visibility: hidden;
+              opacity: 0;
+              list-style: none;
+              transition: visibility 1s, opacity 1s; }
+              @media (min-width: 900px) {
+                main .album .container .card .card-body .card-buttons .icons ul.easing-functions {
+                  left: -6vw; } }
+              @media (min-width: 1200px) {
+                main .album .container .card .card-body .card-buttons .icons ul.easing-functions {
+                  left: 1.6vw; } }
+              main .album .container .card .card-body .card-buttons .icons ul.easing-functions li {
+                padding: 3px 5px 5px 0px;
+                margin-right: 5px;
+                border-radius: 5px;
+                opacity: 0.35;
+                transition: opacity 1s, background 5s; }
+                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:hover {
+                  cursor: pointer;
+                  opacity: 1; }
+                  main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:hover > span {
+                    opacity: 1;
+                    left: -10px; }
+                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(-n + 10):hover {
+                  background: linear-gradient(90deg, transparent 0%, #02ffde 200%); }
+                  main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(-n + 10):hover img:hover {
+                    outline: 1.5px solid #2adde1; }
+                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(n +  10):hover {
+                  background: linear-gradient(90deg, transparent 0%, #027fff 200%); }
+                  main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(n +  10):hover img:hover {
+                    outline: 1.5px solid #4ca4ff; }
+                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(n +  18):hover {
+                  background: linear-gradient(90deg, transparent 0%, #8002ff 200%); }
+                  main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(n +  18):hover img:hover {
+                    outline: 1.5px solid #b164ff; }
+                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li img {
+                  float: right;
+                  width: 25px;
+                  height: 25px;
+                  background-color: black;
+                  border: 1px solid #3c6a7f;
+                  border-radius: 3px;
+                  box-shadow: 0px 1px 2.5px 0px black; }
+                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li span {
+                  color: white;
+                  display: inline-block;
+                  width: 160px;
+                  position: relative;
+                  top: 1px;
+                  left: 0px;
+                  font-family: 'CascadiaCode';
+                  text-align: end;
+                  transition: opacity 1s, left 1s;
+                  opacity: 0;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.15), -1px 1px 1px rgba(0, 0, 0, 0.15), 1px 1px 1px rgba(0, 0, 0, 0.15), 1px -1px 1px rgba(0, 0, 0, 0.15); }
+      main .album .container .card.blank {
+        display: table-cell;
+        min-height: 31.5vh;
+        max-height: 100%;
+        vertical-align: middle;
+        outline: 3px ridge white;
+        background-color: rgba(68, 80, 93, 0.4);
+        opacity: 0.5;
+        transition: opacity 1s; }
+        main .album .container .card.blank:hover {
+          cursor: pointer;
+          opacity: 1; }
+        main .album .container .card.blank .plus {
+          display: block;
+          font-size: 60px;
+          text-align: center;
+          padding-bottom: 20px; }
+        @media (max-width: 1800px) {
+          main .album .container .card.blank {
+            width: 21.5vw; } }
+        @media (max-width: 1700px) {
+          main .album .container .card.blank {
+            width: 21vw; } }
+        @media (max-width: 1600px) {
+          main .album .container .card.blank {
+            width: 20.5vw; } }
+        @media (max-width: 1500px) {
+          main .album .container .card.blank {
+            width: 20vw; } }
+        @media (max-width: 1400px) {
+          main .album .container .card.blank {
+            width: 19.5vw; } }
+        @media (max-width: 1300px) {
+          main .album .container .card.blank {
+            width: 19vw; } }
+        @media (max-width: 1200px) {
+          main .album .container .card.blank {
+            width: 18.5vw; } }
+        @media (max-width: 1100px) {
+          main .album .container .card.blank {
+            width: 18vw; } }
+        @media (max-width: 1000px) {
+          main .album .container .card.blank {
+            width: 17.5vw; } }
+        @media (max-width: 900px) {
+          main .album .container .card.blank {
+            width: 17vw; } }
+        @media (max-width: 800px) {
+          main .album .container .card.blank {
+            width: 16.5vw; } }
+        @media (max-width: 700px) {
+          main .album .container .card.blank {
+            width: 16vw; } }
   main .modal .modal-dialog {
     max-width: 700px; }
     main .modal .modal-dialog .modal-content {
@@ -273,35 +426,117 @@ main {
           position: relative;
           top: -2px;
           padding-right: 6px; }
-
-.my-icons {
-  width: 20%; }
-
-.my-card-icons {
-  width: 25px;
-  background-color: black;
-  border: 1px solid #3c6a7f;
-  border-radius: 3px;
-  box-shadow: 0px 1px 2.5px 0px black; }
-
-#byrne-systems-logo {
-  width: 100%; }
-  #byrne-systems-logo img {
-    display: block;
-    margin: 0 auto;
-    animation: pulse 2s infinite; }
-    #byrne-systems-logo img:hover {
-      animation: throb 2s ease 0s infinite normal none; }
-@keyframes throb {
+  main .offcanvas {
+    width: 45%; }
+    main .offcanvas .offcanvas-body h2, main .offcanvas .offcanvas-body h3, main .offcanvas .offcanvas-body h4 {
+      padding-bottom: 8px; }
+      main .offcanvas .offcanvas-body h2 + p, main .offcanvas .offcanvas-body h3 + p, main .offcanvas .offcanvas-body h4 + p {
+        font-family: 'CascadiaCode';
+        background: linear-gradient(90deg, #d2eaff 0%, white 50%);
+        padding: 7px 7px 7px 9px;
+        margin-bottom: 13px;
+        border-radius: 3px; }
+    main .offcanvas .offcanvas-body h3, main .offcanvas .offcanvas-body h4 {
+      background: linear-gradient(180deg, #efefef 0%, white 75%);
+      margin-top: 42px;
+      padding-top: 26px;
+      padding-left: 16px;
+      border-top: 1px solid #e5e5e5;
+      border-radius: 0px 10px 0px 0px; }
+      main .offcanvas .offcanvas-body h3::before, main .offcanvas .offcanvas-body h4::before {
+        content: url("../images/svg/General/caret-right.svg");
+        position: relative;
+        top: 3px;
+        padding-right: 3px; }
+      main .offcanvas .offcanvas-body h3 + p, main .offcanvas .offcanvas-body h4 + p {
+        margin-left: 45px; }
+        main .offcanvas .offcanvas-body h3 + p + table, main .offcanvas .offcanvas-body h4 + p + table {
+          margin-left: 45px; }
+        main .offcanvas .offcanvas-body h3 + p + p, main .offcanvas .offcanvas-body h4 + p + p {
+          margin-left: 45px; }
+          main .offcanvas .offcanvas-body h3 + p + p + table, main .offcanvas .offcanvas-body h4 + p + p + table {
+            margin-left: 45px; }
+    main .offcanvas .offcanvas-body p {
+      margin-bottom: 6px; }
+      main .offcanvas .offcanvas-body p strong:nth-child(1)::before {
+        display: inline-block;
+        content: url("../images/svg/General/puzzle.svg");
+        transform: rotate(315deg);
+        padding-right: 3px; }
+      main .offcanvas .offcanvas-body p strong:nth-child(4)::before {
+        display: inline-block;
+        position: relative;
+        top: 3px;
+        content: url("../images/svg/General/return-left.svg");
+        padding-right: 3px; }
+      main .offcanvas .offcanvas-body p:nth-child(4) strong:nth-child(3) {
+        display: block;
+        padding-top: 10px; }
+    main .offcanvas .offcanvas-body ul {
+      list-style-type: none;
+      padding-left: 2px;
+      margin-bottom: 0; }
+      main .offcanvas .offcanvas-body ul li a {
+        text-decoration: none; }
+        main .offcanvas .offcanvas-body ul li a::before {
+          position: relative;
+          display: inline-block;
+          top: 2px;
+          padding-right: 4px;
+          content: url("../images/svg/General/book-half.svg"); }
+      main .offcanvas .offcanvas-body ul li ul {
+        padding-left: 18px; }
+        main .offcanvas .offcanvas-body ul li ul li:nth-child(n - 1) > a::before {
+          content: url("../images/svg/General/bookmark-plus.svg"); }
+    main .offcanvas .offcanvas-body table {
+      outline: 1px solid black;
+      margin-bottom: 12px; }
+      main .offcanvas .offcanvas-body table thead {
+        background-color: #b1dbff; }
+        main .offcanvas .offcanvas-body table thead th {
+          border-right: 1px solid black;
+          border-bottom: 1px solid black; }
+          main .offcanvas .offcanvas-body table thead th:last-of-type {
+            border-right: none; }
+      main .offcanvas .offcanvas-body table tbody tr:nth-child(odd) {
+        background-color: #ebebeb; }
+      main .offcanvas .offcanvas-body table tbody tr:nth-child(even) {
+        background-color: white; }
+      main .offcanvas .offcanvas-body table tbody td {
+        border-right: 1px solid #bbbbbb; }
+        main .offcanvas .offcanvas-body table tbody td:last-of-type {
+          border-right: none; }
+      main .offcanvas .offcanvas-body table th, main .offcanvas .offcanvas-body table td {
+        border-collapse: separate;
+        border-spacing: 8px;
+        padding: 5px 10px; }
+    main .offcanvas #offcanvas-reset {
+      position: fixed;
+      right: 30px;
+      padding: 15px 10px;
+      border-top: none;
+      transition: opacity 1s;
+      opacity: 0; }
+      main .offcanvas #offcanvas-reset:hover {
+        cursor: pointer; }
+  main #byrne-systems-logo {
+    width: 100%; }
+    main #byrne-systems-logo img {
+      display: block;
+      margin: 0 auto;
+      animation: pulse 2s infinite; }
+      main #byrne-systems-logo img:hover {
+        animation: expand 2s ease 0s infinite normal none; }
+@keyframes expand {
   0% {
     transform: scale(1);
-    opacity: 0.6; }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.75; }
+    opacity: 0.8; }
+  80% {
+    transform: scale(2);
+    opacity: 0; }
   100% {
-    transform: scale(1);
-    opacity: 0.6; } }
+    transform: scale(3);
+    opacity: 0; } }
 @keyframes pulse {
   0% {
     opacity: 0.4; }
@@ -309,5 +544,20 @@ main {
     opacity: 0.6; }
   100% {
     opacity: 0.4; } }
+.styled-scrollbars, main .album .container .card .card-body .card-buttons .icons ul.easing-functions {
+  scrollbar-color: white, rgba(0, 31, 61, 0.36); }
+
+.styled-scrollbars::-webkit-scrollbar, main .album .container .card .card-body .card-buttons .icons ul.easing-functions::-webkit-scrollbar {
+  width: 5px;
+  height: 10px; }
+
+.styled-scrollbars::-webkit-scrollbar-thumb, main .album .container .card .card-body .card-buttons .icons ul.easing-functions::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 5px;
+  outline: 1px solid rgba(0, 0, 0, 0.5); }
+
+.styled-scrollbars::-webkit-scrollbar-track, main .album .container .card .card-body .card-buttons .icons ul.easing-functions::-webkit-scrollbar-track {
+  background: rgba(0, 31, 61, 0.36);
+  border-radius: 10px; }
 
 /*# sourceMappingURL=main.css.map */

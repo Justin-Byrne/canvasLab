@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.7] - 2023-12-08
+### Added
+- **dev-tools**
+  - Showdown.js, to render markdown within the DOM; for JSDocs
+  - Implemented preset timing (easing functions) selection for animations
+  - `_cardTemplateBlank ( )` function, to return a blank HTML card template
+  - `_trimExtraImageTags ( )` function, to trim left over image tags from the card template; @see _cardTemplate
+  - `_createEasingLinks ( )` function, to create easing links for animation cards
+  - `_embedEasingLinks ( )` function, to embed easing links for each animation card
+  - `_toggleEasingFunctions ( )` function, to toggle visibility of easing functions
+  - `_setEasingAnimation ( )` function, to set easing animation for an animation card
+  - `_setAddCardEventListener ( )` function, to set additional card event listener
+  - `_setOffCanvasDocument ( )` function, to set markdown content for the offCanvas element
+
+### Changed
+- **dev-tools**, changed `_2digit ( )` to `_number2String ( )`
+
 ## [0.1.6] - 2023-12-01
 ### Added
 - **dev-tools**
@@ -110,7 +127,8 @@ All notable changes to this project will be documented in this file.
 
 | Version | Date       | Commit                                                              | Comments                                                                                     |
 | :-----: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.1.6] | 2023-12-01 | CURRENT                                                             | Added & refactored various front & back-end features for dev-tools.                          |
+| [0.1.7] | 2023-12-08 | CURRENT                                                             | Implemented preset timing (easing functions) selection for animations.                       |
+| [0.1.6] | 2023-12-01 | [cc4f730](https://github.com/Justin-Byrne/canvasLab/commit/cc4f730) | Added & refactored various front & back-end features for dev-tools.                          |
 | [0.1.5] | 2023-11-26 | [db2c514](https://github.com/Justin-Byrne/canvasLab/commit/db2c514) | Refactored animation functions & expanded dev-tools navigation.                              |
 | [0.1.4] | 2023-11-22 | [0e9813f](https://github.com/Justin-Byrne/canvasLab/commit/0e9813f) | Added foundation for animations.                                                             |
 | [0.1.2] | 2023-10-27 | [6008fb1](https://github.com/Justin-Byrne/canvasLab/commit/6008fb1) | Added object, subject, & collection classes. 												                        |

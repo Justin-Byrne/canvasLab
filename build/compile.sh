@@ -22,11 +22,28 @@ declare OUTPUT_JSDOCS=../docs/JSDoc
 
 ### PLANT UML ######################################
 
+declare DEVTEST_INPUT=../dev-test/scripts/dev-test.js
+
+declare DEVTEST_OUTPUT_JSDOC=../dev-test/docs/JSDoc.md
+declare DEVTEST_OUTPUT_JSDOCS=../dev-test/docs/JSDoc
+
+### PLANT UML ######################################
+
 declare PLANT_BUILD=~/Programs/Python/PlantUml/ClassGenerator/source/app
 
 declare PLANT_SOURCE=~/Programs/HTML5/canvasLab/script/source
 
 declare PLANT_OUTPUT=~/Programs/HTML5/canvasLab/docs/PlantUml
+
+### MD2JSON ########################################
+
+declare MD2JSON_BUILD=~/Programs/Python/Md2Json/source/app
+
+declare MD2JSON_SOURCE=~/Programs/HTML5/canvasLab/dev-test/docs/archive
+
+declare MD2JSON_OUTPUT=~/Programs/HTML5/canvasLab/dev-test/scripts/libs/md2json
+
+declare MD2JSON_CACHE=../dev-test/docs/archive
 
 ## MUTATATORS ####################################################
 
@@ -94,7 +111,14 @@ declare FG_WHITE="\033[1;37m"
 declare FG_YELLOW="\033[1;33m"
 declare NOCOLOR="\033[0m"
 
-declare PROMPT="${FG_BLUE}>>${NOCOLOR}"
+declare PROMPT_A="${FG_BLUE}⇢⇢${NOCOLOR}"
+declare PROMPT_B="${FG_BLUE}⇡⇡${NOCOLOR}"
+
+declare TITLE_BASH="${FG_WHITE}- ${FG_WHITE}BASH${NOCOLOR}"
+declare TITLE_PYTHON="${FG_WHITE}- ${FG_PINK}PYTHON${NOCOLOR}"
+declare TITLE_NODE="${FG_WHITE}- ${FG_BLUE}NODE${NOCOLOR}"
+
+declare TITLE_PACKAGE="${FG_PINK}${VC_PACKAGE}${NOCOLOR}"
 
 # MAIN #########################################################################
 
@@ -104,19 +128,25 @@ main ()
 
     clear
 
-    get_version
+    get_package_version
 
     compile_output
 
     compile_minified
 
+    remove_legacy_distros
+
+    compile_jsdocs $OUTPUT $OUTPUT_JSDOCS
+
+    compile_jsdocs $DEVTEST_INPUT $DEVTEST_OUTPUT_JSDOCS
+
+    compile_jsdoc $OUTPUT $OUTPUT_JSDOC
+
+    compile_jsdoc $DEVTEST_INPUT $DEVTEST_OUTPUT_JSDOC
+
+    compile_md2json
+
     compile_readme
-
-    compile_jsdoc
-
-    compile_jsdocs
-
-    # compile_plantuml
 
     complete
 }
@@ -192,7 +222,7 @@ function compile_output ()
     done
 
 
-    echo "${PROMPT} ${FG_PINK}${VC_PACKAGE} Compiling Complete \t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
+    echo "${PROMPT_A} ${TITLE_PACKAGE} Compiling Complete ${TITLE_BASH} \t\t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
 
 
     afplay audio/complete.mp3
@@ -204,12 +234,14 @@ function compile_minified ()
 
     if command -v uglifyjs
     then
-        if $(uglifyjs ${OUTPUT} --source-map -o ${FILE_MIN} --compress --mangle reserved=['window']); then
-            echo "\n${PROMPT} ${FG_PINK}${VC_PACKAGE} Minified Complete \t\t${FG_BLUE}[${FILE_MIN}]${NOCOLOR}\n"
+        if $(uglifyjs ${OUTPUT} --source-map -o ${FILE_MIN} --compress --mangle reserved=['window']);
+        then echo "." >/dev/null
         else
             NO_ERRORS=false
         fi
     fi
+
+    echo "\n${PROMPT_B} ${TITLE_PACKAGE} Minified ${TITLE_NODE}\t\t\t${FG_BLUE}[${FILE_MIN}]${NOCOLOR}\n"
 
     update_minified_js_preamble $FILE_MIN
 
@@ -220,9 +252,9 @@ function compile_readme ()
 {
     if [ -e "readme.sh" ]
     then
-        $(sh readme.sh)
+        source readme.sh
 
-        echo "${PROMPT} ${FG_PINK}Read Me Complete \t\t\t${FG_BLUE}[../README.md]${NOCOLOR}\n"
+        echo "${PROMPT_A} ${FG_PINK}Read Me ${FG_WHITE}Complete ${TITLE_BASH}\t\t\t${FG_BLUE}[../README.md]${NOCOLOR}\n"
     fi
 }
 
@@ -230,8 +262,8 @@ function compile_jsdoc ()
 {
     if command -v jsdoc2md
     then
-        if $(jsdoc2md ${OUTPUT} > $OUTPUT_JSDOC)
-            then echo "\n${PROMPT} ${FG_PINK}JSDoc Complete \t\t\t${FG_BLUE}[${OUTPUT_JSDOC}]${NOCOLOR}\n"
+        if $(jsdoc2md ${1} > $2)
+            then echo "\n${PROMPT_B} ${FG_PINK}JSDoc ${FG_WHITE}Complete ${TITLE_NODE}\t\t\t${FG_BLUE}[${2}]${NOCOLOR}\n"
         else
             NO_ERRORS=false
         fi
@@ -240,16 +272,84 @@ function compile_jsdoc ()
 
 function compile_jsdocs ()
 {
-    $(rm -r $OUTPUT_JSDOCS)
+    $(rm -r $2)
 
     if command -v jsdoc
     then
-        if (jsdoc --private $OUTPUT -d $OUTPUT_JSDOCS)
-            then echo "\n${PROMPT} ${FG_PINK}JSDocs Complete \t\t\t${FG_BLUE}[${OUTPUT_JSDOCS}]${NOCOLOR}\n"
+        if (jsdoc --private $1 -d $2)
+            then echo "\n${PROMPT_B} ${FG_PINK}JSDocs ${FG_WHITE}Complete ${TITLE_NODE}\t\t\t${FG_BLUE}[${2}]${NOCOLOR}\n"
         else
             NO_ERRORS=false
         fi
     fi
+}
+
+function compile_md2json ()
+{
+    declare DEFAULT_PATH=$(pwd)
+
+
+    function compile_markdown ()
+    {
+        if [ ! -d $MD2JSON_SOURCE ]; then
+            mkdir -p $MD2JSON_SOURCE;
+        fi
+
+
+        for FILE in ${FILES[@]}
+        do
+            BASE_NAME=$(basename ${FILE})
+
+            if command -v jsdoc2md >/dev/null
+            then
+                if $(jsdoc2md ${FILE} > $MD2JSON_CACHE/"${BASE_NAME//.js}.md")
+                    then echo "." >/dev/null
+                else
+                    NO_ERRORS=false
+                fi
+            fi
+        done
+    }
+
+    function compile_json ()
+    {
+        $(rm -r $MD2JSON_OUTPUT)
+
+
+        if [ ! -d $MD2JSON_OUTPUT ]; then
+            mkdir -p $MD2JSON_OUTPUT;
+        fi
+
+        # @TODO: TRIM HEAD OF MD2JSON_OUTPUT PATH
+        MD2JSON_OUTPUT_MSG="../dev-test/scripts/libs/md2json/md2json.js"
+
+        if command -v python3
+        then
+
+            if cd $MD2JSON_BUILD
+            then
+
+                if (python3 md2json.py $MD2JSON_SOURCE $MD2JSON_OUTPUT)
+                    then echo "\n${PROMPT_A} ${FG_PINK}Md2Json ${FG_WHITE}Complete ${TITLE_PYTHON}\t\t\t${FG_BLUE}[${MD2JSON_OUTPUT_MSG}]${NOCOLOR}\n"
+                else
+                    NO_ERRORS=false
+                fi
+
+                cd $DEFAULT_PATH
+
+            else
+                NO_ERRORS=false
+            fi
+
+        fi
+    }
+
+    compile_markdown
+
+    compile_json
+
+
+    $(rm -rf $MD2JSON_SOURCE)
 }
 
 function compile_plantuml ()
@@ -271,7 +371,7 @@ function compile_plantuml ()
             echo "python3 BuildClass.py ${PLANT_SOURCE} -m \"png\" -l ${PLANT_OUTPUT}"
 
             if (python3 BuildClass.py $PLANT_SOURCE -m "png" -l $PLANT_OUTPUT)
-                then echo "\n${PROMPT} ${FG_PINK}PlantUML Complete \t\t\t${FG_BLUE}[${PLANT_OUTPUT}]${NOCOLOR}\n"
+                then echo "\n${PROMPT}  ${FG_PINK}PlantUML Complete ${TITLE_PYTHON}\t\t\t${FG_BLUE}[${PLANT_OUTPUT}]${NOCOLOR}\n"
             else
                 NO_ERRORS=false
             fi
@@ -307,7 +407,7 @@ function update_minified_js_preamble ()
 
 ## GENERAL #######################################################
 
-function get_version ()
+function get_package_version ()
 {
     VERSION=`head -n4 ../docs/CHANGELOG.md | awk '/## \[/{print $2}'`
 
@@ -354,11 +454,20 @@ function flash_screen ()
     printf '\e[?5l'  # Turn on normal video
 }
 
+function remove_legacy_distros ()
+{
+    FILE_MAIN=${VC_PACKAGE}-v${VERSION}.js
+    FILE_MIN=${VC_PACKAGE}-v${VERSION}-min.js
+    FILE_MAP=${VC_PACKAGE}-v${VERSION}-min.js.map
+
+    find $OUTPUT_DIRECTORY -type f -not -name $FILE_MAIN -not -name $FILE_MIN -not -name $FILE_MAP -delete
+}
+
 ## COMPLETE ######################################################
 
-function complete()
+function complete ()
 {
-    echo "${FG_YELLOW}ᕕ( ᐛ )ᕗ${NOCOLOR}\t\t\t\t\t${PROMPT} Complete - ${FG_WHITE}${DATE} ${NOCOLOR}@ ${FG_WHITE}${TIME}${NOCOLOR}\n"
+    echo "${FG_YELLOW}ᕕ( ᐛ )ᕗ${NOCOLOR} Complete - ${FG_WHITE}${DATE} ${NOCOLOR}@ ${FG_WHITE}${TIME}${NOCOLOR}\n"
 
     if $NO_ERRORS
     then
