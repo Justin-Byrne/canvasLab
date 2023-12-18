@@ -474,13 +474,13 @@ class Rectangle
 
                 this._canvas.setLineDash ( ( this.stroke.type ) ? this.stroke.segments : [ ] );
 
-                this._canvas.beginPath ( );
+                this._canvas.beginPath   ( );
 
-                this._canvas.rect      ( this.anchor.x, this.anchor.y, this.width, this.height );
+                this._canvas.rect        ( this.anchor.x, this.anchor.y, this.width, this.height );
 
-                this._canvas.stroke    ( );
+                this._canvas.stroke      ( );
 
-                this._canvas.fill      ( );
+                this._canvas.fill        ( );
 
 
                 if ( this.#_options.shadow ) this._canvas.shadowColor = `rgba(0, 0, 0, 0)`;         // Reset: shadow

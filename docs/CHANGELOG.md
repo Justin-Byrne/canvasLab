@@ -1,6 +1,31 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.8] - 2023-12-18
+### Added
+- **dev-tools**
+  - `_initializerObject` object, containing class initializers available through bracket notation
+  - `_removeFadeInAnimations ( )` function, to remove .fade-in class from pre-existing cards
+  - `_runLabStationCode ( )` function, to execute lab station code from editor
+  - `_download ( )` function, to generate a downloadable file & initiates that download
+  - `_setAceEditor ( )` function, to set ace editor
+  - `_setLabStationCanvasSize ( )` function, to set the lab station canvas & ruler dimensions
+  - `_setMinusCardEventListener ( )` function, to set subtractive card event listener
+  - `_setLabStationCanvasEventListener ( )` function, to set lab station canvas event listener
+  - `_setLabStationOutputEventListeners ( )` function, to set lab station output event listener
+  - `_setLabStationFontPlusEventListener ( )` function, to set lab station font plus event listener
+  - `_setLabStationFontMinusEventListener ( )` function, to set lab station font minus event listener
+  - `_setLabStationWordWrapEventListener ( )` function, to sets lab station word-wrap event listener
+  - `_setLabStationLockEventListener ( )` function, to set lab station lock event listener
+  - `_setLabStationDownloadEventListener ( )` function, to set lab station download event listener
+  - `_setLabStationEventListeners ( )` function, to set all lab station event listeners
+
+### Changed
+- **dev-tools**, changed `_clearCards ( )` to `_clearScreen ( )` function, to clear screen prior to rebuilding
+
+### Removed
+- **dev-tools**, removed `_getClassInitializer ( )`, and replaced with `_initializerObject` object
+
 ## [0.1.7] - 2023-12-08
 ### Added
 - **dev-tools**
@@ -127,7 +152,8 @@ All notable changes to this project will be documented in this file.
 
 | Version | Date       | Commit                                                              | Comments                                                                                     |
 | :-----: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.1.7] | 2023-12-08 | CURRENT                                                             | Implemented preset timing (easing functions) selection for animations.                       |
+| [0.1.8] | 2023-12-18 | CURRENT                                                             | Implemented lab station, ace9, & script editor.                                              |
+| [0.1.7] | 2023-12-08 | [1b28ce8](https://github.com/Justin-Byrne/canvasLab/commit/1b28ce8) | Implemented preset timing (easing functions) selection for animations.                       |
 | [0.1.6] | 2023-12-01 | [cc4f730](https://github.com/Justin-Byrne/canvasLab/commit/cc4f730) | Added & refactored various front & back-end features for dev-tools.                          |
 | [0.1.5] | 2023-11-26 | [db2c514](https://github.com/Justin-Byrne/canvasLab/commit/db2c514) | Refactored animation functions & expanded dev-tools navigation.                              |
 | [0.1.4] | 2023-11-22 | [0e9813f](https://github.com/Justin-Byrne/canvasLab/commit/0e9813f) | Added foundation for animations.                                                             |

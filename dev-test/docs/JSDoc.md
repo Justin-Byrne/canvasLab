@@ -13,6 +13,7 @@ Call main module
     * [~setOffCanvasDocument(type)](#module_devTest..setOffCanvasDocument)
     * [~setEasingAnimation(easingFunction, index)](#module_devTest..setEasingAnimation)
     * [~toggleEasingFunctions(index)](#module_devTest..toggleEasingFunctions)
+    * [~_runLabStationCode()](#module_devTest.._runLabStationCode)
 
 <a name="module_devTest..setOffCanvasDocument"></a>
 
@@ -51,3 +52,10 @@ Toggles visibility of easing functions
 | --- | --- | --- |
 | index | <code>number</code> | Index of animation card |
 
+<a name="module_devTest.._runLabStationCode"></a>
+
+### devTest~\_runLabStationCode()
+Executes lab station code from editor
+
+**Kind**: inner method of [<code>devTest</code>](#module_devTest)  
+**Access**: public  

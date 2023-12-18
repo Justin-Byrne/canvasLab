@@ -1,21 +1,21 @@
 @font-face {
   font-family: 'CascadiaCode';
-  src: url("../fonts/CascadiaCode/otf/CascadiaCode-Regular.otf") format("otf"), url("../fonts/CascadiaCode/ttf/CascadiaCode.ttf") format("truetype");
+  src: url("../fonts/CascadiaCode/ttf/CascadiaCode-Regular.ttf") format("truetype"), url("../fonts/CascadiaCode/otf/CascadiaCode-Regular.otf") format("otf");
   font-weight: normal;
   font-style: normal; }
 @font-face {
   font-family: 'CourierPrime';
-  src: url("../fonts/CourierPrime/CourierPrime-Regular.ttf") format("truetype"), url("../fonts/CourierPrime/courierprime-regular-webfont.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal; }
-@font-face {
-  font-family: 'Laptop';
-  src: url("../fonts/Laptop/Labtop-Bold.ttf") format("truetype"), url("../fonts/Laptop/labtop-bold-webfont.woff2") format("woff2");
+  src: url("../fonts/CourierPrime/CourierPrime-Regular.ttf") format("truetype"), url("../fonts/CourierPrime/CourierPrime-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal; }
 @font-face {
   font-family: 'Roboto';
-  src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype"), url("../fonts/Roboto/roboto-regular-webfont.woff2") format("woff2");
+  src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype"), url("../fonts/Roboto/Roboto-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'Gafata';
+  src: url("../fonts/Gafata/Gafata-Regular.ttf") format("truetype"), url("../fonts/Gafata/Gafata-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal; }
 html {
@@ -27,11 +27,17 @@ body {
 nav {
   display: flex;
   position: absolute;
+  left: -200px;
+  z-index: 10;
   flex-wrap: nowrap;
   float: left;
   min-height: 100vh;
+  background: url("../images/svg/Background/koi-fish.svg");
+  background-size: 141%;
+  background-position-x: -36px;
   border-right: 1px solid #6f6f6f;
-  box-shadow: 1px 0px 5px 0px #3b4c5b; }
+  box-shadow: 1px 0px 5px 0px #3b4c5b;
+  transition: left 0.45s ease; }
   nav #nav-icon img {
     display: block;
     width: 98px;
@@ -55,7 +61,7 @@ nav {
     transform: rotateZ(0); } }
   nav .nav-wrapper {
     width: 200px;
-    background: rgba(0, 28, 55, 0.25); }
+    background: rgba(31, 51, 73, 0.85); }
     nav .nav-wrapper .nav-header-image {
       margin: 0 auto;
       pointer-events: none;
@@ -83,6 +89,25 @@ nav {
         nav .nav-wrapper #extra-buttons button.disabled {
           background-color: #505050;
           opacity: 0.4; }
+        nav .nav-wrapper #extra-buttons button.vector {
+          background-color: unset;
+          border: unset;
+          outline: unset;
+          box-shadow: unset;
+          opacity: 1; }
+          nav .nav-wrapper #extra-buttons button.vector .extra-icon {
+            display: flex;
+            height: 36px;
+            opacity: 0.9;
+            fill: white;
+            stroke: black;
+            stroke-width: 20px;
+            transition: transform .35s ease, fill 0.35s ease, opacity 0.35s ease;
+            transform: scale(1) rotate(0deg); }
+            nav .nav-wrapper #extra-buttons button.vector .extra-icon:hover {
+              transform: scale(1.25) rotate(15deg);
+              fill: #00fff1;
+              opacity: 1; }
     nav .nav-wrapper .btn-toggle {
       display: inline-flex;
       align-items: center;
@@ -173,29 +198,30 @@ nav {
       width: 20%; }
 
 main {
-  margin-left: 200px;
+  position: relative;
+  padding-left: 200px;
   background: #686c6f;
   min-height: 100vh;
   overflow: auto; }
   main .album .container {
-    max-width: 2000px;
     margin-top: -50px;
     margin-bottom: -35px; }
-    main .album .container .col.blank:nth-child(n + 3) > .blank {
+@keyframes fade-in {
+  0% {
+    transform: scale(0.9); }
+  100% {
+    transform: scale(1); } }
+    main .album .container .fade-in {
+      animation: fade-in 0.25s ease; }
+    main .album .container #test-cards .col.blank:nth-child(n + 3) > .blank {
       opacity: 0; }
-    @media (max-width: 1000px) {
-      main .album .container .col {
-        width: 33.3333333333%; } }
-    @media (max-width: 800px) {
-      main .album .container .col {
-        width: 50%; } }
-    main .album .container .card {
+    main .album .container #test-cards .col .card {
       color: white;
-      background: rgba(0, 31, 61, 0.36);
+      background: #3e5368;
       border: none;
       box-shadow: 0px 0px 2px black !important;
       border-radius: 0.3rem; }
-      main .album .container .card .card-number {
+      main .album .container #test-cards .col .card .card-number {
         font-family: 'Roboto';
         font-size: 22px;
         color: #535d7e;
@@ -210,124 +236,133 @@ main {
         background-color: #ccc;
         box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.75) !important;
         outline: 1px solid #b0b0b0; }
-      main .album .container .card canvas {
+        main .album .container #test-cards .col .card .card-number:hover .number {
+          opacity: 0; }
+        main .album .container #test-cards .col .card .card-number:hover .close {
+          opacity: 1; }
+        main .album .container #test-cards .col .card .card-number .number {
+          opacity: 1;
+          transition: opacity 0.5s; }
+        main .album .container #test-cards .col .card .card-number .close {
+          width: 23px;
+          height: 23px;
+          position: absolute;
+          left: 9px;
+          top: 6px;
+          opacity: 0;
+          content: url("../images/svg/General/x-lg-black.svg");
+          transition: opacity 0.5s;
+          z-index: 10;
+          cursor: pointer; }
+      main .album .container #test-cards .col .card canvas {
         border-top-left-radius: 0.3rem;
         border-top-right-radius: 0.3rem;
         background-color: white; }
-      main .album .container .card .card-body {
+      main .album .container #test-cards .col .card .card-body {
         border: 0.5px solid rgba(3, 41, 116, 0.5) !important;
         border-bottom-color: black !important;
         border-bottom-left-radius: 0.3rem;
         border-bottom-right-radius: 0.3rem; }
-        main .album .container .card .card-body .card-title {
+        main .album .container #test-cards .col .card .card-body .card-title {
           font-family: 'CascadiaCode';
           line-height: 30px;
           text-align: center;
           text-transform: capitalize;
-          background: rgba(19, 94, 140, 0.65);
-          outline: 1px solid #263c5c;
+          background: rgba(0, 67, 109, 0.65);
+          border-bottom: 1px solid #28465e;
+          outline: 1px solid black;
           border-radius: 3px;
           text-shadow: 0px 1px 2px black;
           box-shadow: inset 0px 0px 4px 0px #363636; }
-        main .album .container .card .card-body .card-buttons {
+        main .album .container #test-cards .col .card .card-body .card-buttons {
           width: 100%;
           display: inline-block;
           justify-content: center;
           flex-wrap: nowrap; }
-          main .album .container .card .card-body .card-buttons .code-view-buttons {
+          main .album .container #test-cards .col .card .card-body .card-buttons .code-view-buttons {
+            height: 36px;
             color: white;
-            background-color: #325279;
-            border: 1px solid #3c6a7f;
-            box-shadow: 0px 1px 2.5px 0px black; }
-            main .album .container .card .card-body .card-buttons .code-view-buttons:hover {
-              background-color: #277289;
+            background-color: #0b7a9a;
+            border: 1px solid #313a3e;
+            box-shadow: 0px 1px 1px 0px black; }
+            main .album .container #test-cards .col .card .card-body .card-buttons .code-view-buttons:hover {
+              background-color: #00e1e3;
               border-color: #00afff; }
-          main .album .container .card .card-body .card-buttons .icons {
+          main .album .container #test-cards .col .card .card-body .card-buttons .icons {
             float: right;
             margin-top: 2px; }
-            main .album .container .card .card-body .card-buttons .icons .separator {
+            main .album .container #test-cards .col .card .card-body .card-buttons .icons .separator {
               position: relative;
-              top: 3px;
+              top: 2.75px;
               display: inline-block;
-              width: 2px;
+              width: 1.5px;
               margin-left: 1px;
-              background-color: #00936f;
-              border-radius: 2px; }
-            main .album .container .card .card-body .card-buttons .icons .card-icons {
-              width: 25px;
-              height: 25px;
-              background-color: black;
-              border: 1px solid #3c6a7f;
-              border-radius: 3px;
-              box-shadow: 0px 1px 2.5px 0px black;
-              transition: background-color 1s; }
-              main .album .container .card .card-body .card-buttons .icons .card-icons:hover {
-                background-color: #11625f;
-                cursor: pointer; }
-            main .album .container .card .card-body .card-buttons .icons ul.easing-functions {
-              display: block;
-              max-height: 200px;
-              overflow: auto;
-              position: absolute;
-              left: 24px;
-              padding-left: 0;
-              margin: 10px 0 0 0;
-              z-index: 200;
-              visibility: hidden;
-              opacity: 0;
-              list-style: none;
-              transition: visibility 1s, opacity 1s; }
-              @media (min-width: 900px) {
-                main .album .container .card .card-body .card-buttons .icons ul.easing-functions {
-                  left: -6vw; } }
-              @media (min-width: 1200px) {
-                main .album .container .card .card-body .card-buttons .icons ul.easing-functions {
-                  left: 1.6vw; } }
-              main .album .container .card .card-body .card-buttons .icons ul.easing-functions li {
-                padding: 3px 5px 5px 0px;
-                margin-right: 5px;
-                border-radius: 5px;
-                opacity: 0.35;
-                transition: opacity 1s, background 5s; }
-                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:hover {
-                  cursor: pointer;
-                  opacity: 1; }
-                  main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:hover > span {
-                    opacity: 1;
-                    left: -10px; }
-                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(-n + 10):hover {
-                  background: linear-gradient(90deg, transparent 0%, #02ffde 200%); }
-                  main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(-n + 10):hover img:hover {
-                    outline: 1.5px solid #2adde1; }
-                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(n +  10):hover {
-                  background: linear-gradient(90deg, transparent 0%, #027fff 200%); }
-                  main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(n +  10):hover img:hover {
-                    outline: 1.5px solid #4ca4ff; }
-                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(n +  18):hover {
-                  background: linear-gradient(90deg, transparent 0%, #8002ff 200%); }
-                  main .album .container .card .card-body .card-buttons .icons ul.easing-functions li:nth-child(n +  18):hover img:hover {
-                    outline: 1.5px solid #b164ff; }
-                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li img {
-                  float: right;
-                  width: 25px;
-                  height: 25px;
-                  background-color: black;
-                  border: 1px solid #3c6a7f;
-                  border-radius: 3px;
-                  box-shadow: 0px 1px 2.5px 0px black; }
-                main .album .container .card .card-body .card-buttons .icons ul.easing-functions li span {
-                  color: white;
-                  display: inline-block;
-                  width: 160px;
-                  position: relative;
-                  top: 1px;
-                  left: 0px;
-                  font-family: 'CascadiaCode';
-                  text-align: end;
-                  transition: opacity 1s, left 1s;
-                  opacity: 0;
-                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.15), -1px 1px 1px rgba(0, 0, 0, 0.15), 1px 1px 1px rgba(0, 0, 0, 0.15), 1px -1px 1px rgba(0, 0, 0, 0.15); }
-      main .album .container .card.blank {
+              margin-right: 0.5px;
+              border-radius: 2px;
+              outline: 1px solid #525252;
+              animation: pulseBackground 2s infinite; }
+@keyframes pulseBackground {
+  0% {
+    background-color: #00ffcd; }
+  100% {
+    background-color: rgba(0, 255, 205, 0.6); } }
+            main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper {
+              position: relative; }
+              main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions {
+                display: block;
+                max-height: 200px;
+                overflow: auto;
+                position: absolute;
+                left: -170px;
+                padding-left: 0;
+                margin: 10px 0 0 0;
+                z-index: 200;
+                visibility: hidden;
+                opacity: 0;
+                list-style: none;
+                transition: visibility 1s, opacity 1s; }
+                main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li {
+                  padding: 3px 3px 4px 0px;
+                  margin-right: 5px;
+                  border-radius: 5px;
+                  opacity: 0.35;
+                  transition: opacity 1s, background 5s; }
+                  main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li:hover {
+                    cursor: pointer;
+                    opacity: 1; }
+                    main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li:hover > span {
+                      opacity: 1;
+                      left: -10px; }
+                  main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li:nth-child(-n + 10):hover {
+                    background: linear-gradient(90deg, transparent 0%, #02ffde 200%);
+                    outline: 1px solid rgba(2, 255, 222, 0.08); }
+                    main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li:nth-child(-n + 10):hover img:hover {
+                      outline: 1.5px solid rgba(2, 255, 222, 0.08); }
+                  main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li:nth-child(n +  10):hover {
+                    background: linear-gradient(90deg, transparent 0%, #4fa6ff 200%);
+                    outline: 1px solid rgba(79, 166, 255, 0.08); }
+                    main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li:nth-child(n +  10):hover img:hover {
+                      outline: 1.5px solid rgba(79, 166, 255, 0.08); }
+                  main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li:nth-child(n +  18):hover {
+                    background: linear-gradient(90deg, transparent 0%, #b367ff 200%);
+                    outline: 1px solid rgba(179, 103, 255, 0.08); }
+                    main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li:nth-child(n +  18):hover img:hover {
+                      outline: 1.5px solid rgba(179, 103, 255, 0.08); }
+                  main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li span {
+                    color: black;
+                    display: inline-block;
+                    width: 170px;
+                    position: relative;
+                    top: 2px;
+                    left: 0px;
+                    font-size: 18px;
+                    font-family: 'Roboto';
+                    text-align: end;
+                    letter-spacing: 0.75px;
+                    transition: opacity 1s, left 0.25s ease;
+                    opacity: 0;
+                    text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.25), -1px 1px 1px rgba(255, 255, 255, 0.25), 1px 1px 1px rgba(255, 255, 255, 0.25), 1px -1px 1px rgba(255, 255, 255, 0.25); }
+      main .album .container #test-cards .col .card.blank {
         display: table-cell;
         min-height: 31.5vh;
         max-height: 100%;
@@ -336,50 +371,14 @@ main {
         background-color: rgba(68, 80, 93, 0.4);
         opacity: 0.5;
         transition: opacity 1s; }
-        main .album .container .card.blank:hover {
+        main .album .container #test-cards .col .card.blank:hover {
           cursor: pointer;
           opacity: 1; }
-        main .album .container .card.blank .plus {
+        main .album .container #test-cards .col .card.blank .plus {
           display: block;
           font-size: 60px;
           text-align: center;
           padding-bottom: 20px; }
-        @media (max-width: 1800px) {
-          main .album .container .card.blank {
-            width: 21.5vw; } }
-        @media (max-width: 1700px) {
-          main .album .container .card.blank {
-            width: 21vw; } }
-        @media (max-width: 1600px) {
-          main .album .container .card.blank {
-            width: 20.5vw; } }
-        @media (max-width: 1500px) {
-          main .album .container .card.blank {
-            width: 20vw; } }
-        @media (max-width: 1400px) {
-          main .album .container .card.blank {
-            width: 19.5vw; } }
-        @media (max-width: 1300px) {
-          main .album .container .card.blank {
-            width: 19vw; } }
-        @media (max-width: 1200px) {
-          main .album .container .card.blank {
-            width: 18.5vw; } }
-        @media (max-width: 1100px) {
-          main .album .container .card.blank {
-            width: 18vw; } }
-        @media (max-width: 1000px) {
-          main .album .container .card.blank {
-            width: 17.5vw; } }
-        @media (max-width: 900px) {
-          main .album .container .card.blank {
-            width: 17vw; } }
-        @media (max-width: 800px) {
-          main .album .container .card.blank {
-            width: 16.5vw; } }
-        @media (max-width: 700px) {
-          main .album .container .card.blank {
-            width: 16vw; } }
   main .modal .modal-dialog {
     max-width: 700px; }
     main .modal .modal-dialog .modal-content {
@@ -519,6 +518,140 @@ main {
       opacity: 0; }
       main .offcanvas #offcanvas-reset:hover {
         cursor: pointer; }
+  main .lab-station {
+    display: none;
+    width: 100%;
+    height: 100vh; }
+    main .lab-station .container {
+      padding: 0;
+      margin: 0;
+      max-width: 2000px; }
+      main .lab-station .container .col {
+        padding-left: 0;
+        padding-right: 0;
+        height: 100vh; }
+    main .lab-station #lab {
+      background-color: #1d1f21;
+      margin-left: 0;
+      margin-right: 0; }
+      main .lab-station #lab #ruler {
+        position: absolute;
+        height: 100vh;
+        opacity: 0;
+        transition: opacity 1s ease; }
+        main .lab-station #lab #ruler .dimensions {
+          font-family: 'Roboto';
+          position: relative;
+          float: right;
+          z-index: 30;
+          margin: 15px;
+          padding: 5px 10px;
+          border: 1px solid #bfdbf8;
+          border-radius: 2px;
+          outline: 3px solid white;
+          background-color: #dfe7ff; }
+        main .lab-station #lab #ruler .horizontal {
+          position: relative;
+          top: 22px;
+          width: 100%;
+          height: 1px;
+          margin-top: 10px;
+          border-bottom: 1px solid #73f0ff; }
+        main .lab-station #lab #ruler .vertical {
+          position: relative;
+          top: -10px;
+          float: right;
+          right: -91px;
+          width: 1px;
+          height: 99vh;
+          border-right: 1px solid #73f0ff; }
+      main .lab-station #lab canvas {
+        background: white; }
+      main .lab-station #lab #editor {
+        margin-left: -10px;
+        height: 90%; }
+      main .lab-station #lab #control-panel {
+        display: block;
+        width: 100%;
+        height: 55px;
+        position: relative;
+        left: -5px;
+        z-index: 50;
+        font-family: 'Gafata';
+        text-transform: uppercase;
+        background-color: #26282c; }
+        main .lab-station #lab #control-panel .container {
+          font-size: 14px;
+          display: flex;
+          flex-wrap: nowrap;
+          background: #484f56; }
+          main .lab-station #lab #control-panel .container.data {
+            margin-bottom: 3px; }
+          main .lab-station #lab #control-panel .container.execute {
+            border-radius: 3px; }
+        main .lab-station #lab #control-panel .control {
+          color: white;
+          text-shadow: 0px 0px 1px black;
+          outline: 1px solid black;
+          opacity: 0.85;
+          margin: 0 auto;
+          padding-top: 2px;
+          flex-grow: 1; }
+          main .lab-station #lab #control-panel .control:first-child {
+            border-radius: 3px 0 0 3px; }
+          main .lab-station #lab #control-panel .control:last-child {
+            border-radius: 0 3px 3px 0; }
+          main .lab-station #lab #control-panel .control.button {
+            padding: 0;
+            text-align: center; }
+          main .lab-station #lab #control-panel .control .name {
+            padding: 0px 6px;
+            border-right: 1px solid gray; }
+          main .lab-station #lab #control-panel .control .value {
+            display: inline-block;
+            min-width: 22px;
+            margin-left: 1px; }
+          main .lab-station #lab #control-panel .control.disabled {
+            cursor: default;
+            background-color: gray; }
+            main .lab-station #lab #control-panel .control.disabled:hover {
+              background-color: gray; }
+        main .lab-station #lab #control-panel .button {
+          cursor: pointer;
+          box-shadow: inset 0px 0px 2px 0px #00253c; }
+          main .lab-station #lab #control-panel .button:hover {
+            background-color: #1a6b98; }
+          main .lab-station #lab #control-panel .button:active {
+            background-color: #1a9698; }
+          main .lab-station #lab #control-panel .button .icon {
+            padding-top: 4px; }
+          main .lab-station #lab #control-panel .button .menu {
+            content: url("../images/svg/General/caret-up.svg"); }
+          main .lab-station #lab #control-panel .button .font-plus {
+            content: url("../images/svg/General/plus.svg"); }
+          main .lab-station #lab #control-panel .button .font-minus {
+            content: url("../images/svg/General/minus.svg"); }
+          main .lab-station #lab #control-panel .button .word-wrap {
+            content: url("../images/svg/General/word-wrap.svg"); }
+          main .lab-station #lab #control-panel .button .lock {
+            content: url("../images/svg/General/unlock.svg"); }
+          main .lab-station #lab #control-panel .button .download {
+            content: url("../images/svg/General/download.svg"); }
+        main .lab-station #lab #control-panel #execute {
+          content: url("../images/svg/General/play.svg");
+          display: flex;
+          width: 100%;
+          height: 26px;
+          margin: 0 auto;
+          padding: 2px;
+          background: #484f56;
+          border: 1px solid black;
+          border-radius: 3px;
+          opacity: 0.8; }
+          main .lab-station #lab #control-panel #execute:hover {
+            background-color: #1a6b98; }
+          main .lab-station #lab #control-panel #execute:active {
+            background-color: #1a9698; }
   main #byrne-systems-logo {
     width: 100%; }
     main #byrne-systems-logo img {
@@ -544,20 +677,138 @@ main {
     opacity: 0.6; }
   100% {
     opacity: 0.4; } }
-.styled-scrollbars, main .album .container .card .card-body .card-buttons .icons ul.easing-functions {
+.dev-icons, main .album .container #test-cards .col .card .card-body .card-buttons .icons .card-icons, main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li img {
+  width: 32px;
+  height: 32px;
+  padding: 2.75px;
+  background-color: black;
+  border: 1px solid #3c6a7f;
+  border-radius: 3px;
+  box-shadow: 0px 1px 2.5px 0px black;
+  transition: background-color 1s; }
+  .dev-icons:hover, main .album .container #test-cards .col .card .card-body .card-buttons .icons .card-icons:hover, main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions li img:hover {
+    background-color: #11625f;
+    cursor: pointer; }
+
+.styled-scrollbars, main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions {
   scrollbar-color: white, rgba(0, 31, 61, 0.36); }
 
-.styled-scrollbars::-webkit-scrollbar, main .album .container .card .card-body .card-buttons .icons ul.easing-functions::-webkit-scrollbar {
+.styled-scrollbars::-webkit-scrollbar, main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions::-webkit-scrollbar {
   width: 5px;
   height: 10px; }
 
-.styled-scrollbars::-webkit-scrollbar-thumb, main .album .container .card .card-body .card-buttons .icons ul.easing-functions::-webkit-scrollbar-thumb {
+.styled-scrollbars::-webkit-scrollbar-thumb, main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions::-webkit-scrollbar-thumb {
   background: white;
   border-radius: 5px;
   outline: 1px solid rgba(0, 0, 0, 0.5); }
 
-.styled-scrollbars::-webkit-scrollbar-track, main .album .container .card .card-body .card-buttons .icons ul.easing-functions::-webkit-scrollbar-track {
+.styled-scrollbars::-webkit-scrollbar-track, main .album .container #test-cards .col .card .card-body .card-buttons .icons .easing-wrapper ul.easing-functions::-webkit-scrollbar-track {
   background: rgba(0, 31, 61, 0.36);
   border-radius: 10px; }
+
+.modal-backdrop {
+  z-index: 999 !important; }
+
+@media (min-width: 1500px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 102%; } }
+@media (min-width: 1530px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 104%; } }
+@media (min-width: 1560px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 106%; } }
+@media (min-width: 1590px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 108%; } }
+@media (min-width: 1620px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 110%; } }
+@media (min-width: 1650px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 112%; } }
+@media (min-width: 1680px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 114%; } }
+@media (min-width: 1710px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 116%; } }
+@media (min-width: 1740px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 118%; } }
+@media (min-width: 1770px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 120%; } }
+@media (min-width: 1800px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 122%; } }
+@media (min-width: 1830px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 124%; } }
+@media (min-width: 1860px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 128%; } }
+@media (min-width: 1890px) {
+  .test-card-scaling, main .album .container #test-cards {
+    width: 130%; } }
+
+@media (max-width: 1500px) {
+  .test-card-column-scaling, main .album .container #test-cards .col {
+    width: 25%            !important; } }
+@media (max-width: 1200px) {
+  .test-card-column-scaling, main .album .container #test-cards .col {
+    width: 33.3333333333% !important; } }
+@media (max-width: 1000px) {
+  .test-card-column-scaling, main .album .container #test-cards .col {
+    width: 50%            !important; } }
+@media (max-width: 800px) {
+  .test-card-column-scaling, main .album .container #test-cards .col {
+    width: 100%           !important; } }
+
+@media (max-width: 2100px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 23vw; } }
+@media (max-width: 2000px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 22.5vw; } }
+@media (max-width: 1900px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 22vw; } }
+@media (max-width: 1800px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 21.5vw; } }
+@media (max-width: 1700px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 21vw; } }
+@media (max-width: 1600px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 20.5vw; } }
+@media (max-width: 1500px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 20vw; } }
+@media (max-width: 1400px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 19.5vw; } }
+@media (max-width: 1300px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 19vw; } }
+@media (max-width: 1200px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 18.5vw; } }
+@media (max-width: 1100px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 18vw; } }
+@media (max-width: 1000px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 17.5vw; } }
+@media (max-width: 900px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 17vw; } }
+@media (max-width: 800px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 16.5vw; } }
+@media (max-width: 700px) {
+  .card-blank-scaling, main .album .container #test-cards .col .card.blank {
+    width: 16vw; } }
 
 /*# sourceMappingURL=main.css.map */

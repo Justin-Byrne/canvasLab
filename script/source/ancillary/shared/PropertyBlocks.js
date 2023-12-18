@@ -12,19 +12,17 @@ const PROPERTY_BLOCKS =
         {
             set ( value )
             {
-                this._canvas = ( value === undefined )
+                this._canvas = ( value ) ? ( this._isInDom ( value ) )
 
-                               ? ( window.canvaslab instanceof canvasLab )
+                                               ? document.getElementById ( value ).getContext ( '2d' )
 
-                                     ? document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' )
+                                               : console.warn ( `"${value}" is not a valid DOM element !` )
 
-                                     : this._canvas
+                                         : ( window.canvaslab.canvas )
 
-                               : ( this._isInDom ( value ) )
+                                               ? document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' )
 
-                                     ? document.getElementById ( value ).getContext ( '2d' )
-
-                                     : console.warn ( `"${value}" is not a valid DOM element !` );
+                                               : this._canvas;
             },
             get ( )
             {
@@ -112,19 +110,17 @@ const PROPERTY_BLOCKS =
         {
             set ( value )
             {
-                this._canvas = ( value === undefined )
+                this._canvas = ( value ) ? ( this._isInDom ( value ) )
 
-                               ? ( window.canvaslab instanceof canvasLab )
+                                               ? document.getElementById ( value ).getContext ( '2d' )
 
-                                     ? document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' )
+                                               : console.warn ( `"${value}" is not a valid DOM element !` )
 
-                                     : this._canvas
+                                         : ( document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' ) )
 
-                               : ( this._isInDom ( value ) )
+                                               ? document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' )
 
-                                     ? document.getElementById ( value ).getContext ( '2d' )
-
-                                     : console.warn ( `"${value}" is not a valid DOM element !` );
+                                               : this._canvas;
 
 
                 for ( let _element of this )

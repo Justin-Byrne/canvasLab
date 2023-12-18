@@ -2,7 +2,7 @@
 // @brief: 			HTML5 canvas drawing framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.1.7 
+// @version: 		0.1.8 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -21,19 +21,17 @@ const PROPERTY_BLOCKS =
         {
             set ( value )
             {
-                this._canvas = ( value === undefined )
+                this._canvas = ( value ) ? ( this._isInDom ( value ) )
 
-                               ? ( window.canvaslab instanceof canvasLab )
+                                               ? document.getElementById ( value ).getContext ( '2d' )
 
-                                     ? document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' )
+                                               : console.warn ( `"${value}" is not a valid DOM element !` )
 
-                                     : this._canvas
+                                         : ( window.canvaslab.canvas )
 
-                               : ( this._isInDom ( value ) )
+                                               ? document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' )
 
-                                     ? document.getElementById ( value ).getContext ( '2d' )
-
-                                     : console.warn ( `"${value}" is not a valid DOM element !` );
+                                               : this._canvas;
             },
             get ( )
             {
@@ -121,19 +119,17 @@ const PROPERTY_BLOCKS =
         {
             set ( value )
             {
-                this._canvas = ( value === undefined )
+                this._canvas = ( value ) ? ( this._isInDom ( value ) )
 
-                               ? ( window.canvaslab instanceof canvasLab )
+                                               ? document.getElementById ( value ).getContext ( '2d' )
 
-                                     ? document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' )
+                                               : console.warn ( `"${value}" is not a valid DOM element !` )
 
-                                     : this._canvas
+                                         : ( document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' ) )
 
-                               : ( this._isInDom ( value ) )
+                                               ? document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' )
 
-                                     ? document.getElementById ( value ).getContext ( '2d' )
-
-                                     : console.warn ( `"${value}" is not a valid DOM element !` );
+                                               : this._canvas;
 
 
                 for ( let _element of this )
@@ -788,17 +784,6 @@ class Angle
             return this._start;
         }
 
-        ////    UTILITY     ////////////////////////////
-
-            /**
-             * Get start angle in radians
-             * @return          {number}                                    Start value; to radians
-             */
-            get startInRadians ( )
-            {
-                return this._convert2Radian ( this.start );
-            }
-
     ////    [ END ]     ////////////////////////////////////
 
         /**
@@ -818,17 +803,6 @@ class Angle
         {
             return this._end;
         }
-
-        ////    UTILITY     ////////////////////////////
-
-            /**
-             * Get end angle in radians
-             * @return          {number}                                    End value; in radians
-             */
-            get endInRadians ( )
-            {
-                return this._convert2Radian ( this.end );
-            }
 
     ////    [ CLOCKWISE ]   ////////////////////////////////
 
@@ -857,6 +831,24 @@ class Angle
         _isDegree ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Get start angle in radians
+         * @return          {number}                                    Start value; to radians
+         */
+        get startInRadians ( )
+        {
+            return this._convert2Radian ( this.start );
+        }
+
+        /**
+         * Get end angle in radians
+         * @return          {number}                                    End value; in radians
+         */
+        get endInRadians ( )
+        {
+            return this._convert2Radian ( this.end );
+        }
 
         /**
          * Convert degree to radian
@@ -4257,13 +4249,13 @@ class Rectangle
 
                 this._canvas.setLineDash ( ( this.stroke.type ) ? this.stroke.segments : [ ] );
 
-                this._canvas.beginPath ( );
+                this._canvas.beginPath   ( );
 
-                this._canvas.rect      ( this.anchor.x, this.anchor.y, this.width, this.height );
+                this._canvas.rect        ( this.anchor.x, this.anchor.y, this.width, this.height );
 
-                this._canvas.stroke    ( );
+                this._canvas.stroke      ( );
 
-                this._canvas.fill      ( );
+                this._canvas.fill        ( );
 
 
                 if ( this.#_options.shadow ) this._canvas.shadowColor = `rgba(0, 0, 0, 0)`;         // Reset: shadow
@@ -5853,8 +5845,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Dec, 08 2023',
-            Version:   '0.1.7',
+            Updated:   'Dec, 18 2023',
+            Version:   '0.1.8',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }

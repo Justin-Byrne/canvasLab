@@ -48,17 +48,6 @@ class Angle
             return this._start;
         }
 
-        ////    UTILITY     ////////////////////////////
-
-            /**
-             * Get start angle in radians
-             * @return          {number}                                    Start value; to radians
-             */
-            get startInRadians ( )
-            {
-                return this._convert2Radian ( this.start );
-            }
-
     ////    [ END ]     ////////////////////////////////////
 
         /**
@@ -78,17 +67,6 @@ class Angle
         {
             return this._end;
         }
-
-        ////    UTILITY     ////////////////////////////
-
-            /**
-             * Get end angle in radians
-             * @return          {number}                                    End value; in radians
-             */
-            get endInRadians ( )
-            {
-                return this._convert2Radian ( this.end );
-            }
 
     ////    [ CLOCKWISE ]   ////////////////////////////////
 
@@ -117,6 +95,24 @@ class Angle
         _isDegree ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Get start angle in radians
+         * @return          {number}                                    Start value; to radians
+         */
+        get startInRadians ( )
+        {
+            return this._convert2Radian ( this.start );
+        }
+
+        /**
+         * Get end angle in radians
+         * @return          {number}                                    End value; in radians
+         */
+        get endInRadians ( )
+        {
+            return this._convert2Radian ( this.end );
+        }
 
         /**
          * Convert degree to radian

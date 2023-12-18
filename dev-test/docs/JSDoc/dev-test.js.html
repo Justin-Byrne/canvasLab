@@ -30,7 +30,7 @@
 // @brief:          Developmental testing framework for canvasLab
 // @author:         Justin D. Byrne
 // @email:          justin@byrne-systems.com
-// @version:        0.0.0
+// @version:        0.0.0-beta
 // @license:        GPL-2.0
 
 "use strict";
@@ -71,9 +71,15 @@
          */
         let _cardTemplate       = ( )           => `&lt;div class="col">
 
-                                                      &lt;div class="card">
+                                                      &lt;div class="card fade-in">
 
-                                                          &lt;div class="card-number">{{number}}&lt;/div>
+                                                          &lt;div class="card-number">
+
+                                                              &lt;span class="close">&lt;/span>
+
+                                                              &lt;span class="number">{{number}}&lt;/span>
+
+                                                          &lt;/div>
 
                                                           &lt;canvas id="canvas_{{number}}">&lt;/canvas>
 
@@ -128,6 +134,48 @@
          * @return          {Promise}                           An async promise
          */
         let _delay              = ( time )      => new Promise ( resolve => setTimeout ( resolve, time ) );
+
+        /**
+         * Literal object containing class initializers available through bracket notation
+         * @private
+         * @name _initializerObject
+         * @object
+         * @return          {string}                            Class initializer
+         */
+        let _initializerObject  =
+        {
+            object:
+            {
+                Line:       '{ x: 100, y: 50 }, { x: 200, y: 100 }',
+                Circle:     '{ x: 154, y: 77 }',
+                Rectangle:  '{ x: 154, y: 77 }',
+                Text:       '{ x: 154, y: 77 }, \'Text\''
+            },
+            subject:
+            {
+                Line:       '{ x: 100, y: 50 }, { x: 200, y: 100 }',
+                Circle:     '{ x: 154, y: 77 }',
+                Rectangle:  '{ x: 154, y: 77 }',
+                Text:       '{ x: 154, y: 77 }, \'Text\''
+            },
+            animation:
+            {
+                Line:       '{ x: 100, y: 50 }, { x: 200, y: 100 }',
+                Circle:     '{ x: 154, y: 77 }',
+                Rectangle:  '{ x: 154, y: 77 }',
+                Text:       '{ x: 154, y: 77 }, \'Text\''
+            }
+        }
+
+        /**
+         * Literal object containing Ace editor object
+         * @note            defined during runtime
+         * @private
+         * @name _editor
+         * @object
+         * @return          {Object}                            Ace editor object
+         */
+        let _editor             = undefined;
 
     ////////////////////////////////////////////////////////////////////////////
     ////    GENERIC FUNCTIONS    ///////////////////////////////////////////////
@@ -187,18 +235,27 @@
         }
 
         /**
-         * Clears cards section
+         * Clears screen prior to rebuilding
          * @private
-         * @name _clearCards
+         * @name _clearScreen
          * @function
+         * @param           {boolean} setCardAlbum              Sets card album display to block (true) || none (false)
          */
-        function _clearCards ( )
+        function _clearScreen ( setCardAlbum = false )
         {
+            initCanvasLab ( );                              // initialize canvasLab
+
+            ////    MAIN SECTION   /////////////////////////
+
+                let _main = document.getElementsByTagName ( 'main' ) [ 0 ];
+
+                    _main.style.overflowY = 'auto';
+
             ////    ALBUM SECTION   ////////////////////////
 
                 let _albumSection = document.querySelector ( '.album' );
 
-                    _albumSection.style.display = 'block';
+                    _albumSection.style.display = ( setCardAlbum ) ? 'block' : 'none';
 
             ////    CARD SECTION    ////////////////////////
 
@@ -212,55 +269,12 @@
 
 
                 if ( _byrneLogo ) _byrneLogo.remove ( );
-        }
 
-        /**
-         * Copy code to clipboard
-         * @private
-         * @name _copyCode
-         * @function
-         */
-        async function _copyCode ( )
-        {
-            let _code = document.querySelector ( '#modal-code > div > div > div.modal-body > pre > code' ).innerHTML.replace ( /&lt;[^>]+>/g, '' );
+            ////    LAB STATION    /////////////////////////
 
-            ////    FUNCTIONS    ///////////////////////////////////////////////
+                let _labStation = document.querySelector ( 'main > div.lab-station' );
 
-                /**
-                 * Displays an alert message within the modal
-                 * @private
-                 * @name _alert
-                 * @function
-                 * @param           {string} message                    Message to display
-                 * @param           {string} type                       Type of message; success || failure
-                 */
-                function _alert ( message, type )
-                {
-                    let _wrapper           = document.createElement ( 'div' );
-
-                        _wrapper.innerHTML = '&lt;div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '&lt;img src="images/svg/General/info-circle.svg" />' + message + '&lt;button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&lt;/button>&lt;/div>';
-
-
-                        document.getElementById ( 'copiedAlert' ).append ( _wrapper );
-                }
-
-            ////    LOGIC    ///////////////////////////////////////////////////
-
-                try
-                {
-                    await navigator.clipboard.writeText ( _code );
-
-                    console.info ( 'Content copied to clipboard' );
-                }
-                catch ( err )
-                {
-                    console.error ( 'Failed to copy: ', err );
-                }
-
-
-                _alert ( 'Copied code !', 'success' );
-
-                _delay ( 1000 ).then ( ( ) => document.querySelector ( '#copiedAlert' ).children [ 0 ].remove ( ) );
+                    _labStation.style.display = 'none';
         }
 
         /**
@@ -313,6 +327,7 @@
                 template = ( cardObject [ _imageTag ] === undefined )
 
                                ? template.replace ( new RegExp ( `&lt;img[^\{]+{{${_imageTag}[^>]+>` ), '' )
+                                         .replace ( new RegExp ( '&lt;span class="separator">[^>]+>' ), '' )
 
                                : template;
 
@@ -338,10 +353,14 @@
 
             let _regex   = new RegExp ( /(In|Out)/, 'g' );
 
+            let _div           = document.createElement ( 'div' );
 
-            let _ul           = document.createElement ( 'ul' );
+                _div.className = 'easing-wrapper';
 
-                _ul.className = 'easing-functions';
+
+            let _ul            = document.createElement ( 'ul' );
+
+                _ul.className  = 'easing-functions';
 
 
             for ( let _timing of _timings )
@@ -374,7 +393,10 @@
             }
 
 
-            return _ul
+            _div.appendChild ( _ul );
+
+
+            return _div;
         }
 
         /**
@@ -387,19 +409,21 @@
         {
             let _easings = document.querySelectorAll ( '.easing' );
 
-            let _ul      = _createEasingLinks ( );
+            let _div      = _createEasingLinks ( );
 
 
             for ( let _i = 0; _i &lt; _easings.length; _i++ )
             {
-                let _clonedUl = _ul.cloneNode ( true );
+                let _clonedDiv = _div.cloneNode ( true );
 
-                    _clonedUl.id = _i;
+                let _ul        = _clonedDiv.children [ 0 ];
 
-                    _clonedUl.setAttribute ( 'onmouseleave', `devTest.toggleEasingFunctions ( ${_i} )` );
+                    _ul.id = _i;
+
+                    _ul.setAttribute ( 'onmouseleave', `devTest.toggleEasingFunctions ( ${_i} )` );
 
 
-                _easings [ _i ].parentNode.insertBefore ( _clonedUl, _easings.nextSibling );
+                _easings [ _i ].parentNode.insertBefore ( _clonedDiv, _easings.nextSibling );
 
                 _easings [ _i ].setAttribute ( 'onclick', `devTest.toggleEasingFunctions ( ${_i} )` );
             }
@@ -424,6 +448,120 @@
                 : [ _easingFunctions [ index ].style.opacity, _easingFunctions [ index ].style.visibility ] = [ 0, 'hidden'  ];
         }
 
+        /**
+         * Removes .fade-in class from pre-existing cards
+         * @private
+         * @name _removeFadeInAnimations
+         * @function
+         */
+        function _removeFadeInAnimations ( )
+        {
+            let _easings  = document.querySelectorAll ( '.easing' );
+
+
+            for ( let _i = 0; _i &lt; _easings.length - 1; _i++ )
+
+                _easings [ _i ].parentElement.parentElement.parentElement.parentElement.className = 'card';
+        }
+
+        /**
+         * Executes lab station code from editor
+         * @private
+         * @name _runLabStationCode
+         * @function
+         */
+        function _runLabStationCode ( )
+        {
+            let _code    = _editor.getValue ( );
+
+            let _canvas  = document.getElementById ( 'canvas' );
+
+            let _context = canvas.getContext ( '2d' );
+
+                _context.clearRect ( 0, 0, _canvas.width, _canvas.height );
+
+
+            eval ( _code );
+        }
+
+        /**
+         * Generates a downloadable file &amp; initiates that download
+         * @private
+         * @name _download
+         * @function
+         * @param           {File} file                         File to download
+         */
+        function _download ( file )
+        {
+            let _link = document.createElement ( 'a' );
+
+            let _url  = URL.createObjectURL ( file );
+
+                _link.href      = _url;
+
+                _link.download  = file.name
+
+
+            document.body.appendChild  ( _link );
+
+
+                _link.click ( );
+
+
+            document.body.removeChild  ( _link );
+
+            window.URL.revokeObjectURL ( _url  );
+        }
+
+        /**
+         * Copy code to clipboard
+         * @private
+         * @name _copyCode
+         * @function
+         */
+        async function _copyCode ( )
+        {
+            let _code = document.querySelector ( '#modal-code > div > div > div.modal-body > pre > code' ).innerHTML.replace ( /&lt;[^>]+>/g, '' );
+
+            ////    FUNCTIONS    ///////////////////////////////////////////////
+
+                /**
+                 * Displays an alert message within the modal
+                 * @private
+                 * @name _alert
+                 * @function
+                 * @param           {string} message                    Message to display
+                 * @param           {string} type                       Type of message; success || failure
+                 */
+                function _alert ( message, type )
+                {
+                    let _wrapper           = document.createElement ( 'div' );
+
+                        _wrapper.innerHTML = '&lt;div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '&lt;img src="images/svg/General/info-circle.svg" />' + message + '&lt;button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&lt;/button>&lt;/div>';
+
+
+                        document.getElementById ( 'copiedAlert' ).append ( _wrapper );
+                }
+
+            ////    LOGIC    ///////////////////////////////////////////////////
+
+                try
+                {
+                    await navigator.clipboard.writeText ( _code );
+
+                    console.info ( 'Content copied to clipboard' );
+                }
+                catch ( err )
+                {
+                    console.error ( 'Failed to copy: ', err );
+                }
+
+
+                _alert ( 'Copied code !', 'success' );
+
+                _delay ( 1000 ).then ( ( ) => document.querySelector ( '#copiedAlert' ).children [ 0 ].remove ( ) );
+        }
+
     ////////////////////////////////////////////////////////////////////////////
     ////    SET FUNCTIONS    ///////////////////////////////////////////////////
 
@@ -436,21 +574,16 @@
          */
         function _setMaster ( button )
         {
-            let _page  = button.href.match ( /#(\w+)/g ) [ 0 ].replace ( '#', '' ).toLowerCase ( );
+            let _regex = new RegExp ( /(Object|Subject|Animation)/ );
+
+            let _link  = button.href.match ( /#(\w+)/g ) [ 0 ].replace ( '#', '' );
 
 
-            ( /animation\w+/.test ( _page ) )
+            master.group    = _link.match ( _regex ) [ 0 ].toLowerCase ( );
 
-                ? [ _page, master.subgroup ] = [ [ 'animation', _page.split ( 'animation' ) [ 1 ] ], 'easing'  ]
+            master.page     = _link.match ( /[A-Z][a-z]+/g ) [ 1 ].toLowerCase ( );
 
-                : [ _page, master.subgroup ] = [ _page,                                              undefined ];
-
-
-            ( typeof _page === 'object' )
-
-                ? [ master.group, master.page ] = [ _page [ 0 ], _page [ 1 ] ]
-
-                : [ master.group, master.page ] = [ undefined,   _page       ];
+            master.subgroup = ( master.group === 'animation' ) ? 'easing' : undefined;
         }
 
         /**
@@ -505,7 +638,7 @@
                 _object.objectType = _page;
 
 
-                if ( master.group )
+                if ( master.group === 'animation' )
 
                     [ _object.group, _object.groupType ] = [ `Handlers/${_toTitleCase ( master.group )}`, _toTitleCase ( master.group ) ];
 
@@ -540,6 +673,189 @@
 
                 _cardSection.innerHTML += _card;
         }
+
+        /**
+         * Sets byrne-systems logo
+         * @private
+         * @name _setByrneSystemsLogo
+         * @function
+         */
+        function _setByrneSystemsLogo ( )
+        {
+            let _element = document.getElementById ( 'byrne-systems-logo' );
+
+
+            if ( _element ) _element.remove ( );
+
+            ////////////////////////////////////////////////////////////////////
+
+            let _album = document.querySelector ( '.album' );
+
+                _album.style.display = 'none';
+
+            ////////////////////////////////////////////////////////////////////
+
+            let _main  = document.getElementsByTagName ( 'main' ) [ 0 ];
+
+            let _nav   = document.getElementsByTagName ( 'nav'  ) [ 0 ];
+
+            let _div   = document.createElement ( 'div' );
+
+            let _image = document.createElement ( 'img' );
+
+                _image.src         = '../images/cube_sm.png';
+
+
+                _div.id            = 'byrne-systems-logo';
+
+                _div.style.cssText = `padding-top: ${_main.clientHeight / 2.5}px`;
+
+
+                _div.appendChild  ( _image );
+
+                _main.appendChild ( _div   );
+
+                _nav.style.left = '0px';
+        }
+
+        /**
+         * Sets markdown content for the offCanvas element
+         * @private
+         * @name _setOffCanvasDocument
+         * @function
+         * @param           {string} type                       Object or Subject type
+         */
+        function _setOffCanvasDocument ( type )
+        {
+            let _converter = new showdown.Converter;
+
+                _converter.setOption ( 'tables', true );
+
+
+            let _text = md2json [ type ];
+
+                _text = _text.replace ( /&amp;quot;&amp;#x27;/g, '"' )
+                             .replace ( /&amp;#x27;&amp;quot;/g, '"' );
+
+
+            let _html = _converter.makeHtml ( _text );
+
+
+            let _offcanvas     = document.querySelector ( '.offcanvas' );
+
+            let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
+
+                _offcanvasBody.innerHTML = _html;
+
+
+            let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );
+
+                _bsOffcanvas.toggle ( );
+
+
+            let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
+
+
+                _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
+                    {
+                        _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
+
+                        _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
+                    } );
+        }
+
+        /**
+         * Sets Ace editor
+         * @private
+         * @name _setAceEditor
+         * @function
+         */
+        function _setAceEditor ( )
+        {
+            let _id = "ace-editor";
+
+            ////    CONTROL PANEL    ///////////////////////
+
+            let _controlPanel       = document.getElementById ( "control-panel" );
+
+            let _controlPanelHeight = window.getComputedStyle ( _controlPanel ).height;
+
+                _controlPanelHeight = Number ( _controlPanelHeight.replace ( 'px', '' ) );
+
+            ////    EDITOR ELEMENT    //////////////////////
+
+            let _editorElement = document.getElementById ( _id );
+
+                _editorElement.innerHTML    = "let _circle = new Circle ( { x: 154, y: 77 } );\n\n\t_circle.canvas = 'canvas';\n\n\t_circle.draw ( );";
+
+                _editorElement.style.height = `${window.innerHeight - _controlPanelHeight}px`;
+
+            ////    EDITOR    //////////////////////////////
+
+            _editor = ace.edit ( _id );
+
+            _editor.setTheme ( "ace/theme/tomorrow_night" );
+
+            _editor.session.setMode ( "ace/mode/javascript" );
+
+            _editor.session.setTabSize ( 4 );
+
+            _editor.session.setUseSoftTabs ( true );
+
+            _editor.session.setUseWrapMode ( false );
+
+            _editor.setOptions (
+                {
+                    autoScrollEditorIntoView:   true,
+                    copyWithEmptySelection:     true,
+                    mergeUndoDeltas:            'always',
+                } );
+
+            _editor.commands.addCommand (
+                {
+                    name:    'run_on_save',
+                    bindKey: { win: 'Ctrl-S', mac: 'Command-S' },
+                    exec:    ( ) => devTest.runLabStationCode ( )
+                } );
+        }
+
+        /**
+         * Sets the lab station canvas &amp; ruler dimensions
+         * @private
+         * @name _setLabStationCanvasSize
+         * @function
+         */
+        async function _setLabStationCanvasSize ( )
+        {
+            let _canvasElement = document.querySelector ( '#canvas' );
+
+            let _leftColumn    = document.querySelector ( '#lab > div:nth-child(1)' );
+
+            let _ruler         = document.querySelector ( '#ruler' );
+
+            let _rulerWidth    = _ruler.querySelector   ( 'span.width' );
+
+            let _rulerHeight   = _ruler.querySelector   ( 'span.height' );
+
+
+            let [ _width, _height ] = [ _leftColumn.clientWidth - 10, _leftColumn.clientHeight ];
+
+
+                [ _rulerWidth.innerHTML, _rulerHeight.innerHTML ] = [ _width, _height ];
+
+                [ _canvasElement.width,  _canvasElement.height  ] = [ _width, _height ];
+
+
+                _ruler.style.width     = `${_width}px`;
+
+                _ruler.style.opacity   = 1;
+
+
+            _delay ( 1000 ).then ( ( ) => document.querySelector ( '#ruler' ).style.opacity = 0 );
+        }
+
+    ////////////////////////////////////////////////////////////////////////////
+    ////    EVENT LISTENERS    /////////////////////////////////////////////////
 
         /**
          * Sets modal event listeners
@@ -689,22 +1005,45 @@
 
                 _button.addEventListener ( 'click', ( element ) =>
                     {
-                        _clearCards ( );
+                        _clearScreen ( );
 
-                        _setMaster  ( _button );
+                        _setMaster   ( _button );
 
 
-                        ( master.group ) ? ( cardObjects [ master.group ] [ master.page ] )
+                        ( cardObjects [ master.group ] [ master.page ] )
 
-                                               ? _buildAlbumCards     ( )
+                            ? _buildAlbumCards     ( )
 
-                                               : _setByrneSystemsLogo ( )
+                            : _setByrneSystemsLogo ( );
+                    } );
+        }
 
-                                         : ( cardObjects [ master.page ] )
+        /**
+         * Sets subtractive card event listener
+         * @private
+         * @name _setMinusCardEventListener
+         * @function
+         */
+        function _setMinusCardEventListener ( )
+        {
+            let _easings         = document.querySelectorAll ( '.easing' );
 
-                                               ? _buildAlbumCards     ( )
+            let _subtractButtons = document.querySelectorAll ( '.card > .card-number > .close' );
 
-                                               : _setByrneSystemsLogo ( );
+
+            for ( let _subtractButton of _subtractButtons )
+
+                _subtractButton.addEventListener ( 'click', ( element ) =>
+                    {
+                        let _cardNumber = Number ( element.target.nextElementSibling.innerHTML );
+
+
+                        if ( cardObjects [ master.group ] [ master.page ].length > 1 )
+
+                            cardObjects [ master.group ] [ master.page ].splice ( _cardNumber, 1 );
+
+
+                        _buildAlbumCards ( );
                     } );
         }
 
@@ -740,91 +1079,230 @@
 
                         _buildAlbumCards ( );
                     } );
+
+
+            _removeFadeInAnimations ( );
         }
 
         /**
-         * Sets byrne-systems logo
+         * Sets lab station canvas event listener
          * @private
-         * @name _setByrneSystemsLogo
+         * @name _setLabStationCanvasEventListener
          * @function
          */
-        function _setByrneSystemsLogo ( )
+        function _setLabStationCanvasEventListener ( )
         {
-            let _element = document.getElementById ( 'byrne-systems-logo' );
+            let _main          = document.getElementsByTagName ( 'main' ) [ 0 ];
 
+            let _labStation    = document.querySelector ( 'main > div.lab-station' );
 
-            if ( _element ) _element.remove ( );
+            let _editorElement = document.getElementById ( _editor.container.id );
 
-            ////////////////////////////////////////////////////////////////////
+            let _button        = document.querySelector ( '#extra-buttons > button.lab-station' );
 
-            let _album = document.querySelector ( '.album' );
-
-                _album.style.display = 'none';
-
-            ////////////////////////////////////////////////////////////////////
-
-            let _main  = document.getElementsByTagName ( 'main' ) [ 0 ];
-
-            let _div   = document.createElement ( 'div' );
-
-            let _image = document.createElement ( 'img' );
-
-                _image.src         = '../images/cube_sm.png';
-
-
-                _div.id            = 'byrne-systems-logo';
-
-                _div.style.cssText = `margin-top: ${_main.clientHeight / 2.5}px`;
-
-
-                _div.appendChild  ( _image );
-
-                _main.appendChild ( _div   );
-        }
-
-        /**
-         * Sets markdown content for the offCanvas element
-         * @private
-         * @name _setOffCanvasDocument
-         * @function
-         * @param           {string} type                       Object or Subject type
-         */
-        function _setOffCanvasDocument ( type )
-        {
-            let _converter = new showdown.Converter;
-
-                _converter.setOption ( 'tables', true );
-
-
-            let _text = md2json [ type ];
-
-                _text = _text.replace ( /&amp;quot;&amp;#x27;/g, '"' ).replace ( /&amp;#x27;&amp;quot;/g, '"' );
-
-
-            let _html = _converter.makeHtml ( _text );
-
-
-            let _offcanvas     = document.querySelector ( '.offcanvas' );
-
-            let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
-
-                _offcanvasBody.innerHTML = _html;
-
-
-            let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );
-
-                _bsOffcanvas.toggle ( );
-
-
-            let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
-
-
-                _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
+                _button.addEventListener ( 'click', ( ) =>
                     {
-                        _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
+                        _clearScreen  ( );
 
-                        _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
+
+                        _labStation.style.display     = 'block';
+
+                        _main.style.overflowY         = 'hidden';
+
+                        _editorElement.style.fontSize = '12px';
+
+
+                        _setLabStationCanvasSize ( );
                     } );
+
+
+            window.addEventListener ( 'resize', _setLabStationCanvasSize );
+        }
+
+        /**
+         * Sets lab station menu event listener
+         * @private
+         * @name _setLabStationMenuEventListener
+         * @function
+         */
+        function _setLabStationMenuEventListener ( )
+        {
+            let _menu = document.getElementById ( 'input-menu' );
+        }
+
+        /**
+         * Sets lab station font plus event listener
+         * @private
+         * @name _setLabStationFontPlusEventListener
+         * @function
+         */
+        function _setLabStationFontPlusEventListener ( )
+        {
+            let _fontPlus = document.getElementById ( 'input-font-plus' );
+
+                _fontPlus.addEventListener ( 'click', ( ) =>
+                    {
+                        let _fontSize = document.getElementById ( _editor.container.id ).style.fontSize;
+
+                            _fontSize = Number ( _fontSize.replace ( 'px', '' ) ) + 1;
+
+
+                        document.getElementById ( _editor.container.id ).style.fontSize = `${_fontSize}px`;
+                    } );
+        }
+
+        /**
+         * Sets lab station font minus event listener
+         * @private
+         * @name _setLabStationFontMinusEventListener
+         * @function
+         */
+        function _setLabStationFontMinusEventListener ( )
+        {
+            let _fontMinus = document.getElementById ( 'input-font-minus' );
+
+                _fontMinus.addEventListener ( 'click', ( ) =>
+                    {
+                        let _fontSize = document.getElementById ( _editor.container.id ).style.fontSize;
+
+                            _fontSize = Number ( _fontSize.replace ( 'px', '' ) ) - 1;
+
+
+                        document.getElementById ( _editor.container.id ).style.fontSize = `${_fontSize}px`;
+                    } );
+        }
+
+        /**
+         * Sets lab station word-wrap event listener
+         * @private
+         * @name _setLabStationWordWrapEventListener
+         * @function
+         */
+        function _setLabStationWordWrapEventListener ( )
+        {
+            let _wordWrap = document.getElementById ( 'input-word-wrap' );
+
+                _wordWrap.addEventListener ( 'click', ( ) =>
+                    {
+                        let _wrapMode = _editor.session.getUseWrapMode ( );
+
+
+                        ( _wrapMode ) ? _editor.session.setUseWrapMode ( false )
+
+                                      : _editor.session.setUseWrapMode ( true  );
+                    } );
+        }
+
+        /**
+         * Sets lab station lock event listener
+         * @private
+         * @name _setLabStationLockEventListener
+         * @function
+         */
+        function _setLabStationLockEventListener ( )
+        {
+            let _lockButton = document.getElementById ( 'input-lock' );
+
+            let _lock       = _lockButton.querySelector ( '.lock' );
+
+                _lock.addEventListener ( 'click', ( ) =>
+                    {
+                        let _readOnly = _editor.getReadOnly ( );
+
+
+                        ( _readOnly ) ? _editor.setReadOnly ( false )
+
+                                      : _editor.setReadOnly ( true  );
+
+
+                        ( _readOnly ) ? _lock.style.content = 'url("images/svg/General/unlock.svg")'
+
+                                      : _lock.style.content = 'url("images/svg/General/lock.svg")';
+
+
+                        ( _readOnly ) ? _lockButton.style.backgroundColor = 'rgb(72, 79, 86)'
+
+                                      : _lockButton.style.backgroundColor = 'rgb(166, 49, 49)';
+                    } );
+        }
+
+        /**
+         * Sets lab station download event listener
+         * @private
+         * @name _setLabStationDownloadEventListener
+         * @function
+         */
+        function _setLabStationDownloadEventListener ( )
+        {
+            let _downloadButton = document.getElementById ( 'input-download' );
+
+                _downloadButton.addEventListener ( 'click', ( ) =>
+                    {
+                        let _name       = 'canvasLab_file.js';
+
+                        let _content    = _editor.getValue ( );
+
+                        let _file       = new File ( [ _content ], _name, { type: 'text/javascript' } );
+
+
+                        _download ( _file );
+                    } );
+        }
+
+        /**
+         * Sets lab station output event listener
+         * @private
+         * @name _setLabStationOutputEventListeners
+         * @function
+         */
+        function _setLabStationOutputEventListeners ( )
+        {
+            let _row    = document.getElementById ( 'output-row'    ).querySelector ( '.value' );
+
+            let _column = document.getElementById ( 'output-column' ).querySelector ( '.value' );
+
+            let _lines  = document.getElementById ( 'output-lines'  ).querySelector ( '.value' );
+
+
+            _editor.session.selection.on ( 'changeCursor', ( event ) =>
+                {
+                    let _cursor = _editor.selection.getCursor ( );
+
+                        _row.innerHTML    = _cursor.row;
+
+                        _column.innerHTML = _cursor.column;
+
+                        _lines.innerHTML  = _editor.session.getLength ( );
+                } );
+        }
+
+        /**
+         * Sets all lab station event listeners
+         * @private
+         * @name _setLabStationEventListeners
+         * @function
+         */
+        function _setLabStationEventListeners ( )
+        {
+            ////    OUTPUT    //////////////////////////////
+
+            _setLabStationCanvasEventListener  ( );
+
+            _setLabStationOutputEventListeners ( );
+
+            ////    INPUT    ///////////////////////////////
+
+            _setLabStationMenuEventListener      ( );
+
+            _setLabStationFontPlusEventListener  ( );
+
+            _setLabStationFontMinusEventListener ( );
+
+            _setLabStationWordWrapEventListener  ( );
+
+            _setLabStationLockEventListener      ( );
+
+            _setLabStationDownloadEventListener  ( );
         }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -906,44 +1384,6 @@
         }
 
         /**
-         * Returns a class initializer for the passed class
-         * @private
-         * @name _getClassInitializer
-         * @function
-         * @param           {string} className                  Class name
-         * @return          {string}                            String for class constructor
-         */
-        function _getClassInitializer ( className )
-        {
-            if ( ! master.group )
-
-                switch ( className )
-                {
-                    case 'Line':         return '{ x: 100, y: 50 }, { x: 200, y: 100 }';
-
-                    case 'Circle':       return '{ x: 154, y: 77 }';
-
-                    case 'Rectangle':    return '{ x: 154, y: 77 }';
-
-                    case 'Text':         return '{ x: 154, y: 77 }, \'Text\'';
-                }
-
-
-            if ( master.group === 'animation' )
-
-                switch ( className )
-                {
-                    case 'Line':         return '{ x: 100, y: 50 }, { x: 200, y: 100 }';
-
-                    case 'Circle':       return '{ x: 154, y: 77 }';
-
-                    case 'Rectangle':    return '{ x: 154, y: 77 }';
-
-                    case 'Text':         return '{ x: 154, y: 77 }, \'Text\'';
-                }
-        }
-
-        /**
          * Returns a code string with special variable formatting
          * @private
          * @name _getSpecialVariables
@@ -1016,7 +1456,7 @@
 
                     let _class    = _getClass ( _code );
 
-                    let _init     = _getClassInitializer ( _class );
+                    let _init     = _initializerObject [ master.group ] [ _class ];
 
                     let _variable = `_${_class.toLowerCase ( )}`;
 
@@ -1080,11 +1520,9 @@
         {
             let _copyFunction = ( func ) => func;
 
-            let _result       = ( master.group )
+            let _result       = ( master.group ) ? JSON.parse ( JSON.stringify ( object [ master.group ] [ master.page ] ) )
 
-                                  ? JSON.parse ( JSON.stringify ( object [ master.group ] [ master.page ] ) )
-
-                                  : JSON.parse ( JSON.stringify ( object [ master.page ] ) );
+                                                 : JSON.parse ( JSON.stringify ( object [ master.page ] ) );
 
 
             if ( master.group )
@@ -1115,7 +1553,7 @@
             let _cardObjects = _copyObjectWithKey ( cardObjects );
 
 
-            _clearCards ( );
+            _clearScreen ( true );
 
 
             _setImagePath   ( _cardObjects );
@@ -1126,12 +1564,12 @@
             _setModalEventListeners  ( );
 
 
-            if ( master.group )
+            if ( master.group === 'animation' )
+            {
+                _setAddCardEventListener   ( );
 
-                _setAddCardEventListener ( );
-
-
-            initCanvasLab ( );                              // initialize canvasLab
+                _setMinusCardEventListener ( );
+            }
 
 
             if ( master.subgroup === 'easing' )
@@ -1203,6 +1641,14 @@
                  */
                 _lib.toggleEasingFunctions = ( index )                 => _toggleEasingFunctions ( index );
 
+                /**
+                 * Executes lab station code from editor
+                 * @public
+                 * @name _runLabStationCode
+                 * @function
+                 */
+                _lib.runLabStationCode     = ( )                       => _runLabStationCode     ( );
+
 
             return _lib;
         }
@@ -1223,11 +1669,15 @@
 
             if ( window.cardObjects )
             {
-                _setDefaultPage           ( );
+                _setDefaultPage              ( );
 
-                _setNavMainEventListeners ( );
+                _setNavMainEventListeners    ( );
 
-                _setNavLinkEventListeners ( );
+                _setNavLinkEventListeners    ( );
+
+                _setAceEditor ( );
+
+                _setLabStationEventListeners ( );
             }
             else
 
@@ -1256,7 +1706,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Dec 08 2023 18:34:47 GMT-0800 (Pacific Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Dec 18 2023 11:57:31 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

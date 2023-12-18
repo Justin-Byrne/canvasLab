@@ -216,12 +216,12 @@ Get anchor alignment
     * [new Angle(start, end, clockwise)](#new_Angle_new)
     * [.start](#Angle+start)
     * [.start](#Angle+start) ⇒ <code>number</code>
-    * [.startInRadians](#Angle+startInRadians) ⇒ <code>number</code>
     * [.end](#Angle+end)
     * [.end](#Angle+end) ⇒ <code>number</code>
-    * [.endInRadians](#Angle+endInRadians) ⇒ <code>number</code>
     * [.clockwise](#Angle+clockwise)
     * [.clockwise](#Angle+clockwise) ⇒ <code>boolean</code>
+    * [.startInRadians](#Angle+startInRadians) ⇒ <code>number</code>
+    * [.endInRadians](#Angle+endInRadians) ⇒ <code>number</code>
     * [._convert2Radian(value)](#Angle+_convert2Radian) ⇒ <code>number</code>
     * [._convert2Degree(value)](#Angle+_convert2Degree) ⇒ <code>number</code>
 
@@ -255,13 +255,6 @@ Get start angle
 
 **Kind**: instance property of [<code>Angle</code>](#Angle)  
 **Returns**: <code>number</code> - Start value; in degrees  
-<a name="Angle+startInRadians"></a>
-
-### angle.startInRadians ⇒ <code>number</code>
-Get start angle in radians
-
-**Kind**: instance property of [<code>Angle</code>](#Angle)  
-**Returns**: <code>number</code> - Start value; to radians  
 <a name="Angle+end"></a>
 
 ### angle.end
@@ -280,13 +273,6 @@ Get end angle
 
 **Kind**: instance property of [<code>Angle</code>](#Angle)  
 **Returns**: <code>number</code> - End angle; in degrees  
-<a name="Angle+endInRadians"></a>
-
-### angle.endInRadians ⇒ <code>number</code>
-Get end angle in radians
-
-**Kind**: instance property of [<code>Angle</code>](#Angle)  
-**Returns**: <code>number</code> - End value; in radians  
 <a name="Angle+clockwise"></a>
 
 ### angle.clockwise
@@ -305,6 +291,20 @@ Get clockwise
 
 **Kind**: instance property of [<code>Angle</code>](#Angle)  
 **Returns**: <code>boolean</code> - Clockwise; true | false  
+<a name="Angle+startInRadians"></a>
+
+### angle.startInRadians ⇒ <code>number</code>
+Get start angle in radians
+
+**Kind**: instance property of [<code>Angle</code>](#Angle)  
+**Returns**: <code>number</code> - Start value; to radians  
+<a name="Angle+endInRadians"></a>
+
+### angle.endInRadians ⇒ <code>number</code>
+Get end angle in radians
+
+**Kind**: instance property of [<code>Angle</code>](#Angle)  
+**Returns**: <code>number</code> - End value; in radians  
 <a name="Angle+_convert2Radian"></a>
 
 ### angle.\_convert2Radian(value) ⇒ <code>number</code>
