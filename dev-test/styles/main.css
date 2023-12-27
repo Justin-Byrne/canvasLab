@@ -66,10 +66,10 @@ nav {
       margin: 0 auto;
       pointer-events: none;
       fill: rgba(255, 255, 255, 0.85); }
-    nav .nav-wrapper #extra-buttons {
+    nav .nav-wrapper .extra-buttons {
       display: flex;
       padding: 0; }
-      nav .nav-wrapper #extra-buttons button {
+      nav .nav-wrapper .extra-buttons button {
         background-color: #2f5c77;
         outline: 1px solid #366575;
         box-shadow: 0px 0px 2px 0px black;
@@ -79,35 +79,47 @@ nav {
         margin: 0 auto;
         transition: background-color 1s;
         transition: opacity 1s; }
-        nav .nav-wrapper #extra-buttons button:focus {
+        nav .nav-wrapper .extra-buttons button:focus {
           box-shadow: none; }
-        nav .nav-wrapper #extra-buttons button:hover {
+        nav .nav-wrapper .extra-buttons button:hover {
           background-color: #377b92;
           opacity: 1; }
-        nav .nav-wrapper #extra-buttons button img {
+        nav .nav-wrapper .extra-buttons button img {
           width: 23px; }
-        nav .nav-wrapper #extra-buttons button.disabled {
+        nav .nav-wrapper .extra-buttons button.disabled {
           background-color: #505050;
           opacity: 0.4; }
-        nav .nav-wrapper #extra-buttons button.vector {
+        nav .nav-wrapper .extra-buttons button.vector {
           background-color: unset;
           border: unset;
           outline: unset;
           box-shadow: unset;
           opacity: 1; }
-          nav .nav-wrapper #extra-buttons button.vector .extra-icon {
+          nav .nav-wrapper .extra-buttons button.vector .extra-icon {
             display: flex;
             height: 36px;
-            opacity: 0.9;
-            fill: white;
-            stroke: black;
-            stroke-width: 20px;
-            transition: transform .35s ease, fill 0.35s ease, opacity 0.35s ease;
-            transform: scale(1) rotate(0deg); }
-            nav .nav-wrapper #extra-buttons button.vector .extra-icon:hover {
-              transform: scale(1.25) rotate(15deg);
-              fill: #00fff1;
+            fill: #c8c8c8;
+            opacity: 0.5;
+            transform: scale(1);
+            transition: transform 0.35s ease, fill 0.35s ease, opacity 0.35s ease; }
+            nav .nav-wrapper .extra-buttons button.vector .extra-icon:hover {
+              fill: white;
+              opacity: 1;
+              transform: scale(1.2); }
+            nav .nav-wrapper .extra-buttons button.vector .extra-icon:active {
+              fill: #07b9ed;
               opacity: 1; }
+            nav .nav-wrapper .extra-buttons button.vector .extra-icon.selected {
+              fill: #07b9ed;
+              opacity: 0.75; }
+            nav .nav-wrapper .extra-buttons button.vector .extra-icon.disabled {
+              cursor: default; }
+              nav .nav-wrapper .extra-buttons button.vector .extra-icon.disabled:hover {
+                fill: #c8c8c8;
+                transform: scale(1);
+                opacity: 0.5; }
+      nav .nav-wrapper .extra-buttons.narrow {
+        width: 75%; }
     nav .nav-wrapper .btn-toggle {
       display: inline-flex;
       align-items: center;
@@ -215,6 +227,11 @@ main {
       animation: fade-in 0.25s ease; }
     main .album .container #test-cards .col.blank:nth-child(n + 3) > .blank {
       opacity: 0; }
+      main .album .container #test-cards .col.blank:nth-child(n + 3) > .blank.hidden {
+        opacity: 0; }
+        main .album .container #test-cards .col.blank:nth-child(n + 3) > .blank.hidden:hover {
+          opacity: 0;
+          cursor: default; }
     main .album .container #test-cards .col .card {
       color: white;
       background: #3e5368;
@@ -559,8 +576,8 @@ main {
           border-bottom: 1px solid #73f0ff; }
         main .lab-station #lab #ruler .vertical {
           position: relative;
-          top: -10px;
           float: right;
+          top: -10px;
           right: -91px;
           width: 1px;
           height: 99vh;
@@ -627,16 +644,66 @@ main {
             padding-top: 4px; }
           main .lab-station #lab #control-panel .button .menu {
             content: url("../images/svg/General/caret-up.svg"); }
-          main .lab-station #lab #control-panel .button .font-plus {
+          main .lab-station #lab #control-panel .button .color-picker {
+            content: url("../images/svg/General/droplet-half.svg"); }
+          main .lab-station #lab #control-panel .button .value-plus {
             content: url("../images/svg/General/plus.svg"); }
-          main .lab-station #lab #control-panel .button .font-minus {
+          main .lab-station #lab #control-panel .button .value-minus {
             content: url("../images/svg/General/minus.svg"); }
+          main .lab-station #lab #control-panel .button .font-plus {
+            content: url("../images/svg/General/font-plus.svg"); }
+          main .lab-station #lab #control-panel .button .font-minus {
+            content: url("../images/svg/General/font-minus.svg"); }
           main .lab-station #lab #control-panel .button .word-wrap {
             content: url("../images/svg/General/word-wrap.svg"); }
           main .lab-station #lab #control-panel .button .lock {
             content: url("../images/svg/General/unlock.svg"); }
           main .lab-station #lab #control-panel .button .download {
             content: url("../images/svg/General/download.svg"); }
+        main .lab-station #lab #control-panel .picker_wrapper {
+          bottom: 50px !important; }
+          main .lab-station #lab #control-panel .picker_wrapper.popup.popup_top .picker_arrow {
+            left: unset;
+            right: 0px; }
+          main .lab-station #lab #control-panel .picker_wrapper .picker_arrow {
+            transform: rotate(90deg) rotateY(180deg); }
+          main .lab-station #lab #control-panel .picker_wrapper .picker_hue {
+            height: 20px;
+            margin: 5px 5px 0 5px; }
+            main .lab-station #lab #control-panel .picker_wrapper .picker_hue .picker_selector {
+              width: 20px;
+              height: 20px;
+              top: 10px; }
+          main .lab-station #lab #control-panel .picker_wrapper .picker_sl {
+            width: 94.5%;
+            height: 140px;
+            margin: 7px 0 5px 5px;
+            float: left; }
+            main .lab-station #lab #control-panel .picker_wrapper .picker_sl .picker_selector {
+              width: 20px;
+              height: 20px; }
+          main .lab-station #lab #control-panel .picker_wrapper .picker_alpha {
+            display: none;
+            width: 10%;
+            height: 140px;
+            margin: 7px 5px 5px 0;
+            float: right; }
+            main .lab-station #lab #control-panel .picker_wrapper .picker_alpha .picker_selector {
+              width: 20px;
+              height: 20px;
+              left: 10px; }
+          main .lab-station #lab #control-panel .picker_wrapper .picker_editor input {
+            margin: 0 5px 0 5px; }
+          main .lab-station #lab #control-panel .picker_wrapper .picker_sample {
+            width: 72%;
+            height: 30px;
+            margin: 5px 0 5px 5px;
+            float: left; }
+          main .lab-station #lab #control-panel .picker_wrapper button {
+            width: 20%;
+            height: 30px;
+            margin: 5px 5px 5px 0;
+            float: right; }
         main .lab-station #lab #control-panel #execute {
           content: url("../images/svg/General/play.svg");
           display: flex;

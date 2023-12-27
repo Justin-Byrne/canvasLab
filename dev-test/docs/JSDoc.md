@@ -55,7 +55,7 @@ Toggles visibility of easing functions
 <a name="module_devTest.._runLabStationCode"></a>
 
 ### devTest~\_runLabStationCode()
-Executes lab station code from editor
+Executes lab-station code from editor
 
 **Kind**: inner method of [<code>devTest</code>](#module_devTest)  
 **Access**: public  

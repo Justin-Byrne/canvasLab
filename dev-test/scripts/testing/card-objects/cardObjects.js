@@ -46,7 +46,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _line.stroke.color = '255, 0, 0';
+                        _line.stroke.color = '0,  150,  200';
 
                         _line.draw ( );
                     }
@@ -281,7 +281,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.stroke.color = '255, 0, 0';
+                        _circle.stroke.color = '0,  150,  200';
 
                         _circle.draw ( );
                     }
@@ -311,7 +311,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.fill.color = '255, 0, 0';
+                        _circle.fill.color = '0,  150,  200';
 
                         _circle.draw ( );
                     }
@@ -321,7 +321,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.fill.color = '255, 0, 0';
+                        _circle.fill.color = '0,  150,  200';
 
                         _circle.fill.alpha  = 0.25;
 
@@ -458,7 +458,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.stroke.color = '255, 0, 0';
+                        _rectangle.stroke.color = '0,  150,  200';
 
                         _rectangle.draw ( );
                     }
@@ -488,7 +488,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '255, 0, 0';
+                        _rectangle.fill.color = '0,  150,  200';
 
                         _rectangle.draw ( );
                     }
@@ -498,7 +498,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '255, 0, 0';
+                        _rectangle.fill.color = '0,  150,  200';
 
                         _rectangle.fill.alpha = 0.25;
 
@@ -892,7 +892,17 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '255, 0, 0';
+                        _circle.fill.color = '0,  150,  200';
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.color = '0,  150,  200';
 
                         _rectangle.draw ( );
                     }
@@ -902,7 +912,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '255, 0, 0';
+                        _rectangle.fill.color = '0,  150,  200';
 
                         _rectangle.draw ( );
                     }
@@ -912,7 +922,20 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '255, 0, 0';
+                        _rectangle.fill.color = '0,  150,  200';
+
+                        _rectangle.draw ( );
+                    }
+                },
+            ],
+            shadow:
+            [
+                {
+                    title: 'fill color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.color = '0,  150,  200';
 
                         _rectangle.draw ( );
                     }
@@ -922,7 +945,27 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '255, 0, 0';
+                        _rectangle.fill.color = '0,  150,  200';
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.color = '0,  150,  200';
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.color = '0,  150,  200';
 
                         _rectangle.draw ( );
                     }

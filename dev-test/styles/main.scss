@@ -107,7 +107,7 @@ nav
             fill:           rgba(255, 255, 255, 0.85);
         }
 
-        #extra-buttons
+        .extra-buttons
         {
             display: flex;
             padding: 0;
@@ -143,6 +143,10 @@ nav
 
                 &.vector
                 {
+                    $color-default:     rgb(200, 200, 200);
+                    $color-primary:     rgb(  7, 185, 237);
+                    $color-secondary:   rgb(237, 139,   7);
+
                     background-color:   unset;
                     border:             unset;
                     outline:            unset;
@@ -151,29 +155,52 @@ nav
 
                     .extra-icon
                     {
-                        display:            flex;
-                        height:             36px;
-                        opacity:            0.9;
+                        $timing:        0.35s;
 
-                        fill:               white;
-                        stroke:             black;
-                        stroke-width:       20px;
+                        display:        flex;
+                        height:         36px;
 
-                        transition:         transform .35s ease, fill 0.35s ease, opacity 0.35s ease;
+                        fill:           $color-default;
+                        opacity:        0.5;
+                        transform:      scale(1);
 
-                        transform:          scale(1) rotate(0deg);
+                        transition:     transform $timing ease, fill $timing ease, opacity $timing ease;
 
                         &:hover
                         {
-                            transform:  scale(1.25) rotate(15deg);
-
-                            fill:       rgb(0, 255, 241);
-
+                            fill:       white;
                             opacity:    1;
+                            transform:  scale(1.2);
+                        }
+
+                        &:active
+                        {
+                            fill:       $color-primary;
+                            opacity:    1;
+                        }
+
+                        &.selected
+                        {
+                            fill:       $color-primary;
+                            opacity:    0.75;
+                        }
+
+                        &.disabled
+                        {
+                            cursor:     default;
+
+                            &:hover
+                            {
+                                fill:       $color-default;
+                                transform:  scale(1);
+                                opacity:    0.5;
+                            }
                         }
                     }
                 }
             }
+
+            &.narrow { width: 75%; }
         }
 
         .btn-toggle
@@ -361,7 +388,21 @@ main
 
                 .col
                 {
-                    &.blank:nth-child(n + 3) > .blank { opacity: 0; }
+                    &.blank:nth-child(n + 3) > .blank
+                    {
+                        opacity: 0;
+
+                        &.hidden
+                        {
+                            opacity: 0;
+
+                            &:hover
+                            {
+                                opacity: 0;
+                                cursor:  default;
+                            }
+                        }
+                    }
 
                     @extend .test-card-column-scaling;
 
@@ -1032,8 +1073,8 @@ main
                 .vertical
                 {
                     position:       relative;
-                    top:            -10px;
                     float:          right;
+                    top:            -10px;
                     right:          -91px;
 
                     width:          1px;
@@ -1132,23 +1173,128 @@ main
 
                     box-shadow: inset 0px 0px 2px 0px rgb(0, 37, 60);
 
+
                     &:hover  { background-color: rgb(26, 107, 152); }
 
                     &:active { background-color: rgb(26, 150, 152); }
 
+
                     .icon { padding-top: 4px; }
 
-                    .menu       { content: url('../images/svg/General/caret-up.svg');  }
 
-                    .font-plus  { content: url('../images/svg/General/plus.svg');      }
+                    .menu         { content: url('../images/svg/General/caret-up.svg');     }
 
-                    .font-minus { content: url('../images/svg/General/minus.svg');     }
+                    .color-picker { content: url('../images/svg/General/droplet-half.svg'); }
 
-                    .word-wrap  { content: url('../images/svg/General/word-wrap.svg'); }
+                    .value-plus   { content: url('../images/svg/General/plus.svg');         }
 
-                    .lock       { content: url('../images/svg/General/unlock.svg');    }
+                    .value-minus  { content: url('../images/svg/General/minus.svg');        }
 
-                    .download   { content: url('../images/svg/General/download.svg');  }
+                    .font-plus    { content: url('../images/svg/General/font-plus.svg');    }
+
+                    .font-minus   { content: url('../images/svg/General/font-minus.svg');   }
+
+                    .word-wrap    { content: url('../images/svg/General/word-wrap.svg');    }
+
+                    .lock         { content: url('../images/svg/General/unlock.svg');       }
+
+                    .download     { content: url('../images/svg/General/download.svg');     }
+                }
+
+                .picker_wrapper
+                {
+                    bottom: 50px !important;
+
+
+                    &.popup.popup_top .picker_arrow
+                    {
+                        left:  unset;
+                        right: 0px;
+                    }
+
+                    .picker_arrow
+                    {
+                        transform: rotate(90deg) rotateY(180deg);
+                    }
+
+                    .picker_hue
+                    {
+                        height: 20px;
+
+                        margin: 5px 5px 0 5px;
+
+                        .picker_selector
+                        {
+                            width:  20px;
+                            height: 20px;
+
+                            top:    10px;
+                        }
+                    }
+
+                    .picker_sl
+                    {
+                        width:  94.5%;
+                        height: 140px;
+
+                        margin: 7px 0 5px 5px;
+
+                        float:  left;
+
+                        .picker_selector
+                        {
+                            width:  20px;
+                            height: 20px;
+                        }
+                    }
+
+                    .picker_alpha
+                    {
+                        display: none;
+
+                        width:  10%;
+                        height: 140px;
+
+                        margin: 7px 5px 5px 0;
+
+                        float:  right;
+
+                        .picker_selector
+                        {
+                            width:  20px;
+                            height: 20px;
+
+                            left:   10px;
+                        }
+                    }
+
+                    .picker_editor
+                    {
+                        input
+                        {
+                            margin: 0 5px 0 5px;
+                        }
+                    }
+
+                    .picker_sample
+                    {
+                        width:  72%;
+                        height: 30px;
+
+                        margin: 5px 0 5px 5px;
+
+                        float:  left;
+                    }
+
+                    button
+                    {
+                        width:  20%;
+                        height: 30px;
+
+                        margin: 5px 5px 5px 0;
+
+                        float:  right;
+                    }
                 }
 
                 #execute

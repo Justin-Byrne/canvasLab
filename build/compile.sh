@@ -200,7 +200,7 @@ function compile_output ()
 {
     update_lead_js_file $LEAD_JS_FILE
 
-    update_lead_html_file $LEAD_HTML_FILE
+    # update_lead_html_file $LEAD_HTML_FILE
 
 
     compile_header
@@ -230,7 +230,7 @@ function compile_output ()
 
 function compile_minified ()
 {
-    FILE_MIN=${OUTPUT_DIRECTORY}/${VC_PACKAGE}-v${VERSION}-min.js
+    FILE_MIN=${OUTPUT_DIRECTORY}/${VC_PACKAGE}.min.js
 
     if command -v uglifyjs
     then
@@ -457,8 +457,8 @@ function flash_screen ()
 function remove_legacy_distros ()
 {
     FILE_MAIN=${VC_PACKAGE}-v${VERSION}.js
-    FILE_MIN=${VC_PACKAGE}-v${VERSION}-min.js
-    FILE_MAP=${VC_PACKAGE}-v${VERSION}-min.js.map
+    FILE_MIN=${VC_PACKAGE}.min.js
+    FILE_MAP=${VC_PACKAGE}.min.js.map
 
     find $OUTPUT_DIRECTORY -type f -not -name $FILE_MAIN -not -name $FILE_MIN -not -name $FILE_MAP -delete
 }

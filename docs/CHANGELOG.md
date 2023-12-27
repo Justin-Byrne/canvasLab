@@ -1,6 +1,27 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.9] - 2023-12-26
+### Added
+- **dev-tools**
+  - `_increment ( )` function, to increment the value passed up (+) or down (-)
+  - `_padZeros ( )` function, pad a string with a specified amount of zeros
+  - `_replaceRange ( )` function, to replace a specific substring position of a string
+  - `_cleanAceCode ( )` function, to clean code of enumerators for ace-editor
+  - `_incrementLabStationValue ( )` function, to increment a numeric selection from ace-editor up or down
+  - `_getBoundingCharactersPositions ( )` function, to return positions of bounding characters
+  - `_swapLabStationsRgbValue ( )` function, to swap rgb values between color-picker and ace-editor
+  - `_setHotkey ( )` function, to set user's hotkeys
+  - `_setHotkeys ( )` function, to set hotkeys for UI
+  - `_setColorPickerPosition ( )` function, to set color-picker's position
+  - `_setLabStationColorPickerEventListener ( )` function, to set lab-station color-picker event listener
+  - `_setLabStationValuePlusEventListener ( )` function, to set lab-station font plus event listener
+  - `_setLabStationValueMinusEventListener ( )` function, to set lab-station value minus event listener
+  - `_getColorPicker ( )` function, to return a new color-picker object
+
+### Changed
+- **dev-tools**, moved `_alert ( )` from an encapsulated function, to generic functions
+
 ## [0.1.8] - 2023-12-18
 ### Added
 - **dev-tools**
@@ -152,7 +173,8 @@ All notable changes to this project will be documented in this file.
 
 | Version | Date       | Commit                                                              | Comments                                                                                     |
 | :-----: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.1.8] | 2023-12-18 | CURRENT                                                             | Implemented lab station, ace9, & script editor.                                              |
+| [0.1.9] | 2023-12-26 | CURRENT                                                             | Implemented UI enhancements & color-picker for ace-editor.                                   |
+| [0.1.8] | 2023-12-18 | [766c4ae](https://github.com/Justin-Byrne/canvasLab/commit/766c4ae) | Implemented lab station, ace9, & script editor.                                              |
 | [0.1.7] | 2023-12-08 | [1b28ce8](https://github.com/Justin-Byrne/canvasLab/commit/1b28ce8) | Implemented preset timing (easing functions) selection for animations.                       |
 | [0.1.6] | 2023-12-01 | [cc4f730](https://github.com/Justin-Byrne/canvasLab/commit/cc4f730) | Added & refactored various front & back-end features for dev-tools.                          |
 | [0.1.5] | 2023-11-26 | [db2c514](https://github.com/Justin-Byrne/canvasLab/commit/db2c514) | Refactored animation functions & expanded dev-tools navigation.                              |

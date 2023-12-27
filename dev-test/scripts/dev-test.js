@@ -14,8 +14,10 @@
  */
 ( ( window ) =>
 {
-    ////////////////////////////////////////////////////////////////////////////
-    ////    ARROW FUNCTIONS    /////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////    ARROW FUNCTIONS    /////////////////////////////////////////////////////////////////////
+
+        ////    TEMPLATES    ///////////////////////////////////////////////////
 
         /**
          * Returns a blank HTML card template
@@ -24,15 +26,15 @@
          * @function
          * @return          {string}                            Blank HTML card template
          */
-        let _cardTemplateBlank  = ( )           => `<div class="col blank">
+        let _cardTemplateBlank = ( ) => `<div class="col blank">
 
-                                                      <div class="card blank">
+                                            <div class="card blank">
 
-                                                          <span class="plus">+</span>
+                                                <span class="plus">+</span>
 
-                                                      </div>
+                                           </div>
 
-                                                    </div>  <!-- .col -->`;
+                                        </div>  <!-- .col -->`;
 
         /**
          * Returns a HTML card template
@@ -41,51 +43,53 @@
          * @function
          * @return          {string}                            HTML card template
          */
-        let _cardTemplate       = ( )           => `<div class="col">
+        let _cardTemplate      = ( ) => `<div class="col">
 
-                                                      <div class="card fade-in">
+                                            <div class="card fade-in">
 
-                                                          <div class="card-number">
+                                                <div class="card-number">
 
-                                                              <span class="close"></span>
+                                                    <span class="close"></span>
 
-                                                              <span class="number">{{number}}</span>
+                                                        <span class="number">{{number}}</span>
 
-                                                          </div>
+                                                </div>
 
-                                                          <canvas id="canvas_{{number}}"></canvas>
+                                                <canvas id="canvas_{{number}}"></canvas>
 
-                                                          <div class="card-body">
+                                                <div class="card-body">
 
-                                                               <p class="card-title">{{title}}</p>
+                                                    <p class="card-title">{{title}}</p>
 
-                                                               <div class="card-buttons">
+                                                    <div class="card-buttons">
 
-                                                                   <div class="btn-group">
+                                                        <div class="btn-group">
 
-                                                                       <button type="button" id="view_{{number}}" class="btn btn-sm btn-outline-secondary code-view-buttons" data-bs-toggle="modal" data-bs-target="#modal-code" data-devTest-code="{{code}}" data-devTest-title="{{title}}">View</button>
+                                                            <button type="button" id="view_{{number}}" class="btn btn-sm btn-outline-secondary code-view-buttons" data-bs-toggle="modal" data-bs-target="#modal-code" data-devTest-code="{{code}}" data-devTest-title="{{title}}">View</button>
 
-                                                                   </div>
+                                                        </div>
 
-                                                                   <span class="icons">
+                                                        <span class="icons">
 
-                                                                       <img src="images/svg/{{subgroup}}.svg" class="card-icons easing">
+                                                            <img src="images/svg/{{subgroup}}.svg" class="card-icons easing">
 
-                                                                       <span class="separator">&nbsp;</span>
+                                                            <span class="separator">&nbsp;</span>
 
-                                                                       <img src="images/svg/{{group}}.svg"    class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{groupType}}' )">
+                                                            <img src="images/svg/{{group}}.svg"    class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{groupType}}' )">
 
-                                                                       <img src="images/svg/{{image}}.svg"    class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{objectType}}' )">
+                                                            <img src="images/svg/{{image}}.svg"    class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{objectType}}' )">
 
-                                                                   </span>
+                                                        </span>
 
-                                                               </div>
+                                                    </div>
 
-                                                           </div>
+                                                </div>
 
-                                                       </div>
+                                            </div>
 
-                                                   </div>  <!-- .col -->`;
+                                        </div>  <!-- .col -->`;
+
+        ////    GENERIC FUNCTIONS    ///////////////////////////////////////////
 
         /**
          * Converts a number into a multi-digit string
@@ -95,7 +99,7 @@
          * @param           {number} number                     Number
          * @return          {string}                            Multi-digit string
          */
-        let _number2String      = ( number )    => ( number < 10 ) ? '0' + number.toString ( ) : number.toString ( );
+        let _number2String = ( number )                         => ( number < 10 ) ? '0' + number.toString ( ) : number.toString ( );
 
         /**
          * Simple programmatic delay
@@ -105,7 +109,44 @@
          * @param           {number} time                       Time to delay
          * @return          {Promise}                           An async promise
          */
-        let _delay              = ( time )      => new Promise ( resolve => setTimeout ( resolve, time ) );
+        let _delay         = ( time )                           => new Promise ( resolve => setTimeout ( resolve, time ) );
+
+        /**
+         * Increment the value passed up (+) or down (-)
+         * @private
+         * @name _increment
+         * @function
+         * @param           {string|number} value               Value to increment
+         * @param           {boolean}       up                  True (+) || false (-)
+         * @return          {number}                            Incremented value
+         */
+        let _increment     = ( value, up )                      => ( up ) ? Number ( value ) + 1 : Number ( value ) - 1;
+
+        /**
+         * Pad a string with a specified amount of zeros
+         * @private
+         * @name _padZeros
+         * @function
+         * @param           {string|number} value               Value to pad
+         * @param           {number}        amount              Amount to pad
+         * @return          {string}                            Padded amount
+         */
+        let _padZeros      = ( value, amount )                  => String ( value ).padStart ( amount, '0' );
+
+        /**
+         * Replace a specific substring position of a string
+         * @private
+         * @name _replaceRange
+         * @function
+         * @param           {string} string                     String to substitute
+         * @param           {number} start                      Start of substitution
+         * @param           {number} end                        End of substitution
+         * @param           {string} substitute                 String substitution
+         * @return          {string}                            String with substitution
+         */
+        let _replaceRange  = ( string, start, end, substitute ) => string.substring ( 0, start ) + substitute + string.substring ( end );
+
+        ////    OBJECT LITERALS    /////////////////////////////////////////////
 
         /**
          * Literal object containing class initializers available through bracket notation
@@ -114,7 +155,7 @@
          * @object
          * @return          {string}                            Class initializer
          */
-        let _initializerObject  =
+        let _initializerObject =
         {
             object:
             {
@@ -147,10 +188,28 @@
          * @object
          * @return          {Object}                            Ace editor object
          */
-        let _editor             = undefined;
+        let _editor            = undefined;
 
-    ////////////////////////////////////////////////////////////////////////////
-    ////    GENERIC FUNCTIONS    ///////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////    GENERIC FUNCTIONS    ///////////////////////////////////////////////////////////////////
+
+        /**
+         * Displays an alert message within the modal
+         * @private
+         * @name _alert
+         * @function
+         * @param           {string} message                    Message to display
+         * @param           {string} type                       Type of message; success || failure
+         */
+        function _alert ( message, type )
+        {
+            let _wrapper           = document.createElement ( 'div' );
+
+                _wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '<img src="images/svg/General/info-circle.svg" />' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+
+                document.getElementById ( 'copiedAlert' ).append ( _wrapper );
+        }
 
         /**
          * Converts string to title case
@@ -184,14 +243,14 @@
         }
 
         /**
-         * Cleans code of enumerators for presentation layer
+         * Cleans code of enumerators for card-objects
          * @private
-         * @name _cleanCode
+         * @name _cleanDemoCode
          * @function
          * @param           {Function} script                   JavaScript function; for card-objects only
          * @return          {string}                            Function as a string
          */
-        function _cleanCode ( script )
+        function _cleanDemoCode ( script )
         {
             let _code   = _cleanScriptCode ( script ).split ( /\n/g );
 
@@ -207,6 +266,29 @@
         }
 
         /**
+         * Cleans code of enumerators for ace-editor
+         * @private
+         * @name _cleanAceCode
+         * @function
+         * @param           {Function} script                   JavaScript function; for ace-editor only
+         * @return          {string}                            Function as a string
+         */
+        function _cleanAceCode ( script )
+        {
+            let _code = _cleanScriptCode ( script ).split ( /\n/g );
+
+                _code = _code.slice ( 1 );
+
+
+            for ( let _line in _code )
+
+                _code [ _line ] = _code [ _line ].substring ( 16, _code [ _line ].length );
+
+
+            return _code.join ( '\n' );
+        }
+
+        /**
          * Clears screen prior to rebuilding
          * @private
          * @name _clearScreen
@@ -215,38 +297,42 @@
          */
         function _clearScreen ( setCardAlbum = false )
         {
-            initCanvasLab ( );                              // initialize canvasLab
+            initCanvasLab ( );
 
-            ////    MAIN SECTION   /////////////////////////
+            ////    MAIN SECTION   /////////////////////////////////////////////
 
                 let _main = document.getElementsByTagName ( 'main' ) [ 0 ];
 
                     _main.style.overflowY = 'auto';
 
-            ////    ALBUM SECTION   ////////////////////////
+            ////    ALBUM SECTION   ////////////////////////////////////////////
 
                 let _albumSection = document.querySelector ( '.album' );
 
                     _albumSection.style.display = ( setCardAlbum ) ? 'block' : 'none';
 
-            ////    CARD SECTION    ////////////////////////
+            ////    CARD SECTION    ////////////////////////////////////////////
 
                 let _cardsSection = document.getElementById ( 'test-cards' );
 
                     _cardsSection.innerHTML = '';
 
-            ////    BYRNE LOGO    //////////////////////////
+            ////    BYRNE LOGO    //////////////////////////////////////////////
 
                 let _byrneLogo = document.getElementById ( 'byrne-systems-logo' );
 
 
                 if ( _byrneLogo ) _byrneLogo.remove ( );
 
-            ////    LAB STATION    /////////////////////////
+            ////    LAB-STATION    /////////////////////////////////////////////
 
                 let _labStation = document.querySelector ( 'main > div.lab-station' );
 
                     _labStation.style.display = 'none';
+
+                let _button     = document.querySelector ( 'button.lab-station' ).children [ 0 ];
+
+                    _button.classList.remove ( 'selected' );
         }
 
         /**
@@ -437,7 +523,7 @@
         }
 
         /**
-         * Executes lab station code from editor
+         * Executes lab-station code from editor
          * @private
          * @name _runLabStationCode
          * @function
@@ -486,6 +572,156 @@
         }
 
         /**
+         * Increments a numeric selection from ace-editor up or down
+         * @private
+         * @name _incrementLabStationValue
+         * @function
+         * @param           {string}  value                     Value from ace-editor
+         * @param           {boolean} up                        Whether to increment positively
+         * @return          {string}                            Incremented value
+         */
+        function _incrementLabStationValue ( value, up )
+        {
+            let _result = undefined;
+
+
+            let [ _regexMatch, _regexReplace, _replaceValue ] = ( up ) ? [ new RegExp ( /[9]+/g ), new RegExp ( /[9]/g ), 0 ]
+
+                                                                       : [ new RegExp ( /[0]+/g ), new RegExp ( /[0]/g ), 9 ];
+
+            let _match      = value.match ( _regexMatch  );
+
+            let _length     = value.length;
+
+            let _regexAlpha = new RegExp ( /[^\d]/g );
+
+
+            if ( _regexAlpha.test ( value ) )
+
+                console.warn ( '[ lab-station ]: non-digit characters within selection !' );
+
+            else
+
+                _result = ( _match ) ? ( value.length === _match [ 0 ].length ) // Increment or Replace
+
+                                           ? value.replace ( _regexReplace, _replaceValue )
+
+                                           : _increment ( value, up )
+
+                                     : _increment ( value, up );
+
+
+            _result = ( String ( _result ).length < _length )                   // Pad: [0]+[1-9] using the original value's length
+
+                          ? _padZeros ( _result, _length )
+
+                          : `${_result}`;
+
+
+            return _result;
+        }
+
+        /**
+         * Returns positions of bounding characters
+         * @private
+         * @name _getBoundingCharactersPositions
+         * @function
+         * @param           {string} character                  Bounding character
+         * @param           {string} data                       Data to parse
+         * @param           {number} position                   Cursor position; from ace-editor
+         * @return          {Object}                            Bounding character's starting & ending position(s)
+         */
+        function _getBoundingCharactersPositions ( character, data, position )
+        {
+            let _result  = { start: 0, end: 0 }
+
+            let _indexes = [ ];
+
+            let _split   = data.split ( '' );
+
+
+            ////    GET INDEXES OF CHARACTER(S)    /////////////////////////////
+
+            for ( let _index in _split )
+
+                if ( _split [ _index ] === character )
+
+                    _indexes.push ( _index );
+
+
+            ////    GET CLOSEST START POSITION OF CHARACTER    /////////////////
+
+            for ( let _index of _indexes )
+
+                _result.start = ( _index < position ) ? _index : _result.start;
+
+
+            _result.start = Number ( _result.start ) + 1;
+
+
+            ////    GET CLOSEST END POSITION OF CHARACTER    ///////////////////
+
+            for ( let _index = _result.start; _index < _split.length; _index++ )
+
+                if ( _split [ _index ] === character )
+                {
+                    _result.end = _index;
+
+                    break;
+                }
+
+
+            return _result;
+        }
+
+        /**
+         * Swap rgb values between color-picker and ace-editor
+         * @private
+         * @name _swapLabStationsRgbValue
+         * @function
+         * @param           {string} color                      Rgb color value from color-picker
+         */
+        function _swapLabStationsRgbValue ( color )
+        {
+            let _rgb      = color.rgbString.replace ( 'rgb(', ''   )
+                                           .replace ( ')'   , ''   )
+                                           .replace ( /,/g  , ', ' );
+
+            let _regex    = new RegExp ( /^\d{1,3},\s\d{1,3},\s\d{1,3}/ );
+
+
+            let _cursor   = _editor.selection.getCursor ( );
+
+            let _line     = _editor.session.getLine     ( _cursor.row );
+
+
+            let _position = _getBoundingCharactersPositions ( "'", _line, _cursor.column );
+
+            let _range    = new ace.Range                   ( _cursor.row, _position.start, _cursor.row, _position.end );
+
+            let _text     = _editor.session.getTextRange    ( _range );
+
+
+            if ( _regex.test ( _text ) )
+            {
+                _range = new ace.Range ( _cursor.row, 0, _cursor.row, _line.length   );
+
+                _line  = _replaceRange ( _line, _position.start, _position.end, _rgb );
+
+
+                _editor.session.replace        ( _range, _line );
+
+                _editor.selection.moveCursorTo ( _cursor.row, _position.start + 1 );
+
+
+                _runLabStationCode ( );
+            }
+            else
+
+                console.warn ( '[ lab-station ]: no rgb value is present within selection !' );
+        }
+
+        /**
          * Copy code to clipboard
          * @private
          * @name _copyCode
@@ -495,47 +731,26 @@
         {
             let _code = document.querySelector ( '#modal-code > div > div > div.modal-body > pre > code' ).innerHTML.replace ( /<[^>]+>/g, '' );
 
-            ////    FUNCTIONS    ///////////////////////////////////////////////
 
-                /**
-                 * Displays an alert message within the modal
-                 * @private
-                 * @name _alert
-                 * @function
-                 * @param           {string} message                    Message to display
-                 * @param           {string} type                       Type of message; success || failure
-                 */
-                function _alert ( message, type )
-                {
-                    let _wrapper           = document.createElement ( 'div' );
+            try
+            {
+                await navigator.clipboard.writeText ( _code );
 
-                        _wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '<img src="images/svg/General/info-circle.svg" />' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                console.info ( 'Content copied to clipboard' );
+            }
+            catch ( err )
+            {
+                console.error ( 'Failed to copy: ', err );
+            }
 
 
-                        document.getElementById ( 'copiedAlert' ).append ( _wrapper );
-                }
+            _alert ( 'Copied code !', 'success' );
 
-            ////    LOGIC    ///////////////////////////////////////////////////
-
-                try
-                {
-                    await navigator.clipboard.writeText ( _code );
-
-                    console.info ( 'Content copied to clipboard' );
-                }
-                catch ( err )
-                {
-                    console.error ( 'Failed to copy: ', err );
-                }
-
-
-                _alert ( 'Copied code !', 'success' );
-
-                _delay ( 1000 ).then ( ( ) => document.querySelector ( '#copiedAlert' ).children [ 0 ].remove ( ) );
+            _delay ( 1000 ).then ( ( ) => document.querySelector ( '#copiedAlert' ).children [ 0 ].remove ( ) );
         }
 
-    ////////////////////////////////////////////////////////////////////////////
-    ////    SET FUNCTIONS    ///////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////    SET FUNCTIONS    ///////////////////////////////////////////////////////////////////////
 
         /**
          * Sets the master classes properties
@@ -746,7 +961,18 @@
         {
             let _id = "ace-editor";
 
-            ////    CONTROL PANEL    ///////////////////////
+            let _script = ( ) =>
+            {
+                let _circle = new Circle ( { x: 154, y: 77 } );
+
+                    _circle.canvas = 'canvas';
+
+                    _circle.fill.color = '0, 150, 200';
+
+                    _circle.draw ( );
+            }
+
+            ////    CONTROL PANEL    ///////////////////////////////////////////
 
             let _controlPanel       = document.getElementById ( "control-panel" );
 
@@ -754,15 +980,15 @@
 
                 _controlPanelHeight = Number ( _controlPanelHeight.replace ( 'px', '' ) );
 
-            ////    EDITOR ELEMENT    //////////////////////
+            ////    EDITOR ELEMENT    //////////////////////////////////////////
 
             let _editorElement = document.getElementById ( _id );
 
-                _editorElement.innerHTML    = "let _circle = new Circle ( { x: 154, y: 77 } );\n\n\t_circle.canvas = 'canvas';\n\n\t_circle.draw ( );";
+                _editorElement.innerHTML    = _cleanAceCode ( _script );
 
                 _editorElement.style.height = `${window.innerHeight - _controlPanelHeight}px`;
 
-            ////    EDITOR    //////////////////////////////
+            ////    EDITOR    //////////////////////////////////////////////////
 
             _editor = ace.edit ( _id );
 
@@ -792,7 +1018,64 @@
         }
 
         /**
-         * Sets the lab station canvas & ruler dimensions
+         * Sets user's hotkeys
+         * @private
+         * @name _setHotkey
+         * @function
+         * @param           {string} id                         Element Identifier
+         * @param           {Array}  hotkeys                    Array of hotkeys
+         */
+        function _setHotkey ( id, hotkeys )
+        {
+            Mousetrap.bind ( hotkeys, ( event ) =>
+                {
+                    event.preventDefault  ( );
+
+                    event.stopPropagation ( );
+
+
+                    document.getElementById ( id ).click ( );
+                } );
+        }
+
+        /**
+         * Sets hotkeys for UI
+         * @private
+         * @name _setHotkeys
+         * @function
+         */
+        function _setHotkeys ( )
+        {
+            let _keys =
+            {
+                'input-value-minus': [ 'command+1' ],
+
+                'input-value-plus':  [ 'command+2' ],
+            }
+
+
+            for ( let [ _id, _hotkeys ] of Object.entries ( _keys ) )
+
+                _setHotkey ( _id, _hotkeys );
+        }
+
+        /**
+         * Set color-picker's position
+         * @private
+         * @name _setColorPickerPosition
+         * @function
+         */
+        function _setColorPickerPosition ( )
+        {
+            let _colorPickerBox  = document.querySelector ( '.picker_wrapper' );
+
+            let _colorPickerRect = _colorPickerBox.getBoundingClientRect ( );
+
+                _colorPickerBox.style.left = `-${_colorPickerRect.width}px`;
+        }
+
+        /**
+         * Sets the lab-station canvas & ruler dimensions
          * @private
          * @name _setLabStationCanvasSize
          * @function
@@ -818,16 +1101,16 @@
                 [ _canvasElement.width,  _canvasElement.height  ] = [ _width, _height ];
 
 
-                _ruler.style.width     = `${_width}px`;
+                _ruler.style.width   = `${_width}px`;
 
-                _ruler.style.opacity   = 1;
+                _ruler.style.opacity = 1;
 
 
             _delay ( 1000 ).then ( ( ) => document.querySelector ( '#ruler' ).style.opacity = 0 );
         }
 
-    ////////////////////////////////////////////////////////////////////////////
-    ////    EVENT LISTENERS    /////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////    EVENT LISTENERS    /////////////////////////////////////////////////////////////////////
 
         /**
          * Sets modal event listeners
@@ -1029,17 +1312,25 @@
         {
             let _prevHeight = document.querySelectorAll ( '.card' ) [ 0 ].clientHeight;
 
-            let _addButton  = document.querySelector    ( '.col.blank > .card.blank' );
-
-            let _opacity    = window.getComputedStyle   ( _addButton ).getPropertyValue ( "opacity" );
+            let _addButtons = document.querySelectorAll ( '.col.blank > .card.blank' );
 
 
-                _addButton.style.height  = `${_prevHeight}px`;
+            for ( let _i = _addButtons.length - 1; _i > -1; _i-- )
+            {
+                let _addButton = _addButtons [ _i ];
 
-                _addButton.style.opacity = ( _opacity < 0.5 ) ? 0.5 : _opacity;
+
+                if ( _i === 0 )
+                {
+                    _addButton.classList.remove ( 'hidden' );
 
 
-                _addButton.addEventListener ( 'click', ( element ) =>
+                    _addButton.style.height  = `${_prevHeight}px`;
+
+                    _addButton.style.opacity = 0.5;
+
+
+                    _addButton.addEventListener ( 'click', ( element ) =>
                     {
                         let _card = cardObjects [ master.group ] [ master.page ].length - 1;
 
@@ -1051,13 +1342,18 @@
 
                         _buildAlbumCards ( );
                     } );
+                }
+                else
+
+                    _addButton.classList.add ( 'hidden' );
+            }
 
 
             _removeFadeInAnimations ( );
         }
 
         /**
-         * Sets lab station canvas event listener
+         * Sets lab-station canvas event listener
          * @private
          * @name _setLabStationCanvasEventListener
          * @function
@@ -1066,15 +1362,18 @@
         {
             let _main          = document.getElementsByTagName ( 'main' ) [ 0 ];
 
-            let _labStation    = document.querySelector ( 'main > div.lab-station' );
+            let _labStation    = document.querySelector  ( 'main > div.lab-station' );
 
-            let _editorElement = document.getElementById ( _editor.container.id );
+            let _editorElement = document.getElementById ( _editor.container.id     );
 
-            let _button        = document.querySelector ( '#extra-buttons > button.lab-station' );
+            let _button        = document.querySelector  ( 'button.lab-station'     );
 
                 _button.addEventListener ( 'click', ( ) =>
                     {
                         _clearScreen  ( );
+
+
+                        _button.children [ 0 ].classList.add ( 'selected' )
 
 
                         _labStation.style.display     = 'block';
@@ -1085,6 +1384,8 @@
 
 
                         _setLabStationCanvasSize ( );
+
+                        _runLabStationCode       ( );
                     } );
 
 
@@ -1092,7 +1393,7 @@
         }
 
         /**
-         * Sets lab station menu event listener
+         * Sets lab-station menu event listener
          * @private
          * @name _setLabStationMenuEventListener
          * @function
@@ -1103,7 +1404,82 @@
         }
 
         /**
-         * Sets lab station font plus event listener
+         * Sets lab-station color-picker event listener
+         * @private
+         * @name _setLabStationColorPickerEventListener
+         * @function
+         */
+        function _setLabStationColorPickerEventListener ( )
+        {
+            let _picker = _getColorPicker ( 'input-color-picker' );
+
+                _picker.onOpen   = ( )       => _setColorPickerPosition  ( );
+
+                _picker.onChange = ( color ) => _swapLabStationsRgbValue ( color );
+        }
+
+        /**
+         * Sets lab-station font plus event listener
+         * @private
+         * @name _setLabStationValuePlusEventListener
+         * @function
+         */
+        function _setLabStationValuePlusEventListener ( )
+        {
+            let _valuePlus = document.getElementById ( 'input-value-plus' );
+
+                _valuePlus.addEventListener ( 'click', ( ) =>
+                    {
+                        let _cursor = _editor.selection.getCursor ( );
+
+                        let _range  = _editor.selection.getRange  ( );
+
+                        let _value  = _editor.getSelectedText     ( );
+
+                            _value  = _incrementLabStationValue   ( _value, true );
+
+
+                        _editor.session.replace    ( _range, _value );
+
+                        _editor.selection.setRange ( _range );
+
+
+                        _runLabStationCode ( );
+                    } );
+        }
+
+        /**
+         * Sets lab-station value minus event listener
+         * @private
+         * @name _setLabStationValueMinusEventListener
+         * @function
+         */
+        function _setLabStationValueMinusEventListener ( )
+        {
+            let _valueMinus = document.getElementById ( 'input-value-minus' );
+
+                _valueMinus.addEventListener ( 'click', ( ) =>
+                    {
+                        let _cursor = _editor.selection.getCursor ( );
+
+                        let _range  = _editor.selection.getRange  ( );
+
+                        let _value  = _editor.getSelectedText     ( );
+
+                            _value  = _incrementLabStationValue   ( _value, false );
+
+
+                        _editor.session.replace    ( _range, `${_value}` );
+
+                        _editor.selection.setRange ( _range );
+
+
+                        _runLabStationCode ( );
+                    } );
+        }
+
+        /**
+         * Sets lab-station font plus event listener
          * @private
          * @name _setLabStationFontPlusEventListener
          * @function
@@ -1124,7 +1500,7 @@
         }
 
         /**
-         * Sets lab station font minus event listener
+         * Sets lab-station font minus event listener
          * @private
          * @name _setLabStationFontMinusEventListener
          * @function
@@ -1145,7 +1521,7 @@
         }
 
         /**
-         * Sets lab station word-wrap event listener
+         * Sets lab-station word-wrap event listener
          * @private
          * @name _setLabStationWordWrapEventListener
          * @function
@@ -1166,7 +1542,7 @@
         }
 
         /**
-         * Sets lab station lock event listener
+         * Sets lab-station lock event listener
          * @private
          * @name _setLabStationLockEventListener
          * @function
@@ -1199,7 +1575,7 @@
         }
 
         /**
-         * Sets lab station download event listener
+         * Sets lab-station download event listener
          * @private
          * @name _setLabStationDownloadEventListener
          * @function
@@ -1222,7 +1598,7 @@
         }
 
         /**
-         * Sets lab station output event listener
+         * Sets lab-station output event listener
          * @private
          * @name _setLabStationOutputEventListeners
          * @function
@@ -1249,7 +1625,7 @@
         }
 
         /**
-         * Sets all lab station event listeners
+         * Sets all lab-station event listeners
          * @private
          * @name _setLabStationEventListeners
          * @function
@@ -1264,21 +1640,27 @@
 
             ////    INPUT    ///////////////////////////////
 
-            _setLabStationMenuEventListener      ( );
+            _setLabStationMenuEventListener        ( );
 
-            _setLabStationFontPlusEventListener  ( );
+            _setLabStationColorPickerEventListener ( );
 
-            _setLabStationFontMinusEventListener ( );
+            _setLabStationValuePlusEventListener   ( );
 
-            _setLabStationWordWrapEventListener  ( );
+            _setLabStationValueMinusEventListener  ( );
 
-            _setLabStationLockEventListener      ( );
+            _setLabStationFontPlusEventListener    ( );
 
-            _setLabStationDownloadEventListener  ( );
+            _setLabStationFontMinusEventListener   ( );
+
+            _setLabStationWordWrapEventListener    ( );
+
+            _setLabStationLockEventListener        ( );
+
+            _setLabStationDownloadEventListener    ( );
         }
 
-    ////////////////////////////////////////////////////////////////////////////
-    ////    GET FUNCTIONS    ///////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////    GET FUNCTIONS    ///////////////////////////////////////////////////////////////////////
 
         /**
          * Returns an Array of HTML templates for each card-object
@@ -1424,7 +1806,7 @@
             {
                 if ( _entry === 'code' )                    // Clean: code prior to injection
                 {
-                    let _code     = _cleanCode ( cardObject [ _entry ] );
+                    let _code     = _cleanDemoCode ( cardObject [ _entry ] );
 
                     let _class    = _getClass ( _code );
 
@@ -1477,8 +1859,42 @@
             return `( ( window ) =>\n{\n${_codes.join ( '\n\n' )}\n\n} ) ( window );`
         }
 
-    ////////////////////////////////////////////////////////////////////////////
-    ////    BUILD FUNCTIONS    /////////////////////////////////////////////////
+        /**
+         * Returns a new color-picker object
+         * @private
+         * @name _getColorPicker
+         * @function
+         * @param           {string} elementId                  Element id
+         * @return          {Object}                            Color-picker object
+         */
+        function _getColorPicker ( elementId )
+        {
+            let _button  = document.getElementById ( elementId );
+
+
+            let _options =
+            {
+                parent:         _button,                    // Which element the picker should be attached to.
+                popup:          'top',                      // If the picker is used as a popup, where to place it relative to the parent. false to add the picker as a normal child element of the parent.
+                template:       undefined,                  // Custom HTML string from which to build the picker. See /src/picker.pug for required elements and class names.
+                layout:         undefined,                  // Suffix of a custom "layout_..." CSS class to handle the overall arrangement of the picker elements.
+                alpha:          true,                       // Whether to enable adjusting the alpha channel.
+                editor:         true,                       // Whether to show a text field for color value editing.
+                editorFormat:   'rgb',                      // How to display the selected color in the text field (the text field still supports input in any format).
+                cancelButton:   false,                      // Whether to have a "Cancel" button which closes the popup.
+                color:          undefined,                  // Initial color for the picker.
+                onChange:       undefined,                  // (callback) onChange
+                onDone:         undefined,                  // (callback) onDone
+                onOpen:         undefined,                  // (callback) onOpen
+                onClose:        undefined                   // (callback) onClose
+            };
+
+
+            return new Picker ( _options );
+        }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////    BUILD FUNCTIONS    /////////////////////////////////////////////////////////////////////
 
         /**
          * Returns a copied object
@@ -1569,8 +1985,8 @@
                 console.error ( '[ ERROR ]: window.master is not available !');
         }
 
-    ////////////////////////////////////////////////////////////////////////////
-    ////    LIBRARY WRAPPER    /////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////    LIBRARY WRAPPER    /////////////////////////////////////////////////////////////////////
 
         /**
          * Returns library object
@@ -1583,7 +1999,7 @@
         {
             let _lib = { }
 
-            ////    FUNCTIONS    ///////////////////////////
+            ////    FUNCTIONS    ///////////////////////////////////////////////
 
                 /**
                  * Sets markdown content for the offCanvas element
@@ -1614,7 +2030,7 @@
                 _lib.toggleEasingFunctions = ( index )                 => _toggleEasingFunctions ( index );
 
                 /**
-                 * Executes lab station code from editor
+                 * Executes lab-station code from editor
                  * @public
                  * @name _runLabStationCode
                  * @function
@@ -1625,8 +2041,8 @@
             return _lib;
         }
 
-    ////////////////////////////////////////////////////////////////////////////
-    ////    INITIALIZATION    //////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////    INITIALIZATION    //////////////////////////////////////////////////////////////////////
 
         /**
          * Initiates devTest
@@ -1650,6 +2066,8 @@
                 _setAceEditor ( );
 
                 _setLabStationEventListeners ( );
+
+                _setHotkeys   ( );
             }
             else
 
