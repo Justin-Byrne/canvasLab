@@ -4,17 +4,16 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Application {
-point      {Point}
-canvas     {HTMLCanvasElement}
+point       {Point}
+canvas      {HTMLCanvasElement}
 __ Setter __
+animation   <color:gray>{Object}</color>
 canvas
-State
 __ Getter __
 canvas
 about
 __ Utility __
 _isInDom
-setState
 clear
 }
 

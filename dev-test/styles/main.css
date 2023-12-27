@@ -644,6 +644,10 @@ main {
             padding-top: 4px; }
           main .lab-station #lab #control-panel .button .menu {
             content: url("../images/svg/General/caret-up.svg"); }
+          main .lab-station #lab #control-panel .button .sidebar {
+            content: url("../images/svg/General/layout-sidebar.svg"); }
+          main .lab-station #lab #control-panel .button .full-screen {
+            content: url("../images/svg/General/aspect-ratio.svg"); }
           main .lab-station #lab #control-panel .button .color-picker {
             content: url("../images/svg/General/droplet-half.svg"); }
           main .lab-station #lab #control-panel .button .value-plus {

@@ -146,6 +146,8 @@ main ()
 
     compile_md2json
 
+    # compile_plantuml
+
     compile_readme
 
     complete

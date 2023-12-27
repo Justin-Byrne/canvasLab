@@ -4,19 +4,12 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class canvasLab {
-_application            {Application}
-_animations
 _canvas
 _canvases
 _font
 _state
-#config
-timeFraction
-timeFraction
-timeFraction
-timeFraction
-timeFraction
-timeFraction
+#application   {Application}
+#processing    {Processing}
 __ Setter __
 canvas
 canvases
@@ -31,7 +24,6 @@ __ Utility __
 _isInDom
 clear
 animate
-requestAnimationFrame
 _init
 }
 

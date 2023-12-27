@@ -4,15 +4,20 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Animation {
-point           {Point}
-canvas          {HTMLCanvasElement}
+point                   {Point}
+canvas                  {HTMLCanvasElement}
 __ Setter __
-timing          <color:gray>{string}</color>
+timing
+draw
+duration
 __ Getter __
 timing
+draw
+duration
 __ Utility __
+_isNumber
 animate
-clearInterval
+requestAnimationFrame
 _draw
 }
 

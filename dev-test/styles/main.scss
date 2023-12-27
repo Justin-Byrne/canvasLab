@@ -1182,23 +1182,27 @@ main
                     .icon { padding-top: 4px; }
 
 
-                    .menu         { content: url('../images/svg/General/caret-up.svg');     }
+                    .menu         { content: url('../images/svg/General/caret-up.svg');       }
 
-                    .color-picker { content: url('../images/svg/General/droplet-half.svg'); }
+                    .sidebar      { content: url('../images/svg/General/layout-sidebar.svg'); }
 
-                    .value-plus   { content: url('../images/svg/General/plus.svg');         }
+                    .full-screen  { content: url('../images/svg/General/aspect-ratio.svg');   }
 
-                    .value-minus  { content: url('../images/svg/General/minus.svg');        }
+                    .color-picker { content: url('../images/svg/General/droplet-half.svg');   }
 
-                    .font-plus    { content: url('../images/svg/General/font-plus.svg');    }
+                    .value-plus   { content: url('../images/svg/General/plus.svg');           }
 
-                    .font-minus   { content: url('../images/svg/General/font-minus.svg');   }
+                    .value-minus  { content: url('../images/svg/General/minus.svg');          }
 
-                    .word-wrap    { content: url('../images/svg/General/word-wrap.svg');    }
+                    .font-plus    { content: url('../images/svg/General/font-plus.svg');      }
 
-                    .lock         { content: url('../images/svg/General/unlock.svg');       }
+                    .font-minus   { content: url('../images/svg/General/font-minus.svg');     }
 
-                    .download     { content: url('../images/svg/General/download.svg');     }
+                    .word-wrap    { content: url('../images/svg/General/word-wrap.svg');      }
+
+                    .lock         { content: url('../images/svg/General/unlock.svg');         }
+
+                    .download     { content: url('../images/svg/General/download.svg');       }
                 }
 
                 .picker_wrapper

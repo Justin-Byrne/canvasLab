@@ -507,6 +507,99 @@
         }
 
         /**
+         * Toggles navigation element
+         * @private
+         * @name _toggleNavigation
+         * @function
+         * @param           {HTMLElement} button                Button under the #control-panel .button class
+         */
+        function _toggleNavigation ( button )
+        {
+            let _nav  = document.getElementsByTagName ( 'nav'  ) [ 0 ];
+
+            let _main = document.getElementsByTagName ( 'main' ) [ 0 ];
+
+
+            let _icon = button.querySelector ( '.sidebar' );
+
+
+            let _left = Number ( _nav.style.left.replace ( 'px', '' ) );
+
+            let _open = ( _left === 0 );
+
+
+            ( _open ) ? _nav.style.left = '-200px'
+
+                      : _nav.style.left = '0px';
+
+
+            ( _open ) ? _main.style.paddingLeft = '0px'
+
+                      : _main.style.paddingLeft = '200px';
+
+
+            ( _open ) ? _icon.style.content = 'url("images/svg/General/layout-sidebar-empty.svg")'
+
+                      : _icon.style.content = 'url("images/svg/General/layout-sidebar.svg")';
+
+
+            ( _open ) ? button.style.backgroundColor = 'rgb(166, 49, 49)'
+
+                      : button.style.backgroundColor = 'rgb(72, 79, 86)';
+
+
+            _setLabStationCanvasSize ( );
+
+            _runLabStationCode       ( );
+        }
+
+        /**
+         * Toggles fullscreen
+         * @private
+         * @name _toggleFullscreen
+         * @function
+         * @param           {HTMLElement} button                Button under the #control-panel .button class
+         */
+        function _toggleFullscreen ( button )
+        {
+            let _main        = document.getElementsByTagName ( 'main' ) [ 0 ];
+
+
+            let _rightColumn = document.querySelector ( '#lab > div:nth-child(2)' );
+
+            let _leftColumn  = document.querySelector ( '#lab > div:nth-child(1)' );
+
+
+            let _styles      = window.getComputedStyle ( _rightColumn );
+
+
+            let _icon        = button.querySelector ( '.full-screen' );
+
+
+            let _fullscreen  = ( _styles.display === 'block' );
+
+
+            ( _fullscreen ) ? _rightColumn.style.display = 'none'
+
+                            : _rightColumn.style.display = 'block';
+
+
+            ( _fullscreen ) ? _leftColumn.style.width = '100%'
+
+                            : _leftColumn.style.width = '50%';
+
+
+            ( _fullscreen ) ? button.style.backgroundColor = 'rgb(166, 49, 49)'
+
+                            : button.style.backgroundColor = 'rgb(72, 79, 86)';
+
+
+            _setLabStationCanvasSize ( );
+
+            _runLabStationCode       ( );
+        }
+
+        /**
          * Removes .fade-in class from pre-existing cards
          * @private
          * @name _removeFadeInAnimations
@@ -1051,6 +1144,10 @@
                 'input-value-minus': [ 'command+1' ],
 
                 'input-value-plus':  [ 'command+2' ],
+
+                'input-sidebar':     [ 'command+3' ],
+
+                'input-full-screen': [ 'command+4' ],
             }
 
 
@@ -1386,6 +1483,11 @@
                         _setLabStationCanvasSize ( );
 
                         _runLabStationCode       ( );
+
+
+                        _setFontSize ( true  );             // Set: focus on ace-editor
+
+                        _setFontSize ( false );
                     } );
 
 
@@ -1401,6 +1503,32 @@
         function _setLabStationMenuEventListener ( )
         {
             let _menu = document.getElementById ( 'input-menu' );
+        }
+
+        /**
+         * Sets lab-station sidebar event listener
+         * @private
+         * @name _setLabStationSidebarEventListener
+         * @function
+         */
+        function _setLabStationSidebarEventListener ( )
+        {
+            let _sidebar = document.getElementById ( 'input-sidebar' );
+
+                _sidebar.addEventListener ( 'click', ( ) => _toggleNavigation ( _sidebar ) );
+        }
+
+        /**
+         * Sets lab-station full-screen event listener
+         * @private
+         * @name _setLabStationFullscreenEventListener
+         * @function
+         */
+        function _setLabStationFullscreenEventListener ( )
+        {
+            let _fullscreen = document.getElementById ( 'input-full-screen' );
+
+                _fullscreen.addEventListener ( 'click', ( ) => _toggleFullscreen ( _fullscreen ) );
         }
 
         /**
@@ -1479,6 +1607,25 @@
         }
 
         /**
+         * Sets the font size within ace-editor
+         * @private
+         * @name _setFontSize
+         * @function
+         * @param           {boolean} up                        True (+) || false (-)
+         */
+        function _setFontSize ( up = true )
+        {
+            let _fontSize = document.getElementById ( _editor.container.id ).style.fontSize;
+
+                _fontSize = ( up ) ? Number ( _fontSize.replace ( 'px', '' ) ) + 1
+
+                                   : Number ( _fontSize.replace ( 'px', '' ) ) - 1;
+
+
+            document.getElementById ( _editor.container.id ).style.fontSize = `${_fontSize}px`;
+        }
+
+        /**
          * Sets lab-station font plus event listener
          * @private
          * @name _setLabStationFontPlusEventListener
@@ -1488,15 +1635,7 @@
         {
             let _fontPlus = document.getElementById ( 'input-font-plus' );
 
-                _fontPlus.addEventListener ( 'click', ( ) =>
-                    {
-                        let _fontSize = document.getElementById ( _editor.container.id ).style.fontSize;
-
-                            _fontSize = Number ( _fontSize.replace ( 'px', '' ) ) + 1;
-
-
-                        document.getElementById ( _editor.container.id ).style.fontSize = `${_fontSize}px`;
-                    } );
+                _fontPlus.addEventListener ( 'click', ( ) => _setFontSize ( true ) );
         }
 
         /**
@@ -1509,15 +1648,7 @@
         {
             let _fontMinus = document.getElementById ( 'input-font-minus' );
 
-                _fontMinus.addEventListener ( 'click', ( ) =>
-                    {
-                        let _fontSize = document.getElementById ( _editor.container.id ).style.fontSize;
-
-                            _fontSize = Number ( _fontSize.replace ( 'px', '' ) ) - 1;
-
-
-                        document.getElementById ( _editor.container.id ).style.fontSize = `${_fontSize}px`;
-                    } );
+                _fontMinus.addEventListener ( 'click', ( ) => _setFontSize ( false ) );
         }
 
         /**
@@ -1551,9 +1682,9 @@
         {
             let _lockButton = document.getElementById ( 'input-lock' );
 
-            let _lock       = _lockButton.querySelector ( '.lock' );
+            let _icon       = _lockButton.querySelector ( '.lock' );
 
-                _lock.addEventListener ( 'click', ( ) =>
+                _icon.addEventListener ( 'click', ( ) =>
                     {
                         let _readOnly = _editor.getReadOnly ( );
 
@@ -1563,9 +1694,9 @@
                                       : _editor.setReadOnly ( true  );
 
 
-                        ( _readOnly ) ? _lock.style.content = 'url("images/svg/General/unlock.svg")'
+                        ( _readOnly ) ? _icon.style.content = 'url("images/svg/General/unlock.svg")'
 
-                                      : _lock.style.content = 'url("images/svg/General/lock.svg")';
+                                      : _icon.style.content = 'url("images/svg/General/lock.svg")';
 
 
                         ( _readOnly ) ? _lockButton.style.backgroundColor = 'rgb(72, 79, 86)'
@@ -1641,6 +1772,10 @@
             ////    INPUT    ///////////////////////////////
 
             _setLabStationMenuEventListener        ( );
+
+            _setLabStationSidebarEventListener     ( );
+
+            _setLabStationFullscreenEventListener  ( );
 
             _setLabStationColorPickerEventListener ( );
 

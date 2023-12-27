@@ -3,26 +3,13 @@
 skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
-class Animation {
-point                   {Point}
-canvas                  {HTMLCanvasElement}
-__ Setter __
-timing
-draw
-duration
-__ Getter __
-timing
-draw
-duration
-__ Utility __
-_isNumber
-animate
-requestAnimationFrame
-_draw
+class Processing {
+point    {Point}
+canvas   {HTMLCanvasElement}
 }
 
-Animation o-- Point
-Animation o-- HTMLCanvasElement
+Processing o-- Point
+Processing o-- HTMLCanvasElement
 
 
 
