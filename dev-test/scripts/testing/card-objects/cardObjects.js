@@ -885,6 +885,177 @@
                     }
                 },
             ],
+            angle:
+            [
+                {
+                    title: 'angle start',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.angle.start = 90;
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title: 'angle end',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.angle.start = 90;
+
+                        _circle.angle.end   = 180;
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title: 'angle clockwise',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.angle.start = 90;
+
+                        _circle.angle.end   = 180;
+
+                        _circle.angle.clockwise = false;
+
+                        _circle.draw ( );
+                    }
+                },
+            ],
+            aspect:
+            [
+                {
+                    title: 'aspect',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.aspect = { width: 200, height: 100 };
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title: 'aspect',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.aspect = { width: 50, height: 100 };
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title: 'aspect',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.aspect = { width: 50, height: 50 };
+
+                        _rectangle.draw ( );
+                    }
+                },
+            ],
+            controlpoints:
+            [
+                {
+                    title: 'control points',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.curve ( 0, 50, 0, 0 );
+
+                        _line.options.controlPoints = true;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'control points',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.curve ( 0, 0, 0, -50 );
+
+                        _line.options.controlPoints = true;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'control points',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.curve ( 0, 50, 0, -50 );
+
+                        _line.options.controlPoints = true;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'control points',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.curve ( 90, 0, -90, 0 );
+
+                        _line.options.controlPoints = true;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'control points',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.curve ( 90, -50, -90, 50 );
+
+                        _line.options.controlPoints = true;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'control points',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.curve ( -90, 50, 90, -50 );
+
+                        _line.options.controlPoints = true;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'control points',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.curve ( -45, 45, -45, 45 );
+
+                        _line.options.controlPoints = true;
+
+                        _line.draw ( );
+                    }
+                },
+                {
+                    title: 'control points',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.curve ( 45, -45, 45, -45 );
+
+                        _line.options.controlPoints = true;
+
+                        _line.draw ( );
+                    }
+                },
+            ],
             fill:
             [
                 {

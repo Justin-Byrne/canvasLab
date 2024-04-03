@@ -20,76 +20,96 @@
         ////    TEMPLATES    ///////////////////////////////////////////////////
 
         /**
-         * Returns a blank HTML card template
+         * Returns a extra HTML card template
          * @private
-         * @name _cardTemplateBlank
+         * @name _cardTemplateExtra
          * @function
-         * @return          {string}                            Blank HTML card template
+         * @return          {string}                            Extra HTML card template
          */
-        let _cardTemplateBlank = ( ) => `<div class="col blank">
+        let _cardTemplateExtra         = ( ) => `<div class="col extra">
 
-                                            <div class="card blank">
+                                                     <div class="card extra">
 
-                                                <span class="plus">+</span>
+                                                         <span class="plus">+</span>
 
-                                           </div>
+                                                     </div>
 
-                                        </div>  <!-- .col -->`;
+                                                 </div>  <!-- .col -->`;
 
         /**
-         * Returns a HTML card template
+         * Returns a standard HTML card template
          * @private
-         * @name _cardTemplate
+         * @name _cardTemplateStandard
          * @function
          * @return          {string}                            HTML card template
          */
-        let _cardTemplate      = ( ) => `<div class="col">
+        let _cardTemplateStandard      = ( ) => `<div class="col">
 
-                                            <div class="card fade-in">
+                                                     <div class="card grow-in">
 
-                                                <div class="card-number">
+                                                         <div class="card-number">
 
-                                                    <span class="close"></span>
+                                                             <span class="close"></span>
 
-                                                        <span class="number">{{number}}</span>
+                                                             <span class="number">{{number}}</span>
 
-                                                </div>
+                                                         </div>
 
-                                                <canvas id="canvas_{{number}}"></canvas>
+                                                         <canvas id="canvas_{{number}}"></canvas>
 
-                                                <div class="card-body">
+                                                         <div class="card-body">
 
-                                                    <p class="card-title">{{title}}</p>
+                                                             <p class="card-title">{{title}}</p>
 
-                                                    <div class="card-buttons">
+                                                             <div class="card-buttons">
 
-                                                        <div class="btn-group">
+                                                                 <div class="btn-group">
 
-                                                            <button type="button" id="view_{{number}}" class="btn btn-sm btn-outline-secondary code-view-buttons" data-bs-toggle="modal" data-bs-target="#modal-code" data-devTest-code="{{code}}" data-devTest-title="{{title}}">View</button>
+                                                                     <button type="button" id="view_{{number}}" class="btn btn-sm btn-outline-secondary code-view-buttons" data-bs-toggle="modal" data-bs-target="#modal-code" data-devTest-code="{{code}}" data-devTest-title="{{title}}">
 
-                                                        </div>
+                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="eye" viewBox="0 0 16 16">
 
-                                                        <span class="icons">
+                                                                             <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
 
-                                                            <img src="images/svg/{{subgroup}}.svg" class="card-icons easing">
+                                                                             <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
 
-                                                            <span class="separator">&nbsp;</span>
+                                                                         </svg>
 
-                                                            <img src="images/svg/{{group}}.svg"    class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{groupType}}' )">
+                                                                     </button>
 
-                                                            <img src="images/svg/{{image}}.svg"    class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{objectType}}' )">
+                                                                 </div>
 
-                                                        </span>
+                                                                 <span class="icons">
 
-                                                    </div>
+                                                                     <img src="images/svg/{{subgroup}}.svg" class="card-icons easing">
 
-                                                </div>
+                                                                     <span class="separator">&nbsp;</span>
 
-                                            </div>
+                                                                     <img src="images/svg/{{group}}.svg"    class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{groupType}}' )">
 
-                                        </div>  <!-- .col -->`;
+                                                                     <img src="images/svg/{{image}}.svg"    class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{objectType}}' )">
+
+                                                                 </span>
+
+                                                             </div>
+
+                                                         </div>
+
+                                                     </div>
+
+                                                 </div>  <!-- .col -->`;
 
         ////    GENERIC FUNCTIONS    ///////////////////////////////////////////
+
+        /**
+         * Converts string to title case
+         * @private
+         * @name _toTitleCase
+         * @function
+         * @param           {string} string                     String to convert
+         * @return          {string}                            Title case string
+         */
+        let _toTitleCase   = ( string )                         => string.toLowerCase ( ).split ( ' ' ).map ( ( word ) => word.replace ( word [ 0 ], word [ 0 ].toUpperCase ( ) ) ).join ( ' ' );
 
         /**
          * Converts a number into a multi-digit string
@@ -146,6 +166,16 @@
          */
         let _replaceRange  = ( string, start, end, substitute ) => string.substring ( 0, start ) + substitute + string.substring ( end );
 
+        /**
+         * Returns whether the navigation bar is open
+         * @private
+         * @name _isNavOpen
+         * @function
+         * @param           {HTMLElement} nav                   HTML DOM Element
+         * @return          {boolean}                           True | False
+         */
+        let _isNavOpen     = ( nav )                            => ( nav.style.left === '0px' );
+
         ////    OBJECT LITERALS    /////////////////////////////////////////////
 
         /**
@@ -194,6 +224,24 @@
     ////    GENERIC FUNCTIONS    ///////////////////////////////////////////////////////////////////
 
         /**
+         * Converts string to title case; with exceptions
+         * @private
+         * @name _toTitleCaseCustom
+         * @function
+         * @param           {string} string                     String to convert
+         * @return          {string}                            Title case string
+         */
+        function _toTitleCaseCustom ( string )
+        {
+            switch ( string )
+            {
+                case 'controlpoints':       return 'ControlPoints';
+
+                default:                    return _toTitleCase ( string );
+            }
+        }
+
+        /**
          * Displays an alert message within the modal
          * @private
          * @name _alert
@@ -209,22 +257,6 @@
 
 
                 document.getElementById ( 'copiedAlert' ).append ( _wrapper );
-        }
-
-        /**
-         * Converts string to title case
-         * @private
-         * @name _toTitleCase
-         * @function
-         * @param           {string} string                     String to convert
-         * @return          {string}                            Title case string
-         */
-        function _toTitleCase ( string )
-        {
-            return string.toLowerCase ( ).split ( ' ' ).map ( function ( word )
-            {
-                return word.replace ( word [ 0 ], word [ 0 ].toUpperCase ( ) );
-            } ).join ( ' ' );
         }
 
         /**
@@ -367,7 +399,7 @@
         }
 
         /**
-         * Trims left over image tags from the card template; @see _cardTemplate
+         * Trims left over image tags from the card template; @see _cardTemplateStandard
          * @private
          * @name _trimExtraImageTags
          * @function
@@ -636,7 +668,7 @@
         }
 
         /**
-         * Generates a downloadable file & initiates that download
+         * Generates a down-loadable file & initiates that download
          * @private
          * @name _download
          * @function
@@ -665,12 +697,12 @@
         }
 
         /**
-         * Increments a numeric selection from ace-editor up or down
+         * Increments a numeric selection from ace-editor up (+) or down (-)
          * @private
          * @name _incrementLabStationValue
          * @function
          * @param           {string}  value                     Value from ace-editor
-         * @param           {boolean} up                        Whether to increment positively
+         * @param           {boolean} up                        True (+) || false (-)
          * @return          {string}                            Incremented value
          */
         function _incrementLabStationValue ( value, up )
@@ -709,59 +741,6 @@
                           ? _padZeros ( _result, _length )
 
                           : `${_result}`;
-
-
-            return _result;
-        }
-
-        /**
-         * Returns positions of bounding characters
-         * @private
-         * @name _getBoundingCharactersPositions
-         * @function
-         * @param           {string} character                  Bounding character
-         * @param           {string} data                       Data to parse
-         * @param           {number} position                   Cursor position; from ace-editor
-         * @return          {Object}                            Bounding character's starting & ending position(s)
-         */
-        function _getBoundingCharactersPositions ( character, data, position )
-        {
-            let _result  = { start: 0, end: 0 }
-
-            let _indexes = [ ];
-
-            let _split   = data.split ( '' );
-
-
-            ////    GET INDEXES OF CHARACTER(S)    /////////////////////////////
-
-            for ( let _index in _split )
-
-                if ( _split [ _index ] === character )
-
-                    _indexes.push ( _index );
-
-
-            ////    GET CLOSEST START POSITION OF CHARACTER    /////////////////
-
-            for ( let _index of _indexes )
-
-                _result.start = ( _index < position ) ? _index : _result.start;
-
-
-            _result.start = Number ( _result.start ) + 1;
-
-
-            ////    GET CLOSEST END POSITION OF CHARACTER    ///////////////////
-
-            for ( let _index = _result.start; _index < _split.length; _index++ )
-
-                if ( _split [ _index ] === character )
-                {
-                    _result.end = _index;
-
-                    break;
-                }
 
 
             return _result;
@@ -815,6 +794,39 @@
         }
 
         /**
+         * Scales navigation area to open or closed state
+         * @private
+         * @name _scaleNav
+         * @private
+         */
+        function _scaleNav ( )
+        {
+            let _nav  = document.querySelector ( 'nav'       );
+
+            let _main = document.querySelector ( 'main'      );
+
+            let _open = document.querySelector ( '#nav-open' );
+
+
+            ( _isNavOpen ( _nav ) )
+
+                ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-200px', '-0px'  ]
+
+                : [ _nav.style.left, _main.style.paddingLeft ] = [ '0px',    '200px' ];
+
+
+            let _navIcons = _nav.querySelector ( '#nav-icon' ).children;
+
+
+            for ( let _navIcon of _navIcons )               // Blink eye
+
+                _navIcon.style.display = ( _navIcon.style.display === 'none' ) ? 'block' : 'none';
+
+
+            _open.style.display = ( _open.style.display === 'none' ) ? 'block' : 'none';
+        }
+
+        /**
          * Copy code to clipboard
          * @private
          * @name _copyCode
@@ -861,7 +873,7 @@
 
             master.group    = _link.match ( _regex ) [ 0 ].toLowerCase ( );
 
-            master.page     = _link.match ( /[A-Z][a-z]+/g ) [ 1 ].toLowerCase ( );
+            master.page     = _link.replace ( _toTitleCaseCustom ( master.group ), '' ).toLowerCase ( );
 
             master.subgroup = ( master.group === 'animation' ) ? 'easing' : undefined;
         }
@@ -908,7 +920,7 @@
          */
         function _setImagePath ( objects )
         {
-            let _page = _toTitleCase ( master.page );
+            let _page = _toTitleCaseCustom ( master.page );
 
 
             for ( let _object of objects )
@@ -920,7 +932,7 @@
 
                 if ( master.group === 'animation' )
 
-                    [ _object.group, _object.groupType ] = [ `Handlers/${_toTitleCase ( master.group )}`, _toTitleCase ( master.group ) ];
+                    [ _object.group, _object.groupType ] = [ `Handlers/${_toTitleCaseCustom ( master.group )}`, _toTitleCaseCustom ( master.group ) ];
 
 
                 if ( master.subgroup === 'easing' )
@@ -1157,6 +1169,57 @@
         }
 
         /**
+         * Sets the font size within ace-editor up (+) or down (-)
+         * @private
+         * @name _setFontSize
+         * @function
+         * @param           {boolean} up                        True (+) || false (-)
+         */
+        function _setFontSize ( up = true )
+        {
+            let _fontSize = document.getElementById ( _editor.container.id ).style.fontSize;
+
+                _fontSize = ( up ) ? Number ( _fontSize.replace ( 'px', '' ) ) + 1
+
+                                   : Number ( _fontSize.replace ( 'px', '' ) ) - 1;
+
+
+            document.getElementById ( _editor.container.id ).style.fontSize = `${_fontSize}px`;
+        }
+
+        /**
+         * Sets numeric value within ace-editor up (+) or down (-)
+         * @private
+         * @name _setNumbericValue
+         * @function
+         * @param           {boolean} up                        True (+) || false (-)
+         */
+        function _setNumbericValue ( up = true )
+        {
+            let _cursor = _editor.selection.getCursor ( );
+
+            let _range  = _editor.selection.getRange  ( );
+
+            let _value  = _editor.getSelectedText     ( );
+
+            let _regex  = new RegExp ( /^\d+$/ );
+
+
+            if ( _regex.test ( _value ) )
+            {
+                _value  = _incrementLabStationValue ( _value, up );
+
+
+                _editor.session.replace    ( _range, `${_value}` );
+
+                _editor.selection.setRange ( _range );
+
+
+                _runLabStationCode ( );
+            }
+        }
+
+        /**
          * Set color-picker's position
          * @private
          * @name _setColorPickerPosition
@@ -1190,7 +1253,7 @@
             let _rulerHeight   = _ruler.querySelector   ( 'span.height' );
 
 
-            let [ _width, _height ] = [ _leftColumn.clientWidth - 10, _leftColumn.clientHeight ];
+            let [ _width, _height ] = [ _leftColumn.clientWidth, _leftColumn.clientHeight ];
 
 
                 [ _rulerWidth.innerHTML, _rulerHeight.innerHTML ] = [ _width, _height ];
@@ -1208,44 +1271,6 @@
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ////    EVENT LISTENERS    /////////////////////////////////////////////////////////////////////
-
-        /**
-         * Sets modal event listeners
-         * @private
-         * @name _setModalEventListeners
-         * @function
-         */
-        function _setModalEventListeners ( )
-        {
-            let _viewButtons = document.getElementsByClassName ( 'code-view-buttons' );
-
-
-            for ( let _button of _viewButtons )
-
-                _button.addEventListener ( 'click', ( element ) =>
-                    {
-                        let _code                       = element.delegateTarget.getAttribute ( 'data-devtest-code'  );
-
-                        let _title                      = element.delegateTarget.getAttribute ( 'data-devtest-title' );
-
-                        let _modalCodeSection           = document.querySelector ( '#modal-code > div > div > div.modal-body > pre > code' );
-
-                        let _modalTitle                 = document.querySelector ( '#modal-code-label' );
-
-
-                            _modalCodeSection.innerHTML = _code.replace ( /_\d{1,3}/g, '' );
-
-                            _modalTitle.innerHTML       =  _toTitleCase ( _title );
-
-
-                            hljs.highlightAll ( );
-                    } );
-
-
-            let _copyButton = document.querySelector ( '#modal-code > div > div > div.modal-footer > button.btn.btn-primary' );
-
-                _copyButton.addEventListener ( 'click', _copyCode );
-        }
 
         /**
          * Sets navigation main event listeners
@@ -1334,8 +1359,31 @@
                                 _present = _present.match ( _regex ) [ 1 ].replace ( '-', '' );
 
 
-                            ( _present === 'objects' ) ? _checkCollapsible ( 1 ) : _checkCollapsible ( 0 );
+                            ( _present === 'objects' ) ? _checkCollapsible ( 1 )
+
+                                                       : _checkCollapsible ( 0 );
                         } );
+        }
+
+        /**
+         * Sets navigation scaler event listener
+         * @private
+         * @name _setNavScalerEventListener
+         * @function
+         */
+        function _setNavScalerEventListener ( )
+        {
+            let _icon = document.querySelector ( '#nav-icon' );
+
+            let _open = document.querySelector ( '#nav-open' );
+
+
+            if ( _icon )
+            {
+                _icon.addEventListener ( 'click', _scaleNav );
+
+                _open.addEventListener ( 'click', _scaleNav );
+            }
         }
 
         /**
@@ -1349,6 +1397,7 @@
             let _buttons =
             [
                 ... document.querySelectorAll ( '.mb-1:nth-child(-n+5) ul.btn-toggle-nav > li > a' ),
+
                 ... document.querySelectorAll ( '.mb-2:nth-child(-n+4) ul.btn-toggle-nav > li > a' )
             ]
 
@@ -1400,7 +1449,7 @@
         }
 
         /**
-         * Sets additional card event listener
+         * Sets additional card event listener              @TODO: refactor
          * @private
          * @name _setAddCardEventListener
          * @function
@@ -1409,7 +1458,7 @@
         {
             let _prevHeight = document.querySelectorAll ( '.card' ) [ 0 ].clientHeight;
 
-            let _addButtons = document.querySelectorAll ( '.col.blank > .card.blank' );
+            let _addButtons = document.querySelectorAll ( '.col.extra > .card.extra' );
 
 
             for ( let _i = _addButtons.length - 1; _i > -1; _i-- )
@@ -1448,6 +1497,98 @@
 
             _removeFadeInAnimations ( );
         }
+
+        ////    MODAL    ///////////////////////////////////////////////////////
+
+        /**
+         * Sets modal view event listener
+         * @private
+         * @name _setModalViewEventListener
+         * @function
+         */
+        function _setModalViewEventListener ( )
+        {
+            let _viewButtons = document.getElementsByClassName ( 'code-view-buttons' );
+
+
+            for ( let _button of _viewButtons )
+
+                _button.addEventListener ( 'click', ( element ) =>
+                    {
+                        let _code                       = element.delegateTarget.getAttribute ( 'data-devtest-code'  );
+
+                        let _title                      = element.delegateTarget.getAttribute ( 'data-devtest-title' );
+
+                        let _modalCodeSection           = document.querySelector ( '#modal-code > div > div > div.modal-body > pre > code' );
+
+                        let _modalTitle                 = document.querySelector ( '#modal-code-label' );
+
+
+                            _modalCodeSection.innerHTML = _code.replace ( /_\d{1,3}/g, '' );
+
+                            _modalTitle.innerHTML       =  _toTitleCaseCustom ( _title );
+
+
+                            hljs.highlightAll ( );
+                    } );
+        }
+
+        /**
+         * Sets modal copy event listener
+         * @private
+         * @name _setModalCopyEventListener
+         * @function
+         */
+        function _setModalCopyEventListener ( )
+        {
+            let _copyButton = document.querySelector ( '.copy-button' );
+
+                _copyButton.addEventListener ( 'click', _copyCode );
+        }
+
+        /**
+         * Sets modal lab-station event listener
+         * @private
+         * @name _setModalLabEventListener
+         * @function
+         */
+        function _setModalLabEventListener ( )
+        {
+            let _labStation     = document.querySelector ( 'button.lab-station' );
+
+            let _labStationLink = document.querySelector ( '.lab-station-link'  );
+
+                _labStationLink.addEventListener ( 'click', ( element ) =>
+                    {
+                        let _code = document.querySelector ( '#modal-code > div > div > div.modal-body > pre > code' ).innerHTML.replace ( /<[^>]+>/g, '' );
+
+
+                        _labStation.click  ( );
+
+                        _editor.setValue   ( _code );
+
+                        _runLabStationCode ( );
+
+                        _editor.selection.moveCursorTo ( 0, 0 );
+                    } );
+        }
+
+        /**
+         * Sets modal event listeners
+         * @private
+         * @name _setModalEventListeners
+         * @function
+         */
+        function _setModalEventListeners ( )
+        {
+            _setModalViewEventListener ( );
+
+            _setModalCopyEventListener ( );
+
+            _setModalLabEventListener  ( );
+        }
+
+        ////    LAB-STATION    /////////////////////////////////////////////////
 
         /**
          * Sets lab-station canvas event listener
@@ -1556,24 +1697,7 @@
         {
             let _valuePlus = document.getElementById ( 'input-value-plus' );
 
-                _valuePlus.addEventListener ( 'click', ( ) =>
-                    {
-                        let _cursor = _editor.selection.getCursor ( );
-
-                        let _range  = _editor.selection.getRange  ( );
-
-                        let _value  = _editor.getSelectedText     ( );
-
-                            _value  = _incrementLabStationValue   ( _value, true );
-
-
-                        _editor.session.replace    ( _range, _value );
-
-                        _editor.selection.setRange ( _range );
-
-
-                        _runLabStationCode ( );
-                    } );
+                _valuePlus.addEventListener ( 'click', ( ) => _setNumbericValue ( true ) );
         }
 
         /**
@@ -1586,43 +1710,7 @@
         {
             let _valueMinus = document.getElementById ( 'input-value-minus' );
 
-                _valueMinus.addEventListener ( 'click', ( ) =>
-                    {
-                        let _cursor = _editor.selection.getCursor ( );
-
-                        let _range  = _editor.selection.getRange  ( );
-
-                        let _value  = _editor.getSelectedText     ( );
-
-                            _value  = _incrementLabStationValue   ( _value, false );
-
-
-                        _editor.session.replace    ( _range, `${_value}` );
-
-                        _editor.selection.setRange ( _range );
-
-
-                        _runLabStationCode ( );
-                    } );
-        }
-
-        /**
-         * Sets the font size within ace-editor
-         * @private
-         * @name _setFontSize
-         * @function
-         * @param           {boolean} up                        True (+) || false (-)
-         */
-        function _setFontSize ( up = true )
-        {
-            let _fontSize = document.getElementById ( _editor.container.id ).style.fontSize;
-
-                _fontSize = ( up ) ? Number ( _fontSize.replace ( 'px', '' ) ) + 1
-
-                                   : Number ( _fontSize.replace ( 'px', '' ) ) - 1;
-
-
-            document.getElementById ( _editor.container.id ).style.fontSize = `${_fontSize}px`;
+                _valueMinus.addEventListener ( 'click', ( ) => _setNumbericValue ( false ) );
         }
 
         /**
@@ -1798,12 +1886,138 @@
     ////    GET FUNCTIONS    ///////////////////////////////////////////////////////////////////////
 
         /**
-         * Returns an Array of HTML templates for each card-object
+         * Returns positions of bounding characters
+         * @private
+         * @name _getBoundingCharactersPositions
+         * @function
+         * @param           {string} character                  Bounding character
+         * @param           {string} data                       Data to parse
+         * @param           {number} position                   Cursor position; from ace-editor
+         * @return          {Object}                            Bounding character's starting & ending position(s)
+         */
+        function _getBoundingCharactersPositions ( character, data, position )
+        {
+            let _result  = { start: 0, end: 0 }
+
+            let _indexes = [ ];
+
+            let _split   = data.split ( '' );
+
+
+            ////    GET INDEXES OF CHARACTER(S)    /////////////////////////////
+
+            for ( let _index in _split )
+
+                if ( _split [ _index ] === character )
+
+                    _indexes.push ( _index );
+
+
+            ////    GET CLOSEST START POSITION OF CHARACTER    /////////////////
+
+            for ( let _index of _indexes )
+
+                _result.start = ( _index < position ) ? _index : _result.start;
+
+
+            _result.start = Number ( _result.start ) + 1;
+
+
+            ////    GET CLOSEST END POSITION OF CHARACTER    ///////////////////
+
+            for ( let _index = _result.start; _index < _split.length; _index++ )
+
+                if ( _split [ _index ] === character )
+                {
+                    _result.end = _index;
+
+                    break;
+                }
+
+
+            return _result;
+        }
+
+        /**
+         * Returns the amount of columns available per the present resolution
+         * @private
+         * @name _getCardColumnCount
+         * @function
+         * @return          {number}                            Number of columns
+         */
+        function _getCardColumnCount ( )
+        {
+            let _count       = 1;
+
+            let _breakpoints = [ 600, 800, 1200, 1500, 1800, 2100, 2600 ];
+
+            let _windowWidth = window.innerWidth;
+
+
+            for ( let _breakpoint of _breakpoints )
+            {
+                if ( _windowWidth < _breakpoint )
+
+                    return _count;
+
+
+                _count++;
+            }
+        }
+
+        /**
+         * Returns the amount of extra cards to embed
+         * @private
+         * @name _getCardExtraCount
+         * @function
+         * @param           {Array.<Object>} cardObjects        Array of card-objects
+         * @return          {number}                            Amount of extra cards
+         */
+        function _getCardExtraCount ( cardObjects )
+        {
+            let _columnCount = _getCardColumnCount ( );
+
+            let _remainder   = cardObjects.length % _columnCount;
+
+
+            return _columnCount - _remainder;
+        }
+
+        /**
+         * Returns an Array of extra HTML templates; to align cards
+         * @private
+         * @name _getCardExtras
+         * @function
+         * @param           {Array.<Object>} cardObjects        Array of card-objects
+         * @return          {Array}                             Array of extra HTML templates for each card-object
+         */
+        function _getCardExtras ( cardObjects )
+        {
+            let _cardExtras  = [ ];
+
+
+            let _columnCount = _getCardColumnCount ( );
+
+            let _extraCount  = _getCardExtraCount  ( cardObjects );
+
+
+            if ( _columnCount != _extraCount )
+
+                for ( let _i = 0; _i < _extraCount; _i++ )
+
+                    _cardExtras.push ( _cardTemplateExtra ( ) );
+
+
+            return _cardExtras;
+        }
+
+        /**
+         * Returns an Array of standard HTML templates for each card-object
          * @private
          * @name _getCardHTMLTemplates
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
-         * @return          {Array}                             Array of HTML templates for each card-object
+         * @return          {Array}                             Array of standard HTML templates for each card-object
          */
         function _getCardHTMLTemplates ( cardObjects )
         {
@@ -1814,7 +2028,7 @@
             {
                 let _count      = _number2String ( _iter );
 
-                let _template   = _cardTemplate ( ).replace ( /{{number}}/g, _count );
+                let _template   = _cardTemplateStandard ( ).replace ( /{{number}}/g, _count );
 
                 let _cardObject = cardObjects [ _iter ];
 
@@ -1823,24 +2037,25 @@
             }
 
 
-            if ( master.group )
-            {
-                let [ _maxColumns, _cardsLength ] = [ 4, cardObjects.length ];
-
-
-                if ( _cardsLength < _maxColumns )
-
-                    for ( let _i = 0; _i < ( _maxColumns - _cardsLength ); _i++ )
-
-                        _cards.push ( _cardTemplateBlank ( ) );
-
-                else
-
-                    _cards.push ( _cardTemplateBlank ( ) );
-            }
-
-
             return _cards;
+        }
+
+        /**
+         * Returns an Array of standard & extra HTML templates for each card-object
+         * @private
+         * @name _getCards
+         * @function
+         * @param           {Array.<Object>} cardObjects        Array of card-objects
+         * @return          {Array}                             Array of HTML templates for each card-object
+         */
+        function _getCards ( cardObjects )
+        {
+            let _cards = _getCardHTMLTemplates ( cardObjects );
+
+            let _extra = _getCardExtras ( cardObjects );
+
+
+            return _cards.concat ( _extra );
         }
 
         /**
@@ -1869,7 +2084,7 @@
                               : _class;
 
 
-            return _toTitleCase ( _result );
+            return _toTitleCaseCustom ( _result );
         }
 
         /**
@@ -1943,13 +2158,15 @@
                 {
                     let _code     = _cleanDemoCode ( cardObject [ _entry ] );
 
-                    let _class    = _getClass ( _code );
 
-                    let _init     = _initializerObject [ master.group ] [ _class ];
+                    let _class    = _getClass ( _code );
 
                     let _variable = `_${_class.toLowerCase ( )}`;
 
                     let _regex    = new RegExp ( _variable, 'g' );
+
+
+                    let _init     = _initializerObject [ master.group ] [ _class ];
 
 
                         _code     = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;
@@ -2081,7 +2298,7 @@
 
             _setImagePath   ( _cardObjects );
 
-            _setCardSection ( _getCardHTMLTemplates ( _cardObjects ) );
+            _setCardSection ( _getCards ( _cardObjects ) );
 
 
             _setModalEventListeners  ( );
@@ -2106,18 +2323,14 @@
         /**
          * Sets the default page
          * @private
-         * @name _setDefaultPage
+         * @name _setEnvironment
          * @function
          */
-        function _setDefaultPage ( )
+        function _setEnvironment ( )
         {
-            if ( window.master )
+            ( window.master ) ? _setByrneSystemsLogo ( )
 
-                _setByrneSystemsLogo ( );
-
-            else
-
-                console.error ( '[ ERROR ]: window.master is not available !');
+                              : console.error ( '[ ERROR ]: window.master is not available !' );
         }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2192,17 +2405,19 @@
 
             if ( window.cardObjects )
             {
-                _setDefaultPage              ( );
+                _setEnvironment              ( );
 
                 _setNavMainEventListeners    ( );
 
+                _setNavScalerEventListener   ( );
+
                 _setNavLinkEventListeners    ( );
 
-                _setAceEditor ( );
+                _setAceEditor                ( );
 
                 _setLabStationEventListeners ( );
 
-                _setHotkeys   ( );
+                _setHotkeys                  ( );
             }
             else
 

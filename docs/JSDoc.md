@@ -19,6 +19,9 @@
 <dt><a href="#Font">Font</a></dt>
 <dd><p>{Object} Font                               Font base class for text objects</p>
 </dd>
+<dt><a href="#LinearGradient">LinearGradient</a></dt>
+<dd><p>{Object} LinearGradient                     LinearGradient properties of associated object</p>
+</dd>
 <dt><a href="#Options">Options</a></dt>
 <dd><p>{Object}  Options                           Options for shapes, lines, and groups</p>
 </dd>
@@ -728,6 +731,69 @@ Get font
 
 **Kind**: instance property of [<code>Font</code>](#Font)  
 **Returns**: <code>string</code> - CSS style font property syntax  
+<a name="LinearGradient"></a>
+
+## LinearGradient
+{Object} LinearGradient                     LinearGradient properties of associated object
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| start | [<code>Point</code>](#Point) | Starting point of linear gradient |
+| end | [<code>Point</code>](#Point) | Ending point of linear gradient |
+| colorStops | <code>Array</code> | Array of color stops |
+
+
+* [LinearGradient](#LinearGradient)
+    * [new LinearGradient()](#new_LinearGradient_new)
+    * [.start](#LinearGradient+start)
+    * [.start](#LinearGradient+start) ⇒ [<code>Point</code>](#Point)
+    * [.end](#LinearGradient+end)
+    * [.end](#LinearGradient+end) ⇒ [<code>Point</code>](#Point)
+
+<a name="new_LinearGradient_new"></a>
+
+### new LinearGradient()
+Create a LinearGradient
+
+<a name="LinearGradient+start"></a>
+
+### linearGradient.start
+Set starting point
+
+**Kind**: instance property of [<code>LinearGradient</code>](#LinearGradient)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Starting point |
+
+<a name="LinearGradient+start"></a>
+
+### linearGradient.start ⇒ [<code>Point</code>](#Point)
+Set starting point
+
+**Kind**: instance property of [<code>LinearGradient</code>](#LinearGradient)  
+**Returns**: [<code>Point</code>](#Point) - Starting point  
+<a name="LinearGradient+end"></a>
+
+### linearGradient.end
+Set ending point
+
+**Kind**: instance property of [<code>LinearGradient</code>](#LinearGradient)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Ending point |
+
+<a name="LinearGradient+end"></a>
+
+### linearGradient.end ⇒ [<code>Point</code>](#Point)
+Set ending point
+
+**Kind**: instance property of [<code>LinearGradient</code>](#LinearGradient)  
+**Returns**: [<code>Point</code>](#Point) - Ending point  
 <a name="Options"></a>
 
 ## Options

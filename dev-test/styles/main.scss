@@ -74,24 +74,69 @@ nav
 
     #nav-icon
     {
+        // outline: 1px solid white;
+
+        position:   relative;
+        margin:     0 auto;
+        height:     61px;
+        width:      61px;
+
+        &:hover
+        {
+            cursor: pointer;
+
+            // img
+            // {
+            //     // Animations
+
+            //     &#eye               { animation: growOutIn       2s linear infinite; }
+
+            //     &#eye-lid           { animation: fadeOut         2s linear forwards; }
+
+            //     &#triangle          { animation: fadeInOut-delay 6s linear infinite; }
+
+            //     &#triangle-inverted { animation: fadeInOut-delay 6s linear infinite; }
+
+            //     // Delays
+
+            //     &#triangle          { animation-delay: 1s; }
+
+            //     &#triangle-inverted { animation-delay: 2s; }
+            // }
+
+            img
+            {
+                // Animations
+
+                &#eye               { animation: growOutIn       1s linear infinite; }
+
+                // &#eye-lid           { animation: fadeOut         2s linear forwards; }
+
+                // &#triangle          { animation: fadeInOut-delay 6s linear infinite; }
+
+                // &#triangle-inverted { animation: fadeInOut-delay 6s linear infinite; }
+
+                // Delays
+
+                // &#triangle          { animation-delay: 1s; }
+
+                // &#triangle-inverted { animation-delay: 2s; }
+            }
+        }
+
         img
         {
             display:    block;
-            width:      98px;
-            margin:     0 auto;
+            position:   absolute;
+            width:      64px;
 
-            &:hover { animation: wiggle 2s linear infinite; }
-        }
+            &#eye               { opacity: 1; }
 
-        @keyframes wiggle
-        {
-           0%, 7%    { transform: rotateZ(0);      }
-           15%       { transform: rotateZ(-15deg); }
-           20%       { transform: rotateZ(10deg);  }
-           25%       { transform: rotateZ(-10deg); }
-           30%       { transform: rotateZ(6deg);   }
-           35%       { transform: rotateZ(-4deg);  }
-           40%, 100% { transform: rotateZ(0);      }
+            &#eye-lid           { opacity: 1; }
+
+            &#triangle          { opacity: 0; }
+
+            &#triangle-inverted { opacity: 0; }
         }
     }
 
@@ -187,7 +232,7 @@ nav
 
                         &.disabled
                         {
-                            cursor:     default;
+                            cursor:     not-allowed;
 
                             &:hover
                             {
@@ -327,7 +372,7 @@ nav
 
             border-radius:  2px;
 
-            opacity:        0.4;
+            opacity:        0.8;
             transition:     opacity 1s;
 
             &.fade  { opacity: 0;    }
@@ -353,6 +398,16 @@ nav
     }
 }
 
+#nav-open
+{
+    position:   fixed;
+    width:      128px;
+    height:     64px;
+    top:        0;
+    left:       0;
+    z-index:    10;
+}
+
 main
 {
     $cardBackground:    rgba(62, 83, 104, 1);
@@ -368,27 +423,23 @@ main
 
     .album
     {
+        overflow-x: hidden;
+
         .container
         {
+            max-width:      100% !important;
+
             margin-top:     -50px;
             margin-bottom:  -35px;
+            padding-bottom:  15px;
 
-            @keyframes fade-in
-            {
-                0%   { transform: scale( 0.90 ); }
-
-                100% { transform: scale( 1 );    }
-            }
-
-            .fade-in { animation: fade-in 0.25s ease; }
+            .growOut { animation: growOut 0.25s ease; }
 
             #test-cards
             {
-                @extend .test-card-scaling;
-
                 .col
                 {
-                    &.blank:nth-child(n + 3) > .blank
+                    &.extra:nth-child(n + 3) > .extra
                     {
                         opacity: 0;
 
@@ -404,7 +455,7 @@ main
                         }
                     }
 
-                    @extend .test-card-column-scaling;
+                    @extend .mq-test-card-column-scaling;
 
                     .card
                     {
@@ -514,19 +565,35 @@ main
 
                                 .code-view-buttons
                                 {
+                                    position:           relative;
+                                    top:                3px;
+
                                     height:             36px;
 
-                                    color:              white;
-                                    background-color:   rgb(11, 122, 154);
+                                    border:             none;
+                                    background-color:   transparent;
 
-                                    border:             1px solid rgb(49, 58, 62);
-                                    box-shadow:         0px 1px 1px 0px black;
+                                    transition:         background-color 1.5s ease, box-shadow 0.5s ease;
+
+                                    svg
+                                    {
+                                        width:      22px;
+                                        height:     22px;
+
+                                        fill:       rgba(4, 23, 72, 0.5);
+
+                                        transition: fill 0.5s ease;
+                                    }
 
                                     &:hover
                                     {
-                                        background-color:   rgb(0, 225, 227);
-                                        border-color:       rgb(0, 175, 255);
+                                        box-shadow:         none;
+                                        background-color:   transparent;
+
+                                        & > svg { fill: white; }
                                     }
+
+                                    &:focus { box-shadow: unset; }
                                 }
 
                                 .icons
@@ -549,13 +616,6 @@ main
                                         outline:            1px solid rgba(82, 82, 82, 1);
 
                                         animation:          pulseBackground 2s infinite;
-
-                                        @keyframes pulseBackground
-                                        {
-                                            0%   { background-color: rgba(0, 255, 205, 1  ); }
-
-                                            100% { background-color: rgba(0, 255, 205, 0.6); }
-                                        }
                                     }
 
                                     .card-icons { @extend .dev-icons; }
@@ -667,7 +727,7 @@ main
                             }
                         }
 
-                        &.blank
+                        &.extra
                         {
                             display:            table-cell;
                             min-height:         31.5vh;
@@ -696,7 +756,7 @@ main
                                 padding-bottom:     20px;
                             }
 
-                            @extend .card-blank-scaling;
+                            @extend .mq-card-extra-scaling;
                         }
                     }
                 }
@@ -750,32 +810,56 @@ main
 
                 .modal-footer
                 {
-                    border-top-color: $borderColor;
+                    display:            block;
+                    box-sizing:         border-box;
+
+                    border-top-color:   $borderColor;
+
+
+                    @extend .vector-module;
+
+
+                    .wrapper-left
+                    {
+                        position:       relative;
+                        top:            -10px;
+
+                        display:        inline-block;
+
+                        width:          49%;
+
+                        padding-left:   5px;
+                    }
+
+                    .wrapper-right
+                    {
+                        display:    inline-block;
+
+                        width:      48%;
+
+                        .right { float: right; }
+                    }
 
                     .btn-primary
                     {
-                        background-color:   rgb(16, 43, 70);
-                        border-color:       rgb(43, 97, 177);
+                        background-color:   transparent;
+                        border-color:       rgba(255, 255, 255, 1);
+
+                        transition:         background-color 0.5s ease, border-color 0.5s ease;
 
                         img
                         {
                             position:       relative;
 
-                            top:            -2px;
+                            top:            -1px;
                             padding-right:  2px;
                         }
 
-                        &:hover { background-color: rgb(10, 88, 204); }
-
-                        &:focus { box-shadow: none; }
-                    }
-
-                    .btn-secondary
-                    {
-                        background-color:   rgb(98, 102, 105);
-                        border-color:       rgb(56, 56, 56);
-
-                        &:hover { background-color: rgb(130, 130, 131); }
+                        &:hover
+                        {
+                            background-color:   rgb(10, 88, 204);
+                            border-color:       transparent;
+                        }
 
                         &:focus { box-shadow: none; }
                     }
@@ -804,6 +888,11 @@ main
     .offcanvas
     {
         width: 45%;
+
+        @media ( max-width: 1200px )
+        {
+            width: 95%;
+        }
 
         .offcanvas-body
         {
@@ -1101,7 +1190,7 @@ main
                 height:             55px;                   // @note: don't change, value used by UI js
 
                 position:           relative;
-                left:               -5px;
+                padding-left:       1px;
                 z-index:            50;
 
                 font-family:        'Gafata';
@@ -1336,20 +1425,6 @@ main
             animation:  pulse 2s infinite;
 
             &:hover { animation: expand 2s ease 0s infinite normal none; }
-
-            @keyframes expand
-            {
-                0%   { transform: scale(1); opacity: 0.8; }
-                80%  { transform: scale(2); opacity: 0;   }
-                100% { transform: scale(3); opacity: 0;   }
-            }
-        }
-
-        @keyframes pulse
-        {
-            0%   { opacity: 0.4; }
-            50%  { opacity: 0.6; }
-            100% { opacity: 0.4; }
         }
     }
 }
@@ -1415,12 +1490,72 @@ $scrollbar-color-background: rgba(0,  31,  61, 0.36);
     z-index: 999 !important;
 }
 
+////    [ VECTOR ICONS ]    ////////////////////////////////
+
+.vector-module
+{
+    $color-default:     rgb(200, 200, 200);
+    $color-primary:     rgb(  7, 185, 237);
+    $color-secondary:   rgb(237, 139,   7);
+
+    background-color:   unset;
+    border:             unset;
+    outline:            unset;
+    box-shadow:         unset;
+    opacity:            1;
+
+    .extra-icon
+    {
+        $timing:        0.35s;
+
+        display:        flex;
+        height:         31px;
+
+        fill:           $color-default;
+        opacity:        0.5;
+        transform:      scale(1);
+
+        transition:     transform $timing ease, fill $timing ease, opacity $timing ease;
+
+        &:hover
+        {
+            fill:       white;
+            opacity:    1;
+            transform:  scale(1.2);
+        }
+
+        &:active
+        {
+            fill:       $color-primary;
+            opacity:    1;
+        }
+
+        &.selected
+        {
+            fill:       $color-primary;
+            opacity:    0.75;
+        }
+
+        &.disabled
+        {
+            cursor:     default;
+
+            &:hover
+            {
+                fill:       $color-default;
+                transform:  scale(1);
+                opacity:    0.5;
+            }
+        }
+    }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 ////    [ SCALING ]    /////////////////////////////////////////////////////////
 
 ////    [ TEST-CARD ]    ///////////////////////////////////
 
-.test-card-scaling
+.mq-test-card-scaling
 {
     @media (min-width: 1500px) { width: 102%; }
 
@@ -1453,20 +1588,56 @@ $scrollbar-color-background: rgba(0,  31,  61, 0.36);
 
 ////    [ TEST-CARD COLUMN ]    ////////////////////////////
 
-.test-card-column-scaling
+.mq-test-card-column-scaling
 {
-    @media (max-width: 1500px) { width: 25%            !important; }
+    // Mobile ( Landscape )
 
-    @media (max-width: 1200px) { width: 33.3333333333% !important; }
+    @media (max-width: 2424px) { width: 14.2857142857% !important; }            // COL 7
 
-    @media (max-width: 1000px) { width: 50%            !important; }
+    @media (max-width: 2100px) { width: 16.6666666666% !important; }            // COL 6
 
-    @media (max-width:  800px) { width: 100%           !important; }
+    @media (max-width: 1800px) { width: 20%            !important; }            // COL 5
+
+    @media (max-width: 1500px) { width: 25%            !important; }            // COL 4
+
+    @media (max-width: 1200px) { width: 33.3333333333% !important; }            // COL 3
+
+    @media (max-width:  800px) { width: 50%            !important; }            // COL 2
+
+    @media (max-width:  600px) { width: 100%           !important; }            // COL 1
+
+    // Mobile ( Portrait )
+
+    @media (max-width:  520px) { width: 98%            !important; }
+
+    @media (max-width:  510px) { width: 95%            !important; }
+
+    @media (max-width:  500px) { width: 92%            !important; }
+
+    @media (max-width:  490px) { width: 89%            !important; }
+
+    @media (max-width:  480px) { width: 86%            !important; }
+
+    @media (max-width:  470px) { width: 83%            !important; }
+
+    @media (max-width:  460px) { width: 80%            !important; }
+
+    @media (max-width:  450px) { width: 77%            !important; }
+
+    @media (max-width:  440px) { width: 74%            !important; }
+
+    @media (max-width:  430px) { width: 71%            !important; }
+
+    @media (max-width:  420px) { width: 68%            !important; }
+
+    @media (max-width:  410px) { width: 65%            !important; }
+
+    @media (max-width:  400px) { width: 62%            !important; }
 }
 
 ////    [ CARD BLANK ]    //////////////////////////////////
 
-.card-blank-scaling
+.mq-card-extra-scaling
 {
     @media (max-width: 2100px) { width: 23vw;   }
 
@@ -1497,4 +1668,124 @@ $scrollbar-color-background: rgba(0,  31,  61, 0.36);
     @media (max-width:  800px) { width: 16.5vw; }
 
     @media (max-width:  700px) { width: 16vw;   }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////    [ KEY-FRAMES ]    //////////////////////////////////////////////////////
+
+@keyframes fadeIn
+{
+   0%   { opacity: 0;  }
+
+   100% { opacity: 1;  }
+}
+
+@keyframes fadeInOut
+{
+   0%   { opacity: 0;  }
+
+   50%  { opacity: 0.5;}
+
+   100% { opacity: 0;  }
+}
+
+@keyframes fadeOut
+{
+   0%   { opacity: 1;  }
+
+   100% { opacity: 0;  }
+}
+
+@keyframes fadeOutIn
+{
+   0%   { opacity: 1;  }
+
+   50%  { opacity: 0.5;}
+
+   100% { opacity: 1;  }
+}
+
+@keyframes fadeInOut-delay
+{
+   0%   { opacity: 0;  }
+
+   25%  { opacity: 0.5;}
+
+   50%  { opacity: 0;  }
+
+   100% { opacity: 0;  }
+}
+
+@keyframes wiggle
+{
+   0%, 7%    { transform: rotateZ(0);      }
+
+   15%       { transform: rotateZ(-15deg); }
+
+   20%       { transform: rotateZ(10deg);  }
+
+   25%       { transform: rotateZ(-10deg); }
+
+   30%       { transform: rotateZ(6deg);   }
+
+   35%       { transform: rotateZ(-4deg);  }
+
+   40%, 100% { transform: rotateZ(0);      }
+}
+
+@keyframes pulseBackground
+{
+    0%   { background-color: rgba(0, 255, 205, 1  ); }
+
+    100% { background-color: rgba(0, 255, 205, 0.6); }
+}
+
+@keyframes growIn
+{
+    0%   { transform: scale( 0.90 ); }
+
+    100% { transform: scale( 1 );    }
+}
+
+@keyframes growOut
+{
+    0%   { transform: scale( 1 );    }
+
+    100% { transform: scale( 1.10 ); }
+}
+
+@keyframes growOutIn
+{
+    0%   { transform: scale( 1 );    }
+
+    50%  { transform: scale( 1.5 );  }
+
+    100% { transform: scale( 1 );    }
+}
+
+@keyframes growOutIn
+{
+    0%   { transform: scale( 1 );    }
+
+    50%  { transform: scale( 1.10 ); }
+
+    100% { transform: scale( 1 );    }
+}
+
+@keyframes expand
+{
+    0%   { transform: scale(1); opacity: 0.8; }
+
+    80%  { transform: scale(2); opacity: 0;   }
+
+    100% { transform: scale(3); opacity: 0;   }
+}
+
+@keyframes pulse
+{
+    0%   { opacity: 0.4; }
+
+    50%  { opacity: 0.6; }
+
+    100% { opacity: 0.4; }
 }

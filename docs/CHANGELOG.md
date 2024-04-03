@@ -1,6 +1,26 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.11] - 2024-04-03
+### Changed
+- **dev-tools**
+  - renamed functions
+    - `_cardTemplate ( )` to `_cardTemplateStandard ( )`
+    - `_cardTemplateBlank ( )` to `_cardTemplateExtra ( )`
+    - `_setModalEventListener ( )` to `_setModalViewEventListener ( )`
+    - `_setDefaultPage ( )` to `_setEnvironment ( )`
+
+### Added
+- **dev-tools**
+  - `_isNavOpen ( )` function, to return whether the navigation bar is open
+  - `_scaleNav ( )` function, to scale navigation area to open or closed state
+  - `_setNavScalerEventListener ( )` function, to set navigation scaler event listener
+  - `_getCardColumnCount ( )` function, to return the amount of columns available per the present resolution
+  - `_getCardExtraCount ( )` function, to return the amount of extra cards to embed
+  - `_getCardExtras ( )` function, to return an Array of extra HTML templates; to align cards
+  - `_getCards ( )` function, to return an Array of standard & extra HTML templates for each card-object
+  - `_toTitleCaseCustom ( )` function, to convert string to title case; with exceptions
+
 ## [0.1.10] - 2023-12-27
 ### Added
 - **dev-tools**
@@ -182,7 +202,8 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.1.10] | 2023-12-27 | CURRENT                                                             | Implemented lab-station full-screen & navigation toggles.                                    |
+| [0.1.11] | 2024-04-03 | CURRENT                                                             | Implemented dev-tools navigation toggle & refactored RWD for mobile devices.                 |
+| [0.1.10] | 2023-12-27 | [3ccf9b4](https://github.com/Justin-Byrne/canvasLab/commit/3ccf9b4) | Implemented lab-station full-screen & navigation toggles.                                    |
 | [0.1.9]  | 2023-12-26 | [c694fb6](https://github.com/Justin-Byrne/canvasLab/commit/c694fb6) | Implemented UI enhancements & color-picker for ace-editor.                                   |
 | [0.1.8]  | 2023-12-18 | [766c4ae](https://github.com/Justin-Byrne/canvasLab/commit/766c4ae) | Implemented lab station, ace9, & script editor.                                              |
 | [0.1.7]  | 2023-12-08 | [1b28ce8](https://github.com/Justin-Byrne/canvasLab/commit/1b28ce8) | Implemented preset timing (easing functions) selection for animations.                       |

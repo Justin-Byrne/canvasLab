@@ -1,9 +1,9 @@
 # canvasLab
 
 ![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Chrome-120.0.6099.129-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
+<img src="https://img.shields.io/badge/Chrome-123.0.6312.106-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
 ![issues](https://img.shields.io/github/issues/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Version-0.1.10-green?style=flat-square" />
+<img src="https://img.shields.io/badge/Version-0.1.11-green?style=flat-square" />
 <img src="https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab?style=flat-square" />
 
 HTML5 canvas drawing framework
@@ -75,7 +75,7 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── JSDoc.md
 ├── script
 │   ├── distro
-│   │   ├── canvasLab-v0.1.10.js    [ 196 kb ]
+│   │   ├── canvasLab-v0.1.11.js    [ 196 kb ]
 │   │   ├── canvasLab.min.js        [ 52 kb ]
 │   │   └── canvasLab.min.js.map
 │   └── source
@@ -113,6 +113,7 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │           │   ├── ControlPoints.js
 │           │   ├── Fill.js
 │           │   ├── Font.js
+│           │   ├── LinearGradient.js
 │           │   ├── Options.js
 │           │   ├── Point.js
 │           │   ├── Shadow.js
@@ -127,4 +128,4 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 
 ![Byrne-Systems](https://github.com/Justin-Byrne/canvasLab/blob/main/images/cube_sm.png)
 
-= Byrne-Systems © 2023 - All rights reserved. =
+= Byrne-Systems © 2024 - All rights reserved. =

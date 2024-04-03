@@ -1,42 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: canvasLab-v0.1.10.js</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: canvasLab-v0.1.10.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>// @program: 		canvasLab 
+// @program: 		canvasLab 
 // @brief: 			HTML5 canvas drawing framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.1.10 
+// @version: 		0.1.11 
 // @license: 		GPL-2.0
 
 "use strict";
  
 /**
- * Base object for shared accessors &amp; mutators
+ * Base object for shared accessors & mutators
  * @namespace       PROPERTY_BLOCKS
  */
 const PROPERTY_BLOCKS =
@@ -428,7 +400,7 @@ const VALIDATION =
     },
     isAlpha ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 1  )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  )  );
     },
     isAspect ( value )
     {
@@ -441,19 +413,235 @@ const VALIDATION =
         let _height = ( value.hasOwnProperty ( 'height' ) ) ? ( typeof value.height === 'number' ) : false;
 
 
-        return ( _aspect || _width &amp;&amp; _height &amp;&amp; _length );
+        return ( _aspect || _width && _height && _length );
     },
     isBlur ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 )  );
     },
     isCanvasLabObject ( value )
     {
         return (  ( value instanceof Line )  ||  ( value instanceof Circle )  ||  ( value instanceof Rectangle )  ||  ( value instanceof Text )  );
     },
+    isColorName ( value )
+    {
+        let _colors =
+        {
+            A:
+            [
+                'aliceblue',
+                'antiquewhite',
+                'aqua',
+                'aquamarine',
+                'azure'
+            ],
+            B:
+            [
+                'beige',
+                'bisque',
+                'black',
+                'blanchedalmond',
+                'blue',
+                'blueviolet',
+                'brown',
+                'burlywood'
+            ],
+            C:
+            [
+                'cadetblue',
+                'chartreuse',
+                'chocolate',
+                'coral',
+                'cornflowerblue',
+                'cornsilk',
+                'crimson',
+                'cyan'
+            ],
+            D:
+            [
+                'darkblue',
+                'darkcyan',
+                'darkgoldenrod',
+                'darkgray',
+                'darkgreen',
+                'darkkhaki',
+                'darkmagenta',
+                'darkolivegreen',
+                'darkorange',
+                'darkorchid',
+                'darkred',
+                'darksalmon',
+                'darkseagreen',
+                'darkslateblue',
+                'darkslategray',
+                'darkturquoise',
+                'darkviolet',
+                'deeppink',
+                'deepskyblue',
+                'dimgray',
+                'dodgerblue'
+            ],
+            E: [ ],
+            F:
+            [
+                'firebrick',
+                'floralwhite',
+                'forestgreen',
+                'fuchsia'
+            ],
+            G:
+            [
+                'gainsboro',
+                'ghostwhite',
+                'gold',
+                'goldenrod',
+                'gray',
+                'green',
+                'greenyellow'
+            ],
+            H:
+            [
+                'honeydew',
+                'hotpink'
+            ],
+            I:
+            [
+                'indianred',
+                'indigo',
+                'ivory'
+            ],
+            J: [ ],
+            K:
+            [
+                'khaki'
+            ],
+            L:
+            [
+                'lavender',
+                'lavenderblush',
+                'lawngreen',
+                'lemonchiffon',
+                'lightblue',
+                'lightcoral',
+                'lightcyan',
+                'lightgoldenrodyellow',
+                'lightgreen',
+                'lightgrey',
+                'lightpink',
+                'lightsalmon',
+                'lightseagreen',
+                'lightskyblue',
+                'lightslategray',
+                'lightsteelblue',
+                'lightyellow',
+                'lime',
+                'limegreen',
+                'linen'
+            ],
+            M:
+            [
+                'magenta',
+                'maroon',
+                'mediumaquamarine',
+                'mediumblue',
+                'mediumorchid',
+                'mediumpurple',
+                'mediumseagreen',
+                'mediumslateblue',
+                'mediumspringgreen',
+                'mediumturquoise',
+                'mediumvioletred',
+                'midnightblue',
+                'mintcream',
+                'mistyrose',
+                'moccasin'
+            ],
+            N:
+            [
+                'navajowhite',
+                'navy',
+                'navyblue'
+            ],
+            O:
+            [
+                'oldlace',
+                'olive',
+                'olivedrab',
+                'orange',
+                'orangered',
+                'orchid'
+            ],
+            P:
+            [
+                'palegoldenrod',
+                'palegreen',
+                'paleturquoise',
+                'palevioletred',
+                'papayawhip',
+                'peachpuff',
+                'peru',
+                'pink',
+                'plum',
+                'powderblue',
+                'purple'
+            ],
+            Q: [ ],
+            R:
+            [
+                'red',
+                'rosybrown',
+                'royalblue'
+            ],
+            S:
+            [
+                'saddlebrown',
+                'salmon',
+                'sandybrown',
+                'seagreen',
+                'seashell',
+                'sienna',
+                'silver',
+                'skyblue',
+                'slateblue',
+                'slategray',
+                'snow',
+                'springgreen',
+                'steelblue'
+            ],
+            T:
+            [
+                'tan',
+                'teal',
+                'thistle',
+                'tomato',
+                'turquoise'
+            ],
+            U: [ ],
+            V:
+            [
+                'violet'
+            ],
+            W:
+            [
+                'wheat',
+                'white',
+                'whitesmoke'
+            ],
+            X: [ ],
+            Y:
+            [
+                'yellow',
+                'yellowgreen'
+            ],
+            Z: [ ]
+        }
+
+
+        return _colors [ value [ 0 ].toUpperCase ( ) ].includes ( value );
+    },
     isDegree ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value &lt;= 360 )  );
+        return (  ( typeof value === 'number' )  &&  ( value <= 360 )  );
     },
     isInDom ( elementId )
     {
@@ -461,7 +649,7 @@ const VALIDATION =
     },
     isNumber ( value )
     {
-        return (  ( typeof value === 'number')  &amp;&amp;  !isNaN ( value )  );
+        return (  ( typeof value === 'number')  &&  !isNaN ( value )  );
     },
     isPoint ( value )
     {
@@ -474,15 +662,15 @@ const VALIDATION =
         let _y      = ( value.hasOwnProperty ( 'y' ) ) ? ( typeof value.y === 'number' ) : false;
 
 
-        return ( _point || _length &amp;&amp; _x &amp;&amp; _y );
+        return ( _point || _length && _x && _y );
     },
     isRadian ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 6.283185307179586 )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 6.283185307179586 )  );
     },
     isRadius ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value > 0 )  );
+        return (  ( typeof value === 'number' )  &&  ( value > 0 )  );
     },
     isRgb ( value )
     {
@@ -510,11 +698,11 @@ const VALIDATION =
     },
     isType ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 1 )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1 )  );
     },
     isWidth ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 )  );
     }
 }
  
@@ -634,7 +822,7 @@ class canvasLab
 
         set state ( canvas )
         {
-            let _canvas = (  ( canvas == undefined )  &amp;&amp;  ( this._canvas instanceof CanvasRenderingContext2D )  )
+            let _canvas = (  ( canvas == undefined )  &&  ( this._canvas instanceof CanvasRenderingContext2D )  )
 
                               ? this.canvas
 
@@ -662,7 +850,7 @@ class canvasLab
 
         /**
          * Animates onscreen objects in accordance with passed param values
-         * @param           {Object}   flow                     Contains timing, draw, &amp; duration values &amp; functions
+         * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
          * @param           {number}   flow.duration            Duration of animation
          * @param           {Function} flow.timing              Timing function
          * @param           {Function} flow.draw                Draw function
@@ -679,7 +867,7 @@ class canvasLab
             let _canvases = document.getElementsByTagName ( 'canvas' );
 
 
-            if ( typeof _canvases === 'object' &amp;&amp; this._canvases === undefined )
+            if ( typeof _canvases === 'object' && this._canvases === undefined )
 
                 for ( let _id in _canvases )
 
@@ -695,7 +883,7 @@ class canvasLab
  
 /**
  * @class           {Object} Anchor                             Anchor object
- * @property        {Point}  point                              X &amp; Y axis coordinates
+ * @property        {Point}  point                              X & Y axis coordinates
  * @property        {string} align                              Anchor alignment
  */
 class Anchor
@@ -928,7 +1116,7 @@ class Aspect
          */
         set width ( value )
         {
-            this._width = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._width;
+            this._width = ( typeof value === 'number' && value > 0 ) ? value : this._width;
         }
 
         /**
@@ -948,7 +1136,7 @@ class Aspect
          */
         set height ( value )
         {
-            this._height = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._height;
+            this._height = ( typeof value === 'number' && value > 0 ) ? value : this._height;
         }
 
         /**
@@ -960,7 +1148,7 @@ class Aspect
             return this._height;
         }
 
-    ////    &amp; EXTEND &amp;   ///////////////////////////////////
+    ////    & EXTEND &   ///////////////////////////////////
 
         /**
          * Get center of height
@@ -1220,7 +1408,7 @@ class Font
 
                 if ( window.canvaslab instanceof canvasLab )
                 {
-                    let _regex = /(\w+(\s))?(?&lt;size>\d+)px\s(?&lt;type>\w.+)/;
+                    let _regex = /(\w+(\s))?(?<size>\d+)px\s(?<type>\w.+)/;
 
                     let _font  = canvaslab.font;
 
@@ -1325,7 +1513,7 @@ class Font
             return this._offset;
         }
 
-    ////    &amp; EXTEND &amp;   ///////////////////////////////////
+    ////    & EXTEND &   ///////////////////////////////////
 
         /**
          * Set font
@@ -1344,6 +1532,106 @@ class Font
         {
             return `${this._weight} ${this._size}px ${this._type}`;
         }
+}
+ 
+/**
+ * @class           {Object} LinearGradient                     LinearGradient properties of associated object
+ */
+class LinearGradient
+{
+    _start      = new Point;
+    _end        = new Point;
+
+    _colorStops = new Object;
+
+    /**
+     * Create a LinearGradient
+     * @property        {Point} start                              Starting point of linear gradient
+     * @property        {Point} end                                Ending point of linear gradient
+     * @property        {Array} colorStops                         Array of color stops
+     */
+    constructor ( start, end, colorStops )
+    {
+        ////    COMPOSITION     ////////////////////////////
+
+            // this._isRgb   = VALIDATION.isRgb;
+            // this._isAlpha = VALIDATION.isAlpha;
+            this._isPoint  = VALIDATION.isPoint;
+            // this._isNumber = VALIDATION.isNumber;
+
+            this._getRgb = UTILITIES.get.rgb;
+
+        // this.color = color;
+        // this.alpha = alpha;
+    }
+
+    ////    [ START ]   ////////////////////////////////////
+
+        /**
+         * Set starting point
+         * @param           {Point} value                               Starting point
+         */
+        set start ( value )
+        {
+            this._start = ( this._isPoint ( value ) ) ? value : this._start;
+        }
+
+        /**
+         * Set starting point
+         * @return          {Point}                                     Starting point
+         */
+        get start ( )
+        {
+            return this._start;
+        }
+
+    ////    [ END ]     ////////////////////////////////////
+
+        /**
+         * Set ending point
+         * @param           {Point} value                               Ending point
+         */
+        set end ( value )
+        {
+            this._end = ( this._isPoint ( value ) ) ? value : this._end;
+        }
+
+        /**
+         * Set ending point
+         * @return          {Point}                                     Ending point
+         */
+        get end ( )
+        {
+            return this._end;
+        }
+
+    ////    [ COLORSTOP ]    ///////////////////////////////
+
+
+
+
+    ////    [ COLORSTOPS ]    //////////////////////////////
+
+
+
+
+        // gradient.addColorStop(0, "green");
+        // gradient.addColorStop(0.5, "cyan");
+        // gradient.addColorStop(1, "green");
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        // _isRgb   ( ) { }
+
+        // _isAlpha ( ) { }
+
+        _isPoint  ( ) { }
+
+        // _isNumber ( ) { }
+
+    ////    UTILITIES   ////////////////////////////////////
+
+        _getRgb ( ) { }
 }
  
 /**
@@ -1540,7 +1828,7 @@ class Options
 }
  
 /**
- * @class           {Object}  Point                             X &amp; Y coordinates for an object
+ * @class           {Object}  Point                             X & Y coordinates for an object
  * @property        {number}  [x=0]                             X - x-axis coordinate
  * @property        {number}  [y=0]                             Y - y-axis coordinate
  * @property        {Options} options                           Ancillary properties
@@ -1586,7 +1874,7 @@ class Point
          */
         set x ( value )
         {
-            this._x = (  ( typeof value === 'number' )  &amp;&amp;  !isNaN ( value )  ) ? value : this._x;
+            this._x = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._x;
         }
 
         /**
@@ -1606,7 +1894,7 @@ class Point
          */
         set y ( value )
         {
-            this._y = (  ( typeof value === 'number' )  &amp;&amp;  !isNaN ( value )  ) ? value : this._y;
+            this._y = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._y;
         }
 
         /**
@@ -1643,7 +1931,7 @@ class Point
             return this.#_options;
         }
 
-    ////    &amp; EXTEND &amp;  ////////////////////////////////////
+    ////    & EXTEND &  ////////////////////////////////////
 
         /**
          * Get center of this object
@@ -1684,7 +1972,7 @@ class Point
         }
 
         /**
-         * Invert x &amp; y coordinate values
+         * Invert x & y coordinate values
          */
         invert ( )
         {
@@ -2173,7 +2461,7 @@ class OptionsCollection
 }
  
 /**
- * @class           {Object}  PointCollection                   X &amp; Y coordinates for an object
+ * @class           {Object}  PointCollection                   X & Y coordinates for an object
  * @property        {number}  [x=0]                             X - x-axis coordinate
  * @property        {number}  [y=0]                             Y - y-axis coordinate
  * @property        {OptionsCollection} options                 Ancillary properties
@@ -2252,7 +2540,7 @@ class PointCollection
     ////    UTILITIES   ////////////////////////////////////
 
         /**
-         * Invert x &amp; y coordinate values
+         * Invert x & y coordinate values
          */
         invert ( )
         {
@@ -2586,7 +2874,7 @@ class StrokeCollection
  
 /**
  * @class           {Object} Circle                             Circle object
- * @property        {Point}  point                              X &amp; Y axis coordinates
+ * @property        {Point}  point                              X & Y axis coordinates
  * @property        {number} [radius=25]                        Radius of circle
  * @property        {Angle}  angle                              Angle properties
  * @property        {Stroke} stroke                             Stroke properties
@@ -2610,7 +2898,7 @@ class Circle
 
     /**
      * Create a circle
-     * @property        {Point}  point                              X &amp; Y axis coordinates
+     * @property        {Point}  point                              X & Y axis coordinates
      * @property        {number} radius                             Radius of circle
      * @property        {Angle}  angle                              Angle properties
      * @property        {Stroke} stroke                             Stroke properties
@@ -2669,21 +2957,21 @@ class Circle
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
+            this.#_options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
     }
 
     ////    [ POINT ]   ////////////////////////////////////
 
         /**
          * Set point
-         * @param           {Point} value                               X &amp; Y coordinates
+         * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
         set point ( value ) { }
 
         /**
          * Get point
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
         get point ( ) { }
@@ -2726,7 +3014,7 @@ class Circle
          */
         set radius ( value )
         {
-            this._radius = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._radius;
+            this._radius = ( typeof value === 'number' && value > 0 ) ? value : this._radius;
         }
 
         /**
@@ -2820,7 +3108,7 @@ class Circle
             return this.#_options;
         }
 
-    ////    &amp; EXTEND &amp;  ////////////////////////////////////
+    ////    & EXTEND &  ////////////////////////////////////
 
         /**
          * Get area of this object
@@ -3044,9 +3332,9 @@ class Circle
             if ( circle instanceof this.constructor )
 
                 return (
-                           ( this.point.x == circle.point.x ) &amp;&amp;                // Point X
+                           ( this.point.x == circle.point.x ) &&                // Point X
 
-                           ( this.point.y == circle.point.y ) &amp;&amp;                // Point Y
+                           ( this.point.y == circle.point.y ) &&                // Point Y
 
                            ( this.radius  == circle.radius  )                   // Radius
 
@@ -3125,8 +3413,8 @@ class Circle
  
 /**
  * @class           {Object} Line                               Line object
- * @property        {Point}  start                              X &amp; Y axis coordinates (start)
- * @property        {Point}  end                                X &amp; Y axis coordinates (end)
+ * @property        {Point}  start                              X & Y axis coordinates (start)
+ * @property        {Point}  end                                X & Y axis coordinates (end)
  * @property        {Stroke} stroke                             Stroke properties
  * @property        {Shadow} shadow                             Shadow properties
  * @property        {string} [lineCap='round']                  Shape of end points
@@ -3227,7 +3515,7 @@ class Line
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow      = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
+            this.#_options.shadow      = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
             this.#_options.master      = this;
 
             this._start.options.master = this;
@@ -3372,7 +3660,7 @@ class Line
             return this.#_controlPoints;
         }
 
-    ////    &amp; EXTEND &amp;  ////////////////////////////////////
+    ////    & EXTEND &  ////////////////////////////////////
 
         /**
          * Get center of this object
@@ -3465,7 +3753,7 @@ class Line
         }
 
         /**
-         * Draws associated options for start &amp; end points
+         * Draws associated options for start & end points
          * @param           {number} [offset=10]                        Offset of drawable options
          */
         drawPoints ( )
@@ -3719,11 +4007,11 @@ class Line
                 let _lineStart = _toString ( line.start.x, line.start.y ), _lineEnd = _toString ( line.end.x, line.end.y );
 
 
-                return (  ( _thisStart == _lineStart )  &amp;&amp;  ( _thisEnd == _lineEnd )  )
+                return (  ( _thisStart == _lineStart )  &&  ( _thisEnd == _lineEnd )  )
 
                            ? true
 
-                           : (  ( _thisStart == _lineEnd )  &amp;&amp;  ( _thisEnd == _lineStart )  );
+                           : (  ( _thisStart == _lineEnd )  &&  ( _thisEnd == _lineStart )  );
             }
             else
 
@@ -3803,7 +4091,7 @@ class Line
  
 /**
  * @class           {Object} Rectangle                          Rectangle object
- * @property        {Point}  point                              X &amp; Y axis coordinates
+ * @property        {Point}  point                              X & Y axis coordinates
  * @property        {Aspect} aspect                             Aspect properties
  * @property        {Stroke} stroke                             Stroke properties
  * @property        {Fill}   fill                               Fill properties
@@ -3825,7 +4113,7 @@ class Rectangle
 
     /**
      * Create a rectangle
-     * @property        {Point}  point                              X &amp; Y axis coordinates
+     * @property        {Point}  point                              X & Y axis coordinates
      * @property        {Aspect} aspect                             Aspect properties
      * @property        {Stroke} stroke                             Stroke properties
      * @property        {Fill}   fill                               Fill properties
@@ -3880,21 +4168,21 @@ class Rectangle
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
+            this.#_options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
     }
 
     ////    [ POINT ]   ////////////////////////////////////
 
         /**
          * Set point
-         * @param           {Point} value                               X &amp; Y coordinates
+         * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
         set point ( value ) { }
 
         /**
          * Get point
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
         get point ( ) { }
@@ -3956,7 +4244,7 @@ class Rectangle
          */
         set width  ( value )
         {
-            this._aspect.width = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._aspect._width;
+            this._aspect.width = ( typeof value === 'number' && value > 0 ) ? value : this._aspect._width;
         }
 
         /**
@@ -3975,7 +4263,7 @@ class Rectangle
          */
         set height ( value )
         {
-            this._aspect.height = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._aspect._height;
+            this._aspect.height = ( typeof value === 'number' && value > 0 ) ? value : this._aspect._height;
         }
 
         /**
@@ -4199,11 +4487,11 @@ class Rectangle
             if ( rectangle instanceof this.constructor )
 
                 return (
-                           ( this.x      == rectangle.x      ) &amp;&amp;               // Point X
+                           ( this.x      == rectangle.x      ) &&               // Point X
 
-                           ( this.y      == rectangle.y      ) &amp;&amp;               // Point Y
+                           ( this.y      == rectangle.y      ) &&               // Point Y
 
-                           ( this.width  == rectangle.width  ) &amp;&amp;               // Width
+                           ( this.width  == rectangle.width  ) &&               // Width
 
                            ( this.height == rectangle.height )                  // Height
 
@@ -4214,7 +4502,7 @@ class Rectangle
                 console.warn ( `"${rectangle.constructor.name}" is not of type ${this.constructor.name}` );
         }
 
-    ////    &amp; EXTEND &amp;  ////////////////////////////////////
+    ////    & EXTEND &  ////////////////////////////////////
 
         /**
          * Get area of this object
@@ -4299,7 +4587,7 @@ class Rectangle
  
 /**
  * @class           {Object} Text                               Text element to render within a canvas element
- * @property        {Point}  point                              X &amp; Y axis coordinates
+ * @property        {Point}  point                              X & Y axis coordinates
  * @property        {string} text                               Text to display
  * @property        {Stroke} stroke                             Stroke properties
  * @property        {Fill}   fill                               Fill properties
@@ -4320,7 +4608,7 @@ class Text extends Font
 
     /**
      * Create a text object
-     * @param           {Point}  point                              X &amp; Y axis coordinates
+     * @param           {Point}  point                              X & Y axis coordinates
      * @param           {string} text                               Text of text object
      * @param           {string} type                               Font type
      * @param           {number} size                               Font size
@@ -4387,21 +4675,21 @@ class Text extends Font
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
+            this.#_options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
     }
 
     ////    [ POINT ]   ////////////////////////////////////
 
         /**
          * Set point
-         * @param           {Point} value                               X &amp; Y coordinates
+         * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
         set point ( value ) { }
 
         /**
          * Get point
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
         get point ( ) { }
@@ -4816,7 +5104,7 @@ class Text extends Font
  
 /**
  * @class           {Array} Circles                             Collection of circle elements within an array
- * @property        {Point} point                               X &amp; Y axis coordinates
+ * @property        {Point} point                               X & Y axis coordinates
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  */
 class Circles extends Array
@@ -4899,8 +5187,8 @@ class Circles extends Array
 }
  
 /**
- * @class           {Array} Group                               Collection of Line, Circle, Rectangle &amp; Text objects
- * @property        {Point} point                               X &amp; Y axis coordinates
+ * @class           {Array} Group                               Collection of Line, Circle, Rectangle & Text objects
+ * @property        {Point} point                               X & Y axis coordinates
  * @property        {Array} lines                               Collection of Line objects
  * @property        {Array} circles                             Collection of Circle objects
  * @property        {Array} rectangles                          Collection of Rectangle objects
@@ -4940,7 +5228,7 @@ class Group extends Array
 
         /**
          * Set point
-         * @param           {Point} value                               X &amp; Y coordinates
+         * @param           {Point} value                               X & Y coordinates
          */
         set point ( value )
         {
@@ -4949,7 +5237,7 @@ class Group extends Array
 
         /**
          * Get point
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          */
         get point ( )
         {
@@ -5087,7 +5375,7 @@ class Group extends Array
  
 /**
  * @class           {Array} Lines                               Collection of Line objects
- * @property        {Point} point                               X &amp; Y axis coordinates
+ * @property        {Point} point                               X & Y axis coordinates
  * @property        {StrokeCollection} stroke                   Stroke collection properties
  * @property        {ShadowCollection} shadow                   Shadow collection properties
  * @property        {string} lineCap                            Shape of end points
@@ -5151,14 +5439,14 @@ class Lines extends Array
 
         /**
          * Set point
-         * @param           {Point} value                               X &amp; Y coordinates
+         * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
         set point ( value ) { }
 
         /**
          * Get point
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
         get point ( ) { }
@@ -5312,7 +5600,7 @@ class Lines extends Array
             return this.#_anchor;
         }
 
-    ////    &amp; EXTEND &amp;  ////////////////////////////////////
+    ////    & EXTEND &  ////////////////////////////////////
 
         /**
          * Get area of this object
@@ -5338,7 +5626,7 @@ class Lines extends Array
          */
         get center ( )
         {
-            const getMin = ( value, start, end ) => ( value === undefined ) ? start : ( start &lt; end ) ? ( start &lt; value ) ? start : value : ( end &lt; value ) ? end : value;
+            const getMin = ( value, start, end ) => ( value === undefined ) ? start : ( start < end ) ? ( start < value ) ? start : value : ( end < value ) ? end : value;
 
             let _x = undefined;
             let _y = undefined;
@@ -5468,7 +5756,7 @@ class Lines extends Array
 
         _setAspect ( )
         {
-            const getSpan = ( start, end ) => ( start &lt; end ) ? end - start : start - end;
+            const getSpan = ( start, end ) => ( start < end ) ? end - start : start - end;
 
 
             if ( this.length > 0 )
@@ -5492,7 +5780,7 @@ class Lines extends Array
 
         push ( )
         {
-            for ( let _i = 0; _i &lt; arguments.length; _i++ )
+            for ( let _i = 0; _i < arguments.length; _i++ )
 
                 ( arguments [ _i ] instanceof Line )
 
@@ -5511,7 +5799,7 @@ class Lines extends Array
  
 /**
  * @class           {Array} Rectangles                          Collection of Rectangle objects
- * @property        {Point} point                               X &amp; Y axis coordinates
+ * @property        {Point} point                               X & Y axis coordinates
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  */
 class Rectangles extends Array
@@ -5601,7 +5889,7 @@ class Rectangles extends Array
  
 /**
  * @class           {Array} Texts                               Collection of Text objects
- * @property        {Point} point                               X &amp; Y axis coordinates
+ * @property        {Point} point                               X & Y axis coordinates
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  */
 class Texts extends Array
@@ -5719,14 +6007,14 @@ class Animation
         ////    EASE-IN-OUT    /////////////////////////////////
 
             'easeInOutSine':    ( timeFraction ) => - ( Math.cos ( Math.PI * timeFraction ) - 1 ) / 2,
-            'easeInOutCubic':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
-            'easeInOutQuint':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
-            'easeInOutCirc':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
-            'easeInOutElastic': ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction &lt; 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
-            'easeInOutQuad':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
-            'easeInOutQuart':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
-            'easeInOutExpo':    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction &lt; 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
-            'easeInOutBack':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
+            'easeInOutCubic':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
+            'easeInOutQuint':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
+            'easeInOutCirc':    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
+            'easeInOutElastic': ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
+            'easeInOutQuad':    ( timeFraction ) => ( timeFraction < 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
+            'easeInOutQuart':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
+            'easeInOutExpo':    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
+            'easeInOutBack':    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
     }
 
     /**
@@ -5810,7 +6098,7 @@ class Animation
             // @TODO: Check to make sure that _timing, _draw, and _duration are properly set, prior to 'animating' !
             // could be set with a single internal variable, like #valid
 
-            if ( this._timing != undefined &amp;&amp; this._draw != undefined )
+            if ( this._timing != undefined && this._draw != undefined )
             {
                 let _start    = performance.now ( );
 
@@ -5834,7 +6122,7 @@ class Animation
                         _draw ( _progress );                                    // draw it
 
 
-                        if ( _timeFraction &lt; 1 )
+                        if ( _timeFraction < 1 )
 
                             requestAnimationFrame ( animate );
                     }
@@ -5873,8 +6161,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Dec, 27 2023',
-            Version:   '0.1.10',
+            Updated:   'Apr, 03 2024',
+            Version:   '0.1.11',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -5966,7 +6254,7 @@ class Application
 
         /**
          * Creates a new animation instance
-         * @param           {Object}   flow                     Contains timing, draw, &amp; duration values &amp; functions
+         * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
          * @param           {number}   flow.duration            Duration of animation
          * @param           {Function} flow.timing              Timing function
          * @param           {Function} flow.draw                Draw function
@@ -5990,7 +6278,7 @@ class Application
  */
 let initCanvasLab = ( canvas ) =>
 {
-    if ( typeof canvasLab === 'function' &amp;&amp; typeof window.canvaslab  === 'undefined' )
+    if ( typeof canvasLab === 'function' && typeof window.canvaslab  === 'undefined' )
 
         window.canvaslab = new canvasLab ( canvas );
 }
@@ -6045,26 +6333,3 @@ class Processing
         //         console.warn ( `"saved-state" does not exist !` );
         // }
 }
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="PROPERTY_BLOCKS.html">PROPERTY_BLOCKS</a></li><li><a href="UTILITIES.html">UTILITIES</a></li><li><a href="VALIDATION.html">VALIDATION</a></li></ul><h3>Classes</h3><ul><li><a href="Anchor.html">Anchor</a></li><li><a href="Angle.html">Angle</a></li><li><a href="Animation.html">Animation</a></li><li><a href="Aspect.html">Aspect</a></li><li><a href="Circle.html">Circle</a></li><li><a href="Circles.html">Circles</a></li><li><a href="ControlPoints.html">ControlPoints</a></li><li><a href="Fill.html">Fill</a></li><li><a href="Font.html">Font</a></li><li><a href="Group.html">Group</a></li><li><a href="Line.html">Line</a></li><li><a href="Lines.html">Lines</a></li><li><a href="Options.html">Options</a></li><li><a href="OptionsCollection.html">OptionsCollection</a></li><li><a href="Point.html">Point</a></li><li><a href="PointCollection.html">PointCollection</a></li><li><a href="Rectangle.html">Rectangle</a></li><li><a href="Rectangles.html">Rectangles</a></li><li><a href="Shadow.html">Shadow</a></li><li><a href="ShadowCollection.html">ShadowCollection</a></li><li><a href="Stroke.html">Stroke</a></li><li><a href="StrokeCollection.html">StrokeCollection</a></li><li><a href="Text.html">Text</a></li><li><a href="Texts.html">Texts</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEBUG">DEBUG</a></li><li><a href="global.html#collection">collection</a></li><li><a href="global.html#combined">combined</a></li><li><a href="global.html#discrete">discrete</a></li><li><a href="global.html#draw">draw</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#initCanvasLab">initCanvasLab</a></li><li><a href="global.html#set">set</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Dec 27 2023 12:02:03 GMT-0800 (Pacific Standard Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
-</html>

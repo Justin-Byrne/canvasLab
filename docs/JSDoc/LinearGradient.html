@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Texts</title>
+    <title>JSDoc: Class: LinearGradient</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Texts</h1>
+    <h1 class="page-title">Class: LinearGradient</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Texts<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>LinearGradient<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">{Array} Texts                               Collection of Text objects</div>
+            <div class="class-description">{Object} LinearGradient                     LinearGradient properties of associated object</div>
         
     
 </header>
@@ -45,12 +45,16 @@
     
 
     
-    <h4 class="name" id="Texts"><span class="type-signature"></span>new Texts<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="LinearGradient"><span class="type-signature"></span>new LinearGradient<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
 
 
+
+<div class="description">
+    Create a LinearGradient
+</div>
 
 
 
@@ -90,7 +94,7 @@
 
         <tr>
             
-                <td class="name"><code>point</code></td>
+                <td class="name"><code>start</code></td>
             
 
             <td class="type">
@@ -106,20 +110,20 @@
 
             
 
-            <td class="description last">X & Y axis coordinates</td>
+            <td class="description last">Starting point of linear gradient</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>canvas</code></td>
+                <td class="name"><code>end</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">HTMLCanvasElement</span>
+<span class="param-type"><a href="Point.html">Point</a></span>
 
 
             
@@ -129,7 +133,30 @@
 
             
 
-            <td class="description last">2D canvas context</td>
+            <td class="description last">Ending point of linear gradient</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>colorStops</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Array of color stops</td>
         </tr>
 
     
@@ -168,7 +195,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.1.11.js.html">canvasLab-v0.1.11.js</a>, <a href="canvasLab-v0.1.11.js.html#line5895">line 5895</a>
+        <a href="canvasLab-v0.1.11.js.html">canvasLab-v0.1.11.js</a>, <a href="canvasLab-v0.1.11.js.html#line1540">line 1540</a>
     </li></ul></dd>
     
 
@@ -218,13 +245,13 @@
 
         
             
-<h4 class="name" id="canvas"><span class="type-signature"></span>canvas<span class="type-signature"></span></h4>
+<h4 class="name" id="end"><span class="type-signature"></span>end<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    Set canvas value
+    Set ending point
 </div>
 
 
@@ -262,19 +289,12 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.1.11.js.html">canvasLab-v0.1.11.js</a>, <a href="canvasLab-v0.1.11.js.html#line5951">line 5951</a>
+        <a href="canvasLab-v0.1.11.js.html">canvasLab-v0.1.11.js</a>, <a href="canvasLab-v0.1.11.js.html#line1594">line 1594</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="global.html#combined#.canvas">combined.canvas</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -287,13 +307,13 @@
 
         
             
-<h4 class="name" id="canvas"><span class="type-signature"></span>canvas<span class="type-signature"></span></h4>
+<h4 class="name" id="end"><span class="type-signature"></span>end<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    Get canvas value
+    Set ending point
 </div>
 
 
@@ -331,19 +351,136 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.1.11.js.html">canvasLab-v0.1.11.js</a>, <a href="canvasLab-v0.1.11.js.html#line5958">line 5958</a>
+        <a href="canvasLab-v0.1.11.js.html">canvasLab-v0.1.11.js</a>, <a href="canvasLab-v0.1.11.js.html#line1603">line 1603</a>
     </li></ul></dd>
     
 
     
 
     
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="global.html#combined#.canvas">combined.canvas</a></li>
-        </ul>
-    </dd>
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="start"><span class="type-signature"></span>start<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Set starting point
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.1.11.js.html">canvasLab-v0.1.11.js</a>, <a href="canvasLab-v0.1.11.js.html#line1574">line 1574</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="start"><span class="type-signature"></span>start<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Set starting point
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.1.11.js.html">canvasLab-v0.1.11.js</a>, <a href="canvasLab-v0.1.11.js.html#line1583">line 1583</a>
+    </li></ul></dd>
+    
+
+    
+
     
 
     
