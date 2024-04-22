@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g id="Artboard1" transform="matrix(0.927153,0,0,0.880275,0,0)">
+        <rect x="0" y="0" width="16" height="16" style="fill:none;"/>
+        <g transform="matrix(0.926815,0,0,-0.964236,1.12124,16.1149)">
+            <g id="Hexagram">
+                <path d="M7.417,1L1,12L14,12L7.417,1Z" style="fill:none;stroke:white;stroke-width:1.1px;"/>
+            </g>
+        </g>
+    </g>
+</svg>

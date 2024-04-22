@@ -1,0 +1,30 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Lab {
+editor                            <color:gray>{Object}</color>
+__ Setter __
+editor                            <color:gray>{Object}</color>
+__ Getter __
+editor                            <color:gray>{Object}</color>
+__ Utility __
+_getBoundingCharactersPositions   <color:gray>{Object}</color>
+_getColorPicker                   <color:gray>{Object}</color>
+_incrementValue                   <color:gray>{string}</color>
+_cleanCode                        <color:gray>{string}</color>
+True
+_setNumbericValue
+_setFontSize
+_setColorPickerPosition
+_setEventListeners
+_swapRgbValue
+_download
+INITIALIZER
+runCode
+eval
+init
+}
+
+@enduml

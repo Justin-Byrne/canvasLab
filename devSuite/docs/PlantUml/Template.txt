@@ -1,0 +1,23 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Template {
+standard                <color:gray>{string}</color>
+blank                   <color:gray>{string}</color>
+__ Getter __
+standard                <color:gray>{string}</color>
+blank                   <color:gray>{string}</color>
+Cards
+__ Utility __
+getCards                {Array}
+_getStandardTemplates   {Array}
+_getBlankTemplates      {Array}
+_getCodeTemplate        <color:gray>{string}</color>
+_getSpecialVariables    <color:gray>{string}</color>
+_getColumnCount         <color:gray>{number}</color>
+_getBlankCount          <color:gray>{number}</color>
+}
+
+@enduml

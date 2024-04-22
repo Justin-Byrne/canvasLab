@@ -5,50 +5,33 @@
 
 ## PROJECT SPECIFIC ################## ヽ(•‿•)ノ ##################
 
-declare VC_PACKAGE=canvasLab
+declare VC_PACKAGE=devSuite
 
-declare VC_BRIEF="HTML5 canvas drawing framework"
+declare VC_BRIEF="Developer tools for canvasLab drawing framework"
+
+declare VERSION="0.0.1"
 
 ## INPUT #########################################################
 
-declare INPUT_FOLDER=../script/source
+declare INPUT_FOLDER=../scripts/suite
 
 ## OUTPUT ########################################################
 
-declare OUTPUT_DIRECTORY=../script/distro
+declare OUTPUT_DIRECTORY=../scripts
 
-declare OUTPUT_JSDOC=../docs/JSDoc.md
-declare OUTPUT_JSDOCS=../docs/JSDoc
-
-### DEV SUITE ######################################
-
-declare DEVSUITE_INPUT=../devSuite/scripts/devSuite.js
-
-declare DEVSUITE_OUTPUT_JSDOC=../devSuite/docs/JSDoc.md
-declare DEVSUITE_OUTPUT_JSDOCS=../devSuite/docs/JSDoc
+declare OUTPUT="${OUTPUT_DIRECTORY}/${VC_PACKAGE}.js"
 
 ### PLANT UML ######################################
 
 declare PLANT_BUILD=~/Programs/Python/PlantUml/ClassGenerator/source/app
 
-declare PLANT_SOURCE=~/Programs/HTML5/canvasLab/script/source
+declare PLANT_SOURCE=~/Programs/HTML5/canvasLab/devSuite/scripts/suite/classes
 
-declare PLANT_OUTPUT=~/Programs/HTML5/canvasLab/docs/PlantUml
-
-### MD2JSON ########################################
-
-declare MD2JSON_BUILD=~/Programs/Python/Md2Json/source/app
-
-declare MD2JSON_SOURCE=~/Programs/HTML5/canvasLab/devSuite/docs/archive
-
-declare MD2JSON_OUTPUT=~/Programs/HTML5/canvasLab/devSuite/scripts/libs/md2json
-
-declare MD2JSON_CACHE=../devSuite/docs/archive
+declare PLANT_OUTPUT=~/Programs/HTML5/canvasLab/devSuite/docs/PlantUml
 
 ## MUTATATORS ####################################################
 
-declare LEAD_JS_FILE=${INPUT_FOLDER}/classes/Handlers/Application.js
-declare LEAD_HTML_FILE='../devSuite/index.html'
+declare LEAD_HTML_FILE=../index.html
 
 ## CACHE #########################################################
 
@@ -64,29 +47,21 @@ declare FILES
 # Files to be inserted prior to $FILES #
 # ------------------------------------ #
 declare FILES_HEAD=(
-    "${INPUT_FOLDER}/ancillary/shared/PropertyBlocks.js"
-    "${INPUT_FOLDER}/ancillary/shared/Utilities.js"
-    "${INPUT_FOLDER}/ancillary/shared/Validation.js"
-    "${INPUT_FOLDER}/ancillary/debug.js"
-    "${INPUT_FOLDER}/classes/canvasLab.js"
+    "${INPUT_FOLDER}/generics/prototypes.js"
 )
 
 # ------------------------------------ #
 # Specific folders to loop through     #
 # ------------------------------------ #
 declare FOLDERS=(
-    "${INPUT_FOLDER}/classes/Subject"
-    "${INPUT_FOLDER}/classes/Subject/Collections"
-    "${INPUT_FOLDER}/classes/Object"
-    "${INPUT_FOLDER}/classes/Object/Collections"
-    "${INPUT_FOLDER}/classes/Handlers"
+    "${INPUT_FOLDER}/classes"
 )
 
 # ------------------------------------ #
 # Root application file; if available  #
 # ------------------------------------ #
 declare FILES_FOOT=(
-    # "${INPUT_FOLDER}/classes/Application.js"
+    "${INPUT_FOLDER}/main.js"
 )
 
 ### GENERAL ########################################
@@ -124,31 +99,15 @@ declare TITLE_PACKAGE="${FG_PINK}${VC_PACKAGE}${NOCOLOR}"
 
 main ()
 {
-    clear
+	clear
 
     search_folders
 
-    get_package_version
-
     compile_output
 
-    compile_minified
+    # compile_minified
 
-    remove_legacy_distros
-
-    compile_jsdocs $OUTPUT $OUTPUT_JSDOCS
-
-    compile_jsdocs $DEVSUITE_INPUT $DEVSUITE_OUTPUT_JSDOCS
-
-    compile_jsdoc $OUTPUT $OUTPUT_JSDOC
-
-    compile_jsdoc $DEVSUITE_INPUT $DEVSUITE_OUTPUT_JSDOC
-
-    compile_md2json
-
-    # compile_plantuml
-
-    compile_readme
+    compile_plantuml
 
     complete
 }
@@ -156,6 +115,8 @@ main ()
 # FUNCTIONS ####################################################################
 
 ## COMPILE #######################################################
+
+declare OUTPUT
 
 function compile_header ()
 {
@@ -200,11 +161,6 @@ function compile_preamble ()
 
 function compile_output ()
 {
-    update_lead_js_file $LEAD_JS_FILE
-
-    update_lead_html_file $LEAD_HTML_FILE
-
-
     compile_header
 
 
@@ -227,7 +183,7 @@ function compile_output ()
     echo "${PROMPT_A} ${TITLE_PACKAGE} Compiling Complete ${TITLE_BASH} \t\t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
 
 
-    afplay audio/complete.mp3
+    afplay ../../build/audio/complete.mp3
 }
 
 function compile_minified ()
@@ -247,111 +203,7 @@ function compile_minified ()
 
     update_minified_js_preamble $FILE_MIN
 
-    afplay audio/shrink.mp3
-}
-
-function compile_readme ()
-{
-    if [ -e "readme.sh" ]
-    then
-        source readme.sh
-
-        echo "${PROMPT_A} ${FG_PINK}Read Me ${FG_WHITE}Complete ${TITLE_BASH}\t\t\t${FG_BLUE}[../README.md]${NOCOLOR}\n"
-    fi
-}
-
-function compile_jsdoc ()
-{
-    if command -v jsdoc2md
-    then
-        if $(jsdoc2md ${1} > $2)
-            then echo "\n${PROMPT_B} ${FG_PINK}JSDoc ${FG_WHITE}Complete ${TITLE_NODE}\t\t\t${FG_BLUE}[${2}]${NOCOLOR}\n"
-        else
-            NO_ERRORS=false
-        fi
-    fi
-}
-
-function compile_jsdocs ()
-{
-    $(rm -r $2)
-
-    if command -v jsdoc
-    then
-        if (jsdoc --private $1 -d $2)
-            then echo "\n${PROMPT_B} ${FG_PINK}JSDocs ${FG_WHITE}Complete ${TITLE_NODE}\t\t\t${FG_BLUE}[${2}]${NOCOLOR}\n"
-        else
-            NO_ERRORS=false
-        fi
-    fi
-}
-
-function compile_md2json ()
-{
-    declare DEFAULT_PATH=$(pwd)
-
-
-    function compile_markdown ()
-    {
-        if [ ! -d $MD2JSON_SOURCE ]; then
-            mkdir -p $MD2JSON_SOURCE;
-        fi
-
-
-        for FILE in ${FILES[@]}
-        do
-            BASE_NAME=$(basename ${FILE})
-
-            if command -v jsdoc2md >/dev/null
-            then
-                if $(jsdoc2md ${FILE} > $MD2JSON_CACHE/"${BASE_NAME//.js}.md")
-                    then echo "." >/dev/null
-                else
-                    NO_ERRORS=false
-                fi
-            fi
-        done
-    }
-
-    function compile_json ()
-    {
-        $(rm -r $MD2JSON_OUTPUT)
-
-
-        if [ ! -d $MD2JSON_OUTPUT ]; then
-            mkdir -p $MD2JSON_OUTPUT;
-        fi
-
-        # @TODO: TRIM HEAD OF MD2JSON_OUTPUT PATH
-        MD2JSON_OUTPUT_MSG="../devSuite/scripts/libs/md2json/md2json.js"
-
-        if command -v python3
-        then
-
-            if cd $MD2JSON_BUILD
-            then
-
-                if (python3 md2json.py $MD2JSON_SOURCE $MD2JSON_OUTPUT)
-                    then echo "\n${PROMPT_A} ${FG_PINK}Md2Json ${FG_WHITE}Complete ${TITLE_PYTHON}\t\t\t${FG_BLUE}[${MD2JSON_OUTPUT_MSG}]${NOCOLOR}\n"
-                else
-                    NO_ERRORS=false
-                fi
-
-                cd $DEFAULT_PATH
-
-            else
-                NO_ERRORS=false
-            fi
-
-        fi
-    }
-
-    compile_markdown
-
-    compile_json
-
-
-    $(rm -rf $MD2JSON_SOURCE)
+    afplay ../../build/audio/shrink.mp3
 }
 
 function compile_plantuml ()
@@ -389,17 +241,6 @@ function compile_plantuml ()
 
 ## UPDATE ########################################################
 
-function update_lead_js_file ()
-{
-    sed -r -i '' -e 's/Version:.+/Version:   '"'${VERSION}'"',/' ${1}
-    sed -r -i '' -e 's/Updated:.+/Updated:   '"'$(date +"%b, %d %Y")'"',/' ${1}
-}
-
-function update_lead_html_file ()
-{
-    sed -r -i '' -e 's/'${VC_PACKAGE}'-v.+/'${VC_PACKAGE}'-v'${VERSION}'-min.js"><\/script>/' ${1}
-}
-
 function update_minified_js_preamble ()
 {
     compile_preamble
@@ -408,23 +249,6 @@ function update_minified_js_preamble ()
 }
 
 ## GENERAL #######################################################
-
-function get_package_version ()
-{
-    VERSION=`head -n4 ../docs/CHANGELOG.md | awk '/## \[/{print $2}'`
-
-    LENGTH=${#VERSION}
-
-    LENGTH=$(($LENGTH-2))
-
-    VERSION=${VERSION:1:$LENGTH}
-
-
-    # SET MASTER OUTPUT VARIABLES
-    OUTPUT_MASTER=${VC_PACKAGE}-v${VERSION}.js
-
-    OUTPUT="${OUTPUT_DIRECTORY}/${OUTPUT_MASTER}"
-}
 
 function search_folder ()
 {
@@ -456,15 +280,6 @@ function flash_screen ()
     printf '\e[?5l'  # Turn on normal video
 }
 
-function remove_legacy_distros ()
-{
-    FILE_MAIN=${VC_PACKAGE}-v${VERSION}.js
-    FILE_MIN=${VC_PACKAGE}.min.js
-    FILE_MAP=${VC_PACKAGE}.min.js.map
-
-    find $OUTPUT_DIRECTORY -type f -not -name $FILE_MAIN -not -name $FILE_MIN -not -name $FILE_MAP -delete
-}
-
 ## COMPLETE ######################################################
 
 function complete ()
@@ -473,9 +288,9 @@ function complete ()
 
     if $NO_ERRORS
     then
-        afplay audio/success.mp3
+        afplay ../../build/audio/success.mp3
     else
-        afplay audio/failure.mp3
+        afplay ../../build/audio/failure.mp3
 
         flash_screen
     fi

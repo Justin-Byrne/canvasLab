@@ -1,0 +1,38 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Ui {
+toggle                 <color:gray>{Object}</color>
+clean                  <color:gray>{Object}</color>
+__ Getter __
+toggle                 <color:gray>{Object}</color>
+clean                  <color:gray>{Object}</color>
+Class
+__ Utility __
+script                 <color:gray>{string}</color>
+code                   <color:gray>{string}</color>
+imageTags              <color:gray>{string}</color>
+getClass               <color:gray>{string}</color>
+_getCode               <color:gray>{string}</color>
+_createEasingButtons   {HTMLElement}
+documentation
+navigation
+_setByrneSystemsLogo
+_setImagePath
+_setCardSection
+_setAlbumCards
+_setEventListeners
+alert
+clearScreen
+initCanvasLab
+_embedEasingButtons
+_checkCollapsible
+_collapseButtons
+INITIALIZER
+runEasingAnimation
+init
+}
+
+@enduml

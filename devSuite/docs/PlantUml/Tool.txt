@@ -1,0 +1,14 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Tool {
+copy                <color:gray>{Object}</color>
+__ Utility __
+delay               {Promise}
+copyObjectWithKey   <color:gray>{Object}</color>
+catch
+}
+
+@enduml
