@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.11] - 2024-05-22
+### Changed
+- **dev-tools** to **devSuite**
+- Updated UI
+
+### Added
+- **devSuite**
+  - `Template` class, for HTML card templates for UI
+  - `Page` class, for parsing page types
+  - `Tool` class, for general helpers
+  - `Ui` class, for user interface
+  - `Lab` class, for Lab with ace-editor
+
 ## [0.1.11] - 2024-04-03
 ### Changed
 - **dev-tools**
@@ -202,7 +215,8 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.1.11] | 2024-04-03 | CURRENT                                                             | Implemented dev-tools navigation toggle & refactored RWD for mobile devices.                 |
+| [0.2.11] | 2024-05-22 | CURRENT                                                             | Refactored dev-tools (devSuite) into independent classes & updated UI.                       |
+| [0.1.11] | 2024-04-03 | [6df392e](https://github.com/Justin-Byrne/canvasLab/commit/6df392e) | Implemented dev-tools navigation toggle & refactored RWD for mobile devices.                 |
 | [0.1.10] | 2023-12-27 | [3ccf9b4](https://github.com/Justin-Byrne/canvasLab/commit/3ccf9b4) | Implemented lab-station full-screen & navigation toggles.                                    |
 | [0.1.9]  | 2023-12-26 | [c694fb6](https://github.com/Justin-Byrne/canvasLab/commit/c694fb6) | Implemented UI enhancements & color-picker for ace-editor.                                   |
 | [0.1.8]  | 2023-12-18 | [766c4ae](https://github.com/Justin-Byrne/canvasLab/commit/766c4ae) | Implemented lab station, ace9, & script editor.                                              |
