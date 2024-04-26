@@ -10,8 +10,6 @@ class Page
     _group    = undefined;
     _subgroup = undefined;
 
-    _href     = undefined;
-
     /**
      * Creates a page
      * @property        {HTMLElement} button                HTML DOM Element
@@ -115,16 +113,13 @@ class Page
 
             if ( _match || typeof button === 'object' )
             {
-                this._href = _match.replace ( '#', '' );
+                let _button   = _match.replace ( '#', '' );
 
-                this.group    = this._href.match ( new RegExp ( /(Object|Subject|Animation)/ ) ) [ 0 ].toLowerCase ( );
+                this.group    = _button.match ( new RegExp ( /(Object|Subject|Animation)/ ) ) [ 0 ].toLowerCase ( );
 
-                this.type     = this._href.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
+                this.type     = _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
 
                 this.subgroup = ( this.group === 'animation' ) ? 'easing' : undefined;
             }
-            else
-
-                this._href = this._href;
         }
 }

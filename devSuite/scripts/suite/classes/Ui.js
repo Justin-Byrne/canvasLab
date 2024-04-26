@@ -8,6 +8,45 @@ class Ui
     _toggle =
     {
         /**
+         * Toggles the card button associated with the passed 'event' param
+         * @public
+         * @name cardButton
+         * @function
+         * @param           {HTMLEvent} event                   UI DOM event
+         */
+        cardButton ( event )
+        {
+            let _element = event.srcElement;
+
+
+            switch ( _element.tagName )
+            {
+                case 'IMG':
+
+                    let _buttonType = _element.getAttribute ( 'suite-button-type' );
+
+
+                    switch ( _buttonType )
+                    {
+                        case 'easing':          this._easingFunctions ( _element );     break;
+
+                        case 'documentation':   this._documentation   ( _element );     break;
+                    }
+
+                    break;
+
+                case 'LI':                      this._easingFunctions ( _element );     break;
+
+                case 'DIV':
+                case 'SPAN':
+                case 'CANVAS':                  this._modalCode ( _element );           break;
+            }
+
+
+            event.stopPropagation ( );
+        },
+
+        /**
          * Toggles opacity from bottom links in navigation area
          * @public
          * @name externalLinks
@@ -36,73 +75,6 @@ class Ui
             ( _state ) ? element.target.focus ( )
 
                        : element.target.blur  ( );
-        },
-
-        /**
-         * Toggles visibility of easing functions
-         * @public
-         * @name easingFunctions
-         * @function
-         * @param           {number} index                      Index of animation card
-         */
-        easingFunctions: ( index ) =>
-        {
-            this._embedEasingButtons ( );
-
-            let _functions = document.querySelectorAll ( '.easing-functions' );
-
-
-            ( _functions [ index ].style.visibility === 'hidden' || _functions [ index ].style.visibility === '' )
-
-                ? [ _functions [ index ].style.opacity, _functions [ index ].style.visibility ] = [ 1, 'visible' ]
-
-                : [ _functions [ index ].style.opacity, _functions [ index ].style.visibility ] = [ 0, 'hidden'  ];
-        },
-
-        /**
-         * Sets markdown content for the off canvas documentation element
-         * @public
-         * @name documentation
-         * @function
-         * @param           {string} type                       Object or Subject type
-         */
-        documentation ( type )
-        {
-            let _converter = new showdown.Converter;
-
-                _converter.setOption ( 'tables', true );
-
-
-            let _text = md2json [ type ];
-
-                _text = _text.replace ( /&quot;&#x27;/g, '"' )
-                             .replace ( /&#x27;&quot;/g, '"' );
-
-
-            let _html = _converter.makeHtml ( _text );
-
-
-            let _offcanvas     = document.querySelector ( '.offcanvas' );
-
-            let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
-
-                _offcanvasBody.innerHTML = _html;
-
-
-            let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );        // @TODO Investigate here !
-
-                _bsOffcanvas.toggle ( );
-
-
-            let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
-
-
-                _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
-                    {
-                        _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
-
-                        _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
-                    } );
         },
 
         /**
@@ -191,6 +163,116 @@ class Ui
             LAB.setCanvasSize ( );
 
             LAB.runCode       ( );
+        },
+
+        /**
+         * Toggles modal code element
+         * @private
+         * @name _modalCode
+         * @function
+         * @param           {HTMLElement} element               Main button element
+         */
+        _modalCode: ( element ) =>
+        {
+            let _element = element.offsetParent;
+
+            let _card =
+            {
+                title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
+
+                code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
+            }
+
+            let _modal =
+            {
+                title:   document.querySelector ( '#modal-code-label' ),
+
+                code:    document.querySelector ( 'code' ),
+
+                element: document.querySelector ( '#modal-code' )
+            }
+
+            let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
+
+
+            [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
+
+
+                _boostrapModal.toggle ( );
+
+                hljs.highlightAll ( );
+        },
+
+        /**
+         * Toggles visibility of easing functions
+         * @private
+         * @name _easingFunctions
+         * @function
+         * @param           {HTMLElement} element               Index of animation card
+         */
+        _easingFunctions: ( element ) =>
+        {
+            this._embedEasingButtons ( );
+
+
+            let _index     = Number ( element.getAttribute ( 'suite-data-index' ) );
+
+            let _functions = document.querySelectorAll ( '.easing-functions' );
+
+
+            ( _functions [ _index ].style.visibility === 'hidden' || _functions [ _index ].style.visibility === '' )
+
+                ? [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 1, 'visible' ]
+
+                : [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 0, 'hidden'  ];
+        },
+
+        /**
+         * Sets markdown content for the off canvas documentation element
+         * @private
+         * @name _documentation
+         * @function
+         * @param           {HTMLElement} element               Object or Subject type
+         */
+        _documentation ( element )
+        {
+            let _converter = new showdown.Converter;
+
+                _converter.setOption ( 'tables', true );
+
+
+            let _type = element.getAttribute ( 'suite-data-type' );
+
+            let _text = md2json [ _type ];
+
+                _text = _text.replace ( /&quot;&#x27;/g, '"' )
+                             .replace ( /&#x27;&quot;/g, '"' );
+
+
+            let _html = _converter.makeHtml ( _text );
+
+
+            let _offcanvas     = document.querySelector ( '.offcanvas' );
+
+            let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
+
+                _offcanvasBody.innerHTML = _html;
+
+
+            let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );        // @TODO Investigate here !
+
+                _bsOffcanvas.toggle ( );
+
+
+            let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
+
+
+                _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
+                    {
+                        _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
+
+                        _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
+                    } );
         },
     }
 
@@ -356,24 +438,22 @@ class Ui
         {
             let _element = document.getElementById ( 'byrne-systems-logo' );
 
+            let _album   = document.querySelector ( '.album' );
+
+            let _main    = document.querySelector ( 'main' );
+
+            let _nav     = document.querySelector ( 'nav'  );
+
+            let _div     = document.createElement ( 'div'  );
+
+            let _image   = document.createElement ( 'img'  );
+
+            ////    LOGIC    ///////////////////////////////////////////////////
 
             if ( _element ) _element.remove ( );
 
-            ////////////////////////////////////////////////////////////////////
-
-            let _album = document.querySelector ( '.album' );
 
                 _album.style.display = 'none';
-
-            ////////////////////////////////////////////////////////////////////
-
-            let _main  = document.getElementsByTagName ( 'main' ) [ 0 ];
-
-            let _nav   = document.getElementsByTagName ( 'nav'  ) [ 0 ];
-
-            let _div   = document.createElement ( 'div' );
-
-            let _image = document.createElement ( 'img' );
 
                 _image.src         = '../images/cube_sm.png';
 
@@ -464,8 +544,6 @@ class Ui
 
             this._setCardSection    ( _cardObjects );
 
-            this._setEventListeners ( );
-
 
             this._evalCardObjects   ( _cardObjects );
         }
@@ -551,7 +629,6 @@ class Ui
                         ... document.querySelectorAll ( '.mb-2:nth-child(-n+4) ul.btn-toggle-nav > li > a' )
                     ]
 
-
                     for ( let _button of _buttons )
 
                         _button.addEventListener ( 'click', ( element ) =>
@@ -559,57 +636,11 @@ class Ui
                                 PAGE = new Page ( _button );
 
 
-                                this.clearScreen ( );
-
-
                                 ( cardObjects [ PAGE.group ] [ PAGE.type ] )
 
                                     ? this._setAlbumCards ( )
 
                                     : this._setByrneSystemsLogo ( );
-                            } );
-
-                case 'modal':
-
-                    let _cards = document.querySelectorAll ( '.card' );
-
-
-                    for ( let _card of _cards )
-
-                        _card.addEventListener ( 'click', ( element ) =>
-                            {
-                                let _cardIcon = this._isCardIcon ( element );
-
-
-                                if ( ! _cardIcon )
-                                {
-                                    let _thisCard     = element.srcElement.closest ( '.card' );
-
-
-                                    let _cardCode     = _thisCard.getAttribute ( 'data-devtest-code' ).replace ( /_\d{1,3}/g, '' );
-
-                                    let _cardTitle    = _thisCard.getAttribute ( 'data-devtest-title' ).toTitleCase ( );
-
-
-                                    let _modalCode    = document.querySelector ( 'code' );
-
-                                    let _modalTitle   = document.querySelector ( '#modal-code-label' );
-
-
-                                    let _modalElement = document.querySelector ( '#modal-code' );
-
-                                    let _modal        = bootstrap.Modal.getOrCreateInstance ( _modalElement );
-
-
-                                        _modalTitle.innerHTML = _cardTitle;
-
-                                        _modalCode.innerHTML  = _cardCode;
-
-
-                                        _modal.toggle ( );
-
-                                        hljs.highlightAll ( );
-                                }
                             } );
 
                 case 'copy':
@@ -756,7 +787,7 @@ class Ui
             }
 
 
-            initCanvasLab ( );                              // @TODO: investigate re-initialization; through CanvasLab, or through here !
+            initCanvasLab ( );                              // @NOTE: canvasLab doesn't not initialize twice here, if there's already a preexisting 'window.canvasLab' object within the DOM
 
 
             if ( _markup.logo ) _markup.logo.remove ( );
@@ -764,25 +795,15 @@ class Ui
 
             _markup.main.style.overflowY = 'auto';
 
-            _markup.album.style.display = ( setCardAlbum ) ? 'block' : 'none';
+            _markup.album.style.display  = ( setCardAlbum ) ? 'block' : 'none';
 
-            _markup.cards.innerHTML     = '';
+            _markup.cards.innerHTML      = '';
 
-            _markup.lab.style.display   = 'none';
+            _markup.lab.style.display    = 'none';
 
 
             _markup.button.firstElementChild.classList.remove ( 'selected' );
         }
-
-        /**
-         * Returns whether the present click is on a card <img> icon
-         * @private
-         * @name _isCardIcon
-         * @function
-         * @param           {HTMLElement} element               HTML DOM Element
-         * @return          {boolean}                           True | False
-         */
-        _isCardIcon      = ( element )     => ( [ 'IMG', 'SPAN', 'LI' ].includes ( element.srcElement.tagName ) );
 
         /**
          * Returns whether the navigation bar is open
@@ -812,7 +833,7 @@ class Ui
         {
             let _easings = document.querySelectorAll ( '.easing' );
 
-            let _div      = this._createEasingButtons ( );
+            let _div     = this._createEasingButtons ( );
 
 
             for ( let _i = 0; _i < _easings.length; _i++ )

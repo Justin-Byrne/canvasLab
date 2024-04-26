@@ -107,7 +107,7 @@ main ()
 
     # compile_minified
 
-    compile_plantuml
+    # compile_plantuml
 
     complete
 }
@@ -183,7 +183,7 @@ function compile_output ()
     echo "${PROMPT_A} ${TITLE_PACKAGE} Compiling Complete ${TITLE_BASH} \t\t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
 
 
-    afplay ../../build/audio/complete.mp3
+    afplay ../../build/audio/start.mp3
 }
 
 function compile_minified ()

@@ -754,6 +754,71 @@ class Lab
 }
  
 /**
+ * @class           {Object} Log                        Log class
+ * @property        {string} entries                    Log entries
+ */
+class Log
+{
+    _entries = new Array;
+
+    constructor ( )
+    {
+        this.entry ( 'CREATION' );
+    }
+
+    ////    [ PAGE ]    ////////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Gets entries
+         * @public
+         * @name entries
+         * @function
+         * @return          {string}                            Page's entries
+         */
+        get entries ( )
+        {
+            return this._entries;
+        }
+
+    ////    [ UTILITIES ]    ///////////////////////////////////////////////////////////////////////
+
+        entry ( message )
+        {
+            let _timestamp = `[ ${this._timestamp ( )} ]`;
+
+            let _entry     = ( typeof message === 'string' ) ? `${_timestamp} => ${message}`
+
+                                                             : _timestamp;
+
+
+            this._entries.push ( _entry );
+        }
+
+        view ( )
+        {
+            for ( let _entry of this.entries )
+
+                console.log ( _entry );
+        }
+
+        _timestamp ( )
+        {
+            let _date = new Date ( );
+
+            let _time = ( _date.getMonth        ( ) + 1 ) + "/"
+                        + _date.getDate         ( ) + "/"
+                        + _date.getFullYear     ( ) + " @ "
+                        + _date.getHours        ( ) + ":"
+                        + _date.getMinutes      ( ) + ":"
+                        + _date.getSeconds      ( ) + ":"
+                        + _date.getMilliseconds ( );
+
+
+            return _time;
+        }
+}
+ 
+/**
  * @class           {Object} Page                       Page for parsing page types
  * @property        {string} type                       Page's type
  * @property        {string} group                      Page's group
@@ -764,8 +829,6 @@ class Page
     _type     = undefined;
     _group    = undefined;
     _subgroup = undefined;
-
-    _href     = undefined;
 
     /**
      * Creates a page
@@ -870,17 +933,14 @@ class Page
 
             if ( _match || typeof button === 'object' )
             {
-                this._href = _match.replace ( '#', '' );
+                let _button   = _match.replace ( '#', '' );
 
-                this.group    = this._href.match ( new RegExp ( /(Object|Subject|Animation)/ ) ) [ 0 ].toLowerCase ( );
+                this.group    = _button.match ( new RegExp ( /(Object|Subject|Animation)/ ) ) [ 0 ].toLowerCase ( );
 
-                this.type     = this._href.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
+                this.type     = _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
 
                 this.subgroup = ( this.group === 'animation' ) ? 'easing' : undefined;
             }
-            else
-
-                this._href = this._href;
         }
 }
  
@@ -895,17 +955,17 @@ class Template
     {
         standard: `&lt;div class="col">
 
-                       &lt;div class="card" id="view_{{number}}" data-devTest-code="{{code}}" data-devTest-title="{{title}}">
+                       &lt;div class="card" id="view_{{index}}" suite-data-code="{{code}}" suite-data-title="{{title}}" onclick="devTest.toggleCardButton ( event )">
 
                            &lt;div class="card-number">
 
                                &lt;span class="close">&lt;/span>
 
-                               &lt;span class="number">{{number}}&lt;/span>
+                               &lt;span class="number">{{index}}&lt;/span>
 
                            &lt;/div>
 
-                           &lt;canvas id="canvas_{{number}}">&lt;/canvas>
+                           &lt;canvas id="canvas_{{index}}">&lt;/canvas>
 
                            &lt;div class="card-body">
 
@@ -943,13 +1003,13 @@ class Template
 
                                    &lt;span class="icons">
 
-                                       &lt;img src="images/svg/{{subgroup}}.svg" class="card-icons easing" onclick="devTest.toggleEasingFunctions ( {{number}} )">
+                                       &lt;img src="images/svg/{{subgroup}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devTest.toggleCardButton ( event )">
 
                                        &lt;span class="wall">&amp;nbsp;&lt;/span>
 
-                                       &lt;img src="images/svg/{{group}}.svg" class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{groupType}}' )">
+                                       &lt;img src="images/svg/{{group}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{groupType}}"  onclick="devTest.toggleCardButton ( event )">
 
-                                       &lt;img src="images/svg/{{image}}.svg" class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{objectType}}' )">
+                                       &lt;img src="images/svg/{{image}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{objectType}}" onclick="devTest.toggleCardButton ( event )">
 
                                    &lt;/span>
 
@@ -1056,14 +1116,14 @@ class Template
 
             for ( let _iter in cardObjects )
             {
-                let _count      = _iter.to2Digits ( );
+                let _index      = _iter.to2Digits ( );
 
-                let _template   = this.standard.replace ( /{{number}}/g, _count );
+                let _template   = this.standard.replace ( /{{index}}/g, _index );
 
                 let _cardObject = cardObjects [ _iter ];
 
 
-                _cards.push ( this._getCodeTemplate ( _cardObject, _template, _count ) );
+                _cards.push ( this._getCodeTemplate ( _cardObject, _template, _index ) );
             }
 
 
@@ -1284,7 +1344,7 @@ class Tool
 
             let _result       = ( PAGE.group ) ? JSON.parse ( JSON.stringify ( object [ PAGE.group ] [ PAGE.type ] ) )
 
-                                                 : JSON.parse ( JSON.stringify ( object [ PAGE.type ] ) );
+                                               : JSON.parse ( JSON.stringify ( object [ PAGE.type  ] ) );
 
 
             if ( PAGE.group )
@@ -1343,6 +1403,45 @@ class Ui
     _toggle =
     {
         /**
+         * Toggles the card button associated with the passed 'event' param
+         * @public
+         * @name cardButton
+         * @function
+         * @param           {HTMLEvent} event                   UI DOM event
+         */
+        cardButton ( event )
+        {
+            let _element = event.srcElement;
+
+
+            switch ( _element.tagName )
+            {
+                case 'IMG':
+
+                    let _buttonType = _element.getAttribute ( 'suite-button-type' );
+
+
+                    switch ( _buttonType )
+                    {
+                        case 'easing':          this._easingFunctions ( _element );     break;
+
+                        case 'documentation':   this._documentation   ( _element );     break;
+                    }
+
+                    break;
+
+                case 'LI':                      this._easingFunctions ( _element );     break;
+
+                case 'DIV':
+                case 'SPAN':
+                case 'CANVAS':                  this._modalCode ( _element );           break;
+            }
+
+
+            event.stopPropagation ( );
+        },
+
+        /**
          * Toggles opacity from bottom links in navigation area
          * @public
          * @name externalLinks
@@ -1371,73 +1470,6 @@ class Ui
             ( _state ) ? element.target.focus ( )
 
                        : element.target.blur  ( );
-        },
-
-        /**
-         * Toggles visibility of easing functions
-         * @public
-         * @name easingFunctions
-         * @function
-         * @param           {number} index                      Index of animation card
-         */
-        easingFunctions: ( index ) =>
-        {
-            this._embedEasingButtons ( );
-
-            let _functions = document.querySelectorAll ( '.easing-functions' );
-
-
-            ( _functions [ index ].style.visibility === 'hidden' || _functions [ index ].style.visibility === '' )
-
-                ? [ _functions [ index ].style.opacity, _functions [ index ].style.visibility ] = [ 1, 'visible' ]
-
-                : [ _functions [ index ].style.opacity, _functions [ index ].style.visibility ] = [ 0, 'hidden'  ];
-        },
-
-        /**
-         * Sets markdown content for the off canvas documentation element
-         * @public
-         * @name documentation
-         * @function
-         * @param           {string} type                       Object or Subject type
-         */
-        documentation ( type )
-        {
-            let _converter = new showdown.Converter;
-
-                _converter.setOption ( 'tables', true );
-
-
-            let _text = md2json [ type ];
-
-                _text = _text.replace ( /&amp;quot;&amp;#x27;/g, '"' )
-                             .replace ( /&amp;#x27;&amp;quot;/g, '"' );
-
-
-            let _html = _converter.makeHtml ( _text );
-
-
-            let _offcanvas     = document.querySelector ( '.offcanvas' );
-
-            let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
-
-                _offcanvasBody.innerHTML = _html;
-
-
-            let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );        // @TODO Investigate here !
-
-                _bsOffcanvas.toggle ( );
-
-
-            let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
-
-
-                _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
-                    {
-                        _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
-
-                        _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
-                    } );
         },
 
         /**
@@ -1526,6 +1558,116 @@ class Ui
             LAB.setCanvasSize ( );
 
             LAB.runCode       ( );
+        },
+
+        /**
+         * Toggles modal code element
+         * @private
+         * @name _modalCode
+         * @function
+         * @param           {HTMLElement} element               Main button element
+         */
+        _modalCode: ( element ) =>
+        {
+            let _element = element.offsetParent;
+
+            let _card =
+            {
+                title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
+
+                code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
+            }
+
+            let _modal =
+            {
+                title:   document.querySelector ( '#modal-code-label' ),
+
+                code:    document.querySelector ( 'code' ),
+
+                element: document.querySelector ( '#modal-code' )
+            }
+
+            let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
+
+
+            [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
+
+
+                _boostrapModal.toggle ( );
+
+                hljs.highlightAll ( );
+        },
+
+        /**
+         * Toggles visibility of easing functions
+         * @private
+         * @name _easingFunctions
+         * @function
+         * @param           {HTMLElement} element               Index of animation card
+         */
+        _easingFunctions: ( element ) =>
+        {
+            this._embedEasingButtons ( );
+
+
+            let _index     = Number ( element.getAttribute ( 'suite-data-index' ) );
+
+            let _functions = document.querySelectorAll ( '.easing-functions' );
+
+
+            ( _functions [ _index ].style.visibility === 'hidden' || _functions [ _index ].style.visibility === '' )
+
+                ? [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 1, 'visible' ]
+
+                : [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 0, 'hidden'  ];
+        },
+
+        /**
+         * Sets markdown content for the off canvas documentation element
+         * @private
+         * @name _documentation
+         * @function
+         * @param           {HTMLElement} element               Object or Subject type
+         */
+        _documentation ( element )
+        {
+            let _converter = new showdown.Converter;
+
+                _converter.setOption ( 'tables', true );
+
+
+            let _type = element.getAttribute ( 'suite-data-type' );
+
+            let _text = md2json [ _type ];
+
+                _text = _text.replace ( /&amp;quot;&amp;#x27;/g, '"' )
+                             .replace ( /&amp;#x27;&amp;quot;/g, '"' );
+
+
+            let _html = _converter.makeHtml ( _text );
+
+
+            let _offcanvas     = document.querySelector ( '.offcanvas' );
+
+            let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
+
+                _offcanvasBody.innerHTML = _html;
+
+
+            let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );        // @TODO Investigate here !
+
+                _bsOffcanvas.toggle ( );
+
+
+            let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
+
+
+                _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
+                    {
+                        _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
+
+                        _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
+                    } );
         },
     }
 
@@ -1691,24 +1833,22 @@ class Ui
         {
             let _element = document.getElementById ( 'byrne-systems-logo' );
 
+            let _album   = document.querySelector ( '.album' );
+
+            let _main    = document.querySelector ( 'main' );
+
+            let _nav     = document.querySelector ( 'nav'  );
+
+            let _div     = document.createElement ( 'div'  );
+
+            let _image   = document.createElement ( 'img'  );
+
+            ////    LOGIC    ///////////////////////////////////////////////////
 
             if ( _element ) _element.remove ( );
 
-            ////////////////////////////////////////////////////////////////////
-
-            let _album = document.querySelector ( '.album' );
 
                 _album.style.display = 'none';
-
-            ////////////////////////////////////////////////////////////////////
-
-            let _main  = document.getElementsByTagName ( 'main' ) [ 0 ];
-
-            let _nav   = document.getElementsByTagName ( 'nav'  ) [ 0 ];
-
-            let _div   = document.createElement ( 'div' );
-
-            let _image = document.createElement ( 'img' );
 
                 _image.src         = '../images/cube_sm.png';
 
@@ -1799,8 +1939,6 @@ class Ui
 
             this._setCardSection    ( _cardObjects );
 
-            this._setEventListeners ( );
-
 
             this._evalCardObjects   ( _cardObjects );
         }
@@ -1886,7 +2024,6 @@ class Ui
                         ... document.querySelectorAll ( '.mb-2:nth-child(-n+4) ul.btn-toggle-nav > li > a' )
                     ]
 
-
                     for ( let _button of _buttons )
 
                         _button.addEventListener ( 'click', ( element ) =>
@@ -1894,57 +2031,11 @@ class Ui
                                 PAGE = new Page ( _button );
 
 
-                                this.clearScreen ( );
-
-
                                 ( cardObjects [ PAGE.group ] [ PAGE.type ] )
 
                                     ? this._setAlbumCards ( )
 
                                     : this._setByrneSystemsLogo ( );
-                            } );
-
-                case 'modal':
-
-                    let _cards = document.querySelectorAll ( '.card' );
-
-
-                    for ( let _card of _cards )
-
-                        _card.addEventListener ( 'click', ( element ) =>
-                            {
-                                let _cardIcon = this._isCardIcon ( element );
-
-
-                                if ( ! _cardIcon )
-                                {
-                                    let _thisCard     = element.srcElement.closest ( '.card' );
-
-
-                                    let _cardCode     = _thisCard.getAttribute ( 'data-devtest-code' ).replace ( /_\d{1,3}/g, '' );
-
-                                    let _cardTitle    = _thisCard.getAttribute ( 'data-devtest-title' ).toTitleCase ( );
-
-
-                                    let _modalCode    = document.querySelector ( 'code' );
-
-                                    let _modalTitle   = document.querySelector ( '#modal-code-label' );
-
-
-                                    let _modalElement = document.querySelector ( '#modal-code' );
-
-                                    let _modal        = bootstrap.Modal.getOrCreateInstance ( _modalElement );
-
-
-                                        _modalTitle.innerHTML = _cardTitle;
-
-                                        _modalCode.innerHTML  = _cardCode;
-
-
-                                        _modal.toggle ( );
-
-                                        hljs.highlightAll ( );
-                                }
                             } );
 
                 case 'copy':
@@ -2091,7 +2182,7 @@ class Ui
             }
 
 
-            initCanvasLab ( );                              // @TODO: investigate re-initialization; through CanvasLab, or through here !
+            initCanvasLab ( );                              // @NOTE: canvasLab doesn't not initialize twice here, if there's already a preexisting 'window.canvasLab' object within the DOM
 
 
             if ( _markup.logo ) _markup.logo.remove ( );
@@ -2099,25 +2190,15 @@ class Ui
 
             _markup.main.style.overflowY = 'auto';
 
-            _markup.album.style.display = ( setCardAlbum ) ? 'block' : 'none';
+            _markup.album.style.display  = ( setCardAlbum ) ? 'block' : 'none';
 
-            _markup.cards.innerHTML     = '';
+            _markup.cards.innerHTML      = '';
 
-            _markup.lab.style.display   = 'none';
+            _markup.lab.style.display    = 'none';
 
 
             _markup.button.firstElementChild.classList.remove ( 'selected' );
         }
-
-        /**
-         * Returns whether the present click is on a card &lt;img> icon
-         * @private
-         * @name _isCardIcon
-         * @function
-         * @param           {HTMLElement} element               HTML DOM Element
-         * @return          {boolean}                           True | False
-         */
-        _isCardIcon      = ( element )     => ( [ 'IMG', 'SPAN', 'LI' ].includes ( element.srcElement.tagName ) );
 
         /**
          * Returns whether the navigation bar is open
@@ -2147,7 +2228,7 @@ class Ui
         {
             let _easings = document.querySelectorAll ( '.easing' );
 
-            let _div      = this._createEasingButtons ( );
+            let _div     = this._createEasingButtons ( );
 
 
             for ( let _i = 0; _i &lt; _easings.length; _i++ )
@@ -3555,22 +3636,14 @@ class Ui
             ////    FUNCTIONS    ///////////////////////////////////////////////
 
                 /**
-                 * Sets markdown content for the offCanvas element
+                 * Toggles individual card buttons using their 'suite-data' attributes
                  * @public
-                 * @name setOffCanvasDocument
+                 * @name toggleCardButton
                  * @function
-                 * @param           {string} type                       Object or Subject type
-                 */
-                _lib.setOffCanvasDocument  = ( type  )                 => UI.toggle.documentation   ( type );
-
-                /**
-                 * Toggles visibility of easing functions
-                 * @public
-                 * @name toggleEasingFunctions
-                 * @function
+                 * @param           {string} easingFunction             Easing function; as a string
                  * @param           {number} index                      Index of animation card
                  */
-                _lib.toggleEasingFunctions = ( index )                 => UI.toggle.easingFunctions ( index );
+                _lib.toggleCardButton      = ( event )                 => UI.toggle.cardButton ( event );
 
                 /**
                  * Runs easing animation for an animation card
@@ -3583,7 +3656,7 @@ class Ui
                 _lib.runEasingAnimation    = ( easingFunction, index ) => UI.runEasingAnimation ( easingFunction, index );
 
                 /**
-                 * Executes lab-station code from editor
+                 * Runs lab-station code from editor
                  * @public
                  * @name _runLabStationCode
                  * @function
@@ -3637,13 +3710,13 @@ class Ui
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-devSuite.html">devSuite</a></li></ul><h3>Classes</h3><ul><li><a href="Lab.html">Lab</a></li><li><a href="Page.html">Page</a></li><li><a href="Template.html">Template</a></li><li><a href="Tool.html">Tool</a></li><li><a href="Ui.html">Ui</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_checkCollapsible">_checkCollapsible</a></li><li><a href="global.html#_cleanCode">_cleanCode</a></li><li><a href="global.html#_collapseButtons">_collapseButtons</a></li><li><a href="global.html#_createEasingButtons">_createEasingButtons</a></li><li><a href="global.html#_download">_download</a></li><li><a href="global.html#_embedEasingButtons">_embedEasingButtons</a></li><li><a href="global.html#_evalCardObjects">_evalCardObjects</a></li><li><a href="global.html#_getBlankCount">_getBlankCount</a></li><li><a href="global.html#_getBlankTemplates">_getBlankTemplates</a></li><li><a href="global.html#_getBoundingCharactersPositions">_getBoundingCharactersPositions</a></li><li><a href="global.html#_getCode">_getCode</a></li><li><a href="global.html#_getCodeTemplate">_getCodeTemplate</a></li><li><a href="global.html#_getColorPicker">_getColorPicker</a></li><li><a href="global.html#_getColumnCount">_getColumnCount</a></li><li><a href="global.html#_getSpecialVariables">_getSpecialVariables</a></li><li><a href="global.html#_getStandardTemplates">_getStandardTemplates</a></li><li><a href="global.html#_increment">_increment</a></li><li><a href="global.html#_incrementValue">_incrementValue</a></li><li><a href="global.html#_isCardIcon">_isCardIcon</a></li><li><a href="global.html#_isNavOpen">_isNavOpen</a></li><li><a href="global.html#_padZeros">_padZeros</a></li><li><a href="global.html#_setAlbumCards">_setAlbumCards</a></li><li><a href="global.html#_setByrneSystemsLogo">_setByrneSystemsLogo</a></li><li><a href="global.html#_setCardSection">_setCardSection</a></li><li><a href="global.html#_setColorPickerPosition">_setColorPickerPosition</a></li><li><a href="global.html#_setEventListeners">_setEventListeners</a></li><li><a href="global.html#_setFontSize">_setFontSize</a></li><li><a href="global.html#_setImagePath">_setImagePath</a></li><li><a href="global.html#_setNumbericValue">_setNumbericValue</a></li><li><a href="global.html#_setPropertiesBy">_setPropertiesBy</a></li><li><a href="global.html#_swapRgbValue">_swapRgbValue</a></li><li><a href="global.html#alert">alert</a></li><li><a href="global.html#blank">blank</a></li><li><a href="global.html#clean">clean</a></li><li><a href="global.html#clearScreen">clearScreen</a></li><li><a href="global.html#code">code</a></li><li><a href="global.html#copyCode">copyCode</a></li><li><a href="global.html#copyObjectWithKey">copyObjectWithKey</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#documentation">documentation</a></li><li><a href="global.html#easingFunctions">easingFunctions</a></li><li><a href="global.html#editor">editor</a></li><li><a href="global.html#externalLinks">externalLinks</a></li><li><a href="global.html#fullscreen">fullscreen</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getClass">getClass</a></li><li><a href="global.html#group">group</a></li><li><a href="global.html#imageTags">imageTags</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#navigation">navigation</a></li><li><a href="global.html#runCode">runCode</a></li><li><a href="global.html#runEasingAnimation">runEasingAnimation</a></li><li><a href="global.html#script">script</a></li><li><a href="global.html#setCanvasSize">setCanvasSize</a></li><li><a href="global.html#standard">standard</a></li><li><a href="global.html#subStringRange">subStringRange</a></li><li><a href="global.html#subgroup">subgroup</a></li><li><a href="global.html#to2Digits">to2Digits</a></li><li><a href="global.html#toTitleCase">toTitleCase</a></li><li><a href="global.html#toggle">toggle</a></li><li><a href="global.html#type">type</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-devSuite.html">devSuite</a></li></ul><h3>Classes</h3><ul><li><a href="Lab.html">Lab</a></li><li><a href="Log.html">Log</a></li><li><a href="Page.html">Page</a></li><li><a href="Template.html">Template</a></li><li><a href="Tool.html">Tool</a></li><li><a href="Ui.html">Ui</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_checkCollapsible">_checkCollapsible</a></li><li><a href="global.html#_cleanCode">_cleanCode</a></li><li><a href="global.html#_collapseButtons">_collapseButtons</a></li><li><a href="global.html#_createEasingButtons">_createEasingButtons</a></li><li><a href="global.html#_documentation">_documentation</a></li><li><a href="global.html#_download">_download</a></li><li><a href="global.html#_easingFunctions">_easingFunctions</a></li><li><a href="global.html#_embedEasingButtons">_embedEasingButtons</a></li><li><a href="global.html#_evalCardObjects">_evalCardObjects</a></li><li><a href="global.html#_getBlankCount">_getBlankCount</a></li><li><a href="global.html#_getBlankTemplates">_getBlankTemplates</a></li><li><a href="global.html#_getBoundingCharactersPositions">_getBoundingCharactersPositions</a></li><li><a href="global.html#_getCode">_getCode</a></li><li><a href="global.html#_getCodeTemplate">_getCodeTemplate</a></li><li><a href="global.html#_getColorPicker">_getColorPicker</a></li><li><a href="global.html#_getColumnCount">_getColumnCount</a></li><li><a href="global.html#_getSpecialVariables">_getSpecialVariables</a></li><li><a href="global.html#_getStandardTemplates">_getStandardTemplates</a></li><li><a href="global.html#_increment">_increment</a></li><li><a href="global.html#_incrementValue">_incrementValue</a></li><li><a href="global.html#_isNavOpen">_isNavOpen</a></li><li><a href="global.html#_modalCode">_modalCode</a></li><li><a href="global.html#_padZeros">_padZeros</a></li><li><a href="global.html#_setAlbumCards">_setAlbumCards</a></li><li><a href="global.html#_setByrneSystemsLogo">_setByrneSystemsLogo</a></li><li><a href="global.html#_setCardSection">_setCardSection</a></li><li><a href="global.html#_setColorPickerPosition">_setColorPickerPosition</a></li><li><a href="global.html#_setEventListeners">_setEventListeners</a></li><li><a href="global.html#_setFontSize">_setFontSize</a></li><li><a href="global.html#_setImagePath">_setImagePath</a></li><li><a href="global.html#_setNumbericValue">_setNumbericValue</a></li><li><a href="global.html#_setPropertiesBy">_setPropertiesBy</a></li><li><a href="global.html#_swapRgbValue">_swapRgbValue</a></li><li><a href="global.html#alert">alert</a></li><li><a href="global.html#blank">blank</a></li><li><a href="global.html#cardButton">cardButton</a></li><li><a href="global.html#clean">clean</a></li><li><a href="global.html#clearScreen">clearScreen</a></li><li><a href="global.html#code">code</a></li><li><a href="global.html#copyCode">copyCode</a></li><li><a href="global.html#copyObjectWithKey">copyObjectWithKey</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#editor">editor</a></li><li><a href="global.html#entries">entries</a></li><li><a href="global.html#externalLinks">externalLinks</a></li><li><a href="global.html#fullscreen">fullscreen</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getClass">getClass</a></li><li><a href="global.html#group">group</a></li><li><a href="global.html#imageTags">imageTags</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#navigation">navigation</a></li><li><a href="global.html#runCode">runCode</a></li><li><a href="global.html#runEasingAnimation">runEasingAnimation</a></li><li><a href="global.html#script">script</a></li><li><a href="global.html#setCanvasSize">setCanvasSize</a></li><li><a href="global.html#standard">standard</a></li><li><a href="global.html#subStringRange">subStringRange</a></li><li><a href="global.html#subgroup">subgroup</a></li><li><a href="global.html#to2Digits">to2Digits</a></li><li><a href="global.html#toTitleCase">toTitleCase</a></li><li><a href="global.html#toggle">toggle</a></li><li><a href="global.html#type">type</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Apr 22 2024 10:17:57 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Apr 26 2024 08:03:12 GMT-0700 (Pacific Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

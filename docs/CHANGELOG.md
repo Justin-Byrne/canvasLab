@@ -1,6 +1,30 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.17] - 2024-05-26
+### Fixed
+- Fix unintentional recursive calls within the `UI` class
+
+### Changed
+- Refactored the standard class within the `Template` class
+- Changed the following public functions to private
+  - `UI.modalCode ( )` to `UI._modalCode ( )`
+  - `UI.documentation ( )` to `UI._documentation ( )`
+  - `UI.easingFunctions ( )` to `UI._easingFunctions ( )`
+
+### Added
+- New Audio sounds at lower bitrate
+- **devSuite**
+  - `Log` class, for basic log entries
+- Added `UI.cardButton ( )` function, to toggle the card button associated with the passed 'event' param
+- Added `devSuite.toggleCardButton ( )` to `main.js`
+
+### Removed
+- Removed 'href' property from the `Page` class
+- Removed 'modal' case from `UI._setEventListeners ( )`
+- Removed `UI._isCardIcon ( )`
+- Removed `devSuite.toggleEasingFunctions ( )` & `devSuite.setOffCanvasDocument ( )` from `main.js`
+
 ## [0.2.11] - 2024-05-22
 ### Changed
 - **dev-tools** to **devSuite**
@@ -215,7 +239,8 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.2.11] | 2024-05-22 | CURRENT                                                             | Refactored dev-tools (devSuite) into independent classes & updated UI.                       |
+| [0.2.17] | 2024-05-26 | CURRENT                                                             | Fixed unintentional recursive calls & minor refactoring for UI, Page, & Template classes.    |
+| [0.2.11] | 2024-05-22 | [671c1da](https://github.com/Justin-Byrne/canvasLab/commit/671c1da) | Refactored dev-tools (devSuite) into independent classes & updated UI.                       |
 | [0.1.11] | 2024-04-03 | [6df392e](https://github.com/Justin-Byrne/canvasLab/commit/6df392e) | Implemented dev-tools navigation toggle & refactored RWD for mobile devices.                 |
 | [0.1.10] | 2023-12-27 | [3ccf9b4](https://github.com/Justin-Byrne/canvasLab/commit/3ccf9b4) | Implemented lab-station full-screen & navigation toggles.                                    |
 | [0.1.9]  | 2023-12-26 | [c694fb6](https://github.com/Justin-Byrne/canvasLab/commit/c694fb6) | Implemented UI enhancements & color-picker for ace-editor.                                   |

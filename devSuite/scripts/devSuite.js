@@ -726,6 +726,71 @@ class Lab
 }
  
 /**
+ * @class           {Object} Log                        Log class
+ * @property        {string} entries                    Log entries
+ */
+class Log
+{
+    _entries = new Array;
+
+    constructor ( )
+    {
+        this.entry ( 'CREATION' );
+    }
+
+    ////    [ PAGE ]    ////////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Gets entries
+         * @public
+         * @name entries
+         * @function
+         * @return          {string}                            Page's entries
+         */
+        get entries ( )
+        {
+            return this._entries;
+        }
+
+    ////    [ UTILITIES ]    ///////////////////////////////////////////////////////////////////////
+
+        entry ( message )
+        {
+            let _timestamp = `[ ${this._timestamp ( )} ]`;
+
+            let _entry     = ( typeof message === 'string' ) ? `${_timestamp} => ${message}`
+
+                                                             : _timestamp;
+
+
+            this._entries.push ( _entry );
+        }
+
+        view ( )
+        {
+            for ( let _entry of this.entries )
+
+                console.log ( _entry );
+        }
+
+        _timestamp ( )
+        {
+            let _date = new Date ( );
+
+            let _time = ( _date.getMonth        ( ) + 1 ) + "/"
+                        + _date.getDate         ( ) + "/"
+                        + _date.getFullYear     ( ) + " @ "
+                        + _date.getHours        ( ) + ":"
+                        + _date.getMinutes      ( ) + ":"
+                        + _date.getSeconds      ( ) + ":"
+                        + _date.getMilliseconds ( );
+
+
+            return _time;
+        }
+}
+ 
+/**
  * @class           {Object} Page                       Page for parsing page types
  * @property        {string} type                       Page's type
  * @property        {string} group                      Page's group
@@ -736,8 +801,6 @@ class Page
     _type     = undefined;
     _group    = undefined;
     _subgroup = undefined;
-
-    _href     = undefined;
 
     /**
      * Creates a page
@@ -842,17 +905,14 @@ class Page
 
             if ( _match || typeof button === 'object' )
             {
-                this._href = _match.replace ( '#', '' );
+                let _button   = _match.replace ( '#', '' );
 
-                this.group    = this._href.match ( new RegExp ( /(Object|Subject|Animation)/ ) ) [ 0 ].toLowerCase ( );
+                this.group    = _button.match ( new RegExp ( /(Object|Subject|Animation)/ ) ) [ 0 ].toLowerCase ( );
 
-                this.type     = this._href.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
+                this.type     = _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
 
                 this.subgroup = ( this.group === 'animation' ) ? 'easing' : undefined;
             }
-            else
-
-                this._href = this._href;
         }
 }
  
@@ -867,17 +927,17 @@ class Template
     {
         standard: `<div class="col">
 
-                       <div class="card" id="view_{{number}}" data-devTest-code="{{code}}" data-devTest-title="{{title}}">
+                       <div class="card" id="view_{{index}}" suite-data-code="{{code}}" suite-data-title="{{title}}" onclick="devTest.toggleCardButton ( event )">
 
                            <div class="card-number">
 
                                <span class="close"></span>
 
-                               <span class="number">{{number}}</span>
+                               <span class="number">{{index}}</span>
 
                            </div>
 
-                           <canvas id="canvas_{{number}}"></canvas>
+                           <canvas id="canvas_{{index}}"></canvas>
 
                            <div class="card-body">
 
@@ -915,13 +975,13 @@ class Template
 
                                    <span class="icons">
 
-                                       <img src="images/svg/{{subgroup}}.svg" class="card-icons easing" onclick="devTest.toggleEasingFunctions ( {{number}} )">
+                                       <img src="images/svg/{{subgroup}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devTest.toggleCardButton ( event )">
 
                                        <span class="wall">&nbsp;</span>
 
-                                       <img src="images/svg/{{group}}.svg" class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{groupType}}' )">
+                                       <img src="images/svg/{{group}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{groupType}}"  onclick="devTest.toggleCardButton ( event )">
 
-                                       <img src="images/svg/{{image}}.svg" class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{objectType}}' )">
+                                       <img src="images/svg/{{image}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{objectType}}" onclick="devTest.toggleCardButton ( event )">
 
                                    </span>
 
@@ -1028,14 +1088,14 @@ class Template
 
             for ( let _iter in cardObjects )
             {
-                let _count      = _iter.to2Digits ( );
+                let _index      = _iter.to2Digits ( );
 
-                let _template   = this.standard.replace ( /{{number}}/g, _count );
+                let _template   = this.standard.replace ( /{{index}}/g, _index );
 
                 let _cardObject = cardObjects [ _iter ];
 
 
-                _cards.push ( this._getCodeTemplate ( _cardObject, _template, _count ) );
+                _cards.push ( this._getCodeTemplate ( _cardObject, _template, _index ) );
             }
 
 
@@ -1256,7 +1316,7 @@ class Tool
 
             let _result       = ( PAGE.group ) ? JSON.parse ( JSON.stringify ( object [ PAGE.group ] [ PAGE.type ] ) )
 
-                                                 : JSON.parse ( JSON.stringify ( object [ PAGE.type ] ) );
+                                               : JSON.parse ( JSON.stringify ( object [ PAGE.type  ] ) );
 
 
             if ( PAGE.group )
@@ -1315,6 +1375,45 @@ class Ui
     _toggle =
     {
         /**
+         * Toggles the card button associated with the passed 'event' param
+         * @public
+         * @name cardButton
+         * @function
+         * @param           {HTMLEvent} event                   UI DOM event
+         */
+        cardButton ( event )
+        {
+            let _element = event.srcElement;
+
+
+            switch ( _element.tagName )
+            {
+                case 'IMG':
+
+                    let _buttonType = _element.getAttribute ( 'suite-button-type' );
+
+
+                    switch ( _buttonType )
+                    {
+                        case 'easing':          this._easingFunctions ( _element );     break;
+
+                        case 'documentation':   this._documentation   ( _element );     break;
+                    }
+
+                    break;
+
+                case 'LI':                      this._easingFunctions ( _element );     break;
+
+                case 'DIV':
+                case 'SPAN':
+                case 'CANVAS':                  this._modalCode ( _element );           break;
+            }
+
+
+            event.stopPropagation ( );
+        },
+
+        /**
          * Toggles opacity from bottom links in navigation area
          * @public
          * @name externalLinks
@@ -1343,73 +1442,6 @@ class Ui
             ( _state ) ? element.target.focus ( )
 
                        : element.target.blur  ( );
-        },
-
-        /**
-         * Toggles visibility of easing functions
-         * @public
-         * @name easingFunctions
-         * @function
-         * @param           {number} index                      Index of animation card
-         */
-        easingFunctions: ( index ) =>
-        {
-            this._embedEasingButtons ( );
-
-            let _functions = document.querySelectorAll ( '.easing-functions' );
-
-
-            ( _functions [ index ].style.visibility === 'hidden' || _functions [ index ].style.visibility === '' )
-
-                ? [ _functions [ index ].style.opacity, _functions [ index ].style.visibility ] = [ 1, 'visible' ]
-
-                : [ _functions [ index ].style.opacity, _functions [ index ].style.visibility ] = [ 0, 'hidden'  ];
-        },
-
-        /**
-         * Sets markdown content for the off canvas documentation element
-         * @public
-         * @name documentation
-         * @function
-         * @param           {string} type                       Object or Subject type
-         */
-        documentation ( type )
-        {
-            let _converter = new showdown.Converter;
-
-                _converter.setOption ( 'tables', true );
-
-
-            let _text = md2json [ type ];
-
-                _text = _text.replace ( /&quot;&#x27;/g, '"' )
-                             .replace ( /&#x27;&quot;/g, '"' );
-
-
-            let _html = _converter.makeHtml ( _text );
-
-
-            let _offcanvas     = document.querySelector ( '.offcanvas' );
-
-            let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
-
-                _offcanvasBody.innerHTML = _html;
-
-
-            let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );        // @TODO Investigate here !
-
-                _bsOffcanvas.toggle ( );
-
-
-            let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
-
-
-                _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
-                    {
-                        _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
-
-                        _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
-                    } );
         },
 
         /**
@@ -1498,6 +1530,116 @@ class Ui
             LAB.setCanvasSize ( );
 
             LAB.runCode       ( );
+        },
+
+        /**
+         * Toggles modal code element
+         * @private
+         * @name _modalCode
+         * @function
+         * @param           {HTMLElement} element               Main button element
+         */
+        _modalCode: ( element ) =>
+        {
+            let _element = element.offsetParent;
+
+            let _card =
+            {
+                title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
+
+                code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
+            }
+
+            let _modal =
+            {
+                title:   document.querySelector ( '#modal-code-label' ),
+
+                code:    document.querySelector ( 'code' ),
+
+                element: document.querySelector ( '#modal-code' )
+            }
+
+            let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
+
+
+            [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
+
+
+                _boostrapModal.toggle ( );
+
+                hljs.highlightAll ( );
+        },
+
+        /**
+         * Toggles visibility of easing functions
+         * @private
+         * @name _easingFunctions
+         * @function
+         * @param           {HTMLElement} element               Index of animation card
+         */
+        _easingFunctions: ( element ) =>
+        {
+            this._embedEasingButtons ( );
+
+
+            let _index     = Number ( element.getAttribute ( 'suite-data-index' ) );
+
+            let _functions = document.querySelectorAll ( '.easing-functions' );
+
+
+            ( _functions [ _index ].style.visibility === 'hidden' || _functions [ _index ].style.visibility === '' )
+
+                ? [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 1, 'visible' ]
+
+                : [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 0, 'hidden'  ];
+        },
+
+        /**
+         * Sets markdown content for the off canvas documentation element
+         * @private
+         * @name _documentation
+         * @function
+         * @param           {HTMLElement} element               Object or Subject type
+         */
+        _documentation ( element )
+        {
+            let _converter = new showdown.Converter;
+
+                _converter.setOption ( 'tables', true );
+
+
+            let _type = element.getAttribute ( 'suite-data-type' );
+
+            let _text = md2json [ _type ];
+
+                _text = _text.replace ( /&quot;&#x27;/g, '"' )
+                             .replace ( /&#x27;&quot;/g, '"' );
+
+
+            let _html = _converter.makeHtml ( _text );
+
+
+            let _offcanvas     = document.querySelector ( '.offcanvas' );
+
+            let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
+
+                _offcanvasBody.innerHTML = _html;
+
+
+            let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );        // @TODO Investigate here !
+
+                _bsOffcanvas.toggle ( );
+
+
+            let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
+
+
+                _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
+                    {
+                        _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
+
+                        _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
+                    } );
         },
     }
 
@@ -1663,24 +1805,22 @@ class Ui
         {
             let _element = document.getElementById ( 'byrne-systems-logo' );
 
+            let _album   = document.querySelector ( '.album' );
+
+            let _main    = document.querySelector ( 'main' );
+
+            let _nav     = document.querySelector ( 'nav'  );
+
+            let _div     = document.createElement ( 'div'  );
+
+            let _image   = document.createElement ( 'img'  );
+
+            ////    LOGIC    ///////////////////////////////////////////////////
 
             if ( _element ) _element.remove ( );
 
-            ////////////////////////////////////////////////////////////////////
-
-            let _album = document.querySelector ( '.album' );
 
                 _album.style.display = 'none';
-
-            ////////////////////////////////////////////////////////////////////
-
-            let _main  = document.getElementsByTagName ( 'main' ) [ 0 ];
-
-            let _nav   = document.getElementsByTagName ( 'nav'  ) [ 0 ];
-
-            let _div   = document.createElement ( 'div' );
-
-            let _image = document.createElement ( 'img' );
 
                 _image.src         = '../images/cube_sm.png';
 
@@ -1771,8 +1911,6 @@ class Ui
 
             this._setCardSection    ( _cardObjects );
 
-            this._setEventListeners ( );
-
 
             this._evalCardObjects   ( _cardObjects );
         }
@@ -1858,7 +1996,6 @@ class Ui
                         ... document.querySelectorAll ( '.mb-2:nth-child(-n+4) ul.btn-toggle-nav > li > a' )
                     ]
 
-
                     for ( let _button of _buttons )
 
                         _button.addEventListener ( 'click', ( element ) =>
@@ -1866,57 +2003,11 @@ class Ui
                                 PAGE = new Page ( _button );
 
 
-                                this.clearScreen ( );
-
-
                                 ( cardObjects [ PAGE.group ] [ PAGE.type ] )
 
                                     ? this._setAlbumCards ( )
 
                                     : this._setByrneSystemsLogo ( );
-                            } );
-
-                case 'modal':
-
-                    let _cards = document.querySelectorAll ( '.card' );
-
-
-                    for ( let _card of _cards )
-
-                        _card.addEventListener ( 'click', ( element ) =>
-                            {
-                                let _cardIcon = this._isCardIcon ( element );
-
-
-                                if ( ! _cardIcon )
-                                {
-                                    let _thisCard     = element.srcElement.closest ( '.card' );
-
-
-                                    let _cardCode     = _thisCard.getAttribute ( 'data-devtest-code' ).replace ( /_\d{1,3}/g, '' );
-
-                                    let _cardTitle    = _thisCard.getAttribute ( 'data-devtest-title' ).toTitleCase ( );
-
-
-                                    let _modalCode    = document.querySelector ( 'code' );
-
-                                    let _modalTitle   = document.querySelector ( '#modal-code-label' );
-
-
-                                    let _modalElement = document.querySelector ( '#modal-code' );
-
-                                    let _modal        = bootstrap.Modal.getOrCreateInstance ( _modalElement );
-
-
-                                        _modalTitle.innerHTML = _cardTitle;
-
-                                        _modalCode.innerHTML  = _cardCode;
-
-
-                                        _modal.toggle ( );
-
-                                        hljs.highlightAll ( );
-                                }
                             } );
 
                 case 'copy':
@@ -2063,7 +2154,7 @@ class Ui
             }
 
 
-            initCanvasLab ( );                              // @TODO: investigate re-initialization; through CanvasLab, or through here !
+            initCanvasLab ( );                              // @NOTE: canvasLab doesn't not initialize twice here, if there's already a preexisting 'window.canvasLab' object within the DOM
 
 
             if ( _markup.logo ) _markup.logo.remove ( );
@@ -2071,25 +2162,15 @@ class Ui
 
             _markup.main.style.overflowY = 'auto';
 
-            _markup.album.style.display = ( setCardAlbum ) ? 'block' : 'none';
+            _markup.album.style.display  = ( setCardAlbum ) ? 'block' : 'none';
 
-            _markup.cards.innerHTML     = '';
+            _markup.cards.innerHTML      = '';
 
-            _markup.lab.style.display   = 'none';
+            _markup.lab.style.display    = 'none';
 
 
             _markup.button.firstElementChild.classList.remove ( 'selected' );
         }
-
-        /**
-         * Returns whether the present click is on a card <img> icon
-         * @private
-         * @name _isCardIcon
-         * @function
-         * @param           {HTMLElement} element               HTML DOM Element
-         * @return          {boolean}                           True | False
-         */
-        _isCardIcon      = ( element )     => ( [ 'IMG', 'SPAN', 'LI' ].includes ( element.srcElement.tagName ) );
 
         /**
          * Returns whether the navigation bar is open
@@ -2119,7 +2200,7 @@ class Ui
         {
             let _easings = document.querySelectorAll ( '.easing' );
 
-            let _div      = this._createEasingButtons ( );
+            let _div     = this._createEasingButtons ( );
 
 
             for ( let _i = 0; _i < _easings.length; _i++ )
@@ -3527,22 +3608,14 @@ class Ui
             ////    FUNCTIONS    ///////////////////////////////////////////////
 
                 /**
-                 * Sets markdown content for the offCanvas element
+                 * Toggles individual card buttons using their 'suite-data' attributes
                  * @public
-                 * @name setOffCanvasDocument
+                 * @name toggleCardButton
                  * @function
-                 * @param           {string} type                       Object or Subject type
-                 */
-                _lib.setOffCanvasDocument  = ( type  )                 => UI.toggle.documentation   ( type );
-
-                /**
-                 * Toggles visibility of easing functions
-                 * @public
-                 * @name toggleEasingFunctions
-                 * @function
+                 * @param           {string} easingFunction             Easing function; as a string
                  * @param           {number} index                      Index of animation card
                  */
-                _lib.toggleEasingFunctions = ( index )                 => UI.toggle.easingFunctions ( index );
+                _lib.toggleCardButton      = ( event )                 => UI.toggle.cardButton ( event );
 
                 /**
                  * Runs easing animation for an animation card
@@ -3555,7 +3628,7 @@ class Ui
                 _lib.runEasingAnimation    = ( easingFunction, index ) => UI.runEasingAnimation ( easingFunction, index );
 
                 /**
-                 * Executes lab-station code from editor
+                 * Runs lab-station code from editor
                  * @public
                  * @name _runLabStationCode
                  * @function

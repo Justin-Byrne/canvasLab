@@ -1234,22 +1234,14 @@
             ////    FUNCTIONS    ///////////////////////////////////////////////
 
                 /**
-                 * Sets markdown content for the offCanvas element
+                 * Toggles individual card buttons using their 'suite-data' attributes
                  * @public
-                 * @name setOffCanvasDocument
+                 * @name toggleCardButton
                  * @function
-                 * @param           {string} type                       Object or Subject type
-                 */
-                _lib.setOffCanvasDocument  = ( type  )                 => UI.toggle.documentation   ( type );
-
-                /**
-                 * Toggles visibility of easing functions
-                 * @public
-                 * @name toggleEasingFunctions
-                 * @function
+                 * @param           {string} easingFunction             Easing function; as a string
                  * @param           {number} index                      Index of animation card
                  */
-                _lib.toggleEasingFunctions = ( index )                 => UI.toggle.easingFunctions ( index );
+                _lib.toggleCardButton      = ( event )                 => UI.toggle.cardButton ( event );
 
                 /**
                  * Runs easing animation for an animation card
@@ -1262,7 +1254,7 @@
                 _lib.runEasingAnimation    = ( easingFunction, index ) => UI.runEasingAnimation ( easingFunction, index );
 
                 /**
-                 * Executes lab-station code from editor
+                 * Runs lab-station code from editor
                  * @public
                  * @name _runLabStationCode
                  * @function

@@ -35,7 +35,7 @@ class Tool
 
             let _result       = ( PAGE.group ) ? JSON.parse ( JSON.stringify ( object [ PAGE.group ] [ PAGE.type ] ) )
 
-                                                 : JSON.parse ( JSON.stringify ( object [ PAGE.type ] ) );
+                                               : JSON.parse ( JSON.stringify ( object [ PAGE.type  ] ) );
 
 
             if ( PAGE.group )

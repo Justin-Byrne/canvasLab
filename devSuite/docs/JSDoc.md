@@ -12,6 +12,9 @@
 <dt><a href="#Lab">Lab</a></dt>
 <dd><p>{Object} Lab                        Lab with ace-editor</p>
 </dd>
+<dt><a href="#Log">Log</a></dt>
+<dd><p>{Object} Log                        Log class</p>
+</dd>
 <dt><a href="#Page">Page</a></dt>
 <dd><p>{Object} Page                       Page for parsing page types</p>
 </dd>
@@ -50,6 +53,9 @@
 <dt><a href="#init">init()</a></dt>
 <dd><p>Sets lab &amp; ace-editor</p>
 </dd>
+<dt><a href="#entries">entries()</a> ⇒ <code>string</code></dt>
+<dd><p>Gets entries</p>
+</dd>
 <dt><a href="#type">type(value)</a></dt>
 <dd><p>Sets type</p>
 </dd>
@@ -86,14 +92,11 @@
 <dt><a href="#copyCode">copyCode()</a></dt>
 <dd><p>Copy code to clipboard</p>
 </dd>
+<dt><a href="#cardButton">cardButton(event)</a></dt>
+<dd><p>Toggles the card button associated with the passed &#39;event&#39; param</p>
+</dd>
 <dt><a href="#externalLinks">externalLinks(element)</a></dt>
 <dd><p>Toggles opacity from bottom links in navigation area</p>
-</dd>
-<dt><a href="#easingFunctions">easingFunctions(index)</a></dt>
-<dd><p>Toggles visibility of easing functions</p>
-</dd>
-<dt><a href="#documentation">documentation(type)</a></dt>
-<dd><p>Sets markdown content for the off canvas documentation element</p>
 </dd>
 <dt><a href="#navigation">navigation()</a></dt>
 <dd><p>Toggles visibility of navigation menu</p>
@@ -145,33 +148,21 @@ Call main module
 
 
 * [devSuite](#module_devSuite)
-    * [~setOffCanvasDocument(type)](#module_devSuite..setOffCanvasDocument)
-    * [~toggleEasingFunctions(index)](#module_devSuite..toggleEasingFunctions)
+    * [~toggleCardButton(easingFunction, index)](#module_devSuite..toggleCardButton)
     * [~runEasingAnimation(easingFunction, index)](#module_devSuite..runEasingAnimation)
     * [~_runLabStationCode()](#module_devSuite.._runLabStationCode)
 
-<a name="module_devSuite..setOffCanvasDocument"></a>
+<a name="module_devSuite..toggleCardButton"></a>
 
-### devSuite~setOffCanvasDocument(type)
-Sets markdown content for the offCanvas element
-
-**Kind**: inner method of [<code>devSuite</code>](#module_devSuite)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| type | <code>string</code> | Object or Subject type |
-
-<a name="module_devSuite..toggleEasingFunctions"></a>
-
-### devSuite~toggleEasingFunctions(index)
-Toggles visibility of easing functions
+### devSuite~toggleCardButton(easingFunction, index)
+Toggles individual card buttons using their 'suite-data' attributes
 
 **Kind**: inner method of [<code>devSuite</code>](#module_devSuite)  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
+| easingFunction | <code>string</code> | Easing function; as a string |
 | index | <code>number</code> | Index of animation card |
 
 <a name="module_devSuite..runEasingAnimation"></a>
@@ -190,7 +181,7 @@ Runs easing animation for an animation card
 <a name="module_devSuite.._runLabStationCode"></a>
 
 ### devSuite~\_runLabStationCode()
-Executes lab-station code from editor
+Runs lab-station code from editor
 
 **Kind**: inner method of [<code>devSuite</code>](#module_devSuite)  
 **Access**: public  
@@ -205,6 +196,18 @@ Executes lab-station code from editor
 | Name | Type | Description |
 | --- | --- | --- |
 | editor | <code>Object</code> | Primary ace-editor object |
+
+<a name="Log"></a>
+
+## Log
+{Object} Log                        Log class
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| entries | <code>string</code> | Log entries |
 
 <a name="Page"></a>
 
@@ -338,6 +341,14 @@ Sets lab & ace-editor
 
 **Kind**: global function  
 **Access**: public  
+<a name="entries"></a>
+
+## entries() ⇒ <code>string</code>
+Gets entries
+
+**Kind**: global function  
+**Returns**: <code>string</code> - Page's entries  
+**Access**: public  
 <a name="type"></a>
 
 ## type(value)
@@ -460,6 +471,18 @@ Copy code to clipboard
 
 **Kind**: global function  
 **Access**: public  
+<a name="cardButton"></a>
+
+## cardButton(event)
+Toggles the card button associated with the passed 'event' param
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| event | <code>HTMLEvent</code> | UI DOM event |
+
 <a name="externalLinks"></a>
 
 ## externalLinks(element)
@@ -471,30 +494,6 @@ Toggles opacity from bottom links in navigation area
 | Param | Type | Description |
 | --- | --- | --- |
 | element | <code>HTMLElement</code> | Main button element |
-
-<a name="easingFunctions"></a>
-
-## easingFunctions(index)
-Toggles visibility of easing functions
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| index | <code>number</code> | Index of animation card |
-
-<a name="documentation"></a>
-
-## documentation(type)
-Sets markdown content for the off canvas documentation element
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| type | <code>string</code> | Object or Subject type |
 
 <a name="navigation"></a>
 

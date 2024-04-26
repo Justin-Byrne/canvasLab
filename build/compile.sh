@@ -48,7 +48,7 @@ declare MD2JSON_CACHE=../devSuite/docs/archive
 ## MUTATATORS ####################################################
 
 declare LEAD_JS_FILE=${INPUT_FOLDER}/classes/Handlers/Application.js
-declare LEAD_HTML_FILE='../devSuite/index.html'
+declare LEAD_HTML_FILE=../devSuite/index.html
 
 ## CACHE #########################################################
 
@@ -227,7 +227,7 @@ function compile_output ()
     echo "${PROMPT_A} ${TITLE_PACKAGE} Compiling Complete ${TITLE_BASH} \t\t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
 
 
-    afplay audio/complete.mp3
+    afplay audio/start.mp3
 }
 
 function compile_minified ()

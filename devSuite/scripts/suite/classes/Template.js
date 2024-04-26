@@ -9,17 +9,17 @@ class Template
     {
         standard: `<div class="col">
 
-                       <div class="card" id="view_{{number}}" data-devTest-code="{{code}}" data-devTest-title="{{title}}">
+                       <div class="card" id="view_{{index}}" suite-data-code="{{code}}" suite-data-title="{{title}}" onclick="devTest.toggleCardButton ( event )">
 
                            <div class="card-number">
 
                                <span class="close"></span>
 
-                               <span class="number">{{number}}</span>
+                               <span class="number">{{index}}</span>
 
                            </div>
 
-                           <canvas id="canvas_{{number}}"></canvas>
+                           <canvas id="canvas_{{index}}"></canvas>
 
                            <div class="card-body">
 
@@ -57,13 +57,13 @@ class Template
 
                                    <span class="icons">
 
-                                       <img src="images/svg/{{subgroup}}.svg" class="card-icons easing" onclick="devTest.toggleEasingFunctions ( {{number}} )">
+                                       <img src="images/svg/{{subgroup}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devTest.toggleCardButton ( event )">
 
                                        <span class="wall">&nbsp;</span>
 
-                                       <img src="images/svg/{{group}}.svg" class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{groupType}}' )">
+                                       <img src="images/svg/{{group}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{groupType}}"  onclick="devTest.toggleCardButton ( event )">
 
-                                       <img src="images/svg/{{image}}.svg" class="card-icons" onclick="devTest.setOffCanvasDocument ( '{{objectType}}' )">
+                                       <img src="images/svg/{{image}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{objectType}}" onclick="devTest.toggleCardButton ( event )">
 
                                    </span>
 
@@ -170,14 +170,14 @@ class Template
 
             for ( let _iter in cardObjects )
             {
-                let _count      = _iter.to2Digits ( );
+                let _index      = _iter.to2Digits ( );
 
-                let _template   = this.standard.replace ( /{{number}}/g, _count );
+                let _template   = this.standard.replace ( /{{index}}/g, _index );
 
                 let _cardObject = cardObjects [ _iter ];
 
 
-                _cards.push ( this._getCodeTemplate ( _cardObject, _template, _count ) );
+                _cards.push ( this._getCodeTemplate ( _cardObject, _template, _index ) );
             }
 
 
