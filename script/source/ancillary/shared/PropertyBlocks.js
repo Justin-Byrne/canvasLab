@@ -100,7 +100,18 @@ const PROPERTY_BLOCKS =
             {
                 return this._point.y;
             }
-        }
+        },
+        alpha:
+        {
+            set ( value )
+            {
+                this._alpha = ( value <= 1  &&  value >= 0 ) ? value : this._alpha;
+            },
+            get ( )
+            {
+                return this._alpha;
+            }
+        },
     },
     /** @var            {Object} combined                                                           **/
     combined:

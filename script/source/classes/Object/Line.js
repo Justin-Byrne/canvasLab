@@ -31,10 +31,10 @@ class Line
      * @property        {string} canvas                             Canvas Id
      */
     constructor (
-                    start   = { x:     undefined, y:        undefined },
-                    end     = { x:     undefined, y:        undefined },
-                    stroke  = { type:  undefined, segments: undefined, color: undefined, alpha:  undefined, width: undefined },
-                    shadow  = { color: undefined, alpha:    undefined, blur:  undefined, offset: { x: undefined, y: undefined } },
+                    start   = { x:     undefined, y:    undefined },
+                    end     = { x:     undefined, y:    undefined },
+                    stroke  = { color: undefined, type: undefined, segments:    undefined, width: undefined },
+                    shadow  = { color: undefined, blur: undefined, offset: { x: undefined, y:     undefined } },
                     lineCap = undefined,
                     canvas
                 )
@@ -93,9 +93,9 @@ class Line
 
         ////    OBJECT INITIALIZER(S)   ////////////////////
 
-            this._stroke = new Stroke ( stroke.type,  stroke.segments, stroke.color, stroke.alpha, stroke.width );
+            this._stroke = new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width );
 
-            this._shadow = new Shadow ( shadow.color, shadow.alpha,    shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
+            this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
 
         this.lineCap = lineCap;
         this.canvas  = canvas;
@@ -373,10 +373,10 @@ class Line
 
                 _textStart.options.shadow = _textEnd.options.shadow = true;
 
-                _textStart.shadow.color   = _textEnd.shadow.color   = '255, 255, 255';
 
+                _textStart.shadow.color   = _textEnd.shadow.color   = new Rgb ( 255, 255, 255 );
 
-                _textStart.shadow.alpha   = _textEnd.shadow.alpha   = _textStart.shadow.blur = _textEnd.shadow.blur = 1;
+                _textStart.shadow.blur    = _textEnd.shadow.blur    = 1;
 
                 _textStart.shadow.x       = _textEnd.shadow.x       = _textStart.shadow.y    = _textEnd.shadow.y    = 1;
 
@@ -404,7 +404,7 @@ class Line
 
             let _textStart  = new Text ( _point1.x, _point1.y, `( ${this.#_controlPoints.p0}, ${this.#_controlPoints.p1} )` );
 
-            let _textEnd    = new Text ( _point2.x, _point2.y,   `( ${this.#_controlPoints.p3}, ${this.#_controlPoints.p4  } )` );
+            let _textEnd    = new Text ( _point2.x, _point2.y, `( ${this.#_controlPoints.p3}, ${this.#_controlPoints.p4} )` );
 
 
                 _textStart.canvas         = _textEnd.canvas         = this.canvas;
@@ -413,15 +413,15 @@ class Line
 
                 _textStart.offset.y       = _textEnd.offset.y       = - ( offset * 2 );
 
-                _textStart.stroke.color   = _textEnd.stroke.color   = '255, 0, 0 ';
+                _textStart.stroke.color   = _textEnd.stroke.color   = new Rgb ( 255, 0, 0 );
 
 
                 _textStart.options.shadow = _textEnd.options.shadow = true;
 
 
-                _textStart.shadow.color   = _textEnd.shadow.color   = '255, 255, 255';
+                _textStart.shadow.color   = _textEnd.shadow.color   = new Rgb ( 255, 255, 255 );
 
-                _textStart.shadow.alpha   = _textEnd.shadow.alpha   = _textStart.shadow.blur = _textEnd.shadow.blur = 1;
+                _textStart.shadow.blur    = _textEnd.shadow.blur    = 1;
 
                 _textStart.shadow.x       = _textEnd.shadow.x       = _textStart.shadow.y    = _textEnd.shadow.y    = 1;
 
@@ -432,11 +432,11 @@ class Line
 
             ////////////////////////////////////////////////////////////////////////////////////////
 
-            let _red   = '255, 0, 0';
+            let _red   = new Rgb ( 255, 0, 0 );
 
-            let _blue  = '0, 0, 255';
+            let _blue  = new Rgb ( 0, 0, 255 );
 
-            let _green = '0, 255, 0';
+            let _green = new Rgb ( 0, 255, 0 );
 
 
             let _lineSegments = [ 2, 4 ];
@@ -474,11 +474,11 @@ class Line
             let _circleB = new Circle ( _point2 );
 
 
-                _circleA.radius       = _circleB.radius       = 3;
+                _circleA.radius             = _circleB.radius             = 3;
 
-                _circleA.stroke.alpha = _circleB.stroke.alpha = 0;
+                _circleA.stroke.color.alpha = _circleB.stroke.color.alpha = 0;
 
-                _circleA.canvas       = _circleB.canvas       = this.canvas;
+                _circleA.canvas             = _circleB.canvas             = this.canvas;
 
 
                 [ _circleA.fill.color, _circleB.fill.color ]  = [ _red, _blue ];
@@ -624,7 +624,7 @@ class Line
                 if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
-                this._canvas.strokeStyle = `rgba(${this.stroke.color}, ${this.stroke.alpha})`;
+                this._canvas.strokeStyle = this.stroke.color.toCss ( );
 
                 this._canvas.lineCap     = this.lineCap;
 
@@ -632,7 +632,7 @@ class Line
 
                 ////////////////////////////////////////////////////////////////
 
-                this._canvas.setLineDash ( ( this.stroke.type ) ? this.stroke.segments : [ ] );
+                this._canvas.setLineDash ( ( this.stroke.type === 'solid' ) ? new Array : this.stroke.segments );
 
                 this._canvas.beginPath   ( );
 
@@ -645,7 +645,7 @@ class Line
                 this._canvas.stroke    ( );
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = `rgba(0, 0, 0, 0)`;         // Reset: shadow
+                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
                 this._drawOptions ( );

@@ -4,6 +4,10 @@
  */
 const VALIDATION =
 {
+    is256 ( value )
+    {
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 255 )  );
+    },
     isAnchor ( value )
     {
         let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft' ];
@@ -20,11 +24,11 @@ const VALIDATION =
     },
     isAspect ( value )
     {
-        let _aspect  = ( value instanceof Aspect );
+        let _aspect = ( value instanceof Aspect );
 
         let _length = ( Object.keys ( value ).length == 2 );
 
-        let _width  = ( value.hasOwnProperty ( 'width' ) )  ? ( typeof value.width === 'number' )  : false;
+        let _width  = ( value.hasOwnProperty ( 'width'  ) ) ? ( typeof value.width === 'number' )  : false;
 
         let _height = ( value.hasOwnProperty ( 'height' ) ) ? ( typeof value.height === 'number' ) : false;
 
@@ -33,11 +37,20 @@ const VALIDATION =
     },
     isBlur ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value >= 0 )  );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );
     },
     isCanvasLabObject ( value )
     {
-        return (  ( value instanceof Line )  ||  ( value instanceof Circle )  ||  ( value instanceof Rectangle )  ||  ( value instanceof Text )  );
+        if ( value instanceof Line      ) return true;
+
+        if ( value instanceof Circle    ) return true;
+
+        if ( value instanceof Rectangle ) return true
+
+        if ( value instanceof Text      ) return true;
+
+
+        return false;
     },
     isColorName ( value )
     {
@@ -255,9 +268,41 @@ const VALIDATION =
 
         return _colors [ value [ 0 ].toUpperCase ( ) ].includes ( value );
     },
+    isColorModel ( value )
+    {
+        if ( value instanceof Rgb ) return true;
+
+        if ( value instanceof Hsl ) return true;
+
+        if ( value instanceof Hwb ) return true;
+
+
+        return false;
+    },
+    isColorStop ( value )
+    {
+        // @TODO: a more robust & informative checking system should be put into place here, while considering performance !
+
+        let _array = ( Array.isArray ( value )          &&  ( value.length === 2 ) );
+
+        let _stop  = ( typeof value [ 0 ] === 'number'  &&  ( value [ 0 ] >= 0 &&  value [ 0 ] <= 1 ) );
+
+        let _color = ( typeof value [ 1 ] === 'string' );
+
+
+        return ( _array  &&  _stop  &&  _color );
+    },
+    isDecimal ( value )
+    {
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  ) );
+    },
     isDegree ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value <= 360 )  );
+        return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
+    },
+    isFillType ( value )
+    {
+        return [ 'solid', 'linear', 'radial', 'conic', 'pattern' ].includes ( value );
     },
     isInDom ( elementId )
     {
@@ -265,7 +310,7 @@ const VALIDATION =
     },
     isNumber ( value )
     {
-        return (  ( typeof value === 'number')  &&  !isNaN ( value )  );
+        return ( ( typeof value === 'number')  &&  !isNaN ( value ) );
     },
     isPoint ( value )
     {
@@ -282,25 +327,23 @@ const VALIDATION =
     },
     isRadian ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 6.283185307179586 )  );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 6.283185307179586 ) );
     },
     isRadius ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value > 0 )  );
-    },
-    isRgb ( value )
-    {
-        return ( /\b([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5]),(\s*)?([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5]),(\s*)?([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\b/.test ( value ) );
+        return ( ( typeof value === 'number' )  &&  ( value > 0 ) );
     },
     isSegments ( value )
     {
-        function isArrayNumberic ( value )
+        function isArrayNumeric ( value )
         {
             let _result = undefined;
+
 
             for ( let _element of value )
             {
                 _result = ( typeof _element != 'number' ) ? false : true;
+
 
                 if ( _result == false ) break;
             }
@@ -310,14 +353,14 @@ const VALIDATION =
         }
 
 
-        return ( Array.isArray ( value ) ) ? isArrayNumberic ( value ) : false;
+        return ( Array.isArray ( value ) ) ? isArrayNumeric ( value ) : false;
     },
-    isType ( value )
+    isStrokeType ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1 )  );
+        return ( ( typeof value === 'string' )  &&  [ 'solid', 'dashed' ].includes ( value ) );
     },
     isWidth ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value >= 0 )  );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );
     }
 }

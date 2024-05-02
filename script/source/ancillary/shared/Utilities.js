@@ -14,11 +14,12 @@ const UTILITIES =
     /** @var            {Object} draw                                                               **/
     draw:
     {
-        axis ( edgeOffset = 20, color =  '235, 81, 73' )
+        axis ( edgeOffset = 20, color = new Rgb ( 245, 80, 50 ) )
         {
             let _lines = new Lines ( new Line, new Line );
 
-                _lines.stroke.color = '235, 81, 73';
+
+                _lines.stroke.color = color;
 
                 _lines.point        = this.center;
 
@@ -32,17 +33,19 @@ const UTILITIES =
 
                 _lines.draw ( );
         },
-        border ( aspect, color =  '235, 81, 73' )
+        border ( aspect, color = new Rgb ( 245, 80, 50 ) )
         {
             if ( this._isAspect ( aspect ) )
             {
                 let _border = new Rectangle ( this.center, aspect );
 
-                    _border.stroke.color = color;
 
-                    _border.fill.alpha   = 0;
+                    _border.stroke.color     = color;
 
-                    _border.canvas       = ( this instanceof Point ) ? this.options._master.canvas : this.canvas;
+                    _border.fill.color.alpha = 0;
+
+                    _border.canvas           = ( this instanceof Point ) ? this.options._master.canvas : this.canvas;
+
 
                     _border.draw ( );
             }
@@ -66,7 +69,6 @@ const UTILITIES =
                         {
                             _object.point = new Point (  ( _object.origin.x + this.x ), ( _object.origin.y + this.y )  );
 
-
                             _object.draw ( );
                         }
 
@@ -89,7 +91,7 @@ const UTILITIES =
                     {
                         for ( let _object of this )
                         {
-                            this._setAspect ( );
+                            this._setAspect      ( );
 
                             this._setAnchorPoint ( );
 
@@ -122,9 +124,9 @@ const UTILITIES =
         {
             value = value.split ( ',' );
 
-            return `${value [ 0 ].trim ( )}, ` +                // RED
-                   `${value [ 1 ].trim ( )}, ` +                // GREEN
-                   `${value [ 2 ].trim ( )}`                    // BLUE
+            return `${value [ 0 ].trim ( )}, ` +            // RED
+                   `${value [ 1 ].trim ( )}, ` +            // GREEN
+                   `${value [ 2 ].trim ( )}`                // BLUE
         }
     },
     pushPop ( object )
@@ -207,7 +209,7 @@ const UTILITIES =
 
             this._canvas.shadowOffsetY = this._shadow.y;
 
-            this._canvas.shadowColor   = `rgba(${this._shadow.color}, ${this._shadow.alpha})`;
+            this._canvas.shadowColor   = this._shadow.color.toCss ( );
         }
     }
 }

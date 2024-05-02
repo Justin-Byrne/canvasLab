@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Stroke<span class="signature">(type, segments, color, alpha, width)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Stroke<span class="signature">(color, type, segments, alpha, width)</span><span class="type-signature"></span></h2>
         
             <div class="class-description">{Object}   Stroke                           Stroke properties of associated object</div>
         
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="Stroke"><span class="type-signature"></span>new Stroke<span class="signature">(type, segments, color, alpha, width)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Stroke"><span class="type-signature"></span>new Stroke<span class="signature">(color, type, segments, alpha, width)</span><span class="type-signature"></span></h4>
     
 
     
@@ -89,6 +89,29 @@
 
         <tr>
             
+                <td class="name"><code>color</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">RGB color value</td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>type</code></td>
             
 
@@ -105,7 +128,7 @@
 
             
 
-            <td class="description last">Type: (0) Solid or (1) Dashed</td>
+            <td class="description last">Stroke type</td>
         </tr>
 
     
@@ -129,29 +152,6 @@
             
 
             <td class="description last">Dashed line segment distance(s)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">RGB color value</td>
         </tr>
 
     
@@ -239,13 +239,13 @@
 
         <tr>
             
-                <td class="name"><code>type</code></td>
+                <td class="name"><code>color</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Object</span>
 
 
             
@@ -264,12 +264,49 @@
             
                 <td class="default">
                 
-                    0
+                    &lt;Rgb>
                 
                 </td>
             
 
-            <td class="description last">Type: (0) Solid or (1) Dashed</td>
+            <td class="description last">Color model & value</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'solid'
+                
+                </td>
+            
+
+            <td class="description last">Stroke type; solid | dashed</td>
         </tr>
 
     
@@ -306,81 +343,7 @@
                 </td>
             
 
-            <td class="description last">Dashed line segment distance(s)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    '0, 0, 0'
-                
-                </td>
-            
-
-            <td class="description last">RGB color value; r, g, b</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>alpha</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    1
-                
-                </td>
-            
-
-            <td class="description last">Alpha (transparency); number/decimal</td>
+            <td class="description last">Dashed line segment distance(s); <array<numbers>></td>
         </tr>
 
     
@@ -489,7 +452,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.2.17.js.html">canvasLab-v0.2.17.js</a>, <a href="canvasLab-v0.2.17.js.html#line2164">line 2164</a>
+        <a href="canvasLab-v0.3.25.js.html">canvasLab-v0.3.25.js</a>, <a href="canvasLab-v0.3.25.js.html#line1818">line 1818</a>
     </li></ul></dd>
     
 
@@ -539,130 +502,6 @@
 
         
             
-<h4 class="name" id="alpha"><span class="type-signature"></span>alpha<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Set alpha value
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.2.17.js.html">canvasLab-v0.2.17.js</a>, <a href="canvasLab-v0.2.17.js.html#line2265">line 2265</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="alpha"><span class="type-signature"></span>alpha<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Get alpha value
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.2.17.js.html">canvasLab-v0.2.17.js</a>, <a href="canvasLab-v0.2.17.js.html#line2274">line 2274</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
 <h4 class="name" id="color"><span class="type-signature"></span>color<span class="type-signature"></span></h4>
 
 
@@ -707,7 +546,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.2.17.js.html">canvasLab-v0.2.17.js</a>, <a href="canvasLab-v0.2.17.js.html#line2245">line 2245</a>
+        <a href="canvasLab-v0.3.25.js.html">canvasLab-v0.3.25.js</a>, <a href="canvasLab-v0.3.25.js.html#line1896">line 1896</a>
     </li></ul></dd>
     
 
@@ -769,7 +608,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.2.17.js.html">canvasLab-v0.2.17.js</a>, <a href="canvasLab-v0.2.17.js.html#line2254">line 2254</a>
+        <a href="canvasLab-v0.3.25.js.html">canvasLab-v0.3.25.js</a>, <a href="canvasLab-v0.3.25.js.html#line1905">line 1905</a>
     </li></ul></dd>
     
 
@@ -831,7 +670,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.2.17.js.html">canvasLab-v0.2.17.js</a>, <a href="canvasLab-v0.2.17.js.html#line2225">line 2225</a>
+        <a href="canvasLab-v0.3.25.js.html">canvasLab-v0.3.25.js</a>, <a href="canvasLab-v0.3.25.js.html#line1874">line 1874</a>
     </li></ul></dd>
     
 
@@ -893,7 +732,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.2.17.js.html">canvasLab-v0.2.17.js</a>, <a href="canvasLab-v0.2.17.js.html#line2234">line 2234</a>
+        <a href="canvasLab-v0.3.25.js.html">canvasLab-v0.3.25.js</a>, <a href="canvasLab-v0.3.25.js.html#line1885">line 1885</a>
     </li></ul></dd>
     
 
@@ -955,7 +794,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.2.17.js.html">canvasLab-v0.2.17.js</a>, <a href="canvasLab-v0.2.17.js.html#line2205">line 2205</a>
+        <a href="canvasLab-v0.3.25.js.html">canvasLab-v0.3.25.js</a>, <a href="canvasLab-v0.3.25.js.html#line1854">line 1854</a>
     </li></ul></dd>
     
 
@@ -1017,7 +856,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.2.17.js.html">canvasLab-v0.2.17.js</a>, <a href="canvasLab-v0.2.17.js.html#line2214">line 2214</a>
+        <a href="canvasLab-v0.3.25.js.html">canvasLab-v0.3.25.js</a>, <a href="canvasLab-v0.3.25.js.html#line1863">line 1863</a>
     </li></ul></dd>
     
 
@@ -1079,7 +918,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.2.17.js.html">canvasLab-v0.2.17.js</a>, <a href="canvasLab-v0.2.17.js.html#line2285">line 2285</a>
+        <a href="canvasLab-v0.3.25.js.html">canvasLab-v0.3.25.js</a>, <a href="canvasLab-v0.3.25.js.html#line1916">line 1916</a>
     </li></ul></dd>
     
 
@@ -1141,7 +980,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.2.17.js.html">canvasLab-v0.2.17.js</a>, <a href="canvasLab-v0.2.17.js.html#line2294">line 2294</a>
+        <a href="canvasLab-v0.3.25.js.html">canvasLab-v0.3.25.js</a>, <a href="canvasLab-v0.3.25.js.html#line1925">line 1925</a>
     </li></ul></dd>
     
 
@@ -1175,13 +1014,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="PROPERTY_BLOCKS.html">PROPERTY_BLOCKS</a></li><li><a href="UTILITIES.html">UTILITIES</a></li><li><a href="VALIDATION.html">VALIDATION</a></li></ul><h3>Classes</h3><ul><li><a href="Anchor.html">Anchor</a></li><li><a href="Angle.html">Angle</a></li><li><a href="Animation.html">Animation</a></li><li><a href="Aspect.html">Aspect</a></li><li><a href="Circle.html">Circle</a></li><li><a href="Circles.html">Circles</a></li><li><a href="ControlPoints.html">ControlPoints</a></li><li><a href="Fill.html">Fill</a></li><li><a href="Font.html">Font</a></li><li><a href="Group.html">Group</a></li><li><a href="Line.html">Line</a></li><li><a href="LinearGradient.html">LinearGradient</a></li><li><a href="Lines.html">Lines</a></li><li><a href="Options.html">Options</a></li><li><a href="OptionsCollection.html">OptionsCollection</a></li><li><a href="Point.html">Point</a></li><li><a href="PointCollection.html">PointCollection</a></li><li><a href="Rectangle.html">Rectangle</a></li><li><a href="Rectangles.html">Rectangles</a></li><li><a href="Shadow.html">Shadow</a></li><li><a href="ShadowCollection.html">ShadowCollection</a></li><li><a href="Stroke.html">Stroke</a></li><li><a href="StrokeCollection.html">StrokeCollection</a></li><li><a href="Text.html">Text</a></li><li><a href="Texts.html">Texts</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEBUG">DEBUG</a></li><li><a href="global.html#collection">collection</a></li><li><a href="global.html#combined">combined</a></li><li><a href="global.html#discrete">discrete</a></li><li><a href="global.html#draw">draw</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#initCanvasLab">initCanvasLab</a></li><li><a href="global.html#set">set</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="PROPERTY_BLOCKS.html">PROPERTY_BLOCKS</a></li><li><a href="UTILITIES.html">UTILITIES</a></li><li><a href="VALIDATION.html">VALIDATION</a></li></ul><h3>Classes</h3><ul><li><a href="Anchor.html">Anchor</a></li><li><a href="Angle.html">Angle</a></li><li><a href="Animation.html">Animation</a></li><li><a href="Aspect.html">Aspect</a></li><li><a href="Circle.html">Circle</a></li><li><a href="Circles.html">Circles</a></li><li><a href="ControlPoints.html">ControlPoints</a></li><li><a href="Fill.html">Fill</a></li><li><a href="FillSolid.html">FillSolid</a></li><li><a href="Font.html">Font</a></li><li><a href="GradientLinear.html">GradientLinear</a></li><li><a href="Group.html">Group</a></li><li><a href="Hsl.html">Hsl</a></li><li><a href="Hwb.html">Hwb</a></li><li><a href="Line.html">Line</a></li><li><a href="Lines.html">Lines</a></li><li><a href="Options.html">Options</a></li><li><a href="OptionsCollection.html">OptionsCollection</a></li><li><a href="Point.html">Point</a></li><li><a href="PointCollection.html">PointCollection</a></li><li><a href="Rectangle.html">Rectangle</a></li><li><a href="Rectangles.html">Rectangles</a></li><li><a href="Rgb.html">Rgb</a></li><li><a href="Shadow.html">Shadow</a></li><li><a href="ShadowCollection.html">ShadowCollection</a></li><li><a href="Stroke.html">Stroke</a></li><li><a href="StrokeCollection.html">StrokeCollection</a></li><li><a href="Text.html">Text</a></li><li><a href="Texts.html">Texts</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEBUG">DEBUG</a></li><li><a href="global.html#blackness">blackness</a></li><li><a href="global.html#blue">blue</a></li><li><a href="global.html#collection">collection</a></li><li><a href="global.html#combined">combined</a></li><li><a href="global.html#discrete">discrete</a></li><li><a href="global.html#draw">draw</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#green">green</a></li><li><a href="global.html#hue">hue</a></li><li><a href="global.html#initCanvasLab">initCanvasLab</a></li><li><a href="global.html#lightness">lightness</a></li><li><a href="global.html#red">red</a></li><li><a href="global.html#saturation">saturation</a></li><li><a href="global.html#set">set</a></li><li><a href="global.html#toCss">toCss</a></li><li><a href="global.html#whiteness">whiteness</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Apr 26 2024 08:03:11 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu May 02 2024 09:54:01 GMT-0700 (Pacific Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

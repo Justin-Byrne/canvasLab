@@ -272,6 +272,8 @@ nav
 
                 &.disabled
                 {
+                    display: none;
+
                     pointer-events: none;
                     opacity:        0.65;
 
@@ -400,22 +402,6 @@ main
             {
                 .col
                 {
-                    &.extra:nth-child(n + 3) > .extra
-                    {
-                        opacity: 0;
-
-                        &.hidden
-                        {
-                            opacity: 0;
-
-                            &:hover
-                            {
-                                opacity: 0;
-                                cursor:  default;
-                            }
-                        }
-                    }
-
                     @extend .mq-test-card-column-scaling;
 
                     .card
@@ -505,6 +491,7 @@ main
 
                                 .title
                                 {
+                                    display:        inline-block;
                                     padding-left:   20px;
 
                                     font-family:    monospace;
@@ -572,7 +559,7 @@ main
 
                                                 border-radius:  5px;
 
-                                                opacity:        0.35;
+                                                opacity:        0.65;
 
                                                 transition:     opacity 1s, background 5s;
 
@@ -647,17 +634,35 @@ main
                             }
                         }
 
-                        &.extra
+                        &.blank
                         {
+                            cursor:             unset;
+
                             display:            table-cell;
                             min-height:         31.5vh;
                             max-height:         100%;
                             vertical-align:     middle;
 
+                            background:         none;
+                            box-shadow:         none;
+                            color:              transparent;
+
+                            @extend .mq-card-blank-scaling;
+
+                            &:hover
+                            {
+                                cursor:     unset;
+                                opacity:    0;
+                            }
+                        }
+
+                        &.plus
+                        {
+                            opacity:            0.5;
+
                             outline:            3px ridge white;
                             background-color:   rgba(68, 80, 93, .4);
-
-                            opacity:            0.5;
+                            color:              black;
 
                             transition:         opacity 1s;
 
@@ -675,14 +680,12 @@ main
                                 text-align:         center;
                                 padding-bottom:     20px;
                             }
-
-                            @extend .mq-card-extra-scaling;
                         }
 
                         &:hover
                         {
                             cursor:     pointer;
-                            transform:  scale(1.05);
+                            // transform:  scale(1.05);
 
                             background: rgba(95, 112, 130, 1);
 
@@ -1256,7 +1259,7 @@ main
 
                     .picker_sl
                     {
-                        width:  94.5%;
+                        width:  160px;
                         height: 140px;
 
                         margin: 7px 0 5px 5px;
@@ -1272,7 +1275,7 @@ main
 
                     .picker_alpha
                     {
-                        display: none;
+                        display: inline-block;
 
                         width:  10%;
                         height: 140px;
@@ -1340,6 +1343,16 @@ main
                 }
             }
         }
+    }
+
+    #lab-open
+    {
+        position:   fixed;
+        width:      120px;
+        height:     100vh;
+        bottom:     0;
+        right:      0;
+        z-index:    50;
     }
 
     #byrne-systems-logo
@@ -1566,7 +1579,7 @@ $scrollbar-color-background: rgba(0,  31,  61, 0.36);
 
 ////    [ CARD BLANK ]    //////////////////////////////////
 
-.mq-card-extra-scaling
+.mq-card-blank-scaling
 {
     @media (max-width: 2100px) { width: 23vw;   }
 

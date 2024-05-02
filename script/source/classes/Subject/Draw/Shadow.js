@@ -1,44 +1,35 @@
 /**
  * @class           {Object} Shadow                             Shadow of associated object
- * @property        {string} [color='0, 0, 0']                  RGB color value; r, g, b
- * @property        {number} [alpha=1]                          Alpha (transparency) number/decimal
+ * @property        {Object} [color=<Rgb>]                      RGB color value; r, g, b
  * @property        {number} [blur=3]                           Blur strength
  * @property        {Point}  offset                             Point offset coordinates
  */
 class Shadow
 {
-    _color  = '0, 0, 0';
-    _alpha  = 1;
+    _color  = new Rgb;
     _blur   = 3;
-
     _offset = new Point;
 
     /**
      * Create a shadow
-     * @param           {string} color                              RGB color value
-     * @param           {number} alpha                              Alpha value; number/decimal
+     * @param           {Object} color                              RGB color value
      * @param           {number} blur                               Shadow blur value
      * @param           {Point}  offset                             Shadow offset
      */
-    constructor ( color, alpha, blur, offset = { x: undefined, y: undefined } )
+    constructor ( color, blur, offset = { x: undefined, y: undefined } )
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isRgb   = VALIDATION.isRgb;
-            this._isAlpha = VALIDATION.isAlpha;
-            this._isBlur  = VALIDATION.isBlur;
-            this._isPoint = VALIDATION.isPoint;
-
-            this._getRgb = UTILITIES.get.rgb;
+            this._isColorModel = VALIDATION.isColorModel;
+            this._isBlur       = VALIDATION.isBlur;
+            this._isPoint      = VALIDATION.isPoint;
 
             Object.defineProperty ( this, 'offset', PROPERTY_BLOCKS.discrete.offset  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.offsetX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.offsetY );
 
         this.color  = color;
-        this.alpha  = alpha;
         this.blur   = blur;
-
         this.offset = offset;
     }
 
@@ -50,7 +41,7 @@ class Shadow
          */
         set color ( value )
         {
-            this._color = ( this._isRgb ( value ) ) ? this._getRgb ( value ) : this._color;
+            this._color = ( this._isColorModel ( value ) ) ? value : this._color;
         }
 
         /**
@@ -60,26 +51,6 @@ class Shadow
         get color ( )
         {
             return this._color;
-        }
-
-    ////    [ ALPHA ]   ////////////////////////////////////
-
-        /**
-         * Set alpha value
-         * @param           {number} value                              Alpha value; number/decimal
-         */
-        set alpha ( value )
-        {
-            this._alpha = ( this._isAlpha ( value ) ) ? value : this._alpha;
-        }
-
-        /**
-         * Get alpha value
-         * @return          {number}                                    Alpha value; number/decimal
-         */
-        get alpha ( )
-        {
-            return this._alpha;
         }
 
     ////    [ BLUR ]    ////////////////////////////////////
@@ -150,15 +121,9 @@ class Shadow
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isRgb   ( ) { }
+        _isColorModel ( ) { }
 
-        _isAlpha ( ) { }
+        _isBlur       ( ) { }
 
-        _isBlur  ( ) { }
-
-        _isPoint ( ) { }
-
-    ////    UTILITIES   ////////////////////////////////////
-
-        _getRgb ( ) { }
+        _isPoint      ( ) { }
 }

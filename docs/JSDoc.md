@@ -1,6 +1,33 @@
 ## Classes
 
 <dl>
+<dt><a href="#Hsl">Hsl</a></dt>
+<dd><p>{Object} Hsl 								HSL color model</p>
+</dd>
+<dt><a href="#Hwb">Hwb</a></dt>
+<dd><p>{Object} Hwb 								HWB color model</p>
+</dd>
+<dt><a href="#Rgb">Rgb</a></dt>
+<dd><p>{Object} Rgb 								RGB color model</p>
+</dd>
+<dt><a href="#Fill">Fill</a></dt>
+<dd><p>{Object}         Fill                       Fill container for various fill types</p>
+</dd>
+<dt><a href="#FillSolid">FillSolid</a></dt>
+<dd><p>{Object} FillSolid                          Solid fill properties of associated object</p>
+</dd>
+<dt><a href="#GradientLinear">GradientLinear</a></dt>
+<dd><p>{Object} GradientLinear                     GradientLinear properties of associated object</p>
+</dd>
+<dt><a href="#Shadow">Shadow</a></dt>
+<dd><p>{Object} Shadow                             Shadow of associated object</p>
+</dd>
+<dt><a href="#Stroke">Stroke</a></dt>
+<dd><p>{Object}   Stroke                           Stroke properties of associated object</p>
+</dd>
+<dt><a href="#Options">Options</a></dt>
+<dd><p>{Object}  Options                           Options for shapes, lines, and groups</p>
+</dd>
 <dt><a href="#Anchor">Anchor</a></dt>
 <dd><p>{Object} Anchor                             Anchor object</p>
 </dd>
@@ -13,26 +40,11 @@
 <dt><a href="#ControlPoints">ControlPoints</a></dt>
 <dd><p>{Object} ControlPoints                      Defines the shape of a bezier curve</p>
 </dd>
-<dt><a href="#Fill">Fill</a></dt>
-<dd><p>{Object} Fill                               Fill properties of associated object</p>
-</dd>
 <dt><a href="#Font">Font</a></dt>
 <dd><p>{Object} Font                               Font base class for text objects</p>
 </dd>
-<dt><a href="#LinearGradient">LinearGradient</a></dt>
-<dd><p>{Object} LinearGradient                     LinearGradient properties of associated object</p>
-</dd>
-<dt><a href="#Options">Options</a></dt>
-<dd><p>{Object}  Options                           Options for shapes, lines, and groups</p>
-</dd>
 <dt><a href="#Point">Point</a></dt>
 <dd><p>{Object}  Point                             X &amp; Y coordinates for an object</p>
-</dd>
-<dt><a href="#Shadow">Shadow</a></dt>
-<dd><p>{Object} Shadow                             Shadow of associated object</p>
-</dd>
-<dt><a href="#Stroke">Stroke</a></dt>
-<dd><p>{Object}   Stroke                           Stroke properties of associated object</p>
 </dd>
 <dt><a href="#OptionsCollection">OptionsCollection</a></dt>
 <dd><p>{Object}  OptionsCollection                 Options for shapes, lines, and groups</p>
@@ -119,11 +131,801 @@
 ## Functions
 
 <dl>
+<dt><a href="#hue">hue(hue)</a></dt>
+<dd><p>Sets the hue value</p>
+</dd>
+<dt><a href="#hue">hue(Hue)</a></dt>
+<dd><p>Gets the hue value</p>
+</dd>
+<dt><a href="#saturation">saturation(saturation)</a></dt>
+<dd><p>Sets the saturation value</p>
+</dd>
+<dt><a href="#saturation">saturation(Saturation)</a></dt>
+<dd><p>Gets the saturation value</p>
+</dd>
+<dt><a href="#lightness">lightness(lightness)</a></dt>
+<dd><p>Sets the lightness value</p>
+</dd>
+<dt><a href="#lightness">lightness(Lightness)</a></dt>
+<dd><p>Gets the lightness value</p>
+</dd>
+<dt><a href="#toCss">toCss()</a> ⇒ <code>string</code></dt>
+<dd><p>Returns a CSS compatible <color> string value</p>
+</dd>
+<dt><a href="#hue">hue(hue)</a></dt>
+<dd><p>Sets the hue value</p>
+</dd>
+<dt><a href="#hue">hue(Hue)</a></dt>
+<dd><p>Gets the hue value</p>
+</dd>
+<dt><a href="#whiteness">whiteness(whiteness)</a></dt>
+<dd><p>Sets the whiteness value</p>
+</dd>
+<dt><a href="#whiteness">whiteness(Whiteness)</a></dt>
+<dd><p>Gets the whiteness value</p>
+</dd>
+<dt><a href="#blackness">blackness(blackness)</a></dt>
+<dd><p>Sets the blackness value</p>
+</dd>
+<dt><a href="#blackness">blackness(Blackness)</a></dt>
+<dd><p>Gets the blackness value</p>
+</dd>
+<dt><a href="#toCss">toCss()</a> ⇒ <code>string</code></dt>
+<dd><p>Returns a CSS compatible <color> string value</p>
+</dd>
+<dt><a href="#red">red(red)</a></dt>
+<dd><p>Sets the red value</p>
+</dd>
+<dt><a href="#red">red(Red)</a></dt>
+<dd><p>Gets the red value</p>
+</dd>
+<dt><a href="#green">green(green)</a></dt>
+<dd><p>Sets the green value</p>
+</dd>
+<dt><a href="#green">green(Green)</a></dt>
+<dd><p>Gets the green value</p>
+</dd>
+<dt><a href="#blue">blue(blue)</a></dt>
+<dd><p>Sets the blue value</p>
+</dd>
+<dt><a href="#blue">blue(Blue)</a></dt>
+<dd><p>Gets the blue value</p>
+</dd>
+<dt><a href="#toCss">toCss()</a> ⇒ <code>string</code></dt>
+<dd><p>Returns a CSS compatible <color> string value</p>
+</dd>
 <dt><a href="#initCanvasLab">initCanvasLab([canvas])</a></dt>
 <dd><p>Initiates canvasLab</p>
 </dd>
 </dl>
 
+<a name="Hsl"></a>
+
+## Hsl
+{Object} Hsl 								HSL color model
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [hue] | <code>number</code> | <code>0</code> | Hue value; 0 - 360 (degree) |
+| [saturation] | <code>number</code> | <code>0</code> | Saturation value; 0 - 1 (decimal) |
+| [lightness] | <code>number</code> | <code>0</code> | Lightness value; 0 - 1 (decimal) |
+| [alpha] | <code>number</code> | <code>1</code> | Alpha value; 0 - 1 (decimal) |
+
+<a name="new_Hsl_new"></a>
+
+### new Hsl(hue, saturation, lightness, alpha)
+Create an HSL color model
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| hue | <code>number</code> | Hue value |
+| saturation | <code>number</code> | Saturation value |
+| lightness | <code>number</code> | Lightness value |
+| alpha | <code>number</code> | Alpha value |
+
+<a name="Hwb"></a>
+
+## Hwb
+{Object} Hwb 								HWB color model
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [hue] | <code>number</code> | <code>0</code> | Hue value; 0 - 360 (degree) |
+| [whiteness] | <code>number</code> | <code>0</code> | Whiteness value; 0 - 1 (decimal) |
+| [blackness] | <code>number</code> | <code>0</code> | Blackness value; 0 - 1 (decimal) |
+| [alpha] | <code>number</code> | <code>1</code> | Alpha value; 0 - 1 (decimal) |
+
+<a name="new_Hwb_new"></a>
+
+### new Hwb(hue, whiteness, blackness, alpha)
+Create an HWB color Model
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| hue | <code>number</code> | Hue value |
+| whiteness | <code>number</code> | Whiteness value |
+| blackness | <code>number</code> | Blackness value |
+| alpha | <code>number</code> | Alpha value |
+
+<a name="Rgb"></a>
+
+## Rgb
+{Object} Rgb 								RGB color model
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [red] | <code>number</code> | <code>0</code> | Red value; 0 - 255 |
+| [green] | <code>number</code> | <code>0</code> | Green value; 0 - 255 |
+| [blue] | <code>number</code> | <code>0</code> | Blue value; 0 - 255 |
+| [alpha] | <code>number</code> | <code>1</code> | Alpha value; 0 - 1 (decimal) |
+
+<a name="new_Rgb_new"></a>
+
+### new Rgb(red, green, blue, alpha)
+Create an RGB color model
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| red | <code>number</code> | Red value |
+| green | <code>number</code> | Green value |
+| blue | <code>number</code> | Blue value |
+| alpha | <code>number</code> | Alpha value |
+
+<a name="Fill"></a>
+
+## Fill
+{Object}         Fill                       Fill container for various fill types
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | Color model & value |
+| [type] | <code>string</code> | <code>&quot;&#x27;solid&#x27;&quot;</code> | Fill type; solid | linear | radial | conic | pattern |
+| linear | [<code>GradientLinear</code>](#GradientLinear) |  | Linear Gradient fill object |
+| radial | <code>GradientRadial</code> |  | Radial Gradient fill object |
+| conic | <code>GradientConic</code> |  | Conic Gradient fill object |
+| pattern | <code>FillPattern</code> |  | Pattern fill object |
+
+
+* [Fill](#Fill)
+    * [new Fill(type)](#new_Fill_new)
+    * [.type](#Fill+type)
+    * [.type](#Fill+type) ⇒ <code>string</code>
+    * [.linear](#Fill+linear) ⇒ [<code>GradientLinear</code>](#GradientLinear)
+    * [.radial](#Fill+radial) ⇒ <code>GradientRadioal</code>
+    * [.conic](#Fill+conic) ⇒ <code>GradientConic</code>
+    * [.pattern](#Fill+pattern) ⇒ <code>FillPattern</code>
+
+<a name="new_Fill_new"></a>
+
+### new Fill(type)
+Create a fill type
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | Fill type |
+
+<a name="Fill+type"></a>
+
+### fill.type
+Set type value
+
+**Kind**: instance property of [<code>Fill</code>](#Fill)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Fill type value |
+
+<a name="Fill+type"></a>
+
+### fill.type ⇒ <code>string</code>
+Get type value
+
+**Kind**: instance property of [<code>Fill</code>](#Fill)  
+**Returns**: <code>string</code> - Fill type value  
+<a name="Fill+linear"></a>
+
+### fill.linear ⇒ [<code>GradientLinear</code>](#GradientLinear)
+Get linear gradient fill object
+
+**Kind**: instance property of [<code>Fill</code>](#Fill)  
+**Returns**: [<code>GradientLinear</code>](#GradientLinear) - Linear gradient fill object  
+<a name="Fill+radial"></a>
+
+### fill.radial ⇒ <code>GradientRadioal</code>
+Get radial gradient fill object
+
+**Kind**: instance property of [<code>Fill</code>](#Fill)  
+**Returns**: <code>GradientRadioal</code> - Radial gradient fill object  
+<a name="Fill+conic"></a>
+
+### fill.conic ⇒ <code>GradientConic</code>
+Get conic gradient fill object
+
+**Kind**: instance property of [<code>Fill</code>](#Fill)  
+**Returns**: <code>GradientConic</code> - Conic gradient fill object  
+<a name="Fill+pattern"></a>
+
+### fill.pattern ⇒ <code>FillPattern</code>
+Get pattern fill object
+
+**Kind**: instance property of [<code>Fill</code>](#Fill)  
+**Returns**: <code>FillPattern</code> - Pattern fill object  
+<a name="FillSolid"></a>
+
+## FillSolid
+{Object} FillSolid                          Solid fill properties of associated object
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [color] | <code>string</code> | <code>&quot;&#x27;255, 255, 255&#x27;&quot;</code> | RGB color value; r, g, b |
+| [alpha] | <code>number</code> | <code>0</code> | Alpha (transparency); number/decimal |
+
+
+* [FillSolid](#FillSolid)
+    * [new FillSolid(color, alpha)](#new_FillSolid_new)
+    * [.color](#FillSolid+color)
+    * [.color](#FillSolid+color) ⇒ <code>string</code>
+    * [.alpha](#FillSolid+alpha)
+    * [.alpha](#FillSolid+alpha) ⇒ <code>number</code>
+
+<a name="new_FillSolid_new"></a>
+
+### new FillSolid(color, alpha)
+Create a fill, solid
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| color | <code>string</code> | RGB color value |
+| alpha | <code>number</code> | Alpha value; number/decimal |
+
+<a name="FillSolid+color"></a>
+
+### fillSolid.color
+Set color value
+
+**Kind**: instance property of [<code>FillSolid</code>](#FillSolid)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | RGB color value |
+
+<a name="FillSolid+color"></a>
+
+### fillSolid.color ⇒ <code>string</code>
+Get color value
+
+**Kind**: instance property of [<code>FillSolid</code>](#FillSolid)  
+**Returns**: <code>string</code> - RGB color value  
+<a name="FillSolid+alpha"></a>
+
+### fillSolid.alpha
+Set alpha value
+
+**Kind**: instance property of [<code>FillSolid</code>](#FillSolid)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Alpha value; number/decimal |
+
+<a name="FillSolid+alpha"></a>
+
+### fillSolid.alpha ⇒ <code>number</code>
+Get alpha value
+
+**Kind**: instance property of [<code>FillSolid</code>](#FillSolid)  
+**Returns**: <code>number</code> - Alpha value; number/decimal  
+<a name="GradientLinear"></a>
+
+## GradientLinear
+{Object} GradientLinear                     GradientLinear properties of associated object
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| start | [<code>Point</code>](#Point) | X & Y axis coordinates (start) |
+| end | [<code>Point</code>](#Point) | X & Y axis coordinates (end) |
+| end | <code>Array</code> | X & Y axis coordinates (end) |
+
+
+* [GradientLinear](#GradientLinear)
+    * [new GradientLinear()](#new_GradientLinear_new)
+    * [.start](#GradientLinear+start)
+    * [.start](#GradientLinear+start) ⇒ [<code>Point</code>](#Point)
+    * [.end](#GradientLinear+end)
+    * [.end](#GradientLinear+end) ⇒ [<code>Point</code>](#Point)
+
+<a name="new_GradientLinear_new"></a>
+
+### new GradientLinear()
+Create a LinearGradient
+
+<a name="GradientLinear+start"></a>
+
+### gradientLinear.start
+Set starting point
+
+**Kind**: instance property of [<code>GradientLinear</code>](#GradientLinear)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Starting point |
+
+<a name="GradientLinear+start"></a>
+
+### gradientLinear.start ⇒ [<code>Point</code>](#Point)
+Set starting point
+
+**Kind**: instance property of [<code>GradientLinear</code>](#GradientLinear)  
+**Returns**: [<code>Point</code>](#Point) - Starting point  
+<a name="GradientLinear+end"></a>
+
+### gradientLinear.end
+Set ending point
+
+**Kind**: instance property of [<code>GradientLinear</code>](#GradientLinear)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Ending point |
+
+<a name="GradientLinear+end"></a>
+
+### gradientLinear.end ⇒ [<code>Point</code>](#Point)
+Set ending point
+
+**Kind**: instance property of [<code>GradientLinear</code>](#GradientLinear)  
+**Returns**: [<code>Point</code>](#Point) - Ending point  
+<a name="Shadow"></a>
+
+## Shadow
+{Object} Shadow                             Shadow of associated object
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | RGB color value; r, g, b |
+| [blur] | <code>number</code> | <code>3</code> | Blur strength |
+| offset | [<code>Point</code>](#Point) |  | Point offset coordinates |
+
+
+* [Shadow](#Shadow)
+    * [new Shadow(color, blur, offset)](#new_Shadow_new)
+    * [.color](#Shadow+color)
+    * [.color](#Shadow+color) ⇒ <code>string</code>
+    * [.blur](#Shadow+blur)
+    * [.blur](#Shadow+blur) ⇒ <code>number</code>
+    * [.offset](#Shadow+offset)
+    * [.offset](#Shadow+offset) ⇒ [<code>Point</code>](#Point)
+    * [.x](#Shadow+x)
+    * [.x](#Shadow+x) ⇒ <code>number</code>
+    * [.y](#Shadow+y)
+    * [.y](#Shadow+y) ⇒ <code>number</code>
+
+<a name="new_Shadow_new"></a>
+
+### new Shadow(color, blur, offset)
+Create a shadow
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| color | <code>Object</code> | RGB color value |
+| blur | <code>number</code> | Shadow blur value |
+| offset | [<code>Point</code>](#Point) | Shadow offset |
+
+<a name="Shadow+color"></a>
+
+### shadow.color
+Set color value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | RGB color value |
+
+<a name="Shadow+color"></a>
+
+### shadow.color ⇒ <code>string</code>
+Get color value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**Returns**: <code>string</code> - RGB color value  
+<a name="Shadow+blur"></a>
+
+### shadow.blur
+Set blur value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| blur | <code>number</code> | Blur value |
+
+<a name="Shadow+blur"></a>
+
+### shadow.blur ⇒ <code>number</code>
+Get blur value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**Returns**: <code>number</code> - Blur value  
+<a name="Shadow+offset"></a>
+
+### shadow.offset
+Set offset
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**See**: [offset](#discrete.offset)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Shadow offset |
+
+<a name="Shadow+offset"></a>
+
+### shadow.offset ⇒ [<code>Point</code>](#Point)
+Get offset
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**Returns**: [<code>Point</code>](#Point) - Shadow offset  
+**See**: [offset](#discrete.offset)  
+<a name="Shadow+x"></a>
+
+### shadow.x
+Set x-axis offset value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**See**: [offsetX](#discrete.offsetX)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | X coordinate value |
+
+<a name="Shadow+x"></a>
+
+### shadow.x ⇒ <code>number</code>
+Get x-axis offset value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**Returns**: <code>number</code> - X coordinate value  
+**See**: [offsetX](#discrete.offsetX)  
+<a name="Shadow+y"></a>
+
+### shadow.y
+Set the y-axis offset value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**See**: [offsetY](#discrete.offsetY)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Y coordinate value |
+
+<a name="Shadow+y"></a>
+
+### shadow.y ⇒ <code>number</code>
+Get y-axis offset value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**Returns**: <code>number</code> - Y coordinate value  
+**See**: [offsetY](#discrete.offsetY)  
+<a name="Stroke"></a>
+
+## Stroke
+{Object}   Stroke                           Stroke properties of associated object
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | Color model & value |
+| [type] | <code>string</code> | <code>&quot;&#x27;solid&#x27;&quot;</code> | Stroke type; solid | dashed |
+| [segments] | <code>Array.&lt;number&gt;</code> | <code>[5, 5]</code> | Dashed line segment distance(s); <array<numbers>> |
+| [width] | <code>number</code> | <code>2</code> | Thickness of stroke |
+| shadow | [<code>Shadow</code>](#Shadow) |  | Shadow properties |
+
+
+* [Stroke](#Stroke)
+    * [new Stroke(color, type, segments, alpha, width)](#new_Stroke_new)
+    * [.type](#Stroke+type)
+    * [.type](#Stroke+type) ⇒ <code>number</code>
+    * [.segments](#Stroke+segments)
+    * [.segments](#Stroke+segments) ⇒ <code>Array</code>
+    * [.color](#Stroke+color)
+    * [.color](#Stroke+color) ⇒ <code>string</code>
+    * [.width](#Stroke+width)
+    * [.width](#Stroke+width) ⇒ <code>number</code>
+
+<a name="new_Stroke_new"></a>
+
+### new Stroke(color, type, segments, alpha, width)
+Create a stroke
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| color | <code>Object</code> | RGB color value |
+| type | <code>number</code> | Stroke type |
+| segments | <code>Array.&lt;number&gt;</code> | Dashed line segment distance(s) |
+| alpha | <code>number</code> | Alpha value; number/decimal |
+| width | <code>number</code> | Thickness of stroke |
+
+<a name="Stroke+type"></a>
+
+### stroke.type
+Set type
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Type: (0) Solid or (1) Dashed |
+
+<a name="Stroke+type"></a>
+
+### stroke.type ⇒ <code>number</code>
+Get type
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+**Returns**: <code>number</code> - Type: (0) Solid or (1) Dashed  
+<a name="Stroke+segments"></a>
+
+### stroke.segments
+Set segment value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array</code> | Dashed line segment distance(s) |
+
+<a name="Stroke+segments"></a>
+
+### stroke.segments ⇒ <code>Array</code>
+Get segment value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+**Returns**: <code>Array</code> - Dashed line segment distance(s)  
+<a name="Stroke+color"></a>
+
+### stroke.color
+Set color value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | RGB color value |
+
+<a name="Stroke+color"></a>
+
+### stroke.color ⇒ <code>string</code>
+Get color value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+**Returns**: <code>string</code> - RGB color value  
+<a name="Stroke+width"></a>
+
+### stroke.width
+Set width value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Thickness of stroke |
+
+<a name="Stroke+width"></a>
+
+### stroke.width ⇒ <code>number</code>
+Get width value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+**Returns**: <code>number</code> - Thickness of stroke  
+<a name="Options"></a>
+
+## Options
+{Object}  Options                           Options for shapes, lines, and groups
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [shadow] | <code>boolean</code> | <code>false</code> | Show shadow |
+| [border] | <code>boolean</code> | <code>false</code> | Show border |
+| [axis] | <code>boolean</code> | <code>false</code> | Show axis |
+| [points] | <code>boolean</code> | <code>false</code> | Show points |
+| [anchor] | <code>boolean</code> | <code>false</code> | Show anchor |
+| [coordinates] | <code>boolean</code> | <code>false</code> | Show coordinates |
+| [controlPoints] | <code>boolean</code> | <code>false</code> | Show control points |
+| master | <code>Object</code> |  | Master object to reference |
+
+
+* [Options](#Options)
+    * [new Options(shadow, border, axis, points, anchor, coordinates, controlPoints)](#new_Options_new)
+    * [.shadow](#Options+shadow)
+    * [.shadow](#Options+shadow) ⇒ <code>boolean</code>
+    * [.border](#Options+border)
+    * [.border](#Options+border) ⇒ <code>boolean</code>
+    * [.axis](#Options+axis)
+    * [.axis](#Options+axis) ⇒ <code>boolean</code>
+    * [.anchor](#Options+anchor)
+    * [.anchor](#Options+anchor) ⇒ <code>boolean</code>
+    * [.coordinates](#Options+coordinates)
+    * [.coordinates](#Options+coordinates) ⇒ <code>boolean</code>
+    * [.controlPoints](#Options+controlPoints)
+    * [.controlPoints](#Options+controlPoints) ⇒ <code>boolean</code>
+    * [.master](#Options+master)
+    * [.master](#Options+master) ⇒ <code>Object</code>
+
+<a name="new_Options_new"></a>
+
+### new Options(shadow, border, axis, points, anchor, coordinates, controlPoints)
+Create an options object
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| shadow | <code>boolean</code> | Show shadow |
+| border | <code>boolean</code> | Show border |
+| axis | <code>boolean</code> | Show axis |
+| points | <code>boolean</code> | Show points |
+| anchor | <code>boolean</code> | Show anchor |
+| coordinates | <code>boolean</code> | Show coordinates |
+| controlPoints | <code>boolean</code> | Show control points |
+
+<a name="Options+shadow"></a>
+
+### options.shadow
+Set shadow value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>boolean</code> | Shadow; true | false |
+
+<a name="Options+shadow"></a>
+
+### options.shadow ⇒ <code>boolean</code>
+Get shadow value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+**Returns**: <code>boolean</code> - Shadow; true | false  
+<a name="Options+border"></a>
+
+### options.border
+Set border value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>boolean</code> | Border; true | false |
+
+<a name="Options+border"></a>
+
+### options.border ⇒ <code>boolean</code>
+Get border value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+**Returns**: <code>boolean</code> - Border; true | false  
+<a name="Options+axis"></a>
+
+### options.axis
+Set axis value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>boolean</code> | Axis; true | false |
+
+<a name="Options+axis"></a>
+
+### options.axis ⇒ <code>boolean</code>
+Get axis value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+**Returns**: <code>boolean</code> - Axis; true | false  
+<a name="Options+anchor"></a>
+
+### options.anchor
+Set anchor value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>boolean</code> | Anchor; true | false |
+
+<a name="Options+anchor"></a>
+
+### options.anchor ⇒ <code>boolean</code>
+Get anchor value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+**Returns**: <code>boolean</code> - Anchor; true | false  
+<a name="Options+coordinates"></a>
+
+### options.coordinates
+Set coordinates value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>boolean</code> | Coordinates; true | false |
+
+<a name="Options+coordinates"></a>
+
+### options.coordinates ⇒ <code>boolean</code>
+Get coordinates value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+**Returns**: <code>boolean</code> - Coordinates; true | false  
+<a name="Options+controlPoints"></a>
+
+### options.controlPoints
+Set control points value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>boolean</code> | Control points; true | false |
+
+<a name="Options+controlPoints"></a>
+
+### options.controlPoints ⇒ <code>boolean</code>
+Get control points value
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+**Returns**: <code>boolean</code> - Control points; true | false  
+<a name="Options+master"></a>
+
+### options.master
+Set master object
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | CanvasLab Object |
+
+<a name="Options+master"></a>
+
+### options.master ⇒ <code>Object</code>
+Get master object
+
+**Kind**: instance property of [<code>Options</code>](#Options)  
+**Returns**: <code>Object</code> - CanvasLab Object  
 <a name="Anchor"></a>
 
 ## Anchor
@@ -536,74 +1338,6 @@ Get control point one
 
 **Kind**: instance property of [<code>ControlPoints</code>](#ControlPoints)  
 **Returns**: [<code>Point</code>](#Point) - Control Point ( x, y ) values  
-<a name="Fill"></a>
-
-## Fill
-{Object} Fill                               Fill properties of associated object
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [color] | <code>string</code> | <code>&quot;&#x27;255, 255, 255&#x27;&quot;</code> | RGB color value; r, g, b |
-| [alpha] | <code>number</code> | <code>0</code> | Alpha (transparency); number/decimal |
-
-
-* [Fill](#Fill)
-    * [new Fill(color, alpha)](#new_Fill_new)
-    * [.color](#Fill+color)
-    * [.color](#Fill+color) ⇒ <code>string</code>
-    * [.alpha](#Fill+alpha)
-    * [.alpha](#Fill+alpha) ⇒ <code>number</code>
-
-<a name="new_Fill_new"></a>
-
-### new Fill(color, alpha)
-Create a fill
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| color | <code>string</code> | RGB color value |
-| alpha | <code>number</code> | Alpha value; number/decimal |
-
-<a name="Fill+color"></a>
-
-### fill.color
-Set color value
-
-**Kind**: instance property of [<code>Fill</code>](#Fill)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | RGB color value |
-
-<a name="Fill+color"></a>
-
-### fill.color ⇒ <code>string</code>
-Get color value
-
-**Kind**: instance property of [<code>Fill</code>](#Fill)  
-**Returns**: <code>string</code> - RGB color value  
-<a name="Fill+alpha"></a>
-
-### fill.alpha
-Set alpha value
-
-**Kind**: instance property of [<code>Fill</code>](#Fill)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Alpha value; number/decimal |
-
-<a name="Fill+alpha"></a>
-
-### fill.alpha ⇒ <code>number</code>
-Get alpha value
-
-**Kind**: instance property of [<code>Fill</code>](#Fill)  
-**Returns**: <code>number</code> - Alpha value; number/decimal  
 <a name="Font"></a>
 
 ## Font
@@ -731,248 +1465,6 @@ Get font
 
 **Kind**: instance property of [<code>Font</code>](#Font)  
 **Returns**: <code>string</code> - CSS style font property syntax  
-<a name="LinearGradient"></a>
-
-## LinearGradient
-{Object} LinearGradient                     LinearGradient properties of associated object
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| start | [<code>Point</code>](#Point) | Starting point of linear gradient |
-| end | [<code>Point</code>](#Point) | Ending point of linear gradient |
-| colorStops | <code>Array</code> | Array of color stops |
-
-
-* [LinearGradient](#LinearGradient)
-    * [new LinearGradient()](#new_LinearGradient_new)
-    * [.start](#LinearGradient+start)
-    * [.start](#LinearGradient+start) ⇒ [<code>Point</code>](#Point)
-    * [.end](#LinearGradient+end)
-    * [.end](#LinearGradient+end) ⇒ [<code>Point</code>](#Point)
-
-<a name="new_LinearGradient_new"></a>
-
-### new LinearGradient()
-Create a LinearGradient
-
-<a name="LinearGradient+start"></a>
-
-### linearGradient.start
-Set starting point
-
-**Kind**: instance property of [<code>LinearGradient</code>](#LinearGradient)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | [<code>Point</code>](#Point) | Starting point |
-
-<a name="LinearGradient+start"></a>
-
-### linearGradient.start ⇒ [<code>Point</code>](#Point)
-Set starting point
-
-**Kind**: instance property of [<code>LinearGradient</code>](#LinearGradient)  
-**Returns**: [<code>Point</code>](#Point) - Starting point  
-<a name="LinearGradient+end"></a>
-
-### linearGradient.end
-Set ending point
-
-**Kind**: instance property of [<code>LinearGradient</code>](#LinearGradient)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | [<code>Point</code>](#Point) | Ending point |
-
-<a name="LinearGradient+end"></a>
-
-### linearGradient.end ⇒ [<code>Point</code>](#Point)
-Set ending point
-
-**Kind**: instance property of [<code>LinearGradient</code>](#LinearGradient)  
-**Returns**: [<code>Point</code>](#Point) - Ending point  
-<a name="Options"></a>
-
-## Options
-{Object}  Options                           Options for shapes, lines, and groups
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [shadow] | <code>boolean</code> | <code>false</code> | Show shadow |
-| [border] | <code>boolean</code> | <code>false</code> | Show border |
-| [axis] | <code>boolean</code> | <code>false</code> | Show axis |
-| [points] | <code>boolean</code> | <code>false</code> | Show points |
-| [anchor] | <code>boolean</code> | <code>false</code> | Show anchor |
-| [coordinates] | <code>boolean</code> | <code>false</code> | Show coordinates |
-| [controlPoints] | <code>boolean</code> | <code>false</code> | Show control points |
-| master | <code>Object</code> |  | Master object to reference |
-
-
-* [Options](#Options)
-    * [new Options(shadow, border, axis, points, anchor, coordinates, controlPoints)](#new_Options_new)
-    * [.shadow](#Options+shadow)
-    * [.shadow](#Options+shadow) ⇒ <code>boolean</code>
-    * [.border](#Options+border)
-    * [.border](#Options+border) ⇒ <code>boolean</code>
-    * [.axis](#Options+axis)
-    * [.axis](#Options+axis) ⇒ <code>boolean</code>
-    * [.anchor](#Options+anchor)
-    * [.anchor](#Options+anchor) ⇒ <code>boolean</code>
-    * [.coordinates](#Options+coordinates)
-    * [.coordinates](#Options+coordinates) ⇒ <code>boolean</code>
-    * [.controlPoints](#Options+controlPoints)
-    * [.controlPoints](#Options+controlPoints) ⇒ <code>boolean</code>
-    * [.master](#Options+master)
-    * [.master](#Options+master) ⇒ <code>Object</code>
-
-<a name="new_Options_new"></a>
-
-### new Options(shadow, border, axis, points, anchor, coordinates, controlPoints)
-Create an options object
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| shadow | <code>boolean</code> | Show shadow |
-| border | <code>boolean</code> | Show border |
-| axis | <code>boolean</code> | Show axis |
-| points | <code>boolean</code> | Show points |
-| anchor | <code>boolean</code> | Show anchor |
-| coordinates | <code>boolean</code> | Show coordinates |
-| controlPoints | <code>boolean</code> | Show control points |
-
-<a name="Options+shadow"></a>
-
-### options.shadow
-Set shadow value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>boolean</code> | Shadow; true | false |
-
-<a name="Options+shadow"></a>
-
-### options.shadow ⇒ <code>boolean</code>
-Get shadow value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-**Returns**: <code>boolean</code> - Shadow; true | false  
-<a name="Options+border"></a>
-
-### options.border
-Set border value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>boolean</code> | Border; true | false |
-
-<a name="Options+border"></a>
-
-### options.border ⇒ <code>boolean</code>
-Get border value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-**Returns**: <code>boolean</code> - Border; true | false  
-<a name="Options+axis"></a>
-
-### options.axis
-Set axis value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>boolean</code> | Axis; true | false |
-
-<a name="Options+axis"></a>
-
-### options.axis ⇒ <code>boolean</code>
-Get axis value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-**Returns**: <code>boolean</code> - Axis; true | false  
-<a name="Options+anchor"></a>
-
-### options.anchor
-Set anchor value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>boolean</code> | Anchor; true | false |
-
-<a name="Options+anchor"></a>
-
-### options.anchor ⇒ <code>boolean</code>
-Get anchor value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-**Returns**: <code>boolean</code> - Anchor; true | false  
-<a name="Options+coordinates"></a>
-
-### options.coordinates
-Set coordinates value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>boolean</code> | Coordinates; true | false |
-
-<a name="Options+coordinates"></a>
-
-### options.coordinates ⇒ <code>boolean</code>
-Get coordinates value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-**Returns**: <code>boolean</code> - Coordinates; true | false  
-<a name="Options+controlPoints"></a>
-
-### options.controlPoints
-Set control points value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>boolean</code> | Control points; true | false |
-
-<a name="Options+controlPoints"></a>
-
-### options.controlPoints ⇒ <code>boolean</code>
-Get control points value
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-**Returns**: <code>boolean</code> - Control points; true | false  
-<a name="Options+master"></a>
-
-### options.master
-Set master object
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>Object</code> | CanvasLab Object |
-
-<a name="Options+master"></a>
-
-### options.master ⇒ <code>Object</code>
-Get master object
-
-**Kind**: instance property of [<code>Options</code>](#Options)  
-**Returns**: <code>Object</code> - CanvasLab Object  
 <a name="Point"></a>
 
 ## Point
@@ -1097,299 +1589,6 @@ Draws associated options
 Invert x & y coordinate values
 
 **Kind**: instance method of [<code>Point</code>](#Point)  
-<a name="Shadow"></a>
-
-## Shadow
-{Object} Shadow                             Shadow of associated object
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [color] | <code>string</code> | <code>&quot;&#x27;0, 0, 0&#x27;&quot;</code> | RGB color value; r, g, b |
-| [alpha] | <code>number</code> | <code>1</code> | Alpha (transparency) number/decimal |
-| [blur] | <code>number</code> | <code>3</code> | Blur strength |
-| offset | [<code>Point</code>](#Point) |  | Point offset coordinates |
-
-
-* [Shadow](#Shadow)
-    * [new Shadow(color, alpha, blur, offset)](#new_Shadow_new)
-    * [.color](#Shadow+color)
-    * [.color](#Shadow+color) ⇒ <code>string</code>
-    * [.alpha](#Shadow+alpha)
-    * [.alpha](#Shadow+alpha) ⇒ <code>number</code>
-    * [.blur](#Shadow+blur)
-    * [.blur](#Shadow+blur) ⇒ <code>number</code>
-    * [.offset](#Shadow+offset)
-    * [.offset](#Shadow+offset) ⇒ [<code>Point</code>](#Point)
-    * [.x](#Shadow+x)
-    * [.x](#Shadow+x) ⇒ <code>number</code>
-    * [.y](#Shadow+y)
-    * [.y](#Shadow+y) ⇒ <code>number</code>
-
-<a name="new_Shadow_new"></a>
-
-### new Shadow(color, alpha, blur, offset)
-Create a shadow
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| color | <code>string</code> | RGB color value |
-| alpha | <code>number</code> | Alpha value; number/decimal |
-| blur | <code>number</code> | Shadow blur value |
-| offset | [<code>Point</code>](#Point) | Shadow offset |
-
-<a name="Shadow+color"></a>
-
-### shadow.color
-Set color value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | RGB color value |
-
-<a name="Shadow+color"></a>
-
-### shadow.color ⇒ <code>string</code>
-Get color value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**Returns**: <code>string</code> - RGB color value  
-<a name="Shadow+alpha"></a>
-
-### shadow.alpha
-Set alpha value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Alpha value; number/decimal |
-
-<a name="Shadow+alpha"></a>
-
-### shadow.alpha ⇒ <code>number</code>
-Get alpha value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**Returns**: <code>number</code> - Alpha value; number/decimal  
-<a name="Shadow+blur"></a>
-
-### shadow.blur
-Set blur value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| blur | <code>number</code> | Blur value |
-
-<a name="Shadow+blur"></a>
-
-### shadow.blur ⇒ <code>number</code>
-Get blur value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**Returns**: <code>number</code> - Blur value  
-<a name="Shadow+offset"></a>
-
-### shadow.offset
-Set offset
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**See**: [offset](#discrete.offset)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | [<code>Point</code>](#Point) | Shadow offset |
-
-<a name="Shadow+offset"></a>
-
-### shadow.offset ⇒ [<code>Point</code>](#Point)
-Get offset
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**Returns**: [<code>Point</code>](#Point) - Shadow offset  
-**See**: [offset](#discrete.offset)  
-<a name="Shadow+x"></a>
-
-### shadow.x
-Set x-axis offset value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**See**: [offsetX](#discrete.offsetX)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | X coordinate value |
-
-<a name="Shadow+x"></a>
-
-### shadow.x ⇒ <code>number</code>
-Get x-axis offset value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**Returns**: <code>number</code> - X coordinate value  
-**See**: [offsetX](#discrete.offsetX)  
-<a name="Shadow+y"></a>
-
-### shadow.y
-Set the y-axis offset value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**See**: [offsetY](#discrete.offsetY)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Y coordinate value |
-
-<a name="Shadow+y"></a>
-
-### shadow.y ⇒ <code>number</code>
-Get y-axis offset value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**Returns**: <code>number</code> - Y coordinate value  
-**See**: [offsetY](#discrete.offsetY)  
-<a name="Stroke"></a>
-
-## Stroke
-{Object}   Stroke                           Stroke properties of associated object
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [type] | <code>number</code> | <code>0</code> | Type: (0) Solid or (1) Dashed |
-| [segments] | <code>Array.&lt;number&gt;</code> | <code>[5, 5]</code> | Dashed line segment distance(s) |
-| [color] | <code>string</code> | <code>&quot;&#x27;0, 0, 0&#x27;&quot;</code> | RGB color value; r, g, b |
-| [alpha] | <code>number</code> | <code>1</code> | Alpha (transparency); number/decimal |
-| [width] | <code>number</code> | <code>2</code> | Thickness of stroke |
-| shadow | [<code>Shadow</code>](#Shadow) |  | Shadow properties |
-
-
-* [Stroke](#Stroke)
-    * [new Stroke(type, segments, color, alpha, width)](#new_Stroke_new)
-    * [.type](#Stroke+type)
-    * [.type](#Stroke+type) ⇒ <code>number</code>
-    * [.segments](#Stroke+segments)
-    * [.segments](#Stroke+segments) ⇒ <code>Array</code>
-    * [.color](#Stroke+color)
-    * [.color](#Stroke+color) ⇒ <code>string</code>
-    * [.alpha](#Stroke+alpha)
-    * [.alpha](#Stroke+alpha) ⇒ <code>number</code>
-    * [.width](#Stroke+width)
-    * [.width](#Stroke+width) ⇒ <code>number</code>
-
-<a name="new_Stroke_new"></a>
-
-### new Stroke(type, segments, color, alpha, width)
-Create a stroke
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| type | <code>number</code> | Type: (0) Solid or (1) Dashed |
-| segments | <code>Array.&lt;number&gt;</code> | Dashed line segment distance(s) |
-| color | <code>string</code> | RGB color value |
-| alpha | <code>number</code> | Alpha value; number/decimal |
-| width | <code>number</code> | Thickness of stroke |
-
-<a name="Stroke+type"></a>
-
-### stroke.type
-Set type
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Type: (0) Solid or (1) Dashed |
-
-<a name="Stroke+type"></a>
-
-### stroke.type ⇒ <code>number</code>
-Get type
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>number</code> - Type: (0) Solid or (1) Dashed  
-<a name="Stroke+segments"></a>
-
-### stroke.segments
-Set segment value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>Array</code> | Dashed line segment distance(s) |
-
-<a name="Stroke+segments"></a>
-
-### stroke.segments ⇒ <code>Array</code>
-Get segment value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>Array</code> - Dashed line segment distance(s)  
-<a name="Stroke+color"></a>
-
-### stroke.color
-Set color value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | RGB color value |
-
-<a name="Stroke+color"></a>
-
-### stroke.color ⇒ <code>string</code>
-Get color value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>string</code> - RGB color value  
-<a name="Stroke+alpha"></a>
-
-### stroke.alpha
-Set alpha value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Alpha value; number/decimal |
-
-<a name="Stroke+alpha"></a>
-
-### stroke.alpha ⇒ <code>number</code>
-Get alpha value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>number</code> - Alpha value; number/decimal  
-<a name="Stroke+width"></a>
-
-### stroke.width
-Set width value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Thickness of stroke |
-
-<a name="Stroke+width"></a>
-
-### stroke.width ⇒ <code>number</code>
-Get width value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>number</code> - Thickness of stroke  
 <a name="OptionsCollection"></a>
 
 ## OptionsCollection
@@ -1612,20 +1811,17 @@ Invert x & y coordinate values
 **Kind**: global class  
 **Properties**
 
-| Name | Type | Description |
-| --- | --- | --- |
-| color | <code>string</code> | RGB color value; r, g, b |
-| alpha | <code>number</code> | Alpha (transparency); number/decimal |
-| blur | <code>number</code> | Blur strength |
-| offset | [<code>Point</code>](#Point) | Point offset coordinates |
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | Color model & value |
+| blur | <code>number</code> |  | Blur strength |
+| offset | [<code>Point</code>](#Point) |  | Point offset coordinates |
 
 
 * [ShadowCollection](#ShadowCollection)
     * [new ShadowCollection()](#new_ShadowCollection_new)
     * [.color](#ShadowCollection+color)
     * [.color](#ShadowCollection+color) ⇒ <code>string</code>
-    * [.alpha](#ShadowCollection+alpha)
-    * [.alpha](#ShadowCollection+alpha) ⇒ <code>number</code>
     * [.blur](#ShadowCollection+blur)
     * [.blur](#ShadowCollection+blur) ⇒ <code>number</code>
     * [.offset](#ShadowCollection+offset)
@@ -1658,24 +1854,6 @@ Get color value
 
 **Kind**: instance property of [<code>ShadowCollection</code>](#ShadowCollection)  
 **Returns**: <code>string</code> - RGB color value  
-<a name="ShadowCollection+alpha"></a>
-
-### shadowCollection.alpha
-Set alpha value
-
-**Kind**: instance property of [<code>ShadowCollection</code>](#ShadowCollection)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Alpha value; number/decimal |
-
-<a name="ShadowCollection+alpha"></a>
-
-### shadowCollection.alpha ⇒ <code>number</code>
-Get alpha value
-
-**Kind**: instance property of [<code>ShadowCollection</code>](#ShadowCollection)  
-**Returns**: <code>number</code> - Alpha value; number/decimal  
 <a name="ShadowCollection+blur"></a>
 
 ### shadowCollection.blur
@@ -1758,9 +1936,9 @@ Get y-axis offset value
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| [type] | <code>number</code> | <code>0</code> | Type: (0) Solid or (1) Dashed |
+| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | Color model & value |
+| [type] | <code>string</code> | <code>&quot;&#x27;solid&#x27;&quot;</code> | Stroke type; solid | dashed |
 | [segments] | <code>Array.&lt;number&gt;</code> | <code>[5, 5]</code> | Dashed line segment distance(s) |
-| [color] | <code>string</code> | <code>&quot;&#x27;0, 0, 0&#x27;&quot;</code> | RGB color value; r, g, b |
 | [alpha] | <code>number</code> | <code>1</code> | Alpha (transparency); number/decimal |
 | [width] | <code>number</code> | <code>2</code> | Thickness of stroke |
 | shadow | [<code>Shadow</code>](#Shadow) |  | Shadow properties |
@@ -1768,14 +1946,12 @@ Get y-axis offset value
 
 * [StrokeCollection](#StrokeCollection)
     * [new StrokeCollection()](#new_StrokeCollection_new)
+    * [.color](#StrokeCollection+color)
+    * [.color](#StrokeCollection+color) ⇒ <code>string</code>
     * [.type](#StrokeCollection+type)
     * [.type](#StrokeCollection+type) ⇒ <code>number</code>
     * [.segments](#StrokeCollection+segments)
     * [.segments](#StrokeCollection+segments) ⇒ <code>Array</code>
-    * [.color](#StrokeCollection+color)
-    * [.color](#StrokeCollection+color) ⇒ <code>string</code>
-    * [.alpha](#StrokeCollection+alpha)
-    * [.alpha](#StrokeCollection+alpha) ⇒ <code>number</code>
     * [.width](#StrokeCollection+width)
     * [.width](#StrokeCollection+width) ⇒ <code>number</code>
 
@@ -1784,6 +1960,24 @@ Get y-axis offset value
 ### new StrokeCollection()
 Create a stroke collection
 
+<a name="StrokeCollection+color"></a>
+
+### strokeCollection.color
+Set color value
+
+**Kind**: instance property of [<code>StrokeCollection</code>](#StrokeCollection)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | RGB color value |
+
+<a name="StrokeCollection+color"></a>
+
+### strokeCollection.color ⇒ <code>string</code>
+Get color value
+
+**Kind**: instance property of [<code>StrokeCollection</code>](#StrokeCollection)  
+**Returns**: <code>string</code> - RGB color value  
 <a name="StrokeCollection+type"></a>
 
 ### strokeCollection.type
@@ -1820,42 +2014,6 @@ Get segment value
 
 **Kind**: instance property of [<code>StrokeCollection</code>](#StrokeCollection)  
 **Returns**: <code>Array</code> - Dashed line segment distance(s)  
-<a name="StrokeCollection+color"></a>
-
-### strokeCollection.color
-Set color value
-
-**Kind**: instance property of [<code>StrokeCollection</code>](#StrokeCollection)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | RGB color value |
-
-<a name="StrokeCollection+color"></a>
-
-### strokeCollection.color ⇒ <code>string</code>
-Get color value
-
-**Kind**: instance property of [<code>StrokeCollection</code>](#StrokeCollection)  
-**Returns**: <code>string</code> - RGB color value  
-<a name="StrokeCollection+alpha"></a>
-
-### strokeCollection.alpha
-Set alpha value
-
-**Kind**: instance property of [<code>StrokeCollection</code>](#StrokeCollection)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Alpha value; number/decimal |
-
-<a name="StrokeCollection+alpha"></a>
-
-### strokeCollection.alpha ⇒ <code>number</code>
-Get alpha value
-
-**Kind**: instance property of [<code>StrokeCollection</code>](#StrokeCollection)  
-**Returns**: <code>number</code> - Alpha value; number/decimal  
 <a name="StrokeCollection+width"></a>
 
 ### strokeCollection.width
@@ -3694,6 +3852,246 @@ Shared validation functions
 DEBUG General debug module
 
 **Kind**: global constant  
+<a name="hue"></a>
+
+## hue(hue)
+Sets the hue value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| hue | <code>number</code> | Hue value; 0 - 360 |
+
+<a name="hue"></a>
+
+## hue(Hue)
+Gets the hue value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Hue | <code>number</code> | value; 0 - 360 |
+
+<a name="saturation"></a>
+
+## saturation(saturation)
+Sets the saturation value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| saturation | <code>number</code> | Saturation value; 0 - 1 |
+
+<a name="saturation"></a>
+
+## saturation(Saturation)
+Gets the saturation value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Saturation | <code>number</code> | value; 0 - 1 |
+
+<a name="lightness"></a>
+
+## lightness(lightness)
+Sets the lightness value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| lightness | <code>number</code> | Lightness value; 0 - 1 |
+
+<a name="lightness"></a>
+
+## lightness(Lightness)
+Gets the lightness value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Lightness | <code>number</code> | value; 0 - 1 |
+
+<a name="toCss"></a>
+
+## toCss() ⇒ <code>string</code>
+Returns a CSS compatible <color> string value
+
+**Kind**: global function  
+**Returns**: <code>string</code> - CSS <color> string  
+**Access**: public  
+<a name="hue"></a>
+
+## hue(hue)
+Sets the hue value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| hue | <code>number</code> | Hue value; 0 - 360 |
+
+<a name="hue"></a>
+
+## hue(Hue)
+Gets the hue value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Hue | <code>number</code> | value; 0 - 360 |
+
+<a name="whiteness"></a>
+
+## whiteness(whiteness)
+Sets the whiteness value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| whiteness | <code>number</code> | Whiteness value; 0 - 1 |
+
+<a name="whiteness"></a>
+
+## whiteness(Whiteness)
+Gets the whiteness value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Whiteness | <code>number</code> | value; 0 - 1 |
+
+<a name="blackness"></a>
+
+## blackness(blackness)
+Sets the blackness value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| blackness | <code>number</code> | Blackness value; 0 - 1 |
+
+<a name="blackness"></a>
+
+## blackness(Blackness)
+Gets the blackness value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Blackness | <code>number</code> | value; 0 - 1 |
+
+<a name="toCss"></a>
+
+## toCss() ⇒ <code>string</code>
+Returns a CSS compatible <color> string value
+
+**Kind**: global function  
+**Returns**: <code>string</code> - CSS <color> string  
+**Access**: public  
+<a name="red"></a>
+
+## red(red)
+Sets the red value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| red | <code>number</code> | Red value; 0 - 255 |
+
+<a name="red"></a>
+
+## red(Red)
+Gets the red value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Red | <code>number</code> | value; 0 - 255 |
+
+<a name="green"></a>
+
+## green(green)
+Sets the green value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| green | <code>number</code> | Green value; 0 - 255 |
+
+<a name="green"></a>
+
+## green(Green)
+Gets the green value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Green | <code>number</code> | value; 0 - 255 |
+
+<a name="blue"></a>
+
+## blue(blue)
+Sets the blue value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| blue | <code>number</code> | Blue value; 0 - 255 |
+
+<a name="blue"></a>
+
+## blue(Blue)
+Gets the blue value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Blue | <code>number</code> | value; 0 - 255 |
+
+<a name="toCss"></a>
+
+## toCss() ⇒ <code>string</code>
+Returns a CSS compatible <color> string value
+
+**Kind**: global function  
+**Returns**: <code>string</code> - CSS <color> string  
+**Access**: public  
 <a name="initCanvasLab"></a>
 
 ## initCanvasLab([canvas])

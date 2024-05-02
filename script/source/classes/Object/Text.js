@@ -36,10 +36,10 @@ class Text extends Font
     constructor (
                     point  = { x: undefined, y: undefined },
                     text, type, size, weight, maxWidth,
-                    offset = { x:     undefined, y:        undefined },
-                    stroke = { type:  undefined, segments: undefined, color: undefined, alpha: undefined, width: undefined },
-                    fill   = { color: undefined, alpha:    undefined },
-                    shadow = { color: undefined, alpha:    undefined, blur:  undefined, offset: { x: undefined, y: undefined } },
+                    offset = { x:     undefined, y:    undefined },
+                    stroke = { color: undefined, type: undefined, segments:    undefined, width: undefined },
+                    fill   = { color: undefined, type: undefined },
+                    shadow = { color: undefined, blur: undefined, offset: { x: undefined, y:     undefined } },
                     canvas
                 )
     {
@@ -61,8 +61,8 @@ class Text extends Font
             Object.defineProperty ( this, 'offset', PROPERTY_BLOCKS.discrete.offset );
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
-            stroke.width = ( stroke.width != undefined ) ? stroke.width : 0;                        // Set: default stroke property as 0
-            fill.color   = ( fill.color   != undefined ) ? fill.color   : '0, 0, 0';                // Set: default fill property as 'Black' || '0, 0, 0'
+            stroke.width = ( stroke.width === undefined ) ? 0 : stroke.width;                       // Set: default stroke property as 0
+            fill.color   = ( fill.color   === undefined ) ? new Rgb ( 0, 0, 0 ) : fill.color;       // Set: default fill property as 'Black'
 
         this.point = point;
         this.text  = text;
@@ -78,11 +78,11 @@ class Text extends Font
 
         ////    OBJECT INITIALIZER(S)   ////////////////////
 
-            this._stroke = new Stroke ( stroke.type,  stroke.segments, stroke.color, stroke.alpha, stroke.width );
+            this._stroke = new Stroke ( stroke.color, stroke.type,  stroke.segments, stroke.width );
 
-            this._fill   = new Fill   ( fill.color,   fill.alpha );
+            this._fill   = new Fill   ( fill.color,   fill.type );
 
-            this._shadow = new Shadow ( shadow.color, shadow.alpha,    shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
+            this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
 
         this.canvas = canvas;
 
@@ -347,14 +347,16 @@ class Text extends Font
          */
         drawBorder ( offset = 10 )
         {
+            let _red    = new Rgb ( 245, 80, 50, 1 );
+
             let _aspect = new Aspect ( this._canvas.measureText ( this.text ).width, super.size );
 
             let _point  = new Point  ( this.x - ( aspect.width / 2 ) - offset, this.y - ( aspect.height / 2 ) - ( offset * 2 ) );
 
 
             let _border = new Rectangle ( _point, aspect.width + ( offset * 2 ), aspect.height + ( offset * 2 ),    /* Point, Aspect */
-                /* Stroke */            { type: 0, segments: undefined, color: '235, 81, 73', alpha: 1, width: 1 },
-                /* Fill   */            { color: undefined, alpha: 0 },
+                /* Stroke */            { color: _red,      type: 'solid', segments: undefined,  width: 1 },
+                /* Fill   */            { color: undefined, type: 'solid' },
                 /* Shadow */              undefined,
                 /* Canvas */              this.canvas );
 
@@ -367,6 +369,8 @@ class Text extends Font
          */
         drawAxis ( offset = 10 )
         {
+            let _red        = new Rgb ( 245, 80, 50, 1 );
+
             let _aspect     = new Aspect ( this._canvas.measureText ( this.text ).width, super.size );
 
             let _xAxisStart = new Point  ( this.x - ( aspect.width / 2 ) - ( offset * 2 ), this.y - ( aspect.height / 4 ) );
@@ -377,13 +381,13 @@ class Text extends Font
 
 
             let _xAxis = new Line ( _xAxisStart, _xAxisEnd,     /* Point */
-                /* Stroke     */    { type: 0, segments: undefined, color: '235, 81, 73', alpha: 1, width: 1 },
+                /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
                 /* Shadow     */      undefined,
                 /* LineCap    */      undefined,
                 /* Canvas     */      this.canvas );
 
             let _yAxis = new Line ( _yAxisStart, _yAxisEnd,     /* Point */
-                /* Stroke     */    { type: 0, segments: undefined, color: '235, 81, 73', alpha: 1, width: 1 },
+                /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
                 /* Shadow     */      undefined,
                 /* LineCap    */      undefined,
                 /* Canvas     */      this.canvas );
@@ -491,20 +495,20 @@ class Text extends Font
                 this._canvas.textAlign = 'center';
 
 
-                this._canvas.fillStyle = `rgba(${this.fill.color}, ${this.fill.alpha})`;
+                this._canvas.fillStyle = this.fill.color.toCss ( );
 
                 this._canvas.fillText ( this.text, this.x, this.y, this.maxWidth );                 // TODO: maxWidth is showing NaN !
 
 
                 if ( this.stroke.width > 0 )
                 {
-                    this._canvas.strokeStyle = `rgba(${this.stroke.color}, ${this.stroke.alpha})`;
+                    this._canvas.strokeStyle = this.stroke.color.toCss ( );
 
                     this._canvas.strokeText ( this.text, this.x, this.y, this.maxWidth );
                 }
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = `rgba(0, 0, 0, 0)`;         // Reset: shadow
+                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
                 this.#_drawOptions ( );

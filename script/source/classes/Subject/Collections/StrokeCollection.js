@@ -1,18 +1,17 @@
 /**
  * @class           {Object}   StrokeCollection                 Stroke properties of associated object
- * @property        {number}   [type=0]                         Type: (0) Solid or (1) Dashed
+ * @property        {Object}   [color=<Rgb>]                    Color model & value
+ * @property        {string}   [type='solid']                   Stroke type; solid | dashed
  * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s)
- * @property        {string}   [color='0, 0, 0']                RGB color value; r, g, b
  * @property        {number}   [alpha=1]                        Alpha (transparency); number/decimal
  * @property        {number}   [width=2]                        Thickness of stroke
  * @property        {Shadow}   shadow                           Shadow properties
  */
 class StrokeCollection
 {
-    _type     = 0;
+    _color    = new Rgb;
+    _type     = 'solid';
     _segments = [ 5, 5 ];
-    _color    = '0, 0, 0';
-    _alpha    = 1;
     _width    = 2;
 
     _master   = undefined;
@@ -24,15 +23,33 @@ class StrokeCollection
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isType     = VALIDATION.isType;
+            this._isColorModel = VALIDATION.isColorModel;
+            this._isStrokeType = VALIDATION.isStrokeType;
             this._isSegments = VALIDATION.isSegments;
-            this._isRgb      = VALIDATION.isRgb;
-            this._isAlpha    = VALIDATION.isAlpha;
             this._isWidth    = VALIDATION.isWidth;
 
-            this._getRgb = UTILITIES.get.rgb;
             this._setAll = UTILITIES.set.all;
     }
+
+    ////    [ COLOR ]   ////////////////////////////////////
+
+        /**
+         * Set color value
+         * @param           {string} value                              RGB color value
+         */
+        set color ( value )
+        {
+            if ( this._isColorModel ( value ) ) this._setAll ( 'color', value );
+        }
+
+        /**
+         * Get color value
+         * @return          {string}                                    RGB color value
+         */
+        get color ( )
+        {
+            return this._color;
+        }
 
     ////    [ TYPE ]    ////////////////////////////////////
 
@@ -42,7 +59,7 @@ class StrokeCollection
          */
         set type ( value )
         {
-            if ( this._isType ( value ) ) this._setAll ( 'type', value );
+            if ( this._isStrokeType ( value ) ) this._setAll ( 'type', value );
         }
 
         /**
@@ -72,46 +89,6 @@ class StrokeCollection
         get segments ( )
         {
             return this._segments;
-        }
-
-    ////    [ COLOR ]   ////////////////////////////////////
-
-        /**
-         * Set color value
-         * @param           {string} value                              RGB color value
-         */
-        set color ( value )
-        {
-            if ( this._isRgb ( value ) ) this._setAll ( 'color', value );
-        }
-
-        /**
-         * Get color value
-         * @return          {string}                                    RGB color value
-         */
-        get color ( )
-        {
-            return this._color;
-        }
-
-    ////    [ ALPHA ]   ////////////////////////////////////
-
-        /**
-         * Set alpha value
-         * @param           {number} value                              Alpha value; number/decimal
-         */
-        set alpha ( value )
-        {
-            if ( this._isAlpha ( value ) ) this._setAll ( 'alpha', value );
-        }
-
-        /**
-         * Get alpha value
-         * @return          {number}                                    Alpha value; number/decimal
-         */
-        get alpha ( )
-        {
-            return this._alpha;
         }
 
     ////    [ WIDTH ]   ////////////////////////////////////
@@ -147,19 +124,15 @@ class StrokeCollection
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isType     ( ) { }
+        _isColorModel ( ) { }
 
-        _isSegments ( ) { }
+        _isStrokeType ( ) { }
 
-        _isRgb      ( ) { }
+        _isSegments   ( ) { }
 
-        _isAlpha    ( ) { }
-
-        _isWidth    ( ) { }
+        _isWidth      ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
-
-        _getRgb ( ) { }
 
         _setAll ( ) { }
 }

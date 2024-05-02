@@ -109,53 +109,12 @@ class Lab
          * @private
          * @name _getBoundingCharactersPositions
          * @function
-         * @param           {string} character                  Bounding character
-         * @param           {string} data                       Data to parse
-         * @param           {number} position                   Cursor position; from ace-editor
+         * @param           {Array<string>} characters          Bounding characters
+         * @param           {string}        data                Data to parse
+         * @param           {number}        position            Cursor position; from ace-editor
          * @return          {Object}                            Bounding character's starting & ending position(s)
          */
-        _getBoundingCharactersPositions ( character, data, position )
-        {
-            let _result  = { start: 0, end: 0 }
-
-            let _indexes = [ ];
-
-            let _split   = data.split ( '' );
-
-
-            ////    GET INDEXES OF CHARACTER(S)    /////////////////////////////
-
-            for ( let _index in _split )
-
-                if ( _split [ _index ] === character )
-
-                    _indexes.push ( _index );
-
-
-            ////    GET CLOSEST START POSITION OF CHARACTER    /////////////////
-
-            for ( let _index of _indexes )
-
-                _result.start = ( _index < position ) ? _index : _result.start;
-
-
-            _result.start = Number ( _result.start ) + 1;
-
-
-            ////    GET CLOSEST END POSITION OF CHARACTER    ///////////////////
-
-            for ( let _index = _result.start; _index < _split.length; _index++ )
-
-                if ( _split [ _index ] === character )
-                {
-                    _result.end = _index;
-
-                    break;
-                }
-
-
-            return _result;
-        }
+        _getBoundingCharactersPositions = ( characters, data, position ) => new Object ( { start: data.indexOf ( characters [ 0 ] ) + 1, end:   data.indexOf ( characters [ 1 ] ) } );
 
         /**
          * Returns a new color-picker object
@@ -543,33 +502,31 @@ class Lab
          */
         _swapRgbValue ( color )
         {
-            let _rgb      = color.rgbString.replace ( 'rgb(', ''   )
-                                           .replace ( ')'   , ''   )
-                                           .replace ( /,/g  , ', ' );
+            let _rgba     = ` ${color._rgba [ 0 ]}, ${color._rgba [ 1 ]}, ${color._rgba [ 2 ]}, ${color._rgba [ 3 ]} `;
 
-            let _regex    = new RegExp ( /^\d{1,3},\s\d{1,3},\s\d{1,3}/ );
+            let _regex    = new RegExp ( /\d{1,3},\s\d{1,3},\s\d{1,3}(,\s\d)?/ );
 
 
             let _cursor   = this.editor.selection.getCursor ( );
 
-            let _line     = this.editor.session.getLine     ( _cursor.row );
+            let _line     = this.editor.session.getLine ( _cursor.row );
 
 
-            let _position = this._getBoundingCharactersPositions ( "'", _line, _cursor.column );
+            let _position = this._getBoundingCharactersPositions ( [ "(", ")" ], _line, _cursor.column );
 
-            let _range    = new ace.Range                   ( _cursor.row, _position.start, _cursor.row, _position.end );
+            let _range    = new ace.Range ( _cursor.row, _position.start, _cursor.row, _position.end );
 
-            let _text     = this.editor.session.getTextRange    ( _range );
+            let _text     = this.editor.session.getTextRange ( _range ).trim ( );
 
 
             if ( _regex.test ( _text ) )
             {
                 _range = new ace.Range ( _cursor.row, 0, _cursor.row, _line.length   );
 
-                _line  = _line.subStringRange ( _position.start, _position.end, _rgb );
+                _line  = _line.subStringRange ( _position.start, _position.end, _rgba );
 
 
-                this.editor.session.replace        ( _range,      _line               );
+                this.editor.session.replace ( _range, _line );
 
                 this.editor.selection.moveCursorTo ( _cursor.row, _position.start + 1 );
 
@@ -671,7 +628,7 @@ class Lab
 
                     _circle.canvas = 'canvas';
 
-                    _circle.fill.color = '0, 150, 200';
+                    _circle.fill.color = new Rgb ( 0, 150, 200 );
 
                     _circle.draw ( );
             }
@@ -717,7 +674,7 @@ class Lab
                 {
                     name:    'run_on_save',
                     bindKey: { win: 'Ctrl-S', mac: 'Command-S' },
-                    exec:    ( ) => devTest.runLabStationCode ( )
+                    exec:    ( ) => devSuite.runLabStationCode ( )
                 } );
 
 
@@ -927,7 +884,7 @@ class Template
     {
         standard: `<div class="col">
 
-                       <div class="card" id="view_{{index}}" suite-data-code="{{code}}" suite-data-title="{{title}}" onclick="devTest.toggleCardButton ( event )">
+                       <div class="card" id="view_{{index}}" suite-data-code="{{code}}" suite-data-title="{{title}}" onclick="devSuite.toggleCardButton ( event )">
 
                            <div class="card-number">
 
@@ -971,17 +928,17 @@ class Template
 
                                    </div>
 
-                                   <span class="title">{{title}}</span>
+                                   <div class="title">{{title}}</div>
 
                                    <span class="icons">
 
-                                       <img src="images/svg/{{subgroup}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devTest.toggleCardButton ( event )">
+                                       <img src="images/svg/{{subgroup}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devSuite.toggleCardButton ( event )">
 
                                        <span class="wall">&nbsp;</span>
 
-                                       <img src="images/svg/{{group}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{groupType}}"  onclick="devTest.toggleCardButton ( event )">
+                                       <img src="images/svg/{{group}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{groupType}}"  onclick="devSuite.toggleCardButton ( event )">
 
-                                       <img src="images/svg/{{image}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{objectType}}" onclick="devTest.toggleCardButton ( event )">
+                                       <img src="images/svg/{{image}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{objectType}}" onclick="devSuite.toggleCardButton ( event )">
 
                                    </span>
 
@@ -993,9 +950,9 @@ class Template
 
                     </div>  <!-- .col -->`,
 
-        blank:    `<div class="col extra">
+        blank:    `<div class="col blank">
 
-                       <div class="card extra">
+                       <div class="card blank" onclick="devSuite.toggleCardButton ( event )">
 
                            <span class="plus">+</span>
 
@@ -1120,9 +1077,16 @@ class Template
             let _blanks  = this._getBlankCount  ( cardObjects );
 
 
-            if ( _columns != _blanks )
+            if ( _columns != _blanks )                      // Blank templates to fill out row of standard templates
 
                 for ( let _i = 0; _i < _blanks; _i++ )
+
+                    _cards.push ( TEMPLATE.blank );
+
+
+            if ( _blanks % _columns === 0 )                 // Blank templates for next row, from adding new standard templates; @see UI._cardPlus ( )
+
+                for ( let _i = 0; _i < _columns; _i++ )
 
                     _cards.push ( TEMPLATE.blank );
 
@@ -1383,31 +1347,44 @@ class Ui
          */
         cardButton ( event )
         {
-            let _element = event.srcElement;
+            let _element  = event.srcElement;
+
+            let _cardPlus = _element.classList.contains ( 'plus' );
 
 
-            switch ( _element.tagName )
-            {
-                case 'IMG':
+            if ( _cardPlus )
 
-                    let _buttonType = _element.getAttribute ( 'suite-button-type' );
+                switch ( _element.tagName )
+                {
+                    case 'DIV':
+                    case 'SPAN':                    this._cardPlus        ( _element );     break;
+                }
+
+            else
+
+                switch ( _element.tagName )
+                {
+                    case 'IMG':
+
+                        let _buttonType = _element.getAttribute ( 'suite-button-type' );
 
 
-                    switch ( _buttonType )
-                    {
-                        case 'easing':          this._easingFunctions ( _element );     break;
+                        switch ( _buttonType )
+                        {
+                            case 'easing':          this._easingFunctions ( _element );     break;
 
-                        case 'documentation':   this._documentation   ( _element );     break;
-                    }
+                            case 'documentation':   this._documentation   ( _element );     break;
+                        }
 
-                    break;
+                        break;
 
-                case 'LI':                      this._easingFunctions ( _element );     break;
+                    case 'SPAN':                    this._cardClose       ( _element );     break;
 
-                case 'DIV':
-                case 'SPAN':
-                case 'CANVAS':                  this._modalCode ( _element );           break;
-            }
+                    case 'LI':                      this._easingFunctions ( _element );     break;
+
+                    case 'DIV':
+                    case 'CANVAS':                  this._modalCode       ( _element );     break;
+                }
 
 
             event.stopPropagation ( );
@@ -1504,9 +1481,11 @@ class Ui
             let _leftColumn  = document.querySelector ( '#lab > div:nth-child(1)' );
 
 
-            let _styles      = window.getComputedStyle ( _rightColumn );
+            let _styles      = window.getComputedStyle ( _rightColumn   );
 
-            let _icon        = document.querySelector ( '.full-screen' );
+            let _icon        = document.querySelector  ( '.full-screen' );
+
+            let _open        = document.querySelector  ( '#lab-open'    );
 
 
             let _fullscreen  = ( _styles.display === 'block' );
@@ -1520,6 +1499,11 @@ class Ui
             ( _fullscreen ) ? _leftColumn.style.width = '100%'
 
                             : _leftColumn.style.width = '50%';
+
+
+            ( _fullscreen ) ? _open.style.display = 'block'
+
+                            : _open.style.display = 'none';
 
 
             if ( UI._isNavOpen ( ) )
@@ -1541,33 +1525,39 @@ class Ui
          */
         _modalCode: ( element ) =>
         {
-            let _element = element.offsetParent;
+            let _element   = element.offsetParent;
 
-            let _card =
+            let _blankCard = ( _element.tagName === 'MAIN' );
+
+
+            if ( ! _blankCard )
             {
-                title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
+                let _card =
+                {
+                    title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
 
-                code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
+                    code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
+                }
+
+                let _modal =
+                {
+                    title:   document.querySelector ( '#modal-code-label' ),
+
+                    code:    document.querySelector ( 'code' ),
+
+                    element: document.querySelector ( '#modal-code' )
+                }
+
+                let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
+
+
+                [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
+
+
+                    _boostrapModal.toggle ( );
+
+                    hljs.highlightAll ( );
             }
-
-            let _modal =
-            {
-                title:   document.querySelector ( '#modal-code-label' ),
-
-                code:    document.querySelector ( 'code' ),
-
-                element: document.querySelector ( '#modal-code' )
-            }
-
-            let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
-
-
-            [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
-
-
-                _boostrapModal.toggle ( );
-
-                hljs.highlightAll ( );
         },
 
         /**
@@ -1641,6 +1631,52 @@ class Ui
                         _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
                     } );
         },
+
+        /**
+         * Adds an additional card to cardObjects; mirroring the last card present
+         * @private
+         * @name _cardPlus
+         * @function
+         * @param           {HTMLElement} element               Object or Subject type
+         */
+        _cardPlus ( element )
+        {
+            let _card = cardObjects [ PAGE.group ] [ PAGE.type ].length - 1;
+
+                _card = cardObjects [ PAGE.group ] [ PAGE.type ] [ _card ];
+
+
+            cardObjects [ PAGE.group ] [ PAGE.type ].push ( _card );
+
+
+            UI._setAlbumCards ( );
+        },
+
+        /**
+         * Subtracts the last card from cardObjects
+         * @private
+         * @name _cardClose
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _cardClose ( element )
+        {
+            let _close = element.classList.contains ( 'close' );
+
+
+            if ( _close )
+            {
+                let _cardNumber = Number ( element.nextElementSibling.innerHTML );
+
+
+                if ( cardObjects [ PAGE.group ] [ PAGE.type ].length > 1 )
+
+                     cardObjects [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
+
+
+                UI._setAlbumCards ( );
+            }
+        }
     }
 
     _clean =
@@ -1708,6 +1744,45 @@ class Ui
 
 
             return template;
+        },
+
+        /**
+         * Cleans the remaining '.blank' cards while converting the first to a '.plus' card; @see Ui.toggle._cardPlus ( )
+         * @public
+         * @name blankCards
+         * @function
+         */
+        blankCards ( )
+        {
+            let _cards = document.querySelectorAll ( '.card' );
+
+            let _first = true;
+
+            let _count = 0;
+
+
+            if ( PAGE.group === 'animation' )
+
+                for ( let _card of _cards )
+                {
+                    let _blank  = _card.classList.contains ( 'blank' );
+
+
+                    if ( _blank && _first )
+                    {
+                        let _height = _cards [ _count - 1 ].clientHeight;
+
+
+                        _card.classList.add ( 'plus' );
+
+                        _card.style.height = `${_height}px`;
+
+
+                        _first = false;
+                    }
+
+                    _count++;
+                }
         }
     }
 
@@ -1884,14 +1959,17 @@ class Ui
          */
         _setCardSection ( cardObjects )
         {
-            let _cards       = TEMPLATE.getCards ( cardObjects );
+            let _cardTemplates = TEMPLATE.getCards ( cardObjects );
 
-            let _cardSection = document.querySelector ( '#test-cards' );
+            let _cardSection   = document.querySelector ( '#test-cards' );
 
 
-            for ( let _card of _cards )
+            for ( let _cardTemplate of _cardTemplates )
 
-                _cardSection.innerHTML += _card;
+                _cardSection.innerHTML += _cardTemplate;
+
+
+            this.clean.blankCards ( );
         }
 
         /**
@@ -1987,7 +2065,7 @@ class Ui
                                                                : this._checkCollapsible ( _animationButtons, 0 );
                                 } );
 
-                case 'navSubLinks':
+                case 'navPageLinks':
 
                     let _buttons =
                     [
@@ -2020,6 +2098,8 @@ class Ui
 
                     let _labButton = document.querySelector ( 'button.lab-station' );
 
+                    let _labOpen   = document.querySelector ( '#lab-open'          );
+
                     let _labLink   = document.querySelector ( '.lab-station-link'  );
 
                         _labLink.addEventListener ( 'click', ( element ) =>
@@ -2036,75 +2116,7 @@ class Ui
                                 LAB.editor.selection.moveCursorTo ( 0, 0 );
                             } );
 
-                case 'cardPlus':
-
-                    if ( PAGE.group === 'animation' )
-                    {
-                        let _prevHeight = document.querySelectorAll ( '.card' ) [ 0 ].clientHeight;
-
-                        let _addButtons = document.querySelectorAll ( '.col.extra > .card.extra' );
-
-
-                        for ( let _i = _addButtons.length - 1; _i > -1; _i-- )
-                        {
-                            let _addButton = _addButtons [ _i ];
-
-
-                            if ( _i === 0 )
-                            {
-                                _addButton.classList.remove ( 'hidden' );
-
-
-                                _addButton.style.height  = `${_prevHeight}px`;
-
-                                _addButton.style.opacity = 0.5;
-
-
-                                _addButton.addEventListener ( 'click', ( element ) =>
-                                {
-                                    let _card = cardObjects [ PAGE.group ] [ PAGE.type ].length - 1;
-
-                                        _card = cardObjects [ PAGE.group ] [ PAGE.type ] [ _card ];
-
-
-                                    cardObjects [ PAGE.group ] [ PAGE.type ].push ( _card );
-
-
-                                    this._setAlbumCards ( );
-                                } );
-                            }
-                            else
-
-                                _addButton.classList.add ( 'hidden' );
-                        }
-                    }
-
-                case 'cardMinus':
-
-                    if ( PAGE.group === 'animation' )
-                    {
-                        let _easings         = document.querySelectorAll ( '.easing' );
-
-                        let _subtractButtons = document.querySelectorAll ( '.card > .card-number > .close' );
-
-
-                        for ( let _subtractButton of _subtractButtons )
-
-                            _subtractButton.addEventListener ( 'click', ( element ) =>
-                                {
-                                    let _cardNumber = Number ( element.target.nextElementSibling.innerHTML );
-
-
-                                    if ( cardObjects [ PAGE.group ] [ PAGE.type ].length > 1 )
-
-                                        cardObjects [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
-
-
-                                    // _buildAlbumCards ( );
-                                    this._setAlbumCards ( );
-                                } );
-                    }
-
+                        _labOpen.addEventListener ( 'click', ( ) => UI.toggle.fullscreen ( ) );
             }
         }
 
@@ -2211,12 +2223,12 @@ class Ui
 
                     _ul.id = _i;
 
-                    _ul.setAttribute ( 'onmouseleave', `devTest.toggleEasingFunctions ( ${_i} )` );
+                    _ul.setAttribute ( 'onmouseleave', `devSuite.toggleEasingFunctions ( ${_i} )` );
 
 
                 _easings [ _i ].parentNode.insertBefore ( _clonedDiv, _easings.nextSibling );
 
-                _easings [ _i ].setAttribute ( 'onclick', `devTest.toggleEasingFunctions ( ${_i} )` );
+                _easings [ _i ].setAttribute ( 'onclick', `devSuite.toggleEasingFunctions ( ${_i} )` );
             }
         }
 
@@ -2267,7 +2279,7 @@ class Ui
 
                 let _li = document.createElement ( 'li' );
 
-                    _li.setAttribute ( 'onclick', `devTest.runEasingAnimation ( '${_timing}', this.parentElement.id )` );
+                    _li.setAttribute ( 'onclick', `devSuite.runEasingAnimation ( '${_timing}', this.parentElement.id )` );
 
                     _li.appendChild ( _span );
 
@@ -2400,7 +2412,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _line.stroke.type = 1;
+                        _line.stroke.type = 'solid';
 
                         _line.draw ( );
                     }
@@ -2410,8 +2422,6 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _line.stroke.type = 1;
-
                         _line.stroke.segments = [ 2, 7, 10 ];
 
                         _line.draw ( );
@@ -2422,7 +2432,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _line.stroke.color = '0,  150,  200';
+                        _line.stroke.color = new Rgb ( 0,  150,  200 );
 
                         _line.draw ( );
                     }
@@ -2432,7 +2442,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _line.stroke.alpha = 0.25;
+                        _line.stroke.color.alpha = 0.25;
 
                         _line.draw ( );
                     }
@@ -2635,7 +2645,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.stroke.type = 1;
+                        _circle.stroke.type = 'solid';
 
                         _circle.draw ( );
                     }
@@ -2645,8 +2655,6 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.stroke.type     = 1;
-
                         _circle.stroke.segments = [ 2, 4 ];
 
                         _circle.draw ( );
@@ -2657,7 +2665,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.stroke.color = '0,  150,  200';
+                        _circle.stroke.color = new Rgb ( 0,  150,  200 );
 
                         _circle.draw ( );
                     }
@@ -2667,7 +2675,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.stroke.alpha = 0.25;
+                        _circle.stroke.color.alpha = 0.25;
 
                         _circle.draw ( );
                     }
@@ -2687,7 +2695,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.fill.color = '0,  150,  200';
+                        _circle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _circle.draw ( );
                     }
@@ -2697,8 +2705,6 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.fill.color = '0,  150,  200';
-
                         _circle.fill.alpha  = 0.25;
 
                         _circle.draw ( );
@@ -2812,7 +2818,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.stroke.type = 1;
+                        _rectangle.stroke.type = 'solid';
 
                         _rectangle.draw ( );
                     }
@@ -2822,8 +2828,6 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.stroke.type     = 1;
-
                         _rectangle.stroke.segments = [ 2, 4 ];
 
                         _rectangle.draw ( );
@@ -2834,7 +2838,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.stroke.color = '0,  150,  200';
+                        _rectangle.stroke.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -2864,7 +2868,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -2874,8 +2878,6 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
-
                         _rectangle.fill.alpha = 0.25;
 
                         _rectangle.draw ( );
@@ -3029,7 +3031,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _text.stroke.type = 1;
+                        _text.stroke.type = 'solid';
 
                         _text.draw ( );
                     }
@@ -3039,7 +3041,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _text.stroke.type = 1;
+                        _text.stroke.type = 'solid';
 
                         _text.stroke.segments = [ 2, 7, 10 ];
 
@@ -3051,7 +3053,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _text.stroke.color = '255, 0, 0';
+                        _text.stroke.color = new Rgb ( 0,  150,  200 );
 
                         _text.draw ( );
                     }
@@ -3081,7 +3083,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _text.fill.color = '255, 0, 0';
+                        _text.fill.color = new Rgb ( 0,  150,  200 );
 
                         _text.draw ( );
                     }
@@ -3091,8 +3093,6 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _text.fill.color = '255, 0, 0';
-
                         _text.fill.alpha  = 0.25;
 
                         _text.draw ( );
@@ -3439,7 +3439,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.fill.color = '0,  150,  200';
+                        _circle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _circle.draw ( );
                     }
@@ -3449,27 +3449,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
-
-                        _rectangle.draw ( );
-                    }
-                },
-                {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
-                    {
-                        _rectangle.fill.color = '0,  150,  200';
-
-                        _rectangle.draw ( );
-                    }
-                },
-                {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
-                    {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -3482,7 +3462,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -3492,7 +3472,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -3502,7 +3482,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -3512,7 +3492,7 @@ class Ui
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -3642,14 +3622,14 @@ class Ui
     ////    INITIALIZE    //////////////////////////////////////////////////////////////////////////
 
         /**
-         * Initiates devTest
+         * Initiates devSuite
          * @private
          * @name _init
          * @function
          */
         function _init ( )
         {
-            window.devTest = _library ( );
+            window.devSuite = _library ( );
 
 
             _setEnvironment ( );
@@ -3667,7 +3647,7 @@ class Ui
         }
 
 
-        if ( typeof ( window.devTest ) === 'undefined' )
+        if ( typeof ( window.devSuite ) === 'undefined' )
 
             _init ( );
 

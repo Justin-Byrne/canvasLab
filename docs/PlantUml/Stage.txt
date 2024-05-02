@@ -4,7 +4,8 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Stage {
-[alpha=1]   <color:gray>{number}</color>
+point   {Point}
+align   <color:gray>{string}</color>
 }
 
 @enduml

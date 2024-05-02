@@ -41,53 +41,12 @@ class Lab
          * @private
          * @name _getBoundingCharactersPositions
          * @function
-         * @param           {string} character                  Bounding character
-         * @param           {string} data                       Data to parse
-         * @param           {number} position                   Cursor position; from ace-editor
+         * @param           {Array<string>} characters          Bounding characters
+         * @param           {string}        data                Data to parse
+         * @param           {number}        position            Cursor position; from ace-editor
          * @return          {Object}                            Bounding character's starting & ending position(s)
          */
-        _getBoundingCharactersPositions ( character, data, position )
-        {
-            let _result  = { start: 0, end: 0 }
-
-            let _indexes = [ ];
-
-            let _split   = data.split ( '' );
-
-
-            ////    GET INDEXES OF CHARACTER(S)    /////////////////////////////
-
-            for ( let _index in _split )
-
-                if ( _split [ _index ] === character )
-
-                    _indexes.push ( _index );
-
-
-            ////    GET CLOSEST START POSITION OF CHARACTER    /////////////////
-
-            for ( let _index of _indexes )
-
-                _result.start = ( _index < position ) ? _index : _result.start;
-
-
-            _result.start = Number ( _result.start ) + 1;
-
-
-            ////    GET CLOSEST END POSITION OF CHARACTER    ///////////////////
-
-            for ( let _index = _result.start; _index < _split.length; _index++ )
-
-                if ( _split [ _index ] === character )
-                {
-                    _result.end = _index;
-
-                    break;
-                }
-
-
-            return _result;
-        }
+        _getBoundingCharactersPositions = ( characters, data, position ) => new Object ( { start: data.indexOf ( characters [ 0 ] ) + 1, end:   data.indexOf ( characters [ 1 ] ) } );
 
         /**
          * Returns a new color-picker object
@@ -475,33 +434,31 @@ class Lab
          */
         _swapRgbValue ( color )
         {
-            let _rgb      = color.rgbString.replace ( 'rgb(', ''   )
-                                           .replace ( ')'   , ''   )
-                                           .replace ( /,/g  , ', ' );
+            let _rgba     = ` ${color._rgba [ 0 ]}, ${color._rgba [ 1 ]}, ${color._rgba [ 2 ]}, ${color._rgba [ 3 ]} `;
 
-            let _regex    = new RegExp ( /^\d{1,3},\s\d{1,3},\s\d{1,3}/ );
+            let _regex    = new RegExp ( /\d{1,3},\s\d{1,3},\s\d{1,3}(,\s\d)?/ );
 
 
             let _cursor   = this.editor.selection.getCursor ( );
 
-            let _line     = this.editor.session.getLine     ( _cursor.row );
+            let _line     = this.editor.session.getLine ( _cursor.row );
 
 
-            let _position = this._getBoundingCharactersPositions ( "'", _line, _cursor.column );
+            let _position = this._getBoundingCharactersPositions ( [ "(", ")" ], _line, _cursor.column );
 
-            let _range    = new ace.Range                   ( _cursor.row, _position.start, _cursor.row, _position.end );
+            let _range    = new ace.Range ( _cursor.row, _position.start, _cursor.row, _position.end );
 
-            let _text     = this.editor.session.getTextRange    ( _range );
+            let _text     = this.editor.session.getTextRange ( _range ).trim ( );
 
 
             if ( _regex.test ( _text ) )
             {
                 _range = new ace.Range ( _cursor.row, 0, _cursor.row, _line.length   );
 
-                _line  = _line.subStringRange ( _position.start, _position.end, _rgb );
+                _line  = _line.subStringRange ( _position.start, _position.end, _rgba );
 
 
-                this.editor.session.replace        ( _range,      _line               );
+                this.editor.session.replace ( _range, _line );
 
                 this.editor.selection.moveCursorTo ( _cursor.row, _position.start + 1 );
 
@@ -603,7 +560,7 @@ class Lab
 
                     _circle.canvas = 'canvas';
 
-                    _circle.fill.color = '0, 150, 200';
+                    _circle.fill.color = new Rgb ( 0, 150, 200 );
 
                     _circle.draw ( );
             }
@@ -649,7 +606,7 @@ class Lab
                 {
                     name:    'run_on_save',
                     bindKey: { win: 'Ctrl-S', mac: 'Command-S' },
-                    exec:    ( ) => devTest.runLabStationCode ( )
+                    exec:    ( ) => devSuite.runLabStationCode ( )
                 } );
 
 

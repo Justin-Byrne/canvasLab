@@ -90,29 +90,24 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class StrokeCollection {
-[type=0]      <color:gray>{number}</color>
-[alpha=1]     <color:gray>{number}</color>
+[alpha=1]       <color:gray>{number}</color>
 __ Setter __
-type          <color:gray>{number}</color>
-segments      {Array}
-color         <color:gray>{string}</color>
-alpha         <color:gray>{number}</color>
-width         <color:gray>{number}</color>
+color           <color:gray>{string}</color>
+type            <color:gray>{number}</color>
+segments        {Array}
+width           <color:gray>{number}</color>
 master
 __ Getter __
-type          <color:gray>{number}</color>
-segments      {Array}
-color         <color:gray>{string}</color>
-alpha         <color:gray>{number}</color>
-width         <color:gray>{number}</color>
+color           <color:gray>{string}</color>
+type            <color:gray>{number}</color>
+segments        {Array}
+width           <color:gray>{number}</color>
 __ Utility __
 Alpha
-_isType
+_isColorModel
+_isStrokeType
 _isSegments
-_isRgb
-_isAlpha
 _isWidth
-_getRgb
 _setAll
 }
 
@@ -122,29 +117,23 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class ShadowCollection {
-color      <color:gray>{string}</color>
-alpha      <color:gray>{number}</color>
+blur       <color:gray>{number}</color>
+offset     {Point}
 __ Setter __
 color      <color:gray>{string}</color>
-alpha      <color:gray>{number}</color>
 blur       <color:gray>{number}</color>
 offset     {Point}
 x          <color:gray>{number}</color>
 y          <color:gray>{number}</color>
 __ Getter __
 color      <color:gray>{string}</color>
-alpha      <color:gray>{number}</color>
 blur       <color:gray>{number}</color>
 offset     {Point}
 x          <color:gray>{number}</color>
 y          <color:gray>{number}</color>
 __ Utility __
-Alpha
-_isRgb
-_isAlpha
 _isBlur
 _isPoint
-_getRgb
 _setAll
 }
 
@@ -154,28 +143,23 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Stroke {
-[type=0]      <color:gray>{number}</color>
-[alpha=1]     <color:gray>{number}</color>
+[width=2]       <color:gray>{number}</color>
+shadow          {Shadow}
 __ Setter __
-type          <color:gray>{number}</color>
-segments      {Array}
-color         <color:gray>{string}</color>
-alpha         <color:gray>{number}</color>
-width         <color:gray>{number}</color>
+type            <color:gray>{number}</color>
+segments        {Array}
+color           <color:gray>{string}</color>
+width           <color:gray>{number}</color>
 __ Getter __
-type          <color:gray>{number}</color>
-segments      {Array}
-color         <color:gray>{string}</color>
-alpha         <color:gray>{number}</color>
-width         <color:gray>{number}</color>
+type            <color:gray>{number}</color>
+segments        {Array}
+color           <color:gray>{string}</color>
+width           <color:gray>{number}</color>
 __ Utility __
-Alpha
-_isType
+_isColorModel
+_isStrokeType
 _isSegments
-_isRgb
-_isAlpha
 _isWidth
-_getRgb
 }
 
 
@@ -184,28 +168,24 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Shadow {
-[alpha=1]   <color:gray>{number}</color>
+[blur=3]        <color:gray>{number}</color>
+offset          {Point}
 __ Setter __
-color       <color:gray>{string}</color>
-alpha       <color:gray>{number}</color>
-blur        <color:gray>{number}</color>
-offset      {Point}
-x           <color:gray>{number}</color>
-y           <color:gray>{number}</color>
+color           <color:gray>{string}</color>
+blur            <color:gray>{number}</color>
+offset          {Point}
+x               <color:gray>{number}</color>
+y               <color:gray>{number}</color>
 __ Getter __
-color       <color:gray>{string}</color>
-alpha       <color:gray>{number}</color>
-blur        <color:gray>{number}</color>
-offset      {Point}
-x           <color:gray>{number}</color>
-y           <color:gray>{number}</color>
+color           <color:gray>{string}</color>
+blur            <color:gray>{number}</color>
+offset          {Point}
+x               <color:gray>{number}</color>
+y               <color:gray>{number}</color>
 __ Utility __
-Alpha
-_isRgb
-_isAlpha
+_isColorModel
 _isBlur
 _isPoint
-_getRgb
 }
 
 

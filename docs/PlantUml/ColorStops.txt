@@ -1,0 +1,21 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class ColorStops {
+__ Setter __
+start          {Point}
+end            {Point}
+__ Getter __
+start          {Point}
+end            {Point}
+__ Utility __
+_isPoint
+_isColorName
+_isRgb
+_isAlpha
+_getRgb
+}
+
+@enduml

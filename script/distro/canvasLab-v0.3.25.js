@@ -2,7 +2,7 @@
 // @brief: 			HTML5 canvas drawing framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.2.17 
+// @version: 		0.3.25 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -109,7 +109,18 @@ const PROPERTY_BLOCKS =
             {
                 return this._point.y;
             }
-        }
+        },
+        alpha:
+        {
+            set ( value )
+            {
+                this._alpha = ( value <= 1  &&  value >= 0 ) ? value : this._alpha;
+            },
+            get ( )
+            {
+                return this._alpha;
+            }
+        },
     },
     /** @var            {Object} combined                                                           **/
     combined:
@@ -184,11 +195,12 @@ const UTILITIES =
     /** @var            {Object} draw                                                               **/
     draw:
     {
-        axis ( edgeOffset = 20, color =  '235, 81, 73' )
+        axis ( edgeOffset = 20, color = new Rgb ( 245, 80, 50 ) )
         {
             let _lines = new Lines ( new Line, new Line );
 
-                _lines.stroke.color = '235, 81, 73';
+
+                _lines.stroke.color = color;
 
                 _lines.point        = this.center;
 
@@ -202,17 +214,19 @@ const UTILITIES =
 
                 _lines.draw ( );
         },
-        border ( aspect, color =  '235, 81, 73' )
+        border ( aspect, color = new Rgb ( 245, 80, 50 ) )
         {
             if ( this._isAspect ( aspect ) )
             {
                 let _border = new Rectangle ( this.center, aspect );
 
-                    _border.stroke.color = color;
 
-                    _border.fill.alpha   = 0;
+                    _border.stroke.color     = color;
 
-                    _border.canvas       = ( this instanceof Point ) ? this.options._master.canvas : this.canvas;
+                    _border.fill.color.alpha = 0;
+
+                    _border.canvas           = ( this instanceof Point ) ? this.options._master.canvas : this.canvas;
+
 
                     _border.draw ( );
             }
@@ -236,7 +250,6 @@ const UTILITIES =
                         {
                             _object.point = new Point (  ( _object.origin.x + this.x ), ( _object.origin.y + this.y )  );
 
-
                             _object.draw ( );
                         }
 
@@ -259,7 +272,7 @@ const UTILITIES =
                     {
                         for ( let _object of this )
                         {
-                            this._setAspect ( );
+                            this._setAspect      ( );
 
                             this._setAnchorPoint ( );
 
@@ -292,9 +305,9 @@ const UTILITIES =
         {
             value = value.split ( ',' );
 
-            return `${value [ 0 ].trim ( )}, ` +                // RED
-                   `${value [ 1 ].trim ( )}, ` +                // GREEN
-                   `${value [ 2 ].trim ( )}`                    // BLUE
+            return `${value [ 0 ].trim ( )}, ` +            // RED
+                   `${value [ 1 ].trim ( )}, ` +            // GREEN
+                   `${value [ 2 ].trim ( )}`                // BLUE
         }
     },
     pushPop ( object )
@@ -377,7 +390,7 @@ const UTILITIES =
 
             this._canvas.shadowOffsetY = this._shadow.y;
 
-            this._canvas.shadowColor   = `rgba(${this._shadow.color}, ${this._shadow.alpha})`;
+            this._canvas.shadowColor   = this._shadow.color.toCss ( );
         }
     }
 }
@@ -388,6 +401,10 @@ const UTILITIES =
  */
 const VALIDATION =
 {
+    is256 ( value )
+    {
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 255 )  );
+    },
     isAnchor ( value )
     {
         let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft' ];
@@ -404,11 +421,11 @@ const VALIDATION =
     },
     isAspect ( value )
     {
-        let _aspect  = ( value instanceof Aspect );
+        let _aspect = ( value instanceof Aspect );
 
         let _length = ( Object.keys ( value ).length == 2 );
 
-        let _width  = ( value.hasOwnProperty ( 'width' ) )  ? ( typeof value.width === 'number' )  : false;
+        let _width  = ( value.hasOwnProperty ( 'width'  ) ) ? ( typeof value.width === 'number' )  : false;
 
         let _height = ( value.hasOwnProperty ( 'height' ) ) ? ( typeof value.height === 'number' ) : false;
 
@@ -417,11 +434,20 @@ const VALIDATION =
     },
     isBlur ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value >= 0 )  );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );
     },
     isCanvasLabObject ( value )
     {
-        return (  ( value instanceof Line )  ||  ( value instanceof Circle )  ||  ( value instanceof Rectangle )  ||  ( value instanceof Text )  );
+        if ( value instanceof Line      ) return true;
+
+        if ( value instanceof Circle    ) return true;
+
+        if ( value instanceof Rectangle ) return true
+
+        if ( value instanceof Text      ) return true;
+
+
+        return false;
     },
     isColorName ( value )
     {
@@ -639,9 +665,41 @@ const VALIDATION =
 
         return _colors [ value [ 0 ].toUpperCase ( ) ].includes ( value );
     },
+    isColorModel ( value )
+    {
+        if ( value instanceof Rgb ) return true;
+
+        if ( value instanceof Hsl ) return true;
+
+        if ( value instanceof Hwb ) return true;
+
+
+        return false;
+    },
+    isColorStop ( value )
+    {
+        // @TODO: a more robust & informative checking system should be put into place here, while considering performance !
+
+        let _array = ( Array.isArray ( value )          &&  ( value.length === 2 ) );
+
+        let _stop  = ( typeof value [ 0 ] === 'number'  &&  ( value [ 0 ] >= 0 &&  value [ 0 ] <= 1 ) );
+
+        let _color = ( typeof value [ 1 ] === 'string' );
+
+
+        return ( _array  &&  _stop  &&  _color );
+    },
+    isDecimal ( value )
+    {
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  ) );
+    },
     isDegree ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value <= 360 )  );
+        return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
+    },
+    isFillType ( value )
+    {
+        return [ 'solid', 'linear', 'radial', 'conic', 'pattern' ].includes ( value );
     },
     isInDom ( elementId )
     {
@@ -649,7 +707,7 @@ const VALIDATION =
     },
     isNumber ( value )
     {
-        return (  ( typeof value === 'number')  &&  !isNaN ( value )  );
+        return ( ( typeof value === 'number')  &&  !isNaN ( value ) );
     },
     isPoint ( value )
     {
@@ -666,25 +724,23 @@ const VALIDATION =
     },
     isRadian ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 6.283185307179586 )  );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 6.283185307179586 ) );
     },
     isRadius ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value > 0 )  );
-    },
-    isRgb ( value )
-    {
-        return ( /\b([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5]),(\s*)?([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5]),(\s*)?([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\b/.test ( value ) );
+        return ( ( typeof value === 'number' )  &&  ( value > 0 ) );
     },
     isSegments ( value )
     {
-        function isArrayNumberic ( value )
+        function isArrayNumeric ( value )
         {
             let _result = undefined;
+
 
             for ( let _element of value )
             {
                 _result = ( typeof _element != 'number' ) ? false : true;
+
 
                 if ( _result == false ) break;
             }
@@ -694,15 +750,15 @@ const VALIDATION =
         }
 
 
-        return ( Array.isArray ( value ) ) ? isArrayNumberic ( value ) : false;
+        return ( Array.isArray ( value ) ) ? isArrayNumeric ( value ) : false;
     },
-    isType ( value )
+    isStrokeType ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1 )  );
+        return ( ( typeof value === 'string' )  &&  [ 'solid', 'dashed' ].includes ( value ) );
     },
     isWidth ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value >= 0 )  );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );
     }
 }
  
@@ -879,6 +935,1200 @@ class canvasLab
 
                         this.canvases = _canvases [ _id ].id;
         }
+}
+ 
+/**
+ * @class           {Object} Hsl 								HSL color model
+ * @property        {number} [hue=0] 							Hue value; 0 - 360 (degree)
+ * @property        {number} [saturation=0] 					Saturation value; 0 - 1 (decimal)
+ * @property        {number} [lightness=0] 						Lightness value; 0 - 1 (decimal)
+ * @property        {number} [alpha=1] 							Alpha value; 0 - 1 (decimal)
+ */
+class Hsl
+{
+	_hue        = 0;
+	_saturation = 0;
+	_lightness  = 0;
+	_alpha      = 1;
+
+	/**
+	 * Create an HSL color model
+	 * @param 			{number} hue                               	Hue value
+	 * @param        	{number} saturation 						Saturation value
+	 * @param        	{number} lightness 							Lightness value
+	 * @param        	{number} alpha 								Alpha value
+	 */
+	constructor ( hue, saturation, lightness, alpha )
+	{
+		////    COMPOSITION    /////////////////////////////
+
+			this._isDegree  = VALIDATION.isDegree;
+			this._isDecimal = VALIDATION.isDecimal;
+
+			Object.defineProperty ( this, 'alpha', PROPERTY_BLOCKS.discrete.alpha );
+
+		this.hue 		= hue;
+		this.saturation = saturation;
+		this.lightness  = lightness;
+		this.alpha 		= ( alpha === undefined ) ? 1 : alpha;
+	}
+
+	////    [ HUE ]    /////////////////////////////////////
+
+		/**
+		 * Sets the hue value
+		 * @public
+		 * @name hue
+		 * @function
+		 * @param           {number} hue 							Hue value; 0 - 360
+		 */
+		set hue ( value )
+		{
+			this._hue = this._isDegree ( value ) ? value : this._hue;
+		}
+
+		/**
+		 * Gets the hue value
+		 * @public
+		 * @name hue
+		 * @function
+		 * @param 			{number}								Hue value; 0 - 360
+		 */
+		get hue ( )
+		{
+			return this._hue;
+		}
+
+	////    [ SATURATION ]    //////////////////////////////
+
+		/**
+		 * Sets the saturation value
+		 * @public
+		 * @name saturation
+		 * @function
+		 * @param           {number} saturation 					Saturation value; 0 - 1
+		 */
+		set saturation ( value )
+		{
+			this._saturation = this._isDecimal ( value ) ? value : this._saturation;
+		}
+
+		/**
+		 * Gets the saturation value
+		 * @public
+		 * @name saturation
+		 * @function
+		 * @param 			{number}								Saturation value; 0 - 1
+		 */
+		get saturation ( )
+		{
+			return this._saturation;
+		}
+
+	////    [ LIGHTNESS ]    ///////////////////////////////
+
+		/**
+		 * Sets the lightness value
+		 * @public
+		 * @name lightness
+		 * @function
+		 * @param           {number} lightness 						Lightness value; 0 - 1
+		 */
+		set lightness ( value )
+		{
+			this._lightness = this._isDecimal ( value ) ? value : this._lightness;
+		}
+
+		/**
+		 * Gets the lightness value
+		 * @public
+		 * @name lightness
+		 * @function
+		 * @param 			{number}								Lightness value; 0 - 1
+		 */
+		get lightness ( )
+		{
+			return this._lightness;
+		}
+
+	////    [ VALIDATION ]    //////////////////////////////
+
+		_isDegree  ( ) { }
+
+		_isDecimal ( ) { }
+
+	////    [ UTILITIES ]    ///////////////////////////////
+
+		/**
+		 * Returns a CSS compatible <color> string value
+		 * @public
+		 * @name toCss
+		 * @function
+		 * @return 			{string} 							CSS <color> string
+		 */
+		toCss ( )
+		{
+			return `hsl(${this.hue}deg ${this.saturation * 100}% ${this.lightness * 100}% / ${this.alpha * 100}%)`;
+		}
+}
+ 
+/**
+ * @class           {Object} Hwb 								HWB color model
+ * @property        {number} [hue=0] 							Hue value; 0 - 360 (degree)
+ * @property        {number} [whiteness=0] 						Whiteness value; 0 - 1 (decimal)
+ * @property        {number} [blackness=0] 						Blackness value; 0 - 1 (decimal)
+ * @property        {number} [alpha=1] 							Alpha value; 0 - 1 (decimal)
+ */
+class Hwb
+{
+	_hue       = 0;
+	_whiteness = 0;
+    _blackness = 0;
+    _alpha     = 1;
+
+    /**
+	 * Create an HWB color Model
+	 * @param       	{number} hue                               	Hue value
+	 * @param       	{number} whiteness 							Whiteness value
+	 * @param       	{number} blackness 							Blackness value
+	 * @param       	{number} alpha 								Alpha value
+	 */
+    constructor ( hue, whiteness, blackness, alpha )
+	{
+		////    COMPOSITION    /////////////////////////////
+
+			this._isDegree  = VALIDATION.isDegree;
+			this._isDecimal = VALIDATION.isDecimal;
+
+			Object.defineProperty ( this, 'alpha',  PROPERTY_BLOCKS.discrete.alpha  );
+
+		this.hue       = hue;
+		this.whiteness = whiteness;
+		this.blackness = blackness;
+		this.alpha     = ( alpha === undefined ) ? 1 : alpha;
+	}
+
+	////    [ HUE ]    /////////////////////////////////////
+
+		/**
+		 * Sets the hue value
+		 * @public
+		 * @name hue
+		 * @function
+		 * @param           {number} hue 							Hue value; 0 - 360
+		 */
+		set hue ( value )
+		{
+			this._hue = this._isDegree ( value ) ? value : this._hue;
+		}
+
+		/**
+		 * Gets the hue value
+		 * @public
+		 * @name hue
+		 * @function
+		 * @param 			{number}								Hue value; 0 - 360
+		 */
+		get hue ( )
+		{
+			return this._hue;
+		}
+
+	////    [ WHITENESS ]    ///////////////////////////////
+
+		/**
+		 * Sets the whiteness value
+		 * @public
+		 * @name whiteness
+		 * @function
+		 * @param           {number} whiteness 						Whiteness value; 0 - 1
+		 */
+		set whiteness ( value )
+		{
+			this._whiteness = this._isDecimal ( value ) ? value : this._whiteness;
+		}
+
+		/**
+		 * Gets the whiteness value
+		 * @public
+		 * @name whiteness
+		 * @function
+		 * @param 			{number} 								Whiteness value; 0 - 1
+		 */
+		get whiteness ( )
+		{
+			return this._whiteness;
+		}
+
+	////    [ BLACKNESS ]    ///////////////////////////////
+
+		/**
+		 * Sets the blackness value
+		 * @public
+		 * @name blackness
+		 * @function
+		 * @param           {number} blackness 						Blackness value; 0 - 1
+		 */
+		set blackness ( value )
+		{
+			this._blackness = this._isDecimal ( value ) ? value : this._blackness;
+		}
+
+		/**
+		 * Gets the blackness value
+		 * @public
+		 * @name blackness
+		 * @function
+		 * @param 			{number} 								Blackness value; 0 - 1
+		 */
+		get blackness ( )
+		{
+			return this._blackness;
+		}
+
+	////    VALIDATION  ////////////////////////////////////
+
+		_isDegree  ( ) { }
+
+		_isDecimal ( ) { }
+
+	////    [ UTILITIES ]    ///////////////////////////////
+
+		/**
+		 * Returns a CSS compatible <color> string value
+		 * @public
+		 * @name toCss
+		 * @function
+		 * @return 			{string} 							CSS <color> string
+		 */
+		toCss ( )
+		{
+			return `hwb(${this.hue}deg ${this.whiteness * 100}% ${this.blackness * 100}% / ${this.alpha * 100}%)`;
+		}
+}
+ 
+/**
+ * @class           {Object} Rgb 								RGB color model
+ * @property        {number} [red=0] 							Red value; 0 - 255
+ * @property        {number} [green=0] 							Green value; 0 - 255
+ * @property        {number} [blue=0] 							Blue value; 0 - 255
+ * @property        {number} [alpha=1] 							Alpha value; 0 - 1 (decimal)
+ */
+class Rgb
+{
+	_red   = 0;
+	_green = 0;
+	_blue  = 0;
+	_alpha = 1;
+
+	/**
+	 * Create an RGB color model
+	 * @param 			{number} red                               	Red value
+	 * @param 			{number} green                             	Green value
+	 * @param 			{number} blue 								Blue value
+	 * @param 			{number} alpha 								Alpha value
+	 */
+	constructor ( red, green, blue, alpha )
+	{
+		////    COMPOSITION    /////////////////////////////
+
+			this._is256 = VALIDATION.is256;
+
+			Object.defineProperty ( this, 'alpha', PROPERTY_BLOCKS.discrete.alpha  );
+
+		this.red   = red;
+		this.green = green;
+		this.blue  = blue;
+		this.alpha = ( alpha === undefined ) ? 1 : alpha;
+	}
+
+	////    [ RED ]    /////////////////////////////////////
+
+		/**
+		 * Sets the red value
+		 * @public
+		 * @name red
+		 * @function
+		 * @param           {number} red                        Red value; 0 - 255
+		 */
+		set red ( value )
+		{
+			this._red = this._is256 ( value ) ? value : this._red;
+		}
+
+		/**
+		 * Gets the red value
+		 * @public
+		 * @name red
+		 * @function
+		 * @param 			{number}							Red value; 0 - 255
+		 */
+		get red ( )
+		{
+			return this._red;
+		}
+
+	////    [ GREEN ]    ///////////////////////////////////
+
+		/**
+		 * Sets the green value
+		 * @public
+		 * @name green
+		 * @function
+		 * @param           {number} green 						Green value; 0 - 255
+		 */
+		set green ( value )
+		{
+			this._green = this._is256 ( value ) ? value : this._green;
+		}
+
+		/**
+		 * Gets the green value
+		 * @public
+		 * @name green
+		 * @function
+		 * @param 			{number} 							Green value; 0 - 255
+		 */
+		get green ( )
+		{
+			return this._green;
+		}
+
+	////    [ BLUE ]    ////////////////////////////////////
+
+		/**
+		 * Sets the blue value
+		 * @public
+		 * @name blue
+		 * @function
+		 * @param           {number} blue 						Blue value; 0 - 255
+		 */
+		set blue ( value )
+		{
+			this._blue = this._is256 ( value ) ? value : this._blue;
+		}
+
+		/**
+		 * Gets the blue value
+		 * @public
+		 * @name blue
+		 * @function
+		 * @param 			{number} 							Blue value; 0 - 255
+		 */
+		get blue ( )
+		{
+			return this._blue;
+		}
+
+	////    [ VALIDATION ]    //////////////////////////////
+
+		_is256 ( ) { }
+
+	////    [ UTILITIES ]    ///////////////////////////////
+
+		/**
+		 * Returns a CSS compatible <color> string value
+		 * @public
+		 * @name toCss
+		 * @function
+		 * @return 			{string} 							CSS <color> string
+		 */
+		toCss ( )
+		{
+			return `rgb(${this.red} ${this.green} ${this.blue} / ${this.alpha * 100}%)`;
+		}
+}
+ 
+/**
+ * @class           {Object}         Fill                       Fill container for various fill types
+ * @property        {Object}         [color=<Rgb>]              Color model & value
+ * @property        {string}         [type='solid']             Fill type; solid | linear | radial | conic | pattern
+ * @property        {GradientLinear} linear                     Linear Gradient fill object
+ * @property        {GradientRadial} radial                     Radial Gradient fill object
+ * @property        {GradientConic}  conic                      Conic Gradient fill object
+ * @property        {FillPattern}    pattern                    Pattern fill object
+ */
+class Fill
+{
+    _color = new Rgb ( 0, 0, 0, 0 );
+    _type  = 'solid';
+
+    _gradient =
+    {
+        linear: undefined,
+        radial: undefined,
+        conic:  undefined
+    }
+
+    _pattern  = undefined;
+
+    /**
+     * Create a fill type
+     * @param           {string} type                              Fill type
+     */
+    constructor ( color, type )
+    {
+        ////    COMPOSITION     ////////////////////////////
+
+            this._isFillType   = VALIDATION.isFillType;
+            this._isColorModel = VALIDATION.isColorModel;
+
+        this.color = color;
+        this.type  = type;
+
+        ////    INSTANTIATE FILL TYPE    ///////////////////
+
+        this._init ( );
+    }
+
+    ////    [ COLOR ]    ///////////////////////////////////
+
+        set color ( value )
+        {
+            this._color = this._isColorModel ( value ) ? value : this._color;
+        }
+
+        get color ( )
+        {
+            return this._color;
+        }
+
+    ////    [ TYPE ]    ////////////////////////////////////
+
+        /**
+         * Set type value
+         * @param           {string} value                              Fill type value
+         */
+        set type ( value )
+        {
+            this._type = ( this._isFillType ( value ) ) ? value : this._type;
+        }
+
+        /**
+         * Get type value
+         * @return          {string}                                    Fill type value
+         */
+        get type ( )
+        {
+            return this._type;
+        }
+
+    ////    [ LINEAR ]   ///////////////////////////////////
+
+        /**
+         * Get linear gradient fill object
+         * @return          {GradientLinear}                            Linear gradient fill object
+         */
+        get linear ( )
+        {
+            return this._linear;
+        }
+
+    ////    [ RADIAL ]   ///////////////////////////////////
+
+        /**
+         * Get radial gradient fill object
+         * @return          {GradientRadioal}                           Radial gradient fill object
+         */
+        get radial ( )
+        {
+            return this._radial;
+        }
+
+    ////    [ RADIAL ]   ///////////////////////////////////
+
+        /**
+         * Get conic gradient fill object
+         * @return          {GradientConic}                             Conic gradient fill object
+         */
+        get conic ( )
+        {
+            return this._conic;
+        }
+
+    ////    [ PATTERN ]   //////////////////////////////////
+
+        /**
+         * Get pattern fill object
+         * @return          {FillPattern}                               Pattern fill object
+         */
+        get pattern ( )
+        {
+            return this._pattern;
+        }
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        _isColorModel ( ) { }
+
+    ////    UTILITIES   ////////////////////////////////////
+
+        // _getRgb ( ) { }
+
+    ////    INIT    ////////////////////////////////////////
+
+        _init ( )
+        {
+            switch ( this.type )
+            {
+                case 'solid':
+
+                    break;
+
+                case 'linear':
+
+                    break;
+
+                case 'radial':
+
+                    break;
+
+                case 'conic':
+
+                    break;
+
+                case 'pattern':
+
+                    break;
+            }
+        }
+}
+ 
+/**
+ * @class           {Object} FillSolid                          Solid fill properties of associated object
+ * @property        {string} [color='255, 255, 255']            RGB color value; r, g, b
+ * @property        {number} [alpha=0]                          Alpha (transparency); number/decimal
+ */
+class FillSolid
+{
+    _color = '255, 255, 255';
+    _alpha = 1;
+
+    /**
+     * Create a fill, solid
+     * @param           {string} color                              RGB color value
+     * @param           {number} alpha                              Alpha value; number/decimal
+     */
+    constructor ( color, alpha )
+    {
+        ////    COMPOSITION     ////////////////////////////
+
+            this._isRgb   = VALIDATION.isRgb;
+            this._isAlpha = VALIDATION.isAlpha;
+
+            this._getRgb = UTILITIES.get.rgb;
+
+        this.color = color;
+        this.alpha = alpha;
+    }
+
+    ////    [ COLOR ]   ////////////////////////////////////
+
+        /**
+         * Set color value
+         * @param           {string} value                              RGB color value
+         */
+        set color ( value )
+        {
+            this._color = ( this._isRgb ( value ) ) ? this._getRgb ( value ) : this._color;
+        }
+
+        /**
+         * Get color value
+         * @return          {string}                                    RGB color value
+         */
+        get color ( )
+        {
+            return this._color;
+        }
+
+    ////    [ ALPHA ]   ////////////////////////////////////
+
+        /**
+         * Set alpha value
+         * @param           {number} value                              Alpha value; number/decimal
+         */
+        set alpha ( value )
+        {
+            this._alpha  = ( this._isAlpha ( value ) ) ? value : this._alpha;
+        }
+
+        /**
+         * Get alpha value
+         * @return          {number}                                    Alpha value; number/decimal
+         */
+        get alpha ( )
+        {
+            return this._alpha;
+        }
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        _isRgb   ( ) { }
+
+        _isAlpha ( ) { }
+
+    ////    UTILITIES   ////////////////////////////////////
+
+        _getRgb ( ) { }
+}
+ 
+/**
+ * @class           {Object} GradientLinear                     GradientLinear properties of associated object
+ * @property        {Point}  start                              X & Y axis coordinates (start)
+ * @property        {Point}  end                                X & Y axis coordinates (end)
+ * @property        {Array}  end                                X & Y axis coordinates (end)
+ */
+class GradientLinear
+{
+    _start = new Point;
+    _end   = new Point;
+
+    _stops = new Array;
+
+    /**
+     * Create a LinearGradient
+     * @property        {Point} start                              Starting point of linear gradient
+     * @property        {Point} end                                Ending point of linear gradient
+     * @property        {Array} stops                              Array of color stops
+     */
+    constructor ( start, end, stops )
+    {
+        ////    COMPOSITION     ////////////////////////////
+
+            this._isPoint     = VALIDATION.isPoint;
+            this._isColorName = VALIDATION.isColorName;
+            this._isRgb       = VALIDATION.isRgb;
+            this._isAlpha     = VALIDATION.isAlpha;
+
+            this._getRgb = UTILITIES.get.rgb;
+
+        this.start = start;
+        this.end   = end;
+        this.stops = stops;
+    }
+
+    ////    [ START ]   ////////////////////////////////////
+
+        /**
+         * Set starting point
+         * @param           {Point} value                               Starting point
+         */
+        set start ( value )
+        {
+            this._start = ( this._isPoint ( value ) ) ? value : this._start;
+        }
+
+        /**
+         * Set starting point
+         * @return          {Point}                                     Starting point
+         */
+        get start ( )
+        {
+            return this._start;
+        }
+
+    ////    [ END ]     ////////////////////////////////////
+
+        /**
+         * Set ending point
+         * @param           {Point} value                               Ending point
+         */
+        set end ( value )
+        {
+            this._end = ( this._isPoint ( value ) ) ? value : this._end;
+        }
+
+        /**
+         * Set ending point
+         * @return          {Point}                                     Ending point
+         */
+        get end ( )
+        {
+            return this._end;
+        }
+
+    ////    [ COLORSTOPS ]    //////////////////////////////
+
+        // [ 0, "rgba(0,0,0,.5)" ],
+        // [ 0, "rgb(0,0,0)" ],
+        // [ 0, "green" ],
+        // [ 0.5, "cyan" ],
+        // [ 1, "green" ],
+
+        // gradient.addColorStop(0, "rgba(0,0,0,.5)");
+        // gradient.addColorStop(0, "rgb(0,0,0)");
+        // gradient.addColorStop(0, "green");
+        // gradient.addColorStop(0.5, "cyan");
+        // gradient.addColorStop(1, "green");
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        _isPoint     ( ) { }
+
+        _isColorName ( ) { }
+
+        _isRgb       ( ) { }
+
+        _isAlpha     ( ) { }
+
+    ////    UTILITIES   ////////////////////////////////////
+
+        _getRgb ( ) { }
+}
+ 
+/**
+ * @class           {Object} Shadow                             Shadow of associated object
+ * @property        {Object} [color=<Rgb>]                      RGB color value; r, g, b
+ * @property        {number} [blur=3]                           Blur strength
+ * @property        {Point}  offset                             Point offset coordinates
+ */
+class Shadow
+{
+    _color  = new Rgb;
+    _blur   = 3;
+    _offset = new Point;
+
+    /**
+     * Create a shadow
+     * @param           {Object} color                              RGB color value
+     * @param           {number} blur                               Shadow blur value
+     * @param           {Point}  offset                             Shadow offset
+     */
+    constructor ( color, blur, offset = { x: undefined, y: undefined } )
+    {
+        ////    COMPOSITION     ////////////////////////////
+
+            this._isColorModel = VALIDATION.isColorModel;
+            this._isBlur       = VALIDATION.isBlur;
+            this._isPoint      = VALIDATION.isPoint;
+
+            Object.defineProperty ( this, 'offset', PROPERTY_BLOCKS.discrete.offset  );
+            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.offsetX );
+            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.offsetY );
+
+        this.color  = color;
+        this.blur   = blur;
+        this.offset = offset;
+    }
+
+    ////    [ COLOR ]   ////////////////////////////////////
+
+        /**
+         * Set color value
+         * @param           {string} value                              RGB color value
+         */
+        set color ( value )
+        {
+            this._color = ( this._isColorModel ( value ) ) ? value : this._color;
+        }
+
+        /**
+         * Get color value
+         * @return          {string}                                    RGB color value
+         */
+        get color ( )
+        {
+            return this._color;
+        }
+
+    ////    [ BLUR ]    ////////////////////////////////////
+
+        /**
+         * Set blur value
+         * @param           {number} blur                               Blur value
+         */
+        set blur ( value )
+        {
+            this._blur = ( this._isBlur ( value ) ) ? value : this._blur;
+        }
+
+        /**
+         * Get blur value
+         * @return          {number}                                    Blur value
+         */
+        get blur ( )
+        {
+            return this._blur;
+        }
+
+    ////    [ OFFSET.(X)(Y) ]   ////////////////////////////
+
+        /**
+         * Set offset
+         * @param           {Point} value                               Shadow offset
+         * @see             {@link discrete.offset}
+         */
+        set offset ( value ) { }
+
+        /**
+         * Get offset
+         * @return          {Point}                                     Shadow offset
+         * @see             {@link discrete.offset}
+         */
+        get offset ( ) { }
+
+
+        /**
+         * Set x-axis offset value
+         * @param           {number} value                              X coordinate value
+         * @see             {@link discrete.offsetX}
+         */
+        set x ( value ) { }
+
+        /**
+         * Get x-axis offset value
+         * @return          {number}                                    X coordinate value
+         * @see             {@link discrete.offsetX}
+         */
+        get x ( ) { }
+
+
+        /**
+         * Set the y-axis offset value
+         * @param           {number} value                              Y coordinate value
+         * @see             {@link discrete.offsetY}
+         */
+        set y ( value ) { }
+
+        /**
+         * Get y-axis offset value
+         * @return          {number}                                    Y coordinate value
+         * @see             {@link discrete.offsetY}
+         */
+        get y ( ) { }
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        _isColorModel ( ) { }
+
+        _isBlur       ( ) { }
+
+        _isPoint      ( ) { }
+}
+ 
+/**
+ * @class           {Object}   Stroke                           Stroke properties of associated object
+ * @property        {Object}   [color=<Rgb>]                    Color model & value
+ * @property        {string}   [type='solid']                   Stroke type; solid | dashed
+ * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s); <array<numbers>>
+ * @property        {number}   [width=2]                        Thickness of stroke
+ * @property        {Shadow}   shadow                           Shadow properties
+ */
+class Stroke
+{
+    _color    = new Rgb;
+    _type     = 'solid';
+    _segments = [ 5, 5 ];
+    _width    = 1;
+
+    /**
+     * Create a stroke
+     * @param           {Object}   color                            RGB color value
+     * @param           {number}   type                             Stroke type
+     * @param           {number[]} segments                         Dashed line segment distance(s)
+     * @param           {number}   alpha                            Alpha value; number/decimal
+     * @param           {number}   width                            Thickness of stroke
+     */
+    constructor ( color, type, segments, width )
+    {
+        ////    COMPOSITION     ////////////////////////////
+
+            this._isColorModel = VALIDATION.isColorModel;
+            this._isStrokeType = VALIDATION.isStrokeType;
+            this._isSegments   = VALIDATION.isSegments;
+            this._isWidth      = VALIDATION.isWidth;
+
+        this.color    = color;
+        this.type     = type;
+        this.segments = segments;
+        this.width    = width;
+    }
+
+    ////    [ TYPE ]    ////////////////////////////////////
+
+        /**
+         * Set type
+         * @param           {number} value                              Type: (0) Solid or (1) Dashed
+         */
+        set type ( value )
+        {
+            this._type = ( this._isStrokeType ( value ) ) ? value : this._type;
+        }
+
+        /**
+         * Get type
+         * @return          {number}                                    Type: (0) Solid or (1) Dashed
+         */
+        get type ( )
+        {
+            return this._type;
+        }
+
+    ////    [ SEGMENTS ]    ////////////////////////////////
+
+        /**
+         * Set segment value
+         * @param           {Array} value                               Dashed line segment distance(s)
+         */
+        set segments ( value )
+        {
+            ( this._isSegments ( value ) ) ? [ this._segments, this._type ] = [ value,          'dashed' ]
+
+                                           : [ this._segments, this._type ] = [ this._segments, 'solid'   ];
+        }
+
+        /**
+         * Get segment value
+         * @return          {Array}                                     Dashed line segment distance(s)
+         */
+        get segments ( )
+        {
+            return this._segments;
+        }
+
+    ////    [ COLOR ]   ////////////////////////////////////
+
+        /**
+         * Set color value
+         * @param           {string} value                              RGB color value
+         */
+        set color ( value )
+        {
+            this._color = ( this._isColorModel ( value ) ) ? value : this._color;
+        }
+
+        /**
+         * Get color value
+         * @return          {string}                                    RGB color value
+         */
+        get color ( )
+        {
+            return this._color;
+        }
+
+    ////    [ WIDTH ]   ////////////////////////////////////
+
+        /**
+         * Set width value
+         * @param           {number} value                              Thickness of stroke
+         */
+        set width ( value )
+        {
+            this._width = ( this._isWidth ( value ) ) ? value : this._width;
+        }
+
+        /**
+         * Get width value
+         * @return          {number}                                    Thickness of stroke
+         */
+        get width ( )
+        {
+            return this._width;
+        }
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        _isColorModel ( ) { }
+
+        _isStrokeType ( ) { }
+
+        _isSegments   ( ) { }
+
+        _isWidth      ( ) { }
+}
+ 
+/**
+ * @class           {Object}  Options                           Options for shapes, lines, and groups
+ * @property        {boolean} [shadow=false]                    Show shadow
+ * @property        {boolean} [border=false]                    Show border
+ * @property        {boolean} [axis=false]                      Show axis
+ * @property        {boolean} [points=false]                    Show points
+ * @property        {boolean} [anchor=false]                    Show anchor
+ * @property        {boolean} [coordinates=false]               Show coordinates
+ * @property        {boolean} [controlPoints=false]             Show control points
+ * @property        {Object}  master                            Master object to reference
+ */
+class Options
+{
+    _shadow        = false;
+    _border        = false;
+    _axis          = false;
+    _points        = false;
+    _anchor        = false;
+    _coordinates   = false;
+    _controlPoints = false;
+
+    _master = undefined;
+
+    /**
+     * Create an options object
+     * @param           {boolean} shadow                            Show shadow
+     * @param           {boolean} border                            Show border
+     * @param           {boolean} axis                              Show axis
+     * @param           {boolean} points                            Show points
+     * @param           {boolean} anchor                            Show anchor
+     * @param           {boolean} coordinates                       Show coordinates
+     * @param           {boolean} controlPoints                     Show control points
+     */
+    constructor ( shadow, border, axis, points, anchor, coordinates, controlPoints )
+    {
+        ////    COMPOSITION     ////////////////////////////
+
+            this._isCanvasLabObject = VALIDATION.isCanvasLabObject;
+
+        this.shadow        = shadow;
+        this.border        = border;
+        this.axis          = axis;
+        this.points        = points;
+        this.anchor        = anchor;
+        this.coordinates   = coordinates;
+        this.controlPoints = controlPoints;
+    }
+
+    ////    [ SHADOW ]  ////////////////////////////////////
+
+        /**
+         * Set shadow value
+         * @param           {boolean} value                             Shadow; true | false
+         */
+        set shadow ( value )
+        {
+            this._shadow = ( typeof value === 'boolean' ) ? value : this._shadow;
+        }
+
+        /**
+         * Get shadow value
+         * @return          {boolean}                                   Shadow; true | false
+         */
+        get shadow ( )
+        {
+            return this._shadow;
+        }
+
+    ////    [ BORDER ]  ////////////////////////////////////
+
+        /**
+         * Set border value
+         * @param           {boolean} value                             Border; true | false
+         */
+        set border ( value )
+        {
+            this._border = ( typeof value === 'boolean' ) ? value : this._border;
+        }
+
+        /**
+         * Get border value
+         * @return          {boolean}                                   Border; true | false
+         */
+        get border ( )
+        {
+            return this._border;
+        }
+
+    ////    [ AXIS ]    ////////////////////////////////////
+
+        /**
+         * Set axis value
+         * @param           {boolean} value                             Axis; true | false
+         */
+        set axis ( value )
+        {
+            this._axis = ( typeof value === 'boolean' ) ? value : this._axis;
+        }
+
+        /**
+         * Get axis value
+         * @return          {boolean}                                   Axis; true | false
+         */
+        get axis ( )
+        {
+            return this._axis;
+        }
+
+    ////    [ ANCHOR ]  ////////////////////////////////////
+
+        /**
+         * Set anchor value
+         * @param           {boolean} value                             Anchor; true | false
+         */
+        set anchor ( value )
+        {
+            this._anchor = ( typeof value == 'boolean' ) ? value : this._anchor;
+        }
+
+        /**
+         * Get anchor value
+         * @return          {boolean}                                   Anchor; true | false
+         */
+        get anchor ( )
+        {
+            return this._anchor;
+        }
+
+    ////    [ COORDINATES ]     ////////////////////////////
+
+        /**
+         * Set coordinates value
+         * @param           {boolean} value                             Coordinates; true | false
+         */
+        set coordinates ( value )
+        {
+            this._coordinates = ( typeof value === 'boolean' ) ? value : this._coordinates;
+        }
+
+        /**
+         * Get coordinates value
+         * @return          {boolean}                                   Coordinates; true | false
+         */
+        get coordinates ( )
+        {
+            return this._coordinates;
+        }
+
+    ////    [ CONTROL POINTS ]  ////////////////////////////
+
+        /**
+         * Set control points value
+         * @param           {boolean} value                             Control points; true | false
+         */
+        set controlPoints ( value )
+        {
+            this._controlPoints = ( typeof value === 'boolean' ) ? value : this._controlPoints;
+        }
+
+        /**
+         * Get control points value
+         * @return          {boolean}                                   Control points; true | false
+         */
+        get controlPoints ( )
+        {
+            return this._controlPoints;
+        }
+
+    ////    [ MASTER ]  ////////////////////////////////////
+
+        /**
+         * Set master object
+         * @param           {Object} value                              CanvasLab Object
+         */
+        set master ( value )
+        {
+            this._master = ( this._isCanvasLabObject ( value ) ) ? value : this._master;
+        }
+
+        /**
+         * Get master object
+         * @return          {Object}                                    CanvasLab Object
+         */
+        get master ( )
+        {
+            return this._master;
+        }
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        _isCanvasLabObject ( ) { }
 }
  
 /**
@@ -1297,85 +2547,6 @@ class ControlPoints
 }
  
 /**
- * @class           {Object} Fill                               Fill properties of associated object
- * @property        {string} [color='255, 255, 255']            RGB color value; r, g, b
- * @property        {number} [alpha=0]                          Alpha (transparency); number/decimal
- */
-class Fill
-{
-    _color = '255, 255, 255';
-    _alpha = 1;
-
-    /**
-     * Create a fill
-     * @param           {string} color                              RGB color value
-     * @param           {number} alpha                              Alpha value; number/decimal
-     */
-    constructor ( color, alpha )
-    {
-        ////    COMPOSITION     ////////////////////////////
-
-            this._isRgb   = VALIDATION.isRgb;
-            this._isAlpha = VALIDATION.isAlpha;
-
-            this._getRgb = UTILITIES.get.rgb;
-
-        this.color = color;
-        this.alpha = alpha;
-    }
-
-    ////    [ COLOR ]   ////////////////////////////////////
-
-        /**
-         * Set color value
-         * @param           {string} value                              RGB color value
-         */
-        set color ( value )
-        {
-            this._color = ( this._isRgb ( value ) ) ? this._getRgb ( value ) : this._color;
-        }
-
-        /**
-         * Get color value
-         * @return          {string}                                    RGB color value
-         */
-        get color ( )
-        {
-            return this._color;
-        }
-
-    ////    [ ALPHA ]   ////////////////////////////////////
-
-        /**
-         * Set alpha value
-         * @param           {number} value                              Alpha value; number/decimal
-         */
-        set alpha ( value )
-        {
-            this._alpha  = ( this._isAlpha ( value ) ) ? value : this._alpha;
-        }
-
-        /**
-         * Get alpha value
-         * @return          {number}                                    Alpha value; number/decimal
-         */
-        get alpha ( )
-        {
-            return this._alpha;
-        }
-
-    ////    VALIDATION  ////////////////////////////////////
-
-        _isRgb   ( ) { }
-
-        _isAlpha ( ) { }
-
-    ////    UTILITIES   ////////////////////////////////////
-
-        _getRgb ( ) { }
-}
- 
-/**
  * @class           {Object} Font                               Font base class for text objects
  * @property        {string} type                               Font type or face; typography name
  * @property        {number} [size=24]                          Size of font; in pixels
@@ -1535,299 +2706,6 @@ class Font
 }
  
 /**
- * @class           {Object} LinearGradient                     LinearGradient properties of associated object
- */
-class LinearGradient
-{
-    _start      = new Point;
-    _end        = new Point;
-
-    _colorStops = new Object;
-
-    /**
-     * Create a LinearGradient
-     * @property        {Point} start                              Starting point of linear gradient
-     * @property        {Point} end                                Ending point of linear gradient
-     * @property        {Array} colorStops                         Array of color stops
-     */
-    constructor ( start, end, colorStops )
-    {
-        ////    COMPOSITION     ////////////////////////////
-
-            // this._isRgb   = VALIDATION.isRgb;
-            // this._isAlpha = VALIDATION.isAlpha;
-            this._isPoint  = VALIDATION.isPoint;
-            // this._isNumber = VALIDATION.isNumber;
-
-            this._getRgb = UTILITIES.get.rgb;
-
-        // this.color = color;
-        // this.alpha = alpha;
-    }
-
-    ////    [ START ]   ////////////////////////////////////
-
-        /**
-         * Set starting point
-         * @param           {Point} value                               Starting point
-         */
-        set start ( value )
-        {
-            this._start = ( this._isPoint ( value ) ) ? value : this._start;
-        }
-
-        /**
-         * Set starting point
-         * @return          {Point}                                     Starting point
-         */
-        get start ( )
-        {
-            return this._start;
-        }
-
-    ////    [ END ]     ////////////////////////////////////
-
-        /**
-         * Set ending point
-         * @param           {Point} value                               Ending point
-         */
-        set end ( value )
-        {
-            this._end = ( this._isPoint ( value ) ) ? value : this._end;
-        }
-
-        /**
-         * Set ending point
-         * @return          {Point}                                     Ending point
-         */
-        get end ( )
-        {
-            return this._end;
-        }
-
-    ////    [ COLORSTOP ]    ///////////////////////////////
-
-
-
-
-    ////    [ COLORSTOPS ]    //////////////////////////////
-
-
-
-
-        // gradient.addColorStop(0, "green");
-        // gradient.addColorStop(0.5, "cyan");
-        // gradient.addColorStop(1, "green");
-
-    ////    VALIDATION  ////////////////////////////////////
-
-        // _isRgb   ( ) { }
-
-        // _isAlpha ( ) { }
-
-        _isPoint  ( ) { }
-
-        // _isNumber ( ) { }
-
-    ////    UTILITIES   ////////////////////////////////////
-
-        _getRgb ( ) { }
-}
- 
-/**
- * @class           {Object}  Options                           Options for shapes, lines, and groups
- * @property        {boolean} [shadow=false]                    Show shadow
- * @property        {boolean} [border=false]                    Show border
- * @property        {boolean} [axis=false]                      Show axis
- * @property        {boolean} [points=false]                    Show points
- * @property        {boolean} [anchor=false]                    Show anchor
- * @property        {boolean} [coordinates=false]               Show coordinates
- * @property        {boolean} [controlPoints=false]             Show control points
- * @property        {Object}  master                            Master object to reference
- */
-class Options
-{
-    _shadow        = false;
-    _border        = false;
-    _axis          = false;
-    _points        = false;
-    _anchor        = false;
-    _coordinates   = false;
-    _controlPoints = false;
-
-    _master = undefined;
-
-    /**
-     * Create an options object
-     * @param           {boolean} shadow                            Show shadow
-     * @param           {boolean} border                            Show border
-     * @param           {boolean} axis                              Show axis
-     * @param           {boolean} points                            Show points
-     * @param           {boolean} anchor                            Show anchor
-     * @param           {boolean} coordinates                       Show coordinates
-     * @param           {boolean} controlPoints                     Show control points
-     */
-    constructor ( shadow, border, axis, points, anchor, coordinates, controlPoints )
-    {
-        ////    COMPOSITION     ////////////////////////////
-
-            this._isCanvasLabObject = VALIDATION.isCanvasLabObject;
-
-        this.shadow        = shadow;
-        this.border        = border;
-        this.axis          = axis;
-        this.points        = points;
-        this.anchor        = anchor;
-        this.coordinates   = coordinates;
-        this.controlPoints = controlPoints;
-    }
-
-    ////    [ SHADOW ]  ////////////////////////////////////
-
-        /**
-         * Set shadow value
-         * @param           {boolean} value                             Shadow; true | false
-         */
-        set shadow ( value )
-        {
-            this._shadow = ( typeof value === 'boolean' ) ? value : this._shadow;
-        }
-
-        /**
-         * Get shadow value
-         * @return          {boolean}                                   Shadow; true | false
-         */
-        get shadow ( )
-        {
-            return this._shadow;
-        }
-
-    ////    [ BORDER ]  ////////////////////////////////////
-
-        /**
-         * Set border value
-         * @param           {boolean} value                             Border; true | false
-         */
-        set border ( value )
-        {
-            this._border = ( typeof value === 'boolean' ) ? value : this._border;
-        }
-
-        /**
-         * Get border value
-         * @return          {boolean}                                   Border; true | false
-         */
-        get border ( )
-        {
-            return this._border;
-        }
-
-    ////    [ AXIS ]    ////////////////////////////////////
-
-        /**
-         * Set axis value
-         * @param           {boolean} value                             Axis; true | false
-         */
-        set axis ( value )
-        {
-            this._axis = ( typeof value === 'boolean' ) ? value : this._axis;
-        }
-
-        /**
-         * Get axis value
-         * @return          {boolean}                                   Axis; true | false
-         */
-        get axis ( )
-        {
-            return this._axis;
-        }
-
-    ////    [ ANCHOR ]  ////////////////////////////////////
-
-        /**
-         * Set anchor value
-         * @param           {boolean} value                             Anchor; true | false
-         */
-        set anchor ( value )
-        {
-            this._anchor = ( typeof value == 'boolean' ) ? value : this._anchor;
-        }
-
-        /**
-         * Get anchor value
-         * @return          {boolean}                                   Anchor; true | false
-         */
-        get anchor ( )
-        {
-            return this._anchor;
-        }
-
-    ////    [ COORDINATES ]     ////////////////////////////
-
-        /**
-         * Set coordinates value
-         * @param           {boolean} value                             Coordinates; true | false
-         */
-        set coordinates ( value )
-        {
-            this._coordinates = ( typeof value === 'boolean' ) ? value : this._coordinates;
-        }
-
-        /**
-         * Get coordinates value
-         * @return          {boolean}                                   Coordinates; true | false
-         */
-        get coordinates ( )
-        {
-            return this._coordinates;
-        }
-
-    ////    [ CONTROL POINTS ]  ////////////////////////////
-
-        /**
-         * Set control points value
-         * @param           {boolean} value                             Control points; true | false
-         */
-        set controlPoints ( value )
-        {
-            this._controlPoints = ( typeof value === 'boolean' ) ? value : this._controlPoints;
-        }
-
-        /**
-         * Get control points value
-         * @return          {boolean}                                   Control points; true | false
-         */
-        get controlPoints ( )
-        {
-            return this._controlPoints;
-        }
-
-    ////    [ MASTER ]  ////////////////////////////////////
-
-        /**
-         * Set master object
-         * @param           {Object} value                              CanvasLab Object
-         */
-        set master ( value )
-        {
-            this._master = ( this._isCanvasLabObject ( value ) ) ? value : this._master;
-        }
-
-        /**
-         * Get master object
-         * @return          {Object}                                    CanvasLab Object
-         */
-        get master ( )
-        {
-            return this._master;
-        }
-
-    ////    VALIDATION  ////////////////////////////////////
-
-        _isCanvasLabObject ( ) { }
-}
- 
-/**
  * @class           {Object}  Point                             X & Y coordinates for an object
  * @property        {number}  [x=0]                             X - x-axis coordinate
  * @property        {number}  [y=0]                             Y - y-axis coordinate
@@ -1982,335 +2860,9 @@ class Point
         }
 }
  
-/**
- * @class           {Object} Shadow                             Shadow of associated object
- * @property        {string} [color='0, 0, 0']                  RGB color value; r, g, b
- * @property        {number} [alpha=1]                          Alpha (transparency) number/decimal
- * @property        {number} [blur=3]                           Blur strength
- * @property        {Point}  offset                             Point offset coordinates
- */
-class Shadow
-{
-    _color  = '0, 0, 0';
-    _alpha  = 1;
-    _blur   = 3;
-
-    _offset = new Point;
-
-    /**
-     * Create a shadow
-     * @param           {string} color                              RGB color value
-     * @param           {number} alpha                              Alpha value; number/decimal
-     * @param           {number} blur                               Shadow blur value
-     * @param           {Point}  offset                             Shadow offset
-     */
-    constructor ( color, alpha, blur, offset = { x: undefined, y: undefined } )
-    {
-        ////    COMPOSITION     ////////////////////////////
-
-            this._isRgb   = VALIDATION.isRgb;
-            this._isAlpha = VALIDATION.isAlpha;
-            this._isBlur  = VALIDATION.isBlur;
-            this._isPoint = VALIDATION.isPoint;
-
-            this._getRgb = UTILITIES.get.rgb;
-
-            Object.defineProperty ( this, 'offset', PROPERTY_BLOCKS.discrete.offset  );
-            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.offsetX );
-            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.offsetY );
-
-        this.color  = color;
-        this.alpha  = alpha;
-        this.blur   = blur;
-
-        this.offset = offset;
-    }
-
-    ////    [ COLOR ]   ////////////////////////////////////
-
-        /**
-         * Set color value
-         * @param           {string} value                              RGB color value
-         */
-        set color ( value )
-        {
-            this._color = ( this._isRgb ( value ) ) ? this._getRgb ( value ) : this._color;
-        }
-
-        /**
-         * Get color value
-         * @return          {string}                                    RGB color value
-         */
-        get color ( )
-        {
-            return this._color;
-        }
-
-    ////    [ ALPHA ]   ////////////////////////////////////
-
-        /**
-         * Set alpha value
-         * @param           {number} value                              Alpha value; number/decimal
-         */
-        set alpha ( value )
-        {
-            this._alpha = ( this._isAlpha ( value ) ) ? value : this._alpha;
-        }
-
-        /**
-         * Get alpha value
-         * @return          {number}                                    Alpha value; number/decimal
-         */
-        get alpha ( )
-        {
-            return this._alpha;
-        }
-
-    ////    [ BLUR ]    ////////////////////////////////////
-
-        /**
-         * Set blur value
-         * @param           {number} blur                               Blur value
-         */
-        set blur ( value )
-        {
-            this._blur = ( this._isBlur ( value ) ) ? value : this._blur;
-        }
-
-        /**
-         * Get blur value
-         * @return          {number}                                    Blur value
-         */
-        get blur ( )
-        {
-            return this._blur;
-        }
-
-    ////    [ OFFSET.(X)(Y) ]   ////////////////////////////
-
-        /**
-         * Set offset
-         * @param           {Point} value                               Shadow offset
-         * @see             {@link discrete.offset}
-         */
-        set offset ( value ) { }
-
-        /**
-         * Get offset
-         * @return          {Point}                                     Shadow offset
-         * @see             {@link discrete.offset}
-         */
-        get offset ( ) { }
-
-
-        /**
-         * Set x-axis offset value
-         * @param           {number} value                              X coordinate value
-         * @see             {@link discrete.offsetX}
-         */
-        set x ( value ) { }
-
-        /**
-         * Get x-axis offset value
-         * @return          {number}                                    X coordinate value
-         * @see             {@link discrete.offsetX}
-         */
-        get x ( ) { }
-
-
-        /**
-         * Set the y-axis offset value
-         * @param           {number} value                              Y coordinate value
-         * @see             {@link discrete.offsetY}
-         */
-        set y ( value ) { }
-
-        /**
-         * Get y-axis offset value
-         * @return          {number}                                    Y coordinate value
-         * @see             {@link discrete.offsetY}
-         */
-        get y ( ) { }
-
-    ////    VALIDATION  ////////////////////////////////////
-
-        _isRgb   ( ) { }
-
-        _isAlpha ( ) { }
-
-        _isBlur  ( ) { }
-
-        _isPoint ( ) { }
-
-    ////    UTILITIES   ////////////////////////////////////
-
-        _getRgb ( ) { }
-}
- 
 class Stage
 {
 
-}
- 
-/**
- * @class           {Object}   Stroke                           Stroke properties of associated object
- * @property        {number}   [type=0]                         Type: (0) Solid or (1) Dashed
- * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s)
- * @property        {string}   [color='0, 0, 0']                RGB color value; r, g, b
- * @property        {number}   [alpha=1]                        Alpha (transparency); number/decimal
- * @property        {number}   [width=2]                        Thickness of stroke
- * @property        {Shadow}   shadow                           Shadow properties
- */
-class Stroke
-{
-    _type     = 0;
-    _segments = [ 5, 5 ];
-    _color    = '0, 0, 0';
-    _alpha    = 1;
-    _width    = 1;
-
-    /**
-     * Create a stroke
-     * @param           {number}   type                         Type: (0) Solid or (1) Dashed
-     * @param           {number[]} segments                     Dashed line segment distance(s)
-     * @param           {string}   color                        RGB color value
-     * @param           {number}   alpha                        Alpha value; number/decimal
-     * @param           {number}   width                        Thickness of stroke
-     */
-    constructor ( type, segments, color, alpha, width )
-    {
-        ////    COMPOSITION     ////////////////////////////
-
-            this._isType     = VALIDATION.isType;
-            this._isSegments = VALIDATION.isSegments;
-            this._isRgb      = VALIDATION.isRgb;
-            this._isAlpha    = VALIDATION.isAlpha;
-            this._isWidth    = VALIDATION.isWidth;
-
-            this._getRgb = UTILITIES.get.rgb;
-
-        this.type     = type;
-        this.segments = segments;
-        this.color    = color;
-        this.alpha    = alpha;
-        this.width    = width;
-    }
-
-    ////    [ TYPE ]    ////////////////////////////////////
-
-        /**
-         * Set type
-         * @param           {number} value                              Type: (0) Solid or (1) Dashed
-         */
-        set type ( value )
-        {
-            this._type = ( this._isType ( value ) ) ? value : this._type;
-        }
-
-        /**
-         * Get type
-         * @return          {number}                                    Type: (0) Solid or (1) Dashed
-         */
-        get type ( )
-        {
-            return this._type;
-        }
-
-    ////    [ SEGMENTS ]    ////////////////////////////////
-
-        /**
-         * Set segment value
-         * @param           {Array} value                               Dashed line segment distance(s)
-         */
-        set segments ( value )
-        {
-            this._segments = ( this._isSegments ( value ) ) ? value : this._segments;
-        }
-
-        /**
-         * Get segment value
-         * @return          {Array}                                     Dashed line segment distance(s)
-         */
-        get segments ( )
-        {
-            return this._segments;
-        }
-
-    ////    [ COLOR ]   ////////////////////////////////////
-
-        /**
-         * Set color value
-         * @param           {string} value                              RGB color value
-         */
-        set color ( value )
-        {
-            this._color = ( this._isRgb ( value ) ) ? this._getRgb ( value ) : this._color;
-        }
-
-        /**
-         * Get color value
-         * @return          {string}                                    RGB color value
-         */
-        get color ( )
-        {
-            return this._color;
-        }
-
-    ////    [ ALPHA ]   ////////////////////////////////////
-
-        /**
-         * Set alpha value
-         * @param           {number} value                              Alpha value; number/decimal
-         */
-        set alpha ( value )
-        {
-            this._alpha = ( this._isAlpha ( value ) ) ? value : this._alpha;
-        }
-
-        /**
-         * Get alpha value
-         * @return          {number}                                    Alpha value; number/decimal
-         */
-        get alpha ( )
-        {
-            return this._alpha;
-        }
-
-    ////    [ WIDTH ]   ////////////////////////////////////
-
-        /**
-         * Set width value
-         * @param           {number} value                              Thickness of stroke
-         */
-        set width ( value )
-        {
-            this._width = ( this._isWidth ( value ) ) ? value : this._width;
-        }
-
-        /**
-         * Get width value
-         * @return          {number}                                    Thickness of stroke
-         */
-        get width ( )
-        {
-            return this._width;
-        }
-
-    ////    VALIDATION  ////////////////////////////////////
-
-        _isType     ( ) { }
-
-        _isSegments ( ) { }
-
-        _isRgb      ( ) { }
-
-        _isAlpha    ( ) { }
-
-        _isWidth    ( ) { }
-
-    ////    UTILITIES   ////////////////////////////////////
-
-        _getRgb ( ) { }
 }
  
 /**
@@ -2554,17 +3106,14 @@ class PointCollection
  
 /**
  * @class           {Object} ShadowCollection                   Shadow of associated object
- * @property        {string} color                              RGB color value; r, g, b
- * @property        {number} alpha                              Alpha (transparency); number/decimal
+ * @property        {Object} [color=<Rgb>]                      Color model & value
  * @property        {number} blur                               Blur strength
  * @property        {Point}  offset                             Point offset coordinates
  */
 class ShadowCollection
 {
-    _color  = '0, 0, 0';
-    _alpha  = 1;
+    _color  = new Rgb;
     _blur   = 3;
-
     _offset = new Point;
 
     /**
@@ -2574,12 +3123,10 @@ class ShadowCollection
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isRgb   = VALIDATION.isRgb;
-            this._isAlpha = VALIDATION.isAlpha;
-            this._isBlur  = VALIDATION.isBlur;
-            this._isPoint = VALIDATION.isPoint;
+            this._isColorModel = VALIDATION.isColorModel;
+            this._isBlur       = VALIDATION.isBlur;
+            this._isPoint      = VALIDATION.isPoint;
 
-            this._getRgb = UTILITIES.get.rgb;
             this._setAll = UTILITIES.set.all;
     }
 
@@ -2591,7 +3138,7 @@ class ShadowCollection
          */
         set color ( value )
         {
-            if ( this._isRgb ( value ) )  this._setAll ( 'color', value );
+            if ( this._isColorModel ( value ) )  this._setAll ( 'color', value );
         }
 
         /**
@@ -2601,26 +3148,6 @@ class ShadowCollection
         get color ( )
         {
             return this._color;
-        }
-
-    ////    [ ALPHA ]   ////////////////////////////////////
-
-        /**
-         * Set alpha value
-         * @param           {number} value                              Alpha value; number/decimal
-         */
-        set alpha ( value )
-        {
-            if ( this._isAlpha ( value ) )  this._setAll ( 'alpha', value );
-        }
-
-        /**
-         * Get alpha value
-         * @return          {number}                                    Alpha value; number/decimal
-         */
-        get alpha ( )
-        {
-            return this._alpha;
         }
 
     ////    [ BLUR ]    ////////////////////////////////////
@@ -2691,36 +3218,29 @@ class ShadowCollection
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isRgb   ( ) { }
-
-        _isAlpha ( ) { }
-
         _isBlur  ( ) { }
 
         _isPoint ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
-        _getRgb ( ) { }
-
         _setAll ( ) { }
 }
  
 /**
  * @class           {Object}   StrokeCollection                 Stroke properties of associated object
- * @property        {number}   [type=0]                         Type: (0) Solid or (1) Dashed
+ * @property        {Object}   [color=<Rgb>]                    Color model & value
+ * @property        {string}   [type='solid']                   Stroke type; solid | dashed
  * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s)
- * @property        {string}   [color='0, 0, 0']                RGB color value; r, g, b
  * @property        {number}   [alpha=1]                        Alpha (transparency); number/decimal
  * @property        {number}   [width=2]                        Thickness of stroke
  * @property        {Shadow}   shadow                           Shadow properties
  */
 class StrokeCollection
 {
-    _type     = 0;
+    _color    = new Rgb;
+    _type     = 'solid';
     _segments = [ 5, 5 ];
-    _color    = '0, 0, 0';
-    _alpha    = 1;
     _width    = 2;
 
     _master   = undefined;
@@ -2732,15 +3252,33 @@ class StrokeCollection
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isType     = VALIDATION.isType;
+            this._isColorModel = VALIDATION.isColorModel;
+            this._isStrokeType = VALIDATION.isStrokeType;
             this._isSegments = VALIDATION.isSegments;
-            this._isRgb      = VALIDATION.isRgb;
-            this._isAlpha    = VALIDATION.isAlpha;
             this._isWidth    = VALIDATION.isWidth;
 
-            this._getRgb = UTILITIES.get.rgb;
             this._setAll = UTILITIES.set.all;
     }
+
+    ////    [ COLOR ]   ////////////////////////////////////
+
+        /**
+         * Set color value
+         * @param           {string} value                              RGB color value
+         */
+        set color ( value )
+        {
+            if ( this._isColorModel ( value ) ) this._setAll ( 'color', value );
+        }
+
+        /**
+         * Get color value
+         * @return          {string}                                    RGB color value
+         */
+        get color ( )
+        {
+            return this._color;
+        }
 
     ////    [ TYPE ]    ////////////////////////////////////
 
@@ -2750,7 +3288,7 @@ class StrokeCollection
          */
         set type ( value )
         {
-            if ( this._isType ( value ) ) this._setAll ( 'type', value );
+            if ( this._isStrokeType ( value ) ) this._setAll ( 'type', value );
         }
 
         /**
@@ -2780,46 +3318,6 @@ class StrokeCollection
         get segments ( )
         {
             return this._segments;
-        }
-
-    ////    [ COLOR ]   ////////////////////////////////////
-
-        /**
-         * Set color value
-         * @param           {string} value                              RGB color value
-         */
-        set color ( value )
-        {
-            if ( this._isRgb ( value ) ) this._setAll ( 'color', value );
-        }
-
-        /**
-         * Get color value
-         * @return          {string}                                    RGB color value
-         */
-        get color ( )
-        {
-            return this._color;
-        }
-
-    ////    [ ALPHA ]   ////////////////////////////////////
-
-        /**
-         * Set alpha value
-         * @param           {number} value                              Alpha value; number/decimal
-         */
-        set alpha ( value )
-        {
-            if ( this._isAlpha ( value ) ) this._setAll ( 'alpha', value );
-        }
-
-        /**
-         * Get alpha value
-         * @return          {number}                                    Alpha value; number/decimal
-         */
-        get alpha ( )
-        {
-            return this._alpha;
         }
 
     ////    [ WIDTH ]   ////////////////////////////////////
@@ -2855,19 +3353,15 @@ class StrokeCollection
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isType     ( ) { }
+        _isColorModel ( ) { }
 
-        _isSegments ( ) { }
+        _isStrokeType ( ) { }
 
-        _isRgb      ( ) { }
+        _isSegments   ( ) { }
 
-        _isAlpha    ( ) { }
-
-        _isWidth    ( ) { }
+        _isWidth      ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
-
-        _getRgb ( ) { }
 
         _setAll ( ) { }
 }
@@ -2909,10 +3403,10 @@ class Circle
     constructor (
                     point  = { x: undefined, y: undefined },
                     radius,
-                    angle  = { start: undefined, end:      undefined, clockwise: undefined },
-                    stroke = { type:  undefined, segments: undefined, color:     undefined, alpha: undefined, width: undefined },
-                    fill   = { color: undefined, alpha:    undefined },
-                    shadow = { color: undefined, alpha:    undefined, blur:      undefined, offset: { x: undefined, y: undefined } },
+                    angle  = { start: undefined, end:   undefined, clockwise:   undefined },
+                    stroke = { color: undefined, type:  undefined, segments:    undefined, width: undefined },
+                    fill   = { color: undefined, type:  undefined },
+                    shadow = { color: undefined, blur:  undefined, offset: { x: undefined, y:     undefined } },
                     canvas = undefined
                 )
     {
@@ -2947,11 +3441,11 @@ class Circle
 
             this._angle  = new Angle  ( angle.start, angle.end, angle.clockwise );
 
-            this._stroke = new Stroke ( stroke.type, stroke.segments, stroke.color, stroke.alpha, stroke.width );
+            this._stroke = new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width );
 
-            this._fill   = new Fill   ( fill.color, fill.alpha );
+            this._fill   = new Fill   ( fill.color,   fill.type );
 
-            this._shadow = new Shadow ( shadow.color, shadow.alpha, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
+            this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
 
         this.canvas = canvas;
 
@@ -3205,7 +3699,7 @@ class Circle
         {
             let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
 
-                _anchor.fill.color = '255, 0, 0';
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
 
                 _anchor.canvas     = this.canvas;
 
@@ -3263,10 +3757,10 @@ class Circle
 
                 _text.options.shadow = true;
 
-                _text.shadow.color   = '255, 255, 255';
 
+                _text.shadow.color   = new Rgb ( 255, 255, 255 );
 
-                _text.shadow.alpha   = _text.shadow.blur = 1;
+                _text.shadow.blur    = 1;
 
                 _text.shadow.x       = _text.shadow.y    = 1;
 
@@ -3364,15 +3858,15 @@ class Circle
                 if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
-                this._canvas.strokeStyle = `rgba(${this.stroke.color}, ${this.stroke.alpha})`;
+                this._canvas.strokeStyle = this.stroke.color.toCss ( );
 
-                this._canvas.fillStyle   = `rgba(${this.fill.color}, ${this.fill.alpha})`;
+                this._canvas.fillStyle   = this.fill.color.toCss ( );
 
                 this._canvas.lineWidth   = this.stroke.width;
 
                 ////////////////////////////////////////////////////////////////
 
-                this._canvas.setLineDash ( ( this.stroke.type ) ? this.stroke.segments : [ ] );
+                this._canvas.setLineDash ( ( this.stroke.type === 'solid' ) ? new Array : this.stroke.segments );
 
                 this._canvas.beginPath   ( );
 
@@ -3383,7 +3877,7 @@ class Circle
                 this._canvas.fill        ( );
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = `rgba(0, 0, 0, 0)`;         // Reset: shadow
+                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );         // Reset: shadow
 
 
                 this._drawOptions ( );
@@ -3444,10 +3938,10 @@ class Line
      * @property        {string} canvas                             Canvas Id
      */
     constructor (
-                    start   = { x:     undefined, y:        undefined },
-                    end     = { x:     undefined, y:        undefined },
-                    stroke  = { type:  undefined, segments: undefined, color: undefined, alpha:  undefined, width: undefined },
-                    shadow  = { color: undefined, alpha:    undefined, blur:  undefined, offset: { x: undefined, y: undefined } },
+                    start   = { x:     undefined, y:    undefined },
+                    end     = { x:     undefined, y:    undefined },
+                    stroke  = { color: undefined, type: undefined, segments:    undefined, width: undefined },
+                    shadow  = { color: undefined, blur: undefined, offset: { x: undefined, y:     undefined } },
                     lineCap = undefined,
                     canvas
                 )
@@ -3506,9 +4000,9 @@ class Line
 
         ////    OBJECT INITIALIZER(S)   ////////////////////
 
-            this._stroke = new Stroke ( stroke.type,  stroke.segments, stroke.color, stroke.alpha, stroke.width );
+            this._stroke = new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width );
 
-            this._shadow = new Shadow ( shadow.color, shadow.alpha,    shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
+            this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
 
         this.lineCap = lineCap;
         this.canvas  = canvas;
@@ -3786,10 +4280,10 @@ class Line
 
                 _textStart.options.shadow = _textEnd.options.shadow = true;
 
-                _textStart.shadow.color   = _textEnd.shadow.color   = '255, 255, 255';
 
+                _textStart.shadow.color   = _textEnd.shadow.color   = new Rgb ( 255, 255, 255 );
 
-                _textStart.shadow.alpha   = _textEnd.shadow.alpha   = _textStart.shadow.blur = _textEnd.shadow.blur = 1;
+                _textStart.shadow.blur    = _textEnd.shadow.blur    = 1;
 
                 _textStart.shadow.x       = _textEnd.shadow.x       = _textStart.shadow.y    = _textEnd.shadow.y    = 1;
 
@@ -3817,7 +4311,7 @@ class Line
 
             let _textStart  = new Text ( _point1.x, _point1.y, `( ${this.#_controlPoints.p0}, ${this.#_controlPoints.p1} )` );
 
-            let _textEnd    = new Text ( _point2.x, _point2.y,   `( ${this.#_controlPoints.p3}, ${this.#_controlPoints.p4  } )` );
+            let _textEnd    = new Text ( _point2.x, _point2.y, `( ${this.#_controlPoints.p3}, ${this.#_controlPoints.p4} )` );
 
 
                 _textStart.canvas         = _textEnd.canvas         = this.canvas;
@@ -3826,15 +4320,15 @@ class Line
 
                 _textStart.offset.y       = _textEnd.offset.y       = - ( offset * 2 );
 
-                _textStart.stroke.color   = _textEnd.stroke.color   = '255, 0, 0 ';
+                _textStart.stroke.color   = _textEnd.stroke.color   = new Rgb ( 255, 0, 0 );
 
 
                 _textStart.options.shadow = _textEnd.options.shadow = true;
 
 
-                _textStart.shadow.color   = _textEnd.shadow.color   = '255, 255, 255';
+                _textStart.shadow.color   = _textEnd.shadow.color   = new Rgb ( 255, 255, 255 );
 
-                _textStart.shadow.alpha   = _textEnd.shadow.alpha   = _textStart.shadow.blur = _textEnd.shadow.blur = 1;
+                _textStart.shadow.blur    = _textEnd.shadow.blur    = 1;
 
                 _textStart.shadow.x       = _textEnd.shadow.x       = _textStart.shadow.y    = _textEnd.shadow.y    = 1;
 
@@ -3845,11 +4339,11 @@ class Line
 
             ////////////////////////////////////////////////////////////////////////////////////////
 
-            let _red   = '255, 0, 0';
+            let _red   = new Rgb ( 255, 0, 0 );
 
-            let _blue  = '0, 0, 255';
+            let _blue  = new Rgb ( 0, 0, 255 );
 
-            let _green = '0, 255, 0';
+            let _green = new Rgb ( 0, 255, 0 );
 
 
             let _lineSegments = [ 2, 4 ];
@@ -3887,11 +4381,11 @@ class Line
             let _circleB = new Circle ( _point2 );
 
 
-                _circleA.radius       = _circleB.radius       = 3;
+                _circleA.radius             = _circleB.radius             = 3;
 
-                _circleA.stroke.alpha = _circleB.stroke.alpha = 0;
+                _circleA.stroke.color.alpha = _circleB.stroke.color.alpha = 0;
 
-                _circleA.canvas       = _circleB.canvas       = this.canvas;
+                _circleA.canvas             = _circleB.canvas             = this.canvas;
 
 
                 [ _circleA.fill.color, _circleB.fill.color ]  = [ _red, _blue ];
@@ -4037,7 +4531,7 @@ class Line
                 if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
-                this._canvas.strokeStyle = `rgba(${this.stroke.color}, ${this.stroke.alpha})`;
+                this._canvas.strokeStyle = this.stroke.color.toCss ( );
 
                 this._canvas.lineCap     = this.lineCap;
 
@@ -4045,7 +4539,7 @@ class Line
 
                 ////////////////////////////////////////////////////////////////
 
-                this._canvas.setLineDash ( ( this.stroke.type ) ? this.stroke.segments : [ ] );
+                this._canvas.setLineDash ( ( this.stroke.type === 'solid' ) ? new Array : this.stroke.segments );
 
                 this._canvas.beginPath   ( );
 
@@ -4058,7 +4552,7 @@ class Line
                 this._canvas.stroke    ( );
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = `rgba(0, 0, 0, 0)`;         // Reset: shadow
+                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
                 this._drawOptions ( );
@@ -4121,11 +4615,11 @@ class Rectangle
      * @property        {string} canvas                             Canvas Id
      */
     constructor (
-                    point  = { x:     undefined, y:        undefined },
-                    aspect = { width: undefined, height:   undefined },
-                    stroke = { type:  undefined, segments: undefined, color: undefined, alpha: undefined, width: undefined },
-                    fill   = { color: undefined, alpha:    undefined },
-                    shadow = { color: undefined, alpha:    undefined, blur:  undefined, offset: { x: undefined, y: undefined } },
+                    point  = { x:     undefined, y:      undefined },
+                    aspect = { width: undefined, height: undefined },
+                    stroke = { color: undefined, type:   undefined, segments:    undefined, width: undefined },
+                    fill   = { color: undefined, type:   undefined },
+                    shadow = { color: undefined, blur:   undefined, offset: { x: undefined, y:     undefined } },
                     canvas
                 )
     {
@@ -4158,11 +4652,11 @@ class Rectangle
 
         ////    OBJECT INITIALIZER(S)   ////////////////////
 
-            this._stroke = new Stroke ( stroke.type,  stroke.segments, stroke.color, stroke.alpha, stroke.width );
+            this._stroke = new Stroke ( stroke.color, stroke.type,  stroke.segments, stroke.width );
 
-            this._fill   = new Fill   ( fill.color,   fill.alpha );
+            this._fill   = new Fill   ( fill.color,   fill.type );
 
-            this._shadow = new Shadow ( shadow.color, shadow.alpha,    shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
+            this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
 
         this.canvas = canvas;
 
@@ -4391,7 +4885,7 @@ class Rectangle
         {
             let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
 
-                _anchor.fill.color = '255, 0, 0';
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
 
                 _anchor.canvas     = this.canvas;
 
@@ -4555,15 +5049,15 @@ class Rectangle
                 if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
-                this._canvas.strokeStyle = `rgba(${this.stroke.color}, ${this.stroke.alpha})`;
+                this._canvas.strokeStyle = this.stroke.color.toCss ( );
 
-                this._canvas.fillStyle   = `rgba(${this.fill.color}, ${this.fill.alpha})`;
+                this._canvas.fillStyle   = this.fill.color.toCss ( );
 
                 this._canvas.lineWidth   = this.stroke.width;
 
                 ////////////////////////////////////////////////////////////////
 
-                this._canvas.setLineDash ( ( this.stroke.type ) ? this.stroke.segments : [ ] );
+                this._canvas.setLineDash ( ( this.stroke.type === 'solid' ) ? new Array : this.stroke.segments );
 
                 this._canvas.beginPath   ( );
 
@@ -4574,7 +5068,7 @@ class Rectangle
                 this._canvas.fill        ( );
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = `rgba(0, 0, 0, 0)`;         // Reset: shadow
+                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
                 this._drawOptions ( );
@@ -4623,10 +5117,10 @@ class Text extends Font
     constructor (
                     point  = { x: undefined, y: undefined },
                     text, type, size, weight, maxWidth,
-                    offset = { x:     undefined, y:        undefined },
-                    stroke = { type:  undefined, segments: undefined, color: undefined, alpha: undefined, width: undefined },
-                    fill   = { color: undefined, alpha:    undefined },
-                    shadow = { color: undefined, alpha:    undefined, blur:  undefined, offset: { x: undefined, y: undefined } },
+                    offset = { x:     undefined, y:    undefined },
+                    stroke = { color: undefined, type: undefined, segments:    undefined, width: undefined },
+                    fill   = { color: undefined, type: undefined },
+                    shadow = { color: undefined, blur: undefined, offset: { x: undefined, y:     undefined } },
                     canvas
                 )
     {
@@ -4648,8 +5142,8 @@ class Text extends Font
             Object.defineProperty ( this, 'offset', PROPERTY_BLOCKS.discrete.offset );
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
-            stroke.width = ( stroke.width != undefined ) ? stroke.width : 0;                        // Set: default stroke property as 0
-            fill.color   = ( fill.color   != undefined ) ? fill.color   : '0, 0, 0';                // Set: default fill property as 'Black' || '0, 0, 0'
+            stroke.width = ( stroke.width === undefined ) ? 0 : stroke.width;                       // Set: default stroke property as 0
+            fill.color   = ( fill.color   === undefined ) ? new Rgb ( 0, 0, 0 ) : fill.color;       // Set: default fill property as 'Black'
 
         this.point = point;
         this.text  = text;
@@ -4665,11 +5159,11 @@ class Text extends Font
 
         ////    OBJECT INITIALIZER(S)   ////////////////////
 
-            this._stroke = new Stroke ( stroke.type,  stroke.segments, stroke.color, stroke.alpha, stroke.width );
+            this._stroke = new Stroke ( stroke.color, stroke.type,  stroke.segments, stroke.width );
 
-            this._fill   = new Fill   ( fill.color,   fill.alpha );
+            this._fill   = new Fill   ( fill.color,   fill.type );
 
-            this._shadow = new Shadow ( shadow.color, shadow.alpha,    shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
+            this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
 
         this.canvas = canvas;
 
@@ -4934,14 +5428,16 @@ class Text extends Font
          */
         drawBorder ( offset = 10 )
         {
+            let _red    = new Rgb ( 245, 80, 50, 1 );
+
             let _aspect = new Aspect ( this._canvas.measureText ( this.text ).width, super.size );
 
             let _point  = new Point  ( this.x - ( aspect.width / 2 ) - offset, this.y - ( aspect.height / 2 ) - ( offset * 2 ) );
 
 
             let _border = new Rectangle ( _point, aspect.width + ( offset * 2 ), aspect.height + ( offset * 2 ),    /* Point, Aspect */
-                /* Stroke */            { type: 0, segments: undefined, color: '235, 81, 73', alpha: 1, width: 1 },
-                /* Fill   */            { color: undefined, alpha: 0 },
+                /* Stroke */            { color: _red,      type: 'solid', segments: undefined,  width: 1 },
+                /* Fill   */            { color: undefined, type: 'solid' },
                 /* Shadow */              undefined,
                 /* Canvas */              this.canvas );
 
@@ -4954,6 +5450,8 @@ class Text extends Font
          */
         drawAxis ( offset = 10 )
         {
+            let _red        = new Rgb ( 245, 80, 50, 1 );
+
             let _aspect     = new Aspect ( this._canvas.measureText ( this.text ).width, super.size );
 
             let _xAxisStart = new Point  ( this.x - ( aspect.width / 2 ) - ( offset * 2 ), this.y - ( aspect.height / 4 ) );
@@ -4964,13 +5462,13 @@ class Text extends Font
 
 
             let _xAxis = new Line ( _xAxisStart, _xAxisEnd,     /* Point */
-                /* Stroke     */    { type: 0, segments: undefined, color: '235, 81, 73', alpha: 1, width: 1 },
+                /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
                 /* Shadow     */      undefined,
                 /* LineCap    */      undefined,
                 /* Canvas     */      this.canvas );
 
             let _yAxis = new Line ( _yAxisStart, _yAxisEnd,     /* Point */
-                /* Stroke     */    { type: 0, segments: undefined, color: '235, 81, 73', alpha: 1, width: 1 },
+                /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
                 /* Shadow     */      undefined,
                 /* LineCap    */      undefined,
                 /* Canvas     */      this.canvas );
@@ -5078,20 +5576,20 @@ class Text extends Font
                 this._canvas.textAlign = 'center';
 
 
-                this._canvas.fillStyle = `rgba(${this.fill.color}, ${this.fill.alpha})`;
+                this._canvas.fillStyle = this.fill.color.toCss ( );
 
                 this._canvas.fillText ( this.text, this.x, this.y, this.maxWidth );                 // TODO: maxWidth is showing NaN !
 
 
                 if ( this.stroke.width > 0 )
                 {
-                    this._canvas.strokeStyle = `rgba(${this.stroke.color}, ${this.stroke.alpha})`;
+                    this._canvas.strokeStyle = this.stroke.color.toCss ( );
 
                     this._canvas.strokeText ( this.text, this.x, this.y, this.maxWidth );
                 }
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = `rgba(0, 0, 0, 0)`;         // Reset: shadow
+                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
                 this.#_drawOptions ( );
@@ -6161,8 +6659,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Apr, 26 2024',
-            Version:   '0.2.17',
+            Updated:   'May, 02 2024',
+            Version:   '0.3.25',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }

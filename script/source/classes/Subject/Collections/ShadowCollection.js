@@ -1,16 +1,13 @@
 /**
  * @class           {Object} ShadowCollection                   Shadow of associated object
- * @property        {string} color                              RGB color value; r, g, b
- * @property        {number} alpha                              Alpha (transparency); number/decimal
+ * @property        {Object} [color=<Rgb>]                      Color model & value
  * @property        {number} blur                               Blur strength
  * @property        {Point}  offset                             Point offset coordinates
  */
 class ShadowCollection
 {
-    _color  = '0, 0, 0';
-    _alpha  = 1;
+    _color  = new Rgb;
     _blur   = 3;
-
     _offset = new Point;
 
     /**
@@ -20,12 +17,10 @@ class ShadowCollection
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isRgb   = VALIDATION.isRgb;
-            this._isAlpha = VALIDATION.isAlpha;
-            this._isBlur  = VALIDATION.isBlur;
-            this._isPoint = VALIDATION.isPoint;
+            this._isColorModel = VALIDATION.isColorModel;
+            this._isBlur       = VALIDATION.isBlur;
+            this._isPoint      = VALIDATION.isPoint;
 
-            this._getRgb = UTILITIES.get.rgb;
             this._setAll = UTILITIES.set.all;
     }
 
@@ -37,7 +32,7 @@ class ShadowCollection
          */
         set color ( value )
         {
-            if ( this._isRgb ( value ) )  this._setAll ( 'color', value );
+            if ( this._isColorModel ( value ) )  this._setAll ( 'color', value );
         }
 
         /**
@@ -47,26 +42,6 @@ class ShadowCollection
         get color ( )
         {
             return this._color;
-        }
-
-    ////    [ ALPHA ]   ////////////////////////////////////
-
-        /**
-         * Set alpha value
-         * @param           {number} value                              Alpha value; number/decimal
-         */
-        set alpha ( value )
-        {
-            if ( this._isAlpha ( value ) )  this._setAll ( 'alpha', value );
-        }
-
-        /**
-         * Get alpha value
-         * @return          {number}                                    Alpha value; number/decimal
-         */
-        get alpha ( )
-        {
-            return this._alpha;
         }
 
     ////    [ BLUR ]    ////////////////////////////////////
@@ -137,17 +112,11 @@ class ShadowCollection
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isRgb   ( ) { }
-
-        _isAlpha ( ) { }
-
         _isBlur  ( ) { }
 
         _isPoint ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
-
-        _getRgb ( ) { }
 
         _setAll ( ) { }
 }

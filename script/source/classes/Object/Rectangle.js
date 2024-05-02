@@ -30,11 +30,11 @@ class Rectangle
      * @property        {string} canvas                             Canvas Id
      */
     constructor (
-                    point  = { x:     undefined, y:        undefined },
-                    aspect = { width: undefined, height:   undefined },
-                    stroke = { type:  undefined, segments: undefined, color: undefined, alpha: undefined, width: undefined },
-                    fill   = { color: undefined, alpha:    undefined },
-                    shadow = { color: undefined, alpha:    undefined, blur:  undefined, offset: { x: undefined, y: undefined } },
+                    point  = { x:     undefined, y:      undefined },
+                    aspect = { width: undefined, height: undefined },
+                    stroke = { color: undefined, type:   undefined, segments:    undefined, width: undefined },
+                    fill   = { color: undefined, type:   undefined },
+                    shadow = { color: undefined, blur:   undefined, offset: { x: undefined, y:     undefined } },
                     canvas
                 )
     {
@@ -67,11 +67,11 @@ class Rectangle
 
         ////    OBJECT INITIALIZER(S)   ////////////////////
 
-            this._stroke = new Stroke ( stroke.type,  stroke.segments, stroke.color, stroke.alpha, stroke.width );
+            this._stroke = new Stroke ( stroke.color, stroke.type,  stroke.segments, stroke.width );
 
-            this._fill   = new Fill   ( fill.color,   fill.alpha );
+            this._fill   = new Fill   ( fill.color,   fill.type );
 
-            this._shadow = new Shadow ( shadow.color, shadow.alpha,    shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
+            this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
 
         this.canvas = canvas;
 
@@ -300,7 +300,7 @@ class Rectangle
         {
             let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
 
-                _anchor.fill.color = '255, 0, 0';
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
 
                 _anchor.canvas     = this.canvas;
 
@@ -464,15 +464,15 @@ class Rectangle
                 if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
-                this._canvas.strokeStyle = `rgba(${this.stroke.color}, ${this.stroke.alpha})`;
+                this._canvas.strokeStyle = this.stroke.color.toCss ( );
 
-                this._canvas.fillStyle   = `rgba(${this.fill.color}, ${this.fill.alpha})`;
+                this._canvas.fillStyle   = this.fill.color.toCss ( );
 
                 this._canvas.lineWidth   = this.stroke.width;
 
                 ////////////////////////////////////////////////////////////////
 
-                this._canvas.setLineDash ( ( this.stroke.type ) ? this.stroke.segments : [ ] );
+                this._canvas.setLineDash ( ( this.stroke.type === 'solid' ) ? new Array : this.stroke.segments );
 
                 this._canvas.beginPath   ( );
 
@@ -483,7 +483,7 @@ class Rectangle
                 this._canvas.fill        ( );
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = `rgba(0, 0, 0, 0)`;         // Reset: shadow
+                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
                 this._drawOptions ( );

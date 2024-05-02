@@ -1,28 +1,83 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.25] - 2024-06-02
+### Added
+- **canvasLab**
+  - `Rgb` class, for RGB color model
+  - `Hsl` class, for HSL color model
+  - `Hwb` class, for HWB color model
+  - `PropertyBlocks.discrete.alpha ( )` function for alpha setters
+  - **`Validation`**
+    - `is256 ( )` to return whether the passed value is a 256 value color integer
+    - `isColorModel ( )` to return whether the passed value is a color model
+    - `isColorStop ( )` to return whether the passed value is a color stop
+    - `isDecimal ( )` to return whether the passed value is a decimal
+    - `isStrokeType ( )` to return whether the passed value is a stroke type
+- **devSuite**
+  - **`Ui`**
+    - `toggle._cardPlus ( )` to add an additional card to cardObjects; mirroring the last card present
+    - `toggle._cardClose ( )` to subtract the last card from cardObjects
+    - `clean.blankCards ( )` to cleans the remaining '.blank' cards while converting the first to a '.plus' card
+
+### Refactored
+- **canvasLab**
+  - `Utilities`
+    - `draw.axis ( )`
+    - `draw.border ( )`
+    - `set.shadow ( )`
+  - `Validation`
+    - `isAspect ( )`
+    - `isCanvasLabObject ( )`
+  - `Stroke`, `Fill`, `Circle`, `Line`, `Rectangle`, `Text`, `ShadowCollection`, & `ShadowCollection` to incorporate new color model classes
+- **devSuite**
+  - `Lab`
+    - `_getBoundingCharactersPositions ( )`
+    - `_swapRgbValue ( )`
+  - `Template`
+    - `standard`
+    - `blank`
+  - `Ui`
+    - `toggle.cardButton ( )`
+    - `toggle._modalCode ( )`
+    - `_setCardsSection ( )`
+
+### Changed
+- **canvasLab**
+  - `Validation`
+    - `isArrayNumberic ( )` to `isArrayNumeric ( )`
+
+### Removed
+- **canvasLab**
+  - `Validation`
+    - `isRgb ( )`
+    - `isType ( )`
+- **devSuite**
+  - `cardPlus` & `cardPlus` cases removed from `Ui._setEventListeners ( )`
+
+
 ## [0.2.17] - 2024-05-26
 ### Fixed
-- Fix unintentional recursive calls within the `UI` class
+- Fix unintentional recursive calls within the `Ui` class
 
 ### Changed
 - Refactored the standard class within the `Template` class
 - Changed the following public functions to private
-  - `UI.modalCode ( )` to `UI._modalCode ( )`
-  - `UI.documentation ( )` to `UI._documentation ( )`
-  - `UI.easingFunctions ( )` to `UI._easingFunctions ( )`
+  - `Ui.modalCode ( )` to `Ui._modalCode ( )`
+  - `Ui.documentation ( )` to `Ui._documentation ( )`
+  - `Ui.easingFunctions ( )` to `Ui._easingFunctions ( )`
 
 ### Added
 - New Audio sounds at lower bitrate
 - **devSuite**
   - `Log` class, for basic log entries
-- Added `UI.cardButton ( )` function, to toggle the card button associated with the passed 'event' param
+- Added `Ui.cardButton ( )` function, to toggle the card button associated with the passed 'event' param
 - Added `devSuite.toggleCardButton ( )` to `main.js`
 
 ### Removed
 - Removed 'href' property from the `Page` class
-- Removed 'modal' case from `UI._setEventListeners ( )`
-- Removed `UI._isCardIcon ( )`
+- Removed 'modal' case from `Ui._setEventListeners ( )`
+- Removed `Ui._isCardIcon ( )`
 - Removed `devSuite.toggleEasingFunctions ( )` & `devSuite.setOffCanvasDocument ( )` from `main.js`
 
 ## [0.2.11] - 2024-05-22
@@ -239,7 +294,8 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.2.17] | 2024-05-26 | CURRENT                                                             | Fixed unintentional recursive calls & minor refactoring for UI, Page, & Template classes.    |
+| [0.3.25] | 2024-06-02 | CURRENT                                                             | Added color models, and general cleanup.                                                     |
+| [0.2.17] | 2024-05-26 | [be58a6e](https://github.com/Justin-Byrne/canvasLab/commit/be58a6e) | Fixed unintentional recursive calls & minor refactoring for UI, Page, & Template classes.    |
 | [0.2.11] | 2024-05-22 | [671c1da](https://github.com/Justin-Byrne/canvasLab/commit/671c1da) | Refactored dev-tools (devSuite) into independent classes & updated UI.                       |
 | [0.1.11] | 2024-04-03 | [6df392e](https://github.com/Justin-Byrne/canvasLab/commit/6df392e) | Implemented dev-tools navigation toggle & refactored RWD for mobile devices.                 |
 | [0.1.10] | 2023-12-27 | [3ccf9b4](https://github.com/Justin-Byrne/canvasLab/commit/3ccf9b4) | Implemented lab-station full-screen & navigation toggles.                                    |
@@ -258,7 +314,8 @@ All notable changes to this project will be documented in this file.
 
 ## Types of changes
 - `Added` for new features.
-- `Changed` for changes in existing functionality.
+- `Refactored` for changes in existing functionality.
+- `Changed` refactored with changes to function calls, names, or placement.
 - `Deprecated` for soon-to-be removed features.
 - `Removed` for now removed features.
 - `Fixed` for any bug fixes.

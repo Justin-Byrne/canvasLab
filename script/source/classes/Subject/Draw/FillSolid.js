@@ -1,15 +1,15 @@
 /**
- * @class           {Object} Fill                               Fill properties of associated object
+ * @class           {Object} FillSolid                          Solid fill properties of associated object
  * @property        {string} [color='255, 255, 255']            RGB color value; r, g, b
  * @property        {number} [alpha=0]                          Alpha (transparency); number/decimal
  */
-class Fill
+class FillSolid
 {
     _color = '255, 255, 255';
     _alpha = 1;
 
     /**
-     * Create a fill
+     * Create a fill, solid
      * @param           {string} color                              RGB color value
      * @param           {number} alpha                              Alpha value; number/decimal
      */

@@ -1,32 +1,30 @@
 /**
- * @class           {Object} LinearGradient                     LinearGradient properties of associated object
+ * @class           {Array} ColorStops                          ColorStops properties for associated object(s)
  */
-class LinearGradient
+class ColorStops
 {
-    _start      = new Point;
-    _end        = new Point;
-
-    _colorStops = new Object;
+    _stops = new Array;
 
     /**
      * Create a LinearGradient
      * @property        {Point} start                              Starting point of linear gradient
      * @property        {Point} end                                Ending point of linear gradient
-     * @property        {Array} colorStops                         Array of color stops
+     * @property        {Array} stops                              Array of color stops
      */
-    constructor ( start, end, colorStops )
+    constructor ( start, end, stops )
     {
         ////    COMPOSITION     ////////////////////////////
 
-            // this._isRgb   = VALIDATION.isRgb;
-            // this._isAlpha = VALIDATION.isAlpha;
-            this._isPoint  = VALIDATION.isPoint;
-            // this._isNumber = VALIDATION.isNumber;
+            this._isPoint     = VALIDATION.isPoint;
+            this._isColorName = VALIDATION.isColorName;
+            this._isRgb       = VALIDATION.isRgb;
+            this._isAlpha     = VALIDATION.isAlpha;
 
             this._getRgb = UTILITIES.get.rgb;
 
-        // this.color = color;
-        // this.alpha = alpha;
+        this.start = start;
+        this.end   = end;
+        this.stops = stops;
     }
 
     ////    [ START ]   ////////////////////////////////////
@@ -69,29 +67,29 @@ class LinearGradient
             return this._end;
         }
 
-    ////    [ COLORSTOP ]    ///////////////////////////////
-
-
-
-
     ////    [ COLORSTOPS ]    //////////////////////////////
 
+        // [ 0, "rgba(0,0,0,.5)" ],
+        // [ 0, "rgb(0,0,0)" ],
+        // [ 0, "green" ],
+        // [ 0.5, "cyan" ],
+        // [ 1, "green" ],
 
-
-
+        // gradient.addColorStop(0, "rgba(0,0,0,.5)");
+        // gradient.addColorStop(0, "rgb(0,0,0)");
         // gradient.addColorStop(0, "green");
         // gradient.addColorStop(0.5, "cyan");
         // gradient.addColorStop(1, "green");
 
     ////    VALIDATION  ////////////////////////////////////
 
-        // _isRgb   ( ) { }
+        _isPoint     ( ) { }
 
-        // _isAlpha ( ) { }
+        _isColorName ( ) { }
 
-        _isPoint  ( ) { }
+        _isRgb       ( ) { }
 
-        // _isNumber ( ) { }
+        _isAlpha     ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 

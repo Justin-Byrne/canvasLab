@@ -16,31 +16,44 @@ class Ui
          */
         cardButton ( event )
         {
-            let _element = event.srcElement;
+            let _element  = event.srcElement;
+
+            let _cardPlus = _element.classList.contains ( 'plus' );
 
 
-            switch ( _element.tagName )
-            {
-                case 'IMG':
+            if ( _cardPlus )
 
-                    let _buttonType = _element.getAttribute ( 'suite-button-type' );
+                switch ( _element.tagName )
+                {
+                    case 'DIV':
+                    case 'SPAN':                    this._cardPlus        ( _element );     break;
+                }
+
+            else
+
+                switch ( _element.tagName )
+                {
+                    case 'IMG':
+
+                        let _buttonType = _element.getAttribute ( 'suite-button-type' );
 
 
-                    switch ( _buttonType )
-                    {
-                        case 'easing':          this._easingFunctions ( _element );     break;
+                        switch ( _buttonType )
+                        {
+                            case 'easing':          this._easingFunctions ( _element );     break;
 
-                        case 'documentation':   this._documentation   ( _element );     break;
-                    }
+                            case 'documentation':   this._documentation   ( _element );     break;
+                        }
 
-                    break;
+                        break;
 
-                case 'LI':                      this._easingFunctions ( _element );     break;
+                    case 'SPAN':                    this._cardClose       ( _element );     break;
 
-                case 'DIV':
-                case 'SPAN':
-                case 'CANVAS':                  this._modalCode ( _element );           break;
-            }
+                    case 'LI':                      this._easingFunctions ( _element );     break;
+
+                    case 'DIV':
+                    case 'CANVAS':                  this._modalCode       ( _element );     break;
+                }
 
 
             event.stopPropagation ( );
@@ -137,9 +150,11 @@ class Ui
             let _leftColumn  = document.querySelector ( '#lab > div:nth-child(1)' );
 
 
-            let _styles      = window.getComputedStyle ( _rightColumn );
+            let _styles      = window.getComputedStyle ( _rightColumn   );
 
-            let _icon        = document.querySelector ( '.full-screen' );
+            let _icon        = document.querySelector  ( '.full-screen' );
+
+            let _open        = document.querySelector  ( '#lab-open'    );
 
 
             let _fullscreen  = ( _styles.display === 'block' );
@@ -153,6 +168,11 @@ class Ui
             ( _fullscreen ) ? _leftColumn.style.width = '100%'
 
                             : _leftColumn.style.width = '50%';
+
+
+            ( _fullscreen ) ? _open.style.display = 'block'
+
+                            : _open.style.display = 'none';
 
 
             if ( UI._isNavOpen ( ) )
@@ -174,33 +194,39 @@ class Ui
          */
         _modalCode: ( element ) =>
         {
-            let _element = element.offsetParent;
+            let _element   = element.offsetParent;
 
-            let _card =
+            let _blankCard = ( _element.tagName === 'MAIN' );
+
+
+            if ( ! _blankCard )
             {
-                title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
+                let _card =
+                {
+                    title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
 
-                code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
+                    code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
+                }
+
+                let _modal =
+                {
+                    title:   document.querySelector ( '#modal-code-label' ),
+
+                    code:    document.querySelector ( 'code' ),
+
+                    element: document.querySelector ( '#modal-code' )
+                }
+
+                let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
+
+
+                [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
+
+
+                    _boostrapModal.toggle ( );
+
+                    hljs.highlightAll ( );
             }
-
-            let _modal =
-            {
-                title:   document.querySelector ( '#modal-code-label' ),
-
-                code:    document.querySelector ( 'code' ),
-
-                element: document.querySelector ( '#modal-code' )
-            }
-
-            let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
-
-
-            [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
-
-
-                _boostrapModal.toggle ( );
-
-                hljs.highlightAll ( );
         },
 
         /**
@@ -274,6 +300,52 @@ class Ui
                         _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
                     } );
         },
+
+        /**
+         * Adds an additional card to cardObjects; mirroring the last card present
+         * @private
+         * @name _cardPlus
+         * @function
+         * @param           {HTMLElement} element               Object or Subject type
+         */
+        _cardPlus ( element )
+        {
+            let _card = cardObjects [ PAGE.group ] [ PAGE.type ].length - 1;
+
+                _card = cardObjects [ PAGE.group ] [ PAGE.type ] [ _card ];
+
+
+            cardObjects [ PAGE.group ] [ PAGE.type ].push ( _card );
+
+
+            UI._setAlbumCards ( );
+        },
+
+        /**
+         * Subtracts the last card from cardObjects
+         * @private
+         * @name _cardClose
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _cardClose ( element )
+        {
+            let _close = element.classList.contains ( 'close' );
+
+
+            if ( _close )
+            {
+                let _cardNumber = Number ( element.nextElementSibling.innerHTML );
+
+
+                if ( cardObjects [ PAGE.group ] [ PAGE.type ].length > 1 )
+
+                     cardObjects [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
+
+
+                UI._setAlbumCards ( );
+            }
+        }
     }
 
     _clean =
@@ -341,6 +413,45 @@ class Ui
 
 
             return template;
+        },
+
+        /**
+         * Cleans the remaining '.blank' cards while converting the first to a '.plus' card; @see Ui.toggle._cardPlus ( )
+         * @public
+         * @name blankCards
+         * @function
+         */
+        blankCards ( )
+        {
+            let _cards = document.querySelectorAll ( '.card' );
+
+            let _first = true;
+
+            let _count = 0;
+
+
+            if ( PAGE.group === 'animation' )
+
+                for ( let _card of _cards )
+                {
+                    let _blank  = _card.classList.contains ( 'blank' );
+
+
+                    if ( _blank && _first )
+                    {
+                        let _height = _cards [ _count - 1 ].clientHeight;
+
+
+                        _card.classList.add ( 'plus' );
+
+                        _card.style.height = `${_height}px`;
+
+
+                        _first = false;
+                    }
+
+                    _count++;
+                }
         }
     }
 
@@ -517,14 +628,17 @@ class Ui
          */
         _setCardSection ( cardObjects )
         {
-            let _cards       = TEMPLATE.getCards ( cardObjects );
+            let _cardTemplates = TEMPLATE.getCards ( cardObjects );
 
-            let _cardSection = document.querySelector ( '#test-cards' );
+            let _cardSection   = document.querySelector ( '#test-cards' );
 
 
-            for ( let _card of _cards )
+            for ( let _cardTemplate of _cardTemplates )
 
-                _cardSection.innerHTML += _card;
+                _cardSection.innerHTML += _cardTemplate;
+
+
+            this.clean.blankCards ( );
         }
 
         /**
@@ -620,7 +734,7 @@ class Ui
                                                                : this._checkCollapsible ( _animationButtons, 0 );
                                 } );
 
-                case 'navSubLinks':
+                case 'navPageLinks':
 
                     let _buttons =
                     [
@@ -653,6 +767,8 @@ class Ui
 
                     let _labButton = document.querySelector ( 'button.lab-station' );
 
+                    let _labOpen   = document.querySelector ( '#lab-open'          );
+
                     let _labLink   = document.querySelector ( '.lab-station-link'  );
 
                         _labLink.addEventListener ( 'click', ( element ) =>
@@ -669,75 +785,7 @@ class Ui
                                 LAB.editor.selection.moveCursorTo ( 0, 0 );
                             } );
 
-                case 'cardPlus':
-
-                    if ( PAGE.group === 'animation' )
-                    {
-                        let _prevHeight = document.querySelectorAll ( '.card' ) [ 0 ].clientHeight;
-
-                        let _addButtons = document.querySelectorAll ( '.col.extra > .card.extra' );
-
-
-                        for ( let _i = _addButtons.length - 1; _i > -1; _i-- )
-                        {
-                            let _addButton = _addButtons [ _i ];
-
-
-                            if ( _i === 0 )
-                            {
-                                _addButton.classList.remove ( 'hidden' );
-
-
-                                _addButton.style.height  = `${_prevHeight}px`;
-
-                                _addButton.style.opacity = 0.5;
-
-
-                                _addButton.addEventListener ( 'click', ( element ) =>
-                                {
-                                    let _card = cardObjects [ PAGE.group ] [ PAGE.type ].length - 1;
-
-                                        _card = cardObjects [ PAGE.group ] [ PAGE.type ] [ _card ];
-
-
-                                    cardObjects [ PAGE.group ] [ PAGE.type ].push ( _card );
-
-
-                                    this._setAlbumCards ( );
-                                } );
-                            }
-                            else
-
-                                _addButton.classList.add ( 'hidden' );
-                        }
-                    }
-
-                case 'cardMinus':
-
-                    if ( PAGE.group === 'animation' )
-                    {
-                        let _easings         = document.querySelectorAll ( '.easing' );
-
-                        let _subtractButtons = document.querySelectorAll ( '.card > .card-number > .close' );
-
-
-                        for ( let _subtractButton of _subtractButtons )
-
-                            _subtractButton.addEventListener ( 'click', ( element ) =>
-                                {
-                                    let _cardNumber = Number ( element.target.nextElementSibling.innerHTML );
-
-
-                                    if ( cardObjects [ PAGE.group ] [ PAGE.type ].length > 1 )
-
-                                        cardObjects [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
-
-
-                                    // _buildAlbumCards ( );
-                                    this._setAlbumCards ( );
-                                } );
-                    }
-
+                        _labOpen.addEventListener ( 'click', ( ) => UI.toggle.fullscreen ( ) );
             }
         }
 
@@ -844,12 +892,12 @@ class Ui
 
                     _ul.id = _i;
 
-                    _ul.setAttribute ( 'onmouseleave', `devTest.toggleEasingFunctions ( ${_i} )` );
+                    _ul.setAttribute ( 'onmouseleave', `devSuite.toggleEasingFunctions ( ${_i} )` );
 
 
                 _easings [ _i ].parentNode.insertBefore ( _clonedDiv, _easings.nextSibling );
 
-                _easings [ _i ].setAttribute ( 'onclick', `devTest.toggleEasingFunctions ( ${_i} )` );
+                _easings [ _i ].setAttribute ( 'onclick', `devSuite.toggleEasingFunctions ( ${_i} )` );
             }
         }
 
@@ -900,7 +948,7 @@ class Ui
 
                 let _li = document.createElement ( 'li' );
 
-                    _li.setAttribute ( 'onclick', `devTest.runEasingAnimation ( '${_timing}', this.parentElement.id )` );
+                    _li.setAttribute ( 'onclick', `devSuite.runEasingAnimation ( '${_timing}', this.parentElement.id )` );
 
                     _li.appendChild ( _span );
 

@@ -26,7 +26,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _line.stroke.type = 1;
+                        _line.stroke.type = 'solid';
 
                         _line.draw ( );
                     }
@@ -36,8 +36,6 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _line.stroke.type = 1;
-
                         _line.stroke.segments = [ 2, 7, 10 ];
 
                         _line.draw ( );
@@ -48,7 +46,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _line.stroke.color = '0,  150,  200';
+                        _line.stroke.color = new Rgb ( 0,  150,  200 );
 
                         _line.draw ( );
                     }
@@ -58,7 +56,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _line.stroke.alpha = 0.25;
+                        _line.stroke.color.alpha = 0.25;
 
                         _line.draw ( );
                     }
@@ -261,7 +259,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.stroke.type = 1;
+                        _circle.stroke.type = 'solid';
 
                         _circle.draw ( );
                     }
@@ -271,8 +269,6 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.stroke.type     = 1;
-
                         _circle.stroke.segments = [ 2, 4 ];
 
                         _circle.draw ( );
@@ -283,7 +279,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.stroke.color = '0,  150,  200';
+                        _circle.stroke.color = new Rgb ( 0,  150,  200 );
 
                         _circle.draw ( );
                     }
@@ -293,7 +289,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.stroke.alpha = 0.25;
+                        _circle.stroke.color.alpha = 0.25;
 
                         _circle.draw ( );
                     }
@@ -313,7 +309,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.fill.color = '0,  150,  200';
+                        _circle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _circle.draw ( );
                     }
@@ -323,8 +319,6 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.fill.color = '0,  150,  200';
-
                         _circle.fill.alpha  = 0.25;
 
                         _circle.draw ( );
@@ -438,7 +432,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.stroke.type = 1;
+                        _rectangle.stroke.type = 'solid';
 
                         _rectangle.draw ( );
                     }
@@ -448,8 +442,6 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.stroke.type     = 1;
-
                         _rectangle.stroke.segments = [ 2, 4 ];
 
                         _rectangle.draw ( );
@@ -460,7 +452,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.stroke.color = '0,  150,  200';
+                        _rectangle.stroke.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -490,7 +482,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -500,8 +492,6 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
-
                         _rectangle.fill.alpha = 0.25;
 
                         _rectangle.draw ( );
@@ -655,7 +645,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _text.stroke.type = 1;
+                        _text.stroke.type = 'solid';
 
                         _text.draw ( );
                     }
@@ -665,7 +655,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _text.stroke.type = 1;
+                        _text.stroke.type = 'solid';
 
                         _text.stroke.segments = [ 2, 7, 10 ];
 
@@ -677,7 +667,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _text.stroke.color = '255, 0, 0';
+                        _text.stroke.color = new Rgb ( 0,  150,  200 );
 
                         _text.draw ( );
                     }
@@ -707,7 +697,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _text.fill.color = '255, 0, 0';
+                        _text.fill.color = new Rgb ( 0,  150,  200 );
 
                         _text.draw ( );
                     }
@@ -717,8 +707,6 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _text.fill.color = '255, 0, 0';
-
                         _text.fill.alpha  = 0.25;
 
                         _text.draw ( );
@@ -1065,7 +1053,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _circle.fill.color = '0,  150,  200';
+                        _circle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _circle.draw ( );
                     }
@@ -1075,27 +1063,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
-
-                        _rectangle.draw ( );
-                    }
-                },
-                {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
-                    {
-                        _rectangle.fill.color = '0,  150,  200';
-
-                        _rectangle.draw ( );
-                    }
-                },
-                {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
-                    {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -1108,7 +1076,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -1118,7 +1086,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -1128,7 +1096,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -1138,7 +1106,7 @@
                     text: 'blah... blah... blah...',
                     code: ( ) =>
                     {
-                        _rectangle.fill.color = '0,  150,  200';
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
                     }
@@ -1268,14 +1236,14 @@
     ////    INITIALIZE    //////////////////////////////////////////////////////////////////////////
 
         /**
-         * Initiates devTest
+         * Initiates devSuite
          * @private
          * @name _init
          * @function
          */
         function _init ( )
         {
-            window.devTest = _library ( );
+            window.devSuite = _library ( );
 
 
             _setEnvironment ( );
@@ -1293,7 +1261,7 @@
         }
 
 
-        if ( typeof ( window.devTest ) === 'undefined' )
+        if ( typeof ( window.devSuite ) === 'undefined' )
 
             _init ( );
 

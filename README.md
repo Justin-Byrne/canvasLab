@@ -1,9 +1,9 @@
 # canvasLab
 
 ![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Chrome-124.0.6367.79-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
+<img src="https://img.shields.io/badge/Chrome-124.0.6367.93-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
 ![issues](https://img.shields.io/github/issues/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Version-0.2.17-green?style=flat-square" />
+<img src="https://img.shields.io/badge/Version-0.3.25-green?style=flat-square" />
 <img src="https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab?style=flat-square" />
 
 HTML5 canvas drawing framework
@@ -75,8 +75,8 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── JSDoc.md
 ├── script
 │   ├── distro
-│   │   ├── canvasLab-v0.2.17.js    [ 196 kb ]
-│   │   ├── canvasLab.min.js        [ 52 kb ]
+│   │   ├── canvasLab-v0.3.25.js    [ 260 kb ]
+│   │   ├── canvasLab.min.js        [ 56 kb ]
 │   │   └── canvasLab.min.js.map
 │   └── source
 │       ├── ancillary
@@ -107,18 +107,30 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │           │   │   ├── PointCollection.js
 │           │   │   ├── ShadowCollection.js
 │           │   │   └── StrokeCollection.js
-│           │   ├── Anchor.js
-│           │   ├── Angle.js
-│           │   ├── Aspect.js
-│           │   ├── ControlPoints.js
-│           │   ├── Fill.js
-│           │   ├── Font.js
-│           │   ├── LinearGradient.js
-│           │   ├── Options.js
-│           │   ├── Point.js
-│           │   ├── Shadow.js
-│           │   ├── Stage.js
-│           │   └── Stroke.js
+│           │   ├── Color
+│           │   │   ├── Model
+│           │   │   │   ├── Hsl.js
+│           │   │   │   ├── Hwb.js
+│           │   │   │   └── Rgb.js
+│           │   │   └── Properties
+│           │   │       ├── ColorStop.js
+│           │   │       └── ColorStops.js
+│           │   ├── Draw
+│           │   │   ├── Fill.js
+│           │   │   ├── FillSolid.js
+│           │   │   ├── GradientLinear.js
+│           │   │   ├── Shadow.js
+│           │   │   └── Stroke.js
+│           │   └── Staging
+│           │       ├── Properties
+│           │       │   └── Options.js
+│           │       ├── Anchor.js
+│           │       ├── Angle.js
+│           │       ├── Aspect.js
+│           │       ├── ControlPoints.js
+│           │       ├── Font.js
+│           │       ├── Point.js
+│           │       └── Stage.js
 │           └── canvasLab.js
 ├── LICENSE
 └── README.md

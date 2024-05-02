@@ -289,6 +289,10 @@ function complete ()
     if $NO_ERRORS
     then
         afplay ../../build/audio/success.mp3
+
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            osascript reload.scpt
+        fi
     else
         afplay ../../build/audio/failure.mp3
 

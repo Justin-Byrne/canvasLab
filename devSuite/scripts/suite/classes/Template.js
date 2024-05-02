@@ -9,7 +9,7 @@ class Template
     {
         standard: `<div class="col">
 
-                       <div class="card" id="view_{{index}}" suite-data-code="{{code}}" suite-data-title="{{title}}" onclick="devTest.toggleCardButton ( event )">
+                       <div class="card" id="view_{{index}}" suite-data-code="{{code}}" suite-data-title="{{title}}" onclick="devSuite.toggleCardButton ( event )">
 
                            <div class="card-number">
 
@@ -53,17 +53,17 @@ class Template
 
                                    </div>
 
-                                   <span class="title">{{title}}</span>
+                                   <div class="title">{{title}}</div>
 
                                    <span class="icons">
 
-                                       <img src="images/svg/{{subgroup}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devTest.toggleCardButton ( event )">
+                                       <img src="images/svg/{{subgroup}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devSuite.toggleCardButton ( event )">
 
                                        <span class="wall">&nbsp;</span>
 
-                                       <img src="images/svg/{{group}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{groupType}}"  onclick="devTest.toggleCardButton ( event )">
+                                       <img src="images/svg/{{group}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{groupType}}"  onclick="devSuite.toggleCardButton ( event )">
 
-                                       <img src="images/svg/{{image}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{objectType}}" onclick="devTest.toggleCardButton ( event )">
+                                       <img src="images/svg/{{image}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{objectType}}" onclick="devSuite.toggleCardButton ( event )">
 
                                    </span>
 
@@ -75,9 +75,9 @@ class Template
 
                     </div>  <!-- .col -->`,
 
-        blank:    `<div class="col extra">
+        blank:    `<div class="col blank">
 
-                       <div class="card extra">
+                       <div class="card blank" onclick="devSuite.toggleCardButton ( event )">
 
                            <span class="plus">+</span>
 
@@ -202,9 +202,16 @@ class Template
             let _blanks  = this._getBlankCount  ( cardObjects );
 
 
-            if ( _columns != _blanks )
+            if ( _columns != _blanks )                      // Blank templates to fill out row of standard templates
 
                 for ( let _i = 0; _i < _blanks; _i++ )
+
+                    _cards.push ( TEMPLATE.blank );
+
+
+            if ( _blanks % _columns === 0 )                 // Blank templates for next row, from adding new standard templates; @see UI._cardPlus ( )
+
+                for ( let _i = 0; _i < _columns; _i++ )
 
                     _cards.push ( TEMPLATE.blank );
 

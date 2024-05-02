@@ -113,6 +113,9 @@
 <dt><a href="#imageTags">imageTags(template, cardObject)</a> ⇒ <code>string</code></dt>
 <dd><p>Trims left over image tags from the standard card template</p>
 </dd>
+<dt><a href="#blankCards">blankCards()</a></dt>
+<dd><p>Cleans the remaining &#39;.blank&#39; cards while converting the first to a &#39;.plus&#39; card; @see Ui.toggle._cardPlus ( )</p>
+</dd>
 <dt><a href="#toggle">toggle()</a> ⇒ <code>Object</code></dt>
 <dd><p>Gets toggle object</p>
 </dd>
@@ -554,6 +557,13 @@ Trims left over image tags from the standard card template
 | template | <code>string</code> | HTML template for card-object |
 | cardObject | <code>Object</code> | Card-object |
 
+<a name="blankCards"></a>
+
+## blankCards()
+Cleans the remaining '.blank' cards while converting the first to a '.plus' card; @see Ui.toggle._cardPlus ( )
+
+**Kind**: global function  
+**Access**: public  
 <a name="toggle"></a>
 
 ## toggle() ⇒ <code>Object</code>
