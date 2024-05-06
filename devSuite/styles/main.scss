@@ -49,10 +49,10 @@ body { background-color: rgb( 57,  63,  69); }
 nav
 {
     $linkColor:             rgba(255, 255, 255, 1   );
-    $linkColorHover:        rgba(255, 255, 255, 0.85);
+    $linkColorHover:        rgba(255, 255, 255, 0.5 );
     $linkBackgroundHover:   rgba( 75,  94, 113, 1   );
     $background:            rgba( 31,  51,  73, 0.85);
-    $borderColor:           rgba( 98, 115, 132, 1   );
+    $seperatorColor:           rgba( 98, 115, 132, 1   );
 
     display:        flex;
     position:       absolute;
@@ -73,48 +73,43 @@ nav
 
     transition:     left 0.45s ease;
 
-    #nav-icon
-    {
-        position:    relative;
-        margin:      0 auto;
-        height:      61px;
-        width:       61px;
-        padding-top: 4px;
-
-        &:hover
-        {
-            cursor: pointer;
-
-            img#eye { animation: growOutIn 1s linear infinite; }
-        }
-
-        img
-        {
-            display:    block;
-            position:   absolute;
-            width:      64px;
-
-            &#eye               { opacity: 1; }
-
-            &#eye-lid           { opacity: 1; }
-
-            &#triangle          { opacity: 0; }
-
-            &#triangle-inverted { opacity: 0; }
-        }
-    }
-
     .nav-wrapper
     {
         width:      $width;
         background: $background;
 
-        .nav-header-image
+        #nav-icon
         {
-            margin:         0 auto;
-            pointer-events: none;
-            fill:           rgba(255, 255, 255, 0.85);
+            position:    relative;
+            margin:      0 auto;
+            height:      61px;
+            width:       61px;
+            padding-top: 4px;
+
+            &:hover
+            {
+                cursor: pointer;
+
+                img#eye { animation: growOutIn 1s linear infinite; }
+            }
+
+            img
+            {
+                display:    block;
+                position:   absolute;
+                width:      64px;
+
+                &#eye               { opacity: 1; }
+
+                &#eye-lid           { opacity: 1; }
+
+                &#triangle          { opacity: 0; }
+
+                &#triangle-inverted { opacity: 0; }
+            }
         }
+
+        .seperator { border-top: 2px solid $seperatorColor !important; }
 
         .extra-buttons
         {
@@ -212,119 +207,78 @@ nav
             &.narrow { width: 75%; }
         }
 
-        .btn-toggle
+        #nav-links
         {
-            display:            inline-flex;
-            align-items:        center;
-            padding:            0.25rem 0.75rem 0.25rem .5rem;
-            font-weight:        600;
-            color:              $linkColor;
-            background-color:   transparent;
-            border:             0;
-            transition:         background-color 1s;
+            list-style:     none;
 
-            &:hover, &:focus
+            margin-bottom:  0;
+            margin-left:    0.5rem;
+            padding-left:   0 !important;
+
+            ul
             {
-                color:              $linkColorHover;
+                list-style:     none;
+                padding-left:   0.5rem !important;
 
-                background-color:   $linkBackgroundHover;
-
-                box-shadow:         none;
+                &.nav-links { padding-left: 0 !important; }
             }
 
-            &:before
+            button
             {
-                position:           relative;
-                margin-right:       2px;
+                color:          white;
+                text-shadow:    0px 0px 1px black;
 
-                width:              1.25em;
-                line-height:        0;
-                content:            url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba(255,255,255,.5)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
-                transition:         transform .35s ease;
-                transform-origin:   .5em 50%;
+                transition:     color 0.5s ease;
+
+                &:before
+                {
+                    width:              1.25em;
+                    line-height:        0;
+                    content:            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-caret-right-fill' viewBox='0 0 16 16'%3E%3Cpath d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z'/%3E%3C/svg%3E");
+                    transition:         transform 0.5s ease;
+                    transform-origin:   0.5em 50%;
+                }
+
+                &[data-button-open=true]
+                {
+                    color: rgba(148, 211, 255, 0.8);
+
+                    &:before { transform: rotate(90deg); }
+                }
+
+                &:hover, &:focus
+                {
+                    background-color:   unset;
+                    box-shadow:         unset;
+                    text-shadow:        unset;
+                }
             }
 
-            &[aria-expanded="true"]
+            img
             {
-                color: $linkColorHover;
-
-                &:before { transform: rotate(90deg); }
+                position:   relative;
+                left:       20px;
+                width:      20px;
+                height:     20px;
             }
-        }
 
-        .btn-toggle-nav
-        {
             a
             {
                 display:            inline-flex;
-                padding:            .1875rem .5rem;
-                margin-top:         .125rem;
-                margin-left:        1.25rem;
-                text-decoration:    none;
+                align-items:        center;
+
+                font-weight:        600;
+                color:              $linkColor;
+                background-color:   transparent;
+
                 transition:         background-color 1s;
 
-                color:              $linkColor;
-
-                &:hover,
-                &:focus { background-color: $linkBackgroundHover; }
-
-                span { margin-left: 10px; }
-
-                &.disabled
+                &:hover, &:focus
                 {
-                    display: none;
-
-                    pointer-events: none;
-                    opacity:        0.65;
-
-                    &:hover,
-                    &:focus { background-color: transparent; }
+                    color:              $linkColorHover;
+                    box-shadow:         none;
                 }
             }
-        }
-
-        .border-top    { border-top:    2px solid $borderColor !important; }
-
-        .border-bottom { border-bottom: 2px solid $borderColor !important; }
-
-        li.mb-1
-        {
-            ul > li > a > span
-            {
-                position:   relative;
-                top:        2.5px;
-            }
-
-            #documents-collapse ul > li > a > img
-            {
-                position:   relative;
-                top:        2px;
-            }
-        }
-
-        li.mb-2
-        {
-            button
-            {
-                position:       relative;
-                left:           10px;
-                top:            2px;
-                margin-bottom:  2px;
-            }
-
-            #animation-collapse
-            {
-                position: relative;
-                left:     10px;
-            }
-
-            ul > li > a > span
-            {
-                position:   relative;
-                top:        2.5px;
-            }
-
-            .btn-toggle-nav a { margin-left:  2.25rem; }
         }
 
         .external-links

@@ -345,6 +345,32 @@ class Ui
 
                 UI._setAlbumCards ( );
             }
+        },
+
+        /**
+         * Toggles drop-down navigation menu
+         * @private
+         * @name _navDropdown
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _navDropdown ( element )
+        {
+            let _ul     = element.parentNode.nextSibling;
+
+            let _isOpen = ( element.getAttribute ( 'data-button-open' ) === 'false' );
+
+            let _isShow = ( _ul.classList.contains ( 'show' ) );
+
+
+            ( _isShow ) ? _ul.classList.remove ( 'show' )
+
+                        : _ul.classList.add    ( 'show' );
+
+
+            ( _isOpen ) ? element.setAttribute ( 'data-button-open', true )
+
+                        : element.setAttribute ( 'data-button-open', false );
         }
     }
 
@@ -540,6 +566,46 @@ class Ui
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
 
         /**
+         * Sets navigation links
+         * @public
+         * @name setNavLinks
+         * @function
+         * @param           {HTMLElement}    element            Parent navigation element
+         * @param           {Array.<Object>} links              Array of Objects containing navigation link data
+         */
+        setNavLinks ( element, links )
+        {
+            for ( let _link of links )
+
+                if ( _link.links != null )                  // BUTTONS
+                {
+                    let _button = this._getButton ( _link );
+
+                    let _id     = _button.firstElementChild.getAttribute ( 'data-bs-target' );
+
+                    let _ul     = document.createElement ( 'ul' );
+
+                        _ul.id  = ( _id ) ? _id : String.empty;
+
+                        _ul.classList.add ( 'collapse', 'btn-toggle-nav', 'list-unstyled', 'fw-normal', 'pb-1' );
+
+
+                    element.append ( _button );
+
+                    element.append ( _ul );
+
+
+                    this.setNavLinks ( _ul, _link.links );
+                }
+                else                                        // LINKS
+                {
+                    element.classList.add ( 'nav-links' );
+
+                    element.append ( this._getLink ( _link ) );
+                }
+        }
+
+        /**
          * Sets byrne-systems logo
          * @private
          * @name _setByrneSystemsLogo
@@ -602,7 +668,7 @@ class Ui
 
                 if ( PAGE.group === 'animation' )
 
-                    [ _object.group, _object.groupType ] = [ `Handlers/${PAGE.group.toTitleCase ( )}`, PAGE.group.toTitleCase ( ) ];
+                    [ _object.group, _object.groupType ] = [ `Handler/${PAGE.group.toTitleCase ( )}`, PAGE.group.toTitleCase ( ) ];
 
 
                 if ( PAGE.subgroup === 'easing' )
@@ -614,7 +680,7 @@ class Ui
                     let _path   = ( _match.length < 2 ) ? _match [ 0 ] : _match [ 0 ] + _match [ 1 ];
 
 
-                    _object.subgroup = `Handlers/Animation/Ease/${_path}/${_timing}`;
+                    _object.subgroup = `Handler/Animation/Ease/${_path}/${_timing}`;
                 }
             }
         }
@@ -639,6 +705,31 @@ class Ui
 
 
             this.clean.blankCards ( );
+        }
+
+        /**
+         * Sets cards
+         * @private
+         * @name _setCards
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _setCards ( element )
+        {
+            let _link = element.srcElement;
+
+
+            element.preventDefault ( );
+
+
+            PAGE = new Page ( _link );
+
+
+            ( cardObjects [ PAGE.group ] [ PAGE.type ] )
+
+                ? this._setAlbumCards ( )
+
+                : this._setByrneSystemsLogo ( );
         }
 
         /**
@@ -686,76 +777,23 @@ class Ui
                         _open.addEventListener ( 'click', ( ) => UI.toggle.navigation ( ) );
                     }
 
-                case 'navMainLinks':
+                case 'navButtons':
 
-                    let _mainButtons      = [ ...document.querySelectorAll ( 'nav button.collapsed' ) ];    // Convert: NodeList into Array
+                    let _buttons = document.querySelector ( '#nav-links' ).querySelectorAll ( 'button' );
 
-                    let _animationButtons =
-                    [
-                        document.querySelector ( '#animation-collapse > button:nth-child(1)' ),
-                        document.querySelector ( '#animation-collapse > button:nth-child(3)' )
-                    ]
-
-                    let _regex = new RegExp ( 'animation-(\\w+\-)?collapse' );
-
-                    ////    LOGIC    ///////////////////////////////////////////////////
-
-                        for ( let _i = 0; _i < _mainButtons.length; _i++ )              // Splice: Animation buttons
-
-                            if ( _regex.test ( _mainButtons [ _i ].getAttribute ( "data-bs-target" ) ) )
-                            {
-                                _mainButtons.splice ( _i, 1 );
-
-                                _i--;
-                            }
-
-
-                        for ( let _button of _mainButtons )                             // Add: Event listeners to main buttons
-
-                            _button.addEventListener ( 'click', ( element ) =>
-                                {
-                                    this._collapseButtons ( _mainButtons, element.target.attributes [ "data-bs-target" ].textContent );
-
-                                    UI.toggle.externalLinks ( element );
-                                } );
-
-
-                        for ( let _button of _animationButtons )                        // Add: Event listeners to sub Animation buttons
-
-                            _button.addEventListener ( 'click', ( element ) =>
-                                {
-                                    let _present = element.target.attributes [ "data-bs-target" ].textContent;
-
-                                        _present = _present.match ( _regex ) [ 1 ].replace ( '-', '' );
-
-
-                                    ( _present === 'objects' ) ? this._checkCollapsible ( _animationButtons, 1 )
-
-                                                               : this._checkCollapsible ( _animationButtons, 0 );
-                                } );
-
-                case 'navPageLinks':
-
-                    let _buttons =
-                    [
-                        ... document.querySelectorAll ( '.mb-1:nth-child(-n+5) ul.btn-toggle-nav > li > a' ),
-
-                        ... document.querySelectorAll ( '.mb-2:nth-child(-n+4) ul.btn-toggle-nav > li > a' )
-                    ]
 
                     for ( let _button of _buttons )
 
-                        _button.addEventListener ( 'click', ( element ) =>
-                            {
-                                PAGE = new Page ( _button );
+                        _button.addEventListener ( 'click', ( ) => this.toggle._navDropdown ( _button ) );
+
+                case 'navLinks':
+
+                    let _links = document.querySelector ( '#nav-links' ).querySelectorAll ( 'a' );
 
 
-                                ( cardObjects [ PAGE.group ] [ PAGE.type ] )
+                    for ( let _link of _links )
 
-                                    ? this._setAlbumCards ( )
-
-                                    : this._setByrneSystemsLogo ( );
-                            } );
+                        _link.addEventListener ( 'click', ( element ) => this._setCards ( element, _link ) );
 
                 case 'copy':
 
@@ -787,6 +825,74 @@ class Ui
 
                         _labOpen.addEventListener ( 'click', ( ) => UI.toggle.fullscreen ( ) );
             }
+        }
+
+    ////    GETTERS    /////////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Returns a button for navigation links
+         * @private
+         * @name _getButton
+         * @function
+         * @param           {Object} button                     Navigation link object
+         * @return          {HTMLElement}                       List item HTML element
+         */
+        _getButton ( button )
+        {
+            let _li     = document.createElement ( 'li' );
+
+            let _button = document.createElement ( 'button' );
+
+            let _id     = button.title.toLowerCase ( ) + '-collapse';
+
+                _button.innerHTML = button.title;
+
+
+                _button.setAttribute ( 'data-bs-target',   _id   );
+
+                _button.setAttribute ( 'data-button-open', false );
+
+
+                _button.classList.add ( 'btn', 'btn-toggle', 'align-items-center', 'rounded', 'collapsed' );
+
+
+                _li.append ( _button );
+
+
+            return _li;
+        }
+
+        /**
+         * Returns a link for navigation links
+         * @private
+         * @name _getLink
+         * @function
+         * @param           {Object} link                       Navigation link object
+         * @return          {HTMLElement}                       List item HTML element
+         */
+        _getLink ( link )
+        {
+            let _li    = document.createElement ( 'li'  );
+
+            let _img   = document.createElement ( 'img' );
+
+            let _a     = document.createElement ( 'a'   );
+
+            let _cover = ( link.group === 'Animation' ) ? 'Object' : link.group;
+
+                _img.src = `images/svg/${_cover}/${link.title}.svg`;
+
+                _li.append ( _img );
+
+
+                _a.href      = `#${link.group}${link.title}`;
+
+                _a.innerHTML = link.title;
+
+                _li.append ( _a );
+
+
+            return _li;
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
@@ -938,7 +1044,7 @@ class Ui
 
                 let _img     = document.createElement ( 'img' );
 
-                    _img.src = `images/svg/Handlers/Animation/Ease/${_path}/${_timing}.svg`;
+                    _img.src = `images/svg/Handler/Animation/Ease/${_path}/${_timing}.svg`;
 
 
                 let _span           = document.createElement ( 'span' );

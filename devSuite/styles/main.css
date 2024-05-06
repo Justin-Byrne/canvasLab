@@ -39,35 +39,33 @@ nav {
   border-right: 1px solid #6f6f6f;
   box-shadow: 1px 0px 5px 0px #3b4c5b;
   transition: left 0.45s ease; }
-  nav #nav-icon {
-    position: relative;
-    margin: 0 auto;
-    height: 61px;
-    width: 61px;
-    padding-top: 4px; }
-    nav #nav-icon:hover {
-      cursor: pointer; }
-      nav #nav-icon:hover img#eye {
-        animation: growOutIn 1s linear infinite; }
-    nav #nav-icon img {
-      display: block;
-      position: absolute;
-      width: 64px; }
-      nav #nav-icon img#eye {
-        opacity: 1; }
-      nav #nav-icon img#eye-lid {
-        opacity: 1; }
-      nav #nav-icon img#triangle {
-        opacity: 0; }
-      nav #nav-icon img#triangle-inverted {
-        opacity: 0; }
   nav .nav-wrapper {
     width: 200px;
     background: rgba(31, 51, 73, 0.85); }
-    nav .nav-wrapper .nav-header-image {
+    nav .nav-wrapper #nav-icon {
+      position: relative;
       margin: 0 auto;
-      pointer-events: none;
-      fill: rgba(255, 255, 255, 0.85); }
+      height: 61px;
+      width: 61px;
+      padding-top: 4px; }
+      nav .nav-wrapper #nav-icon:hover {
+        cursor: pointer; }
+        nav .nav-wrapper #nav-icon:hover img#eye {
+          animation: growOutIn 1s linear infinite; }
+      nav .nav-wrapper #nav-icon img {
+        display: block;
+        position: absolute;
+        width: 64px; }
+        nav .nav-wrapper #nav-icon img#eye {
+          opacity: 1; }
+        nav .nav-wrapper #nav-icon img#eye-lid {
+          opacity: 1; }
+        nav .nav-wrapper #nav-icon img#triangle {
+          opacity: 0; }
+        nav .nav-wrapper #nav-icon img#triangle-inverted {
+          opacity: 0; }
+    nav .nav-wrapper .seperator {
+      border-top: 2px solid #627384 !important; }
     nav .nav-wrapper .extra-buttons {
       display: flex;
       padding: 0; }
@@ -122,72 +120,49 @@ nav {
                 opacity: 0.5; }
       nav .nav-wrapper .extra-buttons.narrow {
         width: 75%; }
-    nav .nav-wrapper .btn-toggle {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.25rem 0.75rem 0.25rem .5rem;
-      font-weight: 600;
-      color: white;
-      background-color: transparent;
-      border: 0;
-      transition: background-color 1s; }
-      nav .nav-wrapper .btn-toggle:hover, nav .nav-wrapper .btn-toggle:focus {
-        color: rgba(255, 255, 255, 0.85);
-        background-color: #4b5e71;
-        box-shadow: none; }
-      nav .nav-wrapper .btn-toggle:before {
+    nav .nav-wrapper #nav-links {
+      list-style: none;
+      margin-bottom: 0;
+      margin-left: 0.5rem;
+      padding-left: 0 !important; }
+      nav .nav-wrapper #nav-links ul {
+        list-style: none;
+        padding-left: 0.5rem !important; }
+        nav .nav-wrapper #nav-links ul.nav-links {
+          padding-left: 0 !important; }
+      nav .nav-wrapper #nav-links button {
+        color: white;
+        text-shadow: 0px 0px 1px black;
+        transition: color 0.5s ease; }
+        nav .nav-wrapper #nav-links button:before {
+          width: 1.25em;
+          line-height: 0;
+          content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-caret-right-fill' viewBox='0 0 16 16'%3E%3Cpath d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z'/%3E%3C/svg%3E");
+          transition: transform 0.5s ease;
+          transform-origin: 0.5em 50%; }
+        nav .nav-wrapper #nav-links button[data-button-open=true] {
+          color: rgba(148, 211, 255, 0.8); }
+          nav .nav-wrapper #nav-links button[data-button-open=true]:before {
+            transform: rotate(90deg); }
+        nav .nav-wrapper #nav-links button:hover, nav .nav-wrapper #nav-links button:focus {
+          background-color: unset;
+          box-shadow: unset;
+          text-shadow: unset; }
+      nav .nav-wrapper #nav-links img {
         position: relative;
-        margin-right: 2px;
-        width: 1.25em;
-        line-height: 0;
-        content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba(255,255,255,.5)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
-        transition: transform .35s ease;
-        transform-origin: .5em 50%; }
-      nav .nav-wrapper .btn-toggle[aria-expanded="true"] {
-        color: rgba(255, 255, 255, 0.85); }
-        nav .nav-wrapper .btn-toggle[aria-expanded="true"]:before {
-          transform: rotate(90deg); }
-    nav .nav-wrapper .btn-toggle-nav a {
-      display: inline-flex;
-      padding: .1875rem .5rem;
-      margin-top: .125rem;
-      margin-left: 1.25rem;
-      text-decoration: none;
-      transition: background-color 1s;
-      color: white; }
-      nav .nav-wrapper .btn-toggle-nav a:hover, nav .nav-wrapper .btn-toggle-nav a:focus {
-        background-color: #4b5e71; }
-      nav .nav-wrapper .btn-toggle-nav a span {
-        margin-left: 10px; }
-      nav .nav-wrapper .btn-toggle-nav a.disabled {
-        display: none;
-        pointer-events: none;
-        opacity: 0.65; }
-        nav .nav-wrapper .btn-toggle-nav a.disabled:hover, nav .nav-wrapper .btn-toggle-nav a.disabled:focus {
-          background-color: transparent; }
-    nav .nav-wrapper .border-top {
-      border-top: 2px solid #627384 !important; }
-    nav .nav-wrapper .border-bottom {
-      border-bottom: 2px solid #627384 !important; }
-    nav .nav-wrapper li.mb-1 ul > li > a > span {
-      position: relative;
-      top: 2.5px; }
-    nav .nav-wrapper li.mb-1 #documents-collapse ul > li > a > img {
-      position: relative;
-      top: 2px; }
-    nav .nav-wrapper li.mb-2 button {
-      position: relative;
-      left: 10px;
-      top: 2px;
-      margin-bottom: 2px; }
-    nav .nav-wrapper li.mb-2 #animation-collapse {
-      position: relative;
-      left: 10px; }
-    nav .nav-wrapper li.mb-2 ul > li > a > span {
-      position: relative;
-      top: 2.5px; }
-    nav .nav-wrapper li.mb-2 .btn-toggle-nav a {
-      margin-left: 2.25rem; }
+        left: 20px;
+        width: 20px;
+        height: 20px; }
+      nav .nav-wrapper #nav-links a {
+        display: inline-flex;
+        align-items: center;
+        font-weight: 600;
+        color: white;
+        background-color: transparent;
+        transition: background-color 1s; }
+        nav .nav-wrapper #nav-links a:hover, nav .nav-wrapper #nav-links a:focus {
+          color: rgba(255, 255, 255, 0.5);
+          box-shadow: none; }
     nav .nav-wrapper .external-links {
       display: flex;
       position: absolute;

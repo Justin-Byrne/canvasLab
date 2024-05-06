@@ -1162,7 +1162,213 @@
         }
     }
 
+    let _navLinks =
+    [
+        {
+            title: 'Objects',
+            links:
+            [
+                {
+                    title: 'Line',
+                    links: null,
+                    group: 'Object'
+                },
+                {
+                    title: 'Circle',
+                    links: null,
+                    group: 'Object'
+                },
+                {
+                    title: 'Rectangle',
+                    links: null,
+                    group: 'Object'
+                },
+                {
+                    title: 'Text',
+                    links: null,
+                    group: 'Object'
+                },
+                {
+                    title: 'Group',
+                    links: null,
+                    group: 'Object'
+                }
+            ]
+        },
+        {
+            title: 'Subjects',
+            links:
+            [
+                {
+                    title: 'Color',
+                    links:
+                    [
+                        {
+                            title: 'Model',
+                            links:
+                            [
+                                {
+                                    title: 'Rgb',
+                                    links: null,
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Hsl',
+                                    links: null,
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Hwb',
+                                    links: null,
+                                    group: 'Subject'
+                                }
+                            ]
+                        },
+                        {
+                            title: 'Properties',
+                            links:
+                            [
+                                {
+                                    title: 'ColorStop',
+                                    links: null,
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'ColorStops',
+                                    links: null,
+                                    group: 'Subject'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Draw',
+                    links:
+                    [
+                        {
+                            title: 'Stroke',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Fill',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Shadow',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Gradient',
+                            links: null,
+                            group: 'Subject'
+                        },
+                    ]
+                },
+                {
+                    title: 'Staging',
+                    links:
+                    [
+                        {
+                            title: 'Anchor',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Angle',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Aspect',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'ControlPoints',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Font',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Point',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Stage',
+                            links: null,
+                            group: 'Subject'
+                        }
+                    ]
+                },
+            ]
+        },
+        {
+            title: 'Handlers',
+            links:
+            [
+                {
+                    title: 'Animation',
+                    links:
+                    [
+                        {
+                            title: 'Line',
+                            links: null,
+                            group: 'Animation'
+                        },
+                        {
+                            title: 'Circle',
+                            links: null,
+                            group: 'Animation'
+                        },
+                        {
+                            title: 'Rectangle',
+                            links: null,
+                            group: 'Animation'
+                        },
+                        {
+                            title: 'Text',
+                            links: null,
+                            group: 'Animation'
+                        },
+                        {
+                            title: 'Group',
+                            links: null,
+                            group: 'Animation'
+                        }
+                    ]
+                },
+            ]
+        }
+    ]
+
+
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Initializes classes for application use
+         * @private
+         * @name _setClasses ( )
+         * @function
+         */
+        function _setClasses ( )
+        {
+            for ( let _class of _classes )
+
+                ( typeof ( window [ _class.toUpperCase ( ) ] ) === 'undefined' )
+
+                    ? eval ( `window.${_class.toUpperCase ( )} = new ${_class};` )
+
+                    : console.log ( `[ ERROR ]: window.${_class.toUpperCase ( )} already exists !` );
+        }
 
         /**
          * Sets windows global variable space with this wrapper's declared classes
@@ -1172,13 +1378,12 @@
          */
         function _setEnvironment ( )
         {
-            for ( let _class of _classes )
+            let _navList = document.querySelector ( '#nav-links' );
 
-                ( typeof ( window [ _class.toUpperCase ( ) ] ) === 'undefined' )
 
-                    ? eval ( `window.${_class.toUpperCase ( )} = new ${_class};` )
+            _setClasses ( );
 
-                    : console.log ( `[ ERROR ]: window.${_class.toUpperCase ( )} already exists !` );
+            UI.setNavLinks ( _navList, _navLinks );
 
 
             if ( typeof ( window.cardObjects ) === 'undefined' )

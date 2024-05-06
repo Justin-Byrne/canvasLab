@@ -1,8 +1,13 @@
 /* global bootstrap: false */
-(function () {
-  'use strict'
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-    new bootstrap.Tooltip(tooltipTriggerEl)
-  })
-})()
+( function ( )
+{
+  'use strict';
+
+  let _tooltips = [ ].slice.call ( document.querySelectorAll('[data-bs-toggle="tooltip"]') );
+
+      _tooltips.forEach ( function ( tooltipElement )
+      {
+          new bootstrap.Tooltip ( tooltipElement );
+      } );
+
+} ) ( );

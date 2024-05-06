@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.30] - 2024-06-06
+### Added
+- **devSuite**
+  - **`Ui`**
+    - `toggle._navDropdown ( )` to toggles drop-down navigation menu
+    - `setNavLinks ( )` to set navigation links
+    - `_setCards ( )` to set cards
+    - `_getButton ( )` to return a button for navigation links
+    - `_getLink ( )` to return a link for navigation links
+
+### Removed
+- **devSuite**
+  - Removed `navMainLinks` & `navPageLinks` cases from `UI._setEventListeners ( )`
+
 ## [0.3.25] - 2024-06-02
 ### Added
 - **canvasLab**
@@ -294,7 +308,8 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.3.25] | 2024-06-02 | CURRENT                                                             | Added color models, and general cleanup.                                                     |
+| [0.3.30] | 2024-06-06 | CURRENT                                                             | Refactored navigation links as self generative.                                              |
+| [0.3.25] | 2024-06-02 | [80ece25](https://github.com/Justin-Byrne/canvasLab/commit/80ece25) | Added color models, and general cleanup.                                                     |
 | [0.2.17] | 2024-05-26 | [be58a6e](https://github.com/Justin-Byrne/canvasLab/commit/be58a6e) | Fixed unintentional recursive calls & minor refactoring for UI, Page, & Template classes.    |
 | [0.2.11] | 2024-05-22 | [671c1da](https://github.com/Justin-Byrne/canvasLab/commit/671c1da) | Refactored dev-tools (devSuite) into independent classes & updated UI.                       |
 | [0.1.11] | 2024-04-03 | [6df392e](https://github.com/Justin-Byrne/canvasLab/commit/6df392e) | Implemented dev-tools navigation toggle & refactored RWD for mobile devices.                 |
