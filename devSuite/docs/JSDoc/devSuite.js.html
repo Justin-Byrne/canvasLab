@@ -1704,6 +1704,32 @@ class Ui
 
                 UI._setAlbumCards ( );
             }
+        },
+
+        /**
+         * Toggles drop-down navigation menu
+         * @private
+         * @name _navDropdown
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _navDropdown ( element )
+        {
+            let _ul     = element.parentNode.nextSibling;
+
+            let _isOpen = ( element.getAttribute ( 'data-button-open' ) === 'false' );
+
+            let _isShow = ( _ul.classList.contains ( 'show' ) );
+
+
+            ( _isShow ) ? _ul.classList.remove ( 'show' )
+
+                        : _ul.classList.add    ( 'show' );
+
+
+            ( _isOpen ) ? element.setAttribute ( 'data-button-open', true )
+
+                        : element.setAttribute ( 'data-button-open', false );
         }
     }
 
@@ -1899,6 +1925,46 @@ class Ui
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
 
         /**
+         * Sets navigation links
+         * @public
+         * @name setNavLinks
+         * @function
+         * @param           {HTMLElement}    element            Parent navigation element
+         * @param           {Array.&lt;Object>} links              Array of Objects containing navigation link data
+         */
+        setNavLinks ( element, links )
+        {
+            for ( let _link of links )
+
+                if ( _link.links != null )                  // BUTTONS
+                {
+                    let _button = this._getButton ( _link );
+
+                    let _id     = _button.firstElementChild.getAttribute ( 'data-bs-target' );
+
+                    let _ul     = document.createElement ( 'ul' );
+
+                        _ul.id  = ( _id ) ? _id : String.empty;
+
+                        _ul.classList.add ( 'collapse', 'btn-toggle-nav', 'list-unstyled', 'fw-normal', 'pb-1' );
+
+
+                    element.append ( _button );
+
+                    element.append ( _ul );
+
+
+                    this.setNavLinks ( _ul, _link.links );
+                }
+                else                                        // LINKS
+                {
+                    element.classList.add ( 'nav-links' );
+
+                    element.append ( this._getLink ( _link ) );
+                }
+        }
+
+        /**
          * Sets byrne-systems logo
          * @private
          * @name _setByrneSystemsLogo
@@ -1961,7 +2027,7 @@ class Ui
 
                 if ( PAGE.group === 'animation' )
 
-                    [ _object.group, _object.groupType ] = [ `Handlers/${PAGE.group.toTitleCase ( )}`, PAGE.group.toTitleCase ( ) ];
+                    [ _object.group, _object.groupType ] = [ `Handler/${PAGE.group.toTitleCase ( )}`, PAGE.group.toTitleCase ( ) ];
 
 
                 if ( PAGE.subgroup === 'easing' )
@@ -1973,7 +2039,7 @@ class Ui
                     let _path   = ( _match.length &lt; 2 ) ? _match [ 0 ] : _match [ 0 ] + _match [ 1 ];
 
 
-                    _object.subgroup = `Handlers/Animation/Ease/${_path}/${_timing}`;
+                    _object.subgroup = `Handler/Animation/Ease/${_path}/${_timing}`;
                 }
             }
         }
@@ -1998,6 +2064,31 @@ class Ui
 
 
             this.clean.blankCards ( );
+        }
+
+        /**
+         * Sets cards
+         * @private
+         * @name _setCards
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _setCards ( element )
+        {
+            let _link = element.srcElement;
+
+
+            element.preventDefault ( );
+
+
+            PAGE = new Page ( _link );
+
+
+            ( cardObjects [ PAGE.group ] [ PAGE.type ] )
+
+                ? this._setAlbumCards ( )
+
+                : this._setByrneSystemsLogo ( );
         }
 
         /**
@@ -2045,76 +2136,23 @@ class Ui
                         _open.addEventListener ( 'click', ( ) => UI.toggle.navigation ( ) );
                     }
 
-                case 'navMainLinks':
+                case 'navButtons':
 
-                    let _mainButtons      = [ ...document.querySelectorAll ( 'nav button.collapsed' ) ];    // Convert: NodeList into Array
+                    let _buttons = document.querySelector ( '#nav-links' ).querySelectorAll ( 'button' );
 
-                    let _animationButtons =
-                    [
-                        document.querySelector ( '#animation-collapse > button:nth-child(1)' ),
-                        document.querySelector ( '#animation-collapse > button:nth-child(3)' )
-                    ]
-
-                    let _regex = new RegExp ( 'animation-(\\w+\-)?collapse' );
-
-                    ////    LOGIC    ///////////////////////////////////////////////////
-
-                        for ( let _i = 0; _i &lt; _mainButtons.length; _i++ )              // Splice: Animation buttons
-
-                            if ( _regex.test ( _mainButtons [ _i ].getAttribute ( "data-bs-target" ) ) )
-                            {
-                                _mainButtons.splice ( _i, 1 );
-
-                                _i--;
-                            }
-
-
-                        for ( let _button of _mainButtons )                             // Add: Event listeners to main buttons
-
-                            _button.addEventListener ( 'click', ( element ) =>
-                                {
-                                    this._collapseButtons ( _mainButtons, element.target.attributes [ "data-bs-target" ].textContent );
-
-                                    UI.toggle.externalLinks ( element );
-                                } );
-
-
-                        for ( let _button of _animationButtons )                        // Add: Event listeners to sub Animation buttons
-
-                            _button.addEventListener ( 'click', ( element ) =>
-                                {
-                                    let _present = element.target.attributes [ "data-bs-target" ].textContent;
-
-                                        _present = _present.match ( _regex ) [ 1 ].replace ( '-', '' );
-
-
-                                    ( _present === 'objects' ) ? this._checkCollapsible ( _animationButtons, 1 )
-
-                                                               : this._checkCollapsible ( _animationButtons, 0 );
-                                } );
-
-                case 'navPageLinks':
-
-                    let _buttons =
-                    [
-                        ... document.querySelectorAll ( '.mb-1:nth-child(-n+5) ul.btn-toggle-nav > li > a' ),
-
-                        ... document.querySelectorAll ( '.mb-2:nth-child(-n+4) ul.btn-toggle-nav > li > a' )
-                    ]
 
                     for ( let _button of _buttons )
 
-                        _button.addEventListener ( 'click', ( element ) =>
-                            {
-                                PAGE = new Page ( _button );
+                        _button.addEventListener ( 'click', ( ) => this.toggle._navDropdown ( _button ) );
+
+                case 'navLinks':
+
+                    let _links = document.querySelector ( '#nav-links' ).querySelectorAll ( 'a' );
 
 
-                                ( cardObjects [ PAGE.group ] [ PAGE.type ] )
+                    for ( let _link of _links )
 
-                                    ? this._setAlbumCards ( )
-
-                                    : this._setByrneSystemsLogo ( );
-                            } );
+                        _link.addEventListener ( 'click', ( element ) => this._setCards ( element, _link ) );
 
                 case 'copy':
 
@@ -2146,6 +2184,74 @@ class Ui
 
                         _labOpen.addEventListener ( 'click', ( ) => UI.toggle.fullscreen ( ) );
             }
+        }
+
+    ////    GETTERS    /////////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Returns a button for navigation links
+         * @private
+         * @name _getButton
+         * @function
+         * @param           {Object} button                     Navigation link object
+         * @return          {HTMLElement}                       List item HTML element
+         */
+        _getButton ( button )
+        {
+            let _li     = document.createElement ( 'li' );
+
+            let _button = document.createElement ( 'button' );
+
+            let _id     = button.title.toLowerCase ( ) + '-collapse';
+
+                _button.innerHTML = button.title;
+
+
+                _button.setAttribute ( 'data-bs-target',   _id   );
+
+                _button.setAttribute ( 'data-button-open', false );
+
+
+                _button.classList.add ( 'btn', 'btn-toggle', 'align-items-center', 'rounded', 'collapsed' );
+
+
+                _li.append ( _button );
+
+
+            return _li;
+        }
+
+        /**
+         * Returns a link for navigation links
+         * @private
+         * @name _getLink
+         * @function
+         * @param           {Object} link                       Navigation link object
+         * @return          {HTMLElement}                       List item HTML element
+         */
+        _getLink ( link )
+        {
+            let _li    = document.createElement ( 'li'  );
+
+            let _img   = document.createElement ( 'img' );
+
+            let _a     = document.createElement ( 'a'   );
+
+            let _cover = ( link.group === 'Animation' ) ? 'Object' : link.group;
+
+                _img.src = `images/svg/${_cover}/${link.title}.svg`;
+
+                _li.append ( _img );
+
+
+                _a.href      = `#${link.group}${link.title}`;
+
+                _a.innerHTML = link.title;
+
+                _li.append ( _a );
+
+
+            return _li;
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
@@ -2297,7 +2403,7 @@ class Ui
 
                 let _img     = document.createElement ( 'img' );
 
-                    _img.src = `images/svg/Handlers/Animation/Ease/${_path}/${_timing}.svg`;
+                    _img.src = `images/svg/Handler/Animation/Ease/${_path}/${_timing}.svg`;
 
 
                 let _span           = document.createElement ( 'span' );
@@ -3576,7 +3682,213 @@ class Ui
         }
     }
 
+    let _navLinks =
+    [
+        {
+            title: 'Objects',
+            links:
+            [
+                {
+                    title: 'Line',
+                    links: null,
+                    group: 'Object'
+                },
+                {
+                    title: 'Circle',
+                    links: null,
+                    group: 'Object'
+                },
+                {
+                    title: 'Rectangle',
+                    links: null,
+                    group: 'Object'
+                },
+                {
+                    title: 'Text',
+                    links: null,
+                    group: 'Object'
+                },
+                {
+                    title: 'Group',
+                    links: null,
+                    group: 'Object'
+                }
+            ]
+        },
+        {
+            title: 'Subjects',
+            links:
+            [
+                {
+                    title: 'Color',
+                    links:
+                    [
+                        {
+                            title: 'Model',
+                            links:
+                            [
+                                {
+                                    title: 'Rgb',
+                                    links: null,
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Hsl',
+                                    links: null,
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Hwb',
+                                    links: null,
+                                    group: 'Subject'
+                                }
+                            ]
+                        },
+                        {
+                            title: 'Properties',
+                            links:
+                            [
+                                {
+                                    title: 'ColorStop',
+                                    links: null,
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'ColorStops',
+                                    links: null,
+                                    group: 'Subject'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Draw',
+                    links:
+                    [
+                        {
+                            title: 'Stroke',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Fill',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Shadow',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Gradient',
+                            links: null,
+                            group: 'Subject'
+                        },
+                    ]
+                },
+                {
+                    title: 'Staging',
+                    links:
+                    [
+                        {
+                            title: 'Anchor',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Angle',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Aspect',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'ControlPoints',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Font',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Point',
+                            links: null,
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Stage',
+                            links: null,
+                            group: 'Subject'
+                        }
+                    ]
+                },
+            ]
+        },
+        {
+            title: 'Handlers',
+            links:
+            [
+                {
+                    title: 'Animation',
+                    links:
+                    [
+                        {
+                            title: 'Line',
+                            links: null,
+                            group: 'Animation'
+                        },
+                        {
+                            title: 'Circle',
+                            links: null,
+                            group: 'Animation'
+                        },
+                        {
+                            title: 'Rectangle',
+                            links: null,
+                            group: 'Animation'
+                        },
+                        {
+                            title: 'Text',
+                            links: null,
+                            group: 'Animation'
+                        },
+                        {
+                            title: 'Group',
+                            links: null,
+                            group: 'Animation'
+                        }
+                    ]
+                },
+            ]
+        }
+    ]
+
+
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Initializes classes for application use
+         * @private
+         * @name _setClasses ( )
+         * @function
+         */
+        function _setClasses ( )
+        {
+            for ( let _class of _classes )
+
+                ( typeof ( window [ _class.toUpperCase ( ) ] ) === 'undefined' )
+
+                    ? eval ( `window.${_class.toUpperCase ( )} = new ${_class};` )
+
+                    : console.log ( `[ ERROR ]: window.${_class.toUpperCase ( )} already exists !` );
+        }
 
         /**
          * Sets windows global variable space with this wrapper's declared classes
@@ -3586,13 +3898,12 @@ class Ui
          */
         function _setEnvironment ( )
         {
-            for ( let _class of _classes )
+            let _navList = document.querySelector ( '#nav-links' );
 
-                ( typeof ( window [ _class.toUpperCase ( ) ] ) === 'undefined' )
 
-                    ? eval ( `window.${_class.toUpperCase ( )} = new ${_class};` )
+            _setClasses ( );
 
-                    : console.log ( `[ ERROR ]: window.${_class.toUpperCase ( )} already exists !` );
+            UI.setNavLinks ( _navList, _navLinks );
 
 
             if ( typeof ( window.cardObjects ) === 'undefined' )
@@ -3690,13 +4001,13 @@ class Ui
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-devSuite.html">devSuite</a></li></ul><h3>Classes</h3><ul><li><a href="Lab.html">Lab</a></li><li><a href="Log.html">Log</a></li><li><a href="Page.html">Page</a></li><li><a href="Template.html">Template</a></li><li><a href="Tool.html">Tool</a></li><li><a href="Ui.html">Ui</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_cardClose">_cardClose</a></li><li><a href="global.html#_cardPlus">_cardPlus</a></li><li><a href="global.html#_checkCollapsible">_checkCollapsible</a></li><li><a href="global.html#_cleanCode">_cleanCode</a></li><li><a href="global.html#_collapseButtons">_collapseButtons</a></li><li><a href="global.html#_createEasingButtons">_createEasingButtons</a></li><li><a href="global.html#_documentation">_documentation</a></li><li><a href="global.html#_download">_download</a></li><li><a href="global.html#_easingFunctions">_easingFunctions</a></li><li><a href="global.html#_embedEasingButtons">_embedEasingButtons</a></li><li><a href="global.html#_evalCardObjects">_evalCardObjects</a></li><li><a href="global.html#_getBlankCount">_getBlankCount</a></li><li><a href="global.html#_getBlankTemplates">_getBlankTemplates</a></li><li><a href="global.html#_getBoundingCharactersPositions">_getBoundingCharactersPositions</a></li><li><a href="global.html#_getCode">_getCode</a></li><li><a href="global.html#_getCodeTemplate">_getCodeTemplate</a></li><li><a href="global.html#_getColorPicker">_getColorPicker</a></li><li><a href="global.html#_getColumnCount">_getColumnCount</a></li><li><a href="global.html#_getSpecialVariables">_getSpecialVariables</a></li><li><a href="global.html#_getStandardTemplates">_getStandardTemplates</a></li><li><a href="global.html#_increment">_increment</a></li><li><a href="global.html#_incrementValue">_incrementValue</a></li><li><a href="global.html#_isNavOpen">_isNavOpen</a></li><li><a href="global.html#_modalCode">_modalCode</a></li><li><a href="global.html#_padZeros">_padZeros</a></li><li><a href="global.html#_setAlbumCards">_setAlbumCards</a></li><li><a href="global.html#_setByrneSystemsLogo">_setByrneSystemsLogo</a></li><li><a href="global.html#_setCardSection">_setCardSection</a></li><li><a href="global.html#_setColorPickerPosition">_setColorPickerPosition</a></li><li><a href="global.html#_setEventListeners">_setEventListeners</a></li><li><a href="global.html#_setFontSize">_setFontSize</a></li><li><a href="global.html#_setImagePath">_setImagePath</a></li><li><a href="global.html#_setNumbericValue">_setNumbericValue</a></li><li><a href="global.html#_setPropertiesBy">_setPropertiesBy</a></li><li><a href="global.html#_swapRgbValue">_swapRgbValue</a></li><li><a href="global.html#alert">alert</a></li><li><a href="global.html#blank">blank</a></li><li><a href="global.html#blankCards">blankCards</a></li><li><a href="global.html#cardButton">cardButton</a></li><li><a href="global.html#clean">clean</a></li><li><a href="global.html#clearScreen">clearScreen</a></li><li><a href="global.html#code">code</a></li><li><a href="global.html#copyCode">copyCode</a></li><li><a href="global.html#copyObjectWithKey">copyObjectWithKey</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#editor">editor</a></li><li><a href="global.html#entries">entries</a></li><li><a href="global.html#externalLinks">externalLinks</a></li><li><a href="global.html#fullscreen">fullscreen</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getClass">getClass</a></li><li><a href="global.html#group">group</a></li><li><a href="global.html#imageTags">imageTags</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#navigation">navigation</a></li><li><a href="global.html#runCode">runCode</a></li><li><a href="global.html#runEasingAnimation">runEasingAnimation</a></li><li><a href="global.html#script">script</a></li><li><a href="global.html#setCanvasSize">setCanvasSize</a></li><li><a href="global.html#standard">standard</a></li><li><a href="global.html#subStringRange">subStringRange</a></li><li><a href="global.html#subgroup">subgroup</a></li><li><a href="global.html#to2Digits">to2Digits</a></li><li><a href="global.html#toTitleCase">toTitleCase</a></li><li><a href="global.html#toggle">toggle</a></li><li><a href="global.html#type">type</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-devSuite.html">devSuite</a></li></ul><h3>Classes</h3><ul><li><a href="Lab.html">Lab</a></li><li><a href="Log.html">Log</a></li><li><a href="Page.html">Page</a></li><li><a href="Template.html">Template</a></li><li><a href="Tool.html">Tool</a></li><li><a href="Ui.html">Ui</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_cardClose">_cardClose</a></li><li><a href="global.html#_cardPlus">_cardPlus</a></li><li><a href="global.html#_checkCollapsible">_checkCollapsible</a></li><li><a href="global.html#_cleanCode">_cleanCode</a></li><li><a href="global.html#_collapseButtons">_collapseButtons</a></li><li><a href="global.html#_createEasingButtons">_createEasingButtons</a></li><li><a href="global.html#_documentation">_documentation</a></li><li><a href="global.html#_download">_download</a></li><li><a href="global.html#_easingFunctions">_easingFunctions</a></li><li><a href="global.html#_embedEasingButtons">_embedEasingButtons</a></li><li><a href="global.html#_evalCardObjects">_evalCardObjects</a></li><li><a href="global.html#_getBlankCount">_getBlankCount</a></li><li><a href="global.html#_getBlankTemplates">_getBlankTemplates</a></li><li><a href="global.html#_getBoundingCharactersPositions">_getBoundingCharactersPositions</a></li><li><a href="global.html#_getButton">_getButton</a></li><li><a href="global.html#_getCode">_getCode</a></li><li><a href="global.html#_getCodeTemplate">_getCodeTemplate</a></li><li><a href="global.html#_getColorPicker">_getColorPicker</a></li><li><a href="global.html#_getColumnCount">_getColumnCount</a></li><li><a href="global.html#_getLink">_getLink</a></li><li><a href="global.html#_getSpecialVariables">_getSpecialVariables</a></li><li><a href="global.html#_getStandardTemplates">_getStandardTemplates</a></li><li><a href="global.html#_increment">_increment</a></li><li><a href="global.html#_incrementValue">_incrementValue</a></li><li><a href="global.html#_isNavOpen">_isNavOpen</a></li><li><a href="global.html#_modalCode">_modalCode</a></li><li><a href="global.html#_navDropdown">_navDropdown</a></li><li><a href="global.html#_padZeros">_padZeros</a></li><li><a href="global.html#_setAlbumCards">_setAlbumCards</a></li><li><a href="global.html#_setByrneSystemsLogo">_setByrneSystemsLogo</a></li><li><a href="global.html#_setCardSection">_setCardSection</a></li><li><a href="global.html#_setCards">_setCards</a></li><li><a href="global.html#_setColorPickerPosition">_setColorPickerPosition</a></li><li><a href="global.html#_setEventListeners">_setEventListeners</a></li><li><a href="global.html#_setFontSize">_setFontSize</a></li><li><a href="global.html#_setImagePath">_setImagePath</a></li><li><a href="global.html#_setNumbericValue">_setNumbericValue</a></li><li><a href="global.html#_setPropertiesBy">_setPropertiesBy</a></li><li><a href="global.html#_swapRgbValue">_swapRgbValue</a></li><li><a href="global.html#alert">alert</a></li><li><a href="global.html#blank">blank</a></li><li><a href="global.html#blankCards">blankCards</a></li><li><a href="global.html#cardButton">cardButton</a></li><li><a href="global.html#clean">clean</a></li><li><a href="global.html#clearScreen">clearScreen</a></li><li><a href="global.html#code">code</a></li><li><a href="global.html#copyCode">copyCode</a></li><li><a href="global.html#copyObjectWithKey">copyObjectWithKey</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#editor">editor</a></li><li><a href="global.html#entries">entries</a></li><li><a href="global.html#externalLinks">externalLinks</a></li><li><a href="global.html#fullscreen">fullscreen</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getClass">getClass</a></li><li><a href="global.html#group">group</a></li><li><a href="global.html#imageTags">imageTags</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#navigation">navigation</a></li><li><a href="global.html#runCode">runCode</a></li><li><a href="global.html#runEasingAnimation">runEasingAnimation</a></li><li><a href="global.html#script">script</a></li><li><a href="global.html#setCanvasSize">setCanvasSize</a></li><li><a href="global.html#setNavLinks">setNavLinks</a></li><li><a href="global.html#standard">standard</a></li><li><a href="global.html#subStringRange">subStringRange</a></li><li><a href="global.html#subgroup">subgroup</a></li><li><a href="global.html#to2Digits">to2Digits</a></li><li><a href="global.html#toTitleCase">toTitleCase</a></li><li><a href="global.html#toggle">toggle</a></li><li><a href="global.html#type">type</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu May 02 2024 09:54:02 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon May 06 2024 07:44:13 GMT-0700 (Pacific Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

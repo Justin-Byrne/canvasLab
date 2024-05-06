@@ -125,6 +125,9 @@
 <dt><a href="#getClass">getClass(code)</a> ⇒ <code>string</code></dt>
 <dd><p>Returns the likely class name for the passed code</p>
 </dd>
+<dt><a href="#setNavLinks">setNavLinks(element, links)</a></dt>
+<dd><p>Sets navigation links</p>
+</dd>
 <dt><a href="#alert">alert(message, type)</a></dt>
 <dd><p>Displays an alert message within the modal</p>
 </dd>
@@ -592,6 +595,19 @@ Returns the likely class name for the passed code
 | Param | Type | Description |
 | --- | --- | --- |
 | code | <code>string</code> | Code string |
+
+<a name="setNavLinks"></a>
+
+## setNavLinks(element, links)
+Sets navigation links
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>HTMLElement</code> | Parent navigation element |
+| links | <code>Array.&lt;Object&gt;</code> | Array of Objects containing navigation link data |
 
 <a name="alert"></a>
 
