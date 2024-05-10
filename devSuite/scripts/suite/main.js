@@ -7,6 +7,11 @@
 {
     let _classes     = [ 'Template', 'Page', 'Tool', 'Ui', 'Lab' ];
 
+    /**
+     * Object of demo cards
+     * @type {Object.<Object>}
+     * @example { type: { subType: [ { title: 'title', text: 'text', code: function } ] } }
+     */
     let _cardObjects =
     {
         object:
@@ -1059,6 +1064,58 @@
                     }
                 },
                 {
+                    title: 'fill linear',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill radial',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill conic',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
                     title: 'fill color',
                     text: 'blah... blah... blah...',
                     code: ( ) =>
@@ -1066,6 +1123,68 @@
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill linear',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill radial',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill conic',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    },
+                },
+                {
+                    title: 'fill color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _text.fill.color = new Rgb ( 0,   150, 200, 1 );
+
+                        _text.draw ( );
                     }
                 },
             ],
@@ -1159,9 +1278,273 @@
                     }
                 },
             ],
+            fill:
+            [
+                {
+                    title: 'fill color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.color = new Rgb ( 0,  0,  0 );
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _circle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill linear',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _circle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill radial',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
+                                _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
+                                _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill conic',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
+                                _circle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
+                                _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
+                                _circle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
+                                _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.color = new Rgb ( 0,  0,  0 );
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _rectangle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill linear',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _rectangle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill radial',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
+                                _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
+                                _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill conic',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
+                                _rectangle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
+                                _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
+                                _rectangle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
+                                _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'stroke color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.stroke.color = new Rgb ( 0,  150,  200 );
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _line.strokeColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'stroke color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _text.fill.color = new Rgb ( 0,  150,  200 );
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _text.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+            ],
         }
     }
 
+    /**
+     * Array of navigation links
+     * @type {Array.<Object>}
+     * @example { title: 'Title', group: 'Icon folder', links: <Array.<Object>> | null }
+     */
     let _navLinks =
     [
         {
@@ -1170,27 +1553,22 @@
             [
                 {
                     title: 'Line',
-                    links: null,
                     group: 'Object'
                 },
                 {
                     title: 'Circle',
-                    links: null,
                     group: 'Object'
                 },
                 {
                     title: 'Rectangle',
-                    links: null,
                     group: 'Object'
                 },
                 {
                     title: 'Text',
-                    links: null,
                     group: 'Object'
                 },
                 {
                     title: 'Group',
-                    links: null,
                     group: 'Object'
                 }
             ]
@@ -1209,63 +1587,46 @@
                             [
                                 {
                                     title: 'Rgb',
-                                    links: null,
                                     group: 'Subject'
                                 },
                                 {
                                     title: 'Hsl',
-                                    links: null,
                                     group: 'Subject'
                                 },
                                 {
                                     title: 'Hwb',
-                                    links: null,
                                     group: 'Subject'
                                 }
                             ]
-                        },
-                        {
-                            title: 'Properties',
-                            links:
-                            [
-                                {
-                                    title: 'ColorStop',
-                                    links: null,
-                                    group: 'Subject'
-                                },
-                                {
-                                    title: 'ColorStops',
-                                    links: null,
-                                    group: 'Subject'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    title: 'Draw',
-                    links:
-                    [
-                        {
-                            title: 'Stroke',
-                            links: null,
-                            group: 'Subject'
-                        },
-                        {
-                            title: 'Fill',
-                            links: null,
-                            group: 'Subject'
-                        },
-                        {
-                            title: 'Shadow',
-                            links: null,
-                            group: 'Subject'
                         },
                         {
                             title: 'Gradient',
-                            links: null,
-                            group: 'Subject'
-                        },
+                            links:
+                            [
+                                {
+                                    title: 'Properties',
+                                    links:
+                                    [
+                                        {
+                                            title: 'Stop',
+                                            group: 'Subject'
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: 'Linear',
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Radial',
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Conic',
+                                    group: 'Subject'
+                                },
+                            ]
+                        }
                     ]
                 },
                 {
@@ -1274,40 +1635,45 @@
                     [
                         {
                             title: 'Anchor',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'Angle',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'Aspect',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'ControlPoints',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'Font',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'Point',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'Stage',
-                            links: null,
                             group: 'Subject'
                         }
                     ]
+                },
+                {
+                    title: 'Stroke',
+                    group: 'Subject'
+                },
+                {
+                    title: 'Fill',
+                    group: 'Subject'
+                },
+                {
+                    title: 'Shadow',
+                    group: 'Subject'
                 },
             ]
         },
@@ -1321,35 +1687,21 @@
                     [
                         {
                             title: 'Line',
-                            links: null,
                             group: 'Animation'
                         },
                         {
-                            title: 'Circle',
-                            links: null,
+                            title: 'Anchor',
                             group: 'Animation'
                         },
                         {
-                            title: 'Rectangle',
-                            links: null,
+                            title: 'Fill',
                             group: 'Animation'
                         },
-                        {
-                            title: 'Text',
-                            links: null,
-                            group: 'Animation'
-                        },
-                        {
-                            title: 'Group',
-                            links: null,
-                            group: 'Animation'
-                        }
                     ]
                 },
             ]
         }
     ]
-
 
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
 
@@ -1462,7 +1814,7 @@
             }
             else
 
-                console.error ( '[ ERROR ]: window.cardObjects is not available !');
+                console.error ( '[ ERROR ]: window.cardObjects is not available !' );
         }
 
 

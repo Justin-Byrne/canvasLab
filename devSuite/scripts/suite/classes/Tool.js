@@ -6,7 +6,22 @@ class Tool
 {
     constructor ( ) { }
 
-    ////    UTILITIES    ///////////////////////////////////////////////////////////////////////
+    ////    VALIDATORS    //////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Whether the passed value is an 'Object' canvasLab category
+         * @public
+         * @name isCanvasLabObject
+         * @function
+         * @param           {string} value                      Object, i.e.: 'Line', 'Circle', 'Rectangle', etc...
+         * @return          {boolean}                           True || False
+         */
+        isCanvasLabObject ( value )
+        {
+            return [ 'Line', 'Circle', 'Rectangle', 'Text' ].includes ( value );
+        }
+
+    ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
 
         /**
          * Simple programmatic delay

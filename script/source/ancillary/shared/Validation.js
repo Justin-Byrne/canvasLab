@@ -6,7 +6,7 @@ const VALIDATION =
 {
     is256 ( value )
     {
-        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 255 )  );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 255 ) );
     },
     isAnchor ( value )
     {
@@ -18,13 +18,22 @@ const VALIDATION =
 
         return false;
     },
+    isAngle ( value )
+    {
+        if ( value instanceof Angle ) return true;
+
+
+        return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
+    },
     isAlpha ( value )
     {
         return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  )  );
     },
     isAspect ( value )
     {
-        let _aspect = ( value instanceof Aspect );
+        if ( value instanceof Aspect ) return true;
+
+        // // // // // // // // // // // // // // // // // // // // // // // //
 
         let _length = ( Object.keys ( value ).length == 2 );
 
@@ -33,7 +42,7 @@ const VALIDATION =
         let _height = ( value.hasOwnProperty ( 'height' ) ) ? ( typeof value.height === 'number' ) : false;
 
 
-        return ( _aspect || _width && _height && _length );
+        return ( _width && _height && _length );
     },
     isBlur ( value )
     {
@@ -279,19 +288,6 @@ const VALIDATION =
 
         return false;
     },
-    isColorStop ( value )
-    {
-        // @TODO: a more robust & informative checking system should be put into place here, while considering performance !
-
-        let _array = ( Array.isArray ( value )          &&  ( value.length === 2 ) );
-
-        let _stop  = ( typeof value [ 0 ] === 'number'  &&  ( value [ 0 ] >= 0 &&  value [ 0 ] <= 1 ) );
-
-        let _color = ( typeof value [ 1 ] === 'string' );
-
-
-        return ( _array  &&  _stop  &&  _color );
-    },
     isDecimal ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  ) );
@@ -304,6 +300,17 @@ const VALIDATION =
     {
         return [ 'solid', 'linear', 'radial', 'conic', 'pattern' ].includes ( value );
     },
+    isGradient ( value )
+    {
+        if ( value instanceof Linear ) return true;
+
+        if ( value instanceof Radial ) return true;
+
+        if ( value instanceof Conic  ) return true;
+
+
+        return false;
+    },
     isInDom ( elementId )
     {
         return ( document.getElementById ( elementId ) != null );
@@ -314,7 +321,9 @@ const VALIDATION =
     },
     isPoint ( value )
     {
-        let _point  = ( value instanceof Point );
+        if ( value instanceof Point ) return true;
+
+        // // // // // // // // // // // // // // // // // // // // // // // //
 
         let _length = ( Object.keys ( value ).length == 2 );
 
@@ -323,7 +332,7 @@ const VALIDATION =
         let _y      = ( value.hasOwnProperty ( 'y' ) ) ? ( typeof value.y === 'number' ) : false;
 
 
-        return ( _point || _length && _x && _y );
+        return ( _length && _x && _y );
     },
     isRadian ( value )
     {
@@ -354,6 +363,21 @@ const VALIDATION =
 
 
         return ( Array.isArray ( value ) ) ? isArrayNumeric ( value ) : false;
+    },
+    isStop ( value )
+    {
+        if ( value instanceof Stop ) return true;
+
+        // // // // // // // // // // // // // // // // // // // // // // // //
+
+        let _object = ( typeof value === 'object'  &&  ! Array.isArray ( value ) );
+
+        let _offset = ( value.hasOwnProperty ( 'offset' ) ) ? VALIDATION.isNumber     ( value.offset ) : false;
+
+        let _color  = ( value.hasOwnProperty ( 'color'  ) ) ? VALIDATION.isColorModel ( value.color  ) : false;
+
+
+        return ( _object && _offset && _color );
     },
     isStrokeType ( value )
     {

@@ -76,11 +76,11 @@ declare FILES_HEAD=(
 # ------------------------------------ #
 declare FOLDERS=(
     "${INPUT_FOLDER}/classes/Subject/Color/Model"
-    "${INPUT_FOLDER}/classes/Subject/Color/Model/Properties"
-    "${INPUT_FOLDER}/classes/Subject/Color"
-    "${INPUT_FOLDER}/classes/Subject/Draw"
     "${INPUT_FOLDER}/classes/Subject/Staging/Properties"
     "${INPUT_FOLDER}/classes/Subject/Staging"
+    "${INPUT_FOLDER}/classes/Subject/Color/Gradient/Properties"
+    "${INPUT_FOLDER}/classes/Subject/Color/Gradient"
+    "${INPUT_FOLDER}/classes/Subject"
     "${INPUT_FOLDER}/classes/Subject/Collections"
     "${INPUT_FOLDER}/classes/Object"
     "${INPUT_FOLDER}/classes/Object/Collections"
@@ -151,7 +151,7 @@ main ()
 
     compile_md2json
 
-    # compile_plantuml
+    compile_plantuml
 
     compile_readme
 

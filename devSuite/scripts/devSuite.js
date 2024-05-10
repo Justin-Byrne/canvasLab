@@ -66,7 +66,7 @@ String.prototype.subStringRange = function ( start, end, substring )
     return this.substring ( 0, start ) + substring + this.substring ( end );
 };
  
-/**
+ /**
  * @class           {Object} Lab                        Lab with ace-editor
  * @property        {Object} editor                     Primary ace-editor object
  */
@@ -1251,7 +1251,22 @@ class Tool
 {
     constructor ( ) { }
 
-    ////    UTILITIES    ///////////////////////////////////////////////////////////////////////
+    ////    VALIDATORS    //////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Whether the passed value is an 'Object' canvasLab category
+         * @public
+         * @name isCanvasLabObject
+         * @function
+         * @param           {string} value                      Object, i.e.: 'Line', 'Circle', 'Rectangle', etc...
+         * @return          {boolean}                           True || False
+         */
+        isCanvasLabObject ( value )
+        {
+            return [ 'Line', 'Circle', 'Rectangle', 'Text' ].includes ( value );
+        }
+
+    ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
 
         /**
          * Simple programmatic delay
@@ -1397,7 +1412,7 @@ class Ui
          * @function
          * @param           {HTMLElement} element               Main button element
          */
-        externalLinks: ( element ) =>
+        externalLinks ( element )
         {
             let _links = document.querySelector ( '.external-links' );
 
@@ -1471,7 +1486,7 @@ class Ui
          * @function
          * @param           {HTMLElement} button                Button under the #control-panel .button class
          */
-        fullscreen: ( ) =>
+        fullscreen ( )
         {
             let _main        = document.querySelector ( 'main' );
 
@@ -1523,7 +1538,7 @@ class Ui
          * @function
          * @param           {HTMLElement} element               Main button element
          */
-        _modalCode: ( element ) =>
+        _modalCode ( element )
         {
             let _element   = element.offsetParent;
 
@@ -1567,9 +1582,9 @@ class Ui
          * @function
          * @param           {HTMLElement} element               Index of animation card
          */
-        _easingFunctions: ( element ) =>
+        _easingFunctions ( element )
         {
-            this._embedEasingButtons ( );
+            UI._embedEasingButtons ( );
 
 
             let _index     = Number ( element.getAttribute ( 'suite-data-index' ) );
@@ -1687,7 +1702,7 @@ class Ui
          */
         _navDropdown ( element )
         {
-            let _ul     = element.parentNode.nextSibling;
+            let _ul     = ( element.parentNode.nextSibling.data ) ? element.parentNode.nextSibling.nextSibling : element.parentNode.nextSibling;
 
             let _isOpen = ( element.getAttribute ( 'data-button-open' ) === 'false' );
 
@@ -1894,6 +1909,76 @@ class Ui
             return `( ( window ) =>\n{\n${_codes.join ( '\n\n' )}\n\n} ) ( window );`
         }
 
+        /**
+         * Returns a button for navigation links
+         * @private
+         * @name _getButton
+         * @function
+         * @param           {Object} button                     Navigation link object
+         * @return          {HTMLElement}                       List item HTML element
+         */
+        _getButton ( button )
+        {
+            let _li     = document.createElement ( 'li' );
+
+            let _button = document.createElement ( 'button' );
+
+            let _id     = button.title.toLowerCase ( ) + '-collapse';
+
+                _button.innerHTML = button.title;
+
+
+                _button.setAttribute ( 'data-bs-target',   _id   );
+
+                _button.setAttribute ( 'data-button-open', false );
+
+
+                _button.classList.add ( 'btn', 'btn-toggle', 'align-items-center', 'rounded', 'collapsed' );
+
+
+                _li.append ( _button );
+
+
+            return _li;
+        }
+
+        /**
+         * Returns a link for navigation links
+         * @private
+         * @name _getLink
+         * @function
+         * @param           {Object} link                       Navigation link object
+         * @return          {HTMLElement}                       List item HTML element
+         */
+        _getLink ( link )
+        {
+            let _li   = document.createElement ( 'li'  );
+
+            let _img  = document.createElement ( 'img' );
+
+            let _a    = document.createElement ( 'a'   );
+
+            let _icon = ( link.group === 'Animation' ) ? ( TOOL.isCanvasLabObject ( link.title ) ) ? 'Object' : 'Subject' : link.group;
+
+
+                _a.href      = `#${link.group}${link.title}`;
+
+                _a.innerHTML = link.title;
+
+
+                _img.src = `images/svg/${_icon}/${link.title}.svg`;
+
+
+                _li.append ( _img );
+
+                _li.append ( _a   );
+
+                _li.classList.add ( 'nav-link' );
+
+
+            return _li;
+        }
+
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
 
         /**
@@ -1918,7 +2003,7 @@ class Ui
 
                         _ul.id  = ( _id ) ? _id : String.empty;
 
-                        _ul.classList.add ( 'collapse', 'btn-toggle-nav', 'list-unstyled', 'fw-normal', 'pb-1' );
+                        _ul.classList.add ( 'collapse' );
 
 
                     element.append ( _button );
@@ -2110,7 +2195,14 @@ class Ui
 
                 case 'navButtons':
 
-                    let _buttons = document.querySelector ( '#nav-links' ).querySelectorAll ( 'button' );
+                    let _buttons = new Array;
+
+                    let _menus   = document.querySelectorAll ( '.nav-menu' );
+
+
+                    for ( let _menu of _menus )
+
+                        _buttons.push ( ..._menu.querySelectorAll ( 'button' ) );
 
 
                     for ( let _button of _buttons )
@@ -2124,7 +2216,7 @@ class Ui
 
                     for ( let _link of _links )
 
-                        _link.addEventListener ( 'click', ( element ) => this._setCards ( element, _link ) );
+                        _link.addEventListener ( 'click', ( element ) => this._setCards ( element ) );
 
                 case 'copy':
 
@@ -2156,74 +2248,6 @@ class Ui
 
                         _labOpen.addEventListener ( 'click', ( ) => UI.toggle.fullscreen ( ) );
             }
-        }
-
-    ////    GETTERS    /////////////////////////////////////////////////////////////////////////////
-
-        /**
-         * Returns a button for navigation links
-         * @private
-         * @name _getButton
-         * @function
-         * @param           {Object} button                     Navigation link object
-         * @return          {HTMLElement}                       List item HTML element
-         */
-        _getButton ( button )
-        {
-            let _li     = document.createElement ( 'li' );
-
-            let _button = document.createElement ( 'button' );
-
-            let _id     = button.title.toLowerCase ( ) + '-collapse';
-
-                _button.innerHTML = button.title;
-
-
-                _button.setAttribute ( 'data-bs-target',   _id   );
-
-                _button.setAttribute ( 'data-button-open', false );
-
-
-                _button.classList.add ( 'btn', 'btn-toggle', 'align-items-center', 'rounded', 'collapsed' );
-
-
-                _li.append ( _button );
-
-
-            return _li;
-        }
-
-        /**
-         * Returns a link for navigation links
-         * @private
-         * @name _getLink
-         * @function
-         * @param           {Object} link                       Navigation link object
-         * @return          {HTMLElement}                       List item HTML element
-         */
-        _getLink ( link )
-        {
-            let _li    = document.createElement ( 'li'  );
-
-            let _img   = document.createElement ( 'img' );
-
-            let _a     = document.createElement ( 'a'   );
-
-            let _cover = ( link.group === 'Animation' ) ? 'Object' : link.group;
-
-                _img.src = `images/svg/${_cover}/${link.title}.svg`;
-
-                _li.append ( _img );
-
-
-                _a.href      = `#${link.group}${link.title}`;
-
-                _a.innerHTML = link.title;
-
-                _li.append ( _a );
-
-
-            return _li;
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
@@ -2297,7 +2321,7 @@ class Ui
          * @function
          * @return          {boolean}                           True | False
          */
-        _isNavOpen       = ( )             => ( document.querySelector ( 'nav' ).style.left === '0px' );
+        _isNavOpen       = (             ) => ( document.querySelector ( 'nav' ).style.left === '0px' );
 
         /**
          * Runs code from within the passed 'cardObjects' param
@@ -2499,6 +2523,11 @@ class Ui
 {
     let _classes     = [ 'Template', 'Page', 'Tool', 'Ui', 'Lab' ];
 
+    /**
+     * Object of demo cards
+     * @type {Object.<Object>}
+     * @example { type: { subType: [ { title: 'title', text: 'text', code: function } ] } }
+     */
     let _cardObjects =
     {
         object:
@@ -3551,6 +3580,58 @@ class Ui
                     }
                 },
                 {
+                    title: 'fill linear',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill radial',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill conic',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
                     title: 'fill color',
                     text: 'blah... blah... blah...',
                     code: ( ) =>
@@ -3558,6 +3639,68 @@ class Ui
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
 
                         _rectangle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill linear',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill radial',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title: 'fill conic',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    },
+                },
+                {
+                    title: 'fill color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _text.fill.color = new Rgb ( 0,   150, 200, 1 );
+
+                        _text.draw ( );
                     }
                 },
             ],
@@ -3651,9 +3794,273 @@ class Ui
                     }
                 },
             ],
+            fill:
+            [
+                {
+                    title: 'fill color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.color = new Rgb ( 0,  0,  0 );
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _circle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill linear',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _circle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill radial',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
+                                _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
+                                _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill conic',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
+                                _circle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
+                                _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
+                                _circle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
+                                _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.color = new Rgb ( 0,  0,  0 );
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _rectangle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill linear',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _rectangle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill radial',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
+                                _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
+                                _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'fill conic',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
+                                _rectangle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
+                                _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
+                                _rectangle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
+                                _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'stroke color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _line.stroke.color = new Rgb ( 0,  150,  200 );
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _line.strokeColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+                {
+                    title: 'stroke color',
+                    text: 'blah... blah... blah...',
+                    code: ( ) =>
+                    {
+                        _text.fill.color = new Rgb ( 0,  150,  200 );
+
+                        let _flow =
+                        {
+                            duration: 1000,
+                            timing: 'easeInSine',
+                            draw ( progress )
+                            {
+                                _text.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                            }
+                        }
+
+                        canvaslab.animate ( _flow );
+                    }
+                },
+            ],
         }
     }
 
+    /**
+     * Array of navigation links
+     * @type {Array.<Object>}
+     * @example { title: 'Title', group: 'Icon folder', links: <Array.<Object>> | null }
+     */
     let _navLinks =
     [
         {
@@ -3662,27 +4069,22 @@ class Ui
             [
                 {
                     title: 'Line',
-                    links: null,
                     group: 'Object'
                 },
                 {
                     title: 'Circle',
-                    links: null,
                     group: 'Object'
                 },
                 {
                     title: 'Rectangle',
-                    links: null,
                     group: 'Object'
                 },
                 {
                     title: 'Text',
-                    links: null,
                     group: 'Object'
                 },
                 {
                     title: 'Group',
-                    links: null,
                     group: 'Object'
                 }
             ]
@@ -3701,63 +4103,46 @@ class Ui
                             [
                                 {
                                     title: 'Rgb',
-                                    links: null,
                                     group: 'Subject'
                                 },
                                 {
                                     title: 'Hsl',
-                                    links: null,
                                     group: 'Subject'
                                 },
                                 {
                                     title: 'Hwb',
-                                    links: null,
                                     group: 'Subject'
                                 }
                             ]
-                        },
-                        {
-                            title: 'Properties',
-                            links:
-                            [
-                                {
-                                    title: 'ColorStop',
-                                    links: null,
-                                    group: 'Subject'
-                                },
-                                {
-                                    title: 'ColorStops',
-                                    links: null,
-                                    group: 'Subject'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    title: 'Draw',
-                    links:
-                    [
-                        {
-                            title: 'Stroke',
-                            links: null,
-                            group: 'Subject'
-                        },
-                        {
-                            title: 'Fill',
-                            links: null,
-                            group: 'Subject'
-                        },
-                        {
-                            title: 'Shadow',
-                            links: null,
-                            group: 'Subject'
                         },
                         {
                             title: 'Gradient',
-                            links: null,
-                            group: 'Subject'
-                        },
+                            links:
+                            [
+                                {
+                                    title: 'Properties',
+                                    links:
+                                    [
+                                        {
+                                            title: 'Stop',
+                                            group: 'Subject'
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: 'Linear',
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Radial',
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Conic',
+                                    group: 'Subject'
+                                },
+                            ]
+                        }
                     ]
                 },
                 {
@@ -3766,40 +4151,45 @@ class Ui
                     [
                         {
                             title: 'Anchor',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'Angle',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'Aspect',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'ControlPoints',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'Font',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'Point',
-                            links: null,
                             group: 'Subject'
                         },
                         {
                             title: 'Stage',
-                            links: null,
                             group: 'Subject'
                         }
                     ]
+                },
+                {
+                    title: 'Stroke',
+                    group: 'Subject'
+                },
+                {
+                    title: 'Fill',
+                    group: 'Subject'
+                },
+                {
+                    title: 'Shadow',
+                    group: 'Subject'
                 },
             ]
         },
@@ -3813,35 +4203,21 @@ class Ui
                     [
                         {
                             title: 'Line',
-                            links: null,
                             group: 'Animation'
                         },
                         {
-                            title: 'Circle',
-                            links: null,
+                            title: 'Anchor',
                             group: 'Animation'
                         },
                         {
-                            title: 'Rectangle',
-                            links: null,
+                            title: 'Fill',
                             group: 'Animation'
                         },
-                        {
-                            title: 'Text',
-                            links: null,
-                            group: 'Animation'
-                        },
-                        {
-                            title: 'Group',
-                            links: null,
-                            group: 'Animation'
-                        }
                     ]
                 },
             ]
         }
     ]
-
 
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
 
@@ -3954,7 +4330,7 @@ class Ui
             }
             else
 
-                console.error ( '[ ERROR ]: window.cardObjects is not available !');
+                console.error ( '[ ERROR ]: window.cardObjects is not available !' );
         }
 
 

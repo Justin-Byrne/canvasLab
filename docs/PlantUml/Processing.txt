@@ -6,6 +6,9 @@ skinparam DefaultFontName Courier New
 class Processing {
 point    {Point}
 canvas   {HTMLCanvasElement}
+__ Setter __
+__ Getter __
+__ Utility __
 }
 
 @enduml

@@ -1,0 +1,25 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Fill {
+gradient        <color:gray>{Object}</color>
+pattern         {Pattern}
+__ Setter __
+color           <color:gray>{Object}</color>
+type            <color:gray>{string}</color>
+gradient
+__ Getter __
+color           <color:gray>{Object}</color>
+type            <color:gray>{string}</color>
+gradient        <color:gray>{Object}</color>
+pattern         {Pattern}
+__ Utility __
+_isFillType
+_isColorModel
+_isGradient
+}
+
+Fill *-- Pattern
+@enduml

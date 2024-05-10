@@ -11,6 +11,62 @@ const UTILITIES =
 
         if ( value ) this._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
     },
+
+    /**
+     * Cycle colors for stroke
+     * @public
+     * @param           {Rgb}    start                              Starting RGB value
+     * @param           {Rgb}    end                                Ending RGB value
+     * @param           {number} progress                           Progress time unit; 0.00 - 1.00
+     * @param           {number} [max=1]                            Maximum increments
+     */
+    strokeColorCycle ( start, end, progress, max = 1 )
+    {
+        let _clear = ( ) => this._clearCanvas ( true );
+
+        let _draw  = ( ) => this.draw ( );
+
+
+        this._stroke._color._cycle ( start, end, progress, max, _clear, _draw );
+    },
+
+    /**
+     * Cycle colors for fill
+     * @public
+     * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+     * @param           {Rgb}    start                              Starting RGB value
+     * @param           {Rgb}    end                                Ending RGB value
+     * @param           {number} [max=1]                            Maximum increments
+     */
+    fillColorCycle ( start, end, progress, max = 1 )
+    {
+        let _clear = ( ) => this._clearCanvas ( true );
+
+        let _draw  = ( ) => this.draw ( );
+
+
+        this._fill.color._cycle ( start, end, progress, max, _clear, _draw );
+    },
+
+    /**
+     * Cycle colors for gradient
+     * @public
+     * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+     * @param           {Rgb}    start                              Starting RGB value
+     * @param           {Rgb}    end                                Ending RGB value
+     * @param           {number} stop                               Gradient color stop
+     * @param           {number} [max=1]                            Maximum increments
+     */
+    gradientColorCycle ( start, end, progress, stop, max = 1 )
+    {
+        let _clear = ( ) => this._clearCanvas ( true );
+
+        let _draw  = ( ) => this.draw ( );
+
+
+        this._fill.gradient._stopColorCycle ( start, end, progress, stop, max, _clear, _draw );
+    },
+
     /** @var            {Object} draw                                                               **/
     draw:
     {
@@ -129,6 +185,7 @@ const UTILITIES =
                    `${value [ 2 ].trim ( )}`                // BLUE
         }
     },
+
     pushPop ( object )
     {
         let _index = undefined;
@@ -170,6 +227,7 @@ const UTILITIES =
 
             console.warn ( `${this.constructor.name} only accepts '${this._storage.type.name}' objects !`);
     },
+
     rotatePoint ( origin = { x, y }, degree, distance )
     {
         let _point = new Point;
@@ -184,9 +242,18 @@ const UTILITIES =
 
         return _point;
     },
+
     /** @var            {Object} set                                                                **/
     set:
     {
+        /**
+         * Sets all option values throughout a collection
+         * @private
+         * @name all
+         * @function
+         * @param           {string}  property                          Option property
+         * @param           {boolean} value                             True || False
+         */
         all ( property, value )
         {
             let _ancestor = this.constructor.name.replace ( 'Collection', '' ).toLowerCase ( );
@@ -201,6 +268,13 @@ const UTILITIES =
 
                     _item [ _ancestor ] [ property ] = value;   // Set: child elements
         },
+
+        /**
+         * Sets shadow properties
+         * @private
+         * @name shadow
+         * @function
+         */
         shadow ( )
         {
             this._canvas.shadowBlur    = this._shadow.blur;
@@ -210,6 +284,68 @@ const UTILITIES =
             this._canvas.shadowOffsetY = this._shadow.y;
 
             this._canvas.shadowColor   = this._shadow.color.toCss ( );
+        },
+
+        /**
+         * Sets fill type of the associated object
+         * @private
+         * @name fillType
+         * @function
+         */
+        fillType ( )
+        {
+            /**
+             * Sets stops for gradient fill types
+             * @private
+             * @name _setStops
+             * @function
+             * @param           {Object}        gradient                    [description]
+             * @param           {Array.<Stops>} stops                       [description]
+             */
+            function _setStops ( gradient, stops )
+            {
+                for ( let _stop of stops )
+
+                    gradient.addColorStop ( _stop.offset, _stop.color.toCss ( ) );
+
+
+                return gradient;
+            }
+
+            switch ( this.fill.type )
+            {
+                case 'solid':   this._canvas.fillStyle = this.fill.color.toCss ( );                             break;
+
+                case 'linear':  let _linear = this._canvas.createLinearGradient ( this.fill.gradient.start.x, this.fill.gradient.start.y, this.fill.gradient.end.x, this.fill.gradient.end.y );
+
+                                this._canvas.fillStyle = _setStops ( _linear, this.fill.gradient.stops );       break;
+
+                case 'radial':  let _radial = this._canvas.createRadialGradient ( this.fill.gradient.start.x, this.fill.gradient.start.y, this.fill.gradient.startRadius, this.fill.gradient.end.x, this.fill.gradient.end.y, this.fill.gradient.endRadius );
+
+                                this._canvas.fillStyle = _setStops ( _radial, this.fill.gradient.stops );       break;
+
+                case 'conic':   let _conic = this._canvas.createConicGradient ( this.fill.gradient.angle, this.fill.gradient.point.y, this.fill.gradient.point.x );
+
+                                this._canvas.fillStyle = _setStops ( _conic, this.fill.gradient.stops );        break;
+            }
         }
+    },
+
+    /**
+     * Cycle colors for gradient stop(s)
+     * @private
+     * @name _stopColorCycle
+     * @function
+     * @param           {Object}   start                    Color model & values
+     * @param           {Object}   end                      Color model & values
+     * @param           {number}   progress                 Progress time unit; 0.00 - 1.00
+     * @param           {number}   stop                     Color stop to cycle
+     * @param           {number}   max                      Maximum number of steps between interpolation
+     * @param           {function} clear                    Clear callback from root object
+     * @param           {function} draw                     Draw callback from root object
+     */
+    _stopColorCycle ( start, end, progress, stop, max, clear, draw )
+    {
+        this.stops [ stop ].color._cycle ( start, end, progress, max, clear, draw );
     }
 }

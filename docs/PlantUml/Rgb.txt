@@ -19,6 +19,11 @@ blue
 __ Utility __
 toCss       <color:gray>{string}</color>
 _is256
+_lerp
+_lerpRgb
+_cycle
+clear
+draw
 }
 
 @enduml

@@ -1,0 +1,25 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Linear {
+start             {Point}
+end               {Point}
+stops             {Array}
+__ Setter __
+start             {Point}
+end               {Point}
+stops
+__ Getter __
+start             {Point}
+end               {Point}
+stops
+__ Utility __
+_isPoint
+_isStop
+_isColorModel
+_stopColorCycle
+}
+
+@enduml

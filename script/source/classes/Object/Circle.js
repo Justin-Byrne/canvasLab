@@ -56,6 +56,11 @@ class Circle
             this._setShadow   = UTILITIES.set.shadow;
             this._drawBorder  = UTILITIES.draw.border;
             this._drawAxis    = UTILITIES.draw.axis;
+            this._setFillType = UTILITIES.set.fillType;
+
+            this.strokeColorCycle   = UTILITIES.strokeColorCycle;
+            this.fillColorCycle     = UTILITIES.fillColorCycle;
+            this.gradientColorCycle = UTILITIES.gradientColorCycle;
 
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
@@ -292,6 +297,28 @@ class Circle
 
         _isAnchor ( ) { }
 
+        /**
+         * Check whether the passed object is already present
+         * @param           {Circle} circle                             Object to validate
+         */
+        isThere ( circle )
+        {
+            if ( circle instanceof this.constructor )
+
+                return (
+                           ( this.point.x == circle.point.x ) &&                // Point X
+
+                           ( this.point.y == circle.point.y ) &&                // Point Y
+
+                           ( this.radius  == circle.radius  )                   // Radius
+
+                       ) ? true : false;
+
+            else
+
+                console.warn ( `"${circle.constructor.name}" is not of type ${this.constructor.name}` );
+        }
+
     ////    UTILITIES   ////////////////////////////////////
 
         _rotatePoint ( ) { }
@@ -303,6 +330,8 @@ class Circle
         _drawBorder  ( ) { }
 
         _drawAxis    ( ) { }
+
+        _setFillType ( ) { }
 
         /**
          * Draws associated options
@@ -369,36 +398,11 @@ class Circle
             }
         }
 
-        /**
-         * Shows coordinates of this object
-         * @param           {number} [offset=10]                        Offset of coordinates y origin
-         * @param           {number} [fontSize=16]                      Coordinates font size
-         */
-        showCoordinates ( offset = 10, fontSize = 16 )
-        {
-            let _text  = new Text ( this.point, `( ${this.x}, ${this.y} )` );
+        strokeColorCycle   ( ) { }
 
-                _text.canvas         =  this.canvas;
+        fillColorCycle     ( ) { }
 
-                _text.size           =  fontSize;
-
-                _text.options.shadow =  false;
-
-                _text.offset.y       =  ( offset / 2 );
-
-
-                _text.options.shadow = true;
-
-
-                _text.shadow.color   = new Rgb ( 255, 255, 255 );
-
-                _text.shadow.blur    = 1;
-
-                _text.shadow.x       = _text.shadow.y    = 1;
-
-
-                _text.draw ( );
-        }
+        gradientColorCycle ( ) { }
 
         /**
          * Move this object
@@ -450,25 +454,34 @@ class Circle
         }
 
         /**
-         * Check whether the passed object is already present
-         * @param           {Circle} circle                             Object to validate
+         * Shows coordinates of this object
+         * @param           {number} [offset=10]                        Offset of coordinates y origin
+         * @param           {number} [fontSize=16]                      Coordinates font size
          */
-        isThere ( circle )
+        showCoordinates ( offset = 10, fontSize = 16 )
         {
-            if ( circle instanceof this.constructor )
+            let _text  = new Text ( this.point, `( ${this.x}, ${this.y} )` );
 
-                return (
-                           ( this.point.x == circle.point.x ) &&                // Point X
+                _text.canvas         =  this.canvas;
 
-                           ( this.point.y == circle.point.y ) &&                // Point Y
+                _text.size           =  fontSize;
 
-                           ( this.radius  == circle.radius  )                   // Radius
+                _text.options.shadow =  false;
 
-                       ) ? true : false;
+                _text.offset.y       =  ( offset / 2 );
 
-            else
 
-                console.warn ( `"${circle.constructor.name}" is not of type ${this.constructor.name}` );
+                _text.options.shadow = true;
+
+
+                _text.shadow.color   = new Rgb ( 255, 255, 255 );
+
+                _text.shadow.blur    = 1;
+
+                _text.shadow.x       = _text.shadow.y    = 1;
+
+
+                _text.draw ( );
         }
 
     ////    DRAW    ////////////////////////////////////////
@@ -492,7 +505,7 @@ class Circle
 
                 this._canvas.strokeStyle = this.stroke.color.toCss ( );
 
-                this._canvas.fillStyle   = this.fill.color.toCss ( );
+                this._setFillType ( );
 
                 this._canvas.lineWidth   = this.stroke.width;
 

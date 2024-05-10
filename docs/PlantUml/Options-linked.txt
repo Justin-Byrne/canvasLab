@@ -1,0 +1,35 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Options {
+[shadow=false]          <color:gray>{boolean}</color>
+[border=false]          <color:gray>{boolean}</color>
+[axis=false]            <color:gray>{boolean}</color>
+[points=false]          <color:gray>{boolean}</color>
+[anchor=false]          <color:gray>{boolean}</color>
+[coordinates=false]     <color:gray>{boolean}</color>
+[controlPoints=false]   <color:gray>{boolean}</color>
+master                  <color:gray>{Object}</color>
+__ Setter __
+shadow                  <color:gray>{boolean}</color>
+border                  <color:gray>{boolean}</color>
+axis                    <color:gray>{boolean}</color>
+anchor                  <color:gray>{boolean}</color>
+coordinates             <color:gray>{boolean}</color>
+controlPoints           <color:gray>{boolean}</color>
+master                  <color:gray>{Object}</color>
+__ Getter __
+shadow                  <color:gray>{boolean}</color>
+border                  <color:gray>{boolean}</color>
+axis                    <color:gray>{boolean}</color>
+anchor                  <color:gray>{boolean}</color>
+coordinates             <color:gray>{boolean}</color>
+controlPoints           <color:gray>{boolean}</color>
+master                  <color:gray>{Object}</color>
+__ Utility __
+_isCanvasLabObject
+}
+
+@enduml

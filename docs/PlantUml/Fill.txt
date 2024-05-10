@@ -4,23 +4,21 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Fill {
-linear          {GradientLinear}
-radial          {GradientRadial}
-conic           {GradientConic}
-pattern         {FillPattern}
+gradient        <color:gray>{Object}</color>
+pattern         {Pattern}
 __ Setter __
+color           <color:gray>{Object}</color>
 type            <color:gray>{string}</color>
-color
+gradient
 __ Getter __
+color           <color:gray>{Object}</color>
 type            <color:gray>{string}</color>
-linear          {GradientLinear}
-radial          {GradientRadioal}
-conic           {GradientConic}
-pattern         {FillPattern}
-color
+gradient        <color:gray>{Object}</color>
+pattern         {Pattern}
 __ Utility __
+_isFillType
 _isColorModel
-_init
+_isGradient
 }
 
 @enduml

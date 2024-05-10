@@ -66,7 +66,7 @@ class Ui
          * @function
          * @param           {HTMLElement} element               Main button element
          */
-        externalLinks: ( element ) =>
+        externalLinks ( element )
         {
             let _links = document.querySelector ( '.external-links' );
 
@@ -140,7 +140,7 @@ class Ui
          * @function
          * @param           {HTMLElement} button                Button under the #control-panel .button class
          */
-        fullscreen: ( ) =>
+        fullscreen ( )
         {
             let _main        = document.querySelector ( 'main' );
 
@@ -192,7 +192,7 @@ class Ui
          * @function
          * @param           {HTMLElement} element               Main button element
          */
-        _modalCode: ( element ) =>
+        _modalCode ( element )
         {
             let _element   = element.offsetParent;
 
@@ -236,9 +236,9 @@ class Ui
          * @function
          * @param           {HTMLElement} element               Index of animation card
          */
-        _easingFunctions: ( element ) =>
+        _easingFunctions ( element )
         {
-            this._embedEasingButtons ( );
+            UI._embedEasingButtons ( );
 
 
             let _index     = Number ( element.getAttribute ( 'suite-data-index' ) );
@@ -356,7 +356,7 @@ class Ui
          */
         _navDropdown ( element )
         {
-            let _ul     = element.parentNode.nextSibling;
+            let _ul     = ( element.parentNode.nextSibling.data ) ? element.parentNode.nextSibling.nextSibling : element.parentNode.nextSibling;
 
             let _isOpen = ( element.getAttribute ( 'data-button-open' ) === 'false' );
 
@@ -563,6 +563,76 @@ class Ui
             return `( ( window ) =>\n{\n${_codes.join ( '\n\n' )}\n\n} ) ( window );`
         }
 
+        /**
+         * Returns a button for navigation links
+         * @private
+         * @name _getButton
+         * @function
+         * @param           {Object} button                     Navigation link object
+         * @return          {HTMLElement}                       List item HTML element
+         */
+        _getButton ( button )
+        {
+            let _li     = document.createElement ( 'li' );
+
+            let _button = document.createElement ( 'button' );
+
+            let _id     = button.title.toLowerCase ( ) + '-collapse';
+
+                _button.innerHTML = button.title;
+
+
+                _button.setAttribute ( 'data-bs-target',   _id   );
+
+                _button.setAttribute ( 'data-button-open', false );
+
+
+                _button.classList.add ( 'btn', 'btn-toggle', 'align-items-center', 'rounded', 'collapsed' );
+
+
+                _li.append ( _button );
+
+
+            return _li;
+        }
+
+        /**
+         * Returns a link for navigation links
+         * @private
+         * @name _getLink
+         * @function
+         * @param           {Object} link                       Navigation link object
+         * @return          {HTMLElement}                       List item HTML element
+         */
+        _getLink ( link )
+        {
+            let _li   = document.createElement ( 'li'  );
+
+            let _img  = document.createElement ( 'img' );
+
+            let _a    = document.createElement ( 'a'   );
+
+            let _icon = ( link.group === 'Animation' ) ? ( TOOL.isCanvasLabObject ( link.title ) ) ? 'Object' : 'Subject' : link.group;
+
+
+                _a.href      = `#${link.group}${link.title}`;
+
+                _a.innerHTML = link.title;
+
+
+                _img.src = `images/svg/${_icon}/${link.title}.svg`;
+
+
+                _li.append ( _img );
+
+                _li.append ( _a   );
+
+                _li.classList.add ( 'nav-link' );
+
+
+            return _li;
+        }
+
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
 
         /**
@@ -587,7 +657,7 @@ class Ui
 
                         _ul.id  = ( _id ) ? _id : String.empty;
 
-                        _ul.classList.add ( 'collapse', 'btn-toggle-nav', 'list-unstyled', 'fw-normal', 'pb-1' );
+                        _ul.classList.add ( 'collapse' );
 
 
                     element.append ( _button );
@@ -779,7 +849,14 @@ class Ui
 
                 case 'navButtons':
 
-                    let _buttons = document.querySelector ( '#nav-links' ).querySelectorAll ( 'button' );
+                    let _buttons = new Array;
+
+                    let _menus   = document.querySelectorAll ( '.nav-menu' );
+
+
+                    for ( let _menu of _menus )
+
+                        _buttons.push ( ..._menu.querySelectorAll ( 'button' ) );
 
 
                     for ( let _button of _buttons )
@@ -793,7 +870,7 @@ class Ui
 
                     for ( let _link of _links )
 
-                        _link.addEventListener ( 'click', ( element ) => this._setCards ( element, _link ) );
+                        _link.addEventListener ( 'click', ( element ) => this._setCards ( element ) );
 
                 case 'copy':
 
@@ -825,74 +902,6 @@ class Ui
 
                         _labOpen.addEventListener ( 'click', ( ) => UI.toggle.fullscreen ( ) );
             }
-        }
-
-    ////    GETTERS    /////////////////////////////////////////////////////////////////////////////
-
-        /**
-         * Returns a button for navigation links
-         * @private
-         * @name _getButton
-         * @function
-         * @param           {Object} button                     Navigation link object
-         * @return          {HTMLElement}                       List item HTML element
-         */
-        _getButton ( button )
-        {
-            let _li     = document.createElement ( 'li' );
-
-            let _button = document.createElement ( 'button' );
-
-            let _id     = button.title.toLowerCase ( ) + '-collapse';
-
-                _button.innerHTML = button.title;
-
-
-                _button.setAttribute ( 'data-bs-target',   _id   );
-
-                _button.setAttribute ( 'data-button-open', false );
-
-
-                _button.classList.add ( 'btn', 'btn-toggle', 'align-items-center', 'rounded', 'collapsed' );
-
-
-                _li.append ( _button );
-
-
-            return _li;
-        }
-
-        /**
-         * Returns a link for navigation links
-         * @private
-         * @name _getLink
-         * @function
-         * @param           {Object} link                       Navigation link object
-         * @return          {HTMLElement}                       List item HTML element
-         */
-        _getLink ( link )
-        {
-            let _li    = document.createElement ( 'li'  );
-
-            let _img   = document.createElement ( 'img' );
-
-            let _a     = document.createElement ( 'a'   );
-
-            let _cover = ( link.group === 'Animation' ) ? 'Object' : link.group;
-
-                _img.src = `images/svg/${_cover}/${link.title}.svg`;
-
-                _li.append ( _img );
-
-
-                _a.href      = `#${link.group}${link.title}`;
-
-                _a.innerHTML = link.title;
-
-                _li.append ( _a );
-
-
-            return _li;
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
@@ -966,7 +975,7 @@ class Ui
          * @function
          * @return          {boolean}                           True | False
          */
-        _isNavOpen       = ( )             => ( document.querySelector ( 'nav' ).style.left === '0px' );
+        _isNavOpen       = (             ) => ( document.querySelector ( 'nav' ).style.left === '0px' );
 
         /**
          * Runs code from within the passed 'cardObjects' param

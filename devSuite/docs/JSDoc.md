@@ -83,6 +83,9 @@
 <dt><a href="#getCards">getCards(cardObjects)</a> ⇒ <code>Array</code></dt>
 <dd><p>Returns an Array of standard &amp; extra HTML templates for each card-object</p>
 </dd>
+<dt><a href="#isCanvasLabObject">isCanvasLabObject(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Whether the passed value is an &#39;Object&#39; canvasLab category</p>
+</dd>
 <dt><a href="#delay">delay(time)</a> ⇒ <code>Promise</code></dt>
 <dd><p>Simple programmatic delay</p>
 </dd>
@@ -443,6 +446,19 @@ Returns an Array of standard & extra HTML templates for each card-object
 | Param | Type | Description |
 | --- | --- | --- |
 | cardObjects | <code>Array.&lt;Object&gt;</code> | Array of card-objects |
+
+<a name="isCanvasLabObject"></a>
+
+## isCanvasLabObject(value) ⇒ <code>boolean</code>
+Whether the passed value is an 'Object' canvasLab category
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Object, i.e.: 'Line', 'Circle', 'Rectangle', etc... |
 
 <a name="delay"></a>
 

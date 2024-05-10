@@ -44,12 +44,12 @@ class Rgb
 		 */
 		set red ( value )
 		{
-			this._red = this._is256 ( value ) ? value : this._red;
+			this._red = this._is256 ( value ) ? Math.round ( value ) : this._red;
 		}
 
 		/**
 		 * Gets the red value
-		 * @public
+		 * @readOnly
 		 * @name red
 		 * @function
 		 * @param 			{number}							Red value; 0 - 255
@@ -70,12 +70,12 @@ class Rgb
 		 */
 		set green ( value )
 		{
-			this._green = this._is256 ( value ) ? value : this._green;
+			this._green = this._is256 ( value ) ? Math.round ( value ) : this._green;
 		}
 
 		/**
 		 * Gets the green value
-		 * @public
+		 * @readOnly
 		 * @name green
 		 * @function
 		 * @param 			{number} 							Green value; 0 - 255
@@ -96,12 +96,12 @@ class Rgb
 		 */
 		set blue ( value )
 		{
-			this._blue = this._is256 ( value ) ? value : this._blue;
+			this._blue = this._is256 ( value ) ? Math.round ( value ) : this._blue;
 		}
 
 		/**
 		 * Gets the blue value
-		 * @public
+		 * @readOnly
 		 * @name blue
 		 * @function
 		 * @param 			{number} 							Blue value; 0 - 255
@@ -127,5 +127,60 @@ class Rgb
 		toCss ( )
 		{
 			return `rgb(${this.red} ${this.green} ${this.blue} / ${this.alpha * 100}%)`;
+		}
+
+		/**
+		 * Linear interpolation color transitions
+		 * @private
+		 * @name _lerp
+		 * @function
+		 * @param  			{Object} start 						Color model & values
+		 * @param  			{Object} end 						Color model & values
+		 * @param 			{number} progress 					Progress time unit; 0.00 - 1.00
+		 * @param 			{number} max 						Maximum number of steps between interpolation
+		 */
+		_lerp ( start, end, progress, max )
+		{
+			return Math.round ( start + ( end - start ) * progress / max );
+		}
+
+		/**
+		 * Linear interpolation of Rgb values
+		 * @private
+		 * @name _lerpRgb
+		 * @function
+		 * @param  			{Object} start 						Color model & values
+		 * @param  			{Object} end 						Color model & values
+		 * @param 			{number} progress 					Progress time unit; 0.00 - 1.00
+		 * @param 			{number} max 						Maximum number of steps between interpolation
+		 */
+		_lerpRgb ( start, end, progress, max )
+	    {
+	    	this._red   = this._lerp ( start.red,   end.red,   progress, max );
+
+	    	this._green = this._lerp ( start.green, end.green, progress, max );
+
+	    	this._blue  = this._lerp ( start.blue,  end.blue,  progress, max );
+		}
+
+		/**
+		 * Color cycling
+		 * @private
+		 * @name _cycle
+		 * @function
+		 * @param  			{Object}   start					Color model & values
+		 * @param  			{Object}   end 						Color model & values
+		 * @param 			{number}   progress 				Progress time unit; 0.00 - 1.00
+		 * @param 			{number}   max 						Maximum number of steps between interpolation
+		 * @param 			{function} clear 					Clear callback from root object
+		 * @param 			{function} draw 					Draw callback from root object
+		 */
+		_cycle ( start, end, progress, max, clear, draw )
+	    {
+	    	this._lerpRgb ( start, end, progress, max );
+
+	    	clear ( );
+
+	    	draw ( );
 		}
 }

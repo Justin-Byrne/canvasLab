@@ -4,53 +4,57 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Circle {
-point             {Point}
-[radius=25]       <color:gray>{number}</color>
-angle             {Angle}
-stroke            {Stroke}
-fill              {Fill}
-shadow            {Shadow}
-canvas            {HTMLCanvasElement}
+point                {Point}
+[radius=25]          <color:gray>{number}</color>
+angle                {Angle}
+stroke               {Stroke}
+fill                 {Fill}
+shadow               {Shadow}
+canvas               {HTMLCanvasElement}
 __ Setter __
-point             {Point}
-x                 <color:gray>{number}</color>
-y                 <color:gray>{number}</color>
-radius            <color:gray>{number}</color>
-canvas            <color:gray>{string}</color>
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+radius               <color:gray>{number}</color>
+canvas               <color:gray>{string}</color>
 __ Getter __
-point             {Point}
-x                 <color:gray>{number}</color>
-y                 <color:gray>{number}</color>
-radius            <color:gray>{number}</color>
-angle             {Angle}
-stroke            {Stroke}
-fill              {Fill}
-shadow            {Shadow}
-canvas            <color:gray>{string}</color>
-anchor            {Anchor}
-options           {Options}
-area              <color:gray>{number}</color>
-diameter          <color:gray>{number}</color>
-circumference     <color:gray>{number}</color>
-center            {Point}
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+radius               <color:gray>{number}</color>
+angle                {Angle}
+stroke               {Stroke}
+fill                 {Fill}
+shadow               {Shadow}
+canvas               <color:gray>{string}</color>
+anchor               {Anchor}
+options              {Options}
+area                 <color:gray>{number}</color>
+diameter             <color:gray>{number}</color>
+circumference        <color:gray>{number}</color>
+center               {Point}
 __ Utility __
 _isDegree
 _isInDom
 _isPoint
 _isAspect
 _isAnchor
+isThere
 _rotatePoint
 _clearCanvas
 _setShadow
 _drawBorder
 _drawAxis
+_setFillType
 _drawOptions
 _drawAnchor
 _setAnchorPoint
-showCoordinates
+strokeColorCycle
+fillColorCycle
+gradientColorCycle
 move
 rotate
-isThere
+showCoordinates
 draw
 redraw
 }

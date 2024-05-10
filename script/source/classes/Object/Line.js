@@ -54,6 +54,8 @@ class Line
             this._drawBorder  = UTILITIES.draw.border;
             this._drawAxis    = UTILITIES.draw.axis;
 
+            this.strokeColorCycle = UTILITIES.strokeColorCycle;
+
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
         ////    POINT OVERLOADING   ////////////////////////
@@ -271,18 +273,6 @@ class Line
             return new Point ( _x, _y );
         }
 
-    ////    VALIDATION  ////////////////////////////////////
-
-        _isPoint  ( ) { }
-
-        _isNumber ( ) { }
-
-        _isDegree ( ) { }
-
-        _isInDom  ( ) { }
-
-        _isAspect ( ) { }
-
     ////    ( PRIVATE ) ////////////////////////////////////
 
         /**
@@ -299,6 +289,45 @@ class Line
             else
 
                 this._canvas.lineTo ( this.end.x, this.end.y );
+        }
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        _isPoint  ( ) { }
+
+        _isNumber ( ) { }
+
+        _isDegree ( ) { }
+
+        _isInDom  ( ) { }
+
+        _isAspect ( ) { }
+
+        /**
+         * Check whether the passed object is already present
+         * @param           {Line} line                                 Object to validate
+         */
+        isThere ( line )
+        {
+            if ( line instanceof this.constructor )
+            {
+                let _toString  = ( valueA, valueB ) => `${valueA} ${valueB}`;
+
+
+                let _thisStart = _toString ( this.start.x, this.start.y ), _thisEnd = _toString ( this.end.x, this.end.y );
+
+                let _lineStart = _toString ( line.start.x, line.start.y ), _lineEnd = _toString ( line.end.x, line.end.y );
+
+
+                return (  ( _thisStart == _lineStart )  &&  ( _thisEnd == _lineEnd )  )
+
+                           ? true
+
+                           : (  ( _thisStart == _lineEnd )  &&  ( _thisEnd == _lineStart )  );
+            }
+            else
+
+                console.warn ( `"${line.constructor.name}" is not of type ${this.constructor.name}` );
         }
 
     ////    UTILITIES   ////////////////////////////////////
@@ -339,6 +368,25 @@ class Line
             if ( this.#_options.controlPoints ) this.showControlPoints ( );
         }
 
+        strokeColorCycle ( ) { }
+
+        fillColorCycle   ( ) { }
+
+        /**
+         * [one description]
+         * @type {Object}
+         */
+        curve ( p0, p1, p2, p3 )
+        {
+            this.controlPoints.p0 = p0;
+
+            this.controlPoints.p1 = p1;
+
+            this.controlPoints.p2 = p2;
+
+            this.controlPoints.p3 = p3;
+        }
+
         /**
          * Draws associated options for start & end points
          * @param           {number} [offset=10]                        Offset of drawable options
@@ -348,6 +396,80 @@ class Line
             this._start.drawOptions ( );
 
               this._end.drawOptions ( );
+        }
+
+        /**
+         * Move this object
+         * @param           {number}  degree                            Direction to move; in degrees
+         * @param           {number}  distance                          Distance to move
+         * @param           {boolean} [clear=true]                      Clear canvas during each movement
+         */
+        move ( degree, distance, clear = true )
+        {
+            let _pointStart = this._rotatePoint ( { x: this.start.x, y: this.start.y }, degree, distance );
+
+            let _pointEnd   = this._rotatePoint ( { x: this.end.x,   y: this.end.y   }, degree, distance );
+
+
+                [ this.start.x, this.start.y ] = [ _pointStart.x, _pointStart.y ];
+
+                [ this.end.x,   this.end.y   ] = [ _pointEnd.x,   _pointEnd.y   ];
+
+
+            this._clearCanvas ( clear );
+
+
+            this.draw ( );
+        }
+
+        /**
+         * Rotate this object
+         * @param           {number} degree                             Distance to rotate; in degrees
+         * @param           {string} [anchor='center']                  Anchoring point during rotation
+         * @param           {number} [clear=true]                       Clear canvas during each rotation
+         */
+        rotate ( degree, anchor = 'center', clear = true )
+        {
+            if ( this._isDegree ( degree ) )
+            {
+                let _point = new Point ( );
+
+
+                switch ( anchor )
+                {
+                    case 'start':   [ _point.x, _point.y ] = [ this.start.x, this.start.y ];  break;
+
+                    case 'end':     [ _point.x, _point.y ] = [ this.end.x,   this.end.y   ];  break;
+
+                    case 'center':
+
+                        [ _point.x, _point.y ] = [ ( ( this.start.x + this.end.x ) * 0.5 ), ( ( this.start.y + this.end.y ) * 0.5 ) ];
+
+                        break;
+
+                    default:
+
+                        console.warn ( `"${anchor}" is not a valid 'anchor' variable !` );
+                }
+
+
+                this._canvas.save      ( );
+
+                this._canvas.translate (   _point.x,   _point.y );
+
+                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
+
+                this._canvas.translate ( - _point.x, - _point.y );
+
+
+                this._clearCanvas ( clear );
+
+
+                this.draw ( );
+
+
+                this._canvas.restore   ( );
+            }
         }
 
         /**
@@ -487,122 +609,6 @@ class Line
                 _circleA.draw ( );
 
                 _circleB.draw ( );
-        }
-
-        /**
-         * Move this object
-         * @param           {number}  degree                            Direction to move; in degrees
-         * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [clear=true]                      Clear canvas during each movement
-         */
-        move ( degree, distance, clear = true )
-        {
-            let _pointStart = this._rotatePoint ( { x: this.start.x, y: this.start.y }, degree, distance );
-
-            let _pointEnd   = this._rotatePoint ( { x: this.end.x,   y: this.end.y   }, degree, distance );
-
-
-                [ this.start.x, this.start.y ] = [ _pointStart.x, _pointStart.y ];
-
-                [ this.end.x,   this.end.y   ] = [ _pointEnd.x,   _pointEnd.y   ];
-
-
-            this._clearCanvas ( clear );
-
-
-            this.draw ( );
-        }
-
-        /**
-         * Rotate this object
-         * @param           {number} degree                             Distance to rotate; in degrees
-         * @param           {string} [anchor='center']                  Anchoring point during rotation
-         * @param           {number} [clear=true]                       Clear canvas during each rotation
-         */
-        rotate ( degree, anchor = 'center', clear = true )
-        {
-            if ( this._isDegree ( degree ) )
-            {
-                let _point = new Point ( );
-
-
-                switch ( anchor )
-                {
-                    case 'start':   [ _point.x, _point.y ] = [ this.start.x, this.start.y ];  break;
-
-                    case 'end':     [ _point.x, _point.y ] = [ this.end.x,   this.end.y   ];  break;
-
-                    case 'center':
-
-                        [ _point.x, _point.y ] = [ ( ( this.start.x + this.end.x ) * 0.5 ), ( ( this.start.y + this.end.y ) * 0.5 ) ];
-
-                        break;
-
-                    default:
-
-                        console.warn ( `"${anchor}" is not a valid 'anchor' variable !` );
-                }
-
-
-                this._canvas.save      ( );
-
-                this._canvas.translate (   _point.x,   _point.y );
-
-                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
-
-                this._canvas.translate ( - _point.x, - _point.y );
-
-
-                this._clearCanvas ( clear );
-
-
-                this.draw ( );
-
-
-                this._canvas.restore   ( );
-            }
-        }
-
-        /**
-         * [one description]
-         * @type {Object}
-         */
-        curve ( p0, p1, p2, p3 )
-        {
-            this.controlPoints.p0 = p0;
-
-            this.controlPoints.p1 = p1;
-
-            this.controlPoints.p2 = p2;
-
-            this.controlPoints.p3 = p3;
-        }
-
-        /**
-         * Check whether the passed object is already present
-         * @param           {Line} line                                 Object to validate
-         */
-        isThere ( line )
-        {
-            if ( line instanceof this.constructor )
-            {
-                let _toString  = ( valueA, valueB ) => `${valueA} ${valueB}`;
-
-
-                let _thisStart = _toString ( this.start.x, this.start.y ), _thisEnd = _toString ( this.end.x, this.end.y );
-
-                let _lineStart = _toString ( line.start.x, line.start.y ), _lineEnd = _toString ( line.end.x, line.end.y );
-
-
-                return (  ( _thisStart == _lineStart )  &&  ( _thisEnd == _lineEnd )  )
-
-                           ? true
-
-                           : (  ( _thisStart == _lineEnd )  &&  ( _thisEnd == _lineStart )  );
-            }
-            else
-
-                console.warn ( `"${line.constructor.name}" is not of type ${this.constructor.name}` );
         }
 
     ////    DRAW    ////////////////////////////////////////

@@ -50,6 +50,11 @@ class Rectangle
             this._setShadow   = UTILITIES.set.shadow;
             this._drawBorder  = UTILITIES.draw.border;
             this._drawAxis    = UTILITIES.draw.axis;
+            this._setFillType = UTILITIES.set.fillType;
+
+            this.strokeColorCycle   = UTILITIES.strokeColorCycle;
+            this.fillColorCycle     = UTILITIES.fillColorCycle;
+            this.gradientColorCycle = UTILITIES.gradientColorCycle;
 
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
@@ -263,6 +268,32 @@ class Rectangle
 
         _isPoint  ( ) { }
 
+        _isAspect ( ) { }
+
+        /**
+         * Check whether the passed object is already present
+         * @param           {Rectangle} rectangle                       Object to validate
+         */
+        isThere ( rectangle )
+        {
+            if ( rectangle instanceof this.constructor )
+
+                return (
+                           ( this.x      == rectangle.x      ) &&               // Point X
+
+                           ( this.y      == rectangle.y      ) &&               // Point Y
+
+                           ( this.width  == rectangle.width  ) &&               // Width
+
+                           ( this.height == rectangle.height )                  // Height
+
+                       ) ? true : false;
+
+            else
+
+                console.warn ( `"${rectangle.constructor.name}" is not of type ${this.constructor.name}` );
+        }
+
     ////    UTILITIES   ////////////////////////////////////
 
         _rotatePoint ( ) { }
@@ -274,6 +305,8 @@ class Rectangle
         _drawBorder  ( ) { }
 
         _drawAxis    ( ) { }
+
+        _setFillType ( ) { }
 
         /**
          * Draws associated options
@@ -338,6 +371,12 @@ class Rectangle
             }
         }
 
+        strokeColorCycle   ( ) { }
+
+        fillColorCycle     ( ) { }
+
+        gradientColorCycle ( ) { }
+
         /**
          * Move this object
          * @param           {number}  degree                            Direction to move; in degrees
@@ -385,30 +424,6 @@ class Rectangle
 
                 this._canvas.restore ( );
             }
-        }
-
-        /**
-         * Check whether the passed object is already present
-         * @param           {Rectangle} rectangle                       Object to validate
-         */
-        isThere ( rectangle )
-        {
-            if ( rectangle instanceof this.constructor )
-
-                return (
-                           ( this.x      == rectangle.x      ) &&               // Point X
-
-                           ( this.y      == rectangle.y      ) &&               // Point Y
-
-                           ( this.width  == rectangle.width  ) &&               // Width
-
-                           ( this.height == rectangle.height )                  // Height
-
-                       ) ? true : false;
-
-            else
-
-                console.warn ( `"${rectangle.constructor.name}" is not of type ${this.constructor.name}` );
         }
 
     ////    & EXTEND &  ////////////////////////////////////
@@ -466,7 +481,7 @@ class Rectangle
 
                 this._canvas.strokeStyle = this.stroke.color.toCss ( );
 
-                this._canvas.fillStyle   = this.fill.color.toCss ( );
+                this._setFillType ( );
 
                 this._canvas.lineWidth   = this.stroke.width;
 

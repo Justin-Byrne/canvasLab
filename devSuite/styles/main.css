@@ -65,6 +65,8 @@ nav {
         nav .nav-wrapper #nav-icon img#triangle-inverted {
           opacity: 0; }
     nav .nav-wrapper .seperator {
+      margin-top: 1rem !important;
+      margin-bottom: 1rem !important;
       border-top: 2px solid #627384 !important; }
     nav .nav-wrapper .extra-buttons {
       display: flex;
@@ -120,47 +122,59 @@ nav {
                 opacity: 0.5; }
       nav .nav-wrapper .extra-buttons.narrow {
         width: 75%; }
-    nav .nav-wrapper #nav-links {
+    nav .nav-wrapper .nav-menu {
       list-style: none;
       margin-bottom: 0;
-      margin-left: 0.5rem;
       padding-left: 0 !important; }
-      nav .nav-wrapper #nav-links ul {
+      nav .nav-wrapper .nav-menu ul {
         list-style: none;
-        padding-left: 0.5rem !important; }
-        nav .nav-wrapper #nav-links ul.nav-links {
-          padding-left: 0 !important; }
-      nav .nav-wrapper #nav-links button {
+        padding-left: 0rem !important;
+        margin-left: 1rem !important;
+        transition: opacity 300ms, display 300ms; }
+        nav .nav-wrapper .nav-menu ul li.nav-link {
+          display: block;
+          padding: 0rem !important;
+          padding-left: 0.5rem !important;
+          padding-bottom: 0.5rem !important;
+          color: unset;
+          transition: unset; }
+          nav .nav-wrapper .nav-menu ul li.nav-link a {
+            padding-left: 0.25rem !important;
+            text-decoration: unset !important; }
+        nav .nav-wrapper .nav-menu ul.nav-links {
+          padding-left: 0rem !important; }
+        nav .nav-wrapper .nav-menu ul.show {
+          animation: slidedown 300ms;
+          display: block;
+          opacity: 1; }
+      nav .nav-wrapper .nav-menu button {
         color: white;
         text-shadow: 0px 0px 1px black;
         transition: color 0.5s ease; }
-        nav .nav-wrapper #nav-links button:before {
+        nav .nav-wrapper .nav-menu button:before {
           width: 1.25em;
           line-height: 0;
-          content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-caret-right-fill' viewBox='0 0 16 16'%3E%3Cpath d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z'/%3E%3C/svg%3E");
-          transition: transform 0.5s ease;
-          transform-origin: 0.5em 50%; }
-        nav .nav-wrapper #nav-links button[data-button-open=true] {
-          color: rgba(148, 211, 255, 0.8); }
-          nav .nav-wrapper #nav-links button[data-button-open=true]:before {
-            transform: rotate(90deg); }
-        nav .nav-wrapper #nav-links button:hover, nav .nav-wrapper #nav-links button:focus {
+          content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-stop-fill" viewBox="0 0 16 16"><path d="M5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11V5A1.5 1.5 0 0 1 5 3.5"/></svg>'); }
+        nav .nav-wrapper .nav-menu button[data-button-open=true] {
+          color: rgba(150, 150, 150, 0.65); }
+          nav .nav-wrapper .nav-menu button[data-button-open=true]:before {
+            content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-stop" viewBox="0 0 16 16"><path d="M3.5 5A1.5 1.5 0 0 1 5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11zM5 4.5a.5.5 0 0 0-.5.5v6a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 .5-.5V5a.5.5 0 0 0-.5-.5z"/></svg>'); }
+        nav .nav-wrapper .nav-menu button:hover, nav .nav-wrapper .nav-menu button:focus {
           background-color: unset;
           box-shadow: unset;
-          text-shadow: unset; }
-      nav .nav-wrapper #nav-links img {
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25); }
+      nav .nav-wrapper .nav-menu img {
         position: relative;
-        left: 20px;
         width: 20px;
         height: 20px; }
-      nav .nav-wrapper #nav-links a {
+      nav .nav-wrapper .nav-menu a {
         display: inline-flex;
         align-items: center;
         font-weight: 600;
         color: white;
         background-color: transparent;
         transition: background-color 1s; }
-        nav .nav-wrapper #nav-links a:hover, nav .nav-wrapper #nav-links a:focus {
+        nav .nav-wrapper .nav-menu a:hover, nav .nav-wrapper .nav-menu a:focus {
           color: rgba(255, 255, 255, 0.5);
           box-shadow: none; }
     nav .nav-wrapper .external-links {
@@ -1072,5 +1086,12 @@ main {
   100% {
     transform: scale(1);
     opacity: 1; } }
+@keyframes slidedown {
+  from {
+    transform: scaleY(0.1);
+    transform: translateY(-1ch); }
+  to {
+    transform: scaleY(1);
+    transform: translateY(0ch); } }
 
 /*# sourceMappingURL=main.css.map */

@@ -4,39 +4,39 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Text {
-point          {Point}
-text           <color:gray>{string}</color>
-stroke         {Stroke}
-fill           {Fill}
-shadow         {Shadow}
-canvas         {HTMLCanvasElement}
+point              {Point}
+text               <color:gray>{string}</color>
+stroke             {Stroke}
+fill               {Fill}
+shadow             {Shadow}
+canvas             {HTMLCanvasElement}
 __ Setter __
-point          {Point}
-x              <color:gray>{number}</color>
-y              <color:gray>{number}</color>
-text           <color:gray>{string}</color>
-canvas         <color:gray>{string}</color>
-type           <color:gray>{string}</color>
-size           <color:gray>{number}</color>
-weight         <color:gray>{string}</color>
-maxWidth       <color:gray>{number}</color>
-offset         {Point}
+point              {Point}
+x                  <color:gray>{number}</color>
+y                  <color:gray>{number}</color>
+text               <color:gray>{string}</color>
+canvas             <color:gray>{string}</color>
+type               <color:gray>{string}</color>
+size               <color:gray>{number}</color>
+weight             <color:gray>{string}</color>
+maxWidth           <color:gray>{number}</color>
+offset             {Point}
 __ Getter __
-point          {Point}
-x              <color:gray>{number}</color>
-y              <color:gray>{number}</color>
-text           <color:gray>{string}</color>
-stroke         {Stroke}
-fill           {Fill}
-shadow         {Shadow}
-canvas         <color:gray>{string}</color>
-options        {Options}
-type           <color:gray>{string}</color>
-size           <color:gray>{number}</color>
-weight         <color:gray>{string}</color>
-maxWidth       <color:gray>{number}</color>
-offset         {Point}
-font           <color:gray>{string}</color>
+point              {Point}
+x                  <color:gray>{number}</color>
+y                  <color:gray>{number}</color>
+text               <color:gray>{string}</color>
+stroke             {Stroke}
+fill               {Fill}
+shadow             {Shadow}
+canvas             <color:gray>{string}</color>
+options            {Options}
+type               <color:gray>{string}</color>
+size               <color:gray>{number}</color>
+weight             <color:gray>{string}</color>
+maxWidth           <color:gray>{number}</color>
+offset             {Point}
+font               <color:gray>{string}</color>
 __ Utility __
 super
 _isDegree
@@ -45,6 +45,8 @@ _isPoint
 _rotatePoint
 _clearCanvas
 _setShadow
+strokeColorCycle
+fillColorCycle
 drawBorder
 drawAxis
 move

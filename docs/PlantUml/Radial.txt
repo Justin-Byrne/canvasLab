@@ -1,0 +1,32 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Radial {
+start             {Point}
+startRadius       {Number}
+end               {Point}
+endRadius         {Number}
+stops             {Array}
+__ Setter __
+start             {Point}
+startRadius       {Number}
+end               {Point}
+endRadius         {Number}
+stops
+__ Getter __
+start             {Point}
+startRadius       {Number}
+end               {Point}
+endRadius         {Number}
+stops
+__ Utility __
+_isPoint
+_isStop
+_isColorModel
+_isRadius
+_stopColorCycle
+}
+
+@enduml

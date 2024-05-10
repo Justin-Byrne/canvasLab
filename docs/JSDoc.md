@@ -10,21 +10,6 @@
 <dt><a href="#Rgb">Rgb</a></dt>
 <dd><p>{Object} Rgb 								RGB color model</p>
 </dd>
-<dt><a href="#Fill">Fill</a></dt>
-<dd><p>{Object}         Fill                       Fill container for various fill types</p>
-</dd>
-<dt><a href="#FillSolid">FillSolid</a></dt>
-<dd><p>{Object} FillSolid                          Solid fill properties of associated object</p>
-</dd>
-<dt><a href="#GradientLinear">GradientLinear</a></dt>
-<dd><p>{Object} GradientLinear                     GradientLinear properties of associated object</p>
-</dd>
-<dt><a href="#Shadow">Shadow</a></dt>
-<dd><p>{Object} Shadow                             Shadow of associated object</p>
-</dd>
-<dt><a href="#Stroke">Stroke</a></dt>
-<dd><p>{Object}   Stroke                           Stroke properties of associated object</p>
-</dd>
 <dt><a href="#Options">Options</a></dt>
 <dd><p>{Object}  Options                           Options for shapes, lines, and groups</p>
 </dd>
@@ -45,6 +30,27 @@
 </dd>
 <dt><a href="#Point">Point</a></dt>
 <dd><p>{Object}  Point                             X &amp; Y coordinates for an object</p>
+</dd>
+<dt><a href="#Stop">Stop</a></dt>
+<dd><p>{Object} Stop                               Color stop properties for associated array(s)</p>
+</dd>
+<dt><a href="#Conic">Conic</a></dt>
+<dd><p>{Object}        Conic                       Conic gradient object type and properties</p>
+</dd>
+<dt><a href="#Linear">Linear</a></dt>
+<dd><p>{Object} Linear                             Linear gradient object type and properties</p>
+</dd>
+<dt><a href="#Radial">Radial</a></dt>
+<dd><p>{Object} Radial                             Radial gradient object type and properties</p>
+</dd>
+<dt><a href="#Fill">Fill</a></dt>
+<dd><p>{Object}  Fill                              Fill container for various fill types</p>
+</dd>
+<dt><a href="#Shadow">Shadow</a></dt>
+<dd><p>{Object} Shadow                             Shadow of associated object</p>
+</dd>
+<dt><a href="#Stroke">Stroke</a></dt>
+<dd><p>{Object}   Stroke                           Stroke properties of associated object</p>
 </dd>
 <dt><a href="#OptionsCollection">OptionsCollection</a></dt>
 <dd><p>{Object}  OptionsCollection                 Options for shapes, lines, and groups</p>
@@ -194,6 +200,93 @@
 <dt><a href="#toCss">toCss()</a> ⇒ <code>string</code></dt>
 <dd><p>Returns a CSS compatible <color> string value</p>
 </dd>
+<dt><a href="#angle">angle(value)</a></dt>
+<dd><p>Set angle property</p>
+</dd>
+<dt><a href="#angle">angle()</a> ⇒ <code><a href="#Angle">Angle</a></code></dt>
+<dd><p>Set angle property</p>
+</dd>
+<dt><a href="#point">point(value)</a></dt>
+<dd><p>Set point</p>
+</dd>
+<dt><a href="#point">point()</a> ⇒ <code><a href="#Point">Point</a></code></dt>
+<dd><p>Get point</p>
+</dd>
+<dt><a href="#stops">stops(values)</a></dt>
+<dd><p>Set color stops</p>
+</dd>
+<dt><a href="#stops">stops()</a> ⇒ <code>Array.&lt;Stops&gt;</code></dt>
+<dd><p>Get color stops</p>
+</dd>
+<dt><a href="#start">start(value)</a></dt>
+<dd><p>Set starting point</p>
+</dd>
+<dt><a href="#start">start()</a> ⇒ <code><a href="#Point">Point</a></code></dt>
+<dd><p>Set starting point</p>
+</dd>
+<dt><a href="#end">end(value)</a></dt>
+<dd><p>Set ending point</p>
+</dd>
+<dt><a href="#end">end()</a> ⇒ <code><a href="#Point">Point</a></code></dt>
+<dd><p>Set ending point</p>
+</dd>
+<dt><a href="#stops">stops(values)</a></dt>
+<dd><p>Set color stops</p>
+</dd>
+<dt><a href="#stops">stops()</a> ⇒ <code>Array.&lt;Stops&gt;</code></dt>
+<dd><p>Get color stops</p>
+</dd>
+<dt><a href="#start">start(value)</a></dt>
+<dd><p>Set starting point</p>
+</dd>
+<dt><a href="#start">start()</a> ⇒ <code><a href="#Point">Point</a></code></dt>
+<dd><p>Set starting point</p>
+</dd>
+<dt><a href="#startRadius">startRadius(value)</a></dt>
+<dd><p>Set starting radius</p>
+</dd>
+<dt><a href="#startRadius">startRadius()</a> ⇒ <code>Number</code></dt>
+<dd><p>Set starting radius</p>
+</dd>
+<dt><a href="#end">end(value)</a></dt>
+<dd><p>Set ending point</p>
+</dd>
+<dt><a href="#end">end()</a> ⇒ <code><a href="#Point">Point</a></code></dt>
+<dd><p>Set ending point</p>
+</dd>
+<dt><a href="#endRadius">endRadius(value)</a></dt>
+<dd><p>Set ending radius</p>
+</dd>
+<dt><a href="#endRadius">endRadius()</a> ⇒ <code>Number</code></dt>
+<dd><p>Set ending radius</p>
+</dd>
+<dt><a href="#stops">stops(value)</a></dt>
+<dd><p>Set color stops</p>
+</dd>
+<dt><a href="#stops">stops()</a> ⇒ <code>Array.&lt;Stops&gt;</code></dt>
+<dd><p>Get color stops</p>
+</dd>
+<dt><a href="#color">color(value)</a></dt>
+<dd><p>Set color type</p>
+</dd>
+<dt><a href="#color">color()</a> ⇒ <code>Object</code></dt>
+<dd><p>Get color type</p>
+</dd>
+<dt><a href="#type">type(value)</a></dt>
+<dd><p>Set type value</p>
+</dd>
+<dt><a href="#type">type()</a> ⇒ <code>string</code></dt>
+<dd><p>Get type value</p>
+</dd>
+<dt><a href="#gradient">gradient()</a> ⇒ <code>Object</code></dt>
+<dd><p>Set gradient gradient properties</p>
+</dd>
+<dt><a href="#gradient">gradient()</a> ⇒ <code>Object</code></dt>
+<dd><p>Get gradient gradient properties</p>
+</dd>
+<dt><a href="#pattern">pattern()</a> ⇒ <code>Pattern</code></dt>
+<dd><p>Get pattern fill object</p>
+</dd>
 <dt><a href="#initCanvasLab">initCanvasLab([canvas])</a></dt>
 <dd><p>Initiates canvasLab</p>
 </dd>
@@ -283,470 +376,6 @@ Create an RGB color model
 | blue | <code>number</code> | Blue value |
 | alpha | <code>number</code> | Alpha value |
 
-<a name="Fill"></a>
-
-## Fill
-{Object}         Fill                       Fill container for various fill types
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | Color model & value |
-| [type] | <code>string</code> | <code>&quot;&#x27;solid&#x27;&quot;</code> | Fill type; solid | linear | radial | conic | pattern |
-| linear | [<code>GradientLinear</code>](#GradientLinear) |  | Linear Gradient fill object |
-| radial | <code>GradientRadial</code> |  | Radial Gradient fill object |
-| conic | <code>GradientConic</code> |  | Conic Gradient fill object |
-| pattern | <code>FillPattern</code> |  | Pattern fill object |
-
-
-* [Fill](#Fill)
-    * [new Fill(type)](#new_Fill_new)
-    * [.type](#Fill+type)
-    * [.type](#Fill+type) ⇒ <code>string</code>
-    * [.linear](#Fill+linear) ⇒ [<code>GradientLinear</code>](#GradientLinear)
-    * [.radial](#Fill+radial) ⇒ <code>GradientRadioal</code>
-    * [.conic](#Fill+conic) ⇒ <code>GradientConic</code>
-    * [.pattern](#Fill+pattern) ⇒ <code>FillPattern</code>
-
-<a name="new_Fill_new"></a>
-
-### new Fill(type)
-Create a fill type
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| type | <code>string</code> | Fill type |
-
-<a name="Fill+type"></a>
-
-### fill.type
-Set type value
-
-**Kind**: instance property of [<code>Fill</code>](#Fill)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | Fill type value |
-
-<a name="Fill+type"></a>
-
-### fill.type ⇒ <code>string</code>
-Get type value
-
-**Kind**: instance property of [<code>Fill</code>](#Fill)  
-**Returns**: <code>string</code> - Fill type value  
-<a name="Fill+linear"></a>
-
-### fill.linear ⇒ [<code>GradientLinear</code>](#GradientLinear)
-Get linear gradient fill object
-
-**Kind**: instance property of [<code>Fill</code>](#Fill)  
-**Returns**: [<code>GradientLinear</code>](#GradientLinear) - Linear gradient fill object  
-<a name="Fill+radial"></a>
-
-### fill.radial ⇒ <code>GradientRadioal</code>
-Get radial gradient fill object
-
-**Kind**: instance property of [<code>Fill</code>](#Fill)  
-**Returns**: <code>GradientRadioal</code> - Radial gradient fill object  
-<a name="Fill+conic"></a>
-
-### fill.conic ⇒ <code>GradientConic</code>
-Get conic gradient fill object
-
-**Kind**: instance property of [<code>Fill</code>](#Fill)  
-**Returns**: <code>GradientConic</code> - Conic gradient fill object  
-<a name="Fill+pattern"></a>
-
-### fill.pattern ⇒ <code>FillPattern</code>
-Get pattern fill object
-
-**Kind**: instance property of [<code>Fill</code>](#Fill)  
-**Returns**: <code>FillPattern</code> - Pattern fill object  
-<a name="FillSolid"></a>
-
-## FillSolid
-{Object} FillSolid                          Solid fill properties of associated object
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [color] | <code>string</code> | <code>&quot;&#x27;255, 255, 255&#x27;&quot;</code> | RGB color value; r, g, b |
-| [alpha] | <code>number</code> | <code>0</code> | Alpha (transparency); number/decimal |
-
-
-* [FillSolid](#FillSolid)
-    * [new FillSolid(color, alpha)](#new_FillSolid_new)
-    * [.color](#FillSolid+color)
-    * [.color](#FillSolid+color) ⇒ <code>string</code>
-    * [.alpha](#FillSolid+alpha)
-    * [.alpha](#FillSolid+alpha) ⇒ <code>number</code>
-
-<a name="new_FillSolid_new"></a>
-
-### new FillSolid(color, alpha)
-Create a fill, solid
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| color | <code>string</code> | RGB color value |
-| alpha | <code>number</code> | Alpha value; number/decimal |
-
-<a name="FillSolid+color"></a>
-
-### fillSolid.color
-Set color value
-
-**Kind**: instance property of [<code>FillSolid</code>](#FillSolid)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | RGB color value |
-
-<a name="FillSolid+color"></a>
-
-### fillSolid.color ⇒ <code>string</code>
-Get color value
-
-**Kind**: instance property of [<code>FillSolid</code>](#FillSolid)  
-**Returns**: <code>string</code> - RGB color value  
-<a name="FillSolid+alpha"></a>
-
-### fillSolid.alpha
-Set alpha value
-
-**Kind**: instance property of [<code>FillSolid</code>](#FillSolid)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Alpha value; number/decimal |
-
-<a name="FillSolid+alpha"></a>
-
-### fillSolid.alpha ⇒ <code>number</code>
-Get alpha value
-
-**Kind**: instance property of [<code>FillSolid</code>](#FillSolid)  
-**Returns**: <code>number</code> - Alpha value; number/decimal  
-<a name="GradientLinear"></a>
-
-## GradientLinear
-{Object} GradientLinear                     GradientLinear properties of associated object
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| start | [<code>Point</code>](#Point) | X & Y axis coordinates (start) |
-| end | [<code>Point</code>](#Point) | X & Y axis coordinates (end) |
-| end | <code>Array</code> | X & Y axis coordinates (end) |
-
-
-* [GradientLinear](#GradientLinear)
-    * [new GradientLinear()](#new_GradientLinear_new)
-    * [.start](#GradientLinear+start)
-    * [.start](#GradientLinear+start) ⇒ [<code>Point</code>](#Point)
-    * [.end](#GradientLinear+end)
-    * [.end](#GradientLinear+end) ⇒ [<code>Point</code>](#Point)
-
-<a name="new_GradientLinear_new"></a>
-
-### new GradientLinear()
-Create a LinearGradient
-
-<a name="GradientLinear+start"></a>
-
-### gradientLinear.start
-Set starting point
-
-**Kind**: instance property of [<code>GradientLinear</code>](#GradientLinear)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | [<code>Point</code>](#Point) | Starting point |
-
-<a name="GradientLinear+start"></a>
-
-### gradientLinear.start ⇒ [<code>Point</code>](#Point)
-Set starting point
-
-**Kind**: instance property of [<code>GradientLinear</code>](#GradientLinear)  
-**Returns**: [<code>Point</code>](#Point) - Starting point  
-<a name="GradientLinear+end"></a>
-
-### gradientLinear.end
-Set ending point
-
-**Kind**: instance property of [<code>GradientLinear</code>](#GradientLinear)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | [<code>Point</code>](#Point) | Ending point |
-
-<a name="GradientLinear+end"></a>
-
-### gradientLinear.end ⇒ [<code>Point</code>](#Point)
-Set ending point
-
-**Kind**: instance property of [<code>GradientLinear</code>](#GradientLinear)  
-**Returns**: [<code>Point</code>](#Point) - Ending point  
-<a name="Shadow"></a>
-
-## Shadow
-{Object} Shadow                             Shadow of associated object
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | RGB color value; r, g, b |
-| [blur] | <code>number</code> | <code>3</code> | Blur strength |
-| offset | [<code>Point</code>](#Point) |  | Point offset coordinates |
-
-
-* [Shadow](#Shadow)
-    * [new Shadow(color, blur, offset)](#new_Shadow_new)
-    * [.color](#Shadow+color)
-    * [.color](#Shadow+color) ⇒ <code>string</code>
-    * [.blur](#Shadow+blur)
-    * [.blur](#Shadow+blur) ⇒ <code>number</code>
-    * [.offset](#Shadow+offset)
-    * [.offset](#Shadow+offset) ⇒ [<code>Point</code>](#Point)
-    * [.x](#Shadow+x)
-    * [.x](#Shadow+x) ⇒ <code>number</code>
-    * [.y](#Shadow+y)
-    * [.y](#Shadow+y) ⇒ <code>number</code>
-
-<a name="new_Shadow_new"></a>
-
-### new Shadow(color, blur, offset)
-Create a shadow
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| color | <code>Object</code> | RGB color value |
-| blur | <code>number</code> | Shadow blur value |
-| offset | [<code>Point</code>](#Point) | Shadow offset |
-
-<a name="Shadow+color"></a>
-
-### shadow.color
-Set color value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | RGB color value |
-
-<a name="Shadow+color"></a>
-
-### shadow.color ⇒ <code>string</code>
-Get color value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**Returns**: <code>string</code> - RGB color value  
-<a name="Shadow+blur"></a>
-
-### shadow.blur
-Set blur value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| blur | <code>number</code> | Blur value |
-
-<a name="Shadow+blur"></a>
-
-### shadow.blur ⇒ <code>number</code>
-Get blur value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**Returns**: <code>number</code> - Blur value  
-<a name="Shadow+offset"></a>
-
-### shadow.offset
-Set offset
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**See**: [offset](#discrete.offset)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | [<code>Point</code>](#Point) | Shadow offset |
-
-<a name="Shadow+offset"></a>
-
-### shadow.offset ⇒ [<code>Point</code>](#Point)
-Get offset
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**Returns**: [<code>Point</code>](#Point) - Shadow offset  
-**See**: [offset](#discrete.offset)  
-<a name="Shadow+x"></a>
-
-### shadow.x
-Set x-axis offset value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**See**: [offsetX](#discrete.offsetX)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | X coordinate value |
-
-<a name="Shadow+x"></a>
-
-### shadow.x ⇒ <code>number</code>
-Get x-axis offset value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**Returns**: <code>number</code> - X coordinate value  
-**See**: [offsetX](#discrete.offsetX)  
-<a name="Shadow+y"></a>
-
-### shadow.y
-Set the y-axis offset value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**See**: [offsetY](#discrete.offsetY)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Y coordinate value |
-
-<a name="Shadow+y"></a>
-
-### shadow.y ⇒ <code>number</code>
-Get y-axis offset value
-
-**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
-**Returns**: <code>number</code> - Y coordinate value  
-**See**: [offsetY](#discrete.offsetY)  
-<a name="Stroke"></a>
-
-## Stroke
-{Object}   Stroke                           Stroke properties of associated object
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | Color model & value |
-| [type] | <code>string</code> | <code>&quot;&#x27;solid&#x27;&quot;</code> | Stroke type; solid | dashed |
-| [segments] | <code>Array.&lt;number&gt;</code> | <code>[5, 5]</code> | Dashed line segment distance(s); <array<numbers>> |
-| [width] | <code>number</code> | <code>2</code> | Thickness of stroke |
-| shadow | [<code>Shadow</code>](#Shadow) |  | Shadow properties |
-
-
-* [Stroke](#Stroke)
-    * [new Stroke(color, type, segments, alpha, width)](#new_Stroke_new)
-    * [.type](#Stroke+type)
-    * [.type](#Stroke+type) ⇒ <code>number</code>
-    * [.segments](#Stroke+segments)
-    * [.segments](#Stroke+segments) ⇒ <code>Array</code>
-    * [.color](#Stroke+color)
-    * [.color](#Stroke+color) ⇒ <code>string</code>
-    * [.width](#Stroke+width)
-    * [.width](#Stroke+width) ⇒ <code>number</code>
-
-<a name="new_Stroke_new"></a>
-
-### new Stroke(color, type, segments, alpha, width)
-Create a stroke
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| color | <code>Object</code> | RGB color value |
-| type | <code>number</code> | Stroke type |
-| segments | <code>Array.&lt;number&gt;</code> | Dashed line segment distance(s) |
-| alpha | <code>number</code> | Alpha value; number/decimal |
-| width | <code>number</code> | Thickness of stroke |
-
-<a name="Stroke+type"></a>
-
-### stroke.type
-Set type
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Type: (0) Solid or (1) Dashed |
-
-<a name="Stroke+type"></a>
-
-### stroke.type ⇒ <code>number</code>
-Get type
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>number</code> - Type: (0) Solid or (1) Dashed  
-<a name="Stroke+segments"></a>
-
-### stroke.segments
-Set segment value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>Array</code> | Dashed line segment distance(s) |
-
-<a name="Stroke+segments"></a>
-
-### stroke.segments ⇒ <code>Array</code>
-Get segment value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>Array</code> - Dashed line segment distance(s)  
-<a name="Stroke+color"></a>
-
-### stroke.color
-Set color value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | RGB color value |
-
-<a name="Stroke+color"></a>
-
-### stroke.color ⇒ <code>string</code>
-Get color value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>string</code> - RGB color value  
-<a name="Stroke+width"></a>
-
-### stroke.width
-Set width value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Thickness of stroke |
-
-<a name="Stroke+width"></a>
-
-### stroke.width ⇒ <code>number</code>
-Get width value
-
-**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>number</code> - Thickness of stroke  
 <a name="Options"></a>
 
 ## Options
@@ -1589,6 +1218,404 @@ Draws associated options
 Invert x & y coordinate values
 
 **Kind**: instance method of [<code>Point</code>](#Point)  
+<a name="Stop"></a>
+
+## Stop
+{Object} Stop                               Color stop properties for associated array(s)
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| offset | <code>number</code> |  | Representation of the color stop position; 0 = start, & 1 = end |
+| [color] | <code>string</code> | <code>&quot;&lt;Rgb&gt;&quot;</code> | Color model & value |
+
+
+* [Stop](#Stop)
+    * [new Stop()](#new_Stop_new)
+    * [.offset](#Stop+offset)
+    * [.offset](#Stop+offset) ⇒ <code>number</code>
+    * [.color](#Stop+color)
+    * [.color](#Stop+color) ⇒ <code>string</code>
+
+<a name="new_Stop_new"></a>
+
+### new Stop()
+Create a LinearGradient
+
+<a name="Stop+offset"></a>
+
+### stop.offset
+Set offset value
+
+**Kind**: instance property of [<code>Stop</code>](#Stop)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Offset value |
+
+<a name="Stop+offset"></a>
+
+### stop.offset ⇒ <code>number</code>
+Get offset value
+
+**Kind**: instance property of [<code>Stop</code>](#Stop)  
+**Returns**: <code>number</code> - Offset value  
+<a name="Stop+color"></a>
+
+### stop.color
+Set color value
+
+**Kind**: instance property of [<code>Stop</code>](#Stop)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | CSS color value |
+
+<a name="Stop+color"></a>
+
+### stop.color ⇒ <code>string</code>
+Get color value
+
+**Kind**: instance property of [<code>Stop</code>](#Stop)  
+**Returns**: <code>string</code> - CSS color value  
+<a name="Conic"></a>
+
+## Conic
+{Object}        Conic                       Conic gradient object type and properties
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| angle | <code>number</code> | Angle in radians |
+| point | [<code>Point</code>](#Point) | X & Y axis coordinates |
+| stops | <code>Array.&lt;Stops&gt;</code> | Array of color stops |
+
+<a name="new_Conic_new"></a>
+
+### new Conic()
+Create a Conic gradient object type
+
+<a name="Linear"></a>
+
+## Linear
+{Object} Linear                             Linear gradient object type and properties
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| start | [<code>Point</code>](#Point) | X & Y axis coordinates (start) |
+| end | [<code>Point</code>](#Point) | X & Y axis coordinates (end) |
+| stops | <code>Array</code> | Array of color stops |
+
+<a name="new_Linear_new"></a>
+
+### new Linear()
+Create a Linear gradient object type
+
+<a name="Radial"></a>
+
+## Radial
+{Object} Radial                             Radial gradient object type and properties
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| start | [<code>Point</code>](#Point) | X & Y axis coordinates (start) |
+| startRadius | <code>Number</code> | Starting radius of linear gradient |
+| end | [<code>Point</code>](#Point) | X & Y axis coordinates (end) |
+| endRadius | <code>Number</code> | Ending radius of linear gradient gradient |
+| stops | <code>Array</code> | Array of color stops |
+
+<a name="new_Radial_new"></a>
+
+### new Radial()
+Create a Radial gradient object type and properties
+
+<a name="Fill"></a>
+
+## Fill
+{Object}  Fill                              Fill container for various fill types
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | Color model & value |
+| [type] | <code>string</code> | <code>&quot;&#x27;solid&#x27;&quot;</code> | Fill type; solid | linear | radial | conic | pattern |
+| gradient | <code>Object</code> |  | Gradient object; Linear | Radial | Conic |
+| pattern | <code>Pattern</code> |  | Pattern fill object |
+
+<a name="new_Fill_new"></a>
+
+### new Fill([color], [type], gradient)
+Create a fill type
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | Color model & value |
+| [type] | <code>string</code> | <code>&quot;&#x27;solid&#x27;&quot;</code> | Fill type |
+| gradient | <code>Object</code> |  | Gradient object |
+
+<a name="Shadow"></a>
+
+## Shadow
+{Object} Shadow                             Shadow of associated object
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | RGB color value; r, g, b |
+| [blur] | <code>number</code> | <code>3</code> | Blur strength |
+| offset | [<code>Point</code>](#Point) |  | Point offset coordinates |
+
+
+* [Shadow](#Shadow)
+    * [new Shadow(color, blur, offset)](#new_Shadow_new)
+    * [.color](#Shadow+color)
+    * [.color](#Shadow+color) ⇒ <code>string</code>
+    * [.blur](#Shadow+blur)
+    * [.blur](#Shadow+blur) ⇒ <code>number</code>
+    * [.offset](#Shadow+offset)
+    * [.offset](#Shadow+offset) ⇒ [<code>Point</code>](#Point)
+    * [.x](#Shadow+x)
+    * [.x](#Shadow+x) ⇒ <code>number</code>
+    * [.y](#Shadow+y)
+    * [.y](#Shadow+y) ⇒ <code>number</code>
+
+<a name="new_Shadow_new"></a>
+
+### new Shadow(color, blur, offset)
+Create a shadow
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| color | <code>Object</code> | RGB color value |
+| blur | <code>number</code> | Shadow blur value |
+| offset | [<code>Point</code>](#Point) | Shadow offset |
+
+<a name="Shadow+color"></a>
+
+### shadow.color
+Set color value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | RGB color value |
+
+<a name="Shadow+color"></a>
+
+### shadow.color ⇒ <code>string</code>
+Get color value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**Returns**: <code>string</code> - RGB color value  
+<a name="Shadow+blur"></a>
+
+### shadow.blur
+Set blur value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| blur | <code>number</code> | Blur value |
+
+<a name="Shadow+blur"></a>
+
+### shadow.blur ⇒ <code>number</code>
+Get blur value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**Returns**: <code>number</code> - Blur value  
+<a name="Shadow+offset"></a>
+
+### shadow.offset
+Set offset
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**See**: [offset](#discrete.offset)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Shadow offset |
+
+<a name="Shadow+offset"></a>
+
+### shadow.offset ⇒ [<code>Point</code>](#Point)
+Get offset
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**Returns**: [<code>Point</code>](#Point) - Shadow offset  
+**See**: [offset](#discrete.offset)  
+<a name="Shadow+x"></a>
+
+### shadow.x
+Set x-axis offset value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**See**: [offsetX](#discrete.offsetX)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | X coordinate value |
+
+<a name="Shadow+x"></a>
+
+### shadow.x ⇒ <code>number</code>
+Get x-axis offset value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**Returns**: <code>number</code> - X coordinate value  
+**See**: [offsetX](#discrete.offsetX)  
+<a name="Shadow+y"></a>
+
+### shadow.y
+Set the y-axis offset value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**See**: [offsetY](#discrete.offsetY)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Y coordinate value |
+
+<a name="Shadow+y"></a>
+
+### shadow.y ⇒ <code>number</code>
+Get y-axis offset value
+
+**Kind**: instance property of [<code>Shadow</code>](#Shadow)  
+**Returns**: <code>number</code> - Y coordinate value  
+**See**: [offsetY](#discrete.offsetY)  
+<a name="Stroke"></a>
+
+## Stroke
+{Object}   Stroke                           Stroke properties of associated object
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | Color model & value |
+| [type] | <code>string</code> | <code>&quot;&#x27;solid&#x27;&quot;</code> | Stroke type; solid | dashed |
+| [segments] | <code>Array.&lt;number&gt;</code> | <code>[5, 5]</code> | Dashed line segment distance(s); <array<numbers>> |
+| [width] | <code>number</code> | <code>2</code> | Thickness of stroke |
+| shadow | [<code>Shadow</code>](#Shadow) |  | Shadow properties |
+
+
+* [Stroke](#Stroke)
+    * [new Stroke(color, type, segments, alpha, width)](#new_Stroke_new)
+    * [.type](#Stroke+type)
+    * [.type](#Stroke+type) ⇒ <code>number</code>
+    * [.segments](#Stroke+segments)
+    * [.segments](#Stroke+segments) ⇒ <code>Array</code>
+    * [.color](#Stroke+color)
+    * [.color](#Stroke+color) ⇒ <code>string</code>
+    * [.width](#Stroke+width)
+    * [.width](#Stroke+width) ⇒ <code>number</code>
+
+<a name="new_Stroke_new"></a>
+
+### new Stroke(color, type, segments, alpha, width)
+Create a stroke
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| color | <code>Object</code> | RGB color value |
+| type | <code>number</code> | Stroke type |
+| segments | <code>Array.&lt;number&gt;</code> | Dashed line segment distance(s) |
+| alpha | <code>number</code> | Alpha value; number/decimal |
+| width | <code>number</code> | Thickness of stroke |
+
+<a name="Stroke+type"></a>
+
+### stroke.type
+Set type
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Type: (0) Solid or (1) Dashed |
+
+<a name="Stroke+type"></a>
+
+### stroke.type ⇒ <code>number</code>
+Get type
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+**Returns**: <code>number</code> - Type: (0) Solid or (1) Dashed  
+<a name="Stroke+segments"></a>
+
+### stroke.segments
+Set segment value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array</code> | Dashed line segment distance(s) |
+
+<a name="Stroke+segments"></a>
+
+### stroke.segments ⇒ <code>Array</code>
+Get segment value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+**Returns**: <code>Array</code> - Dashed line segment distance(s)  
+<a name="Stroke+color"></a>
+
+### stroke.color
+Set color value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | RGB color value |
+
+<a name="Stroke+color"></a>
+
+### stroke.color ⇒ <code>string</code>
+Get color value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+**Returns**: <code>string</code> - RGB color value  
+<a name="Stroke+width"></a>
+
+### stroke.width
+Set width value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Thickness of stroke |
+
+<a name="Stroke+width"></a>
+
+### stroke.width ⇒ <code>number</code>
+Get width value
+
+**Kind**: instance property of [<code>Stroke</code>](#Stroke)  
+**Returns**: <code>number</code> - Thickness of stroke  
 <a name="OptionsCollection"></a>
 
 ## OptionsCollection
@@ -2073,13 +2100,13 @@ Get width value
     * [.diameter](#Circle+diameter) ⇒ <code>number</code>
     * [.circumference](#Circle+circumference) ⇒ <code>number</code>
     * [.center](#Circle+center) ⇒ [<code>Point</code>](#Point)
+    * [.isThere(circle)](#Circle+isThere)
     * [._drawOptions()](#Circle+_drawOptions)
     * [._drawAnchor()](#Circle+_drawAnchor)
     * [._setAnchorPoint()](#Circle+_setAnchorPoint)
-    * [.showCoordinates([offset], [fontSize])](#Circle+showCoordinates)
     * [.move(degree, distance, [clear])](#Circle+move)
     * [.rotate(degree, [clear])](#Circle+rotate)
-    * [.isThere(circle)](#Circle+isThere)
+    * [.showCoordinates([offset], [fontSize])](#Circle+showCoordinates)
     * [.draw(canvas)](#Circle+draw)
     * [.redraw(canvas, point, [clear])](#Circle+redraw)
 
@@ -2256,6 +2283,17 @@ Get center of this object
 
 **Kind**: instance property of [<code>Circle</code>](#Circle)  
 **Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+<a name="Circle+isThere"></a>
+
+### circle.isThere(circle)
+Check whether the passed object is already present
+
+**Kind**: instance method of [<code>Circle</code>](#Circle)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| circle | [<code>Circle</code>](#Circle) | Object to validate |
+
 <a name="Circle+_drawOptions"></a>
 
 ### circle.\_drawOptions()
@@ -2274,18 +2312,6 @@ Draws anchor point
 Sets anchor's point against this object's point location
 
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
-<a name="Circle+showCoordinates"></a>
-
-### circle.showCoordinates([offset], [fontSize])
-Shows coordinates of this object
-
-**Kind**: instance method of [<code>Circle</code>](#Circle)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
-| [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
-
 <a name="Circle+move"></a>
 
 ### circle.move(degree, distance, [clear])
@@ -2311,16 +2337,17 @@ Rotate this object
 | degree | <code>number</code> |  | Distance to rotate; in degrees |
 | [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
 
-<a name="Circle+isThere"></a>
+<a name="Circle+showCoordinates"></a>
 
-### circle.isThere(circle)
-Check whether the passed object is already present
+### circle.showCoordinates([offset], [fontSize])
+Shows coordinates of this object
 
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| circle | [<code>Circle</code>](#Circle) | Object to validate |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
+| [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
 
 <a name="Circle+draw"></a>
 
@@ -2379,14 +2406,14 @@ Redraw this object
     * [.options](#Line+options) ⇒ [<code>Options</code>](#Options)
     * [.controlPoints](#Line+controlPoints) ⇒ [<code>ControlPoints</code>](#ControlPoints)
     * [.center](#Line+center) ⇒ [<code>Point</code>](#Point)
+    * [.isThere(line)](#Line+isThere)
     * [._drawOptions()](#Line+_drawOptions)
+    * [.curve()](#Line+curve) : <code>Object</code>
     * [.drawPoints([offset])](#Line+drawPoints)
-    * [.showCoordinates([offset], [fontSize])](#Line+showCoordinates)
-    * [.showControlPoints([offset], [fontSize])](#Line+showControlPoints)
     * [.move(degree, distance, [clear])](#Line+move)
     * [.rotate(degree, [anchor], [clear])](#Line+rotate)
-    * [.curve()](#Line+curve) : <code>Object</code>
-    * [.isThere(line)](#Line+isThere)
+    * [.showCoordinates([offset], [fontSize])](#Line+showCoordinates)
+    * [.showControlPoints([offset], [fontSize])](#Line+showControlPoints)
     * [.draw(canvas)](#Line+draw)
     * [.redraw(canvas, start, end, clear)](#Line+redraw)
 
@@ -2504,10 +2531,27 @@ Get center of this object
 
 **Kind**: instance property of [<code>Line</code>](#Line)  
 **Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+<a name="Line+isThere"></a>
+
+### line.isThere(line)
+Check whether the passed object is already present
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| line | [<code>Line</code>](#Line) | Object to validate |
+
 <a name="Line+_drawOptions"></a>
 
 ### line.\_drawOptions()
 Draws associated options
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+<a name="Line+curve"></a>
+
+### line.curve() : <code>Object</code>
+[one description]
 
 **Kind**: instance method of [<code>Line</code>](#Line)  
 <a name="Line+drawPoints"></a>
@@ -2520,30 +2564,6 @@ Draws associated options for start & end points
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [offset] | <code>number</code> | <code>10</code> | Offset of drawable options |
-
-<a name="Line+showCoordinates"></a>
-
-### line.showCoordinates([offset], [fontSize])
-Shows coordinates of this object
-
-**Kind**: instance method of [<code>Line</code>](#Line)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
-| [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
-
-<a name="Line+showControlPoints"></a>
-
-### line.showControlPoints([offset], [fontSize])
-Show control points for this object
-
-**Kind**: instance method of [<code>Line</code>](#Line)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [offset] | <code>number</code> | <code>10</code> | Offset of control points y origin |
-| [fontSize] | <code>number</code> | <code>16</code> | Control points font size |
 
 <a name="Line+move"></a>
 
@@ -2571,22 +2591,29 @@ Rotate this object
 | [anchor] | <code>string</code> | <code>&quot;&#x27;center&#x27;&quot;</code> | Anchoring point during rotation |
 | [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
 
-<a name="Line+curve"></a>
+<a name="Line+showCoordinates"></a>
 
-### line.curve() : <code>Object</code>
-[one description]
-
-**Kind**: instance method of [<code>Line</code>](#Line)  
-<a name="Line+isThere"></a>
-
-### line.isThere(line)
-Check whether the passed object is already present
+### line.showCoordinates([offset], [fontSize])
+Shows coordinates of this object
 
 **Kind**: instance method of [<code>Line</code>](#Line)  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| line | [<code>Line</code>](#Line) | Object to validate |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
+| [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
+
+<a name="Line+showControlPoints"></a>
+
+### line.showControlPoints([offset], [fontSize])
+Show control points for this object
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [offset] | <code>number</code> | <code>10</code> | Offset of control points y origin |
+| [fontSize] | <code>number</code> | <code>16</code> | Control points font size |
 
 <a name="Line+draw"></a>
 
@@ -2655,12 +2682,12 @@ Redraw this object
     * [.area](#Rectangle+area) ⇒ <code>number</code>
     * [.perimeter](#Rectangle+perimeter) ⇒ <code>number</code>
     * [.center](#Rectangle+center) ⇒ [<code>Point</code>](#Point)
+    * [.isThere(rectangle)](#Rectangle+isThere)
     * [._drawOptions()](#Rectangle+_drawOptions)
     * [._drawAnchor()](#Rectangle+_drawAnchor)
     * [._setAnchorPoint()](#Rectangle+_setAnchorPoint)
     * [.move(degree, distance, [clear])](#Rectangle+move)
     * [.rotate(degree, [clear])](#Rectangle+rotate)
-    * [.isThere(rectangle)](#Rectangle+isThere)
     * [.draw(canvas)](#Rectangle+draw)
 
 <a name="new_Rectangle_new"></a>
@@ -2858,6 +2885,17 @@ Get center of this object
 
 **Kind**: instance property of [<code>Rectangle</code>](#Rectangle)  
 **Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+<a name="Rectangle+isThere"></a>
+
+### rectangle.isThere(rectangle)
+Check whether the passed object is already present
+
+**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| rectangle | [<code>Rectangle</code>](#Rectangle) | Object to validate |
+
 <a name="Rectangle+_drawOptions"></a>
 
 ### rectangle.\_drawOptions()
@@ -2900,17 +2938,6 @@ Rotate this object
 | --- | --- | --- | --- |
 | degree | <code>number</code> |  | Distance to rotate; in degrees |
 | [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
-
-<a name="Rectangle+isThere"></a>
-
-### rectangle.isThere(rectangle)
-Check whether the passed object is already present
-
-**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| rectangle | [<code>Rectangle</code>](#Rectangle) | Object to validate |
 
 <a name="Rectangle+draw"></a>
 
@@ -3840,6 +3867,58 @@ Base object for shared accessors & mutators
 Shared utility functions
 
 **Kind**: global namespace  
+
+* [UTILITIES](#UTILITIES) : <code>object</code>
+    * [.strokeColorCycle(start, end, progress, [max])](#UTILITIES.strokeColorCycle)
+    * [.fillColorCycle(progress, start, end, [max])](#UTILITIES.fillColorCycle)
+    * [.gradientColorCycle(progress, start, end, stop, [max])](#UTILITIES.gradientColorCycle)
+
+<a name="UTILITIES.strokeColorCycle"></a>
+
+### UTILITIES.strokeColorCycle(start, end, progress, [max])
+Cycle colors for stroke
+
+**Kind**: static method of [<code>UTILITIES</code>](#UTILITIES)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| progress | <code>number</code> |  | Progress time unit; 0.00 - 1.00 |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
+<a name="UTILITIES.fillColorCycle"></a>
+
+### UTILITIES.fillColorCycle(progress, start, end, [max])
+Cycle colors for fill
+
+**Kind**: static method of [<code>UTILITIES</code>](#UTILITIES)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
+<a name="UTILITIES.gradientColorCycle"></a>
+
+### UTILITIES.gradientColorCycle(progress, start, end, stop, [max])
+Cycle colors for gradient
+
+**Kind**: static method of [<code>UTILITIES</code>](#UTILITIES)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| stop | <code>number</code> |  | Gradient color stop |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
 <a name="VALIDATION"></a>
 
 ## VALIDATION : <code>object</code>
@@ -4030,7 +4109,7 @@ Sets the red value
 Gets the red value
 
 **Kind**: global function  
-**Access**: public  
+**Read only**: true  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -4054,7 +4133,7 @@ Sets the green value
 Gets the green value
 
 **Kind**: global function  
-**Access**: public  
+**Read only**: true  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -4078,7 +4157,7 @@ Sets the blue value
 Gets the blue value
 
 **Kind**: global function  
-**Access**: public  
+**Read only**: true  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -4091,6 +4170,290 @@ Returns a CSS compatible <color> string value
 
 **Kind**: global function  
 **Returns**: <code>string</code> - CSS <color> string  
+**Access**: public  
+<a name="angle"></a>
+
+## angle(value)
+Set angle property
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Angle</code>](#Angle) | Angle object |
+
+<a name="angle"></a>
+
+## angle() ⇒ [<code>Angle</code>](#Angle)
+Set angle property
+
+**Kind**: global function  
+**Returns**: [<code>Angle</code>](#Angle) - Angle object  
+**Read only**: true  
+<a name="point"></a>
+
+## point(value)
+Set point
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Point |
+
+<a name="point"></a>
+
+## point() ⇒ [<code>Point</code>](#Point)
+Get point
+
+**Kind**: global function  
+**Returns**: [<code>Point</code>](#Point) - Point  
+**Read only**: true  
+<a name="stops"></a>
+
+## stops(values)
+Set color stops
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| values | <code>Array.&lt;Stops&gt;</code> | Color stops |
+
+<a name="stops"></a>
+
+## stops() ⇒ <code>Array.&lt;Stops&gt;</code>
+Get color stops
+
+**Kind**: global function  
+**Returns**: <code>Array.&lt;Stops&gt;</code> - Color stops  
+**Read only**: true  
+<a name="start"></a>
+
+## start(value)
+Set starting point
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Starting point |
+
+<a name="start"></a>
+
+## start() ⇒ [<code>Point</code>](#Point)
+Set starting point
+
+**Kind**: global function  
+**Returns**: [<code>Point</code>](#Point) - Starting point  
+**Read only**: true  
+<a name="end"></a>
+
+## end(value)
+Set ending point
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Ending point |
+
+<a name="end"></a>
+
+## end() ⇒ [<code>Point</code>](#Point)
+Set ending point
+
+**Kind**: global function  
+**Returns**: [<code>Point</code>](#Point) - Ending point  
+**Read only**: true  
+<a name="stops"></a>
+
+## stops(values)
+Set color stops
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| values | <code>Array.&lt;Stops&gt;</code> | Color stops |
+
+<a name="stops"></a>
+
+## stops() ⇒ <code>Array.&lt;Stops&gt;</code>
+Get color stops
+
+**Kind**: global function  
+**Returns**: <code>Array.&lt;Stops&gt;</code> - Color stops  
+**Read only**: true  
+<a name="start"></a>
+
+## start(value)
+Set starting point
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Starting point |
+
+<a name="start"></a>
+
+## start() ⇒ [<code>Point</code>](#Point)
+Set starting point
+
+**Kind**: global function  
+**Returns**: [<code>Point</code>](#Point) - Starting point  
+**Read only**: true  
+<a name="startRadius"></a>
+
+## startRadius(value)
+Set starting radius
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Number</code> | Starting radius |
+
+<a name="startRadius"></a>
+
+## startRadius() ⇒ <code>Number</code>
+Set starting radius
+
+**Kind**: global function  
+**Returns**: <code>Number</code> - Starting radius  
+**Read only**: true  
+<a name="end"></a>
+
+## end(value)
+Set ending point
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Ending point |
+
+<a name="end"></a>
+
+## end() ⇒ [<code>Point</code>](#Point)
+Set ending point
+
+**Kind**: global function  
+**Returns**: [<code>Point</code>](#Point) - Ending point  
+**Read only**: true  
+<a name="endRadius"></a>
+
+## endRadius(value)
+Set ending radius
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Number</code> | Ending radius |
+
+<a name="endRadius"></a>
+
+## endRadius() ⇒ <code>Number</code>
+Set ending radius
+
+**Kind**: global function  
+**Returns**: <code>Number</code> - Ending radius  
+**Read only**: true  
+<a name="stops"></a>
+
+## stops(value)
+Set color stops
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array.&lt;Stops&gt;</code> | Color stops |
+
+<a name="stops"></a>
+
+## stops() ⇒ <code>Array.&lt;Stops&gt;</code>
+Get color stops
+
+**Kind**: global function  
+**Returns**: <code>Array.&lt;Stops&gt;</code> - Color stops  
+**Read only**: true  
+<a name="color"></a>
+
+## color(value)
+Set color type
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | Color model |
+
+<a name="color"></a>
+
+## color() ⇒ <code>Object</code>
+Get color type
+
+**Kind**: global function  
+**Returns**: <code>Object</code> - Color model  
+**Read only**: true  
+<a name="type"></a>
+
+## type(value)
+Set type value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Fill type value |
+
+<a name="type"></a>
+
+## type() ⇒ <code>string</code>
+Get type value
+
+**Kind**: global function  
+**Returns**: <code>string</code> - Fill type value  
+**Read only**: true  
+<a name="gradient"></a>
+
+## gradient() ⇒ <code>Object</code>
+Set gradient gradient properties
+
+**Kind**: global function  
+**Returns**: <code>Object</code> - value                              Gradient properties  
+**Access**: public  
+<a name="gradient"></a>
+
+## gradient() ⇒ <code>Object</code>
+Get gradient gradient properties
+
+**Kind**: global function  
+**Returns**: <code>Object</code> - Gradient properties  
+**Read only**: true  
+<a name="pattern"></a>
+
+## pattern() ⇒ <code>Pattern</code>
+Get pattern fill object
+
+**Kind**: global function  
+**Returns**: <code>Pattern</code> - Pattern fill object  
 **Access**: public  
 <a name="initCanvasLab"></a>
 

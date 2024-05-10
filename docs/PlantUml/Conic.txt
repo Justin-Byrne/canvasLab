@@ -1,0 +1,25 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Conic {
+angle             <color:gray>{number}</color>
+point             {Point}
+stops             {Array.<Stops>}
+__ Setter __
+angle             {Angle}
+point             {Point}
+stops
+__ Getter __
+angle             {Angle}
+point             {Point}
+stops
+__ Utility __
+_isPoint
+_isRadian
+_isStop
+_stopColorCycle
+}
+
+@enduml

@@ -32,6 +32,7 @@ _isNumber
 _isDegree
 _isInDom
 _isAspect
+isThere
 _rotatePoint
 _clearCanvas
 _pointOrSpan
@@ -39,13 +40,14 @@ _setShadow
 _drawBorder
 _drawAxis
 _drawOptions
+strokeColorCycle
+fillColorCycle
+curve
 drawPoints
-showCoordinates
-showControlPoints
 move
 rotate
-curve
-isThere
+showCoordinates
+showControlPoints
 draw
 redraw
 }

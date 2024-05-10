@@ -55,6 +55,9 @@ class Text extends Font
             this._clearCanvas = UTILITIES.clearCanvas;
             this._setShadow   = UTILITIES.set.shadow;
 
+            this.strokeColorCycle = UTILITIES.strokeColorCycle;
+            this.fillColorCycle   = UTILITIES.fillColorCycle;
+
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
@@ -217,6 +220,18 @@ class Text extends Font
             return this.#_options;
         }
 
+    ////    ( PRIVATE ) ////////////////////////////////////
+
+        /**
+         * Draws associated options
+         */
+        #_drawOptions ( )
+        {
+            if ( this.#_options.border ) this.drawBorder ( );
+
+            if ( this.#_options.axis   ) this.drawAxis   ( );
+        }
+
     ////    * SUPER *   ////////////////////////////////////
 
         ////    [ type ]    ////////
@@ -321,18 +336,6 @@ class Text extends Font
 
         _isPoint  ( ) { }
 
-    ////    ( PRIVATE ) ////////////////////////////////////
-
-        /**
-         * Draws associated options
-         */
-        #_drawOptions ( )
-        {
-            if ( this.#_options.border ) this.drawBorder ( );
-
-            if ( this.#_options.axis   ) this.drawAxis   ( );
-        }
-
     ////    UTILITIES   ////////////////////////////////////
 
         _rotatePoint ( ) { }
@@ -340,6 +343,10 @@ class Text extends Font
         _clearCanvas ( ) { }
 
         _setShadow   ( ) { }
+
+        strokeColorCycle ( ) { }
+
+        fillColorCycle   ( ) { }
 
         /**
          * Draws border around this object
@@ -493,7 +500,6 @@ class Text extends Font
                 this._canvas.font      = this.font;
 
                 this._canvas.textAlign = 'center';
-
 
                 this._canvas.fillStyle = this.fill.color.toCss ( );
 

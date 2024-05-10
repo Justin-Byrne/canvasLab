@@ -1,6 +1,37 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.48] - 2024-06-10
+### Added
+- **canvasLab**
+  - `Linear` class, for Linear gradient objects
+  - `Radial` class, for Radial gradient objects
+  - `Conic` class, for Conic gradient objects
+  - `Stop` class, for Stop gradient objects
+  - `UTILITIES` module
+    - `strokeColorCycle ( )` to cycle colors for stroke
+    - `fillColorCycle ( )` to cycle colors for fill
+    - `gradientColorCycle ( )` to cycle colors for gradient
+    - `_stopColorCycle ( )` to cycle colors for gradient stop(s)
+    - `set.fillType ( )` to set fill type of the associated object
+  - `VALIDATION` module
+    - `isAngle ( )` to return whether the passed value is an angle
+    - `isGradient ( )` to return whether the passed value is a gradient
+  - `Rgb` class
+    - `_lerp ( )` function, for linear interpolation color transitions
+    - `_lerpRgb ( )` function, for linear interpolation of Rgb values
+    - `_cycle ( )` function, for color cycling
+  - `Line` class, added `strokeColorCycle ( )`
+  - `Circle` class, added `strokeColorCycle ( )`, `fillColorCycle ( )`, & `gradientColorCycle ( )`
+  - `Rectangle` class, added `strokeColorCycle ( )`, `fillColorCycle ( )`, & `gradientColorCycle ( )`
+  - `Text` class, added `strokeColorCycle ( )` & `fillColorCycle ( )`
+- **devSuite**
+  - `Tool` class, added `isCanvasLabObject` returns whether the passed value is an 'Object' canvasLab category
+
+### Changed
+- **canvasLab**
+  - `VALIDATION` module, `isColorStop ( )` to `isStop ( )`
+
 ## [0.3.30] - 2024-06-06
 ### Added
 - **devSuite**
@@ -36,34 +67,34 @@ All notable changes to this project will be documented in this file.
 
 ### Refactored
 - **canvasLab**
-  - `Utilities`
-    - `draw.axis ( )`
-    - `draw.border ( )`
-    - `set.shadow ( )`
-  - `Validation`
-    - `isAspect ( )`
-    - `isCanvasLabObject ( )`
+  - `UTILITIES` module
+    - `draw.axis ( )` utility function
+    - `draw.border ( )` utility function
+    - `set.shadow ( )` setter
+  - `VALIDATION` module
+    - `isAspect ( )` function
+    - `isCanvasLabObject ( )` function
   - `Stroke`, `Fill`, `Circle`, `Line`, `Rectangle`, `Text`, `ShadowCollection`, & `ShadowCollection` to incorporate new color model classes
 - **devSuite**
-  - `Lab`
-    - `_getBoundingCharactersPositions ( )`
-    - `_swapRgbValue ( )`
-  - `Template`
-    - `standard`
-    - `blank`
-  - `Ui`
-    - `toggle.cardButton ( )`
-    - `toggle._modalCode ( )`
-    - `_setCardsSection ( )`
+  - `Lab` class
+    - `_getBoundingCharactersPositions ( )` utility function
+    - `_swapRgbValue ( )` utility function
+  - `Template` class
+    - `standard` property
+    - `blank` property
+  - `Ui` class
+    - `toggle.cardButton ( )` utility function
+    - `toggle._modalCode ( )` utility function
+    - `_setCardsSection ( )` utility function
 
 ### Changed
 - **canvasLab**
-  - `Validation`
+  - `VALIDATION` module
     - `isArrayNumberic ( )` to `isArrayNumeric ( )`
 
 ### Removed
 - **canvasLab**
-  - `Validation`
+  - `VALIDATION` module
     - `isRgb ( )`
     - `isType ( )`
 - **devSuite**
@@ -308,7 +339,8 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.3.30] | 2024-06-06 | CURRENT                                                             | Refactored navigation links as self generative.                                              |
+| [0.3.48] | 2024-06-10 | CURRENT                                                             | Added gradient classes, expanded upon UTILITIES & VALIDATION modules.                        |
+| [0.3.30] | 2024-06-06 | [a4b29b5](https://github.com/Justin-Byrne/canvasLab/commit/a4b29b5) | Refactored navigation links as self generative.                                              |
 | [0.3.25] | 2024-06-02 | [80ece25](https://github.com/Justin-Byrne/canvasLab/commit/80ece25) | Added color models, and general cleanup.                                                     |
 | [0.2.17] | 2024-05-26 | [be58a6e](https://github.com/Justin-Byrne/canvasLab/commit/be58a6e) | Fixed unintentional recursive calls & minor refactoring for UI, Page, & Template classes.    |
 | [0.2.11] | 2024-05-22 | [671c1da](https://github.com/Justin-Byrne/canvasLab/commit/671c1da) | Refactored dev-tools (devSuite) into independent classes & updated UI.                       |

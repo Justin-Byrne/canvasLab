@@ -1,0 +1,29 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Rgb {
+[red=0]     <color:gray>{number}</color>
+[green=0]   <color:gray>{number}</color>
+[blue=0]    <color:gray>{number}</color>
+[alpha=1]   <color:gray>{number}</color>
+__ Setter __
+red         <color:gray>{number}</color>
+green       <color:gray>{number}</color>
+blue        <color:gray>{number}</color>
+__ Getter __
+red
+green
+blue
+__ Utility __
+toCss       <color:gray>{string}</color>
+_is256
+_lerp
+_lerpRgb
+_cycle
+clear
+draw
+}
+
+@enduml
