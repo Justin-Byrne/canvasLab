@@ -62,6 +62,13 @@ class Animation
 
     ////    [ TIMING ]    //////////////////////////////////
 
+        /**
+         * Set timing
+         * @public
+         * @name timing
+         * @function
+         * @param           {function} value                            Timing function
+         */
         set timing ( value )
         {
             switch ( typeof value )
@@ -84,6 +91,13 @@ class Animation
             }
         }
 
+        /**
+         * Get timing
+         * @readOnly
+         * @name timing
+         * @function
+         * @return          {function}                                  Timing function
+         */
         get timing ( )
         {
             return this._timing;
@@ -91,11 +105,25 @@ class Animation
 
     ////    [ DRAW ]    ////////////////////////////////////
 
+        /**
+         * Set draw function
+         * @public
+         * @name draw
+         * @function
+         * @param           {function}                                  Draw function
+         */
         set draw ( value )
         {
             this._draw = ( typeof value === 'function' ) ? value : this._draw;
         }
 
+        /**
+         * Get draw function
+         * @readOnly
+         * @name draw
+         * @function
+         * @return          {function}                                  Draw function
+         */
         get draw ( )
         {
             return this._draw;
@@ -103,11 +131,25 @@ class Animation
 
     ////    [ DURATION ]    ////////////////////////////////
 
+        /**
+         * Set duration
+         * @public
+         * @name duration
+         * @function
+         * @param           {number} value                              Duration
+         */
         set duration ( value )
         {
             this._duration = ( this._isNumber ( value ) ) ? value : this._duration;
         }
 
+        /**
+         * Get duration
+         * @readOnly
+         * @name duration
+         * @function
+         * @return          {number}                                    Duration
+         */
         get duration ( )
         {
             return this._duration;
@@ -119,6 +161,12 @@ class Animation
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Initiates animation
+         * @public
+         * @name animate
+         * @function
+         */
         animate ( )
         {
             // @TODO: Check to make sure that _timing, _draw, and _duration are properly set, prior to 'animating' !

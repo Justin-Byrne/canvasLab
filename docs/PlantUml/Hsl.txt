@@ -13,13 +13,14 @@ hue              <color:gray>{number}</color>
 saturation       <color:gray>{number}</color>
 lightness        <color:gray>{number}</color>
 __ Getter __
-hue
-saturation
-lightness
-__ Utility __
-toCss            <color:gray>{string}</color>
+hue              <color:gray>{number}</color>
+saturation       <color:gray>{number}</color>
+lightness        <color:gray>{number}</color>
+__ Validation __
 _isDegree
 _isDecimal
+__ Utility __
+toCss            <color:gray>{string}</color>
 }
 
 @enduml

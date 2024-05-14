@@ -25,7 +25,7 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'May, 10 2024',
+            Updated:   'May, 14 2024',
             Version:   '0.3.48',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
@@ -58,6 +58,13 @@ class Application
 
     ////    [ CANVAS ]  ////////////////////////////////////
 
+        /**
+         * Set canvas element
+         * @public
+         * @name canvas
+         * @function
+         * @param           {string} value                              Element Id
+         */
         set canvas ( value )
         {
             let _canvases = document.getElementsByTagName ( 'canvas' );
@@ -86,6 +93,13 @@ class Application
                 console.warn ( `"${value}" does not exist !` );
         }
 
+        /**
+         * Get canvas element
+         * @public
+         * @name canvas
+         * @function
+         * @return          {HTMLCanvasElement}                         Canvas context
+         */
         get canvas ( )
         {
             return this.#dom.main.context;
@@ -93,6 +107,13 @@ class Application
 
     ////    [ ABOUT ]   ////////////////////////////////////
 
+        /**
+         * Get application details
+         * @readOnly
+         * @name about
+         * @function
+         * @return          {Object}                                    Application details
+         */
         get about ( )
         {
             return this.#app.about;

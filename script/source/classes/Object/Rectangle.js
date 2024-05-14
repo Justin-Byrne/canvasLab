@@ -21,7 +21,7 @@ class Rectangle
     #_options = new Options;
 
     /**
-     * Create a rectangle
+     * Create a Rectangle object
      * @property        {Point}  point                              X & Y axis coordinates
      * @property        {Aspect} aspect                             Aspect properties
      * @property        {Stroke} stroke                             Stroke properties
@@ -89,6 +89,9 @@ class Rectangle
 
         /**
          * Set point
+         * @public
+         * @name point
+         * @function
          * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
@@ -96,6 +99,9 @@ class Rectangle
 
         /**
          * Get point
+         * @public
+         * @name point
+         * @function
          * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
@@ -104,6 +110,9 @@ class Rectangle
 
         /**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.pointX}
          */
@@ -111,6 +120,9 @@ class Rectangle
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.pointX}
          */
@@ -119,6 +131,9 @@ class Rectangle
 
         /**
          * Set the y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.pointY}
          */
@@ -126,6 +141,9 @@ class Rectangle
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.pointY}
          */
@@ -135,6 +153,9 @@ class Rectangle
 
         /**
          * Set aspect properties
+         * @public
+         * @name aspect
+         * @function
          * @param           {Aspect} value                              Aspect properties
          */
         set aspect ( value )
@@ -144,6 +165,9 @@ class Rectangle
 
         /**
          * Get aspect properties
+         * @readOnly
+         * @name aspect
+         * @function
          * @return          {Aspect}                                    Aspect properties
          */
         get aspect ( )
@@ -154,6 +178,9 @@ class Rectangle
 
         /**
          * Set aspect width
+         * @public
+         * @name width
+         * @function
          * @param           {number} value                              Width value
          */
         set width  ( value )
@@ -163,6 +190,9 @@ class Rectangle
 
         /**
          * Get aspect with
+         * @readOnly
+         * @name width
+         * @function
          * @return          {number}                                    Width value
          */
         get width  ( )
@@ -173,6 +203,9 @@ class Rectangle
 
         /**
          * Set aspect height
+         * @public
+         * @name height
+         * @function
          * @param           {number} value                              Height value
          */
         set height ( value )
@@ -182,6 +215,9 @@ class Rectangle
 
         /**
          * Get aspect height
+         * @readOnly
+         * @name height
+         * @function
          * @return          {number}                                    Height value
          */
         get height ( )
@@ -193,6 +229,9 @@ class Rectangle
 
         /**
          * Get stroke properties
+         * @public
+         * @name stroke
+         * @function
          * @return          {Stroke}                                    Stroke properties
          */
         get stroke ( )
@@ -204,6 +243,9 @@ class Rectangle
 
         /**
          * Get fill properties
+         * @public
+         * @name fill
+         * @function
          * @return          {Fill}                                      Fill properties
          */
         get fill ( )
@@ -215,6 +257,9 @@ class Rectangle
 
         /**
          * Get shadow properties
+         * @public
+         * @name shadow
+         * @function
          * @return          {Shadow}                                    Shadow properties
          */
         get shadow ( )
@@ -226,6 +271,9 @@ class Rectangle
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -233,6 +281,9 @@ class Rectangle
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -242,6 +293,9 @@ class Rectangle
 
         /**
          * Get anchor
+         * @public
+         * @name anchor
+         * @function
          * @return          {Anchor}                                    Anchor properties
          */
         get anchor ( )
@@ -253,6 +307,9 @@ class Rectangle
 
         /**
          * Get options properties
+         * @public
+         * @name options
+         * @function
          * @return          {Options}                                   Options properties
          */
         get options ( )
@@ -272,6 +329,9 @@ class Rectangle
 
         /**
          * Check whether the passed object is already present
+         * @public
+         * @name isThere
+         * @function
          * @param           {Rectangle} rectangle                       Object to validate
          */
         isThere ( rectangle )
@@ -310,6 +370,9 @@ class Rectangle
 
         /**
          * Draws associated options
+         * @private
+         * @name _drawOptions
+         * @function
          */
         _drawOptions ( )
         {
@@ -328,6 +391,9 @@ class Rectangle
 
         /**
          * Draws anchor point
+         * @private
+         * @name _drawAnchor
+         * @function
          */
         _drawAnchor ( )
         {
@@ -343,6 +409,9 @@ class Rectangle
 
         /**
          * Sets anchor's point against this object's point location
+         * @private
+         * @name _setAnchorPoint
+         * @function
          */
         _setAnchorPoint ( )
         {
@@ -379,6 +448,9 @@ class Rectangle
 
         /**
          * Move this object
+         * @public
+         * @name move
+         * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [clear=true]                      Clear canvas during each movement
@@ -398,6 +470,9 @@ class Rectangle
 
         /**
          * Rotate this object
+         * @public
+         * @name rotate
+         * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {number} [clear=true]                       Clear canvas during each rotation
          */
@@ -430,6 +505,9 @@ class Rectangle
 
         /**
          * Get area of this object
+         * @readOnly
+         * @name area
+         * @function
          * @return          {number}                                    Area of rectangle
          */
         get area ( )
@@ -439,6 +517,9 @@ class Rectangle
 
         /**
          * Get perimeter of this object
+         * @readOnly
+         * @name perimeter
+         * @function
          * @return          {number}                                    Perimeter of rectangle
          */
         get perimeter ( )
@@ -448,6 +529,9 @@ class Rectangle
 
         /**
          * Get center of this object
+         * @readOnly
+         * @name center
+         * @function
          * @return          {Point}                                     Center point coordinates
          */
         get center ( )
@@ -464,6 +548,9 @@ class Rectangle
 
         /**
          * Draw this object
+         * @public
+         * @name draw
+         * @function
          * @param           {string} canvas                             Canvas Id
          */
         draw ( canvas )

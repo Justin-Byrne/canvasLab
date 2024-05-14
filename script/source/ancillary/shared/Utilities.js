@@ -4,6 +4,13 @@
  */
 const UTILITIES =
 {
+    /**
+     * Clears canvas
+     * @public
+     * @name clearCanvas
+     * @function
+     * @param           {boolean} value                             Whether to redraw background
+     */
     clearCanvas ( value )
     {
         let _canvas = document.getElementById ( this.canvas );
@@ -15,6 +22,8 @@ const UTILITIES =
     /**
      * Cycle colors for stroke
      * @public
+     * @name strokeColorCycle
+     * @function
      * @param           {Rgb}    start                              Starting RGB value
      * @param           {Rgb}    end                                Ending RGB value
      * @param           {number} progress                           Progress time unit; 0.00 - 1.00
@@ -33,6 +42,8 @@ const UTILITIES =
     /**
      * Cycle colors for fill
      * @public
+     * @name fillColorCycle
+     * @function
      * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
      * @param           {Rgb}    start                              Starting RGB value
      * @param           {Rgb}    end                                Ending RGB value
@@ -51,6 +62,8 @@ const UTILITIES =
     /**
      * Cycle colors for gradient
      * @public
+     * @name gradientColorCycle
+     * @function
      * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
      * @param           {Rgb}    start                              Starting RGB value
      * @param           {Rgb}    end                                Ending RGB value
@@ -70,6 +83,15 @@ const UTILITIES =
     /** @var            {Object} draw                                                               **/
     draw:
     {
+        /**
+         * Draws an axis for the associated object
+         * @public
+         * @name axis
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         */
         axis ( edgeOffset = 20, color = new Rgb ( 245, 80, 50 ) )
         {
             let _lines = new Lines ( new Line, new Line );
@@ -89,6 +111,15 @@ const UTILITIES =
 
                 _lines.draw ( );
         },
+
+        /**
+         * Draws an axis for the associated object
+         * @public
+         * @name border
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         */
         border ( aspect, color = new Rgb ( 245, 80, 50 ) )
         {
             if ( this._isAspect ( aspect ) )
@@ -112,6 +143,14 @@ const UTILITIES =
         /** @var            {Object} collection                                                     **/
         collection:
         {
+
+            /**
+             * Typical draw function for collections; Circles, Texts
+             * @public
+             * @name typical
+             * @function
+             * @param           {string} canvas                             Canvas Id
+             */
             typical ( canvas )
             {
                 if ( canvas != undefined ) this.canvas = canvas;
@@ -136,6 +175,14 @@ const UTILITIES =
 
                     console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
             },
+
+            /**
+             * A-typical draw function for collections; Circles, Texts
+             * @public
+             * @name aTypical
+             * @function
+             * @param           {string} canvas                             Canvas Id
+             */
             aTypical ( canvas )
             {
                 if ( canvas != undefined ) this.canvas = canvas;
@@ -173,19 +220,14 @@ const UTILITIES =
             }
         }
     },
-    /** @var            {Object} get                                                                **/
-    get:
-    {
-        rgb ( value )
-        {
-            value = value.split ( ',' );
 
-            return `${value [ 0 ].trim ( )}, ` +            // RED
-                   `${value [ 1 ].trim ( )}, ` +            // GREEN
-                   `${value [ 2 ].trim ( )}`                // BLUE
-        }
-    },
-
+    /**
+     * Push or pops the passed object
+     * @public
+     * @name pushPop
+     * @function
+     * @param           {Object} object                             Object; Circle, Rectangle, Text
+     */
     pushPop ( object )
     {
         let _index = undefined;
@@ -228,6 +270,15 @@ const UTILITIES =
             console.warn ( `${this.constructor.name} only accepts '${this._storage.type.name}' objects !`);
     },
 
+    /**
+     * Rotates the origin point by the degree & distance passed
+     * @private
+     * @name rotatePoint
+     * @function
+     * @param           {Point}  origin                             Origin point
+     * @param           {number} degree                             Degree to rotate
+     * @param           {number} distance                           Distance from origin
+     */
     rotatePoint ( origin = { x, y }, degree, distance )
     {
         let _point = new Point;

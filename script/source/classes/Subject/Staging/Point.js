@@ -41,6 +41,9 @@ class Point
 
         /**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          */
         set x ( value )
@@ -50,6 +53,9 @@ class Point
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          */
         get x ( )
@@ -61,6 +67,9 @@ class Point
 
         /**
          * Set the y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          */
         set y ( value )
@@ -70,6 +79,9 @@ class Point
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          */
         get y ( )
@@ -81,12 +93,18 @@ class Point
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          */
         set canvas ( value ) { }
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                     Canvas id
          */
         get canvas ( ) { }
@@ -95,6 +113,9 @@ class Point
 
         /**
          * Get options
+         * @public
+         * @name options
+         * @function
          * @return          {Options}                                   Options object
          */
         get options ( )
@@ -106,6 +127,9 @@ class Point
 
         /**
          * Get center of this object
+         * @readOnly
+         * @name center
+         * @function
          * @return          {Point}                                     Center point coordinates
          */
         get center ( )
@@ -127,6 +151,9 @@ class Point
 
         /**
          * Draws associated options
+         * @public
+         * @name drawOptions
+         * @function
          * @param           {number} offset                             Offset of drawable options
          */
         drawOptions ( )
@@ -144,6 +171,9 @@ class Point
 
         /**
          * Invert x & y coordinate values
+         * @public
+         * @name invert
+         * @function
          */
         invert ( )
         {

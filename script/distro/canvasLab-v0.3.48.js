@@ -185,6 +185,13 @@ const PROPERTY_BLOCKS =
  */
 const UTILITIES =
 {
+    /**
+     * Clears canvas
+     * @public
+     * @name clearCanvas
+     * @function
+     * @param           {boolean} value                             Whether to redraw background
+     */
     clearCanvas ( value )
     {
         let _canvas = document.getElementById ( this.canvas );
@@ -196,6 +203,8 @@ const UTILITIES =
     /**
      * Cycle colors for stroke
      * @public
+     * @name strokeColorCycle
+     * @function
      * @param           {Rgb}    start                              Starting RGB value
      * @param           {Rgb}    end                                Ending RGB value
      * @param           {number} progress                           Progress time unit; 0.00 - 1.00
@@ -214,6 +223,8 @@ const UTILITIES =
     /**
      * Cycle colors for fill
      * @public
+     * @name fillColorCycle
+     * @function
      * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
      * @param           {Rgb}    start                              Starting RGB value
      * @param           {Rgb}    end                                Ending RGB value
@@ -232,6 +243,8 @@ const UTILITIES =
     /**
      * Cycle colors for gradient
      * @public
+     * @name gradientColorCycle
+     * @function
      * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
      * @param           {Rgb}    start                              Starting RGB value
      * @param           {Rgb}    end                                Ending RGB value
@@ -251,6 +264,15 @@ const UTILITIES =
     /** @var            {Object} draw                                                               **/
     draw:
     {
+        /**
+         * Draws an axis for the associated object
+         * @public
+         * @name axis
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         */
         axis ( edgeOffset = 20, color = new Rgb ( 245, 80, 50 ) )
         {
             let _lines = new Lines ( new Line, new Line );
@@ -270,6 +292,15 @@ const UTILITIES =
 
                 _lines.draw ( );
         },
+
+        /**
+         * Draws an axis for the associated object
+         * @public
+         * @name border
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         */
         border ( aspect, color = new Rgb ( 245, 80, 50 ) )
         {
             if ( this._isAspect ( aspect ) )
@@ -293,6 +324,14 @@ const UTILITIES =
         /** @var            {Object} collection                                                     **/
         collection:
         {
+
+            /**
+             * Typical draw function for collections; Circles, Texts
+             * @public
+             * @name typical
+             * @function
+             * @param           {string} canvas                             Canvas Id
+             */
             typical ( canvas )
             {
                 if ( canvas != undefined ) this.canvas = canvas;
@@ -317,6 +356,14 @@ const UTILITIES =
 
                     console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
             },
+
+            /**
+             * A-typical draw function for collections; Circles, Texts
+             * @public
+             * @name aTypical
+             * @function
+             * @param           {string} canvas                             Canvas Id
+             */
             aTypical ( canvas )
             {
                 if ( canvas != undefined ) this.canvas = canvas;
@@ -354,19 +401,14 @@ const UTILITIES =
             }
         }
     },
-    /** @var            {Object} get                                                                **/
-    get:
-    {
-        rgb ( value )
-        {
-            value = value.split ( ',' );
 
-            return `${value [ 0 ].trim ( )}, ` +            // RED
-                   `${value [ 1 ].trim ( )}, ` +            // GREEN
-                   `${value [ 2 ].trim ( )}`                // BLUE
-        }
-    },
-
+    /**
+     * Push or pops the passed object
+     * @public
+     * @name pushPop
+     * @function
+     * @param           {Object} object                             Object; Circle, Rectangle, Text
+     */
     pushPop ( object )
     {
         let _index = undefined;
@@ -409,6 +451,15 @@ const UTILITIES =
             console.warn ( `${this.constructor.name} only accepts '${this._storage.type.name}' objects !`);
     },
 
+    /**
+     * Rotates the origin point by the degree & distance passed
+     * @private
+     * @name rotatePoint
+     * @function
+     * @param           {Point}  origin                             Origin point
+     * @param           {number} degree                             Degree to rotate
+     * @param           {number} distance                           Distance from origin
+     */
     rotatePoint ( origin = { x, y }, degree, distance )
     {
         let _point = new Point;
@@ -557,6 +608,16 @@ const VALIDATION =
 
 
         return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
+    },
+    isAlign ( value )
+    {
+        let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft' ];
+
+
+        for ( let _option of _options ) if ( value === _option )  return true;
+
+
+        return false;
     },
     isAlpha ( value )
     {
@@ -1152,7 +1213,7 @@ class Hsl
 		 * @public
 		 * @name hue
 		 * @function
-		 * @param 			{number}								Hue value; 0 - 360
+		 * @return 			{number}								Hue value; 0 - 360
 		 */
 		get hue ( )
 		{
@@ -1178,7 +1239,7 @@ class Hsl
 		 * @public
 		 * @name saturation
 		 * @function
-		 * @param 			{number}								Saturation value; 0 - 1
+		 * @return 			{number}								Saturation value; 0 - 1
 		 */
 		get saturation ( )
 		{
@@ -1204,7 +1265,7 @@ class Hsl
 		 * @public
 		 * @name lightness
 		 * @function
-		 * @param 			{number}								Lightness value; 0 - 1
+		 * @return 			{number}								Lightness value; 0 - 1
 		 */
 		get lightness ( )
 		{
@@ -1287,7 +1348,7 @@ class Hwb
 		 * @public
 		 * @name hue
 		 * @function
-		 * @param 			{number}								Hue value; 0 - 360
+		 * @return 			{number}								Hue value; 0 - 360
 		 */
 		get hue ( )
 		{
@@ -1313,7 +1374,7 @@ class Hwb
 		 * @public
 		 * @name whiteness
 		 * @function
-		 * @param 			{number} 								Whiteness value; 0 - 1
+		 * @return 			{number} 								Whiteness value; 0 - 1
 		 */
 		get whiteness ( )
 		{
@@ -1339,7 +1400,7 @@ class Hwb
 		 * @public
 		 * @name blackness
 		 * @function
-		 * @param 			{number} 								Blackness value; 0 - 1
+		 * @return 			{number} 								Blackness value; 0 - 1
 		 */
 		get blackness ( )
 		{
@@ -1421,7 +1482,7 @@ class Rgb
 		 * @readOnly
 		 * @name red
 		 * @function
-		 * @param 			{number}							Red value; 0 - 255
+		 * @return 			{number}							Red value; 0 - 255
 		 */
 		get red ( )
 		{
@@ -1435,7 +1496,7 @@ class Rgb
 		 * @public
 		 * @name green
 		 * @function
-		 * @param           {number} green 						Green value; 0 - 255
+		 * @param 			{number} green 						Green value; 0 - 255
 		 */
 		set green ( value )
 		{
@@ -1447,7 +1508,7 @@ class Rgb
 		 * @readOnly
 		 * @name green
 		 * @function
-		 * @param 			{number} 							Green value; 0 - 255
+		 * @return 			{number} 							Green value; 0 - 255
 		 */
 		get green ( )
 		{
@@ -1461,7 +1522,7 @@ class Rgb
 		 * @public
 		 * @name blue
 		 * @function
-		 * @param           {number} blue 						Blue value; 0 - 255
+		 * @param 			{number} blue 						Blue value; 0 - 255
 		 */
 		set blue ( value )
 		{
@@ -1473,7 +1534,7 @@ class Rgb
 		 * @readOnly
 		 * @name blue
 		 * @function
-		 * @param 			{number} 							Blue value; 0 - 255
+		 * @return 			{number} 							Blue value; 0 - 255
 		 */
 		get blue ( )
 		{
@@ -1606,6 +1667,9 @@ class Options
 
         /**
          * Set shadow value
+         * @public
+         * @name shadow
+         * @function
          * @param           {boolean} value                             Shadow; true | false
          */
         set shadow ( value )
@@ -1615,6 +1679,9 @@ class Options
 
         /**
          * Get shadow value
+         * @public
+         * @name shadow
+         * @function
          * @return          {boolean}                                   Shadow; true | false
          */
         get shadow ( )
@@ -1626,6 +1693,9 @@ class Options
 
         /**
          * Set border value
+         * @public
+         * @name border
+         * @function
          * @param           {boolean} value                             Border; true | false
          */
         set border ( value )
@@ -1635,6 +1705,9 @@ class Options
 
         /**
          * Get border value
+         * @readOnly
+         * @name border
+         * @function
          * @return          {boolean}                                   Border; true | false
          */
         get border ( )
@@ -1646,6 +1719,9 @@ class Options
 
         /**
          * Set axis value
+         * @public
+         * @name axis
+         * @function
          * @param           {boolean} value                             Axis; true | false
          */
         set axis ( value )
@@ -1655,6 +1731,9 @@ class Options
 
         /**
          * Get axis value
+         * @readOnly
+         * @name axis
+         * @function
          * @return          {boolean}                                   Axis; true | false
          */
         get axis ( )
@@ -1666,6 +1745,9 @@ class Options
 
         /**
          * Set anchor value
+         * @public
+         * @name anchor
+         * @function
          * @param           {boolean} value                             Anchor; true | false
          */
         set anchor ( value )
@@ -1675,6 +1757,9 @@ class Options
 
         /**
          * Get anchor value
+         * @readOnly
+         * @name anchor
+         * @function
          * @return          {boolean}                                   Anchor; true | false
          */
         get anchor ( )
@@ -1686,6 +1771,9 @@ class Options
 
         /**
          * Set coordinates value
+         * @public
+         * @name coordinates
+         * @function
          * @param           {boolean} value                             Coordinates; true | false
          */
         set coordinates ( value )
@@ -1695,6 +1783,9 @@ class Options
 
         /**
          * Get coordinates value
+         * @readOnly
+         * @name coordinates
+         * @function
          * @return          {boolean}                                   Coordinates; true | false
          */
         get coordinates ( )
@@ -1706,6 +1797,9 @@ class Options
 
         /**
          * Set control points value
+         * @public
+         * @name controlPoints
+         * @function
          * @param           {boolean} value                             Control points; true | false
          */
         set controlPoints ( value )
@@ -1715,6 +1809,9 @@ class Options
 
         /**
          * Get control points value
+         * @readOnly
+         * @name controlPoints
+         * @function
          * @return          {boolean}                                   Control points; true | false
          */
         get controlPoints ( )
@@ -1726,6 +1823,9 @@ class Options
 
         /**
          * Set master object
+         * @public
+         * @name master
+         * @function
          * @param           {Object} value                              CanvasLab Object
          */
         set master ( value )
@@ -1735,6 +1835,9 @@ class Options
 
         /**
          * Get master object
+         * @public
+         * @name master
+         * @function
          * @return          {Object}                                    CanvasLab Object
          */
         get master ( )
@@ -1755,55 +1858,96 @@ class Options
 class Anchor
 {
 	_point = new Point;
+
 	_align = 'center';
 
 	constructor ( )
 	{
 		//// 	COMPOSITION 	////////////////////////////
 
-			this._isAnchor = VALIDATION.isAnchor;
+			this._isAlign = VALIDATION.isAlign;
+
+            Object.defineProperty ( this, 'x', PROPERTY_BLOCKS.discrete.pointX );
+            Object.defineProperty ( this, 'y', PROPERTY_BLOCKS.discrete.pointY );
 	}
 
 	////    [ POINT ]   ////////////////////////////////////
 
+        /**
+         * Set point
+         * @public
+         * @name point
+         * @function
+         * @param           {Point} point                               X & Y axis coordinates
+         */
+        set point ( value ) { }
+
+        /**
+         * Get point
+         * @public
+         * @name point
+         * @function
+         * @return          {Point}                                     X & Y axis coordinates
+         */
+        get point ( ) { }
+
+
 		/**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          */
-        set x ( value ) { this._point.x = value; }
+        set x ( value ) { }
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          */
-        get x ( )       { return this._point.x; }
+        get x ( ) {  }
 
 
         /**
-         * Set the y-axis value
+         * Set y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          */
-        set y ( value ) { this._point.y = value; }
+        set y ( value ) { }
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          */
-        get y ( )       { return this._point.y; }
+        get y ( ) { }
 
     ////    [ TYPE ]    ////////////////////////////////////
 
         /**
          * Set anchor alignment
+         * @public
+         * @name align
+         * @function
          * @param           {string} value                              Anchor alignment
          */
         set align ( value )
         {
-            this._align = ( this._isAnchor ( value ) ) ? value : this._align;
+            this._align = ( this._isAlign ( value ) ) ? value : this._align;
         }
 
         /**
          * Get anchor alignment
+         * @readOnly
+         * @name align
+         * @function
          * @return          {string}                                    Anchor alignment
          */
         get align ( )
@@ -1850,6 +1994,9 @@ class Angle
 
         /**
          * Set start angle
+         * @public
+         * @name start
+         * @function
          * @param           {number} value                              Start angle; in degrees
          */
         set start ( value )
@@ -1859,6 +2006,9 @@ class Angle
 
         /**
          * Get start angle
+         * @readOnly
+         * @name start
+         * @function
          * @return          {number}                                    Start value; in degrees
          */
         get start ( )
@@ -1870,6 +2020,9 @@ class Angle
 
         /**
          * Set end angle
+         * @public
+         * @name end
+         * @function
          * @param           {number} value                              End angle; in degrees
          */
         set end ( value )
@@ -1879,6 +2032,9 @@ class Angle
 
         /**
          * Get end angle
+         * @readOnly
+         * @name end
+         * @function
          * @return          {number}                                    End angle; in degrees
          */
         get end ( )
@@ -1890,6 +2046,9 @@ class Angle
 
         /**
          * Set clockwise
+         * @public
+         * @name clockwise
+         * @function
          * @param           {boolean} value                             Clockwise; true | false
          */
         set clockwise ( value )
@@ -1899,6 +2058,9 @@ class Angle
 
         /**
          * Get clockwise
+         * @readOnly
+         * @name clockwise
+         * @function
          * @return          {boolean}                                   Clockwise; true | false
          */
         get clockwise ( )
@@ -1916,6 +2078,9 @@ class Angle
 
         /**
          * Get start angle in radians
+         * @readOnly
+         * @name startInRadians
+         * @function
          * @return          {number}                                    Start value; to radians
          */
         get startInRadians ( )
@@ -1925,6 +2090,9 @@ class Angle
 
         /**
          * Get end angle in radians
+         * @readOnly
+         * @name endInRadians
+         * @function
          * @return          {number}                                    End value; in radians
          */
         get endInRadians ( )
@@ -1934,6 +2102,9 @@ class Angle
 
         /**
          * Convert degree to radian
+         * @private
+         * @name _convert2Radian
+         * @function
          * @param           {number} value                              Degree
          * @return          {number}                                    Conversion in radians
          */
@@ -1944,6 +2115,9 @@ class Angle
 
         /**
          * Convert radian to degree
+         * @private
+         * @name _convert2Degree
+         * @function
          * @param           {number} value                              Radian
          * @return          {number}                                    Conversion in degrees
          */
@@ -1978,6 +2152,9 @@ class Aspect
 
         /**
          * Set width
+         * @public
+         * @name width
+         * @function
          * @param           {number} value                              Width value
          */
         set width ( value )
@@ -1987,6 +2164,9 @@ class Aspect
 
         /**
          * Get width
+         * @readOnly
+         * @name width
+         * @function
          * @return          {number}                                    Width value
          */
         get width ( )
@@ -1998,6 +2178,9 @@ class Aspect
 
         /**
          * Set height
+         * @public
+         * @name height
+         * @function
          * @param           {number} value                              Height value
          */
         set height ( value )
@@ -2007,6 +2190,9 @@ class Aspect
 
         /**
          * Get height
+         * @readOnly
+         * @name height
+         * @function
          * @return          {number}                                    Height value
          */
         get height ( )
@@ -2018,6 +2204,9 @@ class Aspect
 
         /**
          * Get center of height
+         * @readOnly
+         * @name heightCenter
+         * @function
          * @return          {number}                                    Center of height
          */
         get heightCenter ( )
@@ -2027,6 +2216,9 @@ class Aspect
 
         /**
          * Get center of width
+         * @readOnly
+         * @name widthCenter
+         * @function
          * @return          {number}                                    Center of with
          */
         get widthCenter ( )
@@ -2036,6 +2228,9 @@ class Aspect
 
         /**
          * Get center of aspect
+         * @readOnly
+         * @name center
+         * @function
          * @return              {Point}                                 Center point of this aspect
          */
         get center ( )
@@ -2046,10 +2241,10 @@ class Aspect
  
 /**
  * @class           {Object} ControlPoints                      Defines the shape of a bezier curve
- * @property        {Point}  p0                                 Control point one
- * @property        {Point}  p1                                 Control point two
- * @property        {Point}  p2                                 Control point three
- * @property        {Point}  p3                                 Control point four
+ * @property        {number}  p0                                Control point one
+ * @property        {number}  p1                                Control point two
+ * @property        {number}  p2                                Control point three
+ * @property        {number}  p3                                Control point four
  */
 class ControlPoints
 {
@@ -2060,10 +2255,10 @@ class ControlPoints
 
     /**
      * Create control points
-     * @param           {Point}  p0                                 Control point one
-     * @param           {Point}  p1                                 Control point two
-     * @param           {Point}  p2                                 Control point three
-     * @param           {Point}  p3                                 Control point four
+     * @param           {number}  p0                                Control point one
+     * @param           {number}  p1                                Control point two
+     * @param           {number}  p2                                Control point three
+     * @param           {number}  p3                                Control point four
      */
     constructor ( p0, p1, p2, p3 )
     {
@@ -2081,7 +2276,10 @@ class ControlPoints
 
         /**
          * Set control point one
-         * @param           {Point} value                               Control Point ( x, y ) values
+         * @public
+         * @name p0
+         * @function
+         * @param           {number} value                              Control point one
          */
         set p0 ( value )
         {
@@ -2090,7 +2288,10 @@ class ControlPoints
 
         /**
          * Get control point one
-         * @return          {Point}                                     Control Point ( x, y ) values
+         * @readOnly
+         * @name p0
+         * @function
+         * @return          {number}                                    Control point one
          */
         get p0 ( )
         {
@@ -2101,7 +2302,10 @@ class ControlPoints
 
         /**
          * Set control point one
-         * @param           {Point} value                               Control Point ( x, y ) values
+         * @public
+         * @name p1
+         * @function
+         * @param           {number} value                              Control point two
          */
         set p1 ( value )
         {
@@ -2110,7 +2314,10 @@ class ControlPoints
 
         /**
          * Get control point one
-         * @return          {Point}                                     Control Point ( x, y ) values
+         * @readOnly
+         * @name p1
+         * @function
+         * @return          {number}                                    Control point two
          */
         get p1 ( )
         {
@@ -2121,7 +2328,10 @@ class ControlPoints
 
         /**
          * Set control point one
-         * @param           {Point} value                               Control Point ( x, y ) values
+         * @public
+         * @name p2
+         * @function
+         * @param           {number} value                              Control point three
          */
         set p2 ( value )
         {
@@ -2130,7 +2340,10 @@ class ControlPoints
 
         /**
          * Get control point one
-         * @return          {Point}                                     Control Point ( x, y ) values
+         * @readOnly
+         * @name p2
+         * @function
+         * @return          {number}                                    Control point three
          */
         get p2 ( )
         {
@@ -2141,7 +2354,10 @@ class ControlPoints
 
         /**
          * Set control point one
-         * @param           {Point} value                               Control Point ( x, y ) values
+         * @public
+         * @name p3
+         * @function
+         * @param           {number} value                              Control point four
          */
         set p3 ( value )
         {
@@ -2150,7 +2366,10 @@ class ControlPoints
 
         /**
          * Get control point one
-         * @return          {Point}                                     Control Point ( x, y ) values
+         * @readOnly
+         * @name p3
+         * @function
+         * @return          {number}                                    Control point four
          */
         get p3 ( )
         {
@@ -2184,6 +2403,9 @@ class Font
 
         /**
          * Set font type
+         * @public
+         * @name type
+         * @function
          * @param           {string} value                              Type face; typography name
          */
         set type ( value )
@@ -2213,6 +2435,9 @@ class Font
 
         /**
          * Get type
+         * @readOnly
+         * @name type
+         * @function
          * @return          {string}                                    Type face; typography name
          */
         get type ( )
@@ -2224,6 +2449,9 @@ class Font
 
         /**
          * Set font size
+         * @public
+         * @name size
+         * @function
          * @param           {number} value                              Font size
          */
         set size ( value )
@@ -2233,6 +2461,9 @@ class Font
 
         /**
          * Get font size
+         * @readOnly
+         * @name size
+         * @function
          * @return          {number}                                    Font size
          */
         get size ( )
@@ -2244,6 +2475,9 @@ class Font
 
         /**
          * Set font weight
+         * @public
+         * @name weight
+         * @function
          * @param           {number} value                              Font weight
          */
         set weight ( value )
@@ -2262,6 +2496,9 @@ class Font
 
         /**
          * Get font weight
+         * @readOnly
+         * @name weight
+         * @function
          * @return          {number}                                    Font weight
          */
         get weight ( )
@@ -2273,6 +2510,9 @@ class Font
 
         /**
          * Set font's max width
+         * @public
+         * @name maxWidth
+         * @function
          * @param           {number} value                              Max width
          */
         set maxWidth ( value )
@@ -2282,6 +2522,9 @@ class Font
 
         /**
          * Get font's max width
+         * @readOnly
+         * @name maxWidth
+         * @function
          * @return          {number}                                    Max width
          */
         get maxWidth ( )
@@ -2293,6 +2536,9 @@ class Font
 
         /**
          * Get font's offset
+         * @public
+         * @name offset
+         * @function
          * @return          {Point}                                     Font's offset; ( x, y )
          */
         get offset ( )
@@ -2304,6 +2550,9 @@ class Font
 
         /**
          * Set font
+         * @public
+         * @name font
+         * @function
          * @param           {string} value                              CSS style font property syntax
          */
         set font ( value )
@@ -2313,6 +2562,9 @@ class Font
 
         /**
          * Get font
+         * @readOnly
+         * @name font
+         * @function
          * @return          {string}                                    CSS style font property syntax
          */
         get font ( )
@@ -2364,6 +2616,9 @@ class Point
 
         /**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          */
         set x ( value )
@@ -2373,6 +2628,9 @@ class Point
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          */
         get x ( )
@@ -2384,6 +2642,9 @@ class Point
 
         /**
          * Set the y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          */
         set y ( value )
@@ -2393,6 +2654,9 @@ class Point
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          */
         get y ( )
@@ -2404,12 +2668,18 @@ class Point
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          */
         set canvas ( value ) { }
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                     Canvas id
          */
         get canvas ( ) { }
@@ -2418,6 +2688,9 @@ class Point
 
         /**
          * Get options
+         * @public
+         * @name options
+         * @function
          * @return          {Options}                                   Options object
          */
         get options ( )
@@ -2429,6 +2702,9 @@ class Point
 
         /**
          * Get center of this object
+         * @readOnly
+         * @name center
+         * @function
          * @return          {Point}                                     Center point coordinates
          */
         get center ( )
@@ -2450,6 +2726,9 @@ class Point
 
         /**
          * Draws associated options
+         * @public
+         * @name drawOptions
+         * @function
          * @param           {number} offset                             Offset of drawable options
          */
         drawOptions ( )
@@ -2467,6 +2746,9 @@ class Point
 
         /**
          * Invert x & y coordinate values
+         * @public
+         * @name invert
+         * @function
          */
         invert ( )
         {
@@ -2474,11 +2756,6 @@ class Point
 
             [ this.y, this.x ] = [ this.x, _y ];
         }
-}
- 
-class Stage
-{
-
 }
  
 /**
@@ -2492,7 +2769,7 @@ class Stop
     _color  = new Rgb;
 
     /**
-     * Create a LinearGradient
+     * Create a color stop
      * @property        {number} offset                            Representation of the color stop position
      * @property        {string} color                             CSS color value
      */
@@ -2511,6 +2788,9 @@ class Stop
 
         /**
          * Set offset value
+         * @public
+         * @name offset
+         * @function
          * @param           {number} value                              Offset value
          */
         set offset ( value )
@@ -2520,6 +2800,9 @@ class Stop
 
         /**
          * Get offset value
+         * @readOnly
+         * @name offset
+         * @function
          * @return          {number}                                    Offset value
          */
         get offset ( )
@@ -2531,7 +2814,10 @@ class Stop
 
         /**
          * Set color value
-         * @param           {string} value                              CSS color value
+         * @public
+         * @name color
+         * @function
+         * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
          */
         set color ( value )
         {
@@ -2540,7 +2826,10 @@ class Stop
 
         /**
          * Get color value
-         * @return          {string}                                    CSS color value
+         * @public
+         * @name color
+         * @function
+         * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
          */
         get color ( )
         {
@@ -2556,16 +2845,14 @@ class Stop
  
 /**
  * @class           {Object}        Conic                       Conic gradient object type and properties
- * @property        {number}        angle                       Angle in radians
  * @property        {Point}         point                       X & Y axis coordinates
+ * @property        {number}        angle                       Angle in radians
  * @property        {Array.<Stops>} stops                       Array of color stops
  */
 class Conic
 {
     _point = new Point;
-
     _angle = 0;
-
     _stops = new Array;
 
     /**
@@ -2690,16 +2977,15 @@ class Conic
 }
  
 /**
- * @class           {Object} Linear                             Linear gradient object type and properties
- * @property        {Point}  start                              X & Y axis coordinates (start)
- * @property        {Point}  end                                X & Y axis coordinates (end)
- * @property        {Array}  stops                              Array of color stops
+ * @class           {Object}        Linear                      Linear gradient object type and properties
+ * @property        {Point}         start                       X & Y axis coordinates (start)
+ * @property        {Point}         end                         X & Y axis coordinates (end)
+ * @property        {Array.<Stops>} stops                       Array of color stops
  */
 class Linear
 {
     _start = new Point;
     _end   = new Point;
-
     _stops = new Array;
 
     /**
@@ -2824,12 +3110,12 @@ class Linear
 }
  
 /**
- * @class           {Object} Radial                             Radial gradient object type and properties
- * @property        {Point}  start                              X & Y axis coordinates (start)
- * @property        {Number} startRadius                        Starting radius of linear gradient
- * @property        {Point}  end                                X & Y axis coordinates (end)
- * @property        {Number} endRadius                          Ending radius of linear gradient gradient
- * @property        {Array}  stops                              Array of color stops
+ * @class           {Object}        Radial                      Radial gradient object type and properties
+ * @property        {Point}         start                       X & Y axis coordinates (start)
+ * @property        {Number}        startRadius                 Starting radius of linear gradient
+ * @property        {Point}         end                         X & Y axis coordinates (end)
+ * @property        {Number}        endRadius                   Ending radius of linear gradient gradient
+ * @property        {Array.<Stops>} stops                       Array of color stops
  */
 class Radial
 {
@@ -3115,7 +3401,7 @@ class Fill
          * @public
          * @name gradient
          * @function
-         * @return          {Object} value                              Gradient properties
+         * @param           {Object} value                              Gradient object & properties
          */
         set gradient ( value )
         {
@@ -3129,7 +3415,7 @@ class Fill
          * @readOnly
          * @name gradient
          * @function
-         * @return          {Object}                                    Gradient properties
+         * @return          {Object}                                    Gradient object & properties
          */
         get gradient ( )
         {
@@ -3198,7 +3484,10 @@ class Shadow
 
         /**
          * Set color value
-         * @param           {string} value                              RGB color value
+         * @public
+         * @name color
+         * @function
+         * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
          */
         set color ( value )
         {
@@ -3207,7 +3496,10 @@ class Shadow
 
         /**
          * Get color value
-         * @return          {string}                                    RGB color value
+         * @public
+         * @name color
+         * @function
+         * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
          */
         get color ( )
         {
@@ -3218,6 +3510,9 @@ class Shadow
 
         /**
          * Set blur value
+         * @public
+         * @name blur
+         * @function
          * @param           {number} blur                               Blur value
          */
         set blur ( value )
@@ -3227,6 +3522,9 @@ class Shadow
 
         /**
          * Get blur value
+         * @readOnly
+         * @name blur
+         * @function
          * @return          {number}                                    Blur value
          */
         get blur ( )
@@ -3238,6 +3536,9 @@ class Shadow
 
         /**
          * Set offset
+         * @public
+         * @name offset
+         * @function
          * @param           {Point} value                               Shadow offset
          * @see             {@link discrete.offset}
          */
@@ -3245,6 +3546,9 @@ class Shadow
 
         /**
          * Get offset
+         * @public
+         * @name offset
+         * @function
          * @return          {Point}                                     Shadow offset
          * @see             {@link discrete.offset}
          */
@@ -3253,6 +3557,9 @@ class Shadow
 
         /**
          * Set x-axis offset value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.offsetX}
          */
@@ -3260,6 +3567,9 @@ class Shadow
 
         /**
          * Get x-axis offset value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.offsetX}
          */
@@ -3268,6 +3578,9 @@ class Shadow
 
         /**
          * Set the y-axis offset value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.offsetY}
          */
@@ -3275,6 +3588,9 @@ class Shadow
 
         /**
          * Get y-axis offset value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.offsetY}
          */
@@ -3331,6 +3647,9 @@ class Stroke
 
         /**
          * Set type
+         * @public
+         * @name type
+         * @function
          * @param           {number} value                              Type: (0) Solid or (1) Dashed
          */
         set type ( value )
@@ -3340,6 +3659,9 @@ class Stroke
 
         /**
          * Get type
+         * @readOnly
+         * @name type
+         * @function
          * @return          {number}                                    Type: (0) Solid or (1) Dashed
          */
         get type ( )
@@ -3351,6 +3673,9 @@ class Stroke
 
         /**
          * Set segment value
+         * @public
+         * @name segments
+         * @function
          * @param           {Array} value                               Dashed line segment distance(s)
          */
         set segments ( value )
@@ -3362,6 +3687,9 @@ class Stroke
 
         /**
          * Get segment value
+         * @readOnly
+         * @name segments
+         * @function
          * @return          {Array}                                     Dashed line segment distance(s)
          */
         get segments ( )
@@ -3373,7 +3701,10 @@ class Stroke
 
         /**
          * Set color value
-         * @param           {string} value                              RGB color value
+         * @public
+         * @name color
+         * @function
+         * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
          */
         set color ( value )
         {
@@ -3382,7 +3713,10 @@ class Stroke
 
         /**
          * Get color value
-         * @return          {string}                                    RGB color value
+         * @public
+         * @name color
+         * @function
+         * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
          */
         get color ( )
         {
@@ -3393,6 +3727,9 @@ class Stroke
 
         /**
          * Set width value
+         * @public
+         * @name width
+         * @function
          * @param           {number} value                              Thickness of stroke
          */
         set width ( value )
@@ -3402,6 +3739,9 @@ class Stroke
 
         /**
          * Get width value
+         * @readOnly
+         * @name width
+         * @function
          * @return          {number}                                    Thickness of stroke
          */
         get width ( )
@@ -3466,6 +3806,9 @@ class OptionsCollection
 
         /**
          * Set shadow value
+         * @public
+         * @name shadow
+         * @function
          * @param           {boolean} value                             Shadow; true | false
          */
         set shadow ( value )
@@ -3475,6 +3818,9 @@ class OptionsCollection
 
         /**
          * Get shadow value
+         * @readOnly
+         * @name shadow
+         * @function
          * @return          {boolean}                                   Shadow; true | false
          */
         get shadow ( )
@@ -3486,6 +3832,9 @@ class OptionsCollection
 
         /**
          * Set border value
+         * @public
+         * @name border
+         * @function
          * @param           {boolean} value                             Border; true | false
          */
         set border ( value )
@@ -3495,6 +3844,9 @@ class OptionsCollection
 
         /**
          * Get border value
+         * @readOnly
+         * @name border
+         * @function
          * @return          {boolean}                                   Border; true | false
          */
         get border ( )
@@ -3506,6 +3858,9 @@ class OptionsCollection
 
         /**
          * Set axis value
+         * @public
+         * @name axis
+         * @function
          * @param           {boolean} value                             Axis; true | false
          */
         set axis ( value )
@@ -3515,6 +3870,9 @@ class OptionsCollection
 
         /**
          * Get axis value
+         * @readOnly
+         * @name axis
+         * @function
          * @return          {boolean}                                   Axis; true | false
          */
         get axis ( )
@@ -3526,6 +3884,9 @@ class OptionsCollection
 
         /**
          * Set coordinates value
+         * @public
+         * @name coordinates
+         * @function
          * @param           {boolean} value                             Coordinates; true | false
          */
         set coordinates ( value )
@@ -3535,6 +3896,9 @@ class OptionsCollection
 
         /**
          * Get coordinates value
+         * @readOnly
+         * @name coordinates
+         * @function
          * @return          {boolean}                                   Coordinates; true | false
          */
         get coordinates ( )
@@ -3546,6 +3910,9 @@ class OptionsCollection
 
         /**
          * Set control points value
+         * @public
+         * @name controlPoints
+         * @function
          * @param           {boolean} value                             Control points; true | false
          */
         set controlPoints ( value )
@@ -3555,6 +3922,9 @@ class OptionsCollection
 
         /**
          * Get control points value
+         * @readOnly
+         * @name controlPoints
+         * @function
          * @return          {boolean}                                   Control points; true | false
          */
         get controlPoints ( )
@@ -3597,6 +3967,9 @@ class PointCollection
 
         /**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          */
         set x ( value )
@@ -3606,6 +3979,9 @@ class PointCollection
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          */
         get x ( )
@@ -3617,6 +3993,9 @@ class PointCollection
 
         /**
          * Set the y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          */
         set y ( value )
@@ -3626,6 +4005,9 @@ class PointCollection
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          */
         get y ( )
@@ -3637,6 +4019,9 @@ class PointCollection
 
         /**
          * Get options
+         * @public
+         * @name options
+         * @function
          * @return          {OptionsCollection}                         Options collection object
          */
         get options ( )
@@ -3648,6 +4033,9 @@ class PointCollection
 
         /**
          * Invert x & y coordinate values
+         * @public
+         * @name invert
+         * @function
          */
         invert ( )
         {
@@ -3689,6 +4077,9 @@ class ShadowCollection
 
         /**
          * Set color value
+         * @public
+         * @name color
+         * @function
          * @param           {string} value                              RGB color value
          */
         set color ( value )
@@ -3698,6 +4089,9 @@ class ShadowCollection
 
         /**
          * Get color value
+         * @public
+         * @name color
+         * @function
          * @return          {string}                                    RGB color value
          */
         get color ( )
@@ -3709,6 +4103,9 @@ class ShadowCollection
 
         /**
          * Set blur value
+         * @public
+         * @name blur
+         * @function
          * @param           {number} blur                               Blur value
          */
         set blur ( value )
@@ -3718,6 +4115,9 @@ class ShadowCollection
 
         /**
          * Get blur value
+         * @readOnly
+         * @name blur
+         * @function
          * @return          {number}                                    Blur value
          */
         get blur ( )
@@ -3729,6 +4129,9 @@ class ShadowCollection
 
         /**
          * Set offset
+         * @public
+         * @name offset
+         * @function
          * @param           {Point} value                               Shadow offset
          */
         set offset ( value )
@@ -3738,6 +4141,9 @@ class ShadowCollection
 
         /**
          * Get offset
+         * @public
+         * @name offset
+         * @function
          * @return          {Point}                                     Shadow offset
          */
         get offset ( )
@@ -3748,12 +4154,18 @@ class ShadowCollection
 
         /**
          * Set x-axis offset value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          */
         set x ( value ) { this._offset.x = value; }
 
         /**
          * Get x-axis offset value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          */
         get x ( )       { return this._offset.x;  }
@@ -3761,12 +4173,18 @@ class ShadowCollection
 
         /**
          * Set the y-axis offset value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          */
         set y ( value ) { this._offset.y = value; }
 
         /**
          * Get y-axis offset value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          */
         get y ( )       { return this._offset.y;  }
@@ -3819,6 +4237,9 @@ class StrokeCollection
 
         /**
          * Set color value
+         * @public
+         * @name color
+         * @function
          * @param           {string} value                              RGB color value
          */
         set color ( value )
@@ -3828,6 +4249,9 @@ class StrokeCollection
 
         /**
          * Get color value
+         * @public
+         * @name color
+         * @function
          * @return          {string}                                    RGB color value
          */
         get color ( )
@@ -3839,6 +4263,9 @@ class StrokeCollection
 
         /**
          * Set type
+         * @public
+         * @name type
+         * @function
          * @param           {number} value                              Type: (0) Solid or (1) Dashed
          */
         set type ( value )
@@ -3848,6 +4275,9 @@ class StrokeCollection
 
         /**
          * Get type
+         * @readOnly
+         * @name type
+         * @function
          * @return          {number}                                    Type: (0) Solid or (1) Dashed
          */
         get type ( )
@@ -3859,6 +4289,9 @@ class StrokeCollection
 
         /**
          * Set segment value
+         * @public
+         * @name segments
+         * @function
          * @param           {Array} value                               Dashed line segment distance(s)
          */
         set segments ( value )
@@ -3868,6 +4301,9 @@ class StrokeCollection
 
         /**
          * Get segment value
+         * @readOnly
+         * @name segments
+         * @function
          * @return          {Array}                                     Dashed line segment distance(s)
          */
         get segments ( )
@@ -3879,6 +4315,9 @@ class StrokeCollection
 
         /**
          * Set width value
+         * @public
+         * @name width
+         * @function
          * @param           {number} value                              Thickness of stroke
          */
         set width ( value )
@@ -3888,6 +4327,9 @@ class StrokeCollection
 
         /**
          * Get width value
+         * @readOnly
+         * @name width
+         * @function
          * @return          {number}                                    Thickness of stroke
          */
         get width ( )
@@ -3897,13 +4339,17 @@ class StrokeCollection
 
     ////    [ MASTER ]  ////////////////////////////////////
 
+        /**
+         * Set master object
+         * @public
+         * @name master
+         * @function
+         */
         set master ( value )
         {
-            this._master = ( typeof value === 'object' )
+            this._master = ( typeof value === 'object' ) ? value
 
-                               ? value
-
-                               : console.error ( `[ERROR] "${ value.constructor.name }", is not a valid type !` );
+                                                         : console.error ( `[ERROR] "${ value.constructor.name }", is not a valid type !` );
         }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -3946,7 +4392,7 @@ class Circle
     #_options = new Options;
 
     /**
-     * Create a circle
+     * Create a Circle object
      * @property        {Point}  point                              X & Y axis coordinates
      * @property        {number} radius                             Radius of circle
      * @property        {Angle}  angle                              Angle properties
@@ -4018,6 +4464,9 @@ class Circle
 
         /**
          * Set point
+         * @public
+         * @name point
+         * @function
          * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
@@ -4025,6 +4474,9 @@ class Circle
 
         /**
          * Get point
+         * @public
+         * @name point
+         * @function
          * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
@@ -4033,6 +4485,9 @@ class Circle
 
         /**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.pointX}
          */
@@ -4040,6 +4495,9 @@ class Circle
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.pointX}
          */
@@ -4048,6 +4506,9 @@ class Circle
 
         /**
          * Set the y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.pointY}
          */
@@ -4055,6 +4516,9 @@ class Circle
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.pointY}
          */
@@ -4064,6 +4528,9 @@ class Circle
 
         /**
          * Set radius value
+         * @public
+         * @name radius
+         * @function
          * @param           {number} value                              Radius of circle
          */
         set radius ( value )
@@ -4073,6 +4540,9 @@ class Circle
 
         /**
          * Get radius value
+         * @readOnly
+         * @name radius
+         * @function
          * @return          {number}                                    Radius of circle
          */
         get radius ( )
@@ -4084,6 +4554,9 @@ class Circle
 
         /**
          * Get angle properties
+         * @public
+         * @name angle
+         * @function
          * @return          {Angle}                                     Angle properties
          */
         get angle ( )
@@ -4095,6 +4568,9 @@ class Circle
 
         /**
          * Get stroke properties
+         * @public
+         * @name stroke
+         * @function
          * @return          {Stroke}                                    Stroke properties
          */
         get stroke ( )
@@ -4106,6 +4582,9 @@ class Circle
 
         /**
          * Get fill properties
+         * @public
+         * @name fill
+         * @function
          * @return          {Fill}                                      Fill properties
          */
         get fill ( )
@@ -4117,6 +4596,9 @@ class Circle
 
         /**
          * Get shadow properties
+         * @public
+         * @name shadow
+         * @function
          * @return          {Shadow}                                    Shadow properties
          */
         get shadow ( )
@@ -4128,6 +4610,9 @@ class Circle
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -4135,6 +4620,9 @@ class Circle
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -4144,6 +4632,9 @@ class Circle
 
         /**
          * Get anchor
+         * @public
+         * @name anchor
+         * @function
          * @return          {Anchor}                                    Anchor properties
          */
         get anchor ( )
@@ -4155,6 +4646,9 @@ class Circle
 
         /**
          * Get options properties
+         * @public
+         * @name options
+         * @function
          * @return          {Options}                                   Options properties
          */
         get options ( )
@@ -4166,6 +4660,9 @@ class Circle
 
         /**
          * Get area of this object
+         * @readOnly
+         * @name area
+         * @function
          * @return          {number}                                    Area of circle
          */
         get area ( )
@@ -4175,6 +4672,9 @@ class Circle
 
         /**
          * Get diameter of circle
+         * @readOnly
+         * @name diameter
+         * @function
          * @return          {number}                                    Diameter of circle
          */
         get diameter ( )
@@ -4184,6 +4684,9 @@ class Circle
 
         /**
          * Get circumference of circle
+         * @readOnly
+         * @name circumference
+         * @function
          * @return          {number}                                    Circumference of circle
          */
         get circumference ( )
@@ -4193,6 +4696,9 @@ class Circle
 
         /**
          * Get center of this object
+         * @readOnly
+         * @name center
+         * @function
          * @return          {Point}                                     Center point coordinates
          */
         get center ( )
@@ -4222,6 +4728,9 @@ class Circle
 
         /**
          * Check whether the passed object is already present
+         * @public
+         * @name isThere
+         * @function
          * @param           {Circle} circle                             Object to validate
          */
         isThere ( circle )
@@ -4258,6 +4767,9 @@ class Circle
 
         /**
          * Draws associated options
+         * @private
+         * @name _drawOptions
+         * @function
          */
         _drawOptions ( )
         {
@@ -4278,6 +4790,9 @@ class Circle
 
         /**
          * Draws anchor point
+         * @private
+         * @name _drawAnchor
+         * @function
          */
         _drawAnchor ( )
         {
@@ -4293,6 +4808,9 @@ class Circle
 
         /**
          * Sets anchor's point against this object's point location
+         * @private
+         * @name _setAnchorPoint
+         * @function
          */
         _setAnchorPoint ( )
         {
@@ -4329,6 +4847,9 @@ class Circle
 
         /**
          * Move this object
+         * @public
+         * @name move
+         * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [clear=true]                      Clear canvas during each movement
@@ -4348,6 +4869,9 @@ class Circle
 
         /**
          * Rotate this object
+         * @public
+         * @name rotate
+         * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {number} [clear=true]                       Clear canvas during each rotation
          */
@@ -4378,6 +4902,9 @@ class Circle
 
         /**
          * Shows coordinates of this object
+         * @public
+         * @name showCordinates
+         * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
          */
@@ -4411,6 +4938,9 @@ class Circle
 
         /**
          * Draw this object
+         * @public
+         * @name draw
+         * @function
          * @param           {string} canvas                             Canvas Id
          */
         draw ( canvas )
@@ -4457,6 +4987,9 @@ class Circle
 
         /**
          * Redraw this object
+         * @public
+         * @name redraw
+         * @function
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
@@ -4497,7 +5030,7 @@ class Line
     #_controlPoints = new ControlPoints;
 
     /**
-     * Create a line
+     * Create a Line object
      * @property        {Point}  start                              Starting point of line
      * @property        {Point}  end                                Ending point of line
      * @property        {Stroke} stroke                             Stroke properties
@@ -4608,6 +5141,9 @@ class Line
 
         /**
          * Set starting point
+         * @public
+         * @name start
+         * @function
          * @param           {Point} value                               Starting point
          */
         set start ( value )
@@ -4617,6 +5153,9 @@ class Line
 
         /**
          * Set starting point
+         * @public
+         * @name start
+         * @function
          * @return          {Point}                                     Starting point
          */
         get start ( )
@@ -4628,6 +5167,9 @@ class Line
 
         /**
          * Set ending point
+         * @public
+         * @name end
+         * @function
          * @param           {Point} value                               Ending point
          */
         set end ( value )
@@ -4637,6 +5179,9 @@ class Line
 
         /**
          * Set ending point
+         * @public
+         * @name end
+         * @function
          * @return          {Point}                                     Ending point
          */
         get end ( )
@@ -4648,6 +5193,9 @@ class Line
 
         /**
          * Get stroke properties
+         * @public
+         * @name stroke
+         * @function
          * @return          {Stroke}                                    Stroke properties
          */
         get stroke ( )
@@ -4659,6 +5207,9 @@ class Line
 
         /**
          * Get shadow properties
+         * @public
+         * @name shadow
+         * @function
          * @return          {Shadow}                                    Shadow properties
          */
         get shadow ( )
@@ -4670,6 +5221,9 @@ class Line
 
         /**
          * Set line cap
+         * @public
+         * @name lineCap
+         * @function
          * @param           {string} value                              Line cap
          */
         set lineCap ( value )
@@ -4679,6 +5233,9 @@ class Line
 
         /**
          * Get line cap
+         * @readOnly
+         * @name lineCap
+         * @function
          * @return          {string}                                    Line cap
          */
         get lineCap ( )
@@ -4690,6 +5247,9 @@ class Line
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -4697,6 +5257,9 @@ class Line
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -4706,6 +5269,9 @@ class Line
 
         /**
          * Get options properties
+         * @public
+         * @name options
+         * @function
          * @return          {Options}                                   Options properties
          */
         get options ( )
@@ -4717,6 +5283,9 @@ class Line
 
         /**
          * Get control point properties
+         * @public
+         * @name controlPoints
+         * @function
          * @return          {ControlPoints}                             Control points properties
          */
         get controlPoints ( )
@@ -4728,6 +5297,9 @@ class Line
 
         /**
          * Get center of this object
+         * @readOnly
+         * @name center
+         * @function
          * @return          {Point}                                     Center point coordinates
          */
         get center ( )
@@ -4752,6 +5324,9 @@ class Line
 
         /**
          * Set line's path
+         * @protected
+         * @name #_setPath
+         * @function
          */
         #_setPath ( )
         {
@@ -4780,6 +5355,9 @@ class Line
 
         /**
          * Check whether the passed object is already present
+         * @public
+         * @name isThere
+         * @function
          * @param           {Line} line                                 Object to validate
          */
         isThere ( line )
@@ -4821,6 +5399,9 @@ class Line
 
         /**
          * Draws associated options
+         * @private
+         * @name _drawOptions
+         * @function
          */
         _drawOptions ( )
         {
@@ -4848,8 +5429,14 @@ class Line
         fillColorCycle   ( ) { }
 
         /**
-         * [one description]
-         * @type {Object}
+         * Set control points for bezier curve
+         * @public
+         * @name curve
+         * @function
+         * @param           {number} p0                                 Control point 0
+         * @param           {number} p1                                 Control point 1
+         * @param           {number} p2                                 Control point 2
+         * @param           {number} p3                                 Control point 3
          */
         curve ( p0, p1, p2, p3 )
         {
@@ -4863,8 +5450,10 @@ class Line
         }
 
         /**
-         * Draws associated options for start & end points
-         * @param           {number} [offset=10]                        Offset of drawable options
+         * Draws start & end points
+         * @public
+         * @name drawPoints
+         * @function
          */
         drawPoints ( )
         {
@@ -4875,6 +5464,9 @@ class Line
 
         /**
          * Move this object
+         * @public
+         * @name move
+         * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [clear=true]                      Clear canvas during each movement
@@ -4899,6 +5491,9 @@ class Line
 
         /**
          * Rotate this object
+         * @public
+         * @name rotate
+         * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
@@ -4949,6 +5544,9 @@ class Line
 
         /**
          * Shows coordinates of this object
+         * @public
+         * @name showCoordinates
+         * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
          */
@@ -4985,6 +5583,9 @@ class Line
 
         /**
          * Show control points for this object
+         * @public
+         * @name showControlPoints
+         * @function
          * @param           {number} [offset=10]                        Offset of control points y origin
          * @param           {number} [fontSize=16]                      Control points font size
          */
@@ -5090,6 +5691,9 @@ class Line
 
         /**
          * Draw this object
+         * @public
+         * @name draw
+         * @function
          * @param           {string} canvas                             Canvas Id
          */
         draw ( canvas )
@@ -5138,6 +5742,9 @@ class Line
 
         /**
          * Redraw this object
+         * @public
+         * @name redraw
+         * @function
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   start                             Point of new start location
          * @param           {Point}   end                               Point of new end location
@@ -5180,7 +5787,7 @@ class Rectangle
     #_options = new Options;
 
     /**
-     * Create a rectangle
+     * Create a Rectangle object
      * @property        {Point}  point                              X & Y axis coordinates
      * @property        {Aspect} aspect                             Aspect properties
      * @property        {Stroke} stroke                             Stroke properties
@@ -5248,6 +5855,9 @@ class Rectangle
 
         /**
          * Set point
+         * @public
+         * @name point
+         * @function
          * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
@@ -5255,6 +5865,9 @@ class Rectangle
 
         /**
          * Get point
+         * @public
+         * @name point
+         * @function
          * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
@@ -5263,6 +5876,9 @@ class Rectangle
 
         /**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.pointX}
          */
@@ -5270,6 +5886,9 @@ class Rectangle
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.pointX}
          */
@@ -5278,6 +5897,9 @@ class Rectangle
 
         /**
          * Set the y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.pointY}
          */
@@ -5285,6 +5907,9 @@ class Rectangle
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.pointY}
          */
@@ -5294,6 +5919,9 @@ class Rectangle
 
         /**
          * Set aspect properties
+         * @public
+         * @name aspect
+         * @function
          * @param           {Aspect} value                              Aspect properties
          */
         set aspect ( value )
@@ -5303,6 +5931,9 @@ class Rectangle
 
         /**
          * Get aspect properties
+         * @readOnly
+         * @name aspect
+         * @function
          * @return          {Aspect}                                    Aspect properties
          */
         get aspect ( )
@@ -5313,6 +5944,9 @@ class Rectangle
 
         /**
          * Set aspect width
+         * @public
+         * @name width
+         * @function
          * @param           {number} value                              Width value
          */
         set width  ( value )
@@ -5322,6 +5956,9 @@ class Rectangle
 
         /**
          * Get aspect with
+         * @readOnly
+         * @name width
+         * @function
          * @return          {number}                                    Width value
          */
         get width  ( )
@@ -5332,6 +5969,9 @@ class Rectangle
 
         /**
          * Set aspect height
+         * @public
+         * @name height
+         * @function
          * @param           {number} value                              Height value
          */
         set height ( value )
@@ -5341,6 +5981,9 @@ class Rectangle
 
         /**
          * Get aspect height
+         * @readOnly
+         * @name height
+         * @function
          * @return          {number}                                    Height value
          */
         get height ( )
@@ -5352,6 +5995,9 @@ class Rectangle
 
         /**
          * Get stroke properties
+         * @public
+         * @name stroke
+         * @function
          * @return          {Stroke}                                    Stroke properties
          */
         get stroke ( )
@@ -5363,6 +6009,9 @@ class Rectangle
 
         /**
          * Get fill properties
+         * @public
+         * @name fill
+         * @function
          * @return          {Fill}                                      Fill properties
          */
         get fill ( )
@@ -5374,6 +6023,9 @@ class Rectangle
 
         /**
          * Get shadow properties
+         * @public
+         * @name shadow
+         * @function
          * @return          {Shadow}                                    Shadow properties
          */
         get shadow ( )
@@ -5385,6 +6037,9 @@ class Rectangle
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -5392,6 +6047,9 @@ class Rectangle
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -5401,6 +6059,9 @@ class Rectangle
 
         /**
          * Get anchor
+         * @public
+         * @name anchor
+         * @function
          * @return          {Anchor}                                    Anchor properties
          */
         get anchor ( )
@@ -5412,6 +6073,9 @@ class Rectangle
 
         /**
          * Get options properties
+         * @public
+         * @name options
+         * @function
          * @return          {Options}                                   Options properties
          */
         get options ( )
@@ -5431,6 +6095,9 @@ class Rectangle
 
         /**
          * Check whether the passed object is already present
+         * @public
+         * @name isThere
+         * @function
          * @param           {Rectangle} rectangle                       Object to validate
          */
         isThere ( rectangle )
@@ -5469,6 +6136,9 @@ class Rectangle
 
         /**
          * Draws associated options
+         * @private
+         * @name _drawOptions
+         * @function
          */
         _drawOptions ( )
         {
@@ -5487,6 +6157,9 @@ class Rectangle
 
         /**
          * Draws anchor point
+         * @private
+         * @name _drawAnchor
+         * @function
          */
         _drawAnchor ( )
         {
@@ -5502,6 +6175,9 @@ class Rectangle
 
         /**
          * Sets anchor's point against this object's point location
+         * @private
+         * @name _setAnchorPoint
+         * @function
          */
         _setAnchorPoint ( )
         {
@@ -5538,6 +6214,9 @@ class Rectangle
 
         /**
          * Move this object
+         * @public
+         * @name move
+         * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [clear=true]                      Clear canvas during each movement
@@ -5557,6 +6236,9 @@ class Rectangle
 
         /**
          * Rotate this object
+         * @public
+         * @name rotate
+         * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {number} [clear=true]                       Clear canvas during each rotation
          */
@@ -5589,6 +6271,9 @@ class Rectangle
 
         /**
          * Get area of this object
+         * @readOnly
+         * @name area
+         * @function
          * @return          {number}                                    Area of rectangle
          */
         get area ( )
@@ -5598,6 +6283,9 @@ class Rectangle
 
         /**
          * Get perimeter of this object
+         * @readOnly
+         * @name perimeter
+         * @function
          * @return          {number}                                    Perimeter of rectangle
          */
         get perimeter ( )
@@ -5607,6 +6295,9 @@ class Rectangle
 
         /**
          * Get center of this object
+         * @readOnly
+         * @name center
+         * @function
          * @return          {Point}                                     Center point coordinates
          */
         get center ( )
@@ -5623,6 +6314,9 @@ class Rectangle
 
         /**
          * Draw this object
+         * @public
+         * @name draw
+         * @function
          * @param           {string} canvas                             Canvas Id
          */
         draw ( canvas )
@@ -5690,7 +6384,7 @@ class Text extends Font
     #_options = new Options;
 
     /**
-     * Create a text object
+     * Create a Text object
      * @param           {Point}  point                              X & Y axis coordinates
      * @param           {string} text                               Text of text object
      * @param           {string} type                               Font type
@@ -5768,6 +6462,9 @@ class Text extends Font
 
         /**
          * Set point
+         * @public
+         * @name point
+         * @function
          * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
@@ -5775,6 +6472,9 @@ class Text extends Font
 
         /**
          * Get point
+         * @public
+         * @name point
+         * @function
          * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
@@ -5783,6 +6483,9 @@ class Text extends Font
 
         /**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.pointX}
          */
@@ -5790,6 +6493,9 @@ class Text extends Font
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.pointX}
          */
@@ -5798,6 +6504,9 @@ class Text extends Font
 
         /**
          * Set the y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.pointY}
          */
@@ -5805,6 +6514,9 @@ class Text extends Font
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.pointY}
          */
@@ -5814,6 +6526,9 @@ class Text extends Font
 
         /**
          * Set text
+         * @public
+         * @name text
+         * @function
          * @param           {string} value                              Text of object
          */
         set text ( value )
@@ -5823,6 +6538,9 @@ class Text extends Font
 
         /**
          * Get text
+         * @readOnly
+         * @name text
+         * @function
          * @return          {string}                                    Text of object
          */
         get text ( )
@@ -5834,6 +6552,9 @@ class Text extends Font
 
         /**
          * Get stroke properties
+         * @public
+         * @name stroke
+         * @function
          * @return          {Stroke}                                    Stroke properties
          */
         get stroke ( )
@@ -5845,6 +6566,9 @@ class Text extends Font
 
         /**
          * Get fill properties
+         * @public
+         * @name fill
+         * @function
          * @return          {Fill}                                      Fill properties
          */
         get fill ( )
@@ -5856,6 +6580,9 @@ class Text extends Font
 
         /**
          * Get shadow properties
+         * @public
+         * @name shadow
+         * @function
          * @return          {Shadow}                                    Shadow properties
          */
         get shadow ( )
@@ -5867,6 +6594,9 @@ class Text extends Font
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -5874,6 +6604,9 @@ class Text extends Font
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -5883,6 +6616,9 @@ class Text extends Font
 
         /**
          * Get options properties
+         * @public
+         * @name options
+         * @function
          * @return          {Options}                                   Options properties
          */
         get options ( )
@@ -5894,6 +6630,9 @@ class Text extends Font
 
         /**
          * Draws associated options
+         * @protected
+         * @name #_drawOptions
+         * @function
          */
         #_drawOptions ( )
         {
@@ -5908,12 +6647,18 @@ class Text extends Font
 
             /**
              * Set font's type
+             * @public
+             * @name type
+             * @function
              * @param           {string} value                              Font's type
              */
             set type ( value ) { super.type = value; }
 
             /**
              * Get font's type
+             * @readOnly
+             * @name type
+             * @function
              * @return          {string}                                    Font's type
              */
             get type ( )       { return super.type;  }
@@ -5922,12 +6667,18 @@ class Text extends Font
 
             /**
              * Set font's size
+             * @public
+             * @name size
+             * @function
              * @param           {number} value                              Font's size
              */
             set size ( value ) { super.size = value; }
 
             /**
              * Get font's size
+             * @readOnly
+             * @name size
+             * @function
              * @return          {number}                                    Font's size
              */
             get size ( )       { return super.size;  }
@@ -5936,12 +6687,18 @@ class Text extends Font
 
             /**
              * Set font's weight
+             * @public
+             * @name weight
+             * @function
              * @param           {string} value                              Font's weight
              */
             set weight ( value ) { super.weight = value; }
 
             /**
              * Get font's weight
+             * @readOnly
+             * @name weight
+             * @function
              * @return          {string}                                    Font's weight
              */
             get weight ( )       { return super.weight;  }
@@ -5950,6 +6707,9 @@ class Text extends Font
 
             /**
              * Set font's max width
+             * @public
+             * @name maxWidth
+             * @function
              * @param           {number} value                              Font's max width
              */
             set maxWidth ( value )
@@ -5967,6 +6727,9 @@ class Text extends Font
 
             /**
              * Get font's max width
+             * @readOnly
+             * @name maxWidth
+             * @function
              * @return          {number}                                    Font's max width
              */
             get maxWidth ( ) { return super.maxWidth; }
@@ -5975,6 +6738,9 @@ class Text extends Font
 
             /**
              * Set offset
+             * @public
+             * @name offset
+             * @function
              * @param           {Point} value                               Shadow offset
              * @see             {@link discrete.offset}
              */
@@ -5982,6 +6748,9 @@ class Text extends Font
 
             /**
              * Get offset
+             * @readOnly
+             * @name offset
+             * @function
              * @return          {Point}                                     Shadow offset
              * @see             {@link discrete.offset}
              */
@@ -5991,6 +6760,9 @@ class Text extends Font
 
             /**
              * Get font
+             * @public
+             * @name font
+             * @function
              * @return          {string}                                    CSS style font property syntax
              */
             get font ( )
@@ -6020,6 +6792,9 @@ class Text extends Font
 
         /**
          * Draws border around this object
+         * @public
+         * @name drawBorder
+         * @function
          * @param           {number} [offset=10]                        Offset of border's perimeter
          */
         drawBorder ( offset = 10 )
@@ -6042,6 +6817,9 @@ class Text extends Font
 
         /**
          * Draws axis through center of this object
+         * @public
+         * @name drawAxis
+         * @function
          * @param           {number} [offset=10]                        Offset of axis's edges
          */
         drawAxis ( offset = 10 )
@@ -6077,6 +6855,9 @@ class Text extends Font
 
         /**
          * Move this object
+         * @public
+         * @name move
+         * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [clear=true]                      Clear canvas during each movement
@@ -6096,6 +6877,9 @@ class Text extends Font
 
         /**
          * Rotate this object
+         * @public
+         * @name rotate
+         * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
@@ -6152,6 +6936,9 @@ class Text extends Font
 
         /**
          * Draw this object
+         * @public
+         * @name draw
+         * @function
          * @param           {string} canvas                             Canvas Id
          */
         draw ( canvas, shadow = false )
@@ -6203,11 +6990,15 @@ class Text extends Font
 class Circles extends Array
 {
     _point   = new Point;
-
     _canvas  = undefined;
 
     _storage = { type: Circle }
 
+    /**
+     * Create Circles object
+     * @property        {Point}             point                   X & Y axis coordinates
+     * @property        {HTMLCanvasElement} canvas                  Canvas Id
+     */
     constructor ( point = { x: undefined, y: undefined }, canvas )
     {
         super ( );
@@ -6220,6 +7011,9 @@ class Circles extends Array
             this.pushPop = UTILITIES.pushPop;
             this.draw    = UTILITIES.draw.typicalCollection;
 
+            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
+            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
+            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.point = point;
@@ -6228,30 +7022,68 @@ class Circles extends Array
 
     ////    [ POINT ]   ////////////////////////////////////
 
-        set point ( value )
-        {
-            this._point = ( this._isPoint ( value ) ) ? value : this._point;
-        }
+        /**
+         * Set point
+         * @public
+         * @name point
+         * @function
+         * @param           {Point} point                               X & Y axis coordinates
+         */
+        set point ( value ) { }
 
-        get point ( )
-        {
-            return this._point;
-        }
+        /**
+         * Get point
+         * @public
+         * @name point
+         * @function
+         * @return          {Point}                                     X & Y axis coordinates
+         */
+        get point ( ) { }
 
 
-        set x ( value ) { this._point.x = value; }
+        /**
+         * Set x-axis value
+         * @public
+         * @name x
+         * @function
+         * @param           {number} value                              X coordinate value
+         */
+        set x ( value ) { }
 
-        get x ( )       { return this._point.x;  }
+        /**
+         * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
+         * @return          {number}                                    X coordinate value
+         */
+        get x ( ) {  }
 
+        /**
+         * Set y-axis value
+         * @public
+         * @name y
+         * @function
+         * @param           {number} value                              Y coordinate value
+         */
+        set y ( value ) { }
 
-        set y ( value ) { this._point.y = value; }
-
-        get y ( )       { return this._point.y;  }
+        /**
+         * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
+         * @return          {number}                                    Y coordinate value
+         */
+        get y ( ) { }
 
     ////    [ CANVAS ]  ////////////////////////////////////
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
          */
@@ -6259,6 +7091,9 @@ class Circles extends Array
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
          */
@@ -6299,6 +7134,11 @@ class Group extends Array
 
     _canvas     = undefined;
 
+    /**
+     * Create Group object
+     * @property        {Point}             point                   X & Y axis coordinates
+     * @property        {HTMLCanvasElement} canvas                  Canvas Id
+     */
     constructor ( point = { x: undefined, y: undefined }, canvas )
     {
         super ( );
@@ -6321,6 +7161,9 @@ class Group extends Array
 
         /**
          * Set point
+         * @public
+         * @name point
+         * @function
          * @param           {Point} value                               X & Y coordinates
          */
         set point ( value )
@@ -6330,6 +7173,9 @@ class Group extends Array
 
         /**
          * Get point
+         * @public
+         * @name point
+         * @function
          * @return          {Point}                                     X & Y coordinates
          */
         get point ( )
@@ -6339,24 +7185,36 @@ class Group extends Array
 
         /**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          */
         set x ( value ) { this._point.x = value; }
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          */
         get x ( )       { return this._point.x;  }
 
         /**
          * Set the y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          */
         set y ( value ) { this._point.y = value; }
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          */
         get y ( )       { return this._point.y;  }
@@ -6365,6 +7223,9 @@ class Group extends Array
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
          */
@@ -6372,6 +7233,9 @@ class Group extends Array
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
          */
@@ -6385,6 +7249,13 @@ class Group extends Array
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Pushes an object into this group
+         * @public
+         * @name push
+         * @function
+         * @param           {Object} object                             Object; Line(s), Circle(s), Rectangle(S)
+         */
         push ( object )
         {
             for ( let _value of arguments )
@@ -6415,6 +7286,13 @@ class Group extends Array
                 }
         }
 
+        /**
+         * Pops an object out of this group
+         * @public
+         * @name pop
+         * @function
+         * @param           {Object} object                             Object; Line(s), Circle(s), Rectangle(S)
+         */
         pop ( object )
         {
             for ( let _value of arguments )
@@ -6451,6 +7329,13 @@ class Group extends Array
 
         drawShapes ( ) { }
 
+        /**
+         * Draw this group
+         * @public
+         * @name draw
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         */
         draw ( canvas )
         {
             if ( canvas != undefined ) this.canvas = canvas;
@@ -6532,6 +7417,9 @@ class Lines extends Array
 
         /**
          * Set point
+         * @public
+         * @name point
+         * @function
          * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
@@ -6539,6 +7427,9 @@ class Lines extends Array
 
         /**
          * Get point
+         * @public
+         * @name point
+         * @function
          * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
@@ -6547,6 +7438,9 @@ class Lines extends Array
 
         /**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.pointX}
          */
@@ -6554,6 +7448,9 @@ class Lines extends Array
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.pointX}
          */
@@ -6561,6 +7458,9 @@ class Lines extends Array
 
         /**
          * Set the y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.pointY}
          */
@@ -6568,6 +7468,9 @@ class Lines extends Array
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.pointY}
          */
@@ -6577,6 +7480,9 @@ class Lines extends Array
 
         /**
          * Get stroke properties
+         * @public
+         * @name stroke
+         * @function
          * @return          {Stroke}                                    Stroke properties
          */
         get stroke ( )
@@ -6588,6 +7494,9 @@ class Lines extends Array
 
         /**
          * Get shadow properties
+         * @public
+         * @name shadow
+         * @function
          * @return          {Shadow}                                    Shadow properties
          */
         get shadow ( )
@@ -6597,6 +7506,13 @@ class Lines extends Array
 
     ////    [ OPTIONS ] ////////////////////////////////////
 
+        /**
+         * Get options
+         * @public
+         * @name options
+         * @function
+         * @return          {Object}                                    Options object
+         */
         get options ( )
         {
             return this.#_options;
@@ -6606,6 +7522,9 @@ class Lines extends Array
 
         /**
          * Set line cap
+         * @public
+         * @name lineCap
+         * @function
          * @param           {string} value                              Line cap
          */
         set lineCap ( value )
@@ -6615,6 +7534,9 @@ class Lines extends Array
 
         /**
          * Get line cap
+         * @readOnly
+         * @name lineCap
+         * @function
          * @return          {string}                                    Line cap
          */
         get lineCap ( )
@@ -6626,6 +7548,9 @@ class Lines extends Array
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
          */
@@ -6633,6 +7558,9 @@ class Lines extends Array
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
          */
@@ -6642,6 +7570,9 @@ class Lines extends Array
 
         /**
          * Get aspect properties
+         * @public
+         * @name aspect
+         * @function
          * @return          {Aspect}                                    Aspect properties
          */
         get aspect ( )
@@ -6654,6 +7585,9 @@ class Lines extends Array
 
         /**
          * Get aspect with
+         * @readOnly
+         * @name width
+         * @function
          * @return          {number}                                    Width value
          */
         get width  ( )
@@ -6663,6 +7597,9 @@ class Lines extends Array
 
         /**
          * Get aspect height
+         * @readOnly
+         * @name height
+         * @function
          * @return          {number}                                    Height value
          */
         get height ( )
@@ -6674,6 +7611,9 @@ class Lines extends Array
 
         /**
          * Set anchor type
+         * @public
+         * @name anchor
+         * @function
          * @param           {string} value                              Anchor type
          */
         set anchor ( value )
@@ -6686,6 +7626,9 @@ class Lines extends Array
 
         /**
          * Get anchor
+         * @public
+         * @name anchor
+         * @function
          * @return          {Anchor}                                    Anchor properties
          */
         get anchor ( )
@@ -6697,6 +7640,9 @@ class Lines extends Array
 
         /**
          * Get area of this object
+         * @readOnly
+         * @name area
+         * @function
          * @return          {number}                                    Area of rectangle
          */
         get area ( )
@@ -6706,6 +7652,9 @@ class Lines extends Array
 
         /**
          * Get perimeter of this object
+         * @readOnly
+         * @name perimeter
+         * @function
          * @return          {number}                                    Perimeter of rectangle
          */
         get perimeter ( )
@@ -6715,6 +7664,9 @@ class Lines extends Array
 
         /**
          * Get center of this object
+         * @readOnly
+         * @name center
+         * @function
          * @return          {Point}                                     Center point coordinates
          */
         get center ( )
@@ -6745,6 +7697,13 @@ class Lines extends Array
 
     ////    ( PRIVATE ) ////////////////////////////////////
 
+        /**
+         * Appends property values
+         * @protected
+         * @name #_appendProperties
+         * @function
+         * @param           {Line} line                                 Line object
+         */
         #_appendProperties ( Line )
         {
             Object.defineProperty ( Line, 'origin',
@@ -6779,6 +7738,9 @@ class Lines extends Array
 
         /**
          * Draws associated options
+         * @private
+         * @name _drawOptions
+         * @function
          */
         _drawOptions ( )
         {
@@ -6797,6 +7759,9 @@ class Lines extends Array
 
         /**
          * Draws anchor point
+         * @private
+         * @name _drawAnchor
+         * @function
          */
         _drawAnchor ( )
         {
@@ -6812,6 +7777,9 @@ class Lines extends Array
 
         /**
          * Sets anchor's point against this object's point location
+         * @private
+         * @name _setAnchorPoint
+         * @function
          */
         _setAnchorPoint ( )
         {
@@ -6819,10 +7787,6 @@ class Lines extends Array
 
 
             this.#_anchor = this.center;
-
-            // console.log ( this.#_anchor );
-
-            // [ this.#_anchor.x, this.#_anchor.y ] = [ this.x, this.y ];
 
 
             switch ( this.anchor.type )
@@ -6847,6 +7811,12 @@ class Lines extends Array
             }
         }
 
+        /**
+         * Sets aspect
+         * @private
+         * @name _setAspect
+         * @function
+         */
         _setAspect ( )
         {
             const getSpan = ( start, end ) => ( start < end ) ? end - start : start - end;
@@ -6871,6 +7841,12 @@ class Lines extends Array
                 console.warn ( `No ${this.constructor.name} exist to draw !` );
         }
 
+        /**
+         * Pushes Line(s) into this collection
+         * @public
+         * @name push
+         * @function
+         */
         push ( )
         {
             for ( let _i = 0; _i < arguments.length; _i++ )
@@ -6903,14 +7879,29 @@ class Rectangles extends Array
 
     _storage = { type: Rectangle }
 
+    /**
+     * Create Rectangles object
+     * @property        {Point}             point                   X & Y axis coordinates
+     * @property        {HTMLCanvasElement} canvas                  Canvas Id
+     */
     constructor ( point = { x: undefined, y: undefined }, canvas )
     {
         super ( );
 
         ////    COMPOSITION     ////////////////////////////
 
+            this._isInDom = VALIDATION.isInDom;
+            this._isPoint = VALIDATION.isPoint;
+
             this.pushPop = UTILITIES.pushPop;
 
+            this.strokeColorCycle   = UTILITIES.strokeColorCycle;
+            this.fillColorCycle     = UTILITIES.fillColorCycle;
+            this.gradientColorCycle = UTILITIES.gradientColorCycle;
+
+            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
+            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
+            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.x = point.x;
@@ -6921,14 +7912,67 @@ class Rectangles extends Array
 
     ////    [ POINT ]   ////////////////////////////////////
 
-        set x ( value ) { this._point.x = value; }
+        /**
+         * Set point
+         * @public
+         * @name point
+         * @function
+         * @param           {Point} value                               X & Y coordinates
+         * @see             {@link discrete.point}
+         */
+        set point ( value ) { }
 
-        get x ( )       { return this._point.x;  }
+        /**
+         * Get point
+         * @public
+         * @name point
+         * @function
+         * @return          {Point}                                     X & Y coordinates
+         * @see             {@link discrete.point}
+         */
+        get point ( ) { }
 
 
-        set y ( value ) { this._point.y = value; }
+        /**
+         * Set x-axis value
+         * @public
+         * @name x
+         * @function
+         * @param           {number} value                              X coordinate value
+         * @see             {@link discrete.pointX}
+         */
+        set x ( value ) { }
 
-        get y ( )       { return this._point.y;  }
+        /**
+         * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
+         * @return          {number}                                    X coordinate value
+         * @see             {@link discrete.pointX}
+         */
+        get x ( ) { }
+
+
+        /**
+         * Set the y-axis value
+         * @public
+         * @name y
+         * @function
+         * @param           {number} value                              Y coordinate value
+         * @see             {@link discrete.pointY}
+         */
+        set y ( value ) { }
+
+        /**
+         * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
+         * @return          {number}                                    Y coordinate value
+         * @see             {@link discrete.pointY}
+         */
+        get y ( ) { }
 
     ////    [ CANVAS ]  ////////////////////////////////////
 
@@ -6948,10 +7992,7 @@ class Rectangles extends Array
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom ( elementId )
-        {
-            return ( document.getElementById ( elementId ) != null );
-        }
+        _isInDom ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
@@ -6959,6 +8000,13 @@ class Rectangles extends Array
 
     ////    DRAW    ////////////////////////////////////////
 
+        /**
+         * Draw this object
+         * @public
+         * @name draw
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         */
         draw ( canvas )
         {
             if ( canvas != undefined ) this.canvas = canvas;
@@ -7005,6 +8053,9 @@ class Texts extends Array
             this.pushPop = UTILITIES.pushPop;
             this.draw    = UTILITIES.draw.typicalCollection;
 
+            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
+            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
+            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.point = point;
@@ -7014,30 +8065,68 @@ class Texts extends Array
 
     ////    [ POINT ]   ////////////////////////////////////
 
-        set point ( value )
-        {
-            this._point = ( this._isPoint ) ? value : this._isPoint;
-        }
+        /**
+         * Set point
+         * @public
+         * @name point
+         * @function
+         * @param           {Point} point                               X & Y axis coordinates
+         */
+        set point ( value ) { }
 
-        get point ( )
-        {
-            return this._point;
-        }
+        /**
+         * Get point
+         * @public
+         * @name point
+         * @function
+         * @return          {Point}                                     X & Y axis coordinates
+         */
+        get point ( ) { }
 
 
-        set x ( value ) { this._point.x = value; }
+        /**
+         * Set x-axis value
+         * @public
+         * @name x
+         * @function
+         * @param           {number} value                              X coordinate value
+         */
+        set x ( value ) { }
 
-        get x ( )       { return this._point.x;  }
+        /**
+         * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
+         * @return          {number}                                    X coordinate value
+         */
+        get x ( ) {  }
 
+        /**
+         * Set y-axis value
+         * @public
+         * @name y
+         * @function
+         * @param           {number} value                              Y coordinate value
+         */
+        set y ( value ) { }
 
-        set y ( value ) { this._point.y = value; }
-
-        get y ( )       { return this._point.y;  }
+        /**
+         * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
+         * @return          {number}                                    Y coordinate value
+         */
+        get y ( ) { }
 
     ////    [ CANVAS ]  ////////////////////////////////////
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
          */
@@ -7045,6 +8134,9 @@ class Texts extends Array
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
          */
@@ -7129,6 +8221,13 @@ class Animation
 
     ////    [ TIMING ]    //////////////////////////////////
 
+        /**
+         * Set timing
+         * @public
+         * @name timing
+         * @function
+         * @param           {function} value                            Timing function
+         */
         set timing ( value )
         {
             switch ( typeof value )
@@ -7151,6 +8250,13 @@ class Animation
             }
         }
 
+        /**
+         * Get timing
+         * @readOnly
+         * @name timing
+         * @function
+         * @return          {function}                                  Timing function
+         */
         get timing ( )
         {
             return this._timing;
@@ -7158,11 +8264,25 @@ class Animation
 
     ////    [ DRAW ]    ////////////////////////////////////
 
+        /**
+         * Set draw function
+         * @public
+         * @name draw
+         * @function
+         * @param           {function}                                  Draw function
+         */
         set draw ( value )
         {
             this._draw = ( typeof value === 'function' ) ? value : this._draw;
         }
 
+        /**
+         * Get draw function
+         * @readOnly
+         * @name draw
+         * @function
+         * @return          {function}                                  Draw function
+         */
         get draw ( )
         {
             return this._draw;
@@ -7170,11 +8290,25 @@ class Animation
 
     ////    [ DURATION ]    ////////////////////////////////
 
+        /**
+         * Set duration
+         * @public
+         * @name duration
+         * @function
+         * @param           {number} value                              Duration
+         */
         set duration ( value )
         {
             this._duration = ( this._isNumber ( value ) ) ? value : this._duration;
         }
 
+        /**
+         * Get duration
+         * @readOnly
+         * @name duration
+         * @function
+         * @return          {number}                                    Duration
+         */
         get duration ( )
         {
             return this._duration;
@@ -7186,6 +8320,12 @@ class Animation
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Initiates animation
+         * @public
+         * @name animate
+         * @function
+         */
         animate ( )
         {
             // @TODO: Check to make sure that _timing, _draw, and _duration are properly set, prior to 'animating' !
@@ -7254,7 +8394,7 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'May, 10 2024',
+            Updated:   'May, 14 2024',
             Version:   '0.3.48',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
@@ -7287,6 +8427,13 @@ class Application
 
     ////    [ CANVAS ]  ////////////////////////////////////
 
+        /**
+         * Set canvas element
+         * @public
+         * @name canvas
+         * @function
+         * @param           {string} value                              Element Id
+         */
         set canvas ( value )
         {
             let _canvases = document.getElementsByTagName ( 'canvas' );
@@ -7315,6 +8462,13 @@ class Application
                 console.warn ( `"${value}" does not exist !` );
         }
 
+        /**
+         * Get canvas element
+         * @public
+         * @name canvas
+         * @function
+         * @return          {HTMLCanvasElement}                         Canvas context
+         */
         get canvas ( )
         {
             return this.#dom.main.context;
@@ -7322,6 +8476,13 @@ class Application
 
     ////    [ ABOUT ]   ////////////////////////////////////
 
+        /**
+         * Get application details
+         * @readOnly
+         * @name about
+         * @function
+         * @return          {Object}                                    Application details
+         */
         get about ( )
         {
             return this.#app.about;

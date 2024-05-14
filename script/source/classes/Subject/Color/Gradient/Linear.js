@@ -1,14 +1,13 @@
 /**
- * @class           {Object} Linear                             Linear gradient object type and properties
- * @property        {Point}  start                              X & Y axis coordinates (start)
- * @property        {Point}  end                                X & Y axis coordinates (end)
- * @property        {Array}  stops                              Array of color stops
+ * @class           {Object}        Linear                      Linear gradient object type and properties
+ * @property        {Point}         start                       X & Y axis coordinates (start)
+ * @property        {Point}         end                         X & Y axis coordinates (end)
+ * @property        {Array.<Stops>} stops                       Array of color stops
  */
 class Linear
 {
     _start = new Point;
     _end   = new Point;
-
     _stops = new Array;
 
     /**

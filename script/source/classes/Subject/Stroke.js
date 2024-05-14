@@ -40,6 +40,9 @@ class Stroke
 
         /**
          * Set type
+         * @public
+         * @name type
+         * @function
          * @param           {number} value                              Type: (0) Solid or (1) Dashed
          */
         set type ( value )
@@ -49,6 +52,9 @@ class Stroke
 
         /**
          * Get type
+         * @readOnly
+         * @name type
+         * @function
          * @return          {number}                                    Type: (0) Solid or (1) Dashed
          */
         get type ( )
@@ -60,6 +66,9 @@ class Stroke
 
         /**
          * Set segment value
+         * @public
+         * @name segments
+         * @function
          * @param           {Array} value                               Dashed line segment distance(s)
          */
         set segments ( value )
@@ -71,6 +80,9 @@ class Stroke
 
         /**
          * Get segment value
+         * @readOnly
+         * @name segments
+         * @function
          * @return          {Array}                                     Dashed line segment distance(s)
          */
         get segments ( )
@@ -82,7 +94,10 @@ class Stroke
 
         /**
          * Set color value
-         * @param           {string} value                              RGB color value
+         * @public
+         * @name color
+         * @function
+         * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
          */
         set color ( value )
         {
@@ -91,7 +106,10 @@ class Stroke
 
         /**
          * Get color value
-         * @return          {string}                                    RGB color value
+         * @public
+         * @name color
+         * @function
+         * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
          */
         get color ( )
         {
@@ -102,6 +120,9 @@ class Stroke
 
         /**
          * Set width value
+         * @public
+         * @name width
+         * @function
          * @param           {number} value                              Thickness of stroke
          */
         set width ( value )
@@ -111,6 +132,9 @@ class Stroke
 
         /**
          * Get width value
+         * @readOnly
+         * @name width
+         * @function
          * @return          {number}                                    Thickness of stroke
          */
         get width ( )

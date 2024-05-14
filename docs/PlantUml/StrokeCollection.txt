@@ -16,12 +16,13 @@ color           <color:gray>{string}</color>
 type            <color:gray>{number}</color>
 segments        {Array}
 width           <color:gray>{number}</color>
-__ Utility __
-Alpha
+__ Validation __
 _isColorModel
 _isStrokeType
 _isSegments
 _isWidth
+__ Utility __
+Alpha
 _setAll
 }
 

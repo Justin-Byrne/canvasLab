@@ -1,9 +1,9 @@
 /**
  * @class           {Object} ControlPoints                      Defines the shape of a bezier curve
- * @property        {Point}  p0                                 Control point one
- * @property        {Point}  p1                                 Control point two
- * @property        {Point}  p2                                 Control point three
- * @property        {Point}  p3                                 Control point four
+ * @property        {number}  p0                                Control point one
+ * @property        {number}  p1                                Control point two
+ * @property        {number}  p2                                Control point three
+ * @property        {number}  p3                                Control point four
  */
 class ControlPoints
 {
@@ -14,10 +14,10 @@ class ControlPoints
 
     /**
      * Create control points
-     * @param           {Point}  p0                                 Control point one
-     * @param           {Point}  p1                                 Control point two
-     * @param           {Point}  p2                                 Control point three
-     * @param           {Point}  p3                                 Control point four
+     * @param           {number}  p0                                Control point one
+     * @param           {number}  p1                                Control point two
+     * @param           {number}  p2                                Control point three
+     * @param           {number}  p3                                Control point four
      */
     constructor ( p0, p1, p2, p3 )
     {
@@ -35,7 +35,10 @@ class ControlPoints
 
         /**
          * Set control point one
-         * @param           {Point} value                               Control Point ( x, y ) values
+         * @public
+         * @name p0
+         * @function
+         * @param           {number} value                              Control point one
          */
         set p0 ( value )
         {
@@ -44,7 +47,10 @@ class ControlPoints
 
         /**
          * Get control point one
-         * @return          {Point}                                     Control Point ( x, y ) values
+         * @readOnly
+         * @name p0
+         * @function
+         * @return          {number}                                    Control point one
          */
         get p0 ( )
         {
@@ -55,7 +61,10 @@ class ControlPoints
 
         /**
          * Set control point one
-         * @param           {Point} value                               Control Point ( x, y ) values
+         * @public
+         * @name p1
+         * @function
+         * @param           {number} value                              Control point two
          */
         set p1 ( value )
         {
@@ -64,7 +73,10 @@ class ControlPoints
 
         /**
          * Get control point one
-         * @return          {Point}                                     Control Point ( x, y ) values
+         * @readOnly
+         * @name p1
+         * @function
+         * @return          {number}                                    Control point two
          */
         get p1 ( )
         {
@@ -75,7 +87,10 @@ class ControlPoints
 
         /**
          * Set control point one
-         * @param           {Point} value                               Control Point ( x, y ) values
+         * @public
+         * @name p2
+         * @function
+         * @param           {number} value                              Control point three
          */
         set p2 ( value )
         {
@@ -84,7 +99,10 @@ class ControlPoints
 
         /**
          * Get control point one
-         * @return          {Point}                                     Control Point ( x, y ) values
+         * @readOnly
+         * @name p2
+         * @function
+         * @return          {number}                                    Control point three
          */
         get p2 ( )
         {
@@ -95,7 +113,10 @@ class ControlPoints
 
         /**
          * Set control point one
-         * @param           {Point} value                               Control Point ( x, y ) values
+         * @public
+         * @name p3
+         * @function
+         * @param           {number} value                              Control point four
          */
         set p3 ( value )
         {
@@ -104,7 +125,10 @@ class ControlPoints
 
         /**
          * Get control point one
-         * @return          {Point}                                     Control Point ( x, y ) values
+         * @readOnly
+         * @name p3
+         * @function
+         * @return          {number}                                    Control point four
          */
         get p3 ( )
         {

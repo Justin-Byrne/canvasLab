@@ -20,6 +20,9 @@ class Font
 
         /**
          * Set font type
+         * @public
+         * @name type
+         * @function
          * @param           {string} value                              Type face; typography name
          */
         set type ( value )
@@ -49,6 +52,9 @@ class Font
 
         /**
          * Get type
+         * @readOnly
+         * @name type
+         * @function
          * @return          {string}                                    Type face; typography name
          */
         get type ( )
@@ -60,6 +66,9 @@ class Font
 
         /**
          * Set font size
+         * @public
+         * @name size
+         * @function
          * @param           {number} value                              Font size
          */
         set size ( value )
@@ -69,6 +78,9 @@ class Font
 
         /**
          * Get font size
+         * @readOnly
+         * @name size
+         * @function
          * @return          {number}                                    Font size
          */
         get size ( )
@@ -80,6 +92,9 @@ class Font
 
         /**
          * Set font weight
+         * @public
+         * @name weight
+         * @function
          * @param           {number} value                              Font weight
          */
         set weight ( value )
@@ -98,6 +113,9 @@ class Font
 
         /**
          * Get font weight
+         * @readOnly
+         * @name weight
+         * @function
          * @return          {number}                                    Font weight
          */
         get weight ( )
@@ -109,6 +127,9 @@ class Font
 
         /**
          * Set font's max width
+         * @public
+         * @name maxWidth
+         * @function
          * @param           {number} value                              Max width
          */
         set maxWidth ( value )
@@ -118,6 +139,9 @@ class Font
 
         /**
          * Get font's max width
+         * @readOnly
+         * @name maxWidth
+         * @function
          * @return          {number}                                    Max width
          */
         get maxWidth ( )
@@ -129,6 +153,9 @@ class Font
 
         /**
          * Get font's offset
+         * @public
+         * @name offset
+         * @function
          * @return          {Point}                                     Font's offset; ( x, y )
          */
         get offset ( )
@@ -140,6 +167,9 @@ class Font
 
         /**
          * Set font
+         * @public
+         * @name font
+         * @function
          * @param           {string} value                              CSS style font property syntax
          */
         set font ( value )
@@ -149,6 +179,9 @@ class Font
 
         /**
          * Get font
+         * @readOnly
+         * @name font
+         * @function
          * @return          {string}                                    CSS style font property syntax
          */
         get font ( )

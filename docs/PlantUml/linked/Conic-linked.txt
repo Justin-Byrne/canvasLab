@@ -1,0 +1,86 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Conic {
+point             {Point}
+angle             <color:gray>{number}</color>
+stops             {Array.<Stops>}
+__ Setter __
+angle             {Angle}
+point             {Point}
+stops             {Array.<Stops>}
+__ Getter __
+angle             {Angle}
+point             {Point}
+stops             {Array.<Stops>}
+__ Validation __
+_isPoint
+_isRadian
+_isStop
+__ Utility __
+_stopColorCycle
+}
+
+Conic o-- Point
+Conic o-- Array.<Stops>
+Conic o-- Angle
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Point {
+[x=0]         <color:gray>{number}</color>
+[y=0]         <color:gray>{number}</color>
+options       {Options}
+__ Setter __
+x             <color:gray>{number}</color>
+y             <color:gray>{number}</color>
+canvas        <color:gray>{string}</color>
+__ Getter __
+x             <color:gray>{number}</color>
+y             <color:gray>{number}</color>
+canvas        <color:gray>{string}</color>
+options       {Options}
+center        {Point}
+__ Validation __
+_isInDom
+_isAspect
+__ Utility __
+_drawBorder
+_drawAxis
+drawOptions
+invert
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Angle {
+[start=0]          <color:gray>{number}</color>
+[end=360]          <color:gray>{number}</color>
+[clockwise=true]   <color:gray>{boolean}</color>
+__ Setter __
+start              <color:gray>{number}</color>
+end                <color:gray>{number}</color>
+clockwise          <color:gray>{boolean}</color>
+__ Getter __
+start              <color:gray>{number}</color>
+end                <color:gray>{number}</color>
+clockwise          <color:gray>{boolean}</color>
+startInRadians     <color:gray>{number}</color>
+endInRadians       <color:gray>{number}</color>
+__ Validation __
+_isRadian
+_isDegree
+__ Utility __
+_convert2Radian    <color:gray>{number}</color>
+_convert2Degree    <color:gray>{number}</color>
+}
+
+@enduml

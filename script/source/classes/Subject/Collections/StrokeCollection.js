@@ -35,6 +35,9 @@ class StrokeCollection
 
         /**
          * Set color value
+         * @public
+         * @name color
+         * @function
          * @param           {string} value                              RGB color value
          */
         set color ( value )
@@ -44,6 +47,9 @@ class StrokeCollection
 
         /**
          * Get color value
+         * @public
+         * @name color
+         * @function
          * @return          {string}                                    RGB color value
          */
         get color ( )
@@ -55,6 +61,9 @@ class StrokeCollection
 
         /**
          * Set type
+         * @public
+         * @name type
+         * @function
          * @param           {number} value                              Type: (0) Solid or (1) Dashed
          */
         set type ( value )
@@ -64,6 +73,9 @@ class StrokeCollection
 
         /**
          * Get type
+         * @readOnly
+         * @name type
+         * @function
          * @return          {number}                                    Type: (0) Solid or (1) Dashed
          */
         get type ( )
@@ -75,6 +87,9 @@ class StrokeCollection
 
         /**
          * Set segment value
+         * @public
+         * @name segments
+         * @function
          * @param           {Array} value                               Dashed line segment distance(s)
          */
         set segments ( value )
@@ -84,6 +99,9 @@ class StrokeCollection
 
         /**
          * Get segment value
+         * @readOnly
+         * @name segments
+         * @function
          * @return          {Array}                                     Dashed line segment distance(s)
          */
         get segments ( )
@@ -95,6 +113,9 @@ class StrokeCollection
 
         /**
          * Set width value
+         * @public
+         * @name width
+         * @function
          * @param           {number} value                              Thickness of stroke
          */
         set width ( value )
@@ -104,6 +125,9 @@ class StrokeCollection
 
         /**
          * Get width value
+         * @readOnly
+         * @name width
+         * @function
          * @return          {number}                                    Thickness of stroke
          */
         get width ( )
@@ -113,13 +137,17 @@ class StrokeCollection
 
     ////    [ MASTER ]  ////////////////////////////////////
 
+        /**
+         * Set master object
+         * @public
+         * @name master
+         * @function
+         */
         set master ( value )
         {
-            this._master = ( typeof value === 'object' )
+            this._master = ( typeof value === 'object' ) ? value
 
-                               ? value
-
-                               : console.error ( `[ERROR] "${ value.constructor.name }", is not a valid type !` );
+                                                         : console.error ( `[ERROR] "${ value.constructor.name }", is not a valid type !` );
         }
 
     ////    VALIDATION  ////////////////////////////////////

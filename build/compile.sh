@@ -424,7 +424,6 @@ function get_package_version ()
 
     VERSION=${VERSION:1:$LENGTH}
 
-
     # SET MASTER OUTPUT VARIABLES
     OUTPUT_MASTER=${VC_PACKAGE}-v${VERSION}.js
 

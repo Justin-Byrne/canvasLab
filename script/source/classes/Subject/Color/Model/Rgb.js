@@ -52,7 +52,7 @@ class Rgb
 		 * @readOnly
 		 * @name red
 		 * @function
-		 * @param 			{number}							Red value; 0 - 255
+		 * @return 			{number}							Red value; 0 - 255
 		 */
 		get red ( )
 		{
@@ -66,7 +66,7 @@ class Rgb
 		 * @public
 		 * @name green
 		 * @function
-		 * @param           {number} green 						Green value; 0 - 255
+		 * @param 			{number} green 						Green value; 0 - 255
 		 */
 		set green ( value )
 		{
@@ -78,7 +78,7 @@ class Rgb
 		 * @readOnly
 		 * @name green
 		 * @function
-		 * @param 			{number} 							Green value; 0 - 255
+		 * @return 			{number} 							Green value; 0 - 255
 		 */
 		get green ( )
 		{
@@ -92,7 +92,7 @@ class Rgb
 		 * @public
 		 * @name blue
 		 * @function
-		 * @param           {number} blue 						Blue value; 0 - 255
+		 * @param 			{number} blue 						Blue value; 0 - 255
 		 */
 		set blue ( value )
 		{
@@ -104,7 +104,7 @@ class Rgb
 		 * @readOnly
 		 * @name blue
 		 * @function
-		 * @param 			{number} 							Blue value; 0 - 255
+		 * @return 			{number} 							Blue value; 0 - 255
 		 */
 		get blue ( )
 		{

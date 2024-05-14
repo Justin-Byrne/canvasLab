@@ -6,55 +6,96 @@
 class Anchor
 {
 	_point = new Point;
+
 	_align = 'center';
 
 	constructor ( )
 	{
 		//// 	COMPOSITION 	////////////////////////////
 
-			this._isAnchor = VALIDATION.isAnchor;
+			this._isAlign = VALIDATION.isAlign;
+
+            Object.defineProperty ( this, 'x', PROPERTY_BLOCKS.discrete.pointX );
+            Object.defineProperty ( this, 'y', PROPERTY_BLOCKS.discrete.pointY );
 	}
 
 	////    [ POINT ]   ////////////////////////////////////
 
+        /**
+         * Set point
+         * @public
+         * @name point
+         * @function
+         * @param           {Point} point                               X & Y axis coordinates
+         */
+        set point ( value ) { }
+
+        /**
+         * Get point
+         * @public
+         * @name point
+         * @function
+         * @return          {Point}                                     X & Y axis coordinates
+         */
+        get point ( ) { }
+
+
 		/**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          */
-        set x ( value ) { this._point.x = value; }
+        set x ( value ) { }
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          */
-        get x ( )       { return this._point.x; }
+        get x ( ) {  }
 
 
         /**
-         * Set the y-axis value
+         * Set y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          */
-        set y ( value ) { this._point.y = value; }
+        set y ( value ) { }
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          */
-        get y ( )       { return this._point.y; }
+        get y ( ) { }
 
     ////    [ TYPE ]    ////////////////////////////////////
 
         /**
          * Set anchor alignment
+         * @public
+         * @name align
+         * @function
          * @param           {string} value                              Anchor alignment
          */
         set align ( value )
         {
-            this._align = ( this._isAnchor ( value ) ) ? value : this._align;
+            this._align = ( this._isAlign ( value ) ) ? value : this._align;
         }
 
         /**
          * Get anchor alignment
+         * @readOnly
+         * @name align
+         * @function
          * @return          {string}                                    Anchor alignment
          */
         get align ( )

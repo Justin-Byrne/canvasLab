@@ -34,12 +34,13 @@ options              {Options}
 area                 <color:gray>{number}</color>
 perimeter            <color:gray>{number}</color>
 center               {Point}
-__ Utility __
+__ Validation __
 _isDegree
 _isInDom
 _isPoint
 _isAspect
 isThere
+__ Utility __
 _rotatePoint
 _clearCanvas
 _setShadow

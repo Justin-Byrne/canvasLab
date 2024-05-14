@@ -53,7 +53,7 @@ class Hwb
 		 * @public
 		 * @name hue
 		 * @function
-		 * @param 			{number}								Hue value; 0 - 360
+		 * @return 			{number}								Hue value; 0 - 360
 		 */
 		get hue ( )
 		{
@@ -79,7 +79,7 @@ class Hwb
 		 * @public
 		 * @name whiteness
 		 * @function
-		 * @param 			{number} 								Whiteness value; 0 - 1
+		 * @return 			{number} 								Whiteness value; 0 - 1
 		 */
 		get whiteness ( )
 		{
@@ -105,7 +105,7 @@ class Hwb
 		 * @public
 		 * @name blackness
 		 * @function
-		 * @param 			{number} 								Blackness value; 0 - 1
+		 * @return 			{number} 								Blackness value; 0 - 1
 		 */
 		get blackness ( )
 		{

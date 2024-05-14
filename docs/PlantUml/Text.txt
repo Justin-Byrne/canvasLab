@@ -37,11 +37,11 @@ weight             <color:gray>{string}</color>
 maxWidth           <color:gray>{number}</color>
 offset             {Point}
 font               <color:gray>{string}</color>
-__ Utility __
-super
+__ Validation __
 _isDegree
 _isInDom
 _isPoint
+__ Utility __
 _rotatePoint
 _clearCanvas
 _setShadow

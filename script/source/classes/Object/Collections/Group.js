@@ -18,6 +18,11 @@ class Group extends Array
 
     _canvas     = undefined;
 
+    /**
+     * Create Group object
+     * @property        {Point}             point                   X & Y axis coordinates
+     * @property        {HTMLCanvasElement} canvas                  Canvas Id
+     */
     constructor ( point = { x: undefined, y: undefined }, canvas )
     {
         super ( );
@@ -40,6 +45,9 @@ class Group extends Array
 
         /**
          * Set point
+         * @public
+         * @name point
+         * @function
          * @param           {Point} value                               X & Y coordinates
          */
         set point ( value )
@@ -49,6 +57,9 @@ class Group extends Array
 
         /**
          * Get point
+         * @public
+         * @name point
+         * @function
          * @return          {Point}                                     X & Y coordinates
          */
         get point ( )
@@ -58,24 +69,36 @@ class Group extends Array
 
         /**
          * Set x-axis value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          */
         set x ( value ) { this._point.x = value; }
 
         /**
          * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          */
         get x ( )       { return this._point.x;  }
 
         /**
          * Set the y-axis value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          */
         set y ( value ) { this._point.y = value; }
 
         /**
          * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          */
         get y ( )       { return this._point.y;  }
@@ -84,6 +107,9 @@ class Group extends Array
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
          */
@@ -91,6 +117,9 @@ class Group extends Array
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
          */
@@ -104,6 +133,13 @@ class Group extends Array
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Pushes an object into this group
+         * @public
+         * @name push
+         * @function
+         * @param           {Object} object                             Object; Line(s), Circle(s), Rectangle(S)
+         */
         push ( object )
         {
             for ( let _value of arguments )
@@ -134,6 +170,13 @@ class Group extends Array
                 }
         }
 
+        /**
+         * Pops an object out of this group
+         * @public
+         * @name pop
+         * @function
+         * @param           {Object} object                             Object; Line(s), Circle(s), Rectangle(S)
+         */
         pop ( object )
         {
             for ( let _value of arguments )
@@ -170,6 +213,13 @@ class Group extends Array
 
         drawShapes ( ) { }
 
+        /**
+         * Draw this group
+         * @public
+         * @name draw
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         */
         draw ( canvas )
         {
             if ( canvas != undefined ) this.canvas = canvas;

@@ -7,19 +7,19 @@ class Texts {
 point      {Point}
 canvas     {HTMLCanvasElement}
 __ Setter __
+point      {Point}
+x          <color:gray>{number}</color>
+y          <color:gray>{number}</color>
 canvas     <color:gray>{string}</color>
-point
-x
-y
 __ Getter __
+point      {Point}
+x          <color:gray>{number}</color>
+y          <color:gray>{number}</color>
 canvas     <color:gray>{string}</color>
-point
-x
-y
-__ Utility __
-super
+__ Validation __
 _isInDom
 _isPoint
+__ Utility __
 pushPop
 draw
 }

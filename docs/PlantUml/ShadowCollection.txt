@@ -18,9 +18,10 @@ blur       <color:gray>{number}</color>
 offset     {Point}
 x          <color:gray>{number}</color>
 y          <color:gray>{number}</color>
-__ Utility __
+__ Validation __
 _isBlur
 _isPoint
+__ Utility __
 _setAll
 }
 

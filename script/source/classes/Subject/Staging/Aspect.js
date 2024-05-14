@@ -23,6 +23,9 @@ class Aspect
 
         /**
          * Set width
+         * @public
+         * @name width
+         * @function
          * @param           {number} value                              Width value
          */
         set width ( value )
@@ -32,6 +35,9 @@ class Aspect
 
         /**
          * Get width
+         * @readOnly
+         * @name width
+         * @function
          * @return          {number}                                    Width value
          */
         get width ( )
@@ -43,6 +49,9 @@ class Aspect
 
         /**
          * Set height
+         * @public
+         * @name height
+         * @function
          * @param           {number} value                              Height value
          */
         set height ( value )
@@ -52,6 +61,9 @@ class Aspect
 
         /**
          * Get height
+         * @readOnly
+         * @name height
+         * @function
          * @return          {number}                                    Height value
          */
         get height ( )
@@ -63,6 +75,9 @@ class Aspect
 
         /**
          * Get center of height
+         * @readOnly
+         * @name heightCenter
+         * @function
          * @return          {number}                                    Center of height
          */
         get heightCenter ( )
@@ -72,6 +87,9 @@ class Aspect
 
         /**
          * Get center of width
+         * @readOnly
+         * @name widthCenter
+         * @function
          * @return          {number}                                    Center of with
          */
         get widthCenter ( )
@@ -81,6 +99,9 @@ class Aspect
 
         /**
          * Get center of aspect
+         * @readOnly
+         * @name center
+         * @function
          * @return              {Point}                                 Center point of this aspect
          */
         get center ( )

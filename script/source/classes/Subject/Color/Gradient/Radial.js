@@ -1,10 +1,10 @@
 /**
- * @class           {Object} Radial                             Radial gradient object type and properties
- * @property        {Point}  start                              X & Y axis coordinates (start)
- * @property        {Number} startRadius                        Starting radius of linear gradient
- * @property        {Point}  end                                X & Y axis coordinates (end)
- * @property        {Number} endRadius                          Ending radius of linear gradient gradient
- * @property        {Array}  stops                              Array of color stops
+ * @class           {Object}        Radial                      Radial gradient object type and properties
+ * @property        {Point}         start                       X & Y axis coordinates (start)
+ * @property        {Number}        startRadius                 Starting radius of linear gradient
+ * @property        {Point}         end                         X & Y axis coordinates (end)
+ * @property        {Number}        endRadius                   Ending radius of linear gradient gradient
+ * @property        {Array.<Stops>} stops                       Array of color stops
  */
 class Radial
 {

@@ -24,15 +24,14 @@ canvas              <color:gray>{string}</color>
 options             {Options}
 controlPoints       {ControlPoints}
 center              {Point}
-__ Utility __
-set
-get
+__ Validation __
 _isPoint
 _isNumber
 _isDegree
 _isInDom
 _isAspect
 isThere
+__ Utility __
 _rotatePoint
 _clearCanvas
 _pointOrSpan

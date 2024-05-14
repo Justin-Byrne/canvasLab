@@ -17,9 +17,10 @@ y             <color:gray>{number}</color>
 canvas        <color:gray>{string}</color>
 options       {Options}
 center        {Point}
-__ Utility __
+__ Validation __
 _isInDom
 _isAspect
+__ Utility __
 _drawBorder
 _drawAxis
 drawOptions

@@ -22,7 +22,7 @@ class Line
     #_controlPoints = new ControlPoints;
 
     /**
-     * Create a line
+     * Create a Line object
      * @property        {Point}  start                              Starting point of line
      * @property        {Point}  end                                Ending point of line
      * @property        {Stroke} stroke                             Stroke properties
@@ -133,6 +133,9 @@ class Line
 
         /**
          * Set starting point
+         * @public
+         * @name start
+         * @function
          * @param           {Point} value                               Starting point
          */
         set start ( value )
@@ -142,6 +145,9 @@ class Line
 
         /**
          * Set starting point
+         * @public
+         * @name start
+         * @function
          * @return          {Point}                                     Starting point
          */
         get start ( )
@@ -153,6 +159,9 @@ class Line
 
         /**
          * Set ending point
+         * @public
+         * @name end
+         * @function
          * @param           {Point} value                               Ending point
          */
         set end ( value )
@@ -162,6 +171,9 @@ class Line
 
         /**
          * Set ending point
+         * @public
+         * @name end
+         * @function
          * @return          {Point}                                     Ending point
          */
         get end ( )
@@ -173,6 +185,9 @@ class Line
 
         /**
          * Get stroke properties
+         * @public
+         * @name stroke
+         * @function
          * @return          {Stroke}                                    Stroke properties
          */
         get stroke ( )
@@ -184,6 +199,9 @@ class Line
 
         /**
          * Get shadow properties
+         * @public
+         * @name shadow
+         * @function
          * @return          {Shadow}                                    Shadow properties
          */
         get shadow ( )
@@ -195,6 +213,9 @@ class Line
 
         /**
          * Set line cap
+         * @public
+         * @name lineCap
+         * @function
          * @param           {string} value                              Line cap
          */
         set lineCap ( value )
@@ -204,6 +225,9 @@ class Line
 
         /**
          * Get line cap
+         * @readOnly
+         * @name lineCap
+         * @function
          * @return          {string}                                    Line cap
          */
         get lineCap ( )
@@ -215,6 +239,9 @@ class Line
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -222,6 +249,9 @@ class Line
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link discrete.canvas}
          */
@@ -231,6 +261,9 @@ class Line
 
         /**
          * Get options properties
+         * @public
+         * @name options
+         * @function
          * @return          {Options}                                   Options properties
          */
         get options ( )
@@ -242,6 +275,9 @@ class Line
 
         /**
          * Get control point properties
+         * @public
+         * @name controlPoints
+         * @function
          * @return          {ControlPoints}                             Control points properties
          */
         get controlPoints ( )
@@ -253,6 +289,9 @@ class Line
 
         /**
          * Get center of this object
+         * @readOnly
+         * @name center
+         * @function
          * @return          {Point}                                     Center point coordinates
          */
         get center ( )
@@ -277,6 +316,9 @@ class Line
 
         /**
          * Set line's path
+         * @protected
+         * @name #_setPath
+         * @function
          */
         #_setPath ( )
         {
@@ -305,6 +347,9 @@ class Line
 
         /**
          * Check whether the passed object is already present
+         * @public
+         * @name isThere
+         * @function
          * @param           {Line} line                                 Object to validate
          */
         isThere ( line )
@@ -346,6 +391,9 @@ class Line
 
         /**
          * Draws associated options
+         * @private
+         * @name _drawOptions
+         * @function
          */
         _drawOptions ( )
         {
@@ -373,8 +421,14 @@ class Line
         fillColorCycle   ( ) { }
 
         /**
-         * [one description]
-         * @type {Object}
+         * Set control points for bezier curve
+         * @public
+         * @name curve
+         * @function
+         * @param           {number} p0                                 Control point 0
+         * @param           {number} p1                                 Control point 1
+         * @param           {number} p2                                 Control point 2
+         * @param           {number} p3                                 Control point 3
          */
         curve ( p0, p1, p2, p3 )
         {
@@ -388,8 +442,10 @@ class Line
         }
 
         /**
-         * Draws associated options for start & end points
-         * @param           {number} [offset=10]                        Offset of drawable options
+         * Draws start & end points
+         * @public
+         * @name drawPoints
+         * @function
          */
         drawPoints ( )
         {
@@ -400,6 +456,9 @@ class Line
 
         /**
          * Move this object
+         * @public
+         * @name move
+         * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [clear=true]                      Clear canvas during each movement
@@ -424,6 +483,9 @@ class Line
 
         /**
          * Rotate this object
+         * @public
+         * @name rotate
+         * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
@@ -474,6 +536,9 @@ class Line
 
         /**
          * Shows coordinates of this object
+         * @public
+         * @name showCoordinates
+         * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
          */
@@ -510,6 +575,9 @@ class Line
 
         /**
          * Show control points for this object
+         * @public
+         * @name showControlPoints
+         * @function
          * @param           {number} [offset=10]                        Offset of control points y origin
          * @param           {number} [fontSize=16]                      Control points font size
          */
@@ -615,6 +683,9 @@ class Line
 
         /**
          * Draw this object
+         * @public
+         * @name draw
+         * @function
          * @param           {string} canvas                             Canvas Id
          */
         draw ( canvas )
@@ -663,6 +734,9 @@ class Line
 
         /**
          * Redraw this object
+         * @public
+         * @name redraw
+         * @function
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   start                             Point of new start location
          * @param           {Point}   end                               Point of new end location

@@ -90,7 +90,7 @@ class Fill
          * @public
          * @name gradient
          * @function
-         * @return          {Object} value                              Gradient properties
+         * @param           {Object} value                              Gradient object & properties
          */
         set gradient ( value )
         {
@@ -104,7 +104,7 @@ class Fill
          * @readOnly
          * @name gradient
          * @function
-         * @return          {Object}                                    Gradient properties
+         * @return          {Object}                                    Gradient object & properties
          */
         get gradient ( )
         {

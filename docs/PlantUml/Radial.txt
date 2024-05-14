@@ -8,24 +8,25 @@ start             {Point}
 startRadius       {Number}
 end               {Point}
 endRadius         {Number}
-stops             {Array}
+stops             {Array.<Stops>}
 __ Setter __
 start             {Point}
 startRadius       {Number}
 end               {Point}
 endRadius         {Number}
-stops
+stops             {Array.<Stops>}
 __ Getter __
 start             {Point}
 startRadius       {Number}
 end               {Point}
 endRadius         {Number}
-stops
-__ Utility __
+stops             {Array.<Stops>}
+__ Validation __
 _isPoint
 _isStop
 _isColorModel
 _isRadius
+__ Utility __
 _stopColorCycle
 }
 

@@ -22,6 +22,7 @@ x                 <color:gray>{number}</color>
 y                 <color:gray>{number}</color>
 stroke            {Stroke}
 shadow            {Shadow}
+options           {Object}
 lineCap           <color:gray>{string}</color>
 canvas            <color:gray>{string}</color>
 aspect            {Aspect}
@@ -31,12 +32,11 @@ anchor            {Anchor}
 area              <color:gray>{number}</color>
 perimeter         <color:gray>{number}</color>
 center            {Point}
-options
-__ Utility __
-super
+__ Validation __
 _isInDom
 _isPoint
 _isAspect
+__ Utility __
 _drawAxis
 _drawBorder
 _drawOptions

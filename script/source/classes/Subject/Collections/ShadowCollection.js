@@ -28,6 +28,9 @@ class ShadowCollection
 
         /**
          * Set color value
+         * @public
+         * @name color
+         * @function
          * @param           {string} value                              RGB color value
          */
         set color ( value )
@@ -37,6 +40,9 @@ class ShadowCollection
 
         /**
          * Get color value
+         * @public
+         * @name color
+         * @function
          * @return          {string}                                    RGB color value
          */
         get color ( )
@@ -48,6 +54,9 @@ class ShadowCollection
 
         /**
          * Set blur value
+         * @public
+         * @name blur
+         * @function
          * @param           {number} blur                               Blur value
          */
         set blur ( value )
@@ -57,6 +66,9 @@ class ShadowCollection
 
         /**
          * Get blur value
+         * @readOnly
+         * @name blur
+         * @function
          * @return          {number}                                    Blur value
          */
         get blur ( )
@@ -68,6 +80,9 @@ class ShadowCollection
 
         /**
          * Set offset
+         * @public
+         * @name offset
+         * @function
          * @param           {Point} value                               Shadow offset
          */
         set offset ( value )
@@ -77,6 +92,9 @@ class ShadowCollection
 
         /**
          * Get offset
+         * @public
+         * @name offset
+         * @function
          * @return          {Point}                                     Shadow offset
          */
         get offset ( )
@@ -87,12 +105,18 @@ class ShadowCollection
 
         /**
          * Set x-axis offset value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          */
         set x ( value ) { this._offset.x = value; }
 
         /**
          * Get x-axis offset value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          */
         get x ( )       { return this._offset.x;  }
@@ -100,12 +124,18 @@ class ShadowCollection
 
         /**
          * Set the y-axis offset value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          */
         set y ( value ) { this._offset.y = value; }
 
         /**
          * Get y-axis offset value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          */
         get y ( )       { return this._offset.y;  }

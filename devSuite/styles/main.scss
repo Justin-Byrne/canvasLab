@@ -669,7 +669,6 @@ main
                         &:hover
                         {
                             cursor:     pointer;
-                            // transform:  scale(1.05);
 
                             background: rgba(95, 112, 130, 1);
 
@@ -695,11 +694,11 @@ main
 
         .modal-dialog
         {
-            max-width: 700px;
+            max-width: 800px;
 
             .modal-content
             {
-                width: 700px;
+                width: 800px;
 
                 background-color:   $modalBackground;
                 border:             1px solid rgba(17, 38, 120, 1) !important;

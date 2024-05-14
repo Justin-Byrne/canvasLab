@@ -9,7 +9,7 @@ class Stop
     _color  = new Rgb;
 
     /**
-     * Create a LinearGradient
+     * Create a color stop
      * @property        {number} offset                            Representation of the color stop position
      * @property        {string} color                             CSS color value
      */
@@ -28,6 +28,9 @@ class Stop
 
         /**
          * Set offset value
+         * @public
+         * @name offset
+         * @function
          * @param           {number} value                              Offset value
          */
         set offset ( value )
@@ -37,6 +40,9 @@ class Stop
 
         /**
          * Get offset value
+         * @readOnly
+         * @name offset
+         * @function
          * @return          {number}                                    Offset value
          */
         get offset ( )
@@ -48,7 +54,10 @@ class Stop
 
         /**
          * Set color value
-         * @param           {string} value                              CSS color value
+         * @public
+         * @name color
+         * @function
+         * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
          */
         set color ( value )
         {
@@ -57,7 +66,10 @@ class Stop
 
         /**
          * Get color value
-         * @return          {string}                                    CSS color value
+         * @public
+         * @name color
+         * @function
+         * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
          */
         get color ( )
         {

@@ -53,7 +53,7 @@ class Hsl
 		 * @public
 		 * @name hue
 		 * @function
-		 * @param 			{number}								Hue value; 0 - 360
+		 * @return 			{number}								Hue value; 0 - 360
 		 */
 		get hue ( )
 		{
@@ -79,7 +79,7 @@ class Hsl
 		 * @public
 		 * @name saturation
 		 * @function
-		 * @param 			{number}								Saturation value; 0 - 1
+		 * @return 			{number}								Saturation value; 0 - 1
 		 */
 		get saturation ( )
 		{
@@ -105,7 +105,7 @@ class Hsl
 		 * @public
 		 * @name lightness
 		 * @function
-		 * @param 			{number}								Lightness value; 0 - 1
+		 * @return 			{number}								Lightness value; 0 - 1
 		 */
 		get lightness ( )
 		{

@@ -6,11 +6,15 @@
 class Circles extends Array
 {
     _point   = new Point;
-
     _canvas  = undefined;
 
     _storage = { type: Circle }
 
+    /**
+     * Create Circles object
+     * @property        {Point}             point                   X & Y axis coordinates
+     * @property        {HTMLCanvasElement} canvas                  Canvas Id
+     */
     constructor ( point = { x: undefined, y: undefined }, canvas )
     {
         super ( );
@@ -23,6 +27,9 @@ class Circles extends Array
             this.pushPop = UTILITIES.pushPop;
             this.draw    = UTILITIES.draw.typicalCollection;
 
+            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
+            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
+            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.point = point;
@@ -31,30 +38,68 @@ class Circles extends Array
 
     ////    [ POINT ]   ////////////////////////////////////
 
-        set point ( value )
-        {
-            this._point = ( this._isPoint ( value ) ) ? value : this._point;
-        }
+        /**
+         * Set point
+         * @public
+         * @name point
+         * @function
+         * @param           {Point} point                               X & Y axis coordinates
+         */
+        set point ( value ) { }
 
-        get point ( )
-        {
-            return this._point;
-        }
+        /**
+         * Get point
+         * @public
+         * @name point
+         * @function
+         * @return          {Point}                                     X & Y axis coordinates
+         */
+        get point ( ) { }
 
 
-        set x ( value ) { this._point.x = value; }
+        /**
+         * Set x-axis value
+         * @public
+         * @name x
+         * @function
+         * @param           {number} value                              X coordinate value
+         */
+        set x ( value ) { }
 
-        get x ( )       { return this._point.x;  }
+        /**
+         * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
+         * @return          {number}                                    X coordinate value
+         */
+        get x ( ) {  }
 
+        /**
+         * Set y-axis value
+         * @public
+         * @name y
+         * @function
+         * @param           {number} value                              Y coordinate value
+         */
+        set y ( value ) { }
 
-        set y ( value ) { this._point.y = value; }
-
-        get y ( )       { return this._point.y;  }
+        /**
+         * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
+         * @return          {number}                                    Y coordinate value
+         */
+        get y ( ) { }
 
     ////    [ CANVAS ]  ////////////////////////////////////
 
         /**
          * Set canvas value
+         * @public
+         * @name canvas
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
          */
@@ -62,6 +107,9 @@ class Circles extends Array
 
         /**
          * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
          */

@@ -1,0 +1,58 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Linear {
+start             {Point}
+end               {Point}
+stops             {Array.<Stops>}
+__ Setter __
+start             {Point}
+end               {Point}
+stops             {Array.<Stops>}
+__ Getter __
+start             {Point}
+end               {Point}
+stops             {Array.<Stops>}
+__ Validation __
+_isPoint
+_isStop
+_isColorModel
+__ Utility __
+_stopColorCycle
+}
+
+Linear o-- Point
+Linear o-- Array.<Stops>
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Point {
+[x=0]         <color:gray>{number}</color>
+[y=0]         <color:gray>{number}</color>
+options       {Options}
+__ Setter __
+x             <color:gray>{number}</color>
+y             <color:gray>{number}</color>
+canvas        <color:gray>{string}</color>
+__ Getter __
+x             <color:gray>{number}</color>
+y             <color:gray>{number}</color>
+canvas        <color:gray>{string}</color>
+options       {Options}
+center        {Point}
+__ Validation __
+_isInDom
+_isAspect
+__ Utility __
+_drawBorder
+_drawAxis
+drawOptions
+invert
+}
+
+@enduml

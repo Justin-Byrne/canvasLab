@@ -20,8 +20,9 @@ canvas
 canvases
 font
 state
-__ Utility __
+__ Validation __
 _isInDom
+__ Utility __
 clear
 animate
 _init

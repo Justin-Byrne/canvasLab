@@ -37,7 +37,10 @@ class Shadow
 
         /**
          * Set color value
-         * @param           {string} value                              RGB color value
+         * @public
+         * @name color
+         * @function
+         * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
          */
         set color ( value )
         {
@@ -46,7 +49,10 @@ class Shadow
 
         /**
          * Get color value
-         * @return          {string}                                    RGB color value
+         * @public
+         * @name color
+         * @function
+         * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
          */
         get color ( )
         {
@@ -57,6 +63,9 @@ class Shadow
 
         /**
          * Set blur value
+         * @public
+         * @name blur
+         * @function
          * @param           {number} blur                               Blur value
          */
         set blur ( value )
@@ -66,6 +75,9 @@ class Shadow
 
         /**
          * Get blur value
+         * @readOnly
+         * @name blur
+         * @function
          * @return          {number}                                    Blur value
          */
         get blur ( )
@@ -77,6 +89,9 @@ class Shadow
 
         /**
          * Set offset
+         * @public
+         * @name offset
+         * @function
          * @param           {Point} value                               Shadow offset
          * @see             {@link discrete.offset}
          */
@@ -84,6 +99,9 @@ class Shadow
 
         /**
          * Get offset
+         * @public
+         * @name offset
+         * @function
          * @return          {Point}                                     Shadow offset
          * @see             {@link discrete.offset}
          */
@@ -92,6 +110,9 @@ class Shadow
 
         /**
          * Set x-axis offset value
+         * @public
+         * @name x
+         * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.offsetX}
          */
@@ -99,6 +120,9 @@ class Shadow
 
         /**
          * Get x-axis offset value
+         * @readOnly
+         * @name x
+         * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.offsetX}
          */
@@ -107,6 +131,9 @@ class Shadow
 
         /**
          * Set the y-axis offset value
+         * @public
+         * @name y
+         * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.offsetY}
          */
@@ -114,6 +141,9 @@ class Shadow
 
         /**
          * Get y-axis offset value
+         * @readOnly
+         * @name y
+         * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.offsetY}
          */

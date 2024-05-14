@@ -25,6 +25,16 @@ const VALIDATION =
 
         return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
     },
+    isAlign ( value )
+    {
+        let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft' ];
+
+
+        for ( let _option of _options ) if ( value === _option )  return true;
+
+
+        return false;
+    },
     isAlpha ( value )
     {
         return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  )  );

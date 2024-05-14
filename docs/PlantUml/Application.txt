@@ -7,13 +7,14 @@ class Application {
 point       {Point}
 canvas      {HTMLCanvasElement}
 __ Setter __
-animation   <color:gray>{Object}</color>
-canvas
+canvas      <color:gray>{string}</color>
+animation   {Object}
 __ Getter __
-canvas
-about
-__ Utility __
+canvas      {HTMLCanvasElement}
+about       {Object}
+__ Validation __
 _isInDom
+__ Utility __
 clear
 }
 

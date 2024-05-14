@@ -1,0 +1,54 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Application {
+point       {Point}
+canvas      {HTMLCanvasElement}
+__ Setter __
+canvas      <color:gray>{string}</color>
+animation   {Object}
+__ Getter __
+canvas      {HTMLCanvasElement}
+about       {Object}
+__ Validation __
+_isInDom
+__ Utility __
+clear
+}
+
+Application o-- Point
+Application o-- HTMLCanvasElement
+Application o-- Object
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Point {
+[x=0]         <color:gray>{number}</color>
+[y=0]         <color:gray>{number}</color>
+options       {Options}
+__ Setter __
+x             <color:gray>{number}</color>
+y             <color:gray>{number}</color>
+canvas        <color:gray>{string}</color>
+__ Getter __
+x             <color:gray>{number}</color>
+y             <color:gray>{number}</color>
+canvas        <color:gray>{string}</color>
+options       {Options}
+center        {Point}
+__ Validation __
+_isInDom
+_isAspect
+__ Utility __
+_drawBorder
+_drawAxis
+drawOptions
+invert
+}
+
+@enduml

@@ -50,6 +50,9 @@ class Options
 
         /**
          * Set shadow value
+         * @public
+         * @name shadow
+         * @function
          * @param           {boolean} value                             Shadow; true | false
          */
         set shadow ( value )
@@ -59,6 +62,9 @@ class Options
 
         /**
          * Get shadow value
+         * @public
+         * @name shadow
+         * @function
          * @return          {boolean}                                   Shadow; true | false
          */
         get shadow ( )
@@ -70,6 +76,9 @@ class Options
 
         /**
          * Set border value
+         * @public
+         * @name border
+         * @function
          * @param           {boolean} value                             Border; true | false
          */
         set border ( value )
@@ -79,6 +88,9 @@ class Options
 
         /**
          * Get border value
+         * @readOnly
+         * @name border
+         * @function
          * @return          {boolean}                                   Border; true | false
          */
         get border ( )
@@ -90,6 +102,9 @@ class Options
 
         /**
          * Set axis value
+         * @public
+         * @name axis
+         * @function
          * @param           {boolean} value                             Axis; true | false
          */
         set axis ( value )
@@ -99,6 +114,9 @@ class Options
 
         /**
          * Get axis value
+         * @readOnly
+         * @name axis
+         * @function
          * @return          {boolean}                                   Axis; true | false
          */
         get axis ( )
@@ -110,6 +128,9 @@ class Options
 
         /**
          * Set anchor value
+         * @public
+         * @name anchor
+         * @function
          * @param           {boolean} value                             Anchor; true | false
          */
         set anchor ( value )
@@ -119,6 +140,9 @@ class Options
 
         /**
          * Get anchor value
+         * @readOnly
+         * @name anchor
+         * @function
          * @return          {boolean}                                   Anchor; true | false
          */
         get anchor ( )
@@ -130,6 +154,9 @@ class Options
 
         /**
          * Set coordinates value
+         * @public
+         * @name coordinates
+         * @function
          * @param           {boolean} value                             Coordinates; true | false
          */
         set coordinates ( value )
@@ -139,6 +166,9 @@ class Options
 
         /**
          * Get coordinates value
+         * @readOnly
+         * @name coordinates
+         * @function
          * @return          {boolean}                                   Coordinates; true | false
          */
         get coordinates ( )
@@ -150,6 +180,9 @@ class Options
 
         /**
          * Set control points value
+         * @public
+         * @name controlPoints
+         * @function
          * @param           {boolean} value                             Control points; true | false
          */
         set controlPoints ( value )
@@ -159,6 +192,9 @@ class Options
 
         /**
          * Get control points value
+         * @readOnly
+         * @name controlPoints
+         * @function
          * @return          {boolean}                                   Control points; true | false
          */
         get controlPoints ( )
@@ -170,6 +206,9 @@ class Options
 
         /**
          * Set master object
+         * @public
+         * @name master
+         * @function
          * @param           {Object} value                              CanvasLab Object
          */
         set master ( value )
@@ -179,6 +218,9 @@ class Options
 
         /**
          * Get master object
+         * @public
+         * @name master
+         * @function
          * @return          {Object}                                    CanvasLab Object
          */
         get master ( )

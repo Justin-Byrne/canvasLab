@@ -4,21 +4,22 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Conic {
-angle             <color:gray>{number}</color>
 point             {Point}
+angle             <color:gray>{number}</color>
 stops             {Array.<Stops>}
 __ Setter __
 angle             {Angle}
 point             {Point}
-stops
+stops             {Array.<Stops>}
 __ Getter __
 angle             {Angle}
 point             {Point}
-stops
-__ Utility __
+stops             {Array.<Stops>}
+__ Validation __
 _isPoint
 _isRadian
 _isStop
+__ Utility __
 _stopColorCycle
 }
 

@@ -32,6 +32,9 @@ class Angle
 
         /**
          * Set start angle
+         * @public
+         * @name start
+         * @function
          * @param           {number} value                              Start angle; in degrees
          */
         set start ( value )
@@ -41,6 +44,9 @@ class Angle
 
         /**
          * Get start angle
+         * @readOnly
+         * @name start
+         * @function
          * @return          {number}                                    Start value; in degrees
          */
         get start ( )
@@ -52,6 +58,9 @@ class Angle
 
         /**
          * Set end angle
+         * @public
+         * @name end
+         * @function
          * @param           {number} value                              End angle; in degrees
          */
         set end ( value )
@@ -61,6 +70,9 @@ class Angle
 
         /**
          * Get end angle
+         * @readOnly
+         * @name end
+         * @function
          * @return          {number}                                    End angle; in degrees
          */
         get end ( )
@@ -72,6 +84,9 @@ class Angle
 
         /**
          * Set clockwise
+         * @public
+         * @name clockwise
+         * @function
          * @param           {boolean} value                             Clockwise; true | false
          */
         set clockwise ( value )
@@ -81,6 +96,9 @@ class Angle
 
         /**
          * Get clockwise
+         * @readOnly
+         * @name clockwise
+         * @function
          * @return          {boolean}                                   Clockwise; true | false
          */
         get clockwise ( )
@@ -98,6 +116,9 @@ class Angle
 
         /**
          * Get start angle in radians
+         * @readOnly
+         * @name startInRadians
+         * @function
          * @return          {number}                                    Start value; to radians
          */
         get startInRadians ( )
@@ -107,6 +128,9 @@ class Angle
 
         /**
          * Get end angle in radians
+         * @readOnly
+         * @name endInRadians
+         * @function
          * @return          {number}                                    End value; in radians
          */
         get endInRadians ( )
@@ -116,6 +140,9 @@ class Angle
 
         /**
          * Convert degree to radian
+         * @private
+         * @name _convert2Radian
+         * @function
          * @param           {number} value                              Degree
          * @return          {number}                                    Conversion in radians
          */
@@ -126,6 +153,9 @@ class Angle
 
         /**
          * Convert radian to degree
+         * @private
+         * @name _convert2Degree
+         * @function
          * @param           {number} value                              Radian
          * @return          {number}                                    Conversion in degrees
          */

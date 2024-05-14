@@ -4,21 +4,21 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class ControlPoints {
-p0          {Point}
-p1          {Point}
-p2          {Point}
-p3          {Point}
+p0          <color:gray>{number}</color>
+p1          <color:gray>{number}</color>
+p2          <color:gray>{number}</color>
+p3          <color:gray>{number}</color>
 __ Setter __
-p0          {Point}
-p1          {Point}
-p2          {Point}
-p3          {Point}
+p0          <color:gray>{number}</color>
+p1          <color:gray>{number}</color>
+p2          <color:gray>{number}</color>
+p3          <color:gray>{number}</color>
 __ Getter __
-p0          {Point}
-p1          {Point}
-p2          {Point}
-p3          {Point}
-__ Utility __
+p0          <color:gray>{number}</color>
+p1          <color:gray>{number}</color>
+p2          <color:gray>{number}</color>
+p3          <color:gray>{number}</color>
+__ Validation __
 _isNumber
 }
 

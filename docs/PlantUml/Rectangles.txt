@@ -7,16 +7,18 @@ class Rectangles {
 point      {Point}
 canvas     {HTMLCanvasElement}
 __ Setter __
+point      {Point}
+x          <color:gray>{number}</color>
+y          <color:gray>{number}</color>
 canvas     <color:gray>{string}</color>
-x
-y
 __ Getter __
+point      {Point}
+x          <color:gray>{number}</color>
+y          <color:gray>{number}</color>
 canvas     <color:gray>{string}</color>
-x
-y
-__ Utility __
-super
+__ Validation __
 _isInDom
+__ Utility __
 pushPop
 draw
 }

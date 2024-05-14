@@ -11,14 +11,29 @@ class Rectangles extends Array
 
     _storage = { type: Rectangle }
 
+    /**
+     * Create Rectangles object
+     * @property        {Point}             point                   X & Y axis coordinates
+     * @property        {HTMLCanvasElement} canvas                  Canvas Id
+     */
     constructor ( point = { x: undefined, y: undefined }, canvas )
     {
         super ( );
 
         ////    COMPOSITION     ////////////////////////////
 
+            this._isInDom = VALIDATION.isInDom;
+            this._isPoint = VALIDATION.isPoint;
+
             this.pushPop = UTILITIES.pushPop;
 
+            this.strokeColorCycle   = UTILITIES.strokeColorCycle;
+            this.fillColorCycle     = UTILITIES.fillColorCycle;
+            this.gradientColorCycle = UTILITIES.gradientColorCycle;
+
+            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
+            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
+            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.x = point.x;
@@ -29,14 +44,67 @@ class Rectangles extends Array
 
     ////    [ POINT ]   ////////////////////////////////////
 
-        set x ( value ) { this._point.x = value; }
+        /**
+         * Set point
+         * @public
+         * @name point
+         * @function
+         * @param           {Point} value                               X & Y coordinates
+         * @see             {@link discrete.point}
+         */
+        set point ( value ) { }
 
-        get x ( )       { return this._point.x;  }
+        /**
+         * Get point
+         * @public
+         * @name point
+         * @function
+         * @return          {Point}                                     X & Y coordinates
+         * @see             {@link discrete.point}
+         */
+        get point ( ) { }
 
 
-        set y ( value ) { this._point.y = value; }
+        /**
+         * Set x-axis value
+         * @public
+         * @name x
+         * @function
+         * @param           {number} value                              X coordinate value
+         * @see             {@link discrete.pointX}
+         */
+        set x ( value ) { }
 
-        get y ( )       { return this._point.y;  }
+        /**
+         * Get x-axis value
+         * @readOnly
+         * @name x
+         * @function
+         * @return          {number}                                    X coordinate value
+         * @see             {@link discrete.pointX}
+         */
+        get x ( ) { }
+
+
+        /**
+         * Set the y-axis value
+         * @public
+         * @name y
+         * @function
+         * @param           {number} value                              Y coordinate value
+         * @see             {@link discrete.pointY}
+         */
+        set y ( value ) { }
+
+        /**
+         * Get y-axis value
+         * @readOnly
+         * @name y
+         * @function
+         * @return          {number}                                    Y coordinate value
+         * @see             {@link discrete.pointY}
+         */
+        get y ( ) { }
 
     ////    [ CANVAS ]  ////////////////////////////////////
 
@@ -56,10 +124,7 @@ class Rectangles extends Array
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom ( elementId )
-        {
-            return ( document.getElementById ( elementId ) != null );
-        }
+        _isInDom ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
@@ -67,6 +132,13 @@ class Rectangles extends Array
 
     ////    DRAW    ////////////////////////////////////////
 
+        /**
+         * Draw this object
+         * @public
+         * @name draw
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         */
         draw ( canvas )
         {
             if ( canvas != undefined ) this.canvas = canvas;

@@ -7,18 +7,18 @@ class Shadow {
 [blur=3]        <color:gray>{number}</color>
 offset          {Point}
 __ Setter __
-color           <color:gray>{string}</color>
+color           {Object}
 blur            <color:gray>{number}</color>
 offset          {Point}
 x               <color:gray>{number}</color>
 y               <color:gray>{number}</color>
 __ Getter __
-color           <color:gray>{string}</color>
+color           {Object}
 blur            <color:gray>{number}</color>
 offset          {Point}
 x               <color:gray>{number}</color>
 y               <color:gray>{number}</color>
-__ Utility __
+__ Validation __
 _isColorModel
 _isBlur
 _isPoint

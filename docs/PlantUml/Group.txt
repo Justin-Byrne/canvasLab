@@ -20,10 +20,10 @@ point        {Point}
 x            <color:gray>{number}</color>
 y            <color:gray>{number}</color>
 canvas       <color:gray>{string}</color>
-__ Utility __
-super
+__ Validation __
 _isInDom
 _isPoint
+__ Utility __
 push
 pop
 drawLines

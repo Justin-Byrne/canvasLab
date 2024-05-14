@@ -6,19 +6,20 @@ skinparam DefaultFontName Courier New
 class Linear {
 start             {Point}
 end               {Point}
-stops             {Array}
+stops             {Array.<Stops>}
 __ Setter __
 start             {Point}
 end               {Point}
-stops
+stops             {Array.<Stops>}
 __ Getter __
 start             {Point}
 end               {Point}
-stops
-__ Utility __
+stops             {Array.<Stops>}
+__ Validation __
 _isPoint
 _isStop
 _isColorModel
+__ Utility __
 _stopColorCycle
 }
 

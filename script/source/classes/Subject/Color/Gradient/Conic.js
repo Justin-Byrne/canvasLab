@@ -1,15 +1,13 @@
 /**
  * @class           {Object}        Conic                       Conic gradient object type and properties
- * @property        {number}        angle                       Angle in radians
  * @property        {Point}         point                       X & Y axis coordinates
+ * @property        {number}        angle                       Angle in radians
  * @property        {Array.<Stops>} stops                       Array of color stops
  */
 class Conic
 {
     _point = new Point;
-
     _angle = 0;
-
     _stops = new Array;
 
     /**

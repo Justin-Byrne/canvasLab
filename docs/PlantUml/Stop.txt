@@ -7,11 +7,11 @@ class Stop {
 offset          <color:gray>{number}</color>
 __ Setter __
 offset          <color:gray>{number}</color>
-color           <color:gray>{string}</color>
+color           {Object}
 __ Getter __
 offset          <color:gray>{number}</color>
-color           <color:gray>{string}</color>
-__ Utility __
+color           {Object}
+__ Validation __
 _isDecimal
 _isColorModel
 }

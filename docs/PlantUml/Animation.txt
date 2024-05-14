@@ -7,15 +7,16 @@ class Animation {
 point                   {Point}
 canvas                  {HTMLCanvasElement}
 __ Setter __
-timing
-draw
-duration
+timing                  {function}
+draw                    {function}
+duration                <color:gray>{number}</color>
 __ Getter __
-timing
-draw
-duration
-__ Utility __
+timing                  {function}
+draw                    {function}
+duration                <color:gray>{number}</color>
+__ Validation __
 _isNumber
+__ Utility __
 animate
 requestAnimationFrame
 _draw
