@@ -25,28 +25,27 @@ options             {Options}
 controlPoints       {ControlPoints}
 center              {Point}
 __ Validation __
-_isPoint
-_isNumber
-_isDegree
-_isInDom
-_isAspect
+_isAspect           <color:gray>{boolean}</color>
+_isDegree           <color:gray>{boolean}</color>
+_isInDom            <color:gray>{boolean}</color>
+_isNumber           <color:gray>{boolean}</color>
+_isPoint            <color:gray>{boolean}</color>
 isThere
 __ Utility __
-_rotatePoint
 _clearCanvas
-_pointOrSpan
-_setShadow
-_drawBorder
 _drawAxis
+_drawBorder
 _drawOptions
-strokeColorCycle
-fillColorCycle
+_rotatePoint
+_setShadow
 curve
 drawPoints
+fillColorCycle
 move
 rotate
-showCoordinates
 showControlPoints
+showCoordinates
+strokeColorCycle
 draw
 redraw
 }

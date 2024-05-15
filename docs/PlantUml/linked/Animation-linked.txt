@@ -46,8 +46,8 @@ canvas        <color:gray>{string}</color>
 options       {Options}
 center        {Point}
 __ Validation __
-_isInDom
 _isAspect
+_isInDom
 __ Utility __
 _drawBorder
 _drawAxis

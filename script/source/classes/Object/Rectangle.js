@@ -40,29 +40,29 @@ class Rectangle
     {
         ////    COMPOSITION     ////////////////////////////
 
+            this._isAspect = VALIDATION.isAspect;
             this._isDegree = VALIDATION.isDegree;
             this._isInDom  = VALIDATION.isInDom;
             this._isPoint  = VALIDATION.isPoint;
-            this._isAspect = VALIDATION.isAspect;
 
-            this._rotatePoint = UTILITIES.rotatePoint;
-            this._clearCanvas = UTILITIES.clearCanvas;
-            this._setShadow   = UTILITIES.set.shadow;
-            this._drawBorder  = UTILITIES.draw.border;
-            this._drawAxis    = UTILITIES.draw.axis;
-            this._setFillType = UTILITIES.set.fillType;
+            this._clearCanvas       = UTILITIES.misc.clearCanvas;
+            this._drawAxis          = UTILITIES.draw.axis;
+            this._drawBorder        = UTILITIES.draw.border;
+            this._rotatePoint       = UTILITIES.misc.rotatePoint;
 
-            this.strokeColorCycle   = UTILITIES.strokeColorCycle;
-            this.fillColorCycle     = UTILITIES.fillColorCycle;
-            this.gradientColorCycle = UTILITIES.gradientColorCycle;
+            this._setFillType       = UTILITIES.set.fillType;
+            this._setShadow         = UTILITIES.set.shadow;
+            this.fillColorCycle     = UTILITIES.color.cycle.fill;
+            this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
 
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
-            delete this.#_options._points;
             delete this.#_options._controlPoints;
+            delete this.#_options._points;
             delete this.#_options._master;
 
         this.point  = point;
@@ -319,13 +319,49 @@ class Rectangle
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @name isAspect
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAspect}
+         */
+        _isAspect ( ) { }
+
+        /**
+         * Returns whether the passed value is a degree
+         * @private
+         * @name isDegree
+         * @function
+         * @param           {number} value                              Degree
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isDegree}
+         */
         _isDegree ( ) { }
 
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
         _isInDom  ( ) { }
 
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
         _isPoint  ( ) { }
-
-        _isAspect ( ) { }
 
         /**
          * Check whether the passed object is already present
@@ -356,17 +392,56 @@ class Rectangle
 
     ////    UTILITIES   ////////////////////////////////////
 
-        _rotatePoint ( ) { }
-
+        /**
+         * Clears canvas
+         * @private
+         * @name clearCanvas
+         * @function
+         * @param           {boolean} value                             Whether to redraw background
+         * @see             {@link Utilities.misc.clearCanvas}
+         */
         _clearCanvas ( ) { }
 
-        _setShadow   ( ) { }
+        /**
+         * Draws anchor point
+         * @private
+         * @name _drawAnchor
+         * @function
+         */
+        _drawAnchor ( )
+        {
+            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
 
-        _drawBorder  ( ) { }
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
 
+                _anchor.canvas     = this.canvas;
+
+
+                _anchor.draw ( );
+        }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name axis
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link Utilities.draw.axis}
+         */
         _drawAxis    ( ) { }
 
-        _setFillType ( ) { }
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name border
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link Utilities.draw.border}
+         */
+        _drawBorder  ( ) { }
 
         /**
          * Draws associated options
@@ -390,22 +465,16 @@ class Rectangle
         }
 
         /**
-         * Draws anchor point
+         * Rotates the origin point by the degree & distance passed
          * @private
-         * @name _drawAnchor
+         * @name rotatePoint
          * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link Utilities.misc.rotatePoint}
          */
-        _drawAnchor ( )
-        {
-            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
-
-                _anchor.fill.color = new Rgb ( 255, 0, 0 );
-
-                _anchor.canvas     = this.canvas;
-
-
-                _anchor.draw ( );
-        }
+        _rotatePoint ( ) { }
 
         /**
          * Sets anchor's point against this object's point location
@@ -440,10 +509,49 @@ class Rectangle
             }
         }
 
-        strokeColorCycle   ( ) { }
+        /**
+         * Sets fill type of the associated object
+         * @private
+         * @name fillType
+         * @function
+         * @see             {@link Utilities.set.fillType}
+         */
+        _setFillType ( ) { }
 
+        /**
+         * Sets shadow properties
+         * @private
+         * @name shadow
+         * @function
+         * @see             {@link Utilities.set.shadow}
+         */
+        _setShadow   ( ) { }
+
+        /**
+         * Cycle colors for fill
+         * @public
+         * @name fillColorCycle
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.fill}
+         */
         fillColorCycle     ( ) { }
 
+        /**
+         * Cycle colors for gradient
+         * @public
+         * @name gradientColorCycle
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} stop                               Gradient color stop
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.gradient}
+         */
         gradientColorCycle ( ) { }
 
         /**
@@ -501,6 +609,19 @@ class Rectangle
             }
         }
 
+        /**
+         * Cycle colors for stroke
+         * @public
+         * @name strokeColorCycle
+         * @function
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} progress                           Progress time unit; 0.00 - 1.00
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.stroke}
+         */
+        strokeColorCycle   ( ) { }
+
     ////    & EXTEND &  ////////////////////////////////////
 
         /**
@@ -513,18 +634,6 @@ class Rectangle
         get area ( )
         {
             return ( this.width * this.height );
-        }
-
-        /**
-         * Get perimeter of this object
-         * @readOnly
-         * @name perimeter
-         * @function
-         * @return          {number}                                    Perimeter of rectangle
-         */
-        get perimeter ( )
-        {
-            return ( this.area * 2 );
         }
 
         /**
@@ -542,6 +651,18 @@ class Rectangle
 
 
             return new Point ( _x, _y );
+        }
+
+        /**
+         * Get perimeter of this object
+         * @readOnly
+         * @name perimeter
+         * @function
+         * @return          {number}                                    Perimeter of rectangle
+         */
+        get perimeter ( )
+        {
+            return ( this.area * 2 );
         }
 
     ////    DRAW    ////////////////////////////////////////

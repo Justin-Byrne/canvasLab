@@ -41,20 +41,18 @@ class Line
     {
         ////    COMPOSITION     ////////////////////////////
 
+            this._isAspect = VALIDATION.isAspect;
             this._isDegree = VALIDATION.isDegree;
             this._isInDom  = VALIDATION.isInDom;
-            this._isPoint  = VALIDATION.isPoint;
             this._isNumber = VALIDATION.isNumber;
-            this._isAspect = VALIDATION.isAspect;
+            this._isPoint  = VALIDATION.isPoint;
 
-            this._rotatePoint = UTILITIES.rotatePoint;
-            this._clearCanvas = UTILITIES.clearCanvas;
-            this._pointOrSpan = UTILITIES.pointOrSpan;
-            this._setShadow   = UTILITIES.set.shadow;
-            this._drawBorder  = UTILITIES.draw.border;
-            this._drawAxis    = UTILITIES.draw.axis;
-
-            this.strokeColorCycle = UTILITIES.strokeColorCycle;
+            this._drawAxis        = UTILITIES.draw.axis;
+            this._drawBorder      = UTILITIES.draw.border;
+            this._rotatePoint     = UTILITIES.misc.rotatePoint;
+            this._clearCanvas     = UTILITIES.misc.clearCanvas;
+            this._setShadow       = UTILITIES.set.shadow;
+            this.strokeColorCycle = UTILITIES.color.cycle.stroke;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
@@ -335,15 +333,60 @@ class Line
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isPoint  ( ) { }
+        /**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @name _isAspect
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAspect}
+         */
+        _isAspect ( ) { }
 
-        _isNumber ( ) { }
-
+        /**
+         * Returns whether the passed value is a degree
+         * @private
+         * @name _isDegree
+         * @function
+         * @param           {number} value                              Degree
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isDegree}
+         */
         _isDegree ( ) { }
 
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
         _isInDom  ( ) { }
 
-        _isAspect ( ) { }
+        /**
+         * Returns whether the passed value is a Number value
+         * @private
+         * @name _isNumber
+         * @function
+         * @param           {number} value                              Number value
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isNumber}
+         */
+        _isNumber ( ) { }
+
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
 
         /**
          * Check whether the passed object is already present
@@ -377,17 +420,38 @@ class Line
 
     ////    UTILITIES   ////////////////////////////////////
 
-        _rotatePoint ( ) { }
-
+        /**
+         * Clears canvas
+         * @private
+         * @name _clearCanvas
+         * @function
+         * @param           {boolean} value                             Whether to redraw background
+         * @see             {@link Utilities.misc.clearCanvas}
+         */
         _clearCanvas ( ) { }
 
-        _pointOrSpan ( ) { }
-
-        _setShadow   ( ) { }
-
-        _drawBorder  ( ) { }
-
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name _drawAxis
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link Utilities.draw.axis}
+         */
         _drawAxis    ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name _drawBorder
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link Utilities.draw.border}
+         */
+        _drawBorder  ( ) { }
 
         /**
          * Draws associated options
@@ -416,9 +480,26 @@ class Line
             if ( this.#_options.controlPoints ) this.showControlPoints ( );
         }
 
-        strokeColorCycle ( ) { }
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @private
+         * @name _rotatePoint
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link Utilities.misc.rotatePoint}
+         */
+        _rotatePoint ( ) { }
 
-        fillColorCycle   ( ) { }
+        /**
+         * Sets shadow properties
+         * @private
+         * @name _setShadow
+         * @function
+         * @see             {@link Utilities.set.shadow}
+         */
+        _setShadow   ( ) { }
 
         /**
          * Set control points for bezier curve
@@ -453,6 +534,19 @@ class Line
 
               this._end.drawOptions ( );
         }
+
+        /**
+         * Cycle colors for fill
+         * @public
+         * @name fillColorCycle
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.fill}
+         */
+        fillColorCycle ( ) { }
 
         /**
          * Move this object
@@ -532,45 +626,6 @@ class Line
 
                 this._canvas.restore   ( );
             }
-        }
-
-        /**
-         * Shows coordinates of this object
-         * @public
-         * @name showCoordinates
-         * @function
-         * @param           {number} [offset=10]                        Offset of coordinates y origin
-         * @param           {number} [fontSize=16]                      Coordinates font size
-         */
-        showCoordinates ( offset = 10, fontSize = 16 )
-        {
-            let _textStart  = new Text ( this.start, `( ${this.start.x}, ${this.start.y} )` );
-
-            let _textEnd    = new Text ( this.end,   `( ${this.end.x}, ${this.end.y} )`     );
-
-
-                _textStart.canvas         = _textEnd.canvas         = this.canvas;
-
-                _textStart.size           = _textEnd.size           = fontSize;
-
-                _textStart.options.shadow = _textEnd.options.shadow = false;
-
-                _textStart.offset.y       = _textEnd.offset.y       = - ( offset * 2 );
-
-
-                _textStart.options.shadow = _textEnd.options.shadow = true;
-
-
-                _textStart.shadow.color   = _textEnd.shadow.color   = new Rgb ( 255, 255, 255 );
-
-                _textStart.shadow.blur    = _textEnd.shadow.blur    = 1;
-
-                _textStart.shadow.x       = _textEnd.shadow.x       = _textStart.shadow.y    = _textEnd.shadow.y    = 1;
-
-
-                _textStart.draw ( );
-
-                  _textEnd.draw ( );
         }
 
         /**
@@ -678,6 +733,58 @@ class Line
 
                 _circleB.draw ( );
         }
+
+        /**
+         * Shows coordinates of this object
+         * @public
+         * @name showCoordinates
+         * @function
+         * @param           {number} [offset=10]                        Offset of coordinates y origin
+         * @param           {number} [fontSize=16]                      Coordinates font size
+         */
+        showCoordinates ( offset = 10, fontSize = 16 )
+        {
+            let _textStart  = new Text ( this.start, `( ${this.start.x}, ${this.start.y} )` );
+
+            let _textEnd    = new Text ( this.end,   `( ${this.end.x}, ${this.end.y} )`     );
+
+
+                _textStart.canvas         = _textEnd.canvas         = this.canvas;
+
+                _textStart.size           = _textEnd.size           = fontSize;
+
+                _textStart.options.shadow = _textEnd.options.shadow = false;
+
+                _textStart.offset.y       = _textEnd.offset.y       = - ( offset * 2 );
+
+
+                _textStart.options.shadow = _textEnd.options.shadow = true;
+
+
+                _textStart.shadow.color   = _textEnd.shadow.color   = new Rgb ( 255, 255, 255 );
+
+                _textStart.shadow.blur    = _textEnd.shadow.blur    = 1;
+
+                _textStart.shadow.x       = _textEnd.shadow.x       = _textStart.shadow.y    = _textEnd.shadow.y    = 1;
+
+
+                _textStart.draw ( );
+
+                  _textEnd.draw ( );
+        }
+
+        /**
+         * Cycle colors for stroke
+         * @public
+         * @name strokeColorCycle
+         * @function
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} progress                           Progress time unit; 0.00 - 1.00
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.stroke}
+         */
+        strokeColorCycle ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 

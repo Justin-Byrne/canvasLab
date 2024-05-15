@@ -22,10 +22,10 @@ end               {Point}
 endRadius         {Number}
 stops             {Array.<Stops>}
 __ Validation __
-_isPoint
-_isStop
 _isColorModel
+_isPoint
 _isRadius
+_isStop
 __ Utility __
 _stopColorCycle
 }
@@ -54,8 +54,8 @@ canvas        <color:gray>{string}</color>
 options       {Options}
 center        {Point}
 __ Validation __
-_isInDom
 _isAspect
+_isInDom
 __ Utility __
 _drawBorder
 _drawAxis

@@ -51,20 +51,19 @@ class Text extends Font
             this._isInDom  = VALIDATION.isInDom;
             this._isPoint  = VALIDATION.isPoint;
 
-            this._rotatePoint = UTILITIES.rotatePoint;
-            this._clearCanvas = UTILITIES.clearCanvas;
-            this._setShadow   = UTILITIES.set.shadow;
+            this._clearCanvas     = UTILITIES.misc.clearCanvas;
+            this._rotatePoint     = UTILITIES.misc.rotatePoint;
+            this._setShadow       = UTILITIES.set.shadow;
+            this.fillColorCycle   = UTILITIES.color.cycle.fill;
+            this.strokeColorCycle = UTILITIES.color.cycle.stroke;
 
-            this.strokeColorCycle = UTILITIES.strokeColorCycle;
-            this.fillColorCycle   = UTILITIES.fillColorCycle;
-
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
+            Object.defineProperty ( this, 'offset', PROPERTY_BLOCKS.discrete.offset );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'offset', PROPERTY_BLOCKS.discrete.offset );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
-            stroke.width = ( stroke.width === undefined ) ? 0 : stroke.width;                       // Set: default stroke property as 0
+            stroke.width = ( stroke.width === undefined ) ? 0                   : stroke.width;
             fill.color   = ( fill.color   === undefined ) ? new Rgb ( 0, 0, 0 ) : fill.color;       // Set: default fill property as 'Black'
 
         this.point = point;
@@ -408,23 +407,71 @@ class Text extends Font
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a degree
+         * @private
+         * @name isDegree
+         * @function
+         * @param           {number} value                              Degree
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isDegree}
+         */
         _isDegree ( ) { }
 
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
         _isInDom  ( ) { }
 
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
         _isPoint  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
-        _rotatePoint ( ) { }
-
+        /**
+         * Clears canvas
+         * @private
+         * @name clearCanvas
+         * @function
+         * @param           {boolean} value                             Whether to redraw background
+         * @see             {@link Utilities.misc.clearCanvas}
+         */
         _clearCanvas ( ) { }
 
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @private
+         * @name rotatePoint
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link Utilities.misc.rotatePoint}
+         */
+        _rotatePoint ( ) { }
+
+        /**
+         * Sets shadow properties
+         * @private
+         * @name shadow
+         * @function
+         * @see             {@link Utilities.set.shadow}
+         */
         _setShadow   ( ) { }
-
-        strokeColorCycle ( ) { }
-
-        fillColorCycle   ( ) { }
 
         /**
          * Draws border around this object
@@ -488,6 +535,19 @@ class Text extends Font
 
                 _yAxis.draw ( );
         }
+
+        /**
+         * Cycle colors for fill
+         * @public
+         * @name fillColorCycle
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.fill}
+         */
+        fillColorCycle ( ) { }
 
         /**
          * Move this object
@@ -567,6 +627,19 @@ class Text extends Font
                 this._canvas.restore ( );
             }
         }
+
+        /**
+         * Cycle colors for stroke
+         * @public
+         * @name strokeColorCycle
+         * @function
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} progress                           Progress time unit; 0.00 - 1.00
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.stroke}
+         */
+        strokeColorCycle ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 

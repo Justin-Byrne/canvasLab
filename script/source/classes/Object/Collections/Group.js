@@ -32,8 +32,8 @@ class Group extends Array
             this._isInDom = VALIDATION.isInDom;
             this._isPoint = VALIDATION.isPoint;
 
-            this.drawLines  = UTILITIES.draw.typicalCollection;
-            this.drawShapes = UTILITIES.draw.aTypicalCollection;
+            this.drawLines  = UTILITIES.draw.aTypicalCollection;
+            this.drawShapes = UTILITIES.draw.typicalCollection;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
@@ -127,9 +127,27 @@ class Group extends Array
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom ( ) { }
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
+        _isInDom  ( ) { }
 
-        _isPoint ( ) { }
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
@@ -209,8 +227,24 @@ class Group extends Array
 
     ////    DRAW    ////////////////////////////////////////
 
+        /**
+         * A-typical draw function for collections; Lines
+         * @public
+         * @name aTypical
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         * @see             {@link Utilities.draw.aTypical}
+         */
         drawLines  ( ) { }
 
+        /**
+         * Typical draw function for collections; Circles, Rectangles, Texts
+         * @public
+         * @name typical
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         * @see             {@link Utilities.draw.typical}
+         */
         drawShapes ( ) { }
 
         /**

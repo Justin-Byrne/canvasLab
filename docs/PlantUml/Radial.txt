@@ -22,10 +22,10 @@ end               {Point}
 endRadius         {Number}
 stops             {Array.<Stops>}
 __ Validation __
-_isPoint
-_isStop
 _isColorModel
+_isPoint
 _isRadius
+_isStop
 __ Utility __
 _stopColorCycle
 }

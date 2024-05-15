@@ -22,11 +22,11 @@ class Point
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isInDom  = VALIDATION.isInDom;
             this._isAspect = VALIDATION.isAspect;
+            this._isInDom  = VALIDATION.isInDom;
 
-            this._drawBorder = UTILITIES.draw.border;
             this._drawAxis   = UTILITIES.draw.axis;
+            this._drawBorder = UTILITIES.draw.border;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
@@ -139,9 +139,9 @@ class Point
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom  ( ) { }
-
         _isAspect ( ) { }
+
+        _isInDom  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 

@@ -16,9 +16,9 @@ start             {Point}
 end               {Point}
 stops             {Array.<Stops>}
 __ Validation __
+_isColorModel
 _isPoint
 _isStop
-_isColorModel
 __ Utility __
 _stopColorCycle
 }

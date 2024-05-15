@@ -20,11 +20,11 @@ class Linear
     {
         ////    COMPOSITION     ////////////////////////////
 
+            this._isColorModel = VALIDATION.isColorModel;
             this._isPoint      = VALIDATION.isPoint;
             this._isStop       = VALIDATION.isStop;
-            this._isColorModel = VALIDATION.isColorModel;
 
-            this._stopColorCycle = UTILITIES._stopColorCycle;
+            this._stopColorCycle = UTILITIES.color.cycle.stop;
 
         this.start = start;
         this.end   = end;
@@ -120,11 +120,11 @@ class Linear
 
     ////    VALIDATION  ////////////////////////////////////
 
+        _isColorModel ( ) { }
+
         _isPoint      ( ) { }
 
         _isStop       ( ) { }
-
-        _isColorModel ( ) { }
 
     ////    UTILITIES    ///////////////////////////////////
 

@@ -102,9 +102,15 @@
 <dd></dd>
 <dt><a href="#combined">combined</a> : <code>Object</code></dt>
 <dd></dd>
+<dt><a href="#color">color</a> : <code>Object</code></dt>
+<dd></dd>
+<dt><a href="#cycle">cycle</a> : <code>Object</code></dt>
+<dd></dd>
 <dt><a href="#draw">draw</a> : <code>Object</code></dt>
 <dd></dd>
 <dt><a href="#collection">collection</a> : <code>Object</code></dt>
+<dd></dd>
+<dt><a href="#misc">misc</a> : <code>Object</code></dt>
 <dd></dd>
 <dt><a href="#set">set</a> : <code>Object</code></dt>
 <dd></dd>
@@ -135,17 +141,17 @@
 ## Functions
 
 <dl>
-<dt><a href="#clearCanvas">clearCanvas(value)</a></dt>
-<dd><p>Clears canvas</p>
-</dd>
-<dt><a href="#strokeColorCycle">strokeColorCycle(start, end, progress, [max])</a></dt>
+<dt><a href="#stroke">stroke(start, end, progress, [max])</a></dt>
 <dd><p>Cycle colors for stroke</p>
 </dd>
-<dt><a href="#fillColorCycle">fillColorCycle(progress, start, end, [max])</a></dt>
+<dt><a href="#fill">fill(progress, start, end, [max])</a></dt>
 <dd><p>Cycle colors for fill</p>
 </dd>
-<dt><a href="#gradientColorCycle">gradientColorCycle(progress, start, end, stop, [max])</a></dt>
+<dt><a href="#gradient">gradient(progress, start, end, stop, [max])</a></dt>
 <dd><p>Cycle colors for gradient</p>
+</dd>
+<dt><a href="#stop">stop(start, end, progress, stop, max, clear, draw)</a></dt>
+<dd><p>Cycle colors for gradient stop(s)</p>
 </dd>
 <dt><a href="#axis">axis(offset, color, stop)</a></dt>
 <dd><p>Draws an axis for the associated object</p>
@@ -154,13 +160,100 @@
 <dd><p>Draws an axis for the associated object</p>
 </dd>
 <dt><a href="#typical">typical(canvas)</a></dt>
-<dd><p>Typical draw function for collections; Circles, Texts</p>
+<dd><p>Typical draw function for collections; Circles, Rectangles, Texts</p>
 </dd>
 <dt><a href="#aTypical">aTypical(canvas)</a></dt>
-<dd><p>A-typical draw function for collections; Circles, Texts</p>
+<dd><p>A-typical draw function for collections; Lines</p>
+</dd>
+<dt><a href="#clearCanvas">clearCanvas(value)</a></dt>
+<dd><p>Clears canvas</p>
 </dd>
 <dt><a href="#pushPop">pushPop(object)</a></dt>
 <dd><p>Push or pops the passed object</p>
+</dd>
+<dt><a href="#rotatePoint">rotatePoint(origin, degree, distance)</a></dt>
+<dd><p>Rotates the origin point by the degree &amp; distance passed</p>
+</dd>
+<dt><a href="#all">all(property, value)</a></dt>
+<dd><p>Sets all option values throughout a collection</p>
+</dd>
+<dt><a href="#shadow">shadow()</a></dt>
+<dd><p>Sets shadow properties</p>
+</dd>
+<dt><a href="#fillType">fillType()</a></dt>
+<dd><p>Sets fill type of the associated object</p>
+</dd>
+<dt><a href="#_setStops">_setStops(gradient, stops)</a></dt>
+<dd><p>Sets stops for gradient fill types</p>
+</dd>
+<dt><a href="#is256">is256(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a 256 color value; 0 - 255</p>
+</dd>
+<dt><a href="#isAnchor">isAnchor(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is an Anchor alignment</p>
+</dd>
+<dt><a href="#isAngle">isAngle(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is an Angle or equivalent value</p>
+</dd>
+<dt><a href="#isAnchor">isAnchor(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is an Anchor alignment</p>
+</dd>
+<dt><a href="#isAlpha">isAlpha(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is an alpha value; 0.00 - 1</p>
+</dd>
+<dt><a href="#isAspect">isAspect(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is an Aspect</p>
+</dd>
+<dt><a href="#isBlur">isBlur(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a blur value</p>
+</dd>
+<dt><a href="#isCanvasLabObject">isCanvasLabObject(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text</p>
+</dd>
+<dt><a href="#isColorName">isColorName(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a CSS color name</p>
+</dd>
+<dt><a href="#isColorModel">isColorModel(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a color model</p>
+</dd>
+<dt><a href="#isDecimal">isDecimal(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a decimal value; 0.00 - 1</p>
+</dd>
+<dt><a href="#isDegree">isDegree(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a degree</p>
+</dd>
+<dt><a href="#isFillType">isFillType(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a fill type</p>
+</dd>
+<dt><a href="#isGradient">isGradient(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a gradient object</p>
+</dd>
+<dt><a href="#isInDom">isInDom(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is an element id within the DOM</p>
+</dd>
+<dt><a href="#isNumber">isNumber(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a Number value</p>
+</dd>
+<dt><a href="#isPoint">isPoint(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a Point</p>
+</dd>
+<dt><a href="#isRadian">isRadian(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a radian; 0 - 6.28...</p>
+</dd>
+<dt><a href="#isRadius">isRadius(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a radius value</p>
+</dd>
+<dt><a href="#isRadius">isRadius(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is an Array of segment values</p>
+</dd>
+<dt><a href="#isStop">isStop(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a Stop or object equivalent</p>
+</dd>
+<dt><a href="#isStrokeType">isStrokeType(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a stroke type</p>
+</dd>
+<dt><a href="#isWidth">isWidth(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a width value</p>
 </dd>
 <dt><a href="#hue">hue(hue)</a></dt>
 <dd><p>Sets the hue value</p>
@@ -327,14 +420,14 @@
 <dt><a href="#height">height()</a> ⇒ <code>number</code></dt>
 <dd><p>Get height</p>
 </dd>
+<dt><a href="#center">center()</a> ⇒ <code><a href="#Point">Point</a></code></dt>
+<dd><p>Get center of aspect</p>
+</dd>
 <dt><a href="#heightCenter">heightCenter()</a> ⇒ <code>number</code></dt>
 <dd><p>Get center of height</p>
 </dd>
 <dt><a href="#widthCenter">widthCenter()</a> ⇒ <code>number</code></dt>
 <dd><p>Get center of width</p>
-</dd>
-<dt><a href="#center">center()</a> ⇒ <code><a href="#Point">Point</a></code></dt>
-<dd><p>Get center of aspect</p>
 </dd>
 <dt><a href="#p0">p0(value)</a></dt>
 <dd><p>Set control point one</p>
@@ -735,14 +828,20 @@
 <dt><a href="#diameter">diameter()</a> ⇒ <code>number</code></dt>
 <dd><p>Get diameter of circle</p>
 </dd>
-<dt><a href="#circumference">circumference()</a> ⇒ <code>number</code></dt>
-<dd><p>Get circumference of circle</p>
-</dd>
 <dt><a href="#center">center()</a> ⇒ <code><a href="#Point">Point</a></code></dt>
 <dd><p>Get center of this object</p>
 </dd>
-<dt><a href="#isThere">isThere(circle)</a></dt>
+<dt><a href="#circumference">circumference()</a> ⇒ <code>number</code></dt>
+<dd><p>Get circumference of circle</p>
+</dd>
+<dt><a href="#isThere">isThere(circle)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Check whether the passed object is already present</p>
+</dd>
+<dt><a href="#fillColorCycle">fillColorCycle(progress, start, end, [max])</a></dt>
+<dd><p>Cycle colors for fill</p>
+</dd>
+<dt><a href="#gradientColorCycle">gradientColorCycle(progress, start, end, stop, [max])</a></dt>
+<dd><p>Cycle colors for gradient</p>
 </dd>
 <dt><a href="#move">move(degree, distance, [clear])</a></dt>
 <dd><p>Move this object</p>
@@ -752,6 +851,9 @@
 </dd>
 <dt><a href="#showCordinates">showCordinates([offset], [fontSize])</a></dt>
 <dd><p>Shows coordinates of this object</p>
+</dd>
+<dt><a href="#strokeColorCycle">strokeColorCycle(start, end, progress, [max])</a></dt>
+<dd><p>Cycle colors for stroke</p>
 </dd>
 <dt><a href="#draw">draw(canvas)</a></dt>
 <dd><p>Draw this object</p>
@@ -810,17 +912,23 @@
 <dt><a href="#drawPoints">drawPoints()</a></dt>
 <dd><p>Draws start &amp; end points</p>
 </dd>
+<dt><a href="#fillColorCycle">fillColorCycle(progress, start, end, [max])</a></dt>
+<dd><p>Cycle colors for fill</p>
+</dd>
 <dt><a href="#move">move(degree, distance, [clear])</a></dt>
 <dd><p>Move this object</p>
 </dd>
 <dt><a href="#rotate">rotate(degree, [anchor], [clear])</a></dt>
 <dd><p>Rotate this object</p>
 </dd>
+<dt><a href="#showControlPoints">showControlPoints([offset], [fontSize])</a></dt>
+<dd><p>Show control points for this object</p>
+</dd>
 <dt><a href="#showCoordinates">showCoordinates([offset], [fontSize])</a></dt>
 <dd><p>Shows coordinates of this object</p>
 </dd>
-<dt><a href="#showControlPoints">showControlPoints([offset], [fontSize])</a></dt>
-<dd><p>Show control points for this object</p>
+<dt><a href="#strokeColorCycle">strokeColorCycle(start, end, progress, [max])</a></dt>
+<dd><p>Cycle colors for stroke</p>
 </dd>
 <dt><a href="#draw">draw(canvas)</a></dt>
 <dd><p>Draw this object</p>
@@ -888,20 +996,29 @@
 <dt><a href="#isThere">isThere(rectangle)</a></dt>
 <dd><p>Check whether the passed object is already present</p>
 </dd>
+<dt><a href="#fillColorCycle">fillColorCycle(progress, start, end, [max])</a></dt>
+<dd><p>Cycle colors for fill</p>
+</dd>
+<dt><a href="#gradientColorCycle">gradientColorCycle(progress, start, end, stop, [max])</a></dt>
+<dd><p>Cycle colors for gradient</p>
+</dd>
 <dt><a href="#move">move(degree, distance, [clear])</a></dt>
 <dd><p>Move this object</p>
 </dd>
 <dt><a href="#rotate">rotate(degree, [clear])</a></dt>
 <dd><p>Rotate this object</p>
 </dd>
+<dt><a href="#strokeColorCycle">strokeColorCycle(start, end, progress, [max])</a></dt>
+<dd><p>Cycle colors for stroke</p>
+</dd>
 <dt><a href="#area">area()</a> ⇒ <code>number</code></dt>
 <dd><p>Get area of this object</p>
 </dd>
-<dt><a href="#perimeter">perimeter()</a> ⇒ <code>number</code></dt>
-<dd><p>Get perimeter of this object</p>
-</dd>
 <dt><a href="#center">center()</a> ⇒ <code><a href="#Point">Point</a></code></dt>
 <dd><p>Get center of this object</p>
+</dd>
+<dt><a href="#perimeter">perimeter()</a> ⇒ <code>number</code></dt>
+<dd><p>Get perimeter of this object</p>
 </dd>
 <dt><a href="#draw">draw(canvas)</a></dt>
 <dd><p>Draw this object</p>
@@ -990,11 +1107,17 @@
 <dt><a href="#drawAxis">drawAxis([offset])</a></dt>
 <dd><p>Draws axis through center of this object</p>
 </dd>
+<dt><a href="#fillColorCycle">fillColorCycle(progress, start, end, [max])</a></dt>
+<dd><p>Cycle colors for fill</p>
+</dd>
 <dt><a href="#move">move(degree, distance, [clear])</a></dt>
 <dd><p>Move this object</p>
 </dd>
 <dt><a href="#rotate">rotate(degree, [anchor], [clear])</a></dt>
 <dd><p>Rotate this object</p>
+</dd>
+<dt><a href="#strokeColorCycle">strokeColorCycle(start, end, progress, [max])</a></dt>
+<dd><p>Cycle colors for stroke</p>
 </dd>
 <dt><a href="#draw">draw(canvas)</a></dt>
 <dd><p>Draw this object</p>
@@ -1022,6 +1145,12 @@
 </dd>
 <dt><a href="#canvas">canvas()</a> ⇒ <code>string</code></dt>
 <dd><p>Get canvas value</p>
+</dd>
+<dt><a href="#pushPop">pushPop(object)</a></dt>
+<dd><p>Push or pops the passed object</p>
+</dd>
+<dt><a href="#draw">draw(canvas)</a></dt>
+<dd><p>Typical draw function for collections; Circles, Texts</p>
 </dd>
 <dt><a href="#point">point(value)</a></dt>
 <dd><p>Set point</p>
@@ -1052,6 +1181,12 @@
 </dd>
 <dt><a href="#pop">pop(object)</a></dt>
 <dd><p>Pops an object out of this group</p>
+</dd>
+<dt><a href="#aTypical">aTypical(canvas)</a></dt>
+<dd><p>A-typical draw function for collections; Lines</p>
+</dd>
+<dt><a href="#typical">typical(canvas)</a></dt>
+<dd><p>Typical draw function for collections; Circles, Rectangles, Texts</p>
 </dd>
 <dt><a href="#draw">draw(canvas)</a></dt>
 <dd><p>Draw this group</p>
@@ -1121,6 +1256,9 @@
 </dd>
 <dt><a href="#+_appendProperties">#_appendProperties(line)</a></dt>
 <dd><p>Appends property values</p>
+</dd>
+<dt><a href="#_isAspect">_isAspect(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is an Aspect</p>
 </dd>
 <dt><a href="#push">push()</a></dt>
 <dd><p>Pushes Line(s) into this collection</p>
@@ -2010,6 +2148,14 @@ Creates an animation instance
 
 ### combined.end : <code>Object</code>
 **Kind**: static property of [<code>combined</code>](#combined)  
+<a name="color"></a>
+
+## color : <code>Object</code>
+**Kind**: global variable  
+<a name="cycle"></a>
+
+## cycle : <code>Object</code>
+**Kind**: global variable  
 <a name="draw"></a>
 
 ## draw : <code>Object</code>
@@ -2017,6 +2163,10 @@ Creates an animation instance
 <a name="collection"></a>
 
 ## collection : <code>Object</code>
+**Kind**: global variable  
+<a name="misc"></a>
+
+## misc : <code>Object</code>
 **Kind**: global variable  
 <a name="set"></a>
 
@@ -2046,21 +2196,9 @@ Shared validation functions
 DEBUG General debug module
 
 **Kind**: global constant  
-<a name="clearCanvas"></a>
+<a name="stroke"></a>
 
-## clearCanvas(value)
-Clears canvas
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>boolean</code> | Whether to redraw background |
-
-<a name="strokeColorCycle"></a>
-
-## strokeColorCycle(start, end, progress, [max])
+## stroke(start, end, progress, [max])
 Cycle colors for stroke
 
 **Kind**: global function  
@@ -2073,9 +2211,9 @@ Cycle colors for stroke
 | progress | <code>number</code> |  | Progress time unit; 0.00 - 1.00 |
 | [max] | <code>number</code> | <code>1</code> | Maximum increments |
 
-<a name="fillColorCycle"></a>
+<a name="fill"></a>
 
-## fillColorCycle(progress, start, end, [max])
+## fill(progress, start, end, [max])
 Cycle colors for fill
 
 **Kind**: global function  
@@ -2088,9 +2226,9 @@ Cycle colors for fill
 | end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
 | [max] | <code>number</code> | <code>1</code> | Maximum increments |
 
-<a name="gradientColorCycle"></a>
+<a name="gradient"></a>
 
-## gradientColorCycle(progress, start, end, stop, [max])
+## gradient(progress, start, end, stop, [max])
 Cycle colors for gradient
 
 **Kind**: global function  
@@ -2103,6 +2241,24 @@ Cycle colors for gradient
 | end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
 | stop | <code>number</code> |  | Gradient color stop |
 | [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
+<a name="stop"></a>
+
+## stop(start, end, progress, stop, max, clear, draw)
+Cycle colors for gradient stop(s)
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| start | <code>Object</code> | Color model & values |
+| end | <code>Object</code> | Color model & values |
+| progress | <code>number</code> | Progress time unit; 0.00 - 1.00 |
+| stop | <code>number</code> | Color stop to cycle |
+| max | <code>number</code> | Maximum number of steps between interpolation |
+| clear | <code>function</code> | Clear callback from root object |
+| draw | <code>function</code> | Draw callback from root object |
 
 <a name="axis"></a>
 
@@ -2134,7 +2290,7 @@ Draws an axis for the associated object
 <a name="typical"></a>
 
 ## typical(canvas)
-Typical draw function for collections; Circles, Texts
+Typical draw function for collections; Circles, Rectangles, Texts
 
 **Kind**: global function  
 **Access**: public  
@@ -2146,7 +2302,7 @@ Typical draw function for collections; Circles, Texts
 <a name="aTypical"></a>
 
 ## aTypical(canvas)
-A-typical draw function for collections; Circles, Texts
+A-typical draw function for collections; Lines
 
 **Kind**: global function  
 **Access**: public  
@@ -2154,6 +2310,18 @@ A-typical draw function for collections; Circles, Texts
 | Param | Type | Description |
 | --- | --- | --- |
 | canvas | <code>string</code> | Canvas Id |
+
+<a name="clearCanvas"></a>
+
+## clearCanvas(value)
+Clears canvas
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>boolean</code> | Whether to redraw background |
 
 <a name="pushPop"></a>
 
@@ -2166,6 +2334,359 @@ Push or pops the passed object
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>Object</code> | Object; Circle, Rectangle, Text |
+
+<a name="rotatePoint"></a>
+
+## rotatePoint(origin, degree, distance)
+Rotates the origin point by the degree & distance passed
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| origin | [<code>Point</code>](#Point) | Origin point |
+| degree | <code>number</code> | Degree to rotate |
+| distance | <code>number</code> | Distance from origin |
+
+<a name="all"></a>
+
+## all(property, value)
+Sets all option values throughout a collection
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| property | <code>string</code> | Option property |
+| value | <code>boolean</code> | True || False |
+
+<a name="shadow"></a>
+
+## shadow()
+Sets shadow properties
+
+**Kind**: global function  
+**Access**: public  
+<a name="fillType"></a>
+
+## fillType()
+Sets fill type of the associated object
+
+**Kind**: global function  
+**Access**: public  
+<a name="_setStops"></a>
+
+## \_setStops(gradient, stops)
+Sets stops for gradient fill types
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| gradient | <code>Object</code> | [description] |
+| stops | <code>Array.&lt;Stops&gt;</code> | [description] |
+
+<a name="is256"></a>
+
+## is256(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a 256 color value; 0 - 255
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | 256 color value; 0 - 255 |
+
+<a name="isAnchor"></a>
+
+## isAnchor(value) ⇒ <code>boolean</code>
+Returns whether the passed value is an Anchor alignment
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Anchor alignment |
+
+<a name="isAngle"></a>
+
+## isAngle(value) ⇒ <code>boolean</code>
+Returns whether the passed value is an Angle or equivalent value
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> \| <code>number</code> | Angle object or number value |
+
+<a name="isAnchor"></a>
+
+## isAnchor(value) ⇒ <code>boolean</code>
+Returns whether the passed value is an Anchor alignment
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Anchor alignment |
+
+<a name="isAlpha"></a>
+
+## isAlpha(value) ⇒ <code>boolean</code>
+Returns whether the passed value is an alpha value; 0.00 - 1
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Alpha value; 0.00 - 1 |
+
+<a name="isAspect"></a>
+
+## isAspect(value) ⇒ <code>boolean</code>
+Returns whether the passed value is an Aspect
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | Aspect or object equivalent |
+
+<a name="isBlur"></a>
+
+## isBlur(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a blur value
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Blur value |
+
+<a name="isCanvasLabObject"></a>
+
+## isCanvasLabObject(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | CanvasLab object; Line, Circle, Rectangle, Text |
+
+<a name="isColorName"></a>
+
+## isColorName(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a CSS color name
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | CSS color name |
+
+<a name="isColorModel"></a>
+
+## isColorModel(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a color model
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | Color model or object equivalent |
+
+<a name="isDecimal"></a>
+
+## isDecimal(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a decimal value; 0.00 - 1
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Decimal value; 0.00 - 1 |
+
+<a name="isDegree"></a>
+
+## isDegree(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a degree
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Degree |
+
+<a name="isFillType"></a>
+
+## isFillType(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a fill type
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Fill type |
+
+<a name="isGradient"></a>
+
+## isGradient(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a gradient object
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | Gradient object |
+
+<a name="isInDom"></a>
+
+## isInDom(value) ⇒ <code>boolean</code>
+Returns whether the passed value is an element id within the DOM
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Element id |
+
+<a name="isNumber"></a>
+
+## isNumber(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a Number value
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Number value |
+
+<a name="isPoint"></a>
+
+## isPoint(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a Point
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | Point or object equivalent |
+
+<a name="isRadian"></a>
+
+## isRadian(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a radian; 0 - 6.28...
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Radian value; 0 - 6.28... |
+
+<a name="isRadius"></a>
+
+## isRadius(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a radius value
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Radius value |
+
+<a name="isRadius"></a>
+
+## isRadius(value) ⇒ <code>boolean</code>
+Returns whether the passed value is an Array of segment values
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array.&lt;number&gt;</code> | Array of segment values |
+
+<a name="isStop"></a>
+
+## isStop(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a Stop or object equivalent
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | Stop or object equivalent |
+
+<a name="isStrokeType"></a>
+
+## isStrokeType(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a stroke type
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Stroke type |
+
+<a name="isWidth"></a>
+
+## isWidth(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a width value
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Width value |
 
 <a name="hue"></a>
 
@@ -2707,6 +3228,14 @@ Get height
 **Kind**: global function  
 **Returns**: <code>number</code> - Height value  
 **Read only**: true  
+<a name="center"></a>
+
+## center() ⇒ [<code>Point</code>](#Point)
+Get center of aspect
+
+**Kind**: global function  
+**Returns**: [<code>Point</code>](#Point) - Center point of this aspect  
+**Read only**: true  
 <a name="heightCenter"></a>
 
 ## heightCenter() ⇒ <code>number</code>
@@ -2722,14 +3251,6 @@ Get center of width
 
 **Kind**: global function  
 **Returns**: <code>number</code> - Center of with  
-**Read only**: true  
-<a name="center"></a>
-
-## center() ⇒ [<code>Point</code>](#Point)
-Get center of aspect
-
-**Kind**: global function  
-**Returns**: [<code>Point</code>](#Point) - Center point of this aspect  
 **Read only**: true  
 <a name="p0"></a>
 
@@ -4042,6 +4563,14 @@ Get diameter of circle
 **Kind**: global function  
 **Returns**: <code>number</code> - Diameter of circle  
 **Read only**: true  
+<a name="center"></a>
+
+## center() ⇒ [<code>Point</code>](#Point)
+Get center of this object
+
+**Kind**: global function  
+**Returns**: [<code>Point</code>](#Point) - Point coordinates  
+**Read only**: true  
 <a name="circumference"></a>
 
 ## circumference() ⇒ <code>number</code>
@@ -4050,25 +4579,51 @@ Get circumference of circle
 **Kind**: global function  
 **Returns**: <code>number</code> - Circumference of circle  
 **Read only**: true  
-<a name="center"></a>
-
-## center() ⇒ [<code>Point</code>](#Point)
-Get center of this object
-
-**Kind**: global function  
-**Returns**: [<code>Point</code>](#Point) - Center point coordinates  
-**Read only**: true  
 <a name="isThere"></a>
 
-## isThere(circle)
+## isThere(circle) ⇒ <code>boolean</code>
 Check whether the passed object is already present
 
 **Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | circle | [<code>Circle</code>](#Circle) | Object to validate |
+
+<a name="fillColorCycle"></a>
+
+## fillColorCycle(progress, start, end, [max])
+Cycle colors for fill
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.color.cycle.fill](Utilities.color.cycle.fill)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
+<a name="gradientColorCycle"></a>
+
+## gradientColorCycle(progress, start, end, stop, [max])
+Cycle colors for gradient
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.color.cycle.gradient](Utilities.color.cycle.gradient)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| stop | <code>number</code> |  | Gradient color stop |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
 
 <a name="move"></a>
 
@@ -4109,6 +4664,22 @@ Shows coordinates of this object
 | --- | --- | --- | --- |
 | [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
 | [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
+
+<a name="strokeColorCycle"></a>
+
+## strokeColorCycle(start, end, progress, [max])
+Cycle colors for stroke
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.color.cycle.stroke](Utilities.color.cycle.stroke)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| progress | <code>number</code> |  | Progress time unit; 0.00 - 1.00 |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
 
 <a name="draw"></a>
 
@@ -4299,6 +4870,22 @@ Draws start & end points
 
 **Kind**: global function  
 **Access**: public  
+<a name="fillColorCycle"></a>
+
+## fillColorCycle(progress, start, end, [max])
+Cycle colors for fill
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.color.cycle.fill](Utilities.color.cycle.fill)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
 <a name="move"></a>
 
 ## move(degree, distance, [clear])
@@ -4327,6 +4914,19 @@ Rotate this object
 | [anchor] | <code>string</code> | <code>&quot;&#x27;center&#x27;&quot;</code> | Anchoring point during rotation |
 | [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
 
+<a name="showControlPoints"></a>
+
+## showControlPoints([offset], [fontSize])
+Show control points for this object
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [offset] | <code>number</code> | <code>10</code> | Offset of control points y origin |
+| [fontSize] | <code>number</code> | <code>16</code> | Control points font size |
+
 <a name="showCoordinates"></a>
 
 ## showCoordinates([offset], [fontSize])
@@ -4340,18 +4940,21 @@ Shows coordinates of this object
 | [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
 | [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
 
-<a name="showControlPoints"></a>
+<a name="strokeColorCycle"></a>
 
-## showControlPoints([offset], [fontSize])
-Show control points for this object
+## strokeColorCycle(start, end, progress, [max])
+Cycle colors for stroke
 
 **Kind**: global function  
 **Access**: public  
+**See**: [Utilities.color.cycle.stroke](Utilities.color.cycle.stroke)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [offset] | <code>number</code> | <code>10</code> | Offset of control points y origin |
-| [fontSize] | <code>number</code> | <code>16</code> | Control points font size |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| progress | <code>number</code> |  | Progress time unit; 0.00 - 1.00 |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
 
 <a name="draw"></a>
 
@@ -4580,6 +5183,39 @@ Check whether the passed object is already present
 | --- | --- | --- |
 | rectangle | [<code>Rectangle</code>](#Rectangle) | Object to validate |
 
+<a name="fillColorCycle"></a>
+
+## fillColorCycle(progress, start, end, [max])
+Cycle colors for fill
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.color.cycle.fill](Utilities.color.cycle.fill)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
+<a name="gradientColorCycle"></a>
+
+## gradientColorCycle(progress, start, end, stop, [max])
+Cycle colors for gradient
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.color.cycle.gradient](Utilities.color.cycle.gradient)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| stop | <code>number</code> |  | Gradient color stop |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
 <a name="move"></a>
 
 ## move(degree, distance, [clear])
@@ -4607,6 +5243,22 @@ Rotate this object
 | degree | <code>number</code> |  | Distance to rotate; in degrees |
 | [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
 
+<a name="strokeColorCycle"></a>
+
+## strokeColorCycle(start, end, progress, [max])
+Cycle colors for stroke
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.color.cycle.stroke](Utilities.color.cycle.stroke)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| progress | <code>number</code> |  | Progress time unit; 0.00 - 1.00 |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
 <a name="area"></a>
 
 ## area() ⇒ <code>number</code>
@@ -4615,14 +5267,6 @@ Get area of this object
 **Kind**: global function  
 **Returns**: <code>number</code> - Area of rectangle  
 **Read only**: true  
-<a name="perimeter"></a>
-
-## perimeter() ⇒ <code>number</code>
-Get perimeter of this object
-
-**Kind**: global function  
-**Returns**: <code>number</code> - Perimeter of rectangle  
-**Read only**: true  
 <a name="center"></a>
 
 ## center() ⇒ [<code>Point</code>](#Point)
@@ -4630,6 +5274,14 @@ Get center of this object
 
 **Kind**: global function  
 **Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+**Read only**: true  
+<a name="perimeter"></a>
+
+## perimeter() ⇒ <code>number</code>
+Get perimeter of this object
+
+**Kind**: global function  
+**Returns**: <code>number</code> - Perimeter of rectangle  
 **Read only**: true  
 <a name="draw"></a>
 
@@ -4924,6 +5576,22 @@ Draws axis through center of this object
 | --- | --- | --- | --- |
 | [offset] | <code>number</code> | <code>10</code> | Offset of axis's edges |
 
+<a name="fillColorCycle"></a>
+
+## fillColorCycle(progress, start, end, [max])
+Cycle colors for fill
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.color.cycle.fill](Utilities.color.cycle.fill)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
 <a name="move"></a>
 
 ## move(degree, distance, [clear])
@@ -4951,6 +5619,22 @@ Rotate this object
 | degree | <code>number</code> |  | Distance to rotate; in degrees |
 | [anchor] | <code>string</code> | <code>&quot;&#x27;center&#x27;&quot;</code> | Anchoring point during rotation |
 | [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
+
+<a name="strokeColorCycle"></a>
+
+## strokeColorCycle(start, end, progress, [max])
+Cycle colors for stroke
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.color.cycle.stroke](Utilities.color.cycle.stroke)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| progress | <code>number</code> |  | Progress time unit; 0.00 - 1.00 |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
 
 <a name="draw"></a>
 
@@ -5046,6 +5730,32 @@ Get canvas value
 **Returns**: <code>string</code> - Canvas id  
 **Read only**: true  
 **See**: [canvas](#combined.canvas)  
+<a name="pushPop"></a>
+
+## pushPop(object)
+Push or pops the passed object
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.misc.pushPop](Utilities.misc.pushPop)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>Object</code> | Object; Circle, Rectangle, Text |
+
+<a name="draw"></a>
+
+## draw(canvas)
+Typical draw function for collections; Circles, Texts
+
+**Kind**: global function  
+**Access**: public  
+**See**: [UTILITIES.draw.collection.typical](UTILITIES.draw.collection.typical)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| canvas | <code>string</code> | Canvas Id |
+
 <a name="point"></a>
 
 ## point(value)
@@ -5151,6 +5861,32 @@ Pops an object out of this group
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>Object</code> | Object; Line(s), Circle(s), Rectangle(S) |
+
+<a name="aTypical"></a>
+
+## aTypical(canvas)
+A-typical draw function for collections; Lines
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.draw.aTypical](Utilities.draw.aTypical)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| canvas | <code>string</code> | Canvas Id |
+
+<a name="typical"></a>
+
+## typical(canvas)
+Typical draw function for collections; Circles, Rectangles, Texts
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.draw.typical](Utilities.draw.typical)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| canvas | <code>string</code> | Canvas Id |
 
 <a name="draw"></a>
 
@@ -5375,6 +6111,20 @@ Appends property values
 | Param | Type | Description |
 | --- | --- | --- |
 | line | [<code>Line</code>](#Line) | Line object |
+
+<a name="_isAspect"></a>
+
+## \_isAspect(value) ⇒ <code>boolean</code>
+Returns whether the passed value is an Aspect
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+**See**: [Validation.isAspect](Validation.isAspect)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | Aspect or object equivalent |
 
 <a name="push"></a>
 

@@ -92,6 +92,8 @@ class PointCollection
 
     ////    UTILITIES   ////////////////////////////////////
 
+        _setAll ( ) { }
+
         /**
          * Invert x & y coordinate values
          * @public
@@ -104,6 +106,4 @@ class PointCollection
 
             [ this.y, this.x ] = [ this.x, _y ];
         }
-
-        _setAll ( ) { }
 }

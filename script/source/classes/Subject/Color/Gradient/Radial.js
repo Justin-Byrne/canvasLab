@@ -33,7 +33,7 @@ class Radial
             this._isColorModel = VALIDATION.isColorModel;
             this._isRadius     = VALIDATION.isRadius;
 
-            this._stopColorCycle = UTILITIES._stopColorCycle;
+            this._stopColorCycle = UTILITIES.color.cycle.stop;
 
         this.start       = start;
         this.startRadius = startRadius;
@@ -185,13 +185,13 @@ class Radial
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isPoint      ( ) { }
-
-        _isStop       ( ) { }
-
         _isColorModel ( ) { }
 
+        _isPoint      ( ) { }
+
         _isRadius     ( ) { }
+
+        _isStop       ( ) { }
 
     ////    UTILITIES    ///////////////////////////////////
 

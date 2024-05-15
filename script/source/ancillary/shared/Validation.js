@@ -4,10 +4,27 @@
  */
 const VALIDATION =
 {
+    /**
+     * Returns whether the passed value is a 256 color value; 0 - 255
+     * @public
+     * @name is256
+     * @function
+     * @param           {number} value                              256 color value; 0 - 255
+     * @return          {boolean}                                   True || False
+     */
     is256 ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 255 ) );
     },
+
+    /**
+     * Returns whether the passed value is an Anchor alignment
+     * @public
+     * @name isAnchor
+     * @function
+     * @param           {string} value                              Anchor alignment
+     * @return          {boolean}                                   True || False
+     */
     isAnchor ( value )
     {
         let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft' ];
@@ -18,6 +35,15 @@ const VALIDATION =
 
         return false;
     },
+
+    /**
+     * Returns whether the passed value is an Angle or equivalent value
+     * @public
+     * @name isAngle
+     * @function
+     * @param           {Object|number} value                       Angle object or number value
+     * @return          {boolean}                                   True || False
+     */
     isAngle ( value )
     {
         if ( value instanceof Angle ) return true;
@@ -25,6 +51,15 @@ const VALIDATION =
 
         return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
     },
+
+    /**
+     * Returns whether the passed value is an Anchor alignment
+     * @public
+     * @name isAnchor
+     * @function
+     * @param           {string} value                              Anchor alignment
+     * @return          {boolean}                                   True || False
+     */
     isAlign ( value )
     {
         let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft' ];
@@ -35,10 +70,28 @@ const VALIDATION =
 
         return false;
     },
+
+    /**
+     * Returns whether the passed value is an alpha value; 0.00 - 1
+     * @public
+     * @name isAlpha
+     * @function
+     * @param           {number} value                              Alpha value; 0.00 - 1
+     * @return          {boolean}                                   True || False
+     */
     isAlpha ( value )
     {
         return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  )  );
     },
+
+    /**
+     * Returns whether the passed value is an Aspect
+     * @public
+     * @name isAspect
+     * @function
+     * @param           {Object} value                              Aspect or object equivalent
+     * @return          {boolean}                                   True || False
+     */
     isAspect ( value )
     {
         if ( value instanceof Aspect ) return true;
@@ -54,10 +107,28 @@ const VALIDATION =
 
         return ( _width && _height && _length );
     },
+
+    /**
+     * Returns whether the passed value is a blur value
+     * @public
+     * @name isBlur
+     * @function
+     * @param           {number} value                              Blur value
+     * @return          {boolean}                                   True || False
+     */
     isBlur ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );
     },
+
+    /**
+     * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
+     * @public
+     * @name isCanvasLabObject
+     * @function
+     * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
+     * @return          {boolean}                                   True || False
+     */
     isCanvasLabObject ( value )
     {
         if ( value instanceof Line      ) return true;
@@ -71,6 +142,15 @@ const VALIDATION =
 
         return false;
     },
+
+    /**
+     * Returns whether the passed value is a CSS color name
+     * @public
+     * @name isColorName
+     * @function
+     * @param           {string} value                              CSS color name
+     * @return          {boolean}                                   True || False
+     */
     isColorName ( value )
     {
         let _colors =
@@ -287,6 +367,15 @@ const VALIDATION =
 
         return _colors [ value [ 0 ].toUpperCase ( ) ].includes ( value );
     },
+
+    /**
+     * Returns whether the passed value is a color model
+     * @public
+     * @name isColorModel
+     * @function
+     * @param           {Object} value                              Color model or object equivalent
+     * @return          {boolean}                                   True || False
+     */
     isColorModel ( value )
     {
         if ( value instanceof Rgb ) return true;
@@ -298,18 +387,54 @@ const VALIDATION =
 
         return false;
     },
+
+    /**
+     * Returns whether the passed value is a decimal value; 0.00 - 1
+     * @public
+     * @name isDecimal
+     * @function
+     * @param           {number} value                              Decimal value; 0.00 - 1
+     * @return          {boolean}                                   True || False
+     */
     isDecimal ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  ) );
     },
+
+    /**
+     * Returns whether the passed value is a degree
+     * @public
+     * @name isDegree
+     * @function
+     * @param           {number} value                              Degree
+     * @return          {boolean}                                   True || False
+     */
     isDegree ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
     },
+
+    /**
+     * Returns whether the passed value is a fill type
+     * @public
+     * @name isFillType
+     * @function
+     * @param           {string} value                              Fill type
+     * @return          {boolean}                                   True || False
+     */
     isFillType ( value )
     {
         return [ 'solid', 'linear', 'radial', 'conic', 'pattern' ].includes ( value );
     },
+
+    /**
+     * Returns whether the passed value is a gradient object
+     * @public
+     * @name isGradient
+     * @function
+     * @param           {Object} value                              Gradient object
+     * @return          {boolean}                                   True || False
+     */
     isGradient ( value )
     {
         if ( value instanceof Linear ) return true;
@@ -321,14 +446,41 @@ const VALIDATION =
 
         return false;
     },
-    isInDom ( elementId )
+
+    /**
+     * Returns whether the passed value is an element id within the DOM
+     * @public
+     * @name isInDom
+     * @function
+     * @param           {string} value                              Element id
+     * @return          {boolean}                                   True || False
+     */
+    isInDom ( value )
     {
-        return ( document.getElementById ( elementId ) != null );
+        return ( document.getElementById ( value ) != null );
     },
+
+    /**
+     * Returns whether the passed value is a Number value
+     * @public
+     * @name isNumber
+     * @function
+     * @param           {number} value                              Number value
+     * @return          {boolean}                                   True || False
+     */
     isNumber ( value )
     {
         return ( ( typeof value === 'number')  &&  !isNaN ( value ) );
     },
+
+    /**
+     * Returns whether the passed value is a Point
+     * @public
+     * @name isPoint
+     * @function
+     * @param           {Object} value                              Point or object equivalent
+     * @return          {boolean}                                   True || False
+     */
     isPoint ( value )
     {
         if ( value instanceof Point ) return true;
@@ -344,14 +496,41 @@ const VALIDATION =
 
         return ( _length && _x && _y );
     },
+
+    /**
+     * Returns whether the passed value is a radian; 0 - 6.28...
+     * @public
+     * @name isRadian
+     * @function
+     * @param           {number} value                              Radian value; 0 - 6.28...
+     * @return          {boolean}                                   True || False
+     */
     isRadian ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 6.283185307179586 ) );
     },
+
+    /**
+     * Returns whether the passed value is a radius value
+     * @public
+     * @name isRadius
+     * @function
+     * @param           {number} value                              Radius value
+     * @return          {boolean}                                   True || False
+     */
     isRadius ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value > 0 ) );
     },
+
+    /**
+     * Returns whether the passed value is an Array of segment values
+     * @public
+     * @name isRadius
+     * @function
+     * @param           {Array.<number>} value                      Array of segment values
+     * @return          {boolean}                                   True || False
+     */
     isSegments ( value )
     {
         function isArrayNumeric ( value )
@@ -374,6 +553,15 @@ const VALIDATION =
 
         return ( Array.isArray ( value ) ) ? isArrayNumeric ( value ) : false;
     },
+
+    /**
+     * Returns whether the passed value is a Stop or object equivalent
+     * @public
+     * @name isStop
+     * @function
+     * @param           {Object} value                              Stop or object equivalent
+     * @return          {boolean}                                   True || False
+     */
     isStop ( value )
     {
         if ( value instanceof Stop ) return true;
@@ -389,10 +577,28 @@ const VALIDATION =
 
         return ( _object && _offset && _color );
     },
+
+    /**
+     * Returns whether the passed value is a stroke type
+     * @public
+     * @name isStrokeType
+     * @function
+     * @param           {string} value                              Stroke type
+     * @return          {boolean}                                   True || False
+     */
     isStrokeType ( value )
     {
         return ( ( typeof value === 'string' )  &&  [ 'solid', 'dashed' ].includes ( value ) );
     },
+
+    /**
+     * Returns whether the passed value is a width value
+     * @public
+     * @name isWidth
+     * @function
+     * @param           {number} value                              Width value
+     * @return          {boolean}                                   True || False
+     */
     isWidth ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );

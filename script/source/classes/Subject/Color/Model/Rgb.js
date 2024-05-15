@@ -118,15 +118,24 @@ class Rgb
 	////    [ UTILITIES ]    ///////////////////////////////
 
 		/**
-		 * Returns a CSS compatible <color> string value
-		 * @public
-		 * @name toCss
+		 * Color cycling
+		 * @private
+		 * @name _cycle
 		 * @function
-		 * @return 			{string} 							CSS <color> string
+		 * @param  			{Object}   start					Color model & values
+		 * @param  			{Object}   end 						Color model & values
+		 * @param 			{number}   progress 				Progress time unit; 0.00 - 1.00
+		 * @param 			{number}   max 						Maximum number of steps between interpolation
+		 * @param 			{function} clear 					Clear callback from root object
+		 * @param 			{function} draw 					Draw callback from root object
 		 */
-		toCss ( )
-		{
-			return `rgb(${this.red} ${this.green} ${this.blue} / ${this.alpha * 100}%)`;
+		_cycle ( start, end, progress, max, clear, draw )
+	    {
+	    	this._lerpRgb ( start, end, progress, max );
+
+	    	clear ( );
+
+	    	draw  ( );
 		}
 
 		/**
@@ -164,23 +173,14 @@ class Rgb
 		}
 
 		/**
-		 * Color cycling
-		 * @private
-		 * @name _cycle
+		 * Returns a CSS compatible <color> string value
+		 * @public
+		 * @name toCss
 		 * @function
-		 * @param  			{Object}   start					Color model & values
-		 * @param  			{Object}   end 						Color model & values
-		 * @param 			{number}   progress 				Progress time unit; 0.00 - 1.00
-		 * @param 			{number}   max 						Maximum number of steps between interpolation
-		 * @param 			{function} clear 					Clear callback from root object
-		 * @param 			{function} draw 					Draw callback from root object
+		 * @return 			{string} 							CSS <color> string
 		 */
-		_cycle ( start, end, progress, max, clear, draw )
-	    {
-	    	this._lerpRgb ( start, end, progress, max );
-
-	    	clear ( );
-
-	    	draw ( );
+		toCss ( )
+		{
+			return `rgb(${this.red} ${this.green} ${this.blue} / ${this.alpha * 100}%)`;
 		}
 }

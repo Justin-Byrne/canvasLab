@@ -40,18 +40,18 @@ class Lines extends Array
 
         ////    COMPOSITION     ////////////////////////////
 
+            this._isAspect = VALIDATION.isAspect;
             this._isInDom  = VALIDATION.isInDom;
             this._isPoint  = VALIDATION.isPoint;
-            this._isAspect = VALIDATION.isAspect;
 
-            this._drawBorder = UTILITIES.draw.border;
             this._drawAxis   = UTILITIES.draw.axis;
+            this._drawBorder = UTILITIES.draw.border;
             this.draw        = UTILITIES.draw.collection.aTypical;
 
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.stroke.master = this;
 
@@ -331,8 +331,6 @@ class Lines extends Array
 
 
                 this.#_origin = new Point ( _x, _y );
-
-                // console.log ( this.#_origin );
             }
 
 
@@ -371,17 +369,63 @@ class Lines extends Array
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is an Aspect
+         * @public
+         * @name _isAspect
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAspect}
+         */
+        _isAspect ( ) { }
+
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
         _isInDom  ( ) { }
 
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
         _isPoint  ( ) { }
-
-        _isAspect ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name _drawAxis
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link Utilities.draw.axis}
+         */
         _drawAxis   ( ) { }
 
-        _drawBorder ( ) { }
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name _drawBorder
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link Utilities.draw.border}
+         */
+        _drawBorder  ( ) { }
 
         /**
          * Draws associated options

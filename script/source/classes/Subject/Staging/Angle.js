@@ -20,8 +20,8 @@ class Angle
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isRadian = VALIDATION.isRadian;
             this._isDegree = VALIDATION.isDegree;
+            this._isRadian = VALIDATION.isRadian;
 
         this.start     = start;
         this.end       = end;
@@ -108,11 +108,37 @@ class Angle
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isRadian ( ) { }
-
         _isDegree ( ) { }
 
+        _isRadian ( ) { }
+
     ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Convert radian to degree
+         * @private
+         * @name _convert2Degree
+         * @function
+         * @param           {number} value                              Radian
+         * @return          {number}                                    Conversion in degrees
+         */
+        _convert2Degree ( value )
+        {
+            return ( this._isRadian ) ? ( value / ( Math.PI / 180 ) ) : console.warn ( `${value} is not a radian value !` );
+        }
+
+        /**
+         * Convert degree to radian
+         * @private
+         * @name _convert2Radian
+         * @function
+         * @param           {number} value                              Degree
+         * @return          {number}                                    Conversion in radians
+         */
+        _convert2Radian ( value )
+        {
+            return ( this._isDegree ) ? ( value * ( Math.PI / 180 ) ) : console.warn ( `${value} is not a degree value !` );
+        }
 
         /**
          * Get start angle in radians
@@ -136,31 +162,5 @@ class Angle
         get endInRadians ( )
         {
             return this._convert2Radian ( this.end );
-        }
-
-        /**
-         * Convert degree to radian
-         * @private
-         * @name _convert2Radian
-         * @function
-         * @param           {number} value                              Degree
-         * @return          {number}                                    Conversion in radians
-         */
-        _convert2Radian ( value )
-        {
-            return ( this._isDegree ) ? ( value * ( Math.PI / 180 ) ) : console.warn ( `${value} is not a degree value !` );
-        }
-
-        /**
-         * Convert radian to degree
-         * @private
-         * @name _convert2Degree
-         * @function
-         * @param           {number} value                              Radian
-         * @return          {number}                                    Conversion in degrees
-         */
-        _convert2Degree ( value )
-        {
-            return ( this._isRadian ) ? ( value / ( Math.PI / 180 ) ) : console.warn ( `${value} is not a radian value !` );
         }
 }

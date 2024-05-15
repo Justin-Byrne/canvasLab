@@ -146,9 +146,9 @@ class Stroke
 
         _isColorModel ( ) { }
 
-        _isStrokeType ( ) { }
-
         _isSegments   ( ) { }
+
+        _isStrokeType ( ) { }
 
         _isWidth      ( ) { }
 }

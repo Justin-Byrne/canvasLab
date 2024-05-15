@@ -38,19 +38,19 @@ maxWidth           <color:gray>{number}</color>
 offset             {Point}
 font               <color:gray>{string}</color>
 __ Validation __
-_isDegree
-_isInDom
-_isPoint
+_isDegree          <color:gray>{boolean}</color>
+_isInDom           <color:gray>{boolean}</color>
+_isPoint           <color:gray>{boolean}</color>
 __ Utility __
-_rotatePoint
 _clearCanvas
+_rotatePoint
 _setShadow
-strokeColorCycle
-fillColorCycle
 drawBorder
 drawAxis
+fillColorCycle
 move
 rotate
+strokeColorCycle
 draw
 }
 

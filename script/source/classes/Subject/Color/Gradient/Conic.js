@@ -24,7 +24,7 @@ class Conic
             this._isRadian = VALIDATION.isRadian;
             this._isStop   = VALIDATION.isStop;
 
-            this._stopColorCycle = UTILITIES._stopColorCycle;
+            this._stopColorCycle = UTILITIES.color.cycle.stop;
 
         this.point = point;
         this.angle = angle;

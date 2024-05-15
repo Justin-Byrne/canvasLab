@@ -33,9 +33,9 @@ area              <color:gray>{number}</color>
 perimeter         <color:gray>{number}</color>
 center            {Point}
 __ Validation __
-_isInDom
-_isPoint
-_isAspect
+_isAspect         <color:gray>{boolean}</color>
+_isInDom          <color:gray>{boolean}</color>
+_isPoint          <color:gray>{boolean}</color>
 __ Utility __
 _drawAxis
 _drawBorder

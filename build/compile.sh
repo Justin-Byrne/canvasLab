@@ -97,6 +97,7 @@ declare FILES_FOOT=(
 ### GENERAL ########################################
 
 declare NO_ERRORS=true
+declare WITH_DOCUMENTS=false
 
 declare DATE=$(date +"%m-%d-%y")
 declare TIME=$(date +"%r")
@@ -141,17 +142,20 @@ main ()
 
     remove_legacy_distros
 
-    compile_jsdocs $OUTPUT $OUTPUT_JSDOCS
+    if $WITH_DOCUMENTS
+    then
+        compile_jsdocs $OUTPUT $OUTPUT_JSDOCS
 
-    compile_jsdocs $DEVSUITE_INPUT $DEVSUITE_OUTPUT_JSDOCS
+        compile_jsdocs $DEVSUITE_INPUT $DEVSUITE_OUTPUT_JSDOCS
 
-    compile_jsdoc $OUTPUT $OUTPUT_JSDOC
+        compile_jsdoc $OUTPUT $OUTPUT_JSDOC
 
-    compile_jsdoc $DEVSUITE_INPUT $DEVSUITE_OUTPUT_JSDOC
+        compile_jsdoc $DEVSUITE_INPUT $DEVSUITE_OUTPUT_JSDOC
 
-    compile_md2json
+        compile_md2json
 
-    compile_plantuml
+        compile_plantuml
+    fi
 
     compile_readme
 

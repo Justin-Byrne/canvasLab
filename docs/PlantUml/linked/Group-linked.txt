@@ -21,8 +21,8 @@ x            <color:gray>{number}</color>
 y            <color:gray>{number}</color>
 canvas       <color:gray>{string}</color>
 __ Validation __
-_isInDom
-_isPoint
+_isInDom     <color:gray>{boolean}</color>
+_isPoint     <color:gray>{boolean}</color>
 __ Utility __
 push
 pop
@@ -55,8 +55,8 @@ canvas        <color:gray>{string}</color>
 options       {Options}
 center        {Point}
 __ Validation __
-_isInDom
 _isAspect
+_isInDom
 __ Utility __
 _drawBorder
 _drawAxis

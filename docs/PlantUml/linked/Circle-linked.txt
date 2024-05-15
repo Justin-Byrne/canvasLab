@@ -31,31 +31,31 @@ anchor               {Anchor}
 options              {Options}
 area                 <color:gray>{number}</color>
 diameter             <color:gray>{number}</color>
-circumference        <color:gray>{number}</color>
 center               {Point}
+circumference        <color:gray>{number}</color>
 __ Validation __
-_isDegree
-_isInDom
-_isPoint
-_isAspect
-_isAnchor
-isThere
+_isAnchor            <color:gray>{boolean}</color>
+_isAspect            <color:gray>{boolean}</color>
+_isDegree            <color:gray>{boolean}</color>
+_isInDom             <color:gray>{boolean}</color>
+_isPoint             <color:gray>{boolean}</color>
+isThere              <color:gray>{boolean}</color>
 __ Utility __
-_rotatePoint
 _clearCanvas
-_setShadow
-_drawBorder
 _drawAxis
-_setFillType
-_drawOptions
+_drawBorder
+_rotatePoint
 _drawAnchor
+_drawOptions
 _setAnchorPoint
-strokeColorCycle
+_setFillType
+_setShadow
 fillColorCycle
 gradientColorCycle
 move
 rotate
 showCoordinates
+strokeColorCycle
 draw
 redraw
 }
@@ -89,8 +89,8 @@ canvas        <color:gray>{string}</color>
 options       {Options}
 center        {Point}
 __ Validation __
-_isInDom
 _isAspect
+_isInDom
 __ Utility __
 _drawBorder
 _drawAxis
@@ -118,11 +118,11 @@ clockwise          <color:gray>{boolean}</color>
 startInRadians     <color:gray>{number}</color>
 endInRadians       <color:gray>{number}</color>
 __ Validation __
-_isRadian
 _isDegree
+_isRadian
 __ Utility __
-_convert2Radian    <color:gray>{number}</color>
 _convert2Degree    <color:gray>{number}</color>
+_convert2Radian    <color:gray>{number}</color>
 }
 
 
@@ -145,8 +145,8 @@ color           {Object}
 width           <color:gray>{number}</color>
 __ Validation __
 _isColorModel
-_isStrokeType
 _isSegments
+_isStrokeType
 _isWidth
 }
 
@@ -168,9 +168,9 @@ type            <color:gray>{string}</color>
 gradient        {Object}
 pattern         {Pattern}
 __ Validation __
-_isFillType
 _isColorModel
 _isGradient
+_isFillType
 }
 
 

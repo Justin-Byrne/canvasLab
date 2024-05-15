@@ -18,8 +18,8 @@ color           {Object}
 width           <color:gray>{number}</color>
 __ Validation __
 _isColorModel
-_isStrokeType
 _isSegments
+_isStrokeType
 _isWidth
 }
 

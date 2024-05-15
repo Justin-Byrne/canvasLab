@@ -74,6 +74,18 @@ class Aspect
     ////    & EXTEND &   ///////////////////////////////////
 
         /**
+         * Get center of aspect
+         * @readOnly
+         * @name center
+         * @function
+         * @return              {Point}                                 Center point of this aspect
+         */
+        get center ( )
+        {
+            return new Point ( this.widthCenter, this.heightCenter );
+        }
+
+        /**
          * Get center of height
          * @readOnly
          * @name heightCenter
@@ -95,17 +107,5 @@ class Aspect
         get widthCenter ( )
         {
             return this.width / 2;
-        }
-
-        /**
-         * Get center of aspect
-         * @readOnly
-         * @name center
-         * @function
-         * @return              {Point}                                 Center point of this aspect
-         */
-        get center ( )
-        {
-            return new Point ( this.widthCenter, this.heightCenter );
         }
 }

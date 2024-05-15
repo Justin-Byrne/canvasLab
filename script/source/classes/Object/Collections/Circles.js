@@ -24,13 +24,16 @@ class Circles extends Array
             this._isInDom = VALIDATION.isInDom;
             this._isPoint = VALIDATION.isPoint;
 
-            this.pushPop = UTILITIES.pushPop;
-            this.draw    = UTILITIES.draw.typicalCollection;
+            this.draw               = UTILITIES.draw.collection.typical;
+            this.fillColorCycle     = UTILITIES.color.cycle.fill;
+            this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
+            this.pushPop            = UTILITIES.misc.pushPop;
 
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.point = point;
         this.canvas = canvas;
@@ -117,15 +120,49 @@ class Circles extends Array
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom ( ) { }
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
+        _isInDom  ( ) { }
 
-        _isPoint ( ) { }
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Push or pops the passed object
+         * @public
+         * @name pushPop
+         * @function
+         * @param           {Object} object                             Object; Circle, Rectangle, Text
+         * @see             {@link Utilities.misc.pushPop}
+         */
         pushPop ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
+        /**
+         * Typical draw function for collections; Circles, Texts
+         * @public
+         * @name draw
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         * @see             {@link UTILITIES.draw.collection.typical}
+         */
         draw ( ) { }
 }

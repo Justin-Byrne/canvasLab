@@ -47,8 +47,8 @@ canvas        <color:gray>{string}</color>
 options       {Options}
 center        {Point}
 __ Validation __
-_isInDom
 _isAspect
+_isInDom
 __ Utility __
 _drawBorder
 _drawAxis
@@ -76,11 +76,11 @@ clockwise          <color:gray>{boolean}</color>
 startInRadians     <color:gray>{number}</color>
 endInRadians       <color:gray>{number}</color>
 __ Validation __
-_isRadian
 _isDegree
+_isRadian
 __ Utility __
-_convert2Radian    <color:gray>{number}</color>
 _convert2Degree    <color:gray>{number}</color>
+_convert2Radian    <color:gray>{number}</color>
 }
 
 @enduml

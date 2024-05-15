@@ -32,29 +32,29 @@ canvas               <color:gray>{string}</color>
 anchor               {Anchor}
 options              {Options}
 area                 <color:gray>{number}</color>
-perimeter            <color:gray>{number}</color>
 center               {Point}
+perimeter            <color:gray>{number}</color>
 __ Validation __
-_isDegree
-_isInDom
-_isPoint
-_isAspect
+_isAspect            <color:gray>{boolean}</color>
+_isDegree            <color:gray>{boolean}</color>
+_isInDom             <color:gray>{boolean}</color>
+_isPoint             <color:gray>{boolean}</color>
 isThere
 __ Utility __
-_rotatePoint
 _clearCanvas
-_setShadow
-_drawBorder
-_drawAxis
-_setFillType
-_drawOptions
 _drawAnchor
+_drawAxis
+_drawBorder
+_drawOptions
+_rotatePoint
 _setAnchorPoint
-strokeColorCycle
+_setFillType
+_setShadow
 fillColorCycle
 gradientColorCycle
 move
 rotate
+strokeColorCycle
 draw
 }
 

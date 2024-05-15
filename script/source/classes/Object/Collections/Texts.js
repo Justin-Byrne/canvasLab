@@ -20,16 +20,17 @@ class Texts extends Array
             this._isInDom = VALIDATION.isInDom;
             this._isPoint = VALIDATION.isPoint;
 
-            this.pushPop = UTILITIES.pushPop;
-            this.draw    = UTILITIES.draw.typicalCollection;
+            this.draw             = UTILITIES.draw.typicalCollection;
+            this.strokeColorCycle = UTILITIES.color.cycle.stroke;
+            this.fillColorCycle   = UTILITIES.color.cycle.fill;
+            this.pushPop          = UTILITIES.misc.pushPop;
 
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
-        this.point = point;
-
+        this.point  = point;
         this.canvas = canvas;
     }
 

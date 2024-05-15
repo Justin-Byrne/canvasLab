@@ -185,80 +185,91 @@ const PROPERTY_BLOCKS =
  */
 const UTILITIES =
 {
-    /**
-     * Clears canvas
-     * @public
-     * @name clearCanvas
-     * @function
-     * @param           {boolean} value                             Whether to redraw background
-     */
-    clearCanvas ( value )
+    /** @var            {Object} color                                                              **/
+    color:
     {
-        let _canvas = document.getElementById ( this.canvas );
+        /** @var            {Object} cycle                                      **/
+        cycle:
+        {
+            /**
+             * Cycle colors for stroke
+             * @public
+             * @name stroke
+             * @function
+             * @param           {Rgb}    start                              Starting RGB value
+             * @param           {Rgb}    end                                Ending RGB value
+             * @param           {number} progress                           Progress time unit; 0.00 - 1.00
+             * @param           {number} [max=1]                            Maximum increments
+             */
+            stroke ( start, end, progress, max = 1 )
+            {
+                let _clear = ( ) => this._clearCanvas ( true );
+
+                let _draw  = ( ) => this.draw ( );
 
 
-        if ( value ) this._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
-    },
+                this._stroke._color._cycle ( start, end, progress, max, _clear, _draw );
+            },
 
-    /**
-     * Cycle colors for stroke
-     * @public
-     * @name strokeColorCycle
-     * @function
-     * @param           {Rgb}    start                              Starting RGB value
-     * @param           {Rgb}    end                                Ending RGB value
-     * @param           {number} progress                           Progress time unit; 0.00 - 1.00
-     * @param           {number} [max=1]                            Maximum increments
-     */
-    strokeColorCycle ( start, end, progress, max = 1 )
-    {
-        let _clear = ( ) => this._clearCanvas ( true );
+            /**
+             * Cycle colors for fill
+             * @public
+             * @name fill
+             * @function
+             * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+             * @param           {Rgb}    start                              Starting RGB value
+             * @param           {Rgb}    end                                Ending RGB value
+             * @param           {number} [max=1]                            Maximum increments
+             */
+            fill ( start, end, progress, max = 1 )
+            {
+                let _clear = ( ) => this._clearCanvas ( true );
 
-        let _draw  = ( ) => this.draw ( );
-
-
-        this._stroke._color._cycle ( start, end, progress, max, _clear, _draw );
-    },
-
-    /**
-     * Cycle colors for fill
-     * @public
-     * @name fillColorCycle
-     * @function
-     * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
-     * @param           {Rgb}    start                              Starting RGB value
-     * @param           {Rgb}    end                                Ending RGB value
-     * @param           {number} [max=1]                            Maximum increments
-     */
-    fillColorCycle ( start, end, progress, max = 1 )
-    {
-        let _clear = ( ) => this._clearCanvas ( true );
-
-        let _draw  = ( ) => this.draw ( );
+                let _draw  = ( ) => this.draw ( );
 
 
-        this._fill.color._cycle ( start, end, progress, max, _clear, _draw );
-    },
+                this._fill.color._cycle ( start, end, progress, max, _clear, _draw );
+            },
 
-    /**
-     * Cycle colors for gradient
-     * @public
-     * @name gradientColorCycle
-     * @function
-     * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
-     * @param           {Rgb}    start                              Starting RGB value
-     * @param           {Rgb}    end                                Ending RGB value
-     * @param           {number} stop                               Gradient color stop
-     * @param           {number} [max=1]                            Maximum increments
-     */
-    gradientColorCycle ( start, end, progress, stop, max = 1 )
-    {
-        let _clear = ( ) => this._clearCanvas ( true );
+            /**
+             * Cycle colors for gradient
+             * @public
+             * @name gradient
+             * @function
+             * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+             * @param           {Rgb}    start                              Starting RGB value
+             * @param           {Rgb}    end                                Ending RGB value
+             * @param           {number} stop                               Gradient color stop
+             * @param           {number} [max=1]                            Maximum increments
+             */
+            gradient ( start, end, progress, stop, max = 1 )
+            {
+                let _clear = ( ) => this._clearCanvas ( true );
 
-        let _draw  = ( ) => this.draw ( );
+                let _draw  = ( ) => this.draw ( );
 
 
-        this._fill.gradient._stopColorCycle ( start, end, progress, stop, max, _clear, _draw );
+                this._fill.gradient._stopColorCycle ( start, end, progress, stop, max, _clear, _draw );
+            },
+
+            /**
+             * Cycle colors for gradient stop(s)
+             * @public
+             * @name stop
+             * @function
+             * @param           {Object}   start                    Color model & values
+             * @param           {Object}   end                      Color model & values
+             * @param           {number}   progress                 Progress time unit; 0.00 - 1.00
+             * @param           {number}   stop                     Color stop to cycle
+             * @param           {number}   max                      Maximum number of steps between interpolation
+             * @param           {function} clear                    Clear callback from root object
+             * @param           {function} draw                     Draw callback from root object
+             */
+            stop ( start, end, progress, stop, max, clear, draw )
+            {
+                this.stops [ stop ].color._cycle ( start, end, progress, max, clear, draw );
+            },
+        }
     },
 
     /** @var            {Object} draw                                                               **/
@@ -321,12 +332,13 @@ const UTILITIES =
 
                 console.warn ( `"${value}" is not a valid aspect !` );
         },
+
         /** @var            {Object} collection                                                     **/
         collection:
         {
 
             /**
-             * Typical draw function for collections; Circles, Texts
+             * Typical draw function for collections; Circles, Rectangles, Texts
              * @public
              * @name typical
              * @function
@@ -358,7 +370,7 @@ const UTILITIES =
             },
 
             /**
-             * A-typical draw function for collections; Circles, Texts
+             * A-typical draw function for collections; Lines
              * @public
              * @name aTypical
              * @function
@@ -402,77 +414,96 @@ const UTILITIES =
         }
     },
 
-    /**
-     * Push or pops the passed object
-     * @public
-     * @name pushPop
-     * @function
-     * @param           {Object} object                             Object; Circle, Rectangle, Text
-     */
-    pushPop ( object )
+    /** @var            {Object} misc                                                               **/
+    misc:
     {
-        let _index = undefined;
-
-
-        if ( object instanceof this._storage.type )
+        /**
+         * Clears canvas
+         * @public
+         * @name clearCanvas
+         * @function
+         * @param           {boolean} value                             Whether to redraw background
+         */
+        clearCanvas ( value )
         {
-            if ( this._canvas != undefined )
-
-                object.canvas = this.canvas;
+            let _canvas = document.getElementById ( this.canvas );
 
 
-            if ( this.length != 0 )
+            if ( value ) this._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
+        },
+
+        /**
+         * Push or pops the passed object
+         * @public
+         * @name pushPop
+         * @function
+         * @param           {Object} object                             Object; Circle, Rectangle, Text
+         */
+        pushPop ( object )
+        {
+            let _index = undefined;
+
+
+            if ( object instanceof this._storage.type )
             {
-                for ( let _id in this )
+                if ( this._canvas != undefined )
 
-                    if ( this [ _id ] instanceof this._storage.type )
-
-                        if ( this [ _id ].isThere ( object ) )
-
-                            _index = _id;
-
-                    else
-
-                        break;
+                    object.canvas = this.canvas;
 
 
-                ( _index != undefined )
+                if ( this.length != 0 )
+                {
+                    for ( let _id in this )
 
-                    ? this.splice ( _index, 1 )
+                        if ( this [ _id ] instanceof this._storage.type )
 
-                    : this.push   ( object );
+                            if ( this [ _id ].isThere ( object ) )
+
+                                _index = _id;
+
+                        else
+
+                            break;
+
+
+                    ( _index != undefined )
+
+                        ? this.splice ( _index, 1 )
+
+                        : this.push   ( object );
+                }
+                else
+
+                    this [ 0 ] = object;
             }
             else
 
-                this [ 0 ] = object;
-        }
-        else
+                console.warn ( `${this.constructor.name} only accepts '${this._storage.type.name}' objects !`);
+        },
 
-            console.warn ( `${this.constructor.name} only accepts '${this._storage.type.name}' objects !`);
-    },
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @public
+         * @name rotatePoint
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         */
+        rotatePoint ( origin = { x, y }, degree, distance )
+        {
+            let _point = new Point;
 
-    /**
-     * Rotates the origin point by the degree & distance passed
-     * @private
-     * @name rotatePoint
-     * @function
-     * @param           {Point}  origin                             Origin point
-     * @param           {number} degree                             Degree to rotate
-     * @param           {number} distance                           Distance from origin
-     */
-    rotatePoint ( origin = { x, y }, degree, distance )
-    {
-        let _point = new Point;
-
-        let _angle = ( degree % 360 );
+            let _angle = ( degree % 360 );
 
 
-            _point.x = origin.x + Math.cos ( _angle * Math.PI / 180 ) * distance;
+                _point.x = origin.x + Math.cos ( _angle * Math.PI / 180 ) * distance;
 
-            _point.y = origin.y + Math.sin ( _angle * Math.PI / 180 ) * distance;
+                _point.y = origin.y + Math.sin ( _angle * Math.PI / 180 ) * distance;
 
 
-        return _point;
+            return _point;
+        },
     },
 
     /** @var            {Object} set                                                                **/
@@ -480,7 +511,7 @@ const UTILITIES =
     {
         /**
          * Sets all option values throughout a collection
-         * @private
+         * @public
          * @name all
          * @function
          * @param           {string}  property                          Option property
@@ -503,7 +534,7 @@ const UTILITIES =
 
         /**
          * Sets shadow properties
-         * @private
+         * @public
          * @name shadow
          * @function
          */
@@ -520,7 +551,7 @@ const UTILITIES =
 
         /**
          * Sets fill type of the associated object
-         * @private
+         * @public
          * @name fillType
          * @function
          */
@@ -528,7 +559,7 @@ const UTILITIES =
         {
             /**
              * Sets stops for gradient fill types
-             * @private
+             * @public
              * @name _setStops
              * @function
              * @param           {Object}        gradient                    [description]
@@ -562,24 +593,6 @@ const UTILITIES =
             }
         }
     },
-
-    /**
-     * Cycle colors for gradient stop(s)
-     * @private
-     * @name _stopColorCycle
-     * @function
-     * @param           {Object}   start                    Color model & values
-     * @param           {Object}   end                      Color model & values
-     * @param           {number}   progress                 Progress time unit; 0.00 - 1.00
-     * @param           {number}   stop                     Color stop to cycle
-     * @param           {number}   max                      Maximum number of steps between interpolation
-     * @param           {function} clear                    Clear callback from root object
-     * @param           {function} draw                     Draw callback from root object
-     */
-    _stopColorCycle ( start, end, progress, stop, max, clear, draw )
-    {
-        this.stops [ stop ].color._cycle ( start, end, progress, max, clear, draw );
-    }
 }
  
 /**
@@ -588,10 +601,27 @@ const UTILITIES =
  */
 const VALIDATION =
 {
+    /**
+     * Returns whether the passed value is a 256 color value; 0 - 255
+     * @public
+     * @name is256
+     * @function
+     * @param           {number} value                              256 color value; 0 - 255
+     * @return          {boolean}                                   True || False
+     */
     is256 ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 255 ) );
     },
+
+    /**
+     * Returns whether the passed value is an Anchor alignment
+     * @public
+     * @name isAnchor
+     * @function
+     * @param           {string} value                              Anchor alignment
+     * @return          {boolean}                                   True || False
+     */
     isAnchor ( value )
     {
         let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft' ];
@@ -602,6 +632,15 @@ const VALIDATION =
 
         return false;
     },
+
+    /**
+     * Returns whether the passed value is an Angle or equivalent value
+     * @public
+     * @name isAngle
+     * @function
+     * @param           {Object|number} value                       Angle object or number value
+     * @return          {boolean}                                   True || False
+     */
     isAngle ( value )
     {
         if ( value instanceof Angle ) return true;
@@ -609,6 +648,15 @@ const VALIDATION =
 
         return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
     },
+
+    /**
+     * Returns whether the passed value is an Anchor alignment
+     * @public
+     * @name isAnchor
+     * @function
+     * @param           {string} value                              Anchor alignment
+     * @return          {boolean}                                   True || False
+     */
     isAlign ( value )
     {
         let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft' ];
@@ -619,10 +667,28 @@ const VALIDATION =
 
         return false;
     },
+
+    /**
+     * Returns whether the passed value is an alpha value; 0.00 - 1
+     * @public
+     * @name isAlpha
+     * @function
+     * @param           {number} value                              Alpha value; 0.00 - 1
+     * @return          {boolean}                                   True || False
+     */
     isAlpha ( value )
     {
         return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  )  );
     },
+
+    /**
+     * Returns whether the passed value is an Aspect
+     * @public
+     * @name isAspect
+     * @function
+     * @param           {Object} value                              Aspect or object equivalent
+     * @return          {boolean}                                   True || False
+     */
     isAspect ( value )
     {
         if ( value instanceof Aspect ) return true;
@@ -638,10 +704,28 @@ const VALIDATION =
 
         return ( _width && _height && _length );
     },
+
+    /**
+     * Returns whether the passed value is a blur value
+     * @public
+     * @name isBlur
+     * @function
+     * @param           {number} value                              Blur value
+     * @return          {boolean}                                   True || False
+     */
     isBlur ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );
     },
+
+    /**
+     * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
+     * @public
+     * @name isCanvasLabObject
+     * @function
+     * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
+     * @return          {boolean}                                   True || False
+     */
     isCanvasLabObject ( value )
     {
         if ( value instanceof Line      ) return true;
@@ -655,6 +739,15 @@ const VALIDATION =
 
         return false;
     },
+
+    /**
+     * Returns whether the passed value is a CSS color name
+     * @public
+     * @name isColorName
+     * @function
+     * @param           {string} value                              CSS color name
+     * @return          {boolean}                                   True || False
+     */
     isColorName ( value )
     {
         let _colors =
@@ -871,6 +964,15 @@ const VALIDATION =
 
         return _colors [ value [ 0 ].toUpperCase ( ) ].includes ( value );
     },
+
+    /**
+     * Returns whether the passed value is a color model
+     * @public
+     * @name isColorModel
+     * @function
+     * @param           {Object} value                              Color model or object equivalent
+     * @return          {boolean}                                   True || False
+     */
     isColorModel ( value )
     {
         if ( value instanceof Rgb ) return true;
@@ -882,18 +984,54 @@ const VALIDATION =
 
         return false;
     },
+
+    /**
+     * Returns whether the passed value is a decimal value; 0.00 - 1
+     * @public
+     * @name isDecimal
+     * @function
+     * @param           {number} value                              Decimal value; 0.00 - 1
+     * @return          {boolean}                                   True || False
+     */
     isDecimal ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  ) );
     },
+
+    /**
+     * Returns whether the passed value is a degree
+     * @public
+     * @name isDegree
+     * @function
+     * @param           {number} value                              Degree
+     * @return          {boolean}                                   True || False
+     */
     isDegree ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
     },
+
+    /**
+     * Returns whether the passed value is a fill type
+     * @public
+     * @name isFillType
+     * @function
+     * @param           {string} value                              Fill type
+     * @return          {boolean}                                   True || False
+     */
     isFillType ( value )
     {
         return [ 'solid', 'linear', 'radial', 'conic', 'pattern' ].includes ( value );
     },
+
+    /**
+     * Returns whether the passed value is a gradient object
+     * @public
+     * @name isGradient
+     * @function
+     * @param           {Object} value                              Gradient object
+     * @return          {boolean}                                   True || False
+     */
     isGradient ( value )
     {
         if ( value instanceof Linear ) return true;
@@ -905,14 +1043,41 @@ const VALIDATION =
 
         return false;
     },
-    isInDom ( elementId )
+
+    /**
+     * Returns whether the passed value is an element id within the DOM
+     * @public
+     * @name isInDom
+     * @function
+     * @param           {string} value                              Element id
+     * @return          {boolean}                                   True || False
+     */
+    isInDom ( value )
     {
-        return ( document.getElementById ( elementId ) != null );
+        return ( document.getElementById ( value ) != null );
     },
+
+    /**
+     * Returns whether the passed value is a Number value
+     * @public
+     * @name isNumber
+     * @function
+     * @param           {number} value                              Number value
+     * @return          {boolean}                                   True || False
+     */
     isNumber ( value )
     {
         return ( ( typeof value === 'number')  &&  !isNaN ( value ) );
     },
+
+    /**
+     * Returns whether the passed value is a Point
+     * @public
+     * @name isPoint
+     * @function
+     * @param           {Object} value                              Point or object equivalent
+     * @return          {boolean}                                   True || False
+     */
     isPoint ( value )
     {
         if ( value instanceof Point ) return true;
@@ -928,14 +1093,41 @@ const VALIDATION =
 
         return ( _length && _x && _y );
     },
+
+    /**
+     * Returns whether the passed value is a radian; 0 - 6.28...
+     * @public
+     * @name isRadian
+     * @function
+     * @param           {number} value                              Radian value; 0 - 6.28...
+     * @return          {boolean}                                   True || False
+     */
     isRadian ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 6.283185307179586 ) );
     },
+
+    /**
+     * Returns whether the passed value is a radius value
+     * @public
+     * @name isRadius
+     * @function
+     * @param           {number} value                              Radius value
+     * @return          {boolean}                                   True || False
+     */
     isRadius ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value > 0 ) );
     },
+
+    /**
+     * Returns whether the passed value is an Array of segment values
+     * @public
+     * @name isRadius
+     * @function
+     * @param           {Array.<number>} value                      Array of segment values
+     * @return          {boolean}                                   True || False
+     */
     isSegments ( value )
     {
         function isArrayNumeric ( value )
@@ -958,6 +1150,15 @@ const VALIDATION =
 
         return ( Array.isArray ( value ) ) ? isArrayNumeric ( value ) : false;
     },
+
+    /**
+     * Returns whether the passed value is a Stop or object equivalent
+     * @public
+     * @name isStop
+     * @function
+     * @param           {Object} value                              Stop or object equivalent
+     * @return          {boolean}                                   True || False
+     */
     isStop ( value )
     {
         if ( value instanceof Stop ) return true;
@@ -973,10 +1174,28 @@ const VALIDATION =
 
         return ( _object && _offset && _color );
     },
+
+    /**
+     * Returns whether the passed value is a stroke type
+     * @public
+     * @name isStrokeType
+     * @function
+     * @param           {string} value                              Stroke type
+     * @return          {boolean}                                   True || False
+     */
     isStrokeType ( value )
     {
         return ( ( typeof value === 'string' )  &&  [ 'solid', 'dashed' ].includes ( value ) );
     },
+
+    /**
+     * Returns whether the passed value is a width value
+     * @public
+     * @name isWidth
+     * @function
+     * @param           {number} value                              Width value
+     * @return          {boolean}                                   True || False
+     */
     isWidth ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );
@@ -1183,8 +1402,8 @@ class Hsl
 	{
 		////    COMPOSITION    /////////////////////////////
 
-			this._isDegree  = VALIDATION.isDegree;
 			this._isDecimal = VALIDATION.isDecimal;
+			this._isDegree  = VALIDATION.isDegree;
 
 			Object.defineProperty ( this, 'alpha', PROPERTY_BLOCKS.discrete.alpha );
 
@@ -1274,9 +1493,9 @@ class Hsl
 
 	////    [ VALIDATION ]    //////////////////////////////
 
-		_isDegree  ( ) { }
-
 		_isDecimal ( ) { }
+
+		_isDegree  ( ) { }
 
 	////    [ UTILITIES ]    ///////////////////////////////
 
@@ -1318,8 +1537,8 @@ class Hwb
 	{
 		////    COMPOSITION    /////////////////////////////
 
-			this._isDegree  = VALIDATION.isDegree;
 			this._isDecimal = VALIDATION.isDecimal;
+			this._isDegree  = VALIDATION.isDegree;
 
 			Object.defineProperty ( this, 'alpha',  PROPERTY_BLOCKS.discrete.alpha  );
 
@@ -1409,9 +1628,9 @@ class Hwb
 
 	////    VALIDATION  ////////////////////////////////////
 
-		_isDegree  ( ) { }
-
 		_isDecimal ( ) { }
+
+		_isDegree  ( ) { }
 
 	////    [ UTILITIES ]    ///////////////////////////////
 
@@ -1548,15 +1767,24 @@ class Rgb
 	////    [ UTILITIES ]    ///////////////////////////////
 
 		/**
-		 * Returns a CSS compatible <color> string value
-		 * @public
-		 * @name toCss
+		 * Color cycling
+		 * @private
+		 * @name _cycle
 		 * @function
-		 * @return 			{string} 							CSS <color> string
+		 * @param  			{Object}   start					Color model & values
+		 * @param  			{Object}   end 						Color model & values
+		 * @param 			{number}   progress 				Progress time unit; 0.00 - 1.00
+		 * @param 			{number}   max 						Maximum number of steps between interpolation
+		 * @param 			{function} clear 					Clear callback from root object
+		 * @param 			{function} draw 					Draw callback from root object
 		 */
-		toCss ( )
-		{
-			return `rgb(${this.red} ${this.green} ${this.blue} / ${this.alpha * 100}%)`;
+		_cycle ( start, end, progress, max, clear, draw )
+	    {
+	    	this._lerpRgb ( start, end, progress, max );
+
+	    	clear ( );
+
+	    	draw  ( );
 		}
 
 		/**
@@ -1594,24 +1822,15 @@ class Rgb
 		}
 
 		/**
-		 * Color cycling
-		 * @private
-		 * @name _cycle
+		 * Returns a CSS compatible <color> string value
+		 * @public
+		 * @name toCss
 		 * @function
-		 * @param  			{Object}   start					Color model & values
-		 * @param  			{Object}   end 						Color model & values
-		 * @param 			{number}   progress 				Progress time unit; 0.00 - 1.00
-		 * @param 			{number}   max 						Maximum number of steps between interpolation
-		 * @param 			{function} clear 					Clear callback from root object
-		 * @param 			{function} draw 					Draw callback from root object
+		 * @return 			{string} 							CSS <color> string
 		 */
-		_cycle ( start, end, progress, max, clear, draw )
-	    {
-	    	this._lerpRgb ( start, end, progress, max );
-
-	    	clear ( );
-
-	    	draw ( );
+		toCss ( )
+		{
+			return `rgb(${this.red} ${this.green} ${this.blue} / ${this.alpha * 100}%)`;
 		}
 }
  
@@ -1982,8 +2201,8 @@ class Angle
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isRadian = VALIDATION.isRadian;
             this._isDegree = VALIDATION.isDegree;
+            this._isRadian = VALIDATION.isRadian;
 
         this.start     = start;
         this.end       = end;
@@ -2070,11 +2289,37 @@ class Angle
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isRadian ( ) { }
-
         _isDegree ( ) { }
 
+        _isRadian ( ) { }
+
     ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Convert radian to degree
+         * @private
+         * @name _convert2Degree
+         * @function
+         * @param           {number} value                              Radian
+         * @return          {number}                                    Conversion in degrees
+         */
+        _convert2Degree ( value )
+        {
+            return ( this._isRadian ) ? ( value / ( Math.PI / 180 ) ) : console.warn ( `${value} is not a radian value !` );
+        }
+
+        /**
+         * Convert degree to radian
+         * @private
+         * @name _convert2Radian
+         * @function
+         * @param           {number} value                              Degree
+         * @return          {number}                                    Conversion in radians
+         */
+        _convert2Radian ( value )
+        {
+            return ( this._isDegree ) ? ( value * ( Math.PI / 180 ) ) : console.warn ( `${value} is not a degree value !` );
+        }
 
         /**
          * Get start angle in radians
@@ -2098,32 +2343,6 @@ class Angle
         get endInRadians ( )
         {
             return this._convert2Radian ( this.end );
-        }
-
-        /**
-         * Convert degree to radian
-         * @private
-         * @name _convert2Radian
-         * @function
-         * @param           {number} value                              Degree
-         * @return          {number}                                    Conversion in radians
-         */
-        _convert2Radian ( value )
-        {
-            return ( this._isDegree ) ? ( value * ( Math.PI / 180 ) ) : console.warn ( `${value} is not a degree value !` );
-        }
-
-        /**
-         * Convert radian to degree
-         * @private
-         * @name _convert2Degree
-         * @function
-         * @param           {number} value                              Radian
-         * @return          {number}                                    Conversion in degrees
-         */
-        _convert2Degree ( value )
-        {
-            return ( this._isRadian ) ? ( value / ( Math.PI / 180 ) ) : console.warn ( `${value} is not a radian value !` );
         }
 }
  
@@ -2203,6 +2422,18 @@ class Aspect
     ////    & EXTEND &   ///////////////////////////////////
 
         /**
+         * Get center of aspect
+         * @readOnly
+         * @name center
+         * @function
+         * @return              {Point}                                 Center point of this aspect
+         */
+        get center ( )
+        {
+            return new Point ( this.widthCenter, this.heightCenter );
+        }
+
+        /**
          * Get center of height
          * @readOnly
          * @name heightCenter
@@ -2224,18 +2455,6 @@ class Aspect
         get widthCenter ( )
         {
             return this.width / 2;
-        }
-
-        /**
-         * Get center of aspect
-         * @readOnly
-         * @name center
-         * @function
-         * @return              {Point}                                 Center point of this aspect
-         */
-        get center ( )
-        {
-            return new Point ( this.widthCenter, this.heightCenter );
         }
 }
  
@@ -2597,11 +2816,11 @@ class Point
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isInDom  = VALIDATION.isInDom;
             this._isAspect = VALIDATION.isAspect;
+            this._isInDom  = VALIDATION.isInDom;
 
-            this._drawBorder = UTILITIES.draw.border;
             this._drawAxis   = UTILITIES.draw.axis;
+            this._drawBorder = UTILITIES.draw.border;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
@@ -2714,9 +2933,9 @@ class Point
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom  ( ) { }
-
         _isAspect ( ) { }
+
+        _isInDom  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
@@ -2777,8 +2996,8 @@ class Stop
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isDecimal    = VALIDATION.isDecimal;
             this._isColorModel = VALIDATION.isColorModel;
+            this._isDecimal    = VALIDATION.isDecimal;
 
         this.offset = offset;
         this.color  = color;
@@ -2838,9 +3057,9 @@ class Stop
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isDecimal    ( ) { }
-
         _isColorModel ( ) { }
+
+        _isDecimal    ( ) { }
 }
  
 /**
@@ -2869,7 +3088,7 @@ class Conic
             this._isRadian = VALIDATION.isRadian;
             this._isStop   = VALIDATION.isStop;
 
-            this._stopColorCycle = UTILITIES._stopColorCycle;
+            this._stopColorCycle = UTILITIES.color.cycle.stop;
 
         this.point = point;
         this.angle = angle;
@@ -2998,11 +3217,11 @@ class Linear
     {
         ////    COMPOSITION     ////////////////////////////
 
+            this._isColorModel = VALIDATION.isColorModel;
             this._isPoint      = VALIDATION.isPoint;
             this._isStop       = VALIDATION.isStop;
-            this._isColorModel = VALIDATION.isColorModel;
 
-            this._stopColorCycle = UTILITIES._stopColorCycle;
+            this._stopColorCycle = UTILITIES.color.cycle.stop;
 
         this.start = start;
         this.end   = end;
@@ -3098,11 +3317,11 @@ class Linear
 
     ////    VALIDATION  ////////////////////////////////////
 
+        _isColorModel ( ) { }
+
         _isPoint      ( ) { }
 
         _isStop       ( ) { }
-
-        _isColorModel ( ) { }
 
     ////    UTILITIES    ///////////////////////////////////
 
@@ -3144,7 +3363,7 @@ class Radial
             this._isColorModel = VALIDATION.isColorModel;
             this._isRadius     = VALIDATION.isRadius;
 
-            this._stopColorCycle = UTILITIES._stopColorCycle;
+            this._stopColorCycle = UTILITIES.color.cycle.stop;
 
         this.start       = start;
         this.startRadius = startRadius;
@@ -3296,13 +3515,13 @@ class Radial
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isPoint      ( ) { }
-
-        _isStop       ( ) { }
-
         _isColorModel ( ) { }
 
+        _isPoint      ( ) { }
+
         _isRadius     ( ) { }
+
+        _isStop       ( ) { }
 
     ////    UTILITIES    ///////////////////////////////////
 
@@ -3333,9 +3552,9 @@ class Fill
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isFillType   = VALIDATION.isFillType;
             this._isColorModel = VALIDATION.isColorModel;
             this._isGradient   = VALIDATION.isGradient;
+            this._isFillType   = VALIDATION.isFillType;
 
         this.color    = color;
         this.type     = type;
@@ -3438,11 +3657,11 @@ class Fill
 
     ////    VALIDATION    //////////////////////////////////
 
-        _isFillType   ( ) { }
-
         _isColorModel ( ) { }
 
         _isGradient   ( ) { }
+
+        _isFillType   ( ) { }
 }
  
 /**
@@ -3753,9 +3972,9 @@ class Stroke
 
         _isColorModel ( ) { }
 
-        _isStrokeType ( ) { }
-
         _isSegments   ( ) { }
+
+        _isStrokeType ( ) { }
 
         _isWidth      ( ) { }
 }
@@ -4031,6 +4250,8 @@ class PointCollection
 
     ////    UTILITIES   ////////////////////////////////////
 
+        _setAll ( ) { }
+
         /**
          * Invert x & y coordinate values
          * @public
@@ -4043,8 +4264,6 @@ class PointCollection
 
             [ this.y, this.x ] = [ this.x, _y ];
         }
-
-        _setAll ( ) { }
 }
  
 /**
@@ -4227,8 +4446,8 @@ class StrokeCollection
 
             this._isColorModel = VALIDATION.isColorModel;
             this._isStrokeType = VALIDATION.isStrokeType;
-            this._isSegments = VALIDATION.isSegments;
-            this._isWidth    = VALIDATION.isWidth;
+            this._isSegments   = VALIDATION.isSegments;
+            this._isWidth      = VALIDATION.isWidth;
 
             this._setAll = UTILITIES.set.all;
     }
@@ -4413,35 +4632,33 @@ class Circle
     {
         ////    COMPOSITION     ////////////////////////////
 
+            this._isAspect = VALIDATION.isAspect;
+            this._isAnchor = VALIDATION.isAnchor;
             this._isDegree = VALIDATION.isDegree;
             this._isInDom  = VALIDATION.isInDom;
             this._isPoint  = VALIDATION.isPoint;
-            this._isBase   = VALIDATION.isBase;
-            this._isAspect = VALIDATION.isAspect;
-            this._isAnchor = VALIDATION.isAnchor;
 
-            this._rotatePoint = UTILITIES.rotatePoint;
-            this._clearCanvas = UTILITIES.clearCanvas;
-            this._setShadow   = UTILITIES.set.shadow;
-            this._drawBorder  = UTILITIES.draw.border;
-            this._drawAxis    = UTILITIES.draw.axis;
-            this._setFillType = UTILITIES.set.fillType;
+            this._clearCanvas       = UTILITIES.misc.clearCanvas;
+            this._drawAxis          = UTILITIES.draw.axis;
+            this._drawBorder        = UTILITIES.draw.border;
+            this._rotatePoint       = UTILITIES.misc.rotatePoint;
+            this._setFillType       = UTILITIES.set.fillType;
+            this._setShadow         = UTILITIES.set.shadow;
+            this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
+            this.fillColorCycle     = UTILITIES.color.cycle.fill;
+            this.gradientColorCycle = UTILITIES.color.cycle.gradient;
 
-            this.strokeColorCycle   = UTILITIES.strokeColorCycle;
-            this.fillColorCycle     = UTILITIES.fillColorCycle;
-            this.gradientColorCycle = UTILITIES.gradientColorCycle;
-
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
-            delete this.#_options._points;
             delete this.#_options._controlPoints;
+            delete this.#_options._points;
             delete this.#_options._master;
 
         this.point  = point;
-        this.radius = radius
+        this.radius = radius;
 
         ////    OBJECT INITIALIZER(S)   ////////////////////
 
@@ -4683,23 +4900,11 @@ class Circle
         }
 
         /**
-         * Get circumference of circle
-         * @readOnly
-         * @name circumference
-         * @function
-         * @return          {number}                                    Circumference of circle
-         */
-        get circumference ( )
-        {
-            return (  Math.PI * this.diameter ( )  );
-        }
-
-        /**
          * Get center of this object
          * @readOnly
          * @name center
          * @function
-         * @return          {Point}                                     Center point coordinates
+         * @return          {Point}                                     Point coordinates
          */
         get center ( )
         {
@@ -4714,17 +4919,74 @@ class Circle
             return new Point ( _x, _y );
         }
 
+        /**
+         * Get circumference of circle
+         * @readOnly
+         * @name circumference
+         * @function
+         * @return          {number}                                    Circumference of circle
+         */
+        get circumference ( )
+        {
+            return (  Math.PI * this.diameter ( )  );
+        }
+
     ////    VALIDATION  ////////////////////////////////////
 
-        _isDegree ( ) { }
+        /**
+         * Returns whether the passed value is an Anchor alignment
+         * @private
+         * @name _isAnchor
+         * @function
+         * @param           {string} value                              Anchor alignment
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAnchor}
+         */
+        _isAnchor ( ) { }
 
-        _isInDom  ( ) { }
-
-        _isPoint  ( ) { }
-
+        /**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @name _isAspect
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAspect}
+         */
         _isAspect ( ) { }
 
-        _isAnchor ( ) { }
+        /**
+         * Returns whether the passed value is a degree
+         * @private
+         * @name _isDegree
+         * @function
+         * @param           {number} value                              Degree
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isDegree}
+         */
+        _isDegree ( ) { }
+
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
+        _isInDom  ( ) { }
+
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
 
         /**
          * Check whether the passed object is already present
@@ -4732,6 +4994,7 @@ class Circle
          * @name isThere
          * @function
          * @param           {Circle} circle                             Object to validate
+         * @return          {boolean}                                   True || False
          */
         isThere ( circle )
         {
@@ -4753,17 +5016,70 @@ class Circle
 
     ////    UTILITIES   ////////////////////////////////////
 
-        _rotatePoint ( ) { }
-
+        /**
+         * Clears canvas
+         * @private
+         * @name _clearCanvas
+         * @function
+         * @param           {boolean} value                             Whether to redraw background
+         * @see             {@link Utilities.misc.clearCanvas}
+         */
         _clearCanvas ( ) { }
 
-        _setShadow   ( ) { }
-
-        _drawBorder  ( ) { }
-
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name _drawAxis
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link Utilities.draw.axis}
+         */
         _drawAxis    ( ) { }
 
-        _setFillType ( ) { }
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name _drawBorder
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link Utilities.draw.border}
+         */
+        _drawBorder  ( ) { }
+
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @private
+         * @name _rotatePoint
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link Utilities.misc.rotatePoint}
+         */
+        _rotatePoint ( ) { }
+
+
+
+        /**
+         * Draws anchor point
+         * @private
+         * @name _drawAnchor
+         * @function
+         */
+        _drawAnchor ( )
+        {
+            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
+
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
+
+                _anchor.canvas     = this.canvas;
+
+
+                _anchor.draw ( );
+        }
 
         /**
          * Draws associated options
@@ -4786,24 +5102,6 @@ class Circle
             if ( this.#_options.anchor      ) this._drawAnchor     ( );
 
             if ( this.#_options.coordinates ) this.showCoordinates ( );
-        }
-
-        /**
-         * Draws anchor point
-         * @private
-         * @name _drawAnchor
-         * @function
-         */
-        _drawAnchor ( )
-        {
-            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
-
-                _anchor.fill.color = new Rgb ( 255, 0, 0 );
-
-                _anchor.canvas     = this.canvas;
-
-
-                _anchor.draw ( );
         }
 
         /**
@@ -4839,10 +5137,49 @@ class Circle
             }
         }
 
-        strokeColorCycle   ( ) { }
+        /**
+         * Sets fill type of the associated object
+         * @private
+         * @name _setFillType
+         * @function
+         * @see             {@link Utilities.set.fillType}
+         */
+        _setFillType ( ) { }
 
+        /**
+         * Sets shadow properties
+         * @private
+         * @name _setShadow
+         * @function
+         * @see             {@link Utilities.set.shadow}
+         */
+        _setShadow   ( ) { }
+
+        /**
+         * Cycle colors for fill
+         * @public
+         * @name fillColorCycle
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.fill}
+         */
         fillColorCycle     ( ) { }
 
+        /**
+         * Cycle colors for gradient
+         * @public
+         * @name gradientColorCycle
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} stop                               Gradient color stop
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.gradient}
+         */
         gradientColorCycle ( ) { }
 
         /**
@@ -4933,6 +5270,19 @@ class Circle
 
                 _text.draw ( );
         }
+
+        /**
+         * Cycle colors for stroke
+         * @public
+         * @name strokeColorCycle
+         * @function
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} progress                           Progress time unit; 0.00 - 1.00
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.stroke}
+         */
+        strokeColorCycle ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
@@ -5049,20 +5399,18 @@ class Line
     {
         ////    COMPOSITION     ////////////////////////////
 
+            this._isAspect = VALIDATION.isAspect;
             this._isDegree = VALIDATION.isDegree;
             this._isInDom  = VALIDATION.isInDom;
-            this._isPoint  = VALIDATION.isPoint;
             this._isNumber = VALIDATION.isNumber;
-            this._isAspect = VALIDATION.isAspect;
+            this._isPoint  = VALIDATION.isPoint;
 
-            this._rotatePoint = UTILITIES.rotatePoint;
-            this._clearCanvas = UTILITIES.clearCanvas;
-            this._pointOrSpan = UTILITIES.pointOrSpan;
-            this._setShadow   = UTILITIES.set.shadow;
-            this._drawBorder  = UTILITIES.draw.border;
-            this._drawAxis    = UTILITIES.draw.axis;
-
-            this.strokeColorCycle = UTILITIES.strokeColorCycle;
+            this._drawAxis        = UTILITIES.draw.axis;
+            this._drawBorder      = UTILITIES.draw.border;
+            this._rotatePoint     = UTILITIES.misc.rotatePoint;
+            this._clearCanvas     = UTILITIES.misc.clearCanvas;
+            this._setShadow       = UTILITIES.set.shadow;
+            this.strokeColorCycle = UTILITIES.color.cycle.stroke;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
@@ -5343,15 +5691,60 @@ class Line
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isPoint  ( ) { }
+        /**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @name _isAspect
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAspect}
+         */
+        _isAspect ( ) { }
 
-        _isNumber ( ) { }
-
+        /**
+         * Returns whether the passed value is a degree
+         * @private
+         * @name _isDegree
+         * @function
+         * @param           {number} value                              Degree
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isDegree}
+         */
         _isDegree ( ) { }
 
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
         _isInDom  ( ) { }
 
-        _isAspect ( ) { }
+        /**
+         * Returns whether the passed value is a Number value
+         * @private
+         * @name _isNumber
+         * @function
+         * @param           {number} value                              Number value
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isNumber}
+         */
+        _isNumber ( ) { }
+
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
 
         /**
          * Check whether the passed object is already present
@@ -5385,17 +5778,38 @@ class Line
 
     ////    UTILITIES   ////////////////////////////////////
 
-        _rotatePoint ( ) { }
-
+        /**
+         * Clears canvas
+         * @private
+         * @name _clearCanvas
+         * @function
+         * @param           {boolean} value                             Whether to redraw background
+         * @see             {@link Utilities.misc.clearCanvas}
+         */
         _clearCanvas ( ) { }
 
-        _pointOrSpan ( ) { }
-
-        _setShadow   ( ) { }
-
-        _drawBorder  ( ) { }
-
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name _drawAxis
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link Utilities.draw.axis}
+         */
         _drawAxis    ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name _drawBorder
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link Utilities.draw.border}
+         */
+        _drawBorder  ( ) { }
 
         /**
          * Draws associated options
@@ -5424,9 +5838,26 @@ class Line
             if ( this.#_options.controlPoints ) this.showControlPoints ( );
         }
 
-        strokeColorCycle ( ) { }
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @private
+         * @name _rotatePoint
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link Utilities.misc.rotatePoint}
+         */
+        _rotatePoint ( ) { }
 
-        fillColorCycle   ( ) { }
+        /**
+         * Sets shadow properties
+         * @private
+         * @name _setShadow
+         * @function
+         * @see             {@link Utilities.set.shadow}
+         */
+        _setShadow   ( ) { }
 
         /**
          * Set control points for bezier curve
@@ -5461,6 +5892,19 @@ class Line
 
               this._end.drawOptions ( );
         }
+
+        /**
+         * Cycle colors for fill
+         * @public
+         * @name fillColorCycle
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.fill}
+         */
+        fillColorCycle ( ) { }
 
         /**
          * Move this object
@@ -5540,45 +5984,6 @@ class Line
 
                 this._canvas.restore   ( );
             }
-        }
-
-        /**
-         * Shows coordinates of this object
-         * @public
-         * @name showCoordinates
-         * @function
-         * @param           {number} [offset=10]                        Offset of coordinates y origin
-         * @param           {number} [fontSize=16]                      Coordinates font size
-         */
-        showCoordinates ( offset = 10, fontSize = 16 )
-        {
-            let _textStart  = new Text ( this.start, `( ${this.start.x}, ${this.start.y} )` );
-
-            let _textEnd    = new Text ( this.end,   `( ${this.end.x}, ${this.end.y} )`     );
-
-
-                _textStart.canvas         = _textEnd.canvas         = this.canvas;
-
-                _textStart.size           = _textEnd.size           = fontSize;
-
-                _textStart.options.shadow = _textEnd.options.shadow = false;
-
-                _textStart.offset.y       = _textEnd.offset.y       = - ( offset * 2 );
-
-
-                _textStart.options.shadow = _textEnd.options.shadow = true;
-
-
-                _textStart.shadow.color   = _textEnd.shadow.color   = new Rgb ( 255, 255, 255 );
-
-                _textStart.shadow.blur    = _textEnd.shadow.blur    = 1;
-
-                _textStart.shadow.x       = _textEnd.shadow.x       = _textStart.shadow.y    = _textEnd.shadow.y    = 1;
-
-
-                _textStart.draw ( );
-
-                  _textEnd.draw ( );
         }
 
         /**
@@ -5686,6 +6091,58 @@ class Line
 
                 _circleB.draw ( );
         }
+
+        /**
+         * Shows coordinates of this object
+         * @public
+         * @name showCoordinates
+         * @function
+         * @param           {number} [offset=10]                        Offset of coordinates y origin
+         * @param           {number} [fontSize=16]                      Coordinates font size
+         */
+        showCoordinates ( offset = 10, fontSize = 16 )
+        {
+            let _textStart  = new Text ( this.start, `( ${this.start.x}, ${this.start.y} )` );
+
+            let _textEnd    = new Text ( this.end,   `( ${this.end.x}, ${this.end.y} )`     );
+
+
+                _textStart.canvas         = _textEnd.canvas         = this.canvas;
+
+                _textStart.size           = _textEnd.size           = fontSize;
+
+                _textStart.options.shadow = _textEnd.options.shadow = false;
+
+                _textStart.offset.y       = _textEnd.offset.y       = - ( offset * 2 );
+
+
+                _textStart.options.shadow = _textEnd.options.shadow = true;
+
+
+                _textStart.shadow.color   = _textEnd.shadow.color   = new Rgb ( 255, 255, 255 );
+
+                _textStart.shadow.blur    = _textEnd.shadow.blur    = 1;
+
+                _textStart.shadow.x       = _textEnd.shadow.x       = _textStart.shadow.y    = _textEnd.shadow.y    = 1;
+
+
+                _textStart.draw ( );
+
+                  _textEnd.draw ( );
+        }
+
+        /**
+         * Cycle colors for stroke
+         * @public
+         * @name strokeColorCycle
+         * @function
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} progress                           Progress time unit; 0.00 - 1.00
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.stroke}
+         */
+        strokeColorCycle ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
@@ -5806,29 +6263,29 @@ class Rectangle
     {
         ////    COMPOSITION     ////////////////////////////
 
+            this._isAspect = VALIDATION.isAspect;
             this._isDegree = VALIDATION.isDegree;
             this._isInDom  = VALIDATION.isInDom;
             this._isPoint  = VALIDATION.isPoint;
-            this._isAspect = VALIDATION.isAspect;
 
-            this._rotatePoint = UTILITIES.rotatePoint;
-            this._clearCanvas = UTILITIES.clearCanvas;
-            this._setShadow   = UTILITIES.set.shadow;
-            this._drawBorder  = UTILITIES.draw.border;
-            this._drawAxis    = UTILITIES.draw.axis;
-            this._setFillType = UTILITIES.set.fillType;
+            this._clearCanvas       = UTILITIES.misc.clearCanvas;
+            this._drawAxis          = UTILITIES.draw.axis;
+            this._drawBorder        = UTILITIES.draw.border;
+            this._rotatePoint       = UTILITIES.misc.rotatePoint;
 
-            this.strokeColorCycle   = UTILITIES.strokeColorCycle;
-            this.fillColorCycle     = UTILITIES.fillColorCycle;
-            this.gradientColorCycle = UTILITIES.gradientColorCycle;
+            this._setFillType       = UTILITIES.set.fillType;
+            this._setShadow         = UTILITIES.set.shadow;
+            this.fillColorCycle     = UTILITIES.color.cycle.fill;
+            this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
 
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
-            delete this.#_options._points;
             delete this.#_options._controlPoints;
+            delete this.#_options._points;
             delete this.#_options._master;
 
         this.point  = point;
@@ -6085,13 +6542,49 @@ class Rectangle
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @name isAspect
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAspect}
+         */
+        _isAspect ( ) { }
+
+        /**
+         * Returns whether the passed value is a degree
+         * @private
+         * @name isDegree
+         * @function
+         * @param           {number} value                              Degree
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isDegree}
+         */
         _isDegree ( ) { }
 
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
         _isInDom  ( ) { }
 
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
         _isPoint  ( ) { }
-
-        _isAspect ( ) { }
 
         /**
          * Check whether the passed object is already present
@@ -6122,17 +6615,56 @@ class Rectangle
 
     ////    UTILITIES   ////////////////////////////////////
 
-        _rotatePoint ( ) { }
-
+        /**
+         * Clears canvas
+         * @private
+         * @name clearCanvas
+         * @function
+         * @param           {boolean} value                             Whether to redraw background
+         * @see             {@link Utilities.misc.clearCanvas}
+         */
         _clearCanvas ( ) { }
 
-        _setShadow   ( ) { }
+        /**
+         * Draws anchor point
+         * @private
+         * @name _drawAnchor
+         * @function
+         */
+        _drawAnchor ( )
+        {
+            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
 
-        _drawBorder  ( ) { }
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
 
+                _anchor.canvas     = this.canvas;
+
+
+                _anchor.draw ( );
+        }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name axis
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link Utilities.draw.axis}
+         */
         _drawAxis    ( ) { }
 
-        _setFillType ( ) { }
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name border
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link Utilities.draw.border}
+         */
+        _drawBorder  ( ) { }
 
         /**
          * Draws associated options
@@ -6156,22 +6688,16 @@ class Rectangle
         }
 
         /**
-         * Draws anchor point
+         * Rotates the origin point by the degree & distance passed
          * @private
-         * @name _drawAnchor
+         * @name rotatePoint
          * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link Utilities.misc.rotatePoint}
          */
-        _drawAnchor ( )
-        {
-            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
-
-                _anchor.fill.color = new Rgb ( 255, 0, 0 );
-
-                _anchor.canvas     = this.canvas;
-
-
-                _anchor.draw ( );
-        }
+        _rotatePoint ( ) { }
 
         /**
          * Sets anchor's point against this object's point location
@@ -6206,10 +6732,49 @@ class Rectangle
             }
         }
 
-        strokeColorCycle   ( ) { }
+        /**
+         * Sets fill type of the associated object
+         * @private
+         * @name fillType
+         * @function
+         * @see             {@link Utilities.set.fillType}
+         */
+        _setFillType ( ) { }
 
+        /**
+         * Sets shadow properties
+         * @private
+         * @name shadow
+         * @function
+         * @see             {@link Utilities.set.shadow}
+         */
+        _setShadow   ( ) { }
+
+        /**
+         * Cycle colors for fill
+         * @public
+         * @name fillColorCycle
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.fill}
+         */
         fillColorCycle     ( ) { }
 
+        /**
+         * Cycle colors for gradient
+         * @public
+         * @name gradientColorCycle
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} stop                               Gradient color stop
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.gradient}
+         */
         gradientColorCycle ( ) { }
 
         /**
@@ -6267,6 +6832,19 @@ class Rectangle
             }
         }
 
+        /**
+         * Cycle colors for stroke
+         * @public
+         * @name strokeColorCycle
+         * @function
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} progress                           Progress time unit; 0.00 - 1.00
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.stroke}
+         */
+        strokeColorCycle   ( ) { }
+
     ////    & EXTEND &  ////////////////////////////////////
 
         /**
@@ -6279,18 +6857,6 @@ class Rectangle
         get area ( )
         {
             return ( this.width * this.height );
-        }
-
-        /**
-         * Get perimeter of this object
-         * @readOnly
-         * @name perimeter
-         * @function
-         * @return          {number}                                    Perimeter of rectangle
-         */
-        get perimeter ( )
-        {
-            return ( this.area * 2 );
         }
 
         /**
@@ -6308,6 +6874,18 @@ class Rectangle
 
 
             return new Point ( _x, _y );
+        }
+
+        /**
+         * Get perimeter of this object
+         * @readOnly
+         * @name perimeter
+         * @function
+         * @return          {number}                                    Perimeter of rectangle
+         */
+        get perimeter ( )
+        {
+            return ( this.area * 2 );
         }
 
     ////    DRAW    ////////////////////////////////////////
@@ -6415,20 +6993,19 @@ class Text extends Font
             this._isInDom  = VALIDATION.isInDom;
             this._isPoint  = VALIDATION.isPoint;
 
-            this._rotatePoint = UTILITIES.rotatePoint;
-            this._clearCanvas = UTILITIES.clearCanvas;
-            this._setShadow   = UTILITIES.set.shadow;
+            this._clearCanvas     = UTILITIES.misc.clearCanvas;
+            this._rotatePoint     = UTILITIES.misc.rotatePoint;
+            this._setShadow       = UTILITIES.set.shadow;
+            this.fillColorCycle   = UTILITIES.color.cycle.fill;
+            this.strokeColorCycle = UTILITIES.color.cycle.stroke;
 
-            this.strokeColorCycle = UTILITIES.strokeColorCycle;
-            this.fillColorCycle   = UTILITIES.fillColorCycle;
-
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
+            Object.defineProperty ( this, 'offset', PROPERTY_BLOCKS.discrete.offset );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'offset', PROPERTY_BLOCKS.discrete.offset );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
-            stroke.width = ( stroke.width === undefined ) ? 0 : stroke.width;                       // Set: default stroke property as 0
+            stroke.width = ( stroke.width === undefined ) ? 0                   : stroke.width;
             fill.color   = ( fill.color   === undefined ) ? new Rgb ( 0, 0, 0 ) : fill.color;       // Set: default fill property as 'Black'
 
         this.point = point;
@@ -6772,23 +7349,71 @@ class Text extends Font
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a degree
+         * @private
+         * @name isDegree
+         * @function
+         * @param           {number} value                              Degree
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isDegree}
+         */
         _isDegree ( ) { }
 
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
         _isInDom  ( ) { }
 
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
         _isPoint  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
-        _rotatePoint ( ) { }
-
+        /**
+         * Clears canvas
+         * @private
+         * @name clearCanvas
+         * @function
+         * @param           {boolean} value                             Whether to redraw background
+         * @see             {@link Utilities.misc.clearCanvas}
+         */
         _clearCanvas ( ) { }
 
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @private
+         * @name rotatePoint
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link Utilities.misc.rotatePoint}
+         */
+        _rotatePoint ( ) { }
+
+        /**
+         * Sets shadow properties
+         * @private
+         * @name shadow
+         * @function
+         * @see             {@link Utilities.set.shadow}
+         */
         _setShadow   ( ) { }
-
-        strokeColorCycle ( ) { }
-
-        fillColorCycle   ( ) { }
 
         /**
          * Draws border around this object
@@ -6852,6 +7477,19 @@ class Text extends Font
 
                 _yAxis.draw ( );
         }
+
+        /**
+         * Cycle colors for fill
+         * @public
+         * @name fillColorCycle
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.fill}
+         */
+        fillColorCycle ( ) { }
 
         /**
          * Move this object
@@ -6932,6 +7570,19 @@ class Text extends Font
             }
         }
 
+        /**
+         * Cycle colors for stroke
+         * @public
+         * @name strokeColorCycle
+         * @function
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} progress                           Progress time unit; 0.00 - 1.00
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.stroke}
+         */
+        strokeColorCycle ( ) { }
+
     ////    DRAW    ////////////////////////////////////////
 
         /**
@@ -7008,13 +7659,16 @@ class Circles extends Array
             this._isInDom = VALIDATION.isInDom;
             this._isPoint = VALIDATION.isPoint;
 
-            this.pushPop = UTILITIES.pushPop;
-            this.draw    = UTILITIES.draw.typicalCollection;
+            this.draw               = UTILITIES.draw.collection.typical;
+            this.fillColorCycle     = UTILITIES.color.cycle.fill;
+            this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
+            this.pushPop            = UTILITIES.misc.pushPop;
 
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.point = point;
         this.canvas = canvas;
@@ -7101,16 +7755,50 @@ class Circles extends Array
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom ( ) { }
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
+        _isInDom  ( ) { }
 
-        _isPoint ( ) { }
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Push or pops the passed object
+         * @public
+         * @name pushPop
+         * @function
+         * @param           {Object} object                             Object; Circle, Rectangle, Text
+         * @see             {@link Utilities.misc.pushPop}
+         */
         pushPop ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
+        /**
+         * Typical draw function for collections; Circles, Texts
+         * @public
+         * @name draw
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         * @see             {@link UTILITIES.draw.collection.typical}
+         */
         draw ( ) { }
 }
  
@@ -7148,8 +7836,8 @@ class Group extends Array
             this._isInDom = VALIDATION.isInDom;
             this._isPoint = VALIDATION.isPoint;
 
-            this.drawLines  = UTILITIES.draw.typicalCollection;
-            this.drawShapes = UTILITIES.draw.aTypicalCollection;
+            this.drawLines  = UTILITIES.draw.aTypicalCollection;
+            this.drawShapes = UTILITIES.draw.typicalCollection;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
@@ -7243,9 +7931,27 @@ class Group extends Array
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom ( ) { }
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
+        _isInDom  ( ) { }
 
-        _isPoint ( ) { }
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
@@ -7325,8 +8031,24 @@ class Group extends Array
 
     ////    DRAW    ////////////////////////////////////////
 
+        /**
+         * A-typical draw function for collections; Lines
+         * @public
+         * @name aTypical
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         * @see             {@link Utilities.draw.aTypical}
+         */
         drawLines  ( ) { }
 
+        /**
+         * Typical draw function for collections; Circles, Rectangles, Texts
+         * @public
+         * @name typical
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         * @see             {@link Utilities.draw.typical}
+         */
         drawShapes ( ) { }
 
         /**
@@ -7393,18 +8115,18 @@ class Lines extends Array
 
         ////    COMPOSITION     ////////////////////////////
 
+            this._isAspect = VALIDATION.isAspect;
             this._isInDom  = VALIDATION.isInDom;
             this._isPoint  = VALIDATION.isPoint;
-            this._isAspect = VALIDATION.isAspect;
 
-            this._drawBorder = UTILITIES.draw.border;
             this._drawAxis   = UTILITIES.draw.axis;
+            this._drawBorder = UTILITIES.draw.border;
             this.draw        = UTILITIES.draw.collection.aTypical;
 
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.stroke.master = this;
 
@@ -7684,8 +8406,6 @@ class Lines extends Array
 
 
                 this.#_origin = new Point ( _x, _y );
-
-                // console.log ( this.#_origin );
             }
 
 
@@ -7724,17 +8444,63 @@ class Lines extends Array
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is an Aspect
+         * @public
+         * @name _isAspect
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAspect}
+         */
+        _isAspect ( ) { }
+
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
         _isInDom  ( ) { }
 
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
         _isPoint  ( ) { }
-
-        _isAspect ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name _drawAxis
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link Utilities.draw.axis}
+         */
         _drawAxis   ( ) { }
 
-        _drawBorder ( ) { }
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @name _drawBorder
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link Utilities.draw.border}
+         */
+        _drawBorder  ( ) { }
 
         /**
          * Draws associated options
@@ -7893,16 +8659,15 @@ class Rectangles extends Array
             this._isInDom = VALIDATION.isInDom;
             this._isPoint = VALIDATION.isPoint;
 
-            this.pushPop = UTILITIES.pushPop;
+            this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
+            this.fillColorCycle     = UTILITIES.color.cycle.fill;
+            this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this.pushPop            = UTILITIES.pushPop;
 
-            this.strokeColorCycle   = UTILITIES.strokeColorCycle;
-            this.fillColorCycle     = UTILITIES.fillColorCycle;
-            this.gradientColorCycle = UTILITIES.gradientColorCycle;
-
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.x = point.x;
         this.y = point.y;
@@ -8050,16 +8815,17 @@ class Texts extends Array
             this._isInDom = VALIDATION.isInDom;
             this._isPoint = VALIDATION.isPoint;
 
-            this.pushPop = UTILITIES.pushPop;
-            this.draw    = UTILITIES.draw.typicalCollection;
+            this.draw             = UTILITIES.draw.typicalCollection;
+            this.strokeColorCycle = UTILITIES.color.cycle.stroke;
+            this.fillColorCycle   = UTILITIES.color.cycle.fill;
+            this.pushPop          = UTILITIES.misc.pushPop;
 
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
-        this.point = point;
-
+        this.point  = point;
         this.canvas = canvas;
     }
 

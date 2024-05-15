@@ -25,8 +25,8 @@ class StrokeCollection
 
             this._isColorModel = VALIDATION.isColorModel;
             this._isStrokeType = VALIDATION.isStrokeType;
-            this._isSegments = VALIDATION.isSegments;
-            this._isWidth    = VALIDATION.isWidth;
+            this._isSegments   = VALIDATION.isSegments;
+            this._isWidth      = VALIDATION.isWidth;
 
             this._setAll = UTILITIES.set.all;
     }

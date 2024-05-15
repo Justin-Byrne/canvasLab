@@ -12,9 +12,9 @@ height         <color:gray>{number}</color>
 __ Getter __
 width          <color:gray>{number}</color>
 height         <color:gray>{number}</color>
+center         {Point}
 heightCenter   <color:gray>{number}</color>
 widthCenter    <color:gray>{number}</color>
-center         {Point}
 }
 
 @enduml

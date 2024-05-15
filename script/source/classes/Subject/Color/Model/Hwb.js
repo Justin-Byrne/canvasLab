@@ -23,8 +23,8 @@ class Hwb
 	{
 		////    COMPOSITION    /////////////////////////////
 
-			this._isDegree  = VALIDATION.isDegree;
 			this._isDecimal = VALIDATION.isDecimal;
+			this._isDegree  = VALIDATION.isDegree;
 
 			Object.defineProperty ( this, 'alpha',  PROPERTY_BLOCKS.discrete.alpha  );
 
@@ -114,9 +114,9 @@ class Hwb
 
 	////    VALIDATION  ////////////////////////////////////
 
-		_isDegree  ( ) { }
-
 		_isDecimal ( ) { }
+
+		_isDegree  ( ) { }
 
 	////    [ UTILITIES ]    ///////////////////////////////
 

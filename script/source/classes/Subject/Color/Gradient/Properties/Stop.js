@@ -17,8 +17,8 @@ class Stop
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isDecimal    = VALIDATION.isDecimal;
             this._isColorModel = VALIDATION.isColorModel;
+            this._isDecimal    = VALIDATION.isDecimal;
 
         this.offset = offset;
         this.color  = color;
@@ -78,7 +78,7 @@ class Stop
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isDecimal    ( ) { }
-
         _isColorModel ( ) { }
+
+        _isDecimal    ( ) { }
 }

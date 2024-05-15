@@ -17,8 +17,8 @@ hue              <color:gray>{number}</color>
 saturation       <color:gray>{number}</color>
 lightness        <color:gray>{number}</color>
 __ Validation __
-_isDegree
 _isDecimal
+_isDegree
 __ Utility __
 toCss            <color:gray>{string}</color>
 }

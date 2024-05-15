@@ -22,9 +22,9 @@ class Fill
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isFillType   = VALIDATION.isFillType;
             this._isColorModel = VALIDATION.isColorModel;
             this._isGradient   = VALIDATION.isGradient;
+            this._isFillType   = VALIDATION.isFillType;
 
         this.color    = color;
         this.type     = type;
@@ -127,9 +127,9 @@ class Fill
 
     ////    VALIDATION    //////////////////////////////////
 
-        _isFillType   ( ) { }
-
         _isColorModel ( ) { }
 
         _isGradient   ( ) { }
+
+        _isFillType   ( ) { }
 }

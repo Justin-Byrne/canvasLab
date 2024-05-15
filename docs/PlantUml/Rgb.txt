@@ -20,11 +20,11 @@ __ Validation __
 _is256
 __ Utility __
 toCss       <color:gray>{string}</color>
-_lerp
-_lerpRgb
 _cycle
 clear
 draw
+_lerp
+_lerpRgb
 }
 
 @enduml

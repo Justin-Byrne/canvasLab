@@ -15,8 +15,8 @@ x         <color:gray>{number}</color>
 y         <color:gray>{number}</color>
 options   {OptionsCollection}
 __ Utility __
-invert
 _setAll
+invert
 }
 
 @enduml

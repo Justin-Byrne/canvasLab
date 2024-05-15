@@ -25,16 +25,15 @@ class Rectangles extends Array
             this._isInDom = VALIDATION.isInDom;
             this._isPoint = VALIDATION.isPoint;
 
-            this.pushPop = UTILITIES.pushPop;
+            this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
+            this.fillColorCycle     = UTILITIES.color.cycle.fill;
+            this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this.pushPop            = UTILITIES.pushPop;
 
-            this.strokeColorCycle   = UTILITIES.strokeColorCycle;
-            this.fillColorCycle     = UTILITIES.fillColorCycle;
-            this.gradientColorCycle = UTILITIES.gradientColorCycle;
-
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.x = point.x;
         this.y = point.y;
