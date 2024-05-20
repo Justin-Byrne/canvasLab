@@ -17,10 +17,10 @@ segments        {Array}
 color           {Object}
 width           <color:gray>{number}</color>
 __ Validation __
-_isColorModel
-_isSegments
-_isStrokeType
-_isWidth
+_isColorModel   <color:gray>{boolean}</color>
+_isSegments     <color:gray>{boolean}</color>
+_isStrokeType   <color:gray>{boolean}</color>
+_isWidth        <color:gray>{boolean}</color>
 }
 
 Stroke o-- Shadow
@@ -48,9 +48,9 @@ offset          {Point}
 x               <color:gray>{number}</color>
 y               <color:gray>{number}</color>
 __ Validation __
-_isColorModel
-_isBlur
-_isPoint
+_isColorModel   <color:gray>{boolean}</color>
+_isBlur         <color:gray>{boolean}</color>
+_isPoint        <color:gray>{boolean}</color>
 }
 
 @enduml

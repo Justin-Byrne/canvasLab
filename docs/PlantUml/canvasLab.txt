@@ -4,26 +4,20 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class canvasLab {
-_canvas
-_canvases
-_font
-_state
-#application   {Application}
-#processing    {Processing}
+canvas     {Object}
+canvases   {Array}
+font       <color:gray>{string}</color>
 __ Setter __
-canvas
-canvases
-font
-state
+canvas     <color:gray>{string}</color>
+canvases   <color:gray>{string}</color>
+font       <color:gray>{string}</color>
 __ Getter __
-canvas
-canvases
-font
-state
+canvas     <color:gray>{string}</color>
+canvases   {Array}
+font       <color:gray>{string}</color>
 __ Validation __
-_isInDom
+_isInDom   <color:gray>{boolean}</color>
 __ Utility __
-clear
 animate
 _init
 }

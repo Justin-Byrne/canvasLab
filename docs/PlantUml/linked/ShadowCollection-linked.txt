@@ -19,8 +19,8 @@ offset     {Point}
 x          <color:gray>{number}</color>
 y          <color:gray>{number}</color>
 __ Validation __
-_isBlur
-_isPoint
+_isBlur    <color:gray>{boolean}</color>
+_isPoint   <color:gray>{boolean}</color>
 __ Utility __
 _setAll
 }

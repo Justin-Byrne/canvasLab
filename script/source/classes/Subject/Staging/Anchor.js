@@ -105,5 +105,14 @@ class Anchor
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is an Anchor alignment
+         * @private
+         * @name _isAnchor
+         * @function
+         * @param           {string} value                              Anchor alignment
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAnchor}
+         */
         _isAnchor ( ) { }
 }

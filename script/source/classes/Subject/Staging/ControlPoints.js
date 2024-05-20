@@ -137,5 +137,14 @@ class ControlPoints
 
     ////    VALIDATION  ////////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a Number value
+         * @private
+         * @name _isNumber
+         * @function
+         * @param           {number} value                              Number value
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isNumber}
+         */
         _isNumber ( ) { }
 }

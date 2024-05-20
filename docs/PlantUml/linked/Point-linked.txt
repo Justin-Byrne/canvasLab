@@ -61,7 +61,7 @@ coordinates             <color:gray>{boolean}</color>
 controlPoints           <color:gray>{boolean}</color>
 master                  {Object}
 __ Validation __
-_isCanvasLabObject
+_isCanvasLabObject      <color:gray>{boolean}</color>
 }
 
 

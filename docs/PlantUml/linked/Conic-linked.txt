@@ -6,25 +6,25 @@ skinparam DefaultFontName Courier New
 class Conic {
 point             {Point}
 angle             <color:gray>{number}</color>
-stops             {Array.<Stops>}
+stops             {Array.<Stop>}
 __ Setter __
 angle             {Angle}
 point             {Point}
-stops             {Array.<Stops>}
+stops             {Array.<Stop>}
 __ Getter __
 angle             {Angle}
 point             {Point}
-stops             {Array.<Stops>}
+stops             {Array.<Stop>}
 __ Validation __
-_isPoint
-_isRadian
-_isStop
+_isPoint          <color:gray>{boolean}</color>
+_isRadian         <color:gray>{boolean}</color>
+_isStop           <color:gray>{boolean}</color>
 __ Utility __
 _stopColorCycle
 }
 
 Conic o-- Point
-Conic o-- Array.<Stops>
+Conic o-- Stop
 Conic o-- Angle
 
 
@@ -54,6 +54,24 @@ _drawBorder
 _drawAxis
 drawOptions
 invert
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Stop {
+offset          <color:gray>{number}</color>
+__ Setter __
+offset          <color:gray>{number}</color>
+color           {Object}
+__ Getter __
+offset          <color:gray>{number}</color>
+color           {Object}
+__ Validation __
+_isColorModel   <color:gray>{boolean}</color>
+_isDecimal      <color:gray>{boolean}</color>
 }
 
 

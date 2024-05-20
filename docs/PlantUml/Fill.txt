@@ -16,9 +16,9 @@ type            <color:gray>{string}</color>
 gradient        {Object}
 pattern         {Pattern}
 __ Validation __
-_isColorModel
-_isGradient
-_isFillType
+_isColorModel   <color:gray>{boolean}</color>
+_isGradient     <color:gray>{boolean}</color>
+_isFillType     <color:gray>{boolean}</color>
 }
 
 @enduml

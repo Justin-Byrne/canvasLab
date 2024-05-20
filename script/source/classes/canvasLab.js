@@ -1,15 +1,21 @@
+/**
+ * @class           {Object} canvasLab                          CanvasLab core application
+ * @property        {Object} canvas                             Main canvas context
+ * @property        {Array}  canvases                           Array of all canvas contexts
+ * @property        {string} font                               Main font type
+ */
 class canvasLab
 {
     _canvas   = undefined;
     _canvases = undefined;
     _font     = undefined;
-    _state    = undefined;
 
     #application = new Application;
 
-    #processing  = new Processing;
-
-
+    /**
+     * Create a canvasLab object
+     * @property        {string} canvasId                           Canvas identifier
+     */
     constructor ( canvas )
     {
         ////    COMPOSITION     ////////////////////////////
@@ -21,8 +27,15 @@ class canvasLab
         this.canvas = canvas;
     }
 
-    ////    [ CANVAS ]  ////////////////////////////////////
+        ////    [ CANVAS ]  ////////////////////////////////////
 
+        /**
+         * Set canvas value
+         * @public
+         * @name canvas
+         * @function
+         * @param           {string} value                              Canvas identifier
+         */
         set canvas ( value )
         {
             this._canvas = ( this._isInDom ( value ) )
@@ -32,6 +45,14 @@ class canvasLab
                                 : this._canvas;
         }
 
+        /**
+         * Get canvas value
+         * @readOnly
+         * @name canvas
+         * @function
+         * @return          {string}                                    Canvas identifier
+         * @see             {@link discrete.canvas}
+         */
         get canvas ( )
         {
             return this._canvas.canvas.id;
@@ -39,11 +60,18 @@ class canvasLab
 
     ////    [ CANVASES ]    ////////////////////////////////
 
-        set canvases ( value )
+        /**
+         * Set canvas value
+         * @public
+         * @name canvases
+         * @function
+         * @param           {string} canvasId                           Canvas identifier
+         */
+        set canvases ( canvasId )
         {
-            let _canvas = ( this._isInDom ( value ) )
+            let _canvas = ( this._isInDom ( canvasId ) )
 
-                              ? document.getElementById ( value ).getContext ( '2d' )
+                              ? document.getElementById ( canvasId ).getContext ( '2d' )
 
                               : undefined;
 
@@ -58,6 +86,13 @@ class canvasLab
                 this._canvases.push ( _canvas );
         }
 
+        /**
+         * Set canvas value
+         * @readOnly
+         * @name canvases
+         * @function
+         * @return          {Array}                                     Array of canvas contexts
+         */
         get canvases ( )
         {
             return this._canvases;
@@ -65,45 +100,44 @@ class canvasLab
 
     ////    [ FONT ]    ////////////////////////////////////
 
+        /**
+         * Set main font type
+         * @public
+         * @name font
+         * @function
+         * @param           {string} font                               Main font type
+         */
         set font ( value )
         {
             this._font = ( typeof value === 'string' ) ? value : this._font;
         }
 
+        /**
+         * Get main font type
+         * @readOnly
+         * @name font
+         * @function
+         * @return          {string} font                               Main font type
+         */
         get font ( )
         {
             return this._canvas.font;
         }
 
-    ////    [ STATE ]   ////////////////////////////////////
-
-        set state ( canvas )
-        {
-            let _canvas = (  ( canvas == undefined )  &&  ( this._canvas instanceof CanvasRenderingContext2D )  )
-
-                              ? this.canvas
-
-                              : canvas;
-
-
-            window.app.setState ( _canvas );
-        }
-
-        get state ( )
-        {
-            window.app.getState ( _canvas );
-        }
-
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom ( ) { }
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
+        _isInDom  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
-
-        clear ( canvas )
-        {
-            console.log ( 'clear' );
-        }
 
         /**
          * Animates onscreen objects in accordance with passed param values
@@ -114,11 +148,19 @@ class canvasLab
          */
         animate ( flow = { duration, timing, draw } )
         {
-            this.#application.animation = flow;
+            if ( flow )
+
+                this.#application.animation = flow;
         }
 
     ////    INITIALIZE  ////////////////////////////////////
 
+        /**
+         * CanvasLab initializer
+         * @private
+         * @name _init
+         * @function
+         */
         _init ( )
         {
             let _canvases = document.getElementsByTagName ( 'canvas' );

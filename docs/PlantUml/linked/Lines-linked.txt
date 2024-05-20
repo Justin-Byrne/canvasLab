@@ -105,10 +105,10 @@ type            <color:gray>{number}</color>
 segments        {Array}
 width           <color:gray>{number}</color>
 __ Validation __
-_isColorModel
-_isStrokeType
-_isSegments
-_isWidth
+_isColorModel   <color:gray>{boolean}</color>
+_isSegments     <color:gray>{boolean}</color>
+_isStrokeType   <color:gray>{boolean}</color>
+_isWidth        <color:gray>{boolean}</color>
 __ Utility __
 Alpha
 _setAll
@@ -135,8 +135,8 @@ offset     {Point}
 x          <color:gray>{number}</color>
 y          <color:gray>{number}</color>
 __ Validation __
-_isBlur
-_isPoint
+_isBlur    <color:gray>{boolean}</color>
+_isPoint   <color:gray>{boolean}</color>
 __ Utility __
 _setAll
 }
@@ -160,10 +160,10 @@ segments        {Array}
 color           {Object}
 width           <color:gray>{number}</color>
 __ Validation __
-_isColorModel
-_isSegments
-_isStrokeType
-_isWidth
+_isColorModel   <color:gray>{boolean}</color>
+_isSegments     <color:gray>{boolean}</color>
+_isStrokeType   <color:gray>{boolean}</color>
+_isWidth        <color:gray>{boolean}</color>
 }
 
 
@@ -187,9 +187,9 @@ offset          {Point}
 x               <color:gray>{number}</color>
 y               <color:gray>{number}</color>
 __ Validation __
-_isColorModel
-_isBlur
-_isPoint
+_isColorModel   <color:gray>{boolean}</color>
+_isBlur         <color:gray>{boolean}</color>
+_isPoint        <color:gray>{boolean}</color>
 }
 
 
@@ -230,7 +230,7 @@ x           <color:gray>{number}</color>
 y           <color:gray>{number}</color>
 align       <color:gray>{string}</color>
 __ Validation __
-_isAnchor
+_isAnchor   <color:gray>{boolean}</color>
 }
 
 @enduml

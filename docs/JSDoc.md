@@ -1,6 +1,9 @@
 ## Classes
 
 <dl>
+<dt><a href="#canvasLab">canvasLab</a></dt>
+<dd><p>{Object} canvasLab                          CanvasLab core application</p>
+</dd>
 <dt><a href="#Hsl">Hsl</a></dt>
 <dd><p>{Object} Hsl 								HSL color model</p>
 </dd>
@@ -35,13 +38,13 @@
 <dd><p>{Object} Stop                               Color stop properties for associated array(s)</p>
 </dd>
 <dt><a href="#Conic">Conic</a></dt>
-<dd><p>{Object}        Conic                       Conic gradient object type and properties</p>
+<dd><p>{Object} Conic                              Conic gradient object type and properties</p>
 </dd>
 <dt><a href="#Linear">Linear</a></dt>
-<dd><p>{Object}        Linear                      Linear gradient object type and properties</p>
+<dd><p>{Object} Linear                             Linear gradient object type and properties</p>
 </dd>
 <dt><a href="#Radial">Radial</a></dt>
-<dd><p>{Object}        Radial                      Radial gradient object type and properties</p>
+<dd><p>{Object} Radial                             Radial gradient object type and properties</p>
 </dd>
 <dt><a href="#Fill">Fill</a></dt>
 <dd><p>{Object}  Fill                              Fill container for various fill types</p>
@@ -92,7 +95,11 @@
 <dd><p>{Array} Texts                               Collection of Text objects</p>
 </dd>
 <dt><a href="#Animation">Animation</a></dt>
-<dd></dd>
+<dd><p>{Object}   Animation                        Animation handler</p>
+</dd>
+<dt><a href="#Application">Application</a></dt>
+<dd><p>{Object}   Application                      Application handler</p>
+</dd>
 </dl>
 
 ## Members
@@ -144,10 +151,10 @@
 <dt><a href="#stroke">stroke(start, end, progress, [max])</a></dt>
 <dd><p>Cycle colors for stroke</p>
 </dd>
-<dt><a href="#fill">fill(progress, start, end, [max])</a></dt>
+<dt><a href="#fill">fill(start, end, progress, [max])</a></dt>
 <dd><p>Cycle colors for fill</p>
 </dd>
-<dt><a href="#gradient">gradient(progress, start, end, stop, [max])</a></dt>
+<dt><a href="#gradient">gradient(start, end, progress, stop, [max])</a></dt>
 <dd><p>Cycle colors for gradient</p>
 </dd>
 <dt><a href="#stop">stop(start, end, progress, stop, max, clear, draw)</a></dt>
@@ -255,6 +262,24 @@
 <dt><a href="#isWidth">isWidth(value)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Returns whether the passed value is a width value</p>
 </dd>
+<dt><a href="#canvas">canvas(value)</a></dt>
+<dd><p>Set canvas value</p>
+</dd>
+<dt><a href="#canvas">canvas()</a> ⇒ <code>string</code></dt>
+<dd><p>Get canvas value</p>
+</dd>
+<dt><a href="#canvases">canvases(canvasId)</a></dt>
+<dd><p>Set canvas value</p>
+</dd>
+<dt><a href="#canvases">canvases()</a> ⇒ <code>Array</code></dt>
+<dd><p>Set canvas value</p>
+</dd>
+<dt><a href="#font">font(font)</a></dt>
+<dd><p>Set main font type</p>
+</dd>
+<dt><a href="#font">font()</a> ⇒ <code>string</code></dt>
+<dd><p>Get main font type</p>
+</dd>
 <dt><a href="#hue">hue(hue)</a></dt>
 <dd><p>Sets the hue value</p>
 </dd>
@@ -272,6 +297,9 @@
 </dd>
 <dt><a href="#lightness">lightness()</a> ⇒ <code>number</code></dt>
 <dd><p>Gets the lightness value</p>
+</dd>
+<dt><a href="#_isDegree">_isDegree(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a degree</p>
 </dd>
 <dt><a href="#toCss">toCss()</a> ⇒ <code>string</code></dt>
 <dd><p>Returns a CSS compatible <color> string value</p>
@@ -293,6 +321,9 @@
 </dd>
 <dt><a href="#blackness">blackness()</a> ⇒ <code>number</code></dt>
 <dd><p>Gets the blackness value</p>
+</dd>
+<dt><a href="#_isDegree">_isDegree(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns whether the passed value is a degree</p>
 </dd>
 <dt><a href="#toCss">toCss()</a> ⇒ <code>string</code></dt>
 <dd><p>Returns a CSS compatible <color> string value</p>
@@ -543,7 +574,7 @@
 <dt><a href="#stops">stops(values)</a></dt>
 <dd><p>Set color stops</p>
 </dd>
-<dt><a href="#stops">stops()</a> ⇒ <code>Array.&lt;Stops&gt;</code></dt>
+<dt><a href="#stops">stops()</a> ⇒ <code><a href="#Stop">Array.&lt;Stop&gt;</a></code></dt>
 <dd><p>Get color stops</p>
 </dd>
 <dt><a href="#start">start(value)</a></dt>
@@ -561,7 +592,7 @@
 <dt><a href="#stops">stops(values)</a></dt>
 <dd><p>Set color stops</p>
 </dd>
-<dt><a href="#stops">stops()</a> ⇒ <code>Array.&lt;Stops&gt;</code></dt>
+<dt><a href="#stops">stops()</a> ⇒ <code><a href="#Stop">Array.&lt;Stop&gt;</a></code></dt>
 <dd><p>Get color stops</p>
 </dd>
 <dt><a href="#start">start(value)</a></dt>
@@ -591,7 +622,7 @@
 <dt><a href="#stops">stops(value)</a></dt>
 <dd><p>Set color stops</p>
 </dd>
-<dt><a href="#stops">stops()</a> ⇒ <code>Array.&lt;Stops&gt;</code></dt>
+<dt><a href="#stops">stops()</a> ⇒ <code><a href="#Stop">Array.&lt;Stop&gt;</a></code></dt>
 <dd><p>Get color stops</p>
 </dd>
 <dt><a href="#color">color(value)</a></dt>
@@ -1263,6 +1294,9 @@
 <dt><a href="#push">push()</a></dt>
 <dd><p>Pushes Line(s) into this collection</p>
 </dd>
+<dt><a href="#draw">draw(canvas)</a></dt>
+<dd><p>A-typical draw function for collections; Lines</p>
+</dd>
 <dt><a href="#point">point(value)</a></dt>
 <dd><p>Set point</p>
 </dd>
@@ -1280,6 +1314,9 @@
 </dd>
 <dt><a href="#y">y()</a> ⇒ <code>number</code></dt>
 <dd><p>Get y-axis value</p>
+</dd>
+<dt><a href="#pushPop">pushPop(object)</a></dt>
+<dd><p>Push or pops the passed object</p>
 </dd>
 <dt><a href="#draw">draw(canvas)</a></dt>
 <dd><p>Draw this object</p>
@@ -1307,6 +1344,12 @@
 </dd>
 <dt><a href="#canvas">canvas()</a> ⇒ <code>string</code></dt>
 <dd><p>Get canvas value</p>
+</dd>
+<dt><a href="#pushPop">pushPop(object)</a></dt>
+<dd><p>Push or pops the passed object</p>
+</dd>
+<dt><a href="#draw">draw(canvas)</a></dt>
+<dd><p>Typical draw function for collections; Circles, Texts</p>
 </dd>
 <dt><a href="#timing">timing(value)</a></dt>
 <dd><p>Set timing</p>
@@ -1342,6 +1385,44 @@
 <dd><p>Initiates canvasLab</p>
 </dd>
 </dl>
+
+<a name="canvasLab"></a>
+
+## canvasLab
+{Object} canvasLab                          CanvasLab core application
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| canvas | <code>Object</code> | Main canvas context |
+| canvases | <code>Array</code> | Array of all canvas contexts |
+| font | <code>string</code> | Main font type |
+
+
+* [canvasLab](#canvasLab)
+    * [new canvasLab()](#new_canvasLab_new)
+    * [.animate(flow)](#canvasLab+animate)
+
+<a name="new_canvasLab_new"></a>
+
+### new canvasLab()
+Create a canvasLab object
+
+<a name="canvasLab+animate"></a>
+
+### canvasLab.animate(flow)
+Animates onscreen objects in accordance with passed param values
+
+**Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| flow | <code>Object</code> | Contains timing, draw, & duration values & functions |
+| flow.duration | <code>number</code> | Duration of animation |
+| flow.timing | <code>function</code> | Timing function |
+| flow.draw | <code>function</code> | Draw function |
 
 <a name="Hsl"></a>
 
@@ -1615,7 +1696,7 @@ Create a color stop
 <a name="Conic"></a>
 
 ## Conic
-{Object}        Conic                       Conic gradient object type and properties
+{Object} Conic                              Conic gradient object type and properties
 
 **Kind**: global class  
 **Properties**
@@ -1624,7 +1705,7 @@ Create a color stop
 | --- | --- | --- |
 | point | [<code>Point</code>](#Point) | X & Y axis coordinates |
 | angle | <code>number</code> | Angle in radians |
-| stops | <code>Array.&lt;Stops&gt;</code> | Array of color stops |
+| stops | [<code>Array.&lt;Stop&gt;</code>](#Stop) | Array of color stops |
 
 <a name="new_Conic_new"></a>
 
@@ -1634,7 +1715,7 @@ Create a Conic gradient object type
 <a name="Linear"></a>
 
 ## Linear
-{Object}        Linear                      Linear gradient object type and properties
+{Object} Linear                             Linear gradient object type and properties
 
 **Kind**: global class  
 **Properties**
@@ -1643,7 +1724,7 @@ Create a Conic gradient object type
 | --- | --- | --- |
 | start | [<code>Point</code>](#Point) | X & Y axis coordinates (start) |
 | end | [<code>Point</code>](#Point) | X & Y axis coordinates (end) |
-| stops | <code>Array.&lt;Stops&gt;</code> | Array of color stops |
+| stops | [<code>Array.&lt;Stop&gt;</code>](#Stop) | Array of color stops |
 
 <a name="new_Linear_new"></a>
 
@@ -1653,7 +1734,7 @@ Create a Linear gradient object type
 <a name="Radial"></a>
 
 ## Radial
-{Object}        Radial                      Radial gradient object type and properties
+{Object} Radial                             Radial gradient object type and properties
 
 **Kind**: global class  
 **Properties**
@@ -1664,7 +1745,7 @@ Create a Linear gradient object type
 | startRadius | <code>Number</code> | Starting radius of linear gradient |
 | end | [<code>Point</code>](#Point) | X & Y axis coordinates (end) |
 | endRadius | <code>Number</code> | Ending radius of linear gradient gradient |
-| stops | <code>Array.&lt;Stops&gt;</code> | Array of color stops |
+| stops | [<code>Array.&lt;Stop&gt;</code>](#Stop) | Array of color stops |
 
 <a name="new_Radial_new"></a>
 
@@ -2071,7 +2152,17 @@ Get canvas value
 <a name="Animation"></a>
 
 ## Animation
+{Object}   Animation                        Animation handler
+
 **Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| timing | <code>function</code> | Timing function |
+| draw | <code>function</code> | Draw function |
+| duration | <code>number</code> | Duration of animation |
+
 <a name="new_Animation_new"></a>
 
 ### new Animation(duration, timing, draw)
@@ -2083,6 +2174,36 @@ Creates an animation instance
 | duration | <code>number</code> | Duration of animation |
 | timing | <code>function</code> | Timing function |
 | draw | <code>function</code> | Draw function |
+
+<a name="Application"></a>
+
+## Application
+{Object}   Application                      Application handler
+
+**Kind**: global class  
+
+* [Application](#Application)
+    * [new Application()](#new_Application_new)
+    * [.animation](#Application+animation)
+
+<a name="new_Application_new"></a>
+
+### new Application()
+Creates an application handler
+
+<a name="Application+animation"></a>
+
+### application.animation
+Creates a new animation instance
+
+**Kind**: instance property of [<code>Application</code>](#Application)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| flow | <code>Object</code> | Contains timing, draw, & duration values & functions |
+| flow.duration | <code>number</code> | Duration of animation |
+| flow.timing | <code>function</code> | Timing function |
+| flow.draw | <code>function</code> | Draw function |
 
 <a name="discrete"></a>
 
@@ -2213,7 +2334,7 @@ Cycle colors for stroke
 
 <a name="fill"></a>
 
-## fill(progress, start, end, [max])
+## fill(start, end, progress, [max])
 Cycle colors for fill
 
 **Kind**: global function  
@@ -2221,14 +2342,14 @@ Cycle colors for fill
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
 | start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
 | end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
 | [max] | <code>number</code> | <code>1</code> | Maximum increments |
 
 <a name="gradient"></a>
 
-## gradient(progress, start, end, stop, [max])
+## gradient(start, end, progress, stop, [max])
 Cycle colors for gradient
 
 **Kind**: global function  
@@ -2236,9 +2357,9 @@ Cycle colors for gradient
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
 | start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
 | end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
 | stop | <code>number</code> |  | Gradient color stop |
 | [max] | <code>number</code> | <code>1</code> | Maximum increments |
 
@@ -2688,6 +2809,67 @@ Returns whether the passed value is a width value
 | --- | --- | --- |
 | value | <code>number</code> | Width value |
 
+<a name="canvas"></a>
+
+## canvas(value)
+Set canvas value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Canvas identifier |
+
+<a name="canvas"></a>
+
+## canvas() ⇒ <code>string</code>
+Get canvas value
+
+**Kind**: global function  
+**Returns**: <code>string</code> - Canvas identifier  
+**Read only**: true  
+**See**: [canvas](#discrete.canvas)  
+<a name="canvases"></a>
+
+## canvases(canvasId)
+Set canvas value
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| canvasId | <code>string</code> | Canvas identifier |
+
+<a name="canvases"></a>
+
+## canvases() ⇒ <code>Array</code>
+Set canvas value
+
+**Kind**: global function  
+**Returns**: <code>Array</code> - Array of canvas contexts  
+**Read only**: true  
+<a name="font"></a>
+
+## font(font)
+Set main font type
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| font | <code>string</code> | Main font type |
+
+<a name="font"></a>
+
+## font() ⇒ <code>string</code>
+Get main font type
+
+**Kind**: global function  
+**Returns**: <code>string</code> - font                               Main font type  
+**Read only**: true  
 <a name="hue"></a>
 
 ## hue(hue)
@@ -2748,6 +2930,20 @@ Gets the lightness value
 **Kind**: global function  
 **Returns**: <code>number</code> - Lightness value; 0 - 1  
 **Access**: public  
+<a name="_isDegree"></a>
+
+## \_isDegree(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a degree
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Prviate**:   
+**See**: [Validation.isDegree](Validation.isDegree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Degree |
+
 <a name="toCss"></a>
 
 ## toCss() ⇒ <code>string</code>
@@ -2816,6 +3012,20 @@ Gets the blackness value
 **Kind**: global function  
 **Returns**: <code>number</code> - Blackness value; 0 - 1  
 **Access**: public  
+<a name="_isDegree"></a>
+
+## \_isDegree(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a degree
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True || False  
+**Prviate**:   
+**See**: [Validation.isDegree](Validation.isDegree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Degree |
+
 <a name="toCss"></a>
 
 ## toCss() ⇒ <code>string</code>
@@ -3625,15 +3835,15 @@ Set color stops
 
 | Param | Type | Description |
 | --- | --- | --- |
-| values | <code>Array.&lt;Stops&gt;</code> | Color stops |
+| values | [<code>Array.&lt;Stop&gt;</code>](#Stop) | Color stops |
 
 <a name="stops"></a>
 
-## stops() ⇒ <code>Array.&lt;Stops&gt;</code>
+## stops() ⇒ [<code>Array.&lt;Stop&gt;</code>](#Stop)
 Get color stops
 
 **Kind**: global function  
-**Returns**: <code>Array.&lt;Stops&gt;</code> - Color stops  
+**Returns**: [<code>Array.&lt;Stop&gt;</code>](#Stop) - Color stops  
 **Read only**: true  
 <a name="start"></a>
 
@@ -3685,15 +3895,15 @@ Set color stops
 
 | Param | Type | Description |
 | --- | --- | --- |
-| values | <code>Array.&lt;Stops&gt;</code> | Color stops |
+| values | [<code>Array.&lt;Stop&gt;</code>](#Stop) | Color stops |
 
 <a name="stops"></a>
 
-## stops() ⇒ <code>Array.&lt;Stops&gt;</code>
+## stops() ⇒ [<code>Array.&lt;Stop&gt;</code>](#Stop)
 Get color stops
 
 **Kind**: global function  
-**Returns**: <code>Array.&lt;Stops&gt;</code> - Color stops  
+**Returns**: [<code>Array.&lt;Stop&gt;</code>](#Stop) - Color stops  
 **Read only**: true  
 <a name="start"></a>
 
@@ -3785,15 +3995,15 @@ Set color stops
 
 | Param | Type | Description |
 | --- | --- | --- |
-| value | <code>Array.&lt;Stops&gt;</code> | Color stops |
+| value | [<code>Array.&lt;Stop&gt;</code>](#Stop) | Color stops |
 
 <a name="stops"></a>
 
-## stops() ⇒ <code>Array.&lt;Stops&gt;</code>
+## stops() ⇒ [<code>Array.&lt;Stop&gt;</code>](#Stop)
 Get color stops
 
 **Kind**: global function  
-**Returns**: <code>Array.&lt;Stops&gt;</code> - Color stops  
+**Returns**: [<code>Array.&lt;Stop&gt;</code>](#Stop) - Color stops  
 **Read only**: true  
 <a name="color"></a>
 
@@ -6133,6 +6343,19 @@ Pushes Line(s) into this collection
 
 **Kind**: global function  
 **Access**: public  
+<a name="draw"></a>
+
+## draw(canvas)
+A-typical draw function for collections; Lines
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.draw.collection.aTypical](Utilities.draw.collection.aTypical)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| canvas | <code>string</code> | Canvas Id |
+
 <a name="point"></a>
 
 ## point(value)
@@ -6199,6 +6422,19 @@ Get y-axis value
 **Returns**: <code>number</code> - Y coordinate value  
 **Read only**: true  
 **See**: [pointY](#discrete.pointY)  
+<a name="pushPop"></a>
+
+## pushPop(object)
+Push or pops the passed object
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.misc.pushPop](Utilities.misc.pushPop)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>Object</code> | Object; Circle, Rectangle, Text |
+
 <a name="draw"></a>
 
 ## draw(canvas)
@@ -6293,6 +6529,32 @@ Get canvas value
 **Returns**: <code>string</code> - Canvas id  
 **Read only**: true  
 **See**: [canvas](#combined.canvas)  
+<a name="pushPop"></a>
+
+## pushPop(object)
+Push or pops the passed object
+
+**Kind**: global function  
+**Access**: public  
+**See**: [Utilities.misc.pushPop](Utilities.misc.pushPop)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>Object</code> | Object; Circle, Rectangle, Text |
+
+<a name="draw"></a>
+
+## draw(canvas)
+Typical draw function for collections; Circles, Texts
+
+**Kind**: global function  
+**Access**: public  
+**See**: [UTILITIES.draw.collection.typical](UTILITIES.draw.collection.typical)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| canvas | <code>string</code> | Canvas Id |
+
 <a name="timing"></a>
 
 ## timing(value)

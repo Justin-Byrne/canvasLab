@@ -17,7 +17,7 @@ x          <color:gray>{number}</color>
 y          <color:gray>{number}</color>
 canvas     <color:gray>{string}</color>
 __ Validation __
-_isInDom
+_isInDom   <color:gray>{boolean}</color>
 __ Utility __
 pushPop
 draw

@@ -84,6 +84,7 @@ declare FOLDERS=(
     "${INPUT_FOLDER}/classes/Subject/Collections"
     "${INPUT_FOLDER}/classes/Object"
     "${INPUT_FOLDER}/classes/Object/Collections"
+    "${INPUT_FOLDER}/classes/Handlers/Properties"
     "${INPUT_FOLDER}/classes/Handlers"
 )
 
@@ -97,7 +98,7 @@ declare FILES_FOOT=(
 ### GENERAL ########################################
 
 declare NO_ERRORS=true
-declare WITH_DOCUMENTS=false
+declare WITH_DOCUMENTS=true
 
 declare DATE=$(date +"%m-%d-%y")
 declare TIME=$(date +"%r")

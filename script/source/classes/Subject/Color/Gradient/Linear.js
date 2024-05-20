@@ -1,8 +1,8 @@
 /**
- * @class           {Object}        Linear                      Linear gradient object type and properties
- * @property        {Point}         start                       X & Y axis coordinates (start)
- * @property        {Point}         end                         X & Y axis coordinates (end)
- * @property        {Array.<Stops>} stops                       Array of color stops
+ * @class           {Object} Linear                             Linear gradient object type and properties
+ * @property        {Point}  start                              X & Y axis coordinates (start)
+ * @property        {Point}  end                                X & Y axis coordinates (end)
+ * @property        {Array.<Stop>} stops                        Array of color stops
  */
 class Linear
 {
@@ -12,9 +12,9 @@ class Linear
 
     /**
      * Create a Linear gradient object type
-     * @property        {Point}         start                      Starting point of linear gradient
-     * @property        {Point}         end                        Ending point of linear gradient
-     * @property        {Array.<Stops>} stops                      Array of color stops
+     * @property        {Point} start                               Starting point of linear gradient
+     * @property        {Point} end                                 Ending point of linear gradient
+     * @property        {Array.<Stop>} stops                        Array of color stops
      */
     constructor ( start, end, stops )
     {
@@ -90,7 +90,7 @@ class Linear
          * @public
          * @name stops
          * @function
-         * @param           {Array.<Stops>} values                      Color stops
+         * @param           {Array.<Stop>} values                       Color stops
          */
         set stops ( value )
         {
@@ -111,7 +111,7 @@ class Linear
          * @readOnly
          * @name stops
          * @function
-         * @return          {Array.<Stops>}                             Color stops
+         * @return          {Array.<Stop>}                              Color stops
          */
         get stops ( )
         {
@@ -120,13 +120,54 @@ class Linear
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a color model
+         * @private
+         * @name _isColorModel
+         * @function
+         * @param           {Object} value                              Color model or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isColorModel}
+         */
         _isColorModel ( ) { }
 
-        _isPoint      ( ) { }
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
 
-        _isStop       ( ) { }
+        /**
+         * Returns whether the passed value is a Stop or object equivalent
+         * @private
+         * @name _isStop
+         * @function
+         * @param           {Object} value                              Stop or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isStop}
+         */
+        _isStop   ( ) { }
 
     ////    UTILITIES    ///////////////////////////////////
 
+        /**
+         * Cycle colors for gradient stop(s)
+         * @private
+         * @name stop
+         * @function
+         * @param           {Object}   start                            Color model & values
+         * @param           {Object}   end                              Color model & values
+         * @param           {number}   progress                         Progress time unit; 0.00 - 1.00
+         * @param           {number}   stop                             Color stop to cycle
+         * @param           {number}   max                              Maximum number of steps between interpolation
+         * @param           {function} clear                            Clear callback from root object
+         * @param           {function} draw                             Draw callback from root object
+         * @see             {@link Utilities.color.cycle.stop}
+         */
         _stopColorCycle ( ) { }
 }

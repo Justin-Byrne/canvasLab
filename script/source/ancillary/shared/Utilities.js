@@ -35,9 +35,9 @@ const UTILITIES =
              * @public
              * @name fill
              * @function
-             * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
              * @param           {Rgb}    start                              Starting RGB value
              * @param           {Rgb}    end                                Ending RGB value
+             * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
              * @param           {number} [max=1]                            Maximum increments
              */
             fill ( start, end, progress, max = 1 )
@@ -55,9 +55,9 @@ const UTILITIES =
              * @public
              * @name gradient
              * @function
-             * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
              * @param           {Rgb}    start                              Starting RGB value
              * @param           {Rgb}    end                                Ending RGB value
+             * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
              * @param           {number} stop                               Gradient color stop
              * @param           {number} [max=1]                            Maximum increments
              */

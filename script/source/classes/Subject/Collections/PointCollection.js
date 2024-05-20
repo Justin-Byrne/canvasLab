@@ -92,6 +92,15 @@ class PointCollection
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Sets all option values throughout a collection
+         * @private
+         * @name _setAll
+         * @function
+         * @param           {string}  property                          Option property
+         * @param           {boolean} value                             True || False
+         * @see             {@link Utilities.set.all}
+         */
         _setAll ( ) { }
 
         /**

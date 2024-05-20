@@ -144,11 +144,47 @@ class Stroke
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a color model
+         * @private
+         * @name _isColorModel
+         * @function
+         * @param           {Object} value                              Color model or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isColorModel}
+         */
         _isColorModel ( ) { }
 
+        /**
+         * Returns whether the passed value is an Array of segment values
+         * @private
+         * @name _isSegments
+         * @function
+         * @param           {Array.<number>} value                      Array of segment values
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isSegments}
+         */
         _isSegments   ( ) { }
 
+        /**
+         * Returns whether the passed value is a stroke type
+         * @private
+         * @name _isStrokeType
+         * @function
+         * @param           {string} value                              Stroke type
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isStrokeType}
+         */
         _isStrokeType ( ) { }
 
+        /**
+         * Returns whether the passed value is a width value
+         * @private
+         * @name _isWidth
+         * @function
+         * @param           {number} value                              Width value
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isWidth}
+         */
         _isWidth      ( ) { }
 }

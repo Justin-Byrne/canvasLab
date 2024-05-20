@@ -17,7 +17,7 @@ red         <color:gray>{number}</color>
 green       <color:gray>{number}</color>
 blue        <color:gray>{number}</color>
 __ Validation __
-_is256
+_is256      <color:gray>{boolean}</color>
 __ Utility __
 toCss       <color:gray>{string}</color>
 _cycle

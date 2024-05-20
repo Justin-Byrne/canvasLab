@@ -127,9 +127,36 @@ class Fill
 
     ////    VALIDATION    //////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a color model
+         * @private
+         * @name _isColorModel
+         * @function
+         * @param           {Object} value                              Color model or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isColorModel}
+         */
         _isColorModel ( ) { }
 
+        /**
+         * Returns whether the passed value is a gradient object
+         * @private
+         * @name _isGradient
+         * @function
+         * @param           {Object} value                              Gradient object
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isGradient}
+         */
         _isGradient   ( ) { }
 
+        /**
+         * Returns whether the passed value is a fill type
+         * @private
+         * @name _isFillType
+         * @function
+         * @param           {string} value                              Fill type
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isFillType}
+         */
         _isFillType   ( ) { }
 }

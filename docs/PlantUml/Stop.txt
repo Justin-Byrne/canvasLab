@@ -12,8 +12,8 @@ __ Getter __
 offset          <color:gray>{number}</color>
 color           {Object}
 __ Validation __
-_isColorModel
-_isDecimal
+_isColorModel   <color:gray>{boolean}</color>
+_isDecimal      <color:gray>{boolean}</color>
 }
 
 @enduml

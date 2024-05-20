@@ -1252,6 +1252,7 @@
                         }
 
                         canvaslab.animate ( _flow );
+                        canvaslab.animate ( _flow );
                     }
                 },
             ],

@@ -41,7 +41,7 @@ class Hwb
 		 * @public
 		 * @name hue
 		 * @function
-		 * @param           {number} hue 							Hue value; 0 - 360
+		 * @param           {number} hue 								Hue value; 0 - 360
 		 */
 		set hue ( value )
 		{
@@ -53,7 +53,7 @@ class Hwb
 		 * @public
 		 * @name hue
 		 * @function
-		 * @return 			{number}								Hue value; 0 - 360
+		 * @return 			{number}									Hue value; 0 - 360
 		 */
 		get hue ( )
 		{
@@ -67,7 +67,7 @@ class Hwb
 		 * @public
 		 * @name whiteness
 		 * @function
-		 * @param           {number} whiteness 						Whiteness value; 0 - 1
+		 * @param           {number} whiteness 							Whiteness value; 0 - 1
 		 */
 		set whiteness ( value )
 		{
@@ -79,7 +79,7 @@ class Hwb
 		 * @public
 		 * @name whiteness
 		 * @function
-		 * @return 			{number} 								Whiteness value; 0 - 1
+		 * @return 			{number} 									Whiteness value; 0 - 1
 		 */
 		get whiteness ( )
 		{
@@ -93,7 +93,7 @@ class Hwb
 		 * @public
 		 * @name blackness
 		 * @function
-		 * @param           {number} blackness 						Blackness value; 0 - 1
+		 * @param           {number} blackness 							Blackness value; 0 - 1
 		 */
 		set blackness ( value )
 		{
@@ -105,7 +105,7 @@ class Hwb
 		 * @public
 		 * @name blackness
 		 * @function
-		 * @return 			{number} 								Blackness value; 0 - 1
+		 * @return 			{number} 									Blackness value; 0 - 1
 		 */
 		get blackness ( )
 		{
@@ -114,8 +114,26 @@ class Hwb
 
 	////    VALIDATION  ////////////////////////////////////
 
-		_isDecimal ( ) { }
+		/**
+         * Returns whether the passed value is a decimal value; 0.00 - 1
+         * @private
+         * @name _isDecimal
+         * @function
+         * @param           {number} value 								Decimal value; 0.00 - 1
+         * @return          {boolean} 									True || False
+         * @see             {@link Validation.isDecimal}
+         */
+        _isDecimal ( ) { }
 
+        /**
+	     * Returns whether the passed value is a degree
+	     * @prviate
+	     * @name _isDegree
+	     * @function
+	     * @param           {number} value 								Degree
+	     * @return          {boolean} 									True || False
+	     * @see             {@link Validation.isDegree}
+	     */
 		_isDegree  ( ) { }
 
 	////    [ UTILITIES ]    ///////////////////////////////
@@ -125,7 +143,7 @@ class Hwb
 		 * @public
 		 * @name toCss
 		 * @function
-		 * @return 			{string} 							CSS <color> string
+		 * @return 			{string} 									CSS <color> string
 		 */
 		toCss ( )
 		{

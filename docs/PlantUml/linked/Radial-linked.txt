@@ -8,31 +8,31 @@ start             {Point}
 startRadius       {Number}
 end               {Point}
 endRadius         {Number}
-stops             {Array.<Stops>}
+stops             {Array.<Stop>}
 __ Setter __
 start             {Point}
 startRadius       {Number}
 end               {Point}
 endRadius         {Number}
-stops             {Array.<Stops>}
+stops             {Array.<Stop>}
 __ Getter __
 start             {Point}
 startRadius       {Number}
 end               {Point}
 endRadius         {Number}
-stops             {Array.<Stops>}
+stops             {Array.<Stop>}
 __ Validation __
-_isColorModel
-_isPoint
-_isRadius
-_isStop
+_isColorModel     <color:gray>{boolean}</color>
+_isPoint          <color:gray>{boolean}</color>
+_isRadius         <color:gray>{boolean}</color>
+_isStop           <color:gray>{boolean}</color>
 __ Utility __
 _stopColorCycle
 }
 
 Radial o-- Point
 Radial o-- Number
-Radial o-- Array.<Stops>
+Radial o-- Stop
 
 
 
@@ -61,6 +61,24 @@ _drawBorder
 _drawAxis
 drawOptions
 invert
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Stop {
+offset          <color:gray>{number}</color>
+__ Setter __
+offset          <color:gray>{number}</color>
+color           {Object}
+__ Getter __
+offset          <color:gray>{number}</color>
+color           {Object}
+__ Validation __
+_isColorModel   <color:gray>{boolean}</color>
+_isDecimal      <color:gray>{boolean}</color>
 }
 
 @enduml

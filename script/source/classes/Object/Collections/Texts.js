@@ -115,15 +115,49 @@ class Texts extends Array
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom ( ) { }
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
+        _isInDom  ( ) { }
 
-        _isPoint ( ) { }
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Push or pops the passed object
+         * @public
+         * @name pushPop
+         * @function
+         * @param           {Object} object                             Object; Circle, Rectangle, Text
+         * @see             {@link Utilities.misc.pushPop}
+         */
         pushPop ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
+        /**
+         * Typical draw function for collections; Circles, Texts
+         * @public
+         * @name draw
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         * @see             {@link UTILITIES.draw.collection.typical}
+         */
         draw ( ) { }
 }

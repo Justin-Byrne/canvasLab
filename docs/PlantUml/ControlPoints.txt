@@ -19,7 +19,7 @@ p1          <color:gray>{number}</color>
 p2          <color:gray>{number}</color>
 p3          <color:gray>{number}</color>
 __ Validation __
-_isNumber
+_isNumber   <color:gray>{boolean}</color>
 }
 
 @enduml

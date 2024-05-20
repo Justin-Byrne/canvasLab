@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Linear</title>
+    <title>JSDoc: Class: canvasLab</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Linear</h1>
+    <h1 class="page-title">Class: canvasLab</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Linear<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>canvasLab<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">{Object} Linear                             Linear gradient object type and properties</div>
+            <div class="class-description">{Object} canvasLab                          CanvasLab core application</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="Linear"><span class="type-signature"></span>new Linear<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="canvasLab"><span class="type-signature"></span>new canvasLab<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -53,7 +53,7 @@
 
 
 <div class="description">
-    Create a Linear gradient object type
+    Create a canvasLab object
 </div>
 
 
@@ -94,13 +94,13 @@
 
         <tr>
             
-                <td class="name"><code>start</code></td>
+                <td class="name"><code>canvas</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="Point.html">Point</a></span>
+<span class="param-type">Object</span>
 
 
             
@@ -110,20 +110,20 @@
 
             
 
-            <td class="description last">X & Y axis coordinates (start)</td>
+            <td class="description last">Main canvas context</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>end</code></td>
+                <td class="name"><code>canvases</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="Point.html">Point</a></span>
+<span class="param-type">Array</span>
 
 
             
@@ -133,20 +133,20 @@
 
             
 
-            <td class="description last">X & Y axis coordinates (end)</td>
+            <td class="description last">Array of all canvas contexts</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>stops</code></td>
+                <td class="name"><code>font</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;<a href="Stop.html">Stop</a>></span>
+<span class="param-type">string</span>
 
 
             
@@ -156,7 +156,7 @@
 
             
 
-            <td class="description last">Array of color stops</td>
+            <td class="description last">Main font type</td>
         </tr>
 
     
@@ -195,7 +195,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.3.48.js.html">canvasLab-v0.3.48.js</a>, <a href="canvasLab-v0.3.48.js.html#line3377">line 3377</a>
+        <a href="canvasLab-v0.3.48.js.html">canvasLab-v0.3.48.js</a>, <a href="canvasLab-v0.3.48.js.html#line1246">line 1246</a>
     </li></ul></dd>
     
 
@@ -242,6 +242,242 @@
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="animate"><span class="type-signature"></span>animate<span class="signature">(flow)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Animates onscreen objects in accordance with passed param values
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>flow</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Contains timing, draw, & duration values & functions
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>duration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Duration of animation</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timing</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Timing function</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>draw</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Draw function</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.3.48.js.html">canvasLab-v0.3.48.js</a>, <a href="canvasLab-v0.3.48.js.html#line1388">line 1388</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     

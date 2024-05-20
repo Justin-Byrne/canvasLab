@@ -42,11 +42,11 @@ _isPoint             <color:gray>{boolean}</color>
 isThere              <color:gray>{boolean}</color>
 __ Utility __
 _clearCanvas
+_drawAnchor
 _drawAxis
 _drawBorder
-_rotatePoint
-_drawAnchor
 _drawOptions
+_rotatePoint
 _setAnchorPoint
 _setFillType
 _setShadow
@@ -144,10 +144,10 @@ segments        {Array}
 color           {Object}
 width           <color:gray>{number}</color>
 __ Validation __
-_isColorModel
-_isSegments
-_isStrokeType
-_isWidth
+_isColorModel   <color:gray>{boolean}</color>
+_isSegments     <color:gray>{boolean}</color>
+_isStrokeType   <color:gray>{boolean}</color>
+_isWidth        <color:gray>{boolean}</color>
 }
 
 
@@ -168,9 +168,9 @@ type            <color:gray>{string}</color>
 gradient        {Object}
 pattern         {Pattern}
 __ Validation __
-_isColorModel
-_isGradient
-_isFillType
+_isColorModel   <color:gray>{boolean}</color>
+_isGradient     <color:gray>{boolean}</color>
+_isFillType     <color:gray>{boolean}</color>
 }
 
 
@@ -194,9 +194,9 @@ offset          {Point}
 x               <color:gray>{number}</color>
 y               <color:gray>{number}</color>
 __ Validation __
-_isColorModel
-_isBlur
-_isPoint
+_isColorModel   <color:gray>{boolean}</color>
+_isBlur         <color:gray>{boolean}</color>
+_isPoint        <color:gray>{boolean}</color>
 }
 
 
@@ -218,7 +218,7 @@ x           <color:gray>{number}</color>
 y           <color:gray>{number}</color>
 align       <color:gray>{string}</color>
 __ Validation __
-_isAnchor
+_isAnchor   <color:gray>{boolean}</color>
 }
 
 
@@ -252,7 +252,7 @@ coordinates             <color:gray>{boolean}</color>
 controlPoints           <color:gray>{boolean}</color>
 master                  {Object}
 __ Validation __
-_isCanvasLabObject
+_isCanvasLabObject      <color:gray>{boolean}</color>
 }
 
 @enduml

@@ -1,23 +1,21 @@
+/**
+ * @class           {Object}   Application                      Application handler
+ */
 class Application
 {
-    #animations =
-    {
-        id: 0,
-        cache: { }
-    };
-
-    constructor ( )
-    {
-        ////    COMPOSITION     ////////////////////////////
-
-            this._isInDom = VALIDATION.isInDom;
-    }
-
     /**
-     * _app                                                     Base application configurations
-     * @type                        {Object}
+     * Application configurations & details
+     * @type            {Object}
+     * @property        {boolean} debug                             Whether to debug application
+     * @property        {Object}  about                             About properties
+     * @property        {Object}  about.Author                      Author of application
+     * @property        {Object}  about.Created                     Date originally created
+     * @property        {Object}  about.Library                     Library name
+     * @property        {Object}  about.Updated                     Date last updated
+     * @property        {Object}  about.Version                     Current versions
+     * @property        {Object}  about.Copyright                   Copyright
      */
-    #app =
+    #config =
     {
         debug: false,
         about:
@@ -25,15 +23,24 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'May, 14 2024',
+            Updated:   'May, 20 2024',
             Version:   '0.3.48',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
 
     /**
-     * _dom                                                         DOM Elements
-     * @type                        {Object}
+     * Document object model data
+     * @type            {Object}
+     * @property        {Object} canvases                           List of canvases
+     * @property        {Object} contexts                           List of canvas contexts
+     * @property        {Object} window                             Window properties
+     * @property        {number} window.width                       Window's width
+     * @property        {number} window.height                      Window's height
+     * @property        {Object} window.center                      Window's center X & Y coordinates
+     * @property        {number} window.center.x                    X-axis coordinate
+     * @property        {number} window.center.y                    Y-axis coordinate
+     * @property        {Object} mouse                              Mouse properties
      */
     #dom =
     {
@@ -43,8 +50,11 @@ class Application
         {
             width:     window.innerWidth  - 18,
             height:    window.innerHeight -  4,
-            xCenter: ( window.innerWidth  /  2 ),
-            yCenter: ( window.innerHeight /  2 )
+            center:
+            {
+                x: ( window.innerWidth  /  2 ),
+                y: ( window.innerHeight /  2 )
+            }
         },
         mouse:
         {
@@ -54,6 +64,16 @@ class Application
             extant: -1,
             offset: { x: 0, y: 0 }
         }
+    }
+
+    /**
+     * Creates an application handler
+     */
+    constructor ( )
+    {
+        ////    COMPOSITION     ////////////////////////////
+
+            this._isInDom = VALIDATION.isInDom;
     }
 
     ////    [ CANVAS ]  ////////////////////////////////////
@@ -116,42 +136,36 @@ class Application
          */
         get about ( )
         {
-            return this.#app.about;
+            return this.#config.about;
         }
 
     ////    VALIDATION  ////////////////////////////////////
 
-        _isInDom ( elementId ) { }
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @name _isInDom
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
+        _isInDom ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
-        clear ( canvasId )
-        {
-            this._dom.contexts [ canvasId ].clearRect (
-                0,                                          // X Coordinate
-                0,                                          // Y Coordinate
-                this._dom.canvases [ canvasId ].width,      // Rectangle's Width
-                this._dom.canvases [ canvasId ].height      // Rectangle's Height
-            );
-        }
-
-    ////    MEDIATOR    ////////////////////////////////////
-
         /**
          * Creates a new animation instance
-         * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
-         * @param           {number}   flow.duration            Duration of animation
-         * @param           {Function} flow.timing              Timing function
-         * @param           {Function} flow.draw                Draw function
+         * @param           {Object}   flow                             Contains timing, draw, & duration values & functions
+         * @param           {number}   flow.duration                    Duration of animation
+         * @param           {Function} flow.timing                      Timing function
+         * @param           {Function} flow.draw                        Draw function
          */
         set animation ( flow = { duration, timing, draw } )
         {
             let _animation = new Animation ( flow.duration, flow.timing, flow.draw );
 
                 _animation.animate ( );
-
-
-            this.#animations.cache [ this.#animations.id++ ] = _animation;
         }
 }
 

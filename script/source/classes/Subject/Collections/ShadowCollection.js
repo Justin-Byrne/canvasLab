@@ -142,11 +142,38 @@ class ShadowCollection
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a blur value
+         * @private
+         * @name _isBlur
+         * @function
+         * @param           {number} value                              Blur value
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isBlur}
+         */
         _isBlur  ( ) { }
 
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
         _isPoint ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Sets all option values throughout a collection
+         * @private
+         * @name _setAll
+         * @function
+         * @param           {string}  property                          Option property
+         * @param           {boolean} value                             True || False
+         * @see             {@link Utilities.set.all}
+         */
         _setAll ( ) { }
 }

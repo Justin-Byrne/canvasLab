@@ -439,6 +439,24 @@ class Circle
         _clearCanvas ( ) { }
 
         /**
+         * Draws anchor point
+         * @private
+         * @name _drawAnchor
+         * @function
+         */
+        _drawAnchor ( )
+        {
+            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
+
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
+
+                _anchor.canvas     = this.canvas;
+
+
+                _anchor.draw ( );
+        }
+
+        /**
          * Draws an axis for the associated object
          * @private
          * @name _drawAxis
@@ -462,38 +480,6 @@ class Circle
         _drawBorder  ( ) { }
 
         /**
-         * Rotates the origin point by the degree & distance passed
-         * @private
-         * @name _rotatePoint
-         * @function
-         * @param           {Point}  origin                             Origin point
-         * @param           {number} degree                             Degree to rotate
-         * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
-         */
-        _rotatePoint ( ) { }
-
-
-
-        /**
-         * Draws anchor point
-         * @private
-         * @name _drawAnchor
-         * @function
-         */
-        _drawAnchor ( )
-        {
-            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
-
-                _anchor.fill.color = new Rgb ( 255, 0, 0 );
-
-                _anchor.canvas     = this.canvas;
-
-
-                _anchor.draw ( );
-        }
-
-        /**
          * Draws associated options
          * @private
          * @name _drawOptions
@@ -515,6 +501,18 @@ class Circle
 
             if ( this.#_options.coordinates ) this.showCoordinates ( );
         }
+
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @private
+         * @name _rotatePoint
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link Utilities.misc.rotatePoint}
+         */
+        _rotatePoint ( ) { }
 
         /**
          * Sets anchor's point against this object's point location

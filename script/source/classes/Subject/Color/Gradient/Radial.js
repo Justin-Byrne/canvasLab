@@ -1,10 +1,10 @@
 /**
- * @class           {Object}        Radial                      Radial gradient object type and properties
- * @property        {Point}         start                       X & Y axis coordinates (start)
- * @property        {Number}        startRadius                 Starting radius of linear gradient
- * @property        {Point}         end                         X & Y axis coordinates (end)
- * @property        {Number}        endRadius                   Ending radius of linear gradient gradient
- * @property        {Array.<Stops>} stops                       Array of color stops
+ * @class           {Object} Radial                             Radial gradient object type and properties
+ * @property        {Point}  start                              X & Y axis coordinates (start)
+ * @property        {Number} startRadius                        Starting radius of linear gradient
+ * @property        {Point}  end                                X & Y axis coordinates (end)
+ * @property        {Number} endRadius                          Ending radius of linear gradient gradient
+ * @property        {Array.<Stop>} stops                        Array of color stops
  */
 class Radial
 {
@@ -18,11 +18,11 @@ class Radial
 
     /**
      * Create a Radial gradient object type and properties
-     * @property        {Point}         start                       Starting point of linear gradient
-     * @property        {Number}        startRadius                 Starting radius of linear gradient gradient
-     * @property        {Point}         end                         Ending point of linear gradient
-     * @property        {Number}        endRadius                   Ending radius of linear gradient gradient
-     * @property        {Array.<Stops>} stops                       Array of color stops
+     * @property        {Point}  start                              Starting point of linear gradient
+     * @property        {Number} startRadius                        Starting radius of linear gradient gradient
+     * @property        {Point}  end                                Ending point of linear gradient
+     * @property        {Number} endRadius                          Ending radius of linear gradient gradient
+     * @property        {Array.<Stop>} stops                        Array of color stops
      */
     constructor ( start, startRadius, end, endRadius, stops )
     {
@@ -155,7 +155,7 @@ class Radial
          * @public
          * @name stops
          * @function
-         * @param           {Array.<Stops>} value                       Color stops
+         * @param           {Array.<Stop>} value                        Color stops
          */
         set stops ( value )
         {
@@ -176,7 +176,7 @@ class Radial
          * @readOnly
          * @name stops
          * @function
-         * @return          {Array.<Stops>}                             Color stops
+         * @return          {Array.<Stop>}                              Color stops
          */
         get stops ( )
         {
@@ -185,15 +185,65 @@ class Radial
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a color model
+         * @private
+         * @name _isColorModel
+         * @function
+         * @param           {Object} value                              Color model or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isColorModel}
+         */
         _isColorModel ( ) { }
 
-        _isPoint      ( ) { }
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
 
-        _isRadius     ( ) { }
+        /**
+         * Returns whether the passed value is a radius value
+         * @private
+         * @name _isRadius
+         * @function
+         * @param           {number} value                              Radius value
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isRadius}
+         */
+        _isRadius ( ) { }
 
-        _isStop       ( ) { }
+        /**
+         * Returns whether the passed value is a Stop or object equivalent
+         * @private
+         * @name _isStop
+         * @function
+         * @param           {Object} value                              Stop or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isStop}
+         */
+        _isStop   ( ) { }
 
     ////    UTILITIES    ///////////////////////////////////
 
+        /**
+         * Cycle colors for gradient stop(s)
+         * @private
+         * @name stop
+         * @function
+         * @param           {Object}   start                            Color model & values
+         * @param           {Object}   end                              Color model & values
+         * @param           {number}   progress                         Progress time unit; 0.00 - 1.00
+         * @param           {number}   stop                             Color stop to cycle
+         * @param           {number}   max                              Maximum number of steps between interpolation
+         * @param           {function} clear                            Clear callback from root object
+         * @param           {function} draw                             Draw callback from root object
+         * @see             {@link Utilities.color.cycle.stop}
+         */
         _stopColorCycle ( ) { }
 }

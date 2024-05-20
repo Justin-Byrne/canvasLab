@@ -78,7 +78,25 @@ class Stop
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a color model
+         * @private
+         * @name _isColorModel
+         * @function
+         * @param           {Object} value                              Color model or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isColorModel}
+         */
         _isColorModel ( ) { }
 
+        /**
+         * Returns whether the passed value is a decimal value; 0.00 - 1
+         * @private
+         * @name _isDecimal
+         * @function
+         * @param           {number} value                              Decimal value; 0.00 - 1
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isDecimal}
+         */
         _isDecimal    ( ) { }
 }

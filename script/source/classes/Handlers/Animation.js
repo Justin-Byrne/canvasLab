@@ -1,3 +1,9 @@
+/**
+ * @class           {Object}   Animation                        Animation handler
+ * @property        {function} timing                           Timing function
+ * @property        {function} draw                             Draw function
+ * @property        {number}   duration                         Duration of animation
+ */
 class Animation
 {
     _timing   = undefined;
@@ -157,6 +163,15 @@ class Animation
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a Number value
+         * @private
+         * @name _isNumber
+         * @function
+         * @param           {number} value                              Number value
+         * @return          {boolean}                                   True || False
+         * @see             {Validation.isNumber}
+         */
         _isNumber ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
@@ -171,26 +186,21 @@ class Animation
         {
             // @TODO: Check to make sure that _timing, _draw, and _duration are properly set, prior to 'animating' !
             // could be set with a single internal variable, like #valid
+            let [ _duration, _timing, _draw ] = [ this._duration, this._timing, this._draw ]
 
-            if ( this._timing != undefined && this._draw != undefined )
+
+            if ( this._timing && this._draw )
             {
-                let _start    = performance.now ( );
-
-                let [ _duration, _timing, _draw ] = [ this._duration, this._timing, this._draw ]
+                let _start = performance.now ( );
 
 
                 requestAnimationFrame (
+
                     function animate ( time )
                     {
                         let _timeFraction =  ( time - _start ) / _duration;     // timeFraction goes from 0 to 1
 
-
-                        if  ( _timeFraction > 1 )
-
-                            _timeFraction = 1;
-
-
-                        let _progress = _timing ( _timeFraction );              // calculate the current animation state
+                        let _progress     = _timing ( _timeFraction );          // calculate the current animation state
 
 
                         _draw ( _progress );                                    // draw it

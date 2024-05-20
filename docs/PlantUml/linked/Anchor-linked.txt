@@ -17,7 +17,7 @@ x           <color:gray>{number}</color>
 y           <color:gray>{number}</color>
 align       <color:gray>{string}</color>
 __ Validation __
-_isAnchor
+_isAnchor   <color:gray>{boolean}</color>
 }
 
 Anchor o-- Point

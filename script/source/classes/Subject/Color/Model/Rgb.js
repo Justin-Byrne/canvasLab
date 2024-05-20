@@ -40,7 +40,7 @@ class Rgb
 		 * @public
 		 * @name red
 		 * @function
-		 * @param           {number} red                        Red value; 0 - 255
+		 * @param           {number} red                        		Red value; 0 - 255
 		 */
 		set red ( value )
 		{
@@ -52,7 +52,7 @@ class Rgb
 		 * @readOnly
 		 * @name red
 		 * @function
-		 * @return 			{number}							Red value; 0 - 255
+		 * @return 			{number}									Red value; 0 - 255
 		 */
 		get red ( )
 		{
@@ -66,7 +66,7 @@ class Rgb
 		 * @public
 		 * @name green
 		 * @function
-		 * @param 			{number} green 						Green value; 0 - 255
+		 * @param 			{number} green 								Green value; 0 - 255
 		 */
 		set green ( value )
 		{
@@ -78,7 +78,7 @@ class Rgb
 		 * @readOnly
 		 * @name green
 		 * @function
-		 * @return 			{number} 							Green value; 0 - 255
+		 * @return 			{number} 									Green value; 0 - 255
 		 */
 		get green ( )
 		{
@@ -92,7 +92,7 @@ class Rgb
 		 * @public
 		 * @name blue
 		 * @function
-		 * @param 			{number} blue 						Blue value; 0 - 255
+		 * @param 			{number} blue 								Blue value; 0 - 255
 		 */
 		set blue ( value )
 		{
@@ -104,7 +104,7 @@ class Rgb
 		 * @readOnly
 		 * @name blue
 		 * @function
-		 * @return 			{number} 							Blue value; 0 - 255
+		 * @return 			{number} 									Blue value; 0 - 255
 		 */
 		get blue ( )
 		{
@@ -113,6 +113,15 @@ class Rgb
 
 	////    [ VALIDATION ]    //////////////////////////////
 
+		/**
+	     * Returns whether the passed value is a 256 color value; 0 - 255
+	     * @private
+	     * @name _is256
+	     * @function
+	     * @param           {number} value 								256 color value; 0 - 255
+	     * @return          {boolean} 									True || False
+	     * @see             {@link Validation.is256}
+	     */
 		_is256 ( ) { }
 
 	////    [ UTILITIES ]    ///////////////////////////////
@@ -122,12 +131,12 @@ class Rgb
 		 * @private
 		 * @name _cycle
 		 * @function
-		 * @param  			{Object}   start					Color model & values
-		 * @param  			{Object}   end 						Color model & values
-		 * @param 			{number}   progress 				Progress time unit; 0.00 - 1.00
-		 * @param 			{number}   max 						Maximum number of steps between interpolation
-		 * @param 			{function} clear 					Clear callback from root object
-		 * @param 			{function} draw 					Draw callback from root object
+		 * @param  			{Object}   start							Color model & values
+		 * @param  			{Object}   end 								Color model & values
+		 * @param 			{number}   progress 						Progress time unit; 0.00 - 1.00
+		 * @param 			{number}   max 								Maximum number of steps between interpolation
+		 * @param 			{function} clear 							Clear callback from root object
+		 * @param 			{function} draw 							Draw callback from root object
 		 */
 		_cycle ( start, end, progress, max, clear, draw )
 	    {
@@ -143,10 +152,10 @@ class Rgb
 		 * @private
 		 * @name _lerp
 		 * @function
-		 * @param  			{Object} start 						Color model & values
-		 * @param  			{Object} end 						Color model & values
-		 * @param 			{number} progress 					Progress time unit; 0.00 - 1.00
-		 * @param 			{number} max 						Maximum number of steps between interpolation
+		 * @param  			{Object} start 								Color model & values
+		 * @param  			{Object} end 								Color model & values
+		 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
+		 * @param 			{number} max 								Maximum number of steps between interpolation
 		 */
 		_lerp ( start, end, progress, max )
 		{
@@ -158,10 +167,10 @@ class Rgb
 		 * @private
 		 * @name _lerpRgb
 		 * @function
-		 * @param  			{Object} start 						Color model & values
-		 * @param  			{Object} end 						Color model & values
-		 * @param 			{number} progress 					Progress time unit; 0.00 - 1.00
-		 * @param 			{number} max 						Maximum number of steps between interpolation
+		 * @param  			{Object} start 								Color model & values
+		 * @param  			{Object} end 								Color model & values
+		 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
+		 * @param 			{number} max 								Maximum number of steps between interpolation
 		 */
 		_lerpRgb ( start, end, progress, max )
 	    {
@@ -177,7 +186,7 @@ class Rgb
 		 * @public
 		 * @name toCss
 		 * @function
-		 * @return 			{string} 							CSS <color> string
+		 * @return 			{string} 									CSS <color> string
 		 */
 		toCss ( )
 		{

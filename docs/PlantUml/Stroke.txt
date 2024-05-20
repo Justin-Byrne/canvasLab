@@ -17,10 +17,10 @@ segments        {Array}
 color           {Object}
 width           <color:gray>{number}</color>
 __ Validation __
-_isColorModel
-_isSegments
-_isStrokeType
-_isWidth
+_isColorModel   <color:gray>{boolean}</color>
+_isSegments     <color:gray>{boolean}</color>
+_isStrokeType   <color:gray>{boolean}</color>
+_isWidth        <color:gray>{boolean}</color>
 }
 
 @enduml

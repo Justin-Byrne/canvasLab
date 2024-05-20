@@ -554,5 +554,13 @@ class Lines extends Array
 
     ////    DRAW    ////////////////////////////////////////
 
+        /**
+         * A-typical draw function for collections; Lines
+         * @public
+         * @name draw
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         * @see             {@link Utilities.draw.collection.aTypical}
+         */
         draw ( ) { }
 }

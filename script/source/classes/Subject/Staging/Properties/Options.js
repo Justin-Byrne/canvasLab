@@ -230,5 +230,14 @@ class Options
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
+         * @private
+         * @name _isCanvasLabObject
+         * @function
+         * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isCanvasLabObject}
+         */
         _isCanvasLabObject ( ) { }
 }

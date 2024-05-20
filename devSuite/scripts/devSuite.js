@@ -3768,6 +3768,7 @@ class Ui
                         }
 
                         canvaslab.animate ( _flow );
+                        canvaslab.animate ( _flow );
                     }
                 },
             ],

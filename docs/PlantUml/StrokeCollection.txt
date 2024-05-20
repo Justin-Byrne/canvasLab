@@ -17,10 +17,10 @@ type            <color:gray>{number}</color>
 segments        {Array}
 width           <color:gray>{number}</color>
 __ Validation __
-_isColorModel
-_isStrokeType
-_isSegments
-_isWidth
+_isColorModel   <color:gray>{boolean}</color>
+_isSegments     <color:gray>{boolean}</color>
+_isStrokeType   <color:gray>{boolean}</color>
+_isWidth        <color:gray>{boolean}</color>
 __ Utility __
 Alpha
 _setAll

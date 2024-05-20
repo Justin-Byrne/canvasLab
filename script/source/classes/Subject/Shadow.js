@@ -151,9 +151,36 @@ class Shadow
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is a color model
+         * @private
+         * @name _isColorModel
+         * @function
+         * @param           {Object} value                              Color model or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isColorModel}
+         */
         _isColorModel ( ) { }
 
-        _isBlur       ( ) { }
+        /**
+         * Returns whether the passed value is a blur value
+         * @private
+         * @name _isBlur
+         * @function
+         * @param           {number} value                              Blur value
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isBlur}
+         */
+        _isBlur ( ) { }
 
-        _isPoint      ( ) { }
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @name _isPoint
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint ( ) { }
 }
