@@ -48,22 +48,22 @@ class Tool
         {
             let _copyFunction = ( func ) => func;
 
-            let _result       = ( PAGE.group ) ? JSON.parse ( JSON.stringify ( object [ PAGE.group ] [ PAGE.type ] ) )
+            let _result       = ( PAGE.handler ) ? JSON.parse ( JSON.stringify ( object [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] ) )
 
-                                               : JSON.parse ( JSON.stringify ( object [ PAGE.type  ] ) );
+                                                 : JSON.parse ( JSON.stringify ( object [ PAGE.group ] [ PAGE.type ] ) );
 
 
-            if ( PAGE.group )
+            if ( PAGE.handler )
+
+                for ( let _entry in object [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] )
+
+                    _result [ _entry ].code = _copyFunction ( object [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ _entry ].code );
+
+            else
 
                 for ( let _entry in object [ PAGE.group ] [ PAGE.type ] )
 
                     _result [ _entry ].code = _copyFunction ( object [ PAGE.group ] [ PAGE.type ] [ _entry ].code );
-
-            else
-
-                for ( let _entry in object [ PAGE.type ] )
-
-                    _result [ _entry ].code = _copyFunction ( object [ PAGE.type ] [ _entry ].code );
 
 
             return _result;

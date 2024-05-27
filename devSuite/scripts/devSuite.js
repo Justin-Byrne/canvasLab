@@ -751,13 +751,13 @@ class Log
  * @class           {Object} Page                       Page for parsing page types
  * @property        {string} type                       Page's type
  * @property        {string} group                      Page's group
- * @property        {string} subgroup                   Page's subgroup
+ * @property        {string} handler                    Page's handler
  */
 class Page
 {
     _type     = undefined;
     _group    = undefined;
-    _subgroup = undefined;
+    _handler  = undefined;
 
     /**
      * Creates a page
@@ -784,7 +784,7 @@ class Page
 
         /**
          * Gets type
-         * @public
+         * @readOnly
          * @name type
          * @function
          * @return          {string}                            Page's type
@@ -810,7 +810,7 @@ class Page
 
         /**
          * Gets group
-         * @public
+         * @readOnly
          * @name group
          * @function
          * @return          {string}                            Page's group
@@ -820,30 +820,30 @@ class Page
             return this._group;
         }
 
-    ////    [ SUBGROUP ]    ////////////////////////////////////////////////////
+    ////    [ HANDLER ]    /////////////////////////////////////////////////////
 
         /**
-         * Sets subgroup
+         * Sets handler
          * @public
-         * @name subgroup
+         * @name handler
          * @function
-         * @param           {string} value                      Page's subgroup
+         * @param           {string} value                      Page's handler
          */
-        set subgroup ( value )
+        set handler ( value )
         {
-            this._subgroup = ( typeof value === 'string' ) ? value : this._subgroup;
+            this._handler = ( typeof value === 'string' ) ? value : this._handler;
         }
 
         /**
-         * Gets subgroup
-         * @public
-         * @name subgroup
+         * Gets handler
+         * @readOnly
+         * @name handler
          * @function
-         * @return          {string}                            Page's subgroup
+         * @return          {string}                            Page's handler
          */
-        get subgroup ( )
+        get handler ( )
         {
-            return this._subgroup;
+            return this._handler;
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////
@@ -859,16 +859,24 @@ class Page
         {
             let _match = button.href.match ( /#(\w+)/g ) [ 0 ];
 
+            let _regex =
+            {
+                group:   new RegExp ( /(Object|Subject)/ ),
+
+                handler: new RegExp ( /(Processing|Animation)/ )
+            }
+
 
             if ( _match || typeof button === 'object' )
             {
                 let _button   = _match.replace ( '#', '' );
 
-                this.group    = _button.match ( new RegExp ( /(Object|Subject|Animation)/ ) ) [ 0 ].toLowerCase ( );
 
-                this.type     = _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
+                this.handler  = ( _regex.handler.test ( _button ) ) ? _button.match ( _regex.handler ) [ 0 ].toLowerCase ( ) : this.handler;
 
-                this.subgroup = ( this.group === 'animation' ) ? 'easing' : undefined;
+                this.group    = _button.match ( _regex.group ) [ 0 ].toLowerCase ( );
+
+                this.type     = ( this.handler ) ? _button.replace ( this.group.toTitleCase ( ), '' ).replace ( this.handler.toTitleCase ( ), '' ).toLowerCase ( ) : _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
             }
         }
 }
@@ -886,65 +894,57 @@ class Template
 
                        <div class="card" id="view_{{index}}" suite-data-code="{{code}}" suite-data-title="{{title}}" onclick="devSuite.toggleCardButton ( event )">
 
-                           <div class="card-number">
+                           <div class="card-header">
 
-                               <span class="close"></span>
+                               <div class="card-header-buttons">
 
-                               <span class="number">{{index}}</span>
+                                   <div class="icons">
 
-                           </div>
+                                       <img src="images/svg/{{childGroup}}/{{childType}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{childType}}" onclick="devSuite.toggleCardButton ( event )">
+
+                                       <img src="images/svg/{{childGroup}}/{{childType}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{childType}}" onclick="devSuite.toggleCardButton ( event )">
+
+                                       <img src="images/svg/{{childGroup}}/{{childType}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{childType}}" onclick="devSuite.toggleCardButton ( event )">
+
+                                       <img src="images/svg/{{childGroup}}/{{childType}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{childType}}" onclick="devSuite.toggleCardButton ( event )">
+
+                                   </div>
+
+                               </div>
+
+                               <div class="title">{{title}}</div>
+
+                               <div class="card-number">
+
+                                   <span class="close"></span>
+
+                                   <span class="number">{{index}}</span>
+
+                               </div>
+
+                           </div> <!-- .card-header -->
 
                            <canvas id="canvas_{{index}}"></canvas>
 
                            <div class="card-body">
 
-                               <div class="card-buttons">
-
-                                   <div class="symbol">
-
-                                       <div class="triangle">
-
-                                           <svg width="16" height="16" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5">
-
-                                               <g transform="matrix(0.927153,0,0,0.880275,0,0)">
-
-                                                   <rect x="0" y="0" width="16" height="16" fill="none"/>
-
-                                                   <g transform="matrix(0.926815,0,0,0.964236,1.12124,0.171773)">
-
-                                                       <g id="Hexagram">
-
-                                                           <path d="M7.417,1L1,12L14,12L7.417,1Z" fill="none" stroke="black" stroke-width="1.15px"/>
-
-                                                       </g>
-
-                                                   </g>
-
-                                               </g>
-
-                                           </svg>
-
-                                       </div>
-
-                                   </div>
-
-                                   <div class="title">{{title}}</div>
+                               <div class="card-body-buttons">
 
                                    <span class="icons">
 
-                                       <img src="images/svg/{{subgroup}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devSuite.toggleCardButton ( event )">
+                                       <img src="images/svg/{{easing}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devSuite.toggleCardButton ( event )">
 
                                        <span class="wall">&nbsp;</span>
 
-                                       <img src="images/svg/{{group}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{groupType}}"  onclick="devSuite.toggleCardButton ( event )">
+                                       <img src="images/svg/Handler/{{handler}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{handler}}"  onclick="devSuite.toggleCardButton ( event )">
 
-                                       <img src="images/svg/{{image}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{objectType}}" onclick="devSuite.toggleCardButton ( event )">
+                                       <img src="images/svg/{{group}}/{{type}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{type}}" onclick="devSuite.toggleCardButton ( event )">
 
                                    </span>
 
                                </div>
 
-                           </div>
+                           </div> <!-- .card-body -->
 
                        </div>
 
@@ -992,10 +992,10 @@ class Template
 
         /**
          * Returns a standard HTML card template
-         * @public
+         * @readOnly
          * @name standard
          * @function
-         * @return          {string}                            HTML card template
+         * @return          {string}                            HTML card standard template
          */
         get standard ( ) { return this._types.standard; }
 
@@ -1003,60 +1003,31 @@ class Template
 
         /**
          * Returns a blank HTML card template
-         * @public
+         * @readOnly
          * @name blank
          * @function
-         * @return          {string}                            HTML card template
+         * @return          {string}                            HTML card blank template
          */
         get blank ( ) { return this._types.blank; }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
 
         /**
-         * Returns an Array of standard & extra HTML templates for each card-object
-         * @public
-         * @name getCards
-         * @function
-         * @param           {Array.<Object>} cardObjects        Array of card-objects
-         * @return          {Array}                             Array of HTML templates for each card-object
-         */
-        getCards ( cardObjects )
-        {
-            let _cards = this._getStandardTemplates ( cardObjects );
-
-            let _extra = this._getBlankTemplates    ( cardObjects );
-
-
-            return _cards.concat ( _extra );
-        }
-
-        /**
-         * Returns an Array of standard HTML templates for each card-object
+         * Returns the amount of extra cards to embed
          * @private
-         * @name _getStandardTemplates
+         * @name _getBlankCount
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
-         * @return          {Array}                             Array of standard HTML templates for each card-object
+         * @return          {number}                            Amount of extra cards
          */
-        _getStandardTemplates ( cardObjects )
+        _getBlankCount ( cardObjects )
         {
-            let _cards = [ ];
+            let _count     = this._getColumnCount ( );
+
+            let _remainder = cardObjects.length % _count;
 
 
-            for ( let _iter in cardObjects )
-            {
-                let _index      = _iter.to2Digits ( );
-
-                let _template   = this.standard.replace ( /{{index}}/g, _index );
-
-                let _cardObject = cardObjects [ _iter ];
-
-
-                _cards.push ( this._getCodeTemplate ( _cardObject, _template, _index ) );
-            }
-
-
-            return _cards;
+            return _count - _remainder;
         }
 
         /**
@@ -1100,15 +1071,15 @@ class Template
          * @name _getCodeTemplate
          * @function
          * @param           {Object} cardObject                 Card-object
-         * @param           {string} template                   HTML template for card-object
+         * @param           {string} template                   HTML card template
          * @param           {string} count                      Card-object number
-         * @return          {string}                            Rendered HTML for a card-object
+         * @return          {string}                            HTML card template
          */
         _getCodeTemplate ( cardObject, template, count )
         {
             for ( let _entry in cardObject )
             {
-                if ( _entry === 'code' )                    // Clean: code prior to injection
+                if ( _entry === 'code' )
                 {
                     let _code     = UI.clean.code ( cardObject [ _entry ] );
 
@@ -1120,7 +1091,7 @@ class Template
                     let _regex    = new RegExp ( _variable, 'g' );
 
 
-                    let _init     = this._initializer [ PAGE.group ] [ _class ];
+                    let _init     = ( PAGE.handler ) ? this._initializer [ PAGE.handler ] [ _class ] : this._initializer [ PAGE.group ] [ _class ];
 
 
                         _code     = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;
@@ -1141,7 +1112,167 @@ class Template
             }
 
 
-            return UI.clean.imageTags ( template, cardObject );
+            return template;
+        }
+
+        /**
+         * Returns the amount of columns available per the present resolution
+         * @private
+         * @name _getColumnCount
+         * @function
+         * @return          {number}                            Number of columns
+         */
+        _getColumnCount ( )
+        {
+            let _count       = 1;
+
+            let _breakpoints = [ 600, 800, 1200, 1500, 1800, 2100, 2600 ];
+
+            let _windowWidth = window.innerWidth;
+
+
+            for ( let _breakpoint of _breakpoints )
+            {
+                if ( _windowWidth < _breakpoint )
+
+                    return _count;
+
+
+                _count++;
+            }
+        }
+
+        /**
+         * Sets image paths for each card-object passed through the param
+         * @private
+         * @name _setImagePaths
+         * @function
+         * @param           {Object} cardObject                 Card-object
+         */
+        _setImagePaths ( cardObject )
+        {
+            if ( ! cardObject.images )
+
+                cardObject.images = new Object;
+
+
+            // Type
+            cardObject.images.type = PAGE.type.toTitleCase ( );
+
+
+            // Handler
+            switch ( PAGE.handler )
+            {
+                case 'animation':
+
+                    let _timing = cardObject.code.toString ( ).match ( /timing: '([^']+)',/ ) [ 1 ];
+
+                    let _match  = _timing.match ( /(In|Out)/g );
+
+                    let _path   = ( _match.length < 2 ) ? _match [ 0 ] : _match [ 0 ] + _match [ 1 ];
+
+
+                    cardObject.images.easing  = `Handler/${PAGE.handler.toTitleCase ( )}/Ease/${_path}/${_timing}`;
+
+                    cardObject.images.handler = PAGE.handler.toTitleCase ( );
+
+                    break;
+            }
+
+            // Children
+            if ( cardObject.children )
+            {
+                cardObject.images.children = new Array;
+
+
+                for ( let _child of cardObject.children )
+
+                    cardObject.images.children.push ( _child.toTitleCase ( ) );
+            }
+        }
+
+        /**
+         * Return a template with the appropriate canvasLab images embedded
+         * @private
+         * @name _getImages
+         * @param           {Object} cardObject                 Card-object
+         * @param           {string} template                   HTML card template
+         */
+        _getImages ( cardObject, template )
+        {
+            this._setImagePaths ( cardObject );
+
+
+            if ( cardObject.images )
+            {
+                for ( let _entry in cardObject.images )
+                {
+                    let _type = cardObject.images [ _entry ];
+
+
+                    switch ( _entry )
+                    {
+                        case 'easing':      template = template.replace ( /{{easing}}/, _type );        break;
+
+                        case 'handler':     template = template.replace ( /{{handler}}/, _type ).replace ( /{{handler}}/, _type );       break;
+
+                        case 'children':
+
+                            for ( let _childType of _type )
+                            {
+                                let _childGroup = TOOL.isCanvasLabObject ( _childType ) ? 'Object' : 'Subject';
+
+                                template        = template.replace ( /{{childGroup}}/, _childGroup ).replace ( /{{childType}}/, _childType ).replace ( /{{childType}}/, _childType );
+                            }
+
+                            break;
+
+                        default:
+
+                            let _group = TOOL.isCanvasLabObject ( _type ) ? 'Object' : 'Subject';
+
+                            template = template.replace ( /{{group}}/, _group ).replace ( /{{type}}/, _type ).replace ( /{{type}}/, _type );
+                    }
+                }
+            }
+
+            // Clean remaining unused image tags
+            template = template.replaceAll ( new RegExp ( '<img src="images/svg(/Handler)?/{{[^>]+>', 'g' ), '' );
+
+
+            return template;
+        }
+
+        /**
+         * Returns an Array of standard HTML templates for each card-object
+         * @private
+         * @name _getStandardTemplates
+         * @function
+         * @param           {Array.<Object>} cardObjects        Array of card-objects
+         * @return          {Array}                             Array of standard HTML templates for each card-object
+         */
+        _getStandardTemplates ( cardObjects )
+        {
+            let _cards = [ ];
+
+
+            for ( let _iter in cardObjects )
+            {
+                let _index      = _iter.to2Digits ( );
+
+                let _cardObject = cardObjects [ _iter ];
+
+
+                let _template = this.standard.replace ( /{{index}}/g, _index );
+
+                    _template = this._getImages ( _cardObject, _template );
+
+
+                _cards.push ( this._getCodeTemplate ( _cardObject, _template, _index ) );
+            }
+
+
+            return _cards;
         }
 
         /**
@@ -1198,48 +1329,21 @@ class Template
         }
 
         /**
-         * Returns the amount of columns available per the present resolution
-         * @private
-         * @name _getColumnCount
-         * @function
-         * @return          {number}                            Number of columns
-         */
-        _getColumnCount ( )
-        {
-            let _count       = 1;
-
-            let _breakpoints = [ 600, 800, 1200, 1500, 1800, 2100, 2600 ];
-
-            let _windowWidth = window.innerWidth;
-
-
-            for ( let _breakpoint of _breakpoints )
-            {
-                if ( _windowWidth < _breakpoint )
-
-                    return _count;
-
-
-                _count++;
-            }
-        }
-
-        /**
-         * Returns the amount of extra cards to embed
-         * @private
-         * @name _getBlankCount
+         * Returns an Array of standard & extra HTML templates for each card-object
+         * @public
+         * @name getCards
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
-         * @return          {number}                            Amount of extra cards
+         * @return          {Array}                             Array of HTML templates for each card-object
          */
-        _getBlankCount ( cardObjects )
+        getCards ( cardObjects )
         {
-            let _count     = this._getColumnCount ( );
+            let _cards = this._getStandardTemplates ( cardObjects );
 
-            let _remainder = cardObjects.length % _count;
+            let _extra = this._getBlankTemplates    ( cardObjects );
 
 
-            return _count - _remainder;
+            return _cards.concat ( _extra );
         }
 }
  
@@ -1293,22 +1397,22 @@ class Tool
         {
             let _copyFunction = ( func ) => func;
 
-            let _result       = ( PAGE.group ) ? JSON.parse ( JSON.stringify ( object [ PAGE.group ] [ PAGE.type ] ) )
+            let _result       = ( PAGE.handler ) ? JSON.parse ( JSON.stringify ( object [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] ) )
 
-                                               : JSON.parse ( JSON.stringify ( object [ PAGE.type  ] ) );
+                                                 : JSON.parse ( JSON.stringify ( object [ PAGE.group ] [ PAGE.type ] ) );
 
 
-            if ( PAGE.group )
+            if ( PAGE.handler )
+
+                for ( let _entry in object [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] )
+
+                    _result [ _entry ].code = _copyFunction ( object [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ _entry ].code );
+
+            else
 
                 for ( let _entry in object [ PAGE.group ] [ PAGE.type ] )
 
                     _result [ _entry ].code = _copyFunction ( object [ PAGE.group ] [ PAGE.type ] [ _entry ].code );
-
-            else
-
-                for ( let _entry in object [ PAGE.type ] )
-
-                    _result [ _entry ].code = _copyFunction ( object [ PAGE.type ] [ _entry ].code );
 
 
             return _result;
@@ -1656,12 +1760,12 @@ class Ui
          */
         _cardPlus ( element )
         {
-            let _card = cardObjects [ PAGE.group ] [ PAGE.type ].length - 1;
+            let _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length - 1;
 
-                _card = cardObjects [ PAGE.group ] [ PAGE.type ] [ _card ];
+                _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ _card ];
 
 
-            cardObjects [ PAGE.group ] [ PAGE.type ].push ( _card );
+            cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].push ( _card );
 
 
             UI._setAlbumCards ( );
@@ -1684,9 +1788,9 @@ class Ui
                 let _cardNumber = Number ( element.nextElementSibling.innerHTML );
 
 
-                if ( cardObjects [ PAGE.group ] [ PAGE.type ].length > 1 )
+                if ( cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length > 1 )
 
-                     cardObjects [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
+                     cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
 
 
                 UI._setAlbumCards ( );
@@ -1761,33 +1865,6 @@ class Ui
         },
 
         /**
-         * Trims left over image tags from the standard card template
-         * @public
-         * @name imageTags
-         * @function
-         * @param           {string} template                   HTML template for card-object
-         * @param           {Object} cardObject                 Card-object
-         * @return          {string}                            HTML template for card-object
-         */
-        imageTags ( template, cardObject )
-        {
-            let _imageTags = [ 'group', 'subgroup' ];
-
-
-            for ( let _imageTag of _imageTags )
-
-                template = ( cardObject [ _imageTag ] === undefined )
-
-                               ? template.replace ( new RegExp ( `<img[^\{]+{{${_imageTag}[^>]+>` ), '' )
-                                         .replace ( new RegExp ( '<span class="separator">[^>]+>' ), '' )
-
-                               : template;
-
-
-            return template;
-        },
-
-        /**
          * Cleans the remaining '.blank' cards while converting the first to a '.plus' card; @see Ui.toggle._cardPlus ( )
          * @public
          * @name blankCards
@@ -1802,7 +1879,7 @@ class Ui
             let _count = 0;
 
 
-            if ( PAGE.group === 'animation' )
+            if ( PAGE.handler === 'animation' )
 
                 for ( let _card of _cards )
                 {
@@ -1860,56 +1937,6 @@ class Ui
     ////    GETTERS    /////////////////////////////////////////////////////////////////////////////
 
         /**
-         * Returns the likely class name for the passed code
-         * @public
-         * @name getClass
-         * @function
-         * @param           {string} code                       Code string
-         * @return          {string}                            Likely class name
-         */
-        getClass ( code )
-        {
-            let _class  = code.match ( /_(\w+)/ ) [ 1 ];
-
-            let _regex  = new RegExp ( '_(line|circle|rectangle|text)', 'g' );
-
-
-            let _result = ( ! [ 'line', 'rectangle', 'circle', 'text' ].includes ( _class ) )
-
-                              ? ( _regex.test ( code ) )
-
-                                    ? code.match ( _regex ) [ 0 ].replace ( '_', '' )
-
-                                    : _class
-
-                              : _class;
-
-
-            return _result.toTitleCase ( );
-        }
-
-        /**
-         * Returns eval ready code for passed card-objects
-         * @private
-         * @name _getCode
-         * @function
-         * @param           {Array.<Object>} objects            Array of card-objects
-         * @return          {string}                            String to be evaluated for all card-objects
-         */
-        _getCode ( objects )
-        {
-            let _codes = [ ]
-
-
-            for ( let _object of objects )
-
-                _codes.push ( `////    ${_object.title}    //////////////////////////\n\n${_object.code}` );
-
-
-            return `( ( window ) =>\n{\n${_codes.join ( '\n\n' )}\n\n} ) ( window );`
-        }
-
-        /**
          * Returns a button for navigation links
          * @private
          * @name _getButton
@@ -1943,6 +1970,27 @@ class Ui
         }
 
         /**
+         * Returns eval ready code for passed card-objects
+         * @private
+         * @name _getCode
+         * @function
+         * @param           {Array.<Object>} objects            Array of card-objects
+         * @return          {string}                            String to be evaluated for all card-objects
+         */
+        _getCode ( objects )
+        {
+            let _codes = [ ]
+
+
+            for ( let _object of objects )
+
+                _codes.push ( `////    ${_object.title}    //////////////////////////\n\n${_object.code}` );
+
+
+            return `( ( window ) =>\n{\n${_codes.join ( '\n\n' )}\n\n} ) ( window );`
+        }
+
+        /**
          * Returns a link for navigation links
          * @private
          * @name _getLink
@@ -1961,7 +2009,7 @@ class Ui
             let _icon = ( link.group === 'Animation' ) ? ( TOOL.isCanvasLabObject ( link.title ) ) ? 'Object' : 'Subject' : link.group;
 
 
-                _a.href      = `#${link.group}${link.title}`;
+                _a.href      = ( link.handler ) ? `#${link.handler}${link.group}${link.title}` : `#${link.group}${link.title}`;
 
                 _a.innerHTML = link.title;
 
@@ -1979,46 +2027,54 @@ class Ui
             return _li;
         }
 
+        /**
+         * Returns the likely class name for the passed code
+         * @public
+         * @name getClass
+         * @function
+         * @param           {string} code                       Code string
+         * @return          {string}                            Likely class name
+         */
+        getClass ( code )
+        {
+            let _class  = code.match ( /_(\w+)/ ) [ 1 ];
+
+            let _regex  = new RegExp ( '_(line|circle|rectangle|text)', 'g' );
+
+
+            let _result = ( ! [ 'line', 'rectangle', 'circle', 'text' ].includes ( _class ) )
+
+                              ? ( _regex.test ( code ) )
+
+                                    ? code.match ( _regex ) [ 0 ].replace ( '_', '' )
+
+                                    : _class
+
+                              : _class;
+
+
+            return _result.toTitleCase ( );
+        }
+
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
 
         /**
-         * Sets navigation links
-         * @public
-         * @name setNavLinks
+         * Sets the album cards for the current 'Page'
+         * @private
+         * @name _setAlbumCards
          * @function
-         * @param           {HTMLElement}    element            Parent navigation element
-         * @param           {Array.<Object>} links              Array of Objects containing navigation link data
          */
-        setNavLinks ( element, links )
+        _setAlbumCards ( )
         {
-            for ( let _link of links )
-
-                if ( _link.links != null )                  // BUTTONS
-                {
-                    let _button = this._getButton ( _link );
-
-                    let _id     = _button.firstElementChild.getAttribute ( 'data-bs-target' );
-
-                    let _ul     = document.createElement ( 'ul' );
-
-                        _ul.id  = ( _id ) ? _id : String.empty;
-
-                        _ul.classList.add ( 'collapse' );
+            let _cardObjects = TOOL.copyObjectWithKey ( cardObjects );
 
 
-                    element.append ( _button );
-
-                    element.append ( _ul );
+            this.clearScreen ( true );
 
 
-                    this.setNavLinks ( _ul, _link.links );
-                }
-                else                                        // LINKS
-                {
-                    element.classList.add ( 'nav-links' );
+            this._setCardSection  ( _cardObjects );
 
-                    element.append ( this._getLink ( _link ) );
-                }
+            this._evalCardObjects ( _cardObjects );
         }
 
         /**
@@ -2029,17 +2085,17 @@ class Ui
          */
         _setByrneSystemsLogo ( )
         {
-            let _element = document.getElementById ( 'byrne-systems-logo' );
+            let _element = document.querySelector ( '#byrne-systems-logo' );
 
             let _album   = document.querySelector ( '.album' );
 
             let _main    = document.querySelector ( 'main' );
 
-            let _nav     = document.querySelector ( 'nav'  );
+            let _nav     = document.querySelector ( 'nav' );
 
-            let _div     = document.createElement ( 'div'  );
+            let _div     = document.createElement ( 'div' );
 
-            let _image   = document.createElement ( 'img'  );
+            let _image   = document.createElement ( 'img' );
 
             ////    LOGIC    ///////////////////////////////////////////////////
 
@@ -2061,44 +2117,6 @@ class Ui
                 _main.appendChild ( _div   );
 
                 _nav.style.left = '0px';
-        }
-
-        /**
-         * Sets image path for passed card-objects
-         * @private
-         * @name _setImagePath
-         * @function
-         * @param           {Array.<Object>} objects            Array of card-objects
-         */
-        _setImagePath ( objects )
-        {
-            let _page = PAGE.type.toTitleCase ( );
-
-
-            for ( let _object of objects )
-            {
-                _object.image      = ( [ 'Circle', 'Line', 'Rectangle', 'Text' ].includes ( _page ) ) ? `Object/${_page}` : `Subject/${_page}`;
-
-                _object.objectType = _page;
-
-
-                if ( PAGE.group === 'animation' )
-
-                    [ _object.group, _object.groupType ] = [ `Handler/${PAGE.group.toTitleCase ( )}`, PAGE.group.toTitleCase ( ) ];
-
-
-                if ( PAGE.subgroup === 'easing' )
-                {
-                    let _timing = _object.code.toString ( ).match ( /timing: '([^']+)',/ ) [ 1 ];
-
-                    let _match  = _timing.match ( /(In|Out)/g );
-
-                    let _path   = ( _match.length < 2 ) ? _match [ 0 ] : _match [ 0 ] + _match [ 1 ];
-
-
-                    _object.subgroup = `Handler/Animation/Ease/${_path}/${_timing}`;
-                }
-            }
         }
 
         /**
@@ -2141,32 +2159,21 @@ class Ui
             PAGE = new Page ( _link );
 
 
-            ( cardObjects [ PAGE.group ] [ PAGE.type ] )
+            if ( PAGE.handler )
 
-                ? this._setAlbumCards ( )
+                ( cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] )
 
-                : this._setByrneSystemsLogo ( );
-        }
+                    ? this._setAlbumCards ( )
 
-        /**
-         * Sets the album cards for the current 'Page'
-         * @private
-         * @name _setAlbumCards
-         * @function
-         */
-        _setAlbumCards ( )
-        {
-            let _cardObjects = TOOL.copyObjectWithKey ( cardObjects );
+                    : this._setByrneSystemsLogo ( );
 
+            else
 
-            this.clearScreen        ( true );
+                ( cardObjects [ PAGE.group ] [ PAGE.type ] )
 
-            this._setImagePath      ( _cardObjects );
+                    ? this._setAlbumCards ( )
 
-            this._setCardSection    ( _cardObjects );
-
-
-            this._evalCardObjects   ( _cardObjects );
+                    : this._setByrneSystemsLogo ( );
         }
 
         /**
@@ -2250,115 +2257,81 @@ class Ui
             }
         }
 
+        /**
+         * Sets navigation links
+         * @public
+         * @name setNavLinks
+         * @function
+         * @param           {HTMLElement}    element            Parent navigation element
+         * @param           {Array.<Object>} links              Array of Objects containing navigation link data
+         */
+        setNavLinks ( element, links )
+        {
+            for ( let _link of links )
+
+                if ( _link.links != null )                  // BUTTONS
+                {
+                    let _button = this._getButton ( _link );
+
+                    let _id     = _button.firstElementChild.getAttribute ( 'data-bs-target' );
+
+                    let _ul     = document.createElement ( 'ul' );
+
+                        _ul.id  = ( _id ) ? _id : String.empty;
+
+                        _ul.classList.add ( 'collapse' );
+
+
+                    element.append ( _button );
+
+                    element.append ( _ul );
+
+
+                    this.setNavLinks ( _ul, _link.links );
+                }
+                else                                        // LINKS
+                {
+                    element.classList.add ( 'nav-links' );
+
+                    element.append ( this._getLink ( _link ) );
+                }
+        }
+
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
 
         /**
-         * Displays an alert message within the modal
-         * @public
-         * @name alert
-         * @async
+         * Checks whether ancillary sub animation buttons are collapsible
+         * @private
+         * @name _checkCollapsible
          * @function
-         * @param           {string} message                    Message to display
-         * @param           {string} type                       Type of message; success || failure
+         * @param           {number} index                      Index to check
          */
-        alert ( message, type )
+        _checkCollapsible ( buttons, index )
         {
-            let _wrapper           = document.createElement ( 'div' );
+            if ( ! buttons [ index ].classList.contains ( 'collapsed' ) )
 
-                _wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '<img src="images/svg/General/info-circle.svg" />' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-
-
-                document.getElementById ( 'copiedAlert' ).append ( _wrapper );
+                buttons [ index ].click ( );
         }
 
         /**
-         * Clears screen prior to rebuilding
-         * @public
-         * @name clearScreen
+         * Collapses uncollapsed ancillary buttons, outside of the present button
+         * @private
+         * @name _collapseButtons
          * @function
-         * @param           {boolean} setCardAlbum              Sets card album display to block (true) || none (false)
+         * @param           {string} present                    data-bs-target attribute
          */
-        clearScreen ( setCardAlbum = false )
+        _collapseButtons ( buttons, present )
         {
-            let _markup =
+            for ( let _button of buttons )
             {
-                main:   document.querySelector ( 'main' ),
+                if ( _button.getAttribute ( 'data-bs-target' ) === present )
 
-                album:  document.querySelector ( '.album' ),
-
-                cards:  document.querySelector ( '#test-cards' ),
-
-                logo:   document.querySelector ( '#byrne-systems-logo' ),
-
-                lab:    document.querySelector ( 'main > div.lab-station' ),
-
-                button: document.querySelector ( 'button.lab-station' )
-            }
+                    continue;
 
 
-            initCanvasLab ( );                              // @NOTE: canvasLab doesn't not initialize twice here, if there's already a preexisting 'window.canvasLab' object within the DOM
+                if ( ! _button.classList.contains ( 'collapsed' ) )
 
-
-            if ( _markup.logo ) _markup.logo.remove ( );
-
-
-            _markup.main.style.overflowY = 'auto';
-
-            _markup.album.style.display  = ( setCardAlbum ) ? 'block' : 'none';
-
-            _markup.cards.innerHTML      = '';
-
-            _markup.lab.style.display    = 'none';
-
-
-            _markup.button.firstElementChild.classList.remove ( 'selected' );
-        }
-
-        /**
-         * Returns whether the navigation bar is open
-         * @private
-         * @name _isNavOpen
-         * @function
-         * @return          {boolean}                           True | False
-         */
-        _isNavOpen       = (             ) => ( document.querySelector ( 'nav' ).style.left === '0px' );
-
-        /**
-         * Runs code from within the passed 'cardObjects' param
-         * @private
-         * @name _evalCardObjects
-         * @function
-         * @param           {Array.<Object>} cardObjects        Array of card-objects
-         */
-        _evalCardObjects = ( cardObjects ) => { eval ( this._getCode ( cardObjects ) ); }
-
-        /**
-         * Embeds easing buttons for each animation card
-         * @private
-         * @name _embedEasingButtons
-         * @function
-         */
-        _embedEasingButtons ( )
-        {
-            let _easings = document.querySelectorAll ( '.easing' );
-
-            let _div     = this._createEasingButtons ( );
-
-
-            for ( let _i = 0; _i < _easings.length; _i++ )
-            {
-                let _clonedDiv = _div.cloneNode ( true );
-
-                let _ul        = _clonedDiv.children [ 0 ];
-
-                    _ul.id = _i;
-
-                    _ul.setAttribute ( 'onmouseleave', `devSuite.toggleEasingFunctions ( ${_i} )` );
-
-
-                _easings [ _i ].parentNode.insertBefore ( _clonedDiv, _easings.nextSibling );
-
-                _easings [ _i ].setAttribute ( 'onclick', `devSuite.toggleEasingFunctions ( ${_i} )` );
+                    _button.click ( );
             }
         }
 
@@ -2427,42 +2400,132 @@ class Ui
         }
 
         /**
-         * Checks whether ancillary sub animation buttons are collapsible
+         * Runs code from within the passed 'cardObjects' param
          * @private
-         * @name _checkCollapsible
+         * @name _evalCardObjects
          * @function
-         * @param           {number} index                      Index to check
+         * @param           {Array.<Object>} cardObjects        Array of card-objects
          */
-        _checkCollapsible ( buttons, index )
-        {
-            if ( ! buttons [ index ].classList.contains ( 'collapsed' ) )
-
-                buttons [ index ].click ( );
-        }
+        _evalCardObjects = ( cardObjects ) => { eval ( this._getCode ( cardObjects ) ); }
 
         /**
-         * Collapses uncollapsed ancillary buttons, outside of the present button
+         * Embeds easing buttons for each animation card
          * @private
-         * @name _collapseButtons
+         * @name _embedEasingButtons
          * @function
-         * @param           {string} present                    data-bs-target attribute
          */
-        _collapseButtons ( buttons, present )
+        _embedEasingButtons ( )
         {
-            for ( let _button of buttons )
+            let _easings = document.querySelectorAll ( '.easing' );
+
+            let _div     = this._createEasingButtons ( );
+
+
+            for ( let _i = 0; _i < _easings.length; _i++ )
             {
-                if ( _button.getAttribute ( 'data-bs-target' ) === present )
+                let _clonedDiv = _div.cloneNode ( true );
 
-                    continue;
+                let _ul        = _clonedDiv.children [ 0 ];
+
+                    _ul.id = _i;
+
+                    _ul.setAttribute ( 'onmouseleave', `devSuite.toggleEasingFunctions ( ${_i} )` );
 
 
-                if ( ! _button.classList.contains ( 'collapsed' ) )
+                _easings [ _i ].parentNode.insertBefore ( _clonedDiv, _easings.nextSibling );
 
-                    _button.click ( );
+                _easings [ _i ].setAttribute ( 'onclick', `devSuite.toggleEasingFunctions ( ${_i} )` );
             }
         }
 
+        /**
+         * Returns whether the navigation bar is open
+         * @private
+         * @name _isNavOpen
+         * @function
+         * @return          {boolean}                           True | False
+         */
+        _isNavOpen       = (             ) => ( document.querySelector ( 'nav' ).style.left === '0px' );
+
+        /**
+         * Displays an alert message within the modal
+         * @public
+         * @name alert
+         * @async
+         * @function
+         * @param           {string} message                    Message to display
+         * @param           {string} type                       Type of message; success || failure
+         */
+        alert ( message, type )
+        {
+            let _wrapper           = document.createElement ( 'div' );
+
+                _wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '<img src="images/svg/General/info-circle.svg" />' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+
+                document.getElementById ( 'copiedAlert' ).append ( _wrapper );
+        }
+
+        /**
+         * Clears screen prior to rebuilding
+         * @public
+         * @name clearScreen
+         * @function
+         * @param           {boolean} setCardAlbum              Sets card album display to block (true) || none (false)
+         */
+        clearScreen ( setCardAlbum = false )
+        {
+            let _markup =
+            {
+                main:   document.querySelector ( 'main' ),
+
+                album:  document.querySelector ( '.album' ),
+
+                cards:  document.querySelector ( '#test-cards' ),
+
+                logo:   document.querySelector ( '#byrne-systems-logo' ),
+
+                lab:    document.querySelector ( 'main > div.lab-station' ),
+
+                button: document.querySelector ( 'button.lab-station' )
+            }
+
+
+            initCanvasLab ( );                              // @NOTE: canvasLab doesn't not initialize twice here, if there's already a preexisting 'window.canvasLab' object within the DOM
+
+
+            if ( _markup.logo ) _markup.logo.remove ( );
+
+
+            _markup.main.style.overflowY = 'auto';
+
+            _markup.album.style.display  = ( setCardAlbum ) ? 'block' : 'none';
+
+            _markup.cards.innerHTML      = '';
+
+            _markup.lab.style.display    = 'none';
+
+
+            _markup.button.firstElementChild.classList.remove ( 'selected' );
+        }
+
     ////    INITIALIZER(S)    //////////////////////////////////////////////////////////////////////
+
+        /**
+         * Sets User Interface
+         * @public
+         * @name init
+         * @function
+         */
+        init ( )
+        {
+            ( window ) ? this._setByrneSystemsLogo ( )
+
+                       : console.error ( '[ ERROR ]: window.master is not available !' );
+
+
+            this._setEventListeners ( );
+        }
 
         /**
          * Sets easing animation for an animation card
@@ -2491,26 +2554,10 @@ class Ui
                 _card.code   = eval ( _code );
 
 
-            cardObjects [ PAGE.group ] [ PAGE.type ] [ index ] = _card;
+            cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ index ] = _card;
 
 
             this._setAlbumCards ( );
-        }
-
-        /**
-         * Sets User Interface
-         * @public
-         * @name init
-         * @function
-         */
-        init ( )
-        {
-            ( window ) ? this._setByrneSystemsLogo ( )
-
-                       : console.error ( '[ ERROR ]: window.master is not available !' );
-
-
-            this._setEventListeners ( );
         }
 }
  
@@ -2535,16 +2582,18 @@ class Ui
             line:
             [
                 {
-                    title: 'draw',
-                    text: 'blah... blah... blah...',
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.draw ( );
                     }
                 },
                 {
-                    title: 'stroke type',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke type',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _line.stroke.type = 'solid';
@@ -2553,8 +2602,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke segments',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke segments',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _line.stroke.segments = [ 2, 7, 10 ];
@@ -2563,8 +2613,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _line.stroke.color = new Rgb ( 0,  150,  200 );
@@ -2573,8 +2624,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _line.stroke.color.alpha = 0.25;
@@ -2583,8 +2635,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke width',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke width',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _line.stroke.width = 5;
@@ -2593,8 +2646,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke cap',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke cap',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.stroke.width = 5;
@@ -2605,8 +2659,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: [ 'shadow' ],
                     code: ( ) =>
                     {
                         _line.options.shadow = true;
@@ -2615,8 +2670,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow blur',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow blur',
+                    text:    'blah... blah... blah...',
+                    children: [ 'shadow' ],
                     code: ( ) =>
                     {
                         _line.options.shadow = true;
@@ -2627,8 +2683,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow offset',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow offset',
+                    text:    'blah... blah... blah...',
+                    children: [ 'shadow' ],
                     code: ( ) =>
                     {
                         _line.options.shadow = true;
@@ -2641,8 +2698,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'curve',
-                    text: 'blah... blah... blah...',
+                    title:   'curve',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 0, 75, 0, 0 );
@@ -2651,24 +2709,27 @@ class Ui
                     }
                 },
                 {
-                    title: 'move',
-                    text: 'blah... blah... blah...',
+                    title:   'move',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.move ( 180, 100 );
                     }
                 },
                 {
-                    title: 'rotate',
-                    text: 'blah... blah... blah...',
+                    title:   'rotate',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.rotate ( 45 );
                     }
                 },
                 {
-                    title: 'border',
-                    text: 'blah... blah... blah...',
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _line.options.border = true;
@@ -2677,8 +2738,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'axis',
-                    text: 'blah... blah... blah...',
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _line.options.axis = true;
@@ -2687,8 +2749,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'points',
-                    text: 'blah... blah... blah...',
+                    title:   'points',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _line.options.points = true;
@@ -2697,8 +2760,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'coordinates',
-                    text: 'blah... blah... blah...',
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _line.options.coordinates = true;
@@ -2707,8 +2771,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _line.curve ( 0, -50, -50, 0 );
@@ -2722,16 +2787,18 @@ class Ui
             circle:
             [
                 {
-                    title: 'draw',
-                    text: 'blah... blah... blah...',
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.draw ( );
                     }
                 },
                 {
-                    title: 'radius',
-                    text: 'blah... blah... blah...',
+                    title:   'radius',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.radius = 50;
@@ -2740,8 +2807,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'angle start',
-                    text: 'blah... blah... blah...',
+                    title:   'angle start',
+                    text:    'blah... blah... blah...',
+                    children: [ 'angle' ],
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -2750,8 +2818,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'angle end',
-                    text: 'blah... blah... blah...',
+                    title:   'angle end',
+                    text:    'blah... blah... blah...',
+                    children: [ 'angle' ],
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -2762,8 +2831,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'angle clockwise',
-                    text: 'blah... blah... blah...',
+                    title:   'angle clockwise',
+                    text:    'blah... blah... blah...',
+                    children: [ 'angle' ],
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -2776,8 +2846,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke type',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke type',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _circle.stroke.type = 'solid';
@@ -2786,8 +2857,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke segments',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke segments',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _circle.stroke.segments = [ 2, 4 ];
@@ -2796,8 +2868,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _circle.stroke.color = new Rgb ( 0,  150,  200 );
@@ -2806,8 +2879,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _circle.stroke.color.alpha = 0.25;
@@ -2816,8 +2890,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke width',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke width',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _circle.stroke.width = 5;
@@ -2826,8 +2901,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _circle.fill.color = new Rgb ( 0,  150,  200 );
@@ -2836,8 +2912,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'fill alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _circle.fill.alpha  = 0.25;
@@ -2846,8 +2923,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _circle.options.shadow = true;
@@ -2856,8 +2934,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow blur',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow blur',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _circle.options.shadow = true;
@@ -2868,8 +2947,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow offset',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow offset',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _circle.options.shadow = true;
@@ -2882,24 +2962,27 @@ class Ui
                     }
                 },
                 {
-                    title: 'move',
-                    text: 'blah... blah... blah...',
+                    title:   'move',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.move ( 180, 100 );
                     }
                 },
                 {
-                    title: 'rotate',
-                    text: 'blah... blah... blah...',
+                    title:   'rotate',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.rotate ( 45 );
                     }
                 },
                 {
-                    title: 'border',
-                    text: 'blah... blah... blah...',
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _circle.options.border = true;
@@ -2908,8 +2991,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'axis',
-                    text: 'blah... blah... blah...',
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _circle.options.axis = true;
@@ -2918,8 +3002,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'coordinates',
-                    text: 'blah... blah... blah...',
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _circle.options.coordinates = true;
@@ -2931,16 +3016,18 @@ class Ui
             rectangle:
             [
                 {
-                    title: 'draw',
-                    text: 'blah... blah... blah...',
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.draw ( );
                     }
                 },
                 {
-                    title: 'aspect',
-                    text: 'blah... blah... blah...',
+                    title:   'aspect',
+                    text:    'blah... blah... blah...',
+                    children: [ 'aspect' ],
                     code: ( ) =>
                     {
                         _rectangle.aspect = { width: 200, height: 100 };
@@ -2949,8 +3036,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke type',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke type',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _rectangle.stroke.type = 'solid';
@@ -2959,8 +3047,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke segments',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke segments',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _rectangle.stroke.segments = [ 2, 4 ];
@@ -2969,8 +3058,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _rectangle.stroke.color = new Rgb ( 0,  150,  200 );
@@ -2979,8 +3069,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _rectangle.stroke.alpha = 0.25;
@@ -2989,8 +3080,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke width',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke width',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _rectangle.stroke.width = 5;
@@ -2999,8 +3091,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -3009,8 +3102,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'fill alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _rectangle.fill.alpha = 0.25;
@@ -3019,8 +3113,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _rectangle.options.shadow = true;
@@ -3029,8 +3124,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow blur',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow blur',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _rectangle.options.shadow = true;
@@ -3041,8 +3137,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow offset',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow offset',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _rectangle.options.shadow = true;
@@ -3055,24 +3152,27 @@ class Ui
                     }
                 },
                 {
-                    title: 'move',
-                    text: 'blah... blah... blah...',
+                    title:   'move',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.move ( 180, 100 );
                     }
                 },
                 {
-                    title: 'rotate',
-                    text: 'blah... blah... blah...',
+                    title:   'rotate',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.rotate ( 45 );
                     }
                 },
                 {
-                    title: 'axis',
-                    text: 'blah... blah... blah...',
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _rectangle.options.axis = true;
@@ -3081,8 +3181,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'border',
-                    text: 'blah... blah... blah...',
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _rectangle.options.border = true;
@@ -3094,16 +3195,18 @@ class Ui
             text:
             [
                 {
-                    title: 'draw',
-                    text: 'blah... blah... blah...',
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.draw ( );
                     }
                 },
                 {
-                    title: 'text',
-                    text: 'blah... blah... blah...',
+                    title:   'text',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.text = '!@#$%^&*'
@@ -3112,8 +3215,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'type',
-                    text: 'blah... blah... blah...',
+                    title:   'type',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.type = 'Courier New';
@@ -3122,8 +3226,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'size',
-                    text: 'blah... blah... blah...',
+                    title:   'size',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.size = 36;
@@ -3132,8 +3237,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'weight',
-                    text: 'blah... blah... blah...',
+                    title:   'weight',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.weight = 'italic';
@@ -3142,8 +3248,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'maxWidth',
-                    text: 'blah... blah... blah...',
+                    title:   'maxWidth',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.maxWidth = 100;
@@ -3152,8 +3259,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'offset',
-                    text: 'blah... blah... blah...',
+                    title:   'offset',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.offset = { x: 0, y: -25 }
@@ -3162,8 +3270,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke type',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke type',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _text.stroke.type = 'solid';
@@ -3172,8 +3281,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke segments',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke segments',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _text.stroke.type = 'solid';
@@ -3184,8 +3294,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.stroke.color = new Rgb ( 0,  150,  200 );
@@ -3194,8 +3305,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.stroke.alpha = 0.25;
@@ -3204,8 +3316,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'stroke width',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke width',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _text.stroke.width = 5;
@@ -3214,8 +3327,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.fill.color = new Rgb ( 0,  150,  200 );
@@ -3224,8 +3338,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'fill alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.fill.alpha  = 0.25;
@@ -3234,8 +3349,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _text.options.shadow = true;
@@ -3244,8 +3360,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow color',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.options.shadow = true;
@@ -3254,8 +3371,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.options.shadow = true;
@@ -3264,8 +3382,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow blur',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow blur',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _text.options.shadow = true;
@@ -3274,8 +3393,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'shadow offset',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow offset',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _text.options.shadow = true;
@@ -3290,8 +3410,9 @@ class Ui
             anchor:
             [
                 {
-                    title: 'Align',
-                    text: 'blah... blah... blah...',
+                    title:   'Align',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -3300,8 +3421,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'Align Top',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Top',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -3312,8 +3434,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'Align Top-Right',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Top-Right',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -3324,8 +3447,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'Align Right',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Right',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -3336,8 +3460,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'Align Bottom-Right',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Bottom-Right',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -3348,8 +3473,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'Align Bottom',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Bottom',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -3360,8 +3486,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'Align Bottom-Left',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Bottom-Left',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -3372,8 +3499,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'Align Left',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Left',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -3384,8 +3512,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'Align Top-Left',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Top-Left',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -3399,8 +3528,9 @@ class Ui
             angle:
             [
                 {
-                    title: 'angle start',
-                    text: 'blah... blah... blah...',
+                    title:   'angle start',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -3409,8 +3539,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'angle end',
-                    text: 'blah... blah... blah...',
+                    title:   'angle end',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -3421,8 +3552,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'angle clockwise',
-                    text: 'blah... blah... blah...',
+                    title:   'angle clockwise',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -3438,8 +3570,9 @@ class Ui
             aspect:
             [
                 {
-                    title: 'aspect',
-                    text: 'blah... blah... blah...',
+                    title:   'aspect',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.aspect = { width: 200, height: 100 };
@@ -3448,8 +3581,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'aspect',
-                    text: 'blah... blah... blah...',
+                    title:   'aspect',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.aspect = { width: 50, height: 100 };
@@ -3458,8 +3592,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'aspect',
-                    text: 'blah... blah... blah...',
+                    title:   'aspect',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.aspect = { width: 50, height: 50 };
@@ -3471,8 +3606,9 @@ class Ui
             controlpoints:
             [
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 0, 50, 0, 0 );
@@ -3483,8 +3619,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 0, 0, 0, -50 );
@@ -3495,8 +3632,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 0, 50, 0, -50 );
@@ -3507,8 +3645,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 90, 0, -90, 0 );
@@ -3519,8 +3658,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 90, -50, -90, 50 );
@@ -3531,8 +3671,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( -90, 50, 90, -50 );
@@ -3543,8 +3684,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( -45, 45, -45, 45 );
@@ -3555,8 +3697,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 45, -45, 45, -45 );
@@ -3570,8 +3713,9 @@ class Ui
             fill:
             [
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.fill.color = new Rgb ( 0,  150,  200 );
@@ -3580,8 +3724,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill linear',
-                    text: 'blah... blah... blah...',
+                    title:   'fill linear',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
@@ -3596,8 +3741,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill radial',
-                    text: 'blah... blah... blah...',
+                    title:   'fill radial',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
@@ -3613,8 +3759,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill conic',
-                    text: 'blah... blah... blah...',
+                    title:   'fill conic',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
@@ -3632,8 +3779,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -3642,8 +3790,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill linear',
-                    text: 'blah... blah... blah...',
+                    title:   'fill linear',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
@@ -3658,8 +3807,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill radial',
-                    text: 'blah... blah... blah...',
+                    title:   'fill radial',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
@@ -3675,8 +3825,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill conic',
-                    text: 'blah... blah... blah...',
+                    title:   'fill conic',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
@@ -3694,8 +3845,9 @@ class Ui
                     },
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.fill.color = new Rgb ( 0,   150, 200, 1 );
@@ -3707,8 +3859,9 @@ class Ui
             shadow:
             [
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -3717,8 +3870,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -3727,8 +3881,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -3737,8 +3892,9 @@ class Ui
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -3750,310 +3906,326 @@ class Ui
         },
         animation:
         {
-            line:
-            [
-                {
-                    title: 'animation',
-                    text: 'easeInSine',
-                    code: ( ) =>
+            object:
+            {
+                line:
+                [
                     {
-                        let _flow =
+                        title: 'animation',
+                        text: 'easeInSine',
+                        code: ( ) =>
                         {
-                            duration: 3000,
-                            timing: 'easeInSine',
-                            draw ( progress )
+                            let _flow =
                             {
-                                _line.rotate ( progress * 500 );
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _line.rotate ( progress * 500 );
+                                }
                             }
-                        }
 
-                        canvaslab.animate ( _flow );
-                        canvaslab.animate ( _flow );
-                    }
-                },
-            ],
-            anchor:
-            [
-                {
-                    title: 'Align',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            canvaslab.animate ( _flow );
+                        }
+                    },
+                ],
+            },
+            subject:
+            {
+                anchor:
+                [
                     {
-                        _rectangle.options.anchor = true;
-
-                        let _flow =
+                        title:   'Align',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 3000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _rectangle.rotate ( progress * 500 );
-                            }
-                        }
+                            _rectangle.options.anchor = true;
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-            ],
-            fill:
-            [
-                {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            let _flow =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
+                ],
+                fill:
+                [
                     {
-                        _circle.fill.color = new Rgb ( 0,  0,  0 );
-
-                        let _flow =
+                        title:   'fill color',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _circle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
-                            }
-                        }
+                            _circle.fill.color = new Rgb ( 0,  0,  0 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill linear',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
-
-                        _circle.fill.gradient.stops =
-                        [
-                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
-                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill linear',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _circle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
-                            }
-                        }
+                            _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill radial',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _circle.fill.gradient.stops =
+                            [
+                                { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                                { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _circle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
-
-                        _circle.fill.gradient.stops =
-                        [
-                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
-                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
-                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill radial',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
-                                _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
-                                _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
-                            }
-                        }
+                            _circle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill conic',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _circle.fill.gradient.stops =
+                            [
+                                { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                                { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                                { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
+                                    _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
+                                    _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _circle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
-
-                        _circle.fill.gradient.stops =
-                        [
-                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
-                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
-                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
-                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
-                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill conic',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
-                                _circle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
-                                _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
-                                _circle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
-                                _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
-                            }
-                        }
+                            _circle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _circle.fill.gradient.stops =
+                            [
+                                { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                                { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                                { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                                { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                                { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
+                                    _circle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
+                                    _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
+                                    _circle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
+                                    _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _rectangle.fill.color = new Rgb ( 0,  0,  0 );
-
-                        let _flow =
+                        title:   'fill color',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _rectangle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
-                            }
-                        }
+                            _rectangle.fill.color = new Rgb ( 0,  0,  0 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill linear',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
-
-                        _rectangle.fill.gradient.stops =
-                        [
-                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
-                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill linear',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _rectangle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
-                            }
-                        }
+                            _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill radial',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _rectangle.fill.gradient.stops =
+                            [
+                                { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                                { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _rectangle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
-
-                        _rectangle.fill.gradient.stops =
-                        [
-                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
-                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
-                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill radial',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
-                                _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
-                                _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
-                            }
-                        }
+                            _rectangle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill conic',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _rectangle.fill.gradient.stops =
+                            [
+                                { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                                { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                                { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
+                                    _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
+                                    _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _rectangle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
-
-                        _rectangle.fill.gradient.stops =
-                        [
-                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
-                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
-                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
-                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
-                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill conic',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
-                                _rectangle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
-                                _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
-                                _rectangle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
-                                _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
-                            }
-                        }
+                            _rectangle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _rectangle.fill.gradient.stops =
+                            [
+                                { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                                { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                                { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                                { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                                { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
+                                    _rectangle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
+                                    _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
+                                    _rectangle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
+                                    _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _line.stroke.color = new Rgb ( 0,  150,  200 );
-
-                        let _flow =
+                        title:   'stroke color',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _line.strokeColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
-                            }
-                        }
+                            _line.stroke.color = new Rgb ( 0,  150,  200 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _line.strokeColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _text.fill.color = new Rgb ( 0,  150,  200 );
-
-                        let _flow =
+                        title:   'stroke color',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _text.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
-                            }
-                        }
+                            _text.fill.color = new Rgb ( 0,  150,  200 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-            ],
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _text.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
+                ],
+            }
         }
     }
 
@@ -4203,16 +4375,31 @@ class Ui
                     links:
                     [
                         {
-                            title: 'Line',
-                            group: 'Animation'
+                            title: 'Objects',
+                            links:
+                            [
+                                {
+                                    title:   'Line',
+                                    group:   'Object',
+                                    handler: 'Animation'
+                                }
+                            ]
                         },
                         {
-                            title: 'Anchor',
-                            group: 'Animation'
-                        },
-                        {
-                            title: 'Fill',
-                            group: 'Animation'
+                            title: 'Subjects',
+                            links:
+                            [
+                                {
+                                    title:   'Anchor',
+                                    group:   'Subject',
+                                    handler: 'Animation'
+                                },
+                                {
+                                    title:   'Fill',
+                                    group:   'Subject',
+                                    handler: 'Animation'
+                                }
+                            ]
                         },
                     ]
                 },

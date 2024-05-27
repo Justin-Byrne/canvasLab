@@ -2,13 +2,13 @@
  * @class           {Object} Page                       Page for parsing page types
  * @property        {string} type                       Page's type
  * @property        {string} group                      Page's group
- * @property        {string} subgroup                   Page's subgroup
+ * @property        {string} handler                    Page's handler
  */
 class Page
 {
     _type     = undefined;
     _group    = undefined;
-    _subgroup = undefined;
+    _handler  = undefined;
 
     /**
      * Creates a page
@@ -35,7 +35,7 @@ class Page
 
         /**
          * Gets type
-         * @public
+         * @readOnly
          * @name type
          * @function
          * @return          {string}                            Page's type
@@ -61,7 +61,7 @@ class Page
 
         /**
          * Gets group
-         * @public
+         * @readOnly
          * @name group
          * @function
          * @return          {string}                            Page's group
@@ -71,30 +71,30 @@ class Page
             return this._group;
         }
 
-    ////    [ SUBGROUP ]    ////////////////////////////////////////////////////
+    ////    [ HANDLER ]    /////////////////////////////////////////////////////
 
         /**
-         * Sets subgroup
+         * Sets handler
          * @public
-         * @name subgroup
+         * @name handler
          * @function
-         * @param           {string} value                      Page's subgroup
+         * @param           {string} value                      Page's handler
          */
-        set subgroup ( value )
+        set handler ( value )
         {
-            this._subgroup = ( typeof value === 'string' ) ? value : this._subgroup;
+            this._handler = ( typeof value === 'string' ) ? value : this._handler;
         }
 
         /**
-         * Gets subgroup
-         * @public
-         * @name subgroup
+         * Gets handler
+         * @readOnly
+         * @name handler
          * @function
-         * @return          {string}                            Page's subgroup
+         * @return          {string}                            Page's handler
          */
-        get subgroup ( )
+        get handler ( )
         {
-            return this._subgroup;
+            return this._handler;
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////
@@ -110,16 +110,24 @@ class Page
         {
             let _match = button.href.match ( /#(\w+)/g ) [ 0 ];
 
+            let _regex =
+            {
+                group:   new RegExp ( /(Object|Subject)/ ),
+
+                handler: new RegExp ( /(Processing|Animation)/ )
+            }
+
 
             if ( _match || typeof button === 'object' )
             {
                 let _button   = _match.replace ( '#', '' );
 
-                this.group    = _button.match ( new RegExp ( /(Object|Subject|Animation)/ ) ) [ 0 ].toLowerCase ( );
 
-                this.type     = _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
+                this.handler  = ( _regex.handler.test ( _button ) ) ? _button.match ( _regex.handler ) [ 0 ].toLowerCase ( ) : this.handler;
 
-                this.subgroup = ( this.group === 'animation' ) ? 'easing' : undefined;
+                this.group    = _button.match ( _regex.group ) [ 0 ].toLowerCase ( );
+
+                this.type     = ( this.handler ) ? _button.replace ( this.group.toTitleCase ( ), '' ).replace ( this.handler.toTitleCase ( ), '' ).toLowerCase ( ) : _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
             }
         }
 }

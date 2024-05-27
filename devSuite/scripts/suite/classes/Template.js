@@ -11,65 +11,57 @@ class Template
 
                        <div class="card" id="view_{{index}}" suite-data-code="{{code}}" suite-data-title="{{title}}" onclick="devSuite.toggleCardButton ( event )">
 
-                           <div class="card-number">
+                           <div class="card-header">
 
-                               <span class="close"></span>
+                               <div class="card-header-buttons">
 
-                               <span class="number">{{index}}</span>
+                                   <div class="icons">
 
-                           </div>
+                                       <img src="images/svg/{{childGroup}}/{{childType}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{childType}}" onclick="devSuite.toggleCardButton ( event )">
+
+                                       <img src="images/svg/{{childGroup}}/{{childType}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{childType}}" onclick="devSuite.toggleCardButton ( event )">
+
+                                       <img src="images/svg/{{childGroup}}/{{childType}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{childType}}" onclick="devSuite.toggleCardButton ( event )">
+
+                                       <img src="images/svg/{{childGroup}}/{{childType}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{childType}}" onclick="devSuite.toggleCardButton ( event )">
+
+                                   </div>
+
+                               </div>
+
+                               <div class="title">{{title}}</div>
+
+                               <div class="card-number">
+
+                                   <span class="close"></span>
+
+                                   <span class="number">{{index}}</span>
+
+                               </div>
+
+                           </div> <!-- .card-header -->
 
                            <canvas id="canvas_{{index}}"></canvas>
 
                            <div class="card-body">
 
-                               <div class="card-buttons">
-
-                                   <div class="symbol">
-
-                                       <div class="triangle">
-
-                                           <svg width="16" height="16" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5">
-
-                                               <g transform="matrix(0.927153,0,0,0.880275,0,0)">
-
-                                                   <rect x="0" y="0" width="16" height="16" fill="none"/>
-
-                                                   <g transform="matrix(0.926815,0,0,0.964236,1.12124,0.171773)">
-
-                                                       <g id="Hexagram">
-
-                                                           <path d="M7.417,1L1,12L14,12L7.417,1Z" fill="none" stroke="black" stroke-width="1.15px"/>
-
-                                                       </g>
-
-                                                   </g>
-
-                                               </g>
-
-                                           </svg>
-
-                                       </div>
-
-                                   </div>
-
-                                   <div class="title">{{title}}</div>
+                               <div class="card-body-buttons">
 
                                    <span class="icons">
 
-                                       <img src="images/svg/{{subgroup}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devSuite.toggleCardButton ( event )">
+                                       <img src="images/svg/{{easing}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devSuite.toggleCardButton ( event )">
 
                                        <span class="wall">&nbsp;</span>
 
-                                       <img src="images/svg/{{group}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{groupType}}"  onclick="devSuite.toggleCardButton ( event )">
+                                       <img src="images/svg/Handler/{{handler}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{handler}}"  onclick="devSuite.toggleCardButton ( event )">
 
-                                       <img src="images/svg/{{image}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{objectType}}" onclick="devSuite.toggleCardButton ( event )">
+                                       <img src="images/svg/{{group}}/{{type}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{type}}" onclick="devSuite.toggleCardButton ( event )">
 
                                    </span>
 
                                </div>
 
-                           </div>
+                           </div> <!-- .card-body -->
 
                        </div>
 
@@ -117,10 +109,10 @@ class Template
 
         /**
          * Returns a standard HTML card template
-         * @public
+         * @readOnly
          * @name standard
          * @function
-         * @return          {string}                            HTML card template
+         * @return          {string}                            HTML card standard template
          */
         get standard ( ) { return this._types.standard; }
 
@@ -128,60 +120,31 @@ class Template
 
         /**
          * Returns a blank HTML card template
-         * @public
+         * @readOnly
          * @name blank
          * @function
-         * @return          {string}                            HTML card template
+         * @return          {string}                            HTML card blank template
          */
         get blank ( ) { return this._types.blank; }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
 
         /**
-         * Returns an Array of standard & extra HTML templates for each card-object
-         * @public
-         * @name getCards
-         * @function
-         * @param           {Array.<Object>} cardObjects        Array of card-objects
-         * @return          {Array}                             Array of HTML templates for each card-object
-         */
-        getCards ( cardObjects )
-        {
-            let _cards = this._getStandardTemplates ( cardObjects );
-
-            let _extra = this._getBlankTemplates    ( cardObjects );
-
-
-            return _cards.concat ( _extra );
-        }
-
-        /**
-         * Returns an Array of standard HTML templates for each card-object
+         * Returns the amount of extra cards to embed
          * @private
-         * @name _getStandardTemplates
+         * @name _getBlankCount
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
-         * @return          {Array}                             Array of standard HTML templates for each card-object
+         * @return          {number}                            Amount of extra cards
          */
-        _getStandardTemplates ( cardObjects )
+        _getBlankCount ( cardObjects )
         {
-            let _cards = [ ];
+            let _count     = this._getColumnCount ( );
+
+            let _remainder = cardObjects.length % _count;
 
 
-            for ( let _iter in cardObjects )
-            {
-                let _index      = _iter.to2Digits ( );
-
-                let _template   = this.standard.replace ( /{{index}}/g, _index );
-
-                let _cardObject = cardObjects [ _iter ];
-
-
-                _cards.push ( this._getCodeTemplate ( _cardObject, _template, _index ) );
-            }
-
-
-            return _cards;
+            return _count - _remainder;
         }
 
         /**
@@ -225,15 +188,15 @@ class Template
          * @name _getCodeTemplate
          * @function
          * @param           {Object} cardObject                 Card-object
-         * @param           {string} template                   HTML template for card-object
+         * @param           {string} template                   HTML card template
          * @param           {string} count                      Card-object number
-         * @return          {string}                            Rendered HTML for a card-object
+         * @return          {string}                            HTML card template
          */
         _getCodeTemplate ( cardObject, template, count )
         {
             for ( let _entry in cardObject )
             {
-                if ( _entry === 'code' )                    // Clean: code prior to injection
+                if ( _entry === 'code' )
                 {
                     let _code     = UI.clean.code ( cardObject [ _entry ] );
 
@@ -245,7 +208,7 @@ class Template
                     let _regex    = new RegExp ( _variable, 'g' );
 
 
-                    let _init     = this._initializer [ PAGE.group ] [ _class ];
+                    let _init     = ( PAGE.handler ) ? this._initializer [ PAGE.handler ] [ _class ] : this._initializer [ PAGE.group ] [ _class ];
 
 
                         _code     = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;
@@ -266,7 +229,167 @@ class Template
             }
 
 
-            return UI.clean.imageTags ( template, cardObject );
+            return template;
+        }
+
+        /**
+         * Returns the amount of columns available per the present resolution
+         * @private
+         * @name _getColumnCount
+         * @function
+         * @return          {number}                            Number of columns
+         */
+        _getColumnCount ( )
+        {
+            let _count       = 1;
+
+            let _breakpoints = [ 600, 800, 1200, 1500, 1800, 2100, 2600 ];
+
+            let _windowWidth = window.innerWidth;
+
+
+            for ( let _breakpoint of _breakpoints )
+            {
+                if ( _windowWidth < _breakpoint )
+
+                    return _count;
+
+
+                _count++;
+            }
+        }
+
+        /**
+         * Sets image paths for each card-object passed through the param
+         * @private
+         * @name _setImagePaths
+         * @function
+         * @param           {Object} cardObject                 Card-object
+         */
+        _setImagePaths ( cardObject )
+        {
+            if ( ! cardObject.images )
+
+                cardObject.images = new Object;
+
+
+            // Type
+            cardObject.images.type = PAGE.type.toTitleCase ( );
+
+
+            // Handler
+            switch ( PAGE.handler )
+            {
+                case 'animation':
+
+                    let _timing = cardObject.code.toString ( ).match ( /timing: '([^']+)',/ ) [ 1 ];
+
+                    let _match  = _timing.match ( /(In|Out)/g );
+
+                    let _path   = ( _match.length < 2 ) ? _match [ 0 ] : _match [ 0 ] + _match [ 1 ];
+
+
+                    cardObject.images.easing  = `Handler/${PAGE.handler.toTitleCase ( )}/Ease/${_path}/${_timing}`;
+
+                    cardObject.images.handler = PAGE.handler.toTitleCase ( );
+
+                    break;
+            }
+
+            // Children
+            if ( cardObject.children )
+            {
+                cardObject.images.children = new Array;
+
+
+                for ( let _child of cardObject.children )
+
+                    cardObject.images.children.push ( _child.toTitleCase ( ) );
+            }
+        }
+
+        /**
+         * Return a template with the appropriate canvasLab images embedded
+         * @private
+         * @name _getImages
+         * @param           {Object} cardObject                 Card-object
+         * @param           {string} template                   HTML card template
+         */
+        _getImages ( cardObject, template )
+        {
+            this._setImagePaths ( cardObject );
+
+
+            if ( cardObject.images )
+            {
+                for ( let _entry in cardObject.images )
+                {
+                    let _type = cardObject.images [ _entry ];
+
+
+                    switch ( _entry )
+                    {
+                        case 'easing':      template = template.replace ( /{{easing}}/, _type );        break;
+
+                        case 'handler':     template = template.replace ( /{{handler}}/, _type ).replace ( /{{handler}}/, _type );       break;
+
+                        case 'children':
+
+                            for ( let _childType of _type )
+                            {
+                                let _childGroup = TOOL.isCanvasLabObject ( _childType ) ? 'Object' : 'Subject';
+
+                                template        = template.replace ( /{{childGroup}}/, _childGroup ).replace ( /{{childType}}/, _childType ).replace ( /{{childType}}/, _childType );
+                            }
+
+                            break;
+
+                        default:
+
+                            let _group = TOOL.isCanvasLabObject ( _type ) ? 'Object' : 'Subject';
+
+                            template = template.replace ( /{{group}}/, _group ).replace ( /{{type}}/, _type ).replace ( /{{type}}/, _type );
+                    }
+                }
+            }
+
+            // Clean remaining unused image tags
+            template = template.replaceAll ( new RegExp ( '<img src="images/svg(/Handler)?/{{[^>]+>', 'g' ), '' );
+
+
+            return template;
+        }
+
+        /**
+         * Returns an Array of standard HTML templates for each card-object
+         * @private
+         * @name _getStandardTemplates
+         * @function
+         * @param           {Array.<Object>} cardObjects        Array of card-objects
+         * @return          {Array}                             Array of standard HTML templates for each card-object
+         */
+        _getStandardTemplates ( cardObjects )
+        {
+            let _cards = [ ];
+
+
+            for ( let _iter in cardObjects )
+            {
+                let _index      = _iter.to2Digits ( );
+
+                let _cardObject = cardObjects [ _iter ];
+
+
+                let _template = this.standard.replace ( /{{index}}/g, _index );
+
+                    _template = this._getImages ( _cardObject, _template );
+
+
+                _cards.push ( this._getCodeTemplate ( _cardObject, _template, _index ) );
+            }
+
+
+            return _cards;
         }
 
         /**
@@ -323,47 +446,20 @@ class Template
         }
 
         /**
-         * Returns the amount of columns available per the present resolution
-         * @private
-         * @name _getColumnCount
-         * @function
-         * @return          {number}                            Number of columns
-         */
-        _getColumnCount ( )
-        {
-            let _count       = 1;
-
-            let _breakpoints = [ 600, 800, 1200, 1500, 1800, 2100, 2600 ];
-
-            let _windowWidth = window.innerWidth;
-
-
-            for ( let _breakpoint of _breakpoints )
-            {
-                if ( _windowWidth < _breakpoint )
-
-                    return _count;
-
-
-                _count++;
-            }
-        }
-
-        /**
-         * Returns the amount of extra cards to embed
-         * @private
-         * @name _getBlankCount
+         * Returns an Array of standard & extra HTML templates for each card-object
+         * @public
+         * @name getCards
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
-         * @return          {number}                            Amount of extra cards
+         * @return          {Array}                             Array of HTML templates for each card-object
          */
-        _getBlankCount ( cardObjects )
+        getCards ( cardObjects )
         {
-            let _count     = this._getColumnCount ( );
+            let _cards = this._getStandardTemplates ( cardObjects );
 
-            let _remainder = cardObjects.length % _count;
+            let _extra = this._getBlankTemplates    ( cardObjects );
 
 
-            return _count - _remainder;
+            return _cards.concat ( _extra );
         }
 }

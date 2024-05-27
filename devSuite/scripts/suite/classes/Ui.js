@@ -310,12 +310,12 @@ class Ui
          */
         _cardPlus ( element )
         {
-            let _card = cardObjects [ PAGE.group ] [ PAGE.type ].length - 1;
+            let _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length - 1;
 
-                _card = cardObjects [ PAGE.group ] [ PAGE.type ] [ _card ];
+                _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ _card ];
 
 
-            cardObjects [ PAGE.group ] [ PAGE.type ].push ( _card );
+            cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].push ( _card );
 
 
             UI._setAlbumCards ( );
@@ -338,9 +338,9 @@ class Ui
                 let _cardNumber = Number ( element.nextElementSibling.innerHTML );
 
 
-                if ( cardObjects [ PAGE.group ] [ PAGE.type ].length > 1 )
+                if ( cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length > 1 )
 
-                     cardObjects [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
+                     cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
 
 
                 UI._setAlbumCards ( );
@@ -415,33 +415,6 @@ class Ui
         },
 
         /**
-         * Trims left over image tags from the standard card template
-         * @public
-         * @name imageTags
-         * @function
-         * @param           {string} template                   HTML template for card-object
-         * @param           {Object} cardObject                 Card-object
-         * @return          {string}                            HTML template for card-object
-         */
-        imageTags ( template, cardObject )
-        {
-            let _imageTags = [ 'group', 'subgroup' ];
-
-
-            for ( let _imageTag of _imageTags )
-
-                template = ( cardObject [ _imageTag ] === undefined )
-
-                               ? template.replace ( new RegExp ( `<img[^\{]+{{${_imageTag}[^>]+>` ), '' )
-                                         .replace ( new RegExp ( '<span class="separator">[^>]+>' ), '' )
-
-                               : template;
-
-
-            return template;
-        },
-
-        /**
          * Cleans the remaining '.blank' cards while converting the first to a '.plus' card; @see Ui.toggle._cardPlus ( )
          * @public
          * @name blankCards
@@ -456,7 +429,7 @@ class Ui
             let _count = 0;
 
 
-            if ( PAGE.group === 'animation' )
+            if ( PAGE.handler === 'animation' )
 
                 for ( let _card of _cards )
                 {
@@ -514,56 +487,6 @@ class Ui
     ////    GETTERS    /////////////////////////////////////////////////////////////////////////////
 
         /**
-         * Returns the likely class name for the passed code
-         * @public
-         * @name getClass
-         * @function
-         * @param           {string} code                       Code string
-         * @return          {string}                            Likely class name
-         */
-        getClass ( code )
-        {
-            let _class  = code.match ( /_(\w+)/ ) [ 1 ];
-
-            let _regex  = new RegExp ( '_(line|circle|rectangle|text)', 'g' );
-
-
-            let _result = ( ! [ 'line', 'rectangle', 'circle', 'text' ].includes ( _class ) )
-
-                              ? ( _regex.test ( code ) )
-
-                                    ? code.match ( _regex ) [ 0 ].replace ( '_', '' )
-
-                                    : _class
-
-                              : _class;
-
-
-            return _result.toTitleCase ( );
-        }
-
-        /**
-         * Returns eval ready code for passed card-objects
-         * @private
-         * @name _getCode
-         * @function
-         * @param           {Array.<Object>} objects            Array of card-objects
-         * @return          {string}                            String to be evaluated for all card-objects
-         */
-        _getCode ( objects )
-        {
-            let _codes = [ ]
-
-
-            for ( let _object of objects )
-
-                _codes.push ( `////    ${_object.title}    //////////////////////////\n\n${_object.code}` );
-
-
-            return `( ( window ) =>\n{\n${_codes.join ( '\n\n' )}\n\n} ) ( window );`
-        }
-
-        /**
          * Returns a button for navigation links
          * @private
          * @name _getButton
@@ -597,6 +520,27 @@ class Ui
         }
 
         /**
+         * Returns eval ready code for passed card-objects
+         * @private
+         * @name _getCode
+         * @function
+         * @param           {Array.<Object>} objects            Array of card-objects
+         * @return          {string}                            String to be evaluated for all card-objects
+         */
+        _getCode ( objects )
+        {
+            let _codes = [ ]
+
+
+            for ( let _object of objects )
+
+                _codes.push ( `////    ${_object.title}    //////////////////////////\n\n${_object.code}` );
+
+
+            return `( ( window ) =>\n{\n${_codes.join ( '\n\n' )}\n\n} ) ( window );`
+        }
+
+        /**
          * Returns a link for navigation links
          * @private
          * @name _getLink
@@ -615,7 +559,7 @@ class Ui
             let _icon = ( link.group === 'Animation' ) ? ( TOOL.isCanvasLabObject ( link.title ) ) ? 'Object' : 'Subject' : link.group;
 
 
-                _a.href      = `#${link.group}${link.title}`;
+                _a.href      = ( link.handler ) ? `#${link.handler}${link.group}${link.title}` : `#${link.group}${link.title}`;
 
                 _a.innerHTML = link.title;
 
@@ -633,46 +577,54 @@ class Ui
             return _li;
         }
 
+        /**
+         * Returns the likely class name for the passed code
+         * @public
+         * @name getClass
+         * @function
+         * @param           {string} code                       Code string
+         * @return          {string}                            Likely class name
+         */
+        getClass ( code )
+        {
+            let _class  = code.match ( /_(\w+)/ ) [ 1 ];
+
+            let _regex  = new RegExp ( '_(line|circle|rectangle|text)', 'g' );
+
+
+            let _result = ( ! [ 'line', 'rectangle', 'circle', 'text' ].includes ( _class ) )
+
+                              ? ( _regex.test ( code ) )
+
+                                    ? code.match ( _regex ) [ 0 ].replace ( '_', '' )
+
+                                    : _class
+
+                              : _class;
+
+
+            return _result.toTitleCase ( );
+        }
+
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
 
         /**
-         * Sets navigation links
-         * @public
-         * @name setNavLinks
+         * Sets the album cards for the current 'Page'
+         * @private
+         * @name _setAlbumCards
          * @function
-         * @param           {HTMLElement}    element            Parent navigation element
-         * @param           {Array.<Object>} links              Array of Objects containing navigation link data
          */
-        setNavLinks ( element, links )
+        _setAlbumCards ( )
         {
-            for ( let _link of links )
-
-                if ( _link.links != null )                  // BUTTONS
-                {
-                    let _button = this._getButton ( _link );
-
-                    let _id     = _button.firstElementChild.getAttribute ( 'data-bs-target' );
-
-                    let _ul     = document.createElement ( 'ul' );
-
-                        _ul.id  = ( _id ) ? _id : String.empty;
-
-                        _ul.classList.add ( 'collapse' );
+            let _cardObjects = TOOL.copyObjectWithKey ( cardObjects );
 
 
-                    element.append ( _button );
-
-                    element.append ( _ul );
+            this.clearScreen ( true );
 
 
-                    this.setNavLinks ( _ul, _link.links );
-                }
-                else                                        // LINKS
-                {
-                    element.classList.add ( 'nav-links' );
+            this._setCardSection  ( _cardObjects );
 
-                    element.append ( this._getLink ( _link ) );
-                }
+            this._evalCardObjects ( _cardObjects );
         }
 
         /**
@@ -683,17 +635,17 @@ class Ui
          */
         _setByrneSystemsLogo ( )
         {
-            let _element = document.getElementById ( 'byrne-systems-logo' );
+            let _element = document.querySelector ( '#byrne-systems-logo' );
 
             let _album   = document.querySelector ( '.album' );
 
             let _main    = document.querySelector ( 'main' );
 
-            let _nav     = document.querySelector ( 'nav'  );
+            let _nav     = document.querySelector ( 'nav' );
 
-            let _div     = document.createElement ( 'div'  );
+            let _div     = document.createElement ( 'div' );
 
-            let _image   = document.createElement ( 'img'  );
+            let _image   = document.createElement ( 'img' );
 
             ////    LOGIC    ///////////////////////////////////////////////////
 
@@ -715,44 +667,6 @@ class Ui
                 _main.appendChild ( _div   );
 
                 _nav.style.left = '0px';
-        }
-
-        /**
-         * Sets image path for passed card-objects
-         * @private
-         * @name _setImagePath
-         * @function
-         * @param           {Array.<Object>} objects            Array of card-objects
-         */
-        _setImagePath ( objects )
-        {
-            let _page = PAGE.type.toTitleCase ( );
-
-
-            for ( let _object of objects )
-            {
-                _object.image      = ( [ 'Circle', 'Line', 'Rectangle', 'Text' ].includes ( _page ) ) ? `Object/${_page}` : `Subject/${_page}`;
-
-                _object.objectType = _page;
-
-
-                if ( PAGE.group === 'animation' )
-
-                    [ _object.group, _object.groupType ] = [ `Handler/${PAGE.group.toTitleCase ( )}`, PAGE.group.toTitleCase ( ) ];
-
-
-                if ( PAGE.subgroup === 'easing' )
-                {
-                    let _timing = _object.code.toString ( ).match ( /timing: '([^']+)',/ ) [ 1 ];
-
-                    let _match  = _timing.match ( /(In|Out)/g );
-
-                    let _path   = ( _match.length < 2 ) ? _match [ 0 ] : _match [ 0 ] + _match [ 1 ];
-
-
-                    _object.subgroup = `Handler/Animation/Ease/${_path}/${_timing}`;
-                }
-            }
         }
 
         /**
@@ -795,32 +709,21 @@ class Ui
             PAGE = new Page ( _link );
 
 
-            ( cardObjects [ PAGE.group ] [ PAGE.type ] )
+            if ( PAGE.handler )
 
-                ? this._setAlbumCards ( )
+                ( cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] )
 
-                : this._setByrneSystemsLogo ( );
-        }
+                    ? this._setAlbumCards ( )
 
-        /**
-         * Sets the album cards for the current 'Page'
-         * @private
-         * @name _setAlbumCards
-         * @function
-         */
-        _setAlbumCards ( )
-        {
-            let _cardObjects = TOOL.copyObjectWithKey ( cardObjects );
+                    : this._setByrneSystemsLogo ( );
 
+            else
 
-            this.clearScreen        ( true );
+                ( cardObjects [ PAGE.group ] [ PAGE.type ] )
 
-            this._setImagePath      ( _cardObjects );
+                    ? this._setAlbumCards ( )
 
-            this._setCardSection    ( _cardObjects );
-
-
-            this._evalCardObjects   ( _cardObjects );
+                    : this._setByrneSystemsLogo ( );
         }
 
         /**
@@ -904,115 +807,81 @@ class Ui
             }
         }
 
+        /**
+         * Sets navigation links
+         * @public
+         * @name setNavLinks
+         * @function
+         * @param           {HTMLElement}    element            Parent navigation element
+         * @param           {Array.<Object>} links              Array of Objects containing navigation link data
+         */
+        setNavLinks ( element, links )
+        {
+            for ( let _link of links )
+
+                if ( _link.links != null )                  // BUTTONS
+                {
+                    let _button = this._getButton ( _link );
+
+                    let _id     = _button.firstElementChild.getAttribute ( 'data-bs-target' );
+
+                    let _ul     = document.createElement ( 'ul' );
+
+                        _ul.id  = ( _id ) ? _id : String.empty;
+
+                        _ul.classList.add ( 'collapse' );
+
+
+                    element.append ( _button );
+
+                    element.append ( _ul );
+
+
+                    this.setNavLinks ( _ul, _link.links );
+                }
+                else                                        // LINKS
+                {
+                    element.classList.add ( 'nav-links' );
+
+                    element.append ( this._getLink ( _link ) );
+                }
+        }
+
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
 
         /**
-         * Displays an alert message within the modal
-         * @public
-         * @name alert
-         * @async
+         * Checks whether ancillary sub animation buttons are collapsible
+         * @private
+         * @name _checkCollapsible
          * @function
-         * @param           {string} message                    Message to display
-         * @param           {string} type                       Type of message; success || failure
+         * @param           {number} index                      Index to check
          */
-        alert ( message, type )
+        _checkCollapsible ( buttons, index )
         {
-            let _wrapper           = document.createElement ( 'div' );
+            if ( ! buttons [ index ].classList.contains ( 'collapsed' ) )
 
-                _wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '<img src="images/svg/General/info-circle.svg" />' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-
-
-                document.getElementById ( 'copiedAlert' ).append ( _wrapper );
+                buttons [ index ].click ( );
         }
 
         /**
-         * Clears screen prior to rebuilding
-         * @public
-         * @name clearScreen
+         * Collapses uncollapsed ancillary buttons, outside of the present button
+         * @private
+         * @name _collapseButtons
          * @function
-         * @param           {boolean} setCardAlbum              Sets card album display to block (true) || none (false)
+         * @param           {string} present                    data-bs-target attribute
          */
-        clearScreen ( setCardAlbum = false )
+        _collapseButtons ( buttons, present )
         {
-            let _markup =
+            for ( let _button of buttons )
             {
-                main:   document.querySelector ( 'main' ),
+                if ( _button.getAttribute ( 'data-bs-target' ) === present )
 
-                album:  document.querySelector ( '.album' ),
-
-                cards:  document.querySelector ( '#test-cards' ),
-
-                logo:   document.querySelector ( '#byrne-systems-logo' ),
-
-                lab:    document.querySelector ( 'main > div.lab-station' ),
-
-                button: document.querySelector ( 'button.lab-station' )
-            }
+                    continue;
 
 
-            initCanvasLab ( );                              // @NOTE: canvasLab doesn't not initialize twice here, if there's already a preexisting 'window.canvasLab' object within the DOM
+                if ( ! _button.classList.contains ( 'collapsed' ) )
 
-
-            if ( _markup.logo ) _markup.logo.remove ( );
-
-
-            _markup.main.style.overflowY = 'auto';
-
-            _markup.album.style.display  = ( setCardAlbum ) ? 'block' : 'none';
-
-            _markup.cards.innerHTML      = '';
-
-            _markup.lab.style.display    = 'none';
-
-
-            _markup.button.firstElementChild.classList.remove ( 'selected' );
-        }
-
-        /**
-         * Returns whether the navigation bar is open
-         * @private
-         * @name _isNavOpen
-         * @function
-         * @return          {boolean}                           True | False
-         */
-        _isNavOpen       = (             ) => ( document.querySelector ( 'nav' ).style.left === '0px' );
-
-        /**
-         * Runs code from within the passed 'cardObjects' param
-         * @private
-         * @name _evalCardObjects
-         * @function
-         * @param           {Array.<Object>} cardObjects        Array of card-objects
-         */
-        _evalCardObjects = ( cardObjects ) => { eval ( this._getCode ( cardObjects ) ); }
-
-        /**
-         * Embeds easing buttons for each animation card
-         * @private
-         * @name _embedEasingButtons
-         * @function
-         */
-        _embedEasingButtons ( )
-        {
-            let _easings = document.querySelectorAll ( '.easing' );
-
-            let _div     = this._createEasingButtons ( );
-
-
-            for ( let _i = 0; _i < _easings.length; _i++ )
-            {
-                let _clonedDiv = _div.cloneNode ( true );
-
-                let _ul        = _clonedDiv.children [ 0 ];
-
-                    _ul.id = _i;
-
-                    _ul.setAttribute ( 'onmouseleave', `devSuite.toggleEasingFunctions ( ${_i} )` );
-
-
-                _easings [ _i ].parentNode.insertBefore ( _clonedDiv, _easings.nextSibling );
-
-                _easings [ _i ].setAttribute ( 'onclick', `devSuite.toggleEasingFunctions ( ${_i} )` );
+                    _button.click ( );
             }
         }
 
@@ -1081,42 +950,132 @@ class Ui
         }
 
         /**
-         * Checks whether ancillary sub animation buttons are collapsible
+         * Runs code from within the passed 'cardObjects' param
          * @private
-         * @name _checkCollapsible
+         * @name _evalCardObjects
          * @function
-         * @param           {number} index                      Index to check
+         * @param           {Array.<Object>} cardObjects        Array of card-objects
          */
-        _checkCollapsible ( buttons, index )
-        {
-            if ( ! buttons [ index ].classList.contains ( 'collapsed' ) )
-
-                buttons [ index ].click ( );
-        }
+        _evalCardObjects = ( cardObjects ) => { eval ( this._getCode ( cardObjects ) ); }
 
         /**
-         * Collapses uncollapsed ancillary buttons, outside of the present button
+         * Embeds easing buttons for each animation card
          * @private
-         * @name _collapseButtons
+         * @name _embedEasingButtons
          * @function
-         * @param           {string} present                    data-bs-target attribute
          */
-        _collapseButtons ( buttons, present )
+        _embedEasingButtons ( )
         {
-            for ( let _button of buttons )
+            let _easings = document.querySelectorAll ( '.easing' );
+
+            let _div     = this._createEasingButtons ( );
+
+
+            for ( let _i = 0; _i < _easings.length; _i++ )
             {
-                if ( _button.getAttribute ( 'data-bs-target' ) === present )
+                let _clonedDiv = _div.cloneNode ( true );
 
-                    continue;
+                let _ul        = _clonedDiv.children [ 0 ];
+
+                    _ul.id = _i;
+
+                    _ul.setAttribute ( 'onmouseleave', `devSuite.toggleEasingFunctions ( ${_i} )` );
 
 
-                if ( ! _button.classList.contains ( 'collapsed' ) )
+                _easings [ _i ].parentNode.insertBefore ( _clonedDiv, _easings.nextSibling );
 
-                    _button.click ( );
+                _easings [ _i ].setAttribute ( 'onclick', `devSuite.toggleEasingFunctions ( ${_i} )` );
             }
         }
 
+        /**
+         * Returns whether the navigation bar is open
+         * @private
+         * @name _isNavOpen
+         * @function
+         * @return          {boolean}                           True | False
+         */
+        _isNavOpen       = (             ) => ( document.querySelector ( 'nav' ).style.left === '0px' );
+
+        /**
+         * Displays an alert message within the modal
+         * @public
+         * @name alert
+         * @async
+         * @function
+         * @param           {string} message                    Message to display
+         * @param           {string} type                       Type of message; success || failure
+         */
+        alert ( message, type )
+        {
+            let _wrapper           = document.createElement ( 'div' );
+
+                _wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + '<img src="images/svg/General/info-circle.svg" />' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+
+                document.getElementById ( 'copiedAlert' ).append ( _wrapper );
+        }
+
+        /**
+         * Clears screen prior to rebuilding
+         * @public
+         * @name clearScreen
+         * @function
+         * @param           {boolean} setCardAlbum              Sets card album display to block (true) || none (false)
+         */
+        clearScreen ( setCardAlbum = false )
+        {
+            let _markup =
+            {
+                main:   document.querySelector ( 'main' ),
+
+                album:  document.querySelector ( '.album' ),
+
+                cards:  document.querySelector ( '#test-cards' ),
+
+                logo:   document.querySelector ( '#byrne-systems-logo' ),
+
+                lab:    document.querySelector ( 'main > div.lab-station' ),
+
+                button: document.querySelector ( 'button.lab-station' )
+            }
+
+
+            initCanvasLab ( );                              // @NOTE: canvasLab doesn't not initialize twice here, if there's already a preexisting 'window.canvasLab' object within the DOM
+
+
+            if ( _markup.logo ) _markup.logo.remove ( );
+
+
+            _markup.main.style.overflowY = 'auto';
+
+            _markup.album.style.display  = ( setCardAlbum ) ? 'block' : 'none';
+
+            _markup.cards.innerHTML      = '';
+
+            _markup.lab.style.display    = 'none';
+
+
+            _markup.button.firstElementChild.classList.remove ( 'selected' );
+        }
+
     ////    INITIALIZER(S)    //////////////////////////////////////////////////////////////////////
+
+        /**
+         * Sets User Interface
+         * @public
+         * @name init
+         * @function
+         */
+        init ( )
+        {
+            ( window ) ? this._setByrneSystemsLogo ( )
+
+                       : console.error ( '[ ERROR ]: window.master is not available !' );
+
+
+            this._setEventListeners ( );
+        }
 
         /**
          * Sets easing animation for an animation card
@@ -1145,25 +1104,9 @@ class Ui
                 _card.code   = eval ( _code );
 
 
-            cardObjects [ PAGE.group ] [ PAGE.type ] [ index ] = _card;
+            cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ index ] = _card;
 
 
             this._setAlbumCards ( );
-        }
-
-        /**
-         * Sets User Interface
-         * @public
-         * @name init
-         * @function
-         */
-        init ( )
-        {
-            ( window ) ? this._setByrneSystemsLogo ( )
-
-                       : console.error ( '[ ERROR ]: window.master is not available !' );
-
-
-            this._setEventListeners ( );
         }
 }

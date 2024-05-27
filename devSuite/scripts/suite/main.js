@@ -19,16 +19,18 @@
             line:
             [
                 {
-                    title: 'draw',
-                    text: 'blah... blah... blah...',
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.draw ( );
                     }
                 },
                 {
-                    title: 'stroke type',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke type',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _line.stroke.type = 'solid';
@@ -37,8 +39,9 @@
                     }
                 },
                 {
-                    title: 'stroke segments',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke segments',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _line.stroke.segments = [ 2, 7, 10 ];
@@ -47,8 +50,9 @@
                     }
                 },
                 {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _line.stroke.color = new Rgb ( 0,  150,  200 );
@@ -57,8 +61,9 @@
                     }
                 },
                 {
-                    title: 'stroke alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _line.stroke.color.alpha = 0.25;
@@ -67,8 +72,9 @@
                     }
                 },
                 {
-                    title: 'stroke width',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke width',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _line.stroke.width = 5;
@@ -77,8 +83,9 @@
                     }
                 },
                 {
-                    title: 'stroke cap',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke cap',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.stroke.width = 5;
@@ -89,8 +96,9 @@
                     }
                 },
                 {
-                    title: 'shadow',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: [ 'shadow' ],
                     code: ( ) =>
                     {
                         _line.options.shadow = true;
@@ -99,8 +107,9 @@
                     }
                 },
                 {
-                    title: 'shadow blur',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow blur',
+                    text:    'blah... blah... blah...',
+                    children: [ 'shadow' ],
                     code: ( ) =>
                     {
                         _line.options.shadow = true;
@@ -111,8 +120,9 @@
                     }
                 },
                 {
-                    title: 'shadow offset',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow offset',
+                    text:    'blah... blah... blah...',
+                    children: [ 'shadow' ],
                     code: ( ) =>
                     {
                         _line.options.shadow = true;
@@ -125,8 +135,9 @@
                     }
                 },
                 {
-                    title: 'curve',
-                    text: 'blah... blah... blah...',
+                    title:   'curve',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 0, 75, 0, 0 );
@@ -135,24 +146,27 @@
                     }
                 },
                 {
-                    title: 'move',
-                    text: 'blah... blah... blah...',
+                    title:   'move',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.move ( 180, 100 );
                     }
                 },
                 {
-                    title: 'rotate',
-                    text: 'blah... blah... blah...',
+                    title:   'rotate',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.rotate ( 45 );
                     }
                 },
                 {
-                    title: 'border',
-                    text: 'blah... blah... blah...',
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _line.options.border = true;
@@ -161,8 +175,9 @@
                     }
                 },
                 {
-                    title: 'axis',
-                    text: 'blah... blah... blah...',
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _line.options.axis = true;
@@ -171,8 +186,9 @@
                     }
                 },
                 {
-                    title: 'points',
-                    text: 'blah... blah... blah...',
+                    title:   'points',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _line.options.points = true;
@@ -181,8 +197,9 @@
                     }
                 },
                 {
-                    title: 'coordinates',
-                    text: 'blah... blah... blah...',
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _line.options.coordinates = true;
@@ -191,8 +208,9 @@
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _line.curve ( 0, -50, -50, 0 );
@@ -206,16 +224,18 @@
             circle:
             [
                 {
-                    title: 'draw',
-                    text: 'blah... blah... blah...',
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.draw ( );
                     }
                 },
                 {
-                    title: 'radius',
-                    text: 'blah... blah... blah...',
+                    title:   'radius',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.radius = 50;
@@ -224,8 +244,9 @@
                     }
                 },
                 {
-                    title: 'angle start',
-                    text: 'blah... blah... blah...',
+                    title:   'angle start',
+                    text:    'blah... blah... blah...',
+                    children: [ 'angle' ],
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -234,8 +255,9 @@
                     }
                 },
                 {
-                    title: 'angle end',
-                    text: 'blah... blah... blah...',
+                    title:   'angle end',
+                    text:    'blah... blah... blah...',
+                    children: [ 'angle' ],
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -246,8 +268,9 @@
                     }
                 },
                 {
-                    title: 'angle clockwise',
-                    text: 'blah... blah... blah...',
+                    title:   'angle clockwise',
+                    text:    'blah... blah... blah...',
+                    children: [ 'angle' ],
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -260,8 +283,9 @@
                     }
                 },
                 {
-                    title: 'stroke type',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke type',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _circle.stroke.type = 'solid';
@@ -270,8 +294,9 @@
                     }
                 },
                 {
-                    title: 'stroke segments',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke segments',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _circle.stroke.segments = [ 2, 4 ];
@@ -280,8 +305,9 @@
                     }
                 },
                 {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _circle.stroke.color = new Rgb ( 0,  150,  200 );
@@ -290,8 +316,9 @@
                     }
                 },
                 {
-                    title: 'stroke alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _circle.stroke.color.alpha = 0.25;
@@ -300,8 +327,9 @@
                     }
                 },
                 {
-                    title: 'stroke width',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke width',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _circle.stroke.width = 5;
@@ -310,8 +338,9 @@
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _circle.fill.color = new Rgb ( 0,  150,  200 );
@@ -320,8 +349,9 @@
                     }
                 },
                 {
-                    title: 'fill alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'fill alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _circle.fill.alpha  = 0.25;
@@ -330,8 +360,9 @@
                     }
                 },
                 {
-                    title: 'shadow',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _circle.options.shadow = true;
@@ -340,8 +371,9 @@
                     }
                 },
                 {
-                    title: 'shadow blur',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow blur',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _circle.options.shadow = true;
@@ -352,8 +384,9 @@
                     }
                 },
                 {
-                    title: 'shadow offset',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow offset',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _circle.options.shadow = true;
@@ -366,24 +399,27 @@
                     }
                 },
                 {
-                    title: 'move',
-                    text: 'blah... blah... blah...',
+                    title:   'move',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.move ( 180, 100 );
                     }
                 },
                 {
-                    title: 'rotate',
-                    text: 'blah... blah... blah...',
+                    title:   'rotate',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.rotate ( 45 );
                     }
                 },
                 {
-                    title: 'border',
-                    text: 'blah... blah... blah...',
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _circle.options.border = true;
@@ -392,8 +428,9 @@
                     }
                 },
                 {
-                    title: 'axis',
-                    text: 'blah... blah... blah...',
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _circle.options.axis = true;
@@ -402,8 +439,9 @@
                     }
                 },
                 {
-                    title: 'coordinates',
-                    text: 'blah... blah... blah...',
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _circle.options.coordinates = true;
@@ -415,16 +453,18 @@
             rectangle:
             [
                 {
-                    title: 'draw',
-                    text: 'blah... blah... blah...',
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.draw ( );
                     }
                 },
                 {
-                    title: 'aspect',
-                    text: 'blah... blah... blah...',
+                    title:   'aspect',
+                    text:    'blah... blah... blah...',
+                    children: [ 'aspect' ],
                     code: ( ) =>
                     {
                         _rectangle.aspect = { width: 200, height: 100 };
@@ -433,8 +473,9 @@
                     }
                 },
                 {
-                    title: 'stroke type',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke type',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _rectangle.stroke.type = 'solid';
@@ -443,8 +484,9 @@
                     }
                 },
                 {
-                    title: 'stroke segments',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke segments',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _rectangle.stroke.segments = [ 2, 4 ];
@@ -453,8 +495,9 @@
                     }
                 },
                 {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _rectangle.stroke.color = new Rgb ( 0,  150,  200 );
@@ -463,8 +506,9 @@
                     }
                 },
                 {
-                    title: 'stroke alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _rectangle.stroke.alpha = 0.25;
@@ -473,8 +517,9 @@
                     }
                 },
                 {
-                    title: 'stroke width',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke width',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _rectangle.stroke.width = 5;
@@ -483,8 +528,9 @@
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -493,8 +539,9 @@
                     }
                 },
                 {
-                    title: 'fill alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'fill alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _rectangle.fill.alpha = 0.25;
@@ -503,8 +550,9 @@
                     }
                 },
                 {
-                    title: 'shadow',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _rectangle.options.shadow = true;
@@ -513,8 +561,9 @@
                     }
                 },
                 {
-                    title: 'shadow blur',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow blur',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _rectangle.options.shadow = true;
@@ -525,8 +574,9 @@
                     }
                 },
                 {
-                    title: 'shadow offset',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow offset',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _rectangle.options.shadow = true;
@@ -539,24 +589,27 @@
                     }
                 },
                 {
-                    title: 'move',
-                    text: 'blah... blah... blah...',
+                    title:   'move',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.move ( 180, 100 );
                     }
                 },
                 {
-                    title: 'rotate',
-                    text: 'blah... blah... blah...',
+                    title:   'rotate',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.rotate ( 45 );
                     }
                 },
                 {
-                    title: 'axis',
-                    text: 'blah... blah... blah...',
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _rectangle.options.axis = true;
@@ -565,8 +618,9 @@
                     }
                 },
                 {
-                    title: 'border',
-                    text: 'blah... blah... blah...',
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _rectangle.options.border = true;
@@ -578,16 +632,18 @@
             text:
             [
                 {
-                    title: 'draw',
-                    text: 'blah... blah... blah...',
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.draw ( );
                     }
                 },
                 {
-                    title: 'text',
-                    text: 'blah... blah... blah...',
+                    title:   'text',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.text = '!@#$%^&*'
@@ -596,8 +652,9 @@
                     }
                 },
                 {
-                    title: 'type',
-                    text: 'blah... blah... blah...',
+                    title:   'type',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.type = 'Courier New';
@@ -606,8 +663,9 @@
                     }
                 },
                 {
-                    title: 'size',
-                    text: 'blah... blah... blah...',
+                    title:   'size',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.size = 36;
@@ -616,8 +674,9 @@
                     }
                 },
                 {
-                    title: 'weight',
-                    text: 'blah... blah... blah...',
+                    title:   'weight',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.weight = 'italic';
@@ -626,8 +685,9 @@
                     }
                 },
                 {
-                    title: 'maxWidth',
-                    text: 'blah... blah... blah...',
+                    title:   'maxWidth',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.maxWidth = 100;
@@ -636,8 +696,9 @@
                     }
                 },
                 {
-                    title: 'offset',
-                    text: 'blah... blah... blah...',
+                    title:   'offset',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.offset = { x: 0, y: -25 }
@@ -646,8 +707,9 @@
                     }
                 },
                 {
-                    title: 'stroke type',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke type',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _text.stroke.type = 'solid';
@@ -656,8 +718,9 @@
                     }
                 },
                 {
-                    title: 'stroke segments',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke segments',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _text.stroke.type = 'solid';
@@ -668,8 +731,9 @@
                     }
                 },
                 {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.stroke.color = new Rgb ( 0,  150,  200 );
@@ -678,8 +742,9 @@
                     }
                 },
                 {
-                    title: 'stroke alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.stroke.alpha = 0.25;
@@ -688,8 +753,9 @@
                     }
                 },
                 {
-                    title: 'stroke width',
-                    text: 'blah... blah... blah...',
+                    title:   'stroke width',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
                     code: ( ) =>
                     {
                         _text.stroke.width = 5;
@@ -698,8 +764,9 @@
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.fill.color = new Rgb ( 0,  150,  200 );
@@ -708,8 +775,9 @@
                     }
                 },
                 {
-                    title: 'fill alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'fill alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.fill.alpha  = 0.25;
@@ -718,8 +786,9 @@
                     }
                 },
                 {
-                    title: 'shadow',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
                     code: ( ) =>
                     {
                         _text.options.shadow = true;
@@ -728,8 +797,9 @@
                     }
                 },
                 {
-                    title: 'shadow color',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow color',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.options.shadow = true;
@@ -738,8 +808,9 @@
                     }
                 },
                 {
-                    title: 'shadow alpha',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow alpha',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow', 'rgb' ],
                     code: ( ) =>
                     {
                         _text.options.shadow = true;
@@ -748,8 +819,9 @@
                     }
                 },
                 {
-                    title: 'shadow blur',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow blur',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _text.options.shadow = true;
@@ -758,8 +830,9 @@
                     }
                 },
                 {
-                    title: 'shadow offset',
-                    text: 'blah... blah... blah...',
+                    title:   'shadow offset',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'shadow' ],
                     code: ( ) =>
                     {
                         _text.options.shadow = true;
@@ -774,8 +847,9 @@
             anchor:
             [
                 {
-                    title: 'Align',
-                    text: 'blah... blah... blah...',
+                    title:   'Align',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -784,8 +858,9 @@
                     }
                 },
                 {
-                    title: 'Align Top',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Top',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -796,8 +871,9 @@
                     }
                 },
                 {
-                    title: 'Align Top-Right',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Top-Right',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -808,8 +884,9 @@
                     }
                 },
                 {
-                    title: 'Align Right',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Right',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -820,8 +897,9 @@
                     }
                 },
                 {
-                    title: 'Align Bottom-Right',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Bottom-Right',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -832,8 +910,9 @@
                     }
                 },
                 {
-                    title: 'Align Bottom',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Bottom',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -844,8 +923,9 @@
                     }
                 },
                 {
-                    title: 'Align Bottom-Left',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Bottom-Left',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -856,8 +936,9 @@
                     }
                 },
                 {
-                    title: 'Align Left',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Left',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -868,8 +949,9 @@
                     }
                 },
                 {
-                    title: 'Align Top-Left',
-                    text: 'blah... blah... blah...',
+                    title:   'Align Top-Left',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.options.anchor = true;
@@ -883,8 +965,9 @@
             angle:
             [
                 {
-                    title: 'angle start',
-                    text: 'blah... blah... blah...',
+                    title:   'angle start',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -893,8 +976,9 @@
                     }
                 },
                 {
-                    title: 'angle end',
-                    text: 'blah... blah... blah...',
+                    title:   'angle end',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -905,8 +989,9 @@
                     }
                 },
                 {
-                    title: 'angle clockwise',
-                    text: 'blah... blah... blah...',
+                    title:   'angle clockwise',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.angle.start = 90;
@@ -922,8 +1007,9 @@
             aspect:
             [
                 {
-                    title: 'aspect',
-                    text: 'blah... blah... blah...',
+                    title:   'aspect',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.aspect = { width: 200, height: 100 };
@@ -932,8 +1018,9 @@
                     }
                 },
                 {
-                    title: 'aspect',
-                    text: 'blah... blah... blah...',
+                    title:   'aspect',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.aspect = { width: 50, height: 100 };
@@ -942,8 +1029,9 @@
                     }
                 },
                 {
-                    title: 'aspect',
-                    text: 'blah... blah... blah...',
+                    title:   'aspect',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.aspect = { width: 50, height: 50 };
@@ -955,8 +1043,9 @@
             controlpoints:
             [
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 0, 50, 0, 0 );
@@ -967,8 +1056,9 @@
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 0, 0, 0, -50 );
@@ -979,8 +1069,9 @@
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 0, 50, 0, -50 );
@@ -991,8 +1082,9 @@
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 90, 0, -90, 0 );
@@ -1003,8 +1095,9 @@
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 90, -50, -90, 50 );
@@ -1015,8 +1108,9 @@
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( -90, 50, 90, -50 );
@@ -1027,8 +1121,9 @@
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( -45, 45, -45, 45 );
@@ -1039,8 +1134,9 @@
                     }
                 },
                 {
-                    title: 'control points',
-                    text: 'blah... blah... blah...',
+                    title:   'control points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _line.curve ( 45, -45, 45, -45 );
@@ -1054,8 +1150,9 @@
             fill:
             [
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.fill.color = new Rgb ( 0,  150,  200 );
@@ -1064,8 +1161,9 @@
                     }
                 },
                 {
-                    title: 'fill linear',
-                    text: 'blah... blah... blah...',
+                    title:   'fill linear',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
@@ -1080,8 +1178,9 @@
                     }
                 },
                 {
-                    title: 'fill radial',
-                    text: 'blah... blah... blah...',
+                    title:   'fill radial',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
@@ -1097,8 +1196,9 @@
                     }
                 },
                 {
-                    title: 'fill conic',
-                    text: 'blah... blah... blah...',
+                    title:   'fill conic',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _circle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
@@ -1116,8 +1216,9 @@
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -1126,8 +1227,9 @@
                     }
                 },
                 {
-                    title: 'fill linear',
-                    text: 'blah... blah... blah...',
+                    title:   'fill linear',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
@@ -1142,8 +1244,9 @@
                     }
                 },
                 {
-                    title: 'fill radial',
-                    text: 'blah... blah... blah...',
+                    title:   'fill radial',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
@@ -1159,8 +1262,9 @@
                     }
                 },
                 {
-                    title: 'fill conic',
-                    text: 'blah... blah... blah...',
+                    title:   'fill conic',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
@@ -1178,8 +1282,9 @@
                     },
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _text.fill.color = new Rgb ( 0,   150, 200, 1 );
@@ -1191,8 +1296,9 @@
             shadow:
             [
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -1201,8 +1307,9 @@
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -1211,8 +1318,9 @@
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -1221,8 +1329,9 @@
                     }
                 },
                 {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
+                    title:   'fill color',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
                     code: ( ) =>
                     {
                         _rectangle.fill.color = new Rgb ( 0,  150,  200 );
@@ -1234,310 +1343,326 @@
         },
         animation:
         {
-            line:
-            [
-                {
-                    title: 'animation',
-                    text: 'easeInSine',
-                    code: ( ) =>
+            object:
+            {
+                line:
+                [
                     {
-                        let _flow =
+                        title: 'animation',
+                        text: 'easeInSine',
+                        code: ( ) =>
                         {
-                            duration: 3000,
-                            timing: 'easeInSine',
-                            draw ( progress )
+                            let _flow =
                             {
-                                _line.rotate ( progress * 500 );
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _line.rotate ( progress * 500 );
+                                }
                             }
-                        }
 
-                        canvaslab.animate ( _flow );
-                        canvaslab.animate ( _flow );
-                    }
-                },
-            ],
-            anchor:
-            [
-                {
-                    title: 'Align',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            canvaslab.animate ( _flow );
+                        }
+                    },
+                ],
+            },
+            subject:
+            {
+                anchor:
+                [
                     {
-                        _rectangle.options.anchor = true;
-
-                        let _flow =
+                        title:   'Align',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 3000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _rectangle.rotate ( progress * 500 );
-                            }
-                        }
+                            _rectangle.options.anchor = true;
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-            ],
-            fill:
-            [
-                {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            let _flow =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
+                ],
+                fill:
+                [
                     {
-                        _circle.fill.color = new Rgb ( 0,  0,  0 );
-
-                        let _flow =
+                        title:   'fill color',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _circle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
-                            }
-                        }
+                            _circle.fill.color = new Rgb ( 0,  0,  0 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill linear',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
-
-                        _circle.fill.gradient.stops =
-                        [
-                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
-                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill linear',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _circle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
-                            }
-                        }
+                            _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill radial',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _circle.fill.gradient.stops =
+                            [
+                                { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                                { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _circle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
-
-                        _circle.fill.gradient.stops =
-                        [
-                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
-                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
-                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill radial',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
-                                _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
-                                _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
-                            }
-                        }
+                            _circle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill conic',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _circle.fill.gradient.stops =
+                            [
+                                { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                                { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                                { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
+                                    _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
+                                    _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _circle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
-
-                        _circle.fill.gradient.stops =
-                        [
-                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
-                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
-                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
-                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
-                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill conic',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
-                                _circle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
-                                _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
-                                _circle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
-                                _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
-                            }
-                        }
+                            _circle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _circle.fill.gradient.stops =
+                            [
+                                { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                                { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                                { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                                { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                                { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
+                                    _circle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
+                                    _circle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
+                                    _circle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
+                                    _circle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _rectangle.fill.color = new Rgb ( 0,  0,  0 );
-
-                        let _flow =
+                        title:   'fill color',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _rectangle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
-                            }
-                        }
+                            _rectangle.fill.color = new Rgb ( 0,  0,  0 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill linear',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
-
-                        _rectangle.fill.gradient.stops =
-                        [
-                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
-                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill linear',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _rectangle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
-                            }
-                        }
+                            _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill radial',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _rectangle.fill.gradient.stops =
+                            [
+                                { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                                { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.gradientColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress, 0 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _rectangle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
-
-                        _rectangle.fill.gradient.stops =
-                        [
-                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
-                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
-                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill radial',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
-                                _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
-                                _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
-                            }
-                        }
+                            _rectangle.fill.gradient = new Radial ( { x: 110, y: 90 }, 30, { x: 100, y: 100 }, 70 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'fill conic',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _rectangle.fill.gradient.stops =
+                            [
+                                { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                                { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                                { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 200,  50, 100 ), progress, 0 );
+                                    _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb (   0, 150, 200 ), progress, 1 );
+                                    _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb ( 100, 100, 150 ), progress, 2 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _rectangle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
-
-                        _rectangle.fill.gradient.stops =
-                        [
-                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
-                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
-                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
-                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
-                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
-                        ];
-
-                        let _flow =
+                        title:   'fill conic',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
-                                _rectangle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
-                                _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
-                                _rectangle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
-                                _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
-                            }
-                        }
+                            _rectangle.fill.gradient = new Conic ( 0, { x: 75, y: 155 } );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            _rectangle.fill.gradient.stops =
+                            [
+                                { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                                { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                                { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                                { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                                { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                            ];
+
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.gradientColorCycle ( new Rgb (   0, 150, 200 ), new Rgb ( 100, 100, 150 ), progress, 0 );
+                                    _rectangle.gradientColorCycle ( new Rgb (  50, 125, 175 ), new Rgb ( 150,  75, 125 ), progress, 1 );
+                                    _rectangle.gradientColorCycle ( new Rgb ( 100, 100, 150 ), new Rgb ( 200,  50, 100 ), progress, 2 );
+                                    _rectangle.gradientColorCycle ( new Rgb ( 150,  75, 125 ), new Rgb (   0, 150, 200 ), progress, 3 );
+                                    _rectangle.gradientColorCycle ( new Rgb ( 200,  50, 100 ), new Rgb (  50, 125, 175 ), progress, 4 );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _line.stroke.color = new Rgb ( 0,  150,  200 );
-
-                        let _flow =
+                        title:   'stroke color',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _line.strokeColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
-                            }
-                        }
+                            _line.stroke.color = new Rgb ( 0,  150,  200 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-                {
-                    title: 'stroke color',
-                    text: 'blah... blah... blah...',
-                    code: ( ) =>
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _line.strokeColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
                     {
-                        _text.fill.color = new Rgb ( 0,  150,  200 );
-
-                        let _flow =
+                        title:   'stroke color',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
                         {
-                            duration: 1000,
-                            timing: 'easeInSine',
-                            draw ( progress )
-                            {
-                                _text.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
-                            }
-                        }
+                            _text.fill.color = new Rgb ( 0,  150,  200 );
 
-                        canvaslab.animate ( _flow );
-                    }
-                },
-            ],
+                            let _flow =
+                            {
+                                duration: 1000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _text.fillColorCycle ( new Rgb ( 0, 150, 200 ), new Rgb ( 200, 50, 100 ), progress );
+                                }
+                            }
+
+                            canvaslab.animate ( _flow );
+                        }
+                    },
+                ],
+            }
         }
     }
 
@@ -1687,16 +1812,31 @@
                     links:
                     [
                         {
-                            title: 'Line',
-                            group: 'Animation'
+                            title: 'Objects',
+                            links:
+                            [
+                                {
+                                    title:   'Line',
+                                    group:   'Object',
+                                    handler: 'Animation'
+                                }
+                            ]
                         },
                         {
-                            title: 'Anchor',
-                            group: 'Animation'
-                        },
-                        {
-                            title: 'Fill',
-                            group: 'Animation'
+                            title: 'Subjects',
+                            links:
+                            [
+                                {
+                                    title:   'Anchor',
+                                    group:   'Subject',
+                                    handler: 'Animation'
+                                },
+                                {
+                                    title:   'Fill',
+                                    group:   'Subject',
+                                    handler: 'Animation'
+                                }
+                            ]
                         },
                     ]
                 },

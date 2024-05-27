@@ -68,11 +68,11 @@
 <dt><a href="#group">group()</a> ⇒ <code>string</code></dt>
 <dd><p>Gets group</p>
 </dd>
-<dt><a href="#subgroup">subgroup(value)</a></dt>
-<dd><p>Sets subgroup</p>
+<dt><a href="#handler">handler(value)</a></dt>
+<dd><p>Sets handler</p>
 </dd>
-<dt><a href="#subgroup">subgroup()</a> ⇒ <code>string</code></dt>
-<dd><p>Gets subgroup</p>
+<dt><a href="#handler">handler()</a> ⇒ <code>string</code></dt>
+<dd><p>Gets handler</p>
 </dd>
 <dt><a href="#standard">standard()</a> ⇒ <code>string</code></dt>
 <dd><p>Returns a standard HTML card template</p>
@@ -113,9 +113,6 @@
 <dt><a href="#code">code(script)</a> ⇒ <code>string</code></dt>
 <dd><p>Cleans code of enumerators for card-objects</p>
 </dd>
-<dt><a href="#imageTags">imageTags(template, cardObject)</a> ⇒ <code>string</code></dt>
-<dd><p>Trims left over image tags from the standard card template</p>
-</dd>
 <dt><a href="#blankCards">blankCards()</a></dt>
 <dd><p>Cleans the remaining &#39;.blank&#39; cards while converting the first to a &#39;.plus&#39; card; @see Ui.toggle._cardPlus ( )</p>
 </dd>
@@ -137,11 +134,11 @@
 <dt><a href="#clearScreen">clearScreen(setCardAlbum)</a></dt>
 <dd><p>Clears screen prior to rebuilding</p>
 </dd>
-<dt><a href="#runEasingAnimation">runEasingAnimation(easingFunction, index)</a></dt>
-<dd><p>Sets easing animation for an animation card</p>
-</dd>
 <dt><a href="#init">init()</a></dt>
 <dd><p>Sets User Interface</p>
+</dd>
+<dt><a href="#runEasingAnimation">runEasingAnimation(easingFunction, index)</a></dt>
+<dd><p>Sets easing animation for an animation card</p>
 </dd>
 </dl>
 
@@ -230,7 +227,7 @@ Runs lab-station code from editor
 | --- | --- | --- |
 | type | <code>string</code> | Page's type |
 | group | <code>string</code> | Page's group |
-| subgroup | <code>string</code> | Page's subgroup |
+| handler | <code>string</code> | Page's handler |
 
 <a name="new_Page_new"></a>
 
@@ -377,7 +374,7 @@ Gets type
 
 **Kind**: global function  
 **Returns**: <code>string</code> - Page's type  
-**Access**: public  
+**Read only**: true  
 <a name="group"></a>
 
 ## group(value)
@@ -397,43 +394,43 @@ Gets group
 
 **Kind**: global function  
 **Returns**: <code>string</code> - Page's group  
-**Access**: public  
-<a name="subgroup"></a>
+**Read only**: true  
+<a name="handler"></a>
 
-## subgroup(value)
-Sets subgroup
+## handler(value)
+Sets handler
 
 **Kind**: global function  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| value | <code>string</code> | Page's subgroup |
+| value | <code>string</code> | Page's handler |
 
-<a name="subgroup"></a>
+<a name="handler"></a>
 
-## subgroup() ⇒ <code>string</code>
-Gets subgroup
+## handler() ⇒ <code>string</code>
+Gets handler
 
 **Kind**: global function  
-**Returns**: <code>string</code> - Page's subgroup  
-**Access**: public  
+**Returns**: <code>string</code> - Page's handler  
+**Read only**: true  
 <a name="standard"></a>
 
 ## standard() ⇒ <code>string</code>
 Returns a standard HTML card template
 
 **Kind**: global function  
-**Returns**: <code>string</code> - HTML card template  
-**Access**: public  
+**Returns**: <code>string</code> - HTML card standard template  
+**Read only**: true  
 <a name="blank"></a>
 
 ## blank() ⇒ <code>string</code>
 Returns a blank HTML card template
 
 **Kind**: global function  
-**Returns**: <code>string</code> - HTML card template  
-**Access**: public  
+**Returns**: <code>string</code> - HTML card blank template  
+**Read only**: true  
 <a name="getCards"></a>
 
 ## getCards(cardObjects) ⇒ <code>Array</code>
@@ -562,20 +559,6 @@ Cleans code of enumerators for card-objects
 | --- | --- | --- |
 | script | <code>function</code> | JavaScript function; for card-objects only |
 
-<a name="imageTags"></a>
-
-## imageTags(template, cardObject) ⇒ <code>string</code>
-Trims left over image tags from the standard card template
-
-**Kind**: global function  
-**Returns**: <code>string</code> - HTML template for card-object  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| template | <code>string</code> | HTML template for card-object |
-| cardObject | <code>Object</code> | Card-object |
-
 <a name="blankCards"></a>
 
 ## blankCards()
@@ -650,6 +633,13 @@ Clears screen prior to rebuilding
 | --- | --- | --- |
 | setCardAlbum | <code>boolean</code> | Sets card album display to block (true) || none (false) |
 
+<a name="init"></a>
+
+## init()
+Sets User Interface
+
+**Kind**: global function  
+**Access**: public  
 <a name="runEasingAnimation"></a>
 
 ## runEasingAnimation(easingFunction, index)
@@ -663,10 +653,3 @@ Sets easing animation for an animation card
 | easingFunction | <code>string</code> | Easing function; as a string |
 | index | <code>number</code> | Index of animation card |
 
-<a name="init"></a>
-
-## init()
-Sets User Interface
-
-**Kind**: global function  
-**Access**: public  
