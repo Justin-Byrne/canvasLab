@@ -4,6 +4,9 @@
 <dt><a href="#canvasLab">canvasLab</a></dt>
 <dd><p>{Object} canvasLab                          CanvasLab core application</p>
 </dd>
+<dt><a href="#Cmyk">Cmyk</a></dt>
+<dd><p>{Object} Cmyk 								CMYK color model</p>
+</dd>
 <dt><a href="#Hsl">Hsl</a></dt>
 <dd><p>{Object} Hsl 								HSL color model</p>
 </dd>
@@ -232,6 +235,136 @@ Animates onscreen objects in accordance with passed param values
 | flow.timing | <code>function</code> | Timing function |
 | flow.draw | <code>function</code> | Draw function |
 
+<a name="Cmyk"></a>
+
+## Cmyk
+{Object} Cmyk 								CMYK color model
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [cyan] | <code>number</code> | <code>0</code> | Cyan value; 0 - 255 |
+| [magenta] | <code>number</code> | <code>0</code> | Magenta value; 0 - 255 |
+| [yellow] | <code>number</code> | <code>0</code> | Yellow value; 0 - 255 |
+| [black] | <code>number</code> | <code>1</code> | Black value; 0 - 255 |
+| [alpha] | <code>number</code> | <code>1</code> | Alpha value; 0 - 1 (decimal) |
+
+
+* [Cmyk](#Cmyk)
+    * [new Cmyk(cyan, magenta, yellow, black)](#new_Cmyk_new)
+    * [.cyan(cyan)](#Cmyk+cyan)
+    * [.cyan()](#Cmyk+cyan) ⇒ <code>number</code>
+    * [.magenta(magenta)](#Cmyk+magenta)
+    * [.magenta()](#Cmyk+magenta) ⇒ <code>number</code>
+    * [.yellow(yellow)](#Cmyk+yellow)
+    * [.yellow()](#Cmyk+yellow) ⇒ <code>number</code>
+    * [.black(black)](#Cmyk+black)
+    * [.black()](#Cmyk+black) ⇒ <code>number</code>
+    * [.toCss()](#Cmyk+toCss) ⇒ <code>string</code>
+
+<a name="new_Cmyk_new"></a>
+
+### new Cmyk(cyan, magenta, yellow, black)
+Create a Cmyk color model
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cyan | <code>number</code> | Cyan value |
+| magenta | <code>number</code> | Magenta value |
+| yellow | <code>number</code> | Yellow value |
+| black | <code>number</code> | Black value |
+
+<a name="Cmyk+cyan"></a>
+
+### cmyk.cyan(cyan)
+Sets the cyan value
+
+**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cyan | <code>number</code> | Cyan value; 0 - 255 |
+
+<a name="Cmyk+cyan"></a>
+
+### cmyk.cyan() ⇒ <code>number</code>
+Gets the cyan value
+
+**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
+**Returns**: <code>number</code> - Cyan value; 0 - 255  
+**Read only**: true  
+<a name="Cmyk+magenta"></a>
+
+### cmyk.magenta(magenta)
+Sets the magenta value
+
+**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| magenta | <code>number</code> | Magenta value; 0 - 255 |
+
+<a name="Cmyk+magenta"></a>
+
+### cmyk.magenta() ⇒ <code>number</code>
+Gets the magenta value
+
+**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
+**Returns**: <code>number</code> - Magenta value; 0 - 255  
+**Read only**: true  
+<a name="Cmyk+yellow"></a>
+
+### cmyk.yellow(yellow)
+Sets the yellow value
+
+**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| yellow | <code>number</code> | Yellow value; 0 - 255 |
+
+<a name="Cmyk+yellow"></a>
+
+### cmyk.yellow() ⇒ <code>number</code>
+Gets the yellow value
+
+**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
+**Returns**: <code>number</code> - Yellow value; 0 - 255  
+**Read only**: true  
+<a name="Cmyk+black"></a>
+
+### cmyk.black(black)
+Sets the black value
+
+**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| black | <code>number</code> | Black value; 0 - 255 |
+
+<a name="Cmyk+black"></a>
+
+### cmyk.black() ⇒ <code>number</code>
+Gets the black value
+
+**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
+**Returns**: <code>number</code> - Black value; 0 - 255  
+**Read only**: true  
+<a name="Cmyk+toCss"></a>
+
+### cmyk.toCss() ⇒ <code>string</code>
+Returns a CSS compatible <color> string value
+
+**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
+**Returns**: <code>string</code> - CSS <color> string  
+**Access**: public  
 <a name="Hsl"></a>
 
 ## Hsl
@@ -302,7 +435,7 @@ Sets the saturation value
 
 | Param | Type | Description |
 | --- | --- | --- |
-| saturation | <code>number</code> | Saturation value; 0 - 1 |
+| saturation | <code>number</code> | Saturation value; 0.00 - 1 |
 
 <a name="Hsl+saturation"></a>
 
@@ -310,7 +443,7 @@ Sets the saturation value
 Gets the saturation value
 
 **Kind**: instance method of [<code>Hsl</code>](#Hsl)  
-**Returns**: <code>number</code> - Saturation value; 0 - 1  
+**Returns**: <code>number</code> - Saturation value; 0.00 - 1  
 **Access**: public  
 <a name="Hsl+lightness"></a>
 
@@ -322,7 +455,7 @@ Sets the lightness value
 
 | Param | Type | Description |
 | --- | --- | --- |
-| lightness | <code>number</code> | Lightness value; 0 - 1 |
+| lightness | <code>number</code> | Lightness value; 0.00 - 1 |
 
 <a name="Hsl+lightness"></a>
 
@@ -330,7 +463,7 @@ Sets the lightness value
 Gets the lightness value
 
 **Kind**: instance method of [<code>Hsl</code>](#Hsl)  
-**Returns**: <code>number</code> - Lightness value; 0 - 1  
+**Returns**: <code>number</code> - Lightness value; 0.00 - 1  
 **Access**: public  
 <a name="Hsl+_isDegree"></a>
 

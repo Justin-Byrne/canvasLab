@@ -75,7 +75,7 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── JSDoc.md
 ├── script
 │   ├── distro
-│   │   ├── canvasLab-v0.3.55.js    [ 292 kb ]
+│   │   ├── canvasLab-v0.3.55.js    [ 324 kb ]
 │   │   ├── canvasLab.min.js        [ 60 kb ]
 │   │   └── canvasLab.min.js.map
 │   └── source
@@ -115,8 +115,6 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │           │   │   │   ├── Linear.js
 │           │   │   │   └── Radial.js
 │           │   │   └── Model
-│           │   │       ├── Hsl.js
-│           │   │       ├── Hwb.js
 │           │   │       └── Rgb.js
 │           │   ├── Staging
 │           │   │   ├── Properties

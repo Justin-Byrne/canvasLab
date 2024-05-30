@@ -92,7 +92,7 @@ class Stroke
          * Set color value
          * @public
          * @function
-         * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
+         * @param           {Object} value                              Color model; Rgb
          */
         set color ( value )
         {
@@ -103,7 +103,7 @@ class Stroke
          * Get color value
          * @public
          * @function
-         * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
+         * @return          {Object}                                    Color model; Rgb
          */
         get color ( )
         {

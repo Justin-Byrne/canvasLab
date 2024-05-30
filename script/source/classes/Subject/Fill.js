@@ -37,7 +37,7 @@ class Fill
          * Set color type
          * @public
          * @function
-         * @param           {Object} value                              Color model
+         * @param           {Object} value                              Color model; Rgb
          */
         set color ( value )
         {
@@ -48,7 +48,7 @@ class Fill
          * Get color type
          * @readOnly
          * @function
-         * @return          {Object}                                    Color model
+         * @return          {Object}                                    Color model; Rgb
          */
         get color ( )
         {

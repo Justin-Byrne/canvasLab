@@ -99,7 +99,7 @@ declare FILES_FOOT=(
 ### GENERAL ########################################
 
 declare NO_ERRORS=true
-declare WITH_DOCUMENTS=true
+declare WITH_DOCUMENTS=false
 
 declare DATE=$(date +"%m-%d-%y")
 declare TIME=$(date +"%r")

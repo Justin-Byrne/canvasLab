@@ -378,14 +378,7 @@ const VALIDATION =
      */
     isColorModel ( value )
     {
-        if ( value instanceof Rgb ) return true;
-
-        if ( value instanceof Hsl ) return true;
-
-        if ( value instanceof Hwb ) return true;
-
-
-        return false;
+        return ( value instanceof Rgb ) ? true : false;
     },
 
     /**
