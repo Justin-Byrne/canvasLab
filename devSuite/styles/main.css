@@ -240,15 +240,12 @@ main {
             height: 32px; }
             main .album .container #test-cards .col .card .card-header .card-header-buttons .icons > img {
               display: inline-block; }
-          main .album .container #test-cards .col .card .card-header .title {
-            display: inline-block;
-            position: relative;
-            bottom: 8px;
-            font-family: monospace;
-            text-align: center;
-            text-transform: capitalize;
-            letter-spacing: 1px;
-            color: #535d7e; }
+              main .album .container #test-cards .col .card .card-header .card-header-buttons .icons > img[suite-data-type="Base"] {
+                background-color: unset;
+                border: unset;
+                box-shadow: unset; }
+                main .album .container #test-cards .col .card .card-header .card-header-buttons .icons > img[suite-data-type="Base"]:hover {
+                  cursor: default; }
           main .album .container #test-cards .col .card .card-header .card-number {
             display: inline-block;
             position: absolute;
@@ -279,15 +276,21 @@ main {
               cursor: pointer; }
         main .album .container #test-cards .col .card .card-body {
           padding: 0.5rem 0.5rem; }
-          main .album .container #test-cards .col .card .card-body .card-body-buttons {
-            width: 100%;
+          main .album .container #test-cards .col .card .card-body .title {
             display: inline-block;
+            position: relative;
+            padding-top: 5px;
+            padding-left: 5px;
+            font-family: monospace;
+            text-align: center;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            color: white; }
+          main .album .container #test-cards .col .card .card-body .card-body-buttons {
+            display: inline-block;
+            float: right;
             justify-content: center;
             flex-wrap: nowrap; }
-            main .album .container #test-cards .col .card .card-body .card-body-buttons .symbol {
-              position: absolute;
-              bottom: 10px;
-              left: 17px; }
         main .album .container #test-cards .col .card .icons {
           float: right;
           margin-top: 2px; }
@@ -445,92 +448,114 @@ main {
           top: -2px;
           padding-right: 6px; }
   main .offcanvas {
+    cursor: default;
     width: 45%; }
     @media (max-width: 1200px) {
       main .offcanvas {
         width: 95%; } }
-    main .offcanvas .offcanvas-body h2, main .offcanvas .offcanvas-body h3, main .offcanvas .offcanvas-body h4 {
-      padding-bottom: 8px; }
+    main .offcanvas .offcanvas-body {
+      background-color: #505f73;
+      color: white;
+      border-left: 1px solid #424551; }
+      main .offcanvas .offcanvas-body h2:nth-child(2) {
+        padding-left: 10px; }
+      main .offcanvas .offcanvas-body h2::before, main .offcanvas .offcanvas-body h3::before, main .offcanvas .offcanvas-body h4::before {
+        position: relative;
+        top: 2px;
+        padding-right: 6px;
+        padding-left: 0px;
+        content: url("../images/svg/General/c-circle-fill.svg"); }
       main .offcanvas .offcanvas-body h2 + p, main .offcanvas .offcanvas-body h3 + p, main .offcanvas .offcanvas-body h4 + p {
-        font-family: 'CascadiaCode';
-        background: linear-gradient(90deg, #d2eaff 0%, white 50%);
         padding: 7px 7px 7px 9px;
         margin-bottom: 13px;
-        border-radius: 3px; }
-    main .offcanvas .offcanvas-body h3, main .offcanvas .offcanvas-body h4 {
-      background: linear-gradient(180deg, #efefef 0%, white 75%);
-      margin-top: 42px;
-      padding-top: 26px;
-      padding-left: 16px;
-      border-top: 1px solid #e5e5e5;
-      border-radius: 0px 10px 0px 0px; }
-      main .offcanvas .offcanvas-body h3::before, main .offcanvas .offcanvas-body h4::before {
-        content: url("../images/svg/General/caret-right.svg");
-        position: relative;
-        top: 3px;
-        padding-right: 3px; }
-      main .offcanvas .offcanvas-body h3 + p, main .offcanvas .offcanvas-body h4 + p {
-        margin-left: 45px; }
-        main .offcanvas .offcanvas-body h3 + p + table, main .offcanvas .offcanvas-body h4 + p + table {
-          margin-left: 45px; }
-        main .offcanvas .offcanvas-body h3 + p + p, main .offcanvas .offcanvas-body h4 + p + p {
-          margin-left: 45px; }
-          main .offcanvas .offcanvas-body h3 + p + p + table, main .offcanvas .offcanvas-body h4 + p + p + table {
-            margin-left: 45px; }
-    main .offcanvas .offcanvas-body p {
-      margin-bottom: 6px; }
-      main .offcanvas .offcanvas-body p strong:nth-child(1)::before {
-        display: inline-block;
-        content: url("../images/svg/General/puzzle.svg");
-        transform: rotate(315deg);
-        padding-right: 3px; }
-      main .offcanvas .offcanvas-body p strong:nth-child(4)::before {
-        display: inline-block;
-        position: relative;
-        top: 3px;
-        content: url("../images/svg/General/return-left.svg");
-        padding-right: 3px; }
-      main .offcanvas .offcanvas-body p:nth-child(4) strong:nth-child(3) {
-        display: block;
-        padding-top: 10px; }
-    main .offcanvas .offcanvas-body ul {
-      list-style-type: none;
-      padding-left: 2px;
-      margin-bottom: 0; }
-      main .offcanvas .offcanvas-body ul li a {
-        text-decoration: none; }
-        main .offcanvas .offcanvas-body ul li a::before {
+        background-color: black;
+        border-radius: 3px;
+        font-family: 'CascadiaCode'; }
+      main .offcanvas .offcanvas-body h3, main .offcanvas .offcanvas-body h4 {
+        color: black;
+        letter-spacing: 1px; }
+        main .offcanvas .offcanvas-body h3::before, main .offcanvas .offcanvas-body h4::before {
+          content: url("../images/svg/General/function-black.svg");
           position: relative;
+          top: 10px;
+          padding-right: 6px; }
+      main .offcanvas .offcanvas-body p {
+        margin-left: 10px;
+        margin-bottom: 6px; }
+        main .offcanvas .offcanvas-body p strong:nth-child(1) {
+          color: #8cd7cd; }
+          main .offcanvas .offcanvas-body p strong:nth-child(1)::before {
+            position: relative;
+            display: inline-block;
+            bottom: -2px;
+            padding-right: 5px;
+            color: red;
+            content: url("../images/svg/General/box-green.svg"); }
+        main .offcanvas .offcanvas-body p strong:nth-child(4)::before {
           display: inline-block;
-          top: 2px;
-          padding-right: 4px;
-          content: url("../images/svg/General/book-half.svg"); }
-      main .offcanvas .offcanvas-body ul li ul {
-        padding-left: 18px; }
-        main .offcanvas .offcanvas-body ul li ul li:nth-child(n - 1) > a::before {
-          content: url("../images/svg/General/bookmark-plus.svg"); }
-    main .offcanvas .offcanvas-body table {
-      outline: 1px solid black;
-      margin-bottom: 12px; }
-      main .offcanvas .offcanvas-body table thead {
-        background-color: #b1dbff; }
-        main .offcanvas .offcanvas-body table thead th {
-          border-right: 1px solid black;
-          border-bottom: 1px solid black; }
-          main .offcanvas .offcanvas-body table thead th:last-of-type {
+          position: relative;
+          top: 3px;
+          padding-right: 3px;
+          content: url("../images/svg/General/return-left.svg"); }
+        main .offcanvas .offcanvas-body p:nth-child(4) strong:nth-child(3) {
+          display: block;
+          padding-top: 10px; }
+        main .offcanvas .offcanvas-body p a {
+          color: #97c8ff;
+          text-decoration: none; }
+        main .offcanvas .offcanvas-body p:nth-child(3) {
+          margin-left: 10px; }
+      main .offcanvas .offcanvas-body ul {
+        list-style-type: none;
+        padding-left: 10px;
+        margin-bottom: 0; }
+        main .offcanvas .offcanvas-body ul li a {
+          text-decoration: none;
+          color: white; }
+          main .offcanvas .offcanvas-body ul li a::before {
+            position: relative;
+            display: inline-block;
+            top: 2px;
+            padding-right: 6px;
+            content: url("../images/svg/General/box.svg"); }
+          main .offcanvas .offcanvas-body ul li a b {
+            color: #d63384; }
+        main .offcanvas .offcanvas-body ul li ul {
+          position: relative;
+          padding-left: 10px; }
+          main .offcanvas .offcanvas-body ul li ul li a {
+            color: #97c8ff;
+            cursor: pointer; }
+          main .offcanvas .offcanvas-body ul li ul li:nth-child(n - 1) > a::before {
+            position: relative;
+            top: 6px;
+            padding-right: 6px;
+            content: url("../images/svg/General/function.svg"); }
+      main .offcanvas .offcanvas-body table {
+        outline: 1px solid black;
+        margin-top: 10px;
+        margin-bottom: 12px;
+        margin-left: 10px;
+        border-radius: 2px;
+        color: white; }
+        main .offcanvas .offcanvas-body table thead {
+          background-color: #2a5061; }
+        main .offcanvas .offcanvas-body table tbody tr {
+          border: 1px solid black; }
+          main .offcanvas .offcanvas-body table tbody tr:nth-child(odd) {
+            background-color: #637080; }
+          main .offcanvas .offcanvas-body table tbody tr:nth-child(even) {
+            background-color: #505f73; }
+        main .offcanvas .offcanvas-body table tbody td {
+          border: 1px solid black;
+          color: #c8c8c8; }
+          main .offcanvas .offcanvas-body table tbody td:last-of-type {
             border-right: none; }
-      main .offcanvas .offcanvas-body table tbody tr:nth-child(odd) {
-        background-color: #ebebeb; }
-      main .offcanvas .offcanvas-body table tbody tr:nth-child(even) {
-        background-color: white; }
-      main .offcanvas .offcanvas-body table tbody td {
-        border-right: 1px solid #bbbbbb; }
-        main .offcanvas .offcanvas-body table tbody td:last-of-type {
-          border-right: none; }
-      main .offcanvas .offcanvas-body table th, main .offcanvas .offcanvas-body table td {
-        border-collapse: separate;
-        border-spacing: 8px;
-        padding: 5px 10px; }
+        main .offcanvas .offcanvas-body table th, main .offcanvas .offcanvas-body table td {
+          padding: 5px 10px;
+          border: 1px solid black;
+          border-collapse: separate;
+          border-spacing: 8px; }
     main .offcanvas #offcanvas-reset {
       position: fixed;
       right: 30px;

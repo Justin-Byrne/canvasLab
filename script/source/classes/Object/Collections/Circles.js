@@ -44,7 +44,6 @@ class Circles extends Array
         /**
          * Set point
          * @public
-         * @name point
          * @function
          * @param           {Point} point                               X & Y axis coordinates
          */
@@ -53,7 +52,6 @@ class Circles extends Array
         /**
          * Get point
          * @public
-         * @name point
          * @function
          * @return          {Point}                                     X & Y axis coordinates
          */
@@ -63,7 +61,6 @@ class Circles extends Array
         /**
          * Set x-axis value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          */
@@ -72,7 +69,6 @@ class Circles extends Array
         /**
          * Get x-axis value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          */
@@ -81,7 +77,6 @@ class Circles extends Array
         /**
          * Set y-axis value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          */
@@ -90,7 +85,6 @@ class Circles extends Array
         /**
          * Get y-axis value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          */
@@ -101,7 +95,6 @@ class Circles extends Array
         /**
          * Set canvas value
          * @public
-         * @name canvas
          * @function
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
@@ -111,7 +104,6 @@ class Circles extends Array
         /**
          * Get canvas value
          * @readOnly
-         * @name canvas
          * @function
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
@@ -123,7 +115,6 @@ class Circles extends Array
         /**
          * Returns whether the passed value is an element id within the DOM
          * @private
-         * @name _isInDom
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
@@ -134,7 +125,6 @@ class Circles extends Array
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name _isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
@@ -147,7 +137,6 @@ class Circles extends Array
         /**
          * Push or pops the passed object
          * @public
-         * @name pushPop
          * @function
          * @param           {Object} object                             Object; Circle, Rectangle, Text
          * @see             {@link Utilities.misc.pushPop}
@@ -159,7 +148,6 @@ class Circles extends Array
         /**
          * Typical draw function for collections; Circles, Texts
          * @public
-         * @name draw
          * @function
          * @param           {string} canvas                             Canvas Id
          * @see             {@link UTILITIES.draw.collection.typical}

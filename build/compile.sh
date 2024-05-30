@@ -19,6 +19,7 @@ declare OUTPUT_DIRECTORY=../script/distro
 
 declare OUTPUT_JSDOC=../docs/JSDoc.md
 declare OUTPUT_JSDOCS=../docs/JSDoc
+declare OUTPUT_JSDOCS_TEMPLATE=~/.npm/lib/node_modules/docdash
 
 ### DEV SUITE ######################################
 
@@ -155,7 +156,7 @@ main ()
 
         compile_md2json
 
-        compile_plantuml
+        # compile_plantuml
     fi
 
     compile_readme
@@ -288,7 +289,7 @@ function compile_jsdocs ()
 
     if command -v jsdoc
     then
-        if (jsdoc --private $1 -d $2)
+        if (jsdoc $1 -d $2 -t $OUTPUT_JSDOCS_TEMPLATE)
             then echo "\n${PROMPT_B} ${FG_PINK}JSDocs ${FG_WHITE}Complete ${TITLE_NODE}\t\t\t${FG_BLUE}[${2}]${NOCOLOR}\n"
         else
             NO_ERRORS=false

@@ -29,7 +29,6 @@ class ShadowCollection
         /**
          * Set color value
          * @public
-         * @name color
          * @function
          * @param           {string} value                              RGB color value
          */
@@ -41,7 +40,6 @@ class ShadowCollection
         /**
          * Get color value
          * @public
-         * @name color
          * @function
          * @return          {string}                                    RGB color value
          */
@@ -55,7 +53,6 @@ class ShadowCollection
         /**
          * Set blur value
          * @public
-         * @name blur
          * @function
          * @param           {number} blur                               Blur value
          */
@@ -67,7 +64,6 @@ class ShadowCollection
         /**
          * Get blur value
          * @readOnly
-         * @name blur
          * @function
          * @return          {number}                                    Blur value
          */
@@ -81,7 +77,6 @@ class ShadowCollection
         /**
          * Set offset
          * @public
-         * @name offset
          * @function
          * @param           {Point} value                               Shadow offset
          */
@@ -93,7 +88,6 @@ class ShadowCollection
         /**
          * Get offset
          * @public
-         * @name offset
          * @function
          * @return          {Point}                                     Shadow offset
          */
@@ -106,7 +100,6 @@ class ShadowCollection
         /**
          * Set x-axis offset value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          */
@@ -115,7 +108,6 @@ class ShadowCollection
         /**
          * Get x-axis offset value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          */
@@ -125,7 +117,6 @@ class ShadowCollection
         /**
          * Set the y-axis offset value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          */
@@ -134,7 +125,6 @@ class ShadowCollection
         /**
          * Get y-axis offset value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          */
@@ -145,7 +135,6 @@ class ShadowCollection
         /**
          * Returns whether the passed value is a blur value
          * @private
-         * @name _isBlur
          * @function
          * @param           {number} value                              Blur value
          * @return          {boolean}                                   True || False
@@ -156,7 +145,6 @@ class ShadowCollection
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name _isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
@@ -169,7 +157,6 @@ class ShadowCollection
         /**
          * Sets all option values throughout a collection
          * @private
-         * @name _setAll
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False

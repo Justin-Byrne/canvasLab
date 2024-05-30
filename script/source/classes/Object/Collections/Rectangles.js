@@ -46,7 +46,6 @@ class Rectangles extends Array
         /**
          * Set point
          * @public
-         * @name point
          * @function
          * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
@@ -56,7 +55,6 @@ class Rectangles extends Array
         /**
          * Get point
          * @public
-         * @name point
          * @function
          * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
@@ -67,7 +65,6 @@ class Rectangles extends Array
         /**
          * Set x-axis value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.pointX}
@@ -77,7 +74,6 @@ class Rectangles extends Array
         /**
          * Get x-axis value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.pointX}
@@ -88,7 +84,6 @@ class Rectangles extends Array
         /**
          * Set the y-axis value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.pointY}
@@ -98,7 +93,6 @@ class Rectangles extends Array
         /**
          * Get y-axis value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.pointY}
@@ -126,7 +120,6 @@ class Rectangles extends Array
         /**
          * Returns whether the passed value is an element id within the DOM
          * @private
-         * @name _isInDom
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
@@ -139,7 +132,6 @@ class Rectangles extends Array
         /**
          * Push or pops the passed object
          * @public
-         * @name pushPop
          * @function
          * @param           {Object} object                             Object; Circle, Rectangle, Text
          * @see             {@link Utilities.misc.pushPop}
@@ -151,7 +143,6 @@ class Rectangles extends Array
         /**
          * Draw this object
          * @public
-         * @name draw
          * @function
          * @param           {string} canvas                             Canvas Id
          */

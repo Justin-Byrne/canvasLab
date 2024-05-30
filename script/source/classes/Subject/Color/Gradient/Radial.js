@@ -49,7 +49,6 @@ class Radial
         /**
          * Set starting point
          * @public
-         * @name start
          * @function
          * @param           {Point} value                               Starting point
          */
@@ -61,7 +60,6 @@ class Radial
         /**
          * Set starting point
          * @readOnly
-         * @name start
          * @function
          * @return          {Point}                                     Starting point
          */
@@ -75,7 +73,6 @@ class Radial
         /**
          * Set starting radius
          * @public
-         * @name startRadius
          * @function
          * @param           {Number} value                              Starting radius
          */
@@ -87,7 +84,6 @@ class Radial
         /**
          * Set starting radius
          * @readOnly
-         * @name startRadius
          * @function
          * @return          {Number}                                    Starting radius
          */
@@ -101,7 +97,6 @@ class Radial
         /**
          * Set ending point
          * @public
-         * @name end
          * @function
          * @param           {Point} value                               Ending point
          */
@@ -113,7 +108,6 @@ class Radial
         /**
          * Set ending point
          * @readOnly
-         * @name end
          * @function
          * @return          {Point}                                     Ending point
          */
@@ -127,7 +121,6 @@ class Radial
         /**
          * Set ending radius
          * @public
-         * @name endRadius
          * @function
          * @param           {Number} value                              Ending radius
          */
@@ -139,7 +132,6 @@ class Radial
         /**
          * Set ending radius
          * @readOnly
-         * @name endRadius
          * @function
          * @return          {Number}                                    Ending radius
          */
@@ -153,7 +145,6 @@ class Radial
         /**
          * Set color stops
          * @public
-         * @name stops
          * @function
          * @param           {Array.<Stop>} value                        Color stops
          */
@@ -174,7 +165,6 @@ class Radial
         /**
          * Get color stops
          * @readOnly
-         * @name stops
          * @function
          * @return          {Array.<Stop>}                              Color stops
          */
@@ -188,7 +178,6 @@ class Radial
         /**
          * Returns whether the passed value is a color model
          * @private
-         * @name _isColorModel
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
@@ -199,7 +188,6 @@ class Radial
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name _isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
@@ -210,7 +198,6 @@ class Radial
         /**
          * Returns whether the passed value is a radius value
          * @private
-         * @name _isRadius
          * @function
          * @param           {number} value                              Radius value
          * @return          {boolean}                                   True || False
@@ -221,7 +208,6 @@ class Radial
         /**
          * Returns whether the passed value is a Stop or object equivalent
          * @private
-         * @name _isStop
          * @function
          * @param           {Object} value                              Stop or object equivalent
          * @return          {boolean}                                   True || False
@@ -234,7 +220,6 @@ class Radial
         /**
          * Cycle colors for gradient stop(s)
          * @private
-         * @name stop
          * @function
          * @param           {Object}   start                            Color model & values
          * @param           {Object}   end                              Color model & values

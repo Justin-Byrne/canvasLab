@@ -39,7 +39,6 @@ class Hsl
 		/**
 		 * Sets the hue value
 		 * @public
-		 * @name hue
 		 * @function
 		 * @param           {number} hue 								Hue value; 0 - 360
 		 */
@@ -51,7 +50,6 @@ class Hsl
 		/**
 		 * Gets the hue value
 		 * @public
-		 * @name hue
 		 * @function
 		 * @return 			{number}									Hue value; 0 - 360
 		 */
@@ -65,7 +63,6 @@ class Hsl
 		/**
 		 * Sets the saturation value
 		 * @public
-		 * @name saturation
 		 * @function
 		 * @param           {number} saturation 						Saturation value; 0 - 1
 		 */
@@ -77,7 +74,6 @@ class Hsl
 		/**
 		 * Gets the saturation value
 		 * @public
-		 * @name saturation
 		 * @function
 		 * @return 			{number}									Saturation value; 0 - 1
 		 */
@@ -91,7 +87,6 @@ class Hsl
 		/**
 		 * Sets the lightness value
 		 * @public
-		 * @name lightness
 		 * @function
 		 * @param           {number} lightness 							Lightness value; 0 - 1
 		 */
@@ -103,7 +98,6 @@ class Hsl
 		/**
 		 * Gets the lightness value
 		 * @public
-		 * @name lightness
 		 * @function
 		 * @return 			{number}									Lightness value; 0 - 1
 		 */
@@ -117,7 +111,6 @@ class Hsl
 		/**
          * Returns whether the passed value is a decimal value; 0.00 - 1
          * @private
-         * @name _isDecimal
          * @function
          * @param           {number} value                              Decimal value; 0.00 - 1
          * @return          {boolean}                                   True || False
@@ -128,7 +121,6 @@ class Hsl
         /**
 	     * Returns whether the passed value is a degree
 	     * @prviate
-	     * @name _isDegree
 	     * @function
 	     * @param           {number} value                              Degree
 	     * @return          {boolean}                                   True || False
@@ -141,7 +133,6 @@ class Hsl
 		/**
 		 * Returns a CSS compatible <color> string value
 		 * @public
-		 * @name toCss
 		 * @function
 		 * @return 			{string} 									CSS <color> string
 		 */

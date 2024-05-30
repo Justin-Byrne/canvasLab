@@ -29,8 +29,6 @@ class Template
 
                                </div>
 
-                               <div class="title">{{title}}</div>
-
                                <div class="card-number">
 
                                    <span class="close"></span>
@@ -44,6 +42,8 @@ class Template
                            <canvas id="canvas_{{index}}"></canvas>
 
                            <div class="card-body">
+
+                               <div class="title">{{title}}</div>
 
                                <div class="card-body-buttons">
 
@@ -110,7 +110,6 @@ class Template
         /**
          * Returns a standard HTML card template
          * @readOnly
-         * @name standard
          * @function
          * @return          {string}                            HTML card standard template
          */
@@ -121,7 +120,6 @@ class Template
         /**
          * Returns a blank HTML card template
          * @readOnly
-         * @name blank
          * @function
          * @return          {string}                            HTML card blank template
          */
@@ -132,7 +130,6 @@ class Template
         /**
          * Returns the amount of extra cards to embed
          * @private
-         * @name _getBlankCount
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          * @return          {number}                            Amount of extra cards
@@ -150,7 +147,6 @@ class Template
         /**
          * Returns an Array of extra HTML templates; to align cards
          * @private
-         * @name _getBlankTemplates
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          * @return          {Array}                             Array of extra HTML templates for each card-object
@@ -185,7 +181,6 @@ class Template
         /**
          * Returns rendered HTML for a card-object
          * @private
-         * @name _getCodeTemplate
          * @function
          * @param           {Object} cardObject                 Card-object
          * @param           {string} template                   HTML card template
@@ -235,7 +230,6 @@ class Template
         /**
          * Returns the amount of columns available per the present resolution
          * @private
-         * @name _getColumnCount
          * @function
          * @return          {number}                            Number of columns
          */
@@ -262,7 +256,6 @@ class Template
         /**
          * Sets image paths for each card-object passed through the param
          * @private
-         * @name _setImagePaths
          * @function
          * @param           {Object} cardObject                 Card-object
          */
@@ -311,7 +304,6 @@ class Template
         /**
          * Return a template with the appropriate canvasLab images embedded
          * @private
-         * @name _getImages
          * @param           {Object} cardObject                 Card-object
          * @param           {string} template                   HTML card template
          */
@@ -353,6 +345,11 @@ class Template
                 }
             }
 
+
+            // If no children, place slash-square symbol
+            template = ( ! cardObject.images.children ) ? template.replace ( /{{childGroup}}/, 'General' ).replace ( /{{childType}}/, 'slash-square' ).replace ( /{{childType}}/, 'Base' ) : template;
+
+
             // Clean remaining unused image tags
             template = template.replaceAll ( new RegExp ( '<img src="images/svg(/Handler)?/{{[^>]+>', 'g' ), '' );
 
@@ -363,7 +360,6 @@ class Template
         /**
          * Returns an Array of standard HTML templates for each card-object
          * @private
-         * @name _getStandardTemplates
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          * @return          {Array}                             Array of standard HTML templates for each card-object
@@ -395,7 +391,6 @@ class Template
         /**
          * Returns a code string with special variable formatting
          * @private
-         * @name _getSpecialVariables
          * @function
          * @param           {string} code                       Code as a string
          * @param           {number} count                      Card-object number
@@ -448,7 +443,6 @@ class Template
         /**
          * Returns an Array of standard & extra HTML templates for each card-object
          * @public
-         * @name getCards
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          * @return          {Array}                             Array of HTML templates for each card-object

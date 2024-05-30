@@ -21,7 +21,6 @@ class Font
         /**
          * Set font type
          * @public
-         * @name type
          * @function
          * @param           {string} value                              Type face; typography name
          */
@@ -53,7 +52,6 @@ class Font
         /**
          * Get type
          * @readOnly
-         * @name type
          * @function
          * @return          {string}                                    Type face; typography name
          */
@@ -67,7 +65,6 @@ class Font
         /**
          * Set font size
          * @public
-         * @name size
          * @function
          * @param           {number} value                              Font size
          */
@@ -79,7 +76,6 @@ class Font
         /**
          * Get font size
          * @readOnly
-         * @name size
          * @function
          * @return          {number}                                    Font size
          */
@@ -93,7 +89,6 @@ class Font
         /**
          * Set font weight
          * @public
-         * @name weight
          * @function
          * @param           {number} value                              Font weight
          */
@@ -114,7 +109,6 @@ class Font
         /**
          * Get font weight
          * @readOnly
-         * @name weight
          * @function
          * @return          {number}                                    Font weight
          */
@@ -128,7 +122,6 @@ class Font
         /**
          * Set font's max width
          * @public
-         * @name maxWidth
          * @function
          * @param           {number} value                              Max width
          */
@@ -140,7 +133,6 @@ class Font
         /**
          * Get font's max width
          * @readOnly
-         * @name maxWidth
          * @function
          * @return          {number}                                    Max width
          */
@@ -154,7 +146,6 @@ class Font
         /**
          * Get font's offset
          * @public
-         * @name offset
          * @function
          * @return          {Point}                                     Font's offset; ( x, y )
          */
@@ -168,7 +159,6 @@ class Font
         /**
          * Set font
          * @public
-         * @name font
          * @function
          * @param           {string} value                              CSS style font property syntax
          */
@@ -180,7 +170,6 @@ class Font
         /**
          * Get font
          * @readOnly
-         * @name font
          * @function
          * @return          {string}                                    CSS style font property syntax
          */

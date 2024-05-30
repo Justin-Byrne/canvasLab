@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8">
-    <title>JSDoc: Source: devSuite.js</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <title>devSuite.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
 
-<div id="main">
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
 
-    <h1 class="page-title">Source: devSuite.js</h1>
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lab.html">Lab</a><ul class='methods'><li data-type='method'><a href="Lab.html#editor">editor</a></li><li data-type='method'><a href="Lab.html#editor">editor</a></li><li data-type='method'><a href="Lab.html#init">init</a></li><li data-type='method'><a href="Lab.html#runCode">runCode</a></li></ul></li><li><a href="Log.html">Log</a><ul class='methods'><li data-type='method'><a href="Log.html#entries">entries</a></li></ul></li><li><a href="Page.html">Page</a><ul class='methods'><li data-type='method'><a href="Page.html#group">group</a></li><li data-type='method'><a href="Page.html#group">group</a></li><li data-type='method'><a href="Page.html#handler">handler</a></li><li data-type='method'><a href="Page.html#handler">handler</a></li><li data-type='method'><a href="Page.html#type">type</a></li><li data-type='method'><a href="Page.html#type">type</a></li></ul></li><li><a href="Template.html">Template</a><ul class='methods'><li data-type='method'><a href="Template.html#blank">blank</a></li><li data-type='method'><a href="Template.html#getCards">getCards</a></li><li data-type='method'><a href="Template.html#standard">standard</a></li></ul></li><li><a href="Tool.html">Tool</a><ul class='methods'><li data-type='method'><a href="Tool.html#copyCode">copyCode</a></li><li data-type='method'><a href="Tool.html#copyObjectWithKey">copyObjectWithKey</a></li><li data-type='method'><a href="Tool.html#delay">delay</a></li><li data-type='method'><a href="Tool.html#isCanvasLabObject">isCanvasLabObject</a></li></ul></li><li><a href="Ui.html">Ui</a><ul class='methods'><li data-type='method'><a href="Ui.html#alert">alert</a></li><li data-type='method'><a href="Ui.html#clean">clean</a></li><li data-type='method'><a href="Ui.html#clearScreen">clearScreen</a></li><li data-type='method'><a href="Ui.html#getClass">getClass</a></li><li data-type='method'><a href="Ui.html#init">init</a></li><li data-type='method'><a href="Ui.html#runEasingAnimation">runEasingAnimation</a></li><li data-type='method'><a href="Ui.html#setNavLinks">setNavLinks</a></li><li data-type='method'><a href="Ui.html#toggle">toggle</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-devSuite.html">devSuite</a><ul class='methods'><li data-type='method'><a href="module-devSuite.html#~_runLabStationCode">_runLabStationCode</a></li><li data-type='method'><a href="module-devSuite.html#~runEasingAnimation">runEasingAnimation</a></li><li data-type='method'><a href="module-devSuite.html#~toggleCardButton">toggleCardButton</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#blankCards">blankCards</a></li><li><a href="global.html#cardButton">cardButton</a></li><li><a href="global.html#code">code</a></li><li><a href="global.html#externalLinks">externalLinks</a></li><li><a href="global.html#fullscreen">fullscreen</a></li><li><a href="global.html#navigation">navigation</a></li><li><a href="global.html#script">script</a></li><li><a href="global.html#subStringRange">subStringRange</a></li><li><a href="global.html#to2Digits">to2Digits</a></li><li><a href="global.html#toTitleCase">toTitleCase</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">devSuite.js</h1>
+    
 
     
 
@@ -109,7 +128,6 @@ class Lab
         /**
          * Sets editor
          * @public
-         * @name editor
          * @function
          * @param           {Object} editor                     Primary ace-editor object
          */
@@ -121,7 +139,6 @@ class Lab
         /**
          * Gets editor
          * @public
-         * @name editor
          * @function
          * @return          {Object}                            Primary ace-editor object
          */
@@ -135,7 +152,6 @@ class Lab
         /**
          * Returns positions of bounding characters within the ace-editor
          * @private
-         * @name _getBoundingCharactersPositions
          * @function
          * @param           {Array&lt;string>} characters          Bounding characters
          * @param           {string}        data                Data to parse
@@ -147,7 +163,6 @@ class Lab
         /**
          * Returns a new color-picker object
          * @private
-         * @name _getColorPicker
          * @function
          * @param           {string} id                         Element id
          * @return          {Object}                            Color-picker object
@@ -182,7 +197,6 @@ class Lab
         /**
          * Sets numeric value within ace-editor up (+) or down (-)
          * @private
-         * @name _setNumbericValue
          * @function
          * @param           {boolean} up                        True (+) || false (-)
          */
@@ -214,7 +228,6 @@ class Lab
         /**
          * Sets the font size within ace-editor up (+) or down (-)
          * @private
-         * @name _setFontSize
          * @function
          * @param           {boolean} up                        True (+) || false (-)
          */
@@ -233,7 +246,6 @@ class Lab
         /**
          * Sets color-picker's position within ace-editor
          * @private
-         * @name _setColorPickerPosition
          * @function
          */
         _setColorPickerPosition ( )
@@ -248,7 +260,6 @@ class Lab
         /**
          * Sets the lab's canvas &amp; ruler dimensions
          * @private
-         * @name setCanvasSize
          * @async
          * @function
          */
@@ -281,7 +292,6 @@ class Lab
         /**
          * Sets all event listeners for this object
          * @private
-         * @name _setEventListeners
          * @function
          */
         _setEventListeners ( )
@@ -452,7 +462,6 @@ class Lab
         /**
          * Increment the value passed up (+) or down (-)
          * @private
-         * @name _increment
          * @function
          * @param           {string|number} value               Value to increment
          * @param           {boolean}       up                  True (+) || false (-)
@@ -463,7 +472,6 @@ class Lab
         /**
          * Pad a string with a specified amount of zeros
          * @private
-         * @name _padZeros
          * @function
          * @param           {string|number} value               Value to pad
          * @param           {number}        amount              Amount to pad
@@ -474,7 +482,6 @@ class Lab
         /**
          * Increments a numeric selection from ace-editor up (+) or down (-)
          * @private
-         * @name _incrementValue
          * @function
          * @param           {string}  value                     Value from ace-editor
          * @param           {boolean} up                        True (+) || false (-)
@@ -524,7 +531,6 @@ class Lab
         /**
          * Swap rgb values between color-picker and ace-editor
          * @private
-         * @name _swapRgbValue
          * @function
          * @param           {string} color                      Rgb color value from color-picker
          */
@@ -569,7 +575,6 @@ class Lab
         /**
          * Cleans code of enumerators for ace-editor
          * @private
-         * @name _cleanCode
          * @function
          * @param           {Function} script                   JavaScript function; for ace-editor only
          * @return          {string}                            Function as a string
@@ -592,7 +597,6 @@ class Lab
         /**
          * Generates a downloadable file &amp; initiates that download
          * @private
-         * @name _download
          * @function
          * @param           {File} file                         File to download
          */
@@ -623,7 +627,6 @@ class Lab
         /**
          * Executes lab code from editor
          * @public
-         * @name runCode
          * @function
          */
         runCode ( )
@@ -643,7 +646,6 @@ class Lab
         /**
          * Sets lab &amp; ace-editor
          * @public
-         * @name init
          * @function
          */
         init ( )
@@ -728,7 +730,6 @@ class Log
         /**
          * Gets entries
          * @public
-         * @name entries
          * @function
          * @return          {string}                            Page's entries
          */
@@ -801,7 +802,6 @@ class Page
         /**
          * Sets type
          * @public
-         * @name type
          * @function
          * @param           {string} value                      Page's type
          */
@@ -813,7 +813,6 @@ class Page
         /**
          * Gets type
          * @readOnly
-         * @name type
          * @function
          * @return          {string}                            Page's type
          */
@@ -827,7 +826,6 @@ class Page
         /**
          * Sets group
          * @public
-         * @name group
          * @function
          * @param           {string} value                      Page's group
          */
@@ -839,7 +837,6 @@ class Page
         /**
          * Gets group
          * @readOnly
-         * @name group
          * @function
          * @return          {string}                            Page's group
          */
@@ -853,7 +850,6 @@ class Page
         /**
          * Sets handler
          * @public
-         * @name handler
          * @function
          * @param           {string} value                      Page's handler
          */
@@ -865,7 +861,6 @@ class Page
         /**
          * Gets handler
          * @readOnly
-         * @name handler
          * @function
          * @return          {string}                            Page's handler
          */
@@ -879,7 +874,6 @@ class Page
         /**
          * Sets all properties by the passed 'button' param
          * @private
-         * @name _setPropertiesBy
          * @function
          * @param           {HTMLElement} button                HTML DOM Element
          */
@@ -940,8 +934,6 @@ class Template
 
                                &lt;/div>
 
-                               &lt;div class="title">{{title}}&lt;/div>
-
                                &lt;div class="card-number">
 
                                    &lt;span class="close">&lt;/span>
@@ -955,6 +947,8 @@ class Template
                            &lt;canvas id="canvas_{{index}}">&lt;/canvas>
 
                            &lt;div class="card-body">
+
+                               &lt;div class="title">{{title}}&lt;/div>
 
                                &lt;div class="card-body-buttons">
 
@@ -1021,7 +1015,6 @@ class Template
         /**
          * Returns a standard HTML card template
          * @readOnly
-         * @name standard
          * @function
          * @return          {string}                            HTML card standard template
          */
@@ -1032,7 +1025,6 @@ class Template
         /**
          * Returns a blank HTML card template
          * @readOnly
-         * @name blank
          * @function
          * @return          {string}                            HTML card blank template
          */
@@ -1043,7 +1035,6 @@ class Template
         /**
          * Returns the amount of extra cards to embed
          * @private
-         * @name _getBlankCount
          * @function
          * @param           {Array.&lt;Object>} cardObjects        Array of card-objects
          * @return          {number}                            Amount of extra cards
@@ -1061,7 +1052,6 @@ class Template
         /**
          * Returns an Array of extra HTML templates; to align cards
          * @private
-         * @name _getBlankTemplates
          * @function
          * @param           {Array.&lt;Object>} cardObjects        Array of card-objects
          * @return          {Array}                             Array of extra HTML templates for each card-object
@@ -1096,7 +1086,6 @@ class Template
         /**
          * Returns rendered HTML for a card-object
          * @private
-         * @name _getCodeTemplate
          * @function
          * @param           {Object} cardObject                 Card-object
          * @param           {string} template                   HTML card template
@@ -1146,7 +1135,6 @@ class Template
         /**
          * Returns the amount of columns available per the present resolution
          * @private
-         * @name _getColumnCount
          * @function
          * @return          {number}                            Number of columns
          */
@@ -1173,7 +1161,6 @@ class Template
         /**
          * Sets image paths for each card-object passed through the param
          * @private
-         * @name _setImagePaths
          * @function
          * @param           {Object} cardObject                 Card-object
          */
@@ -1222,7 +1209,6 @@ class Template
         /**
          * Return a template with the appropriate canvasLab images embedded
          * @private
-         * @name _getImages
          * @param           {Object} cardObject                 Card-object
          * @param           {string} template                   HTML card template
          */
@@ -1264,6 +1250,11 @@ class Template
                 }
             }
 
+
+            // If no children, place slash-square symbol
+            template = ( ! cardObject.images.children ) ? template.replace ( /{{childGroup}}/, 'General' ).replace ( /{{childType}}/, 'slash-square' ).replace ( /{{childType}}/, 'Base' ) : template;
+
+
             // Clean remaining unused image tags
             template = template.replaceAll ( new RegExp ( '&lt;img src="images/svg(/Handler)?/{{[^>]+>', 'g' ), '' );
 
@@ -1274,7 +1265,6 @@ class Template
         /**
          * Returns an Array of standard HTML templates for each card-object
          * @private
-         * @name _getStandardTemplates
          * @function
          * @param           {Array.&lt;Object>} cardObjects        Array of card-objects
          * @return          {Array}                             Array of standard HTML templates for each card-object
@@ -1306,7 +1296,6 @@ class Template
         /**
          * Returns a code string with special variable formatting
          * @private
-         * @name _getSpecialVariables
          * @function
          * @param           {string} code                       Code as a string
          * @param           {number} count                      Card-object number
@@ -1359,7 +1348,6 @@ class Template
         /**
          * Returns an Array of standard &amp; extra HTML templates for each card-object
          * @public
-         * @name getCards
          * @function
          * @param           {Array.&lt;Object>} cardObjects        Array of card-objects
          * @return          {Array}                             Array of HTML templates for each card-object
@@ -1383,12 +1371,69 @@ class Tool
 {
     constructor ( ) { }
 
+    _config =
+    {
+        minFontSize:            undefined,
+        maxDivisionHeight:      undefined,
+        previousDivisionHeight: undefined,
+    }
+
+    _get =
+    {
+        /**
+         * Returns CSS pixel value as number
+         * @private
+         * @function
+         * @param           {string} value                  CSS pixel value
+         * @return          {number}                        Number
+         */
+        numberFromPx ( value )
+        {
+            return Number ( value.replace ( 'px', '' ) );
+        },
+
+        /**
+         * Returns CSS font size of HTML element
+         * @private
+         * @function
+         * @param           {HTMLElement} element           HTML DOM Element
+         * @return          {string}                        CSS font size
+         */
+        fontSize ( element )
+        {
+            return this.numberFromPx ( window.getComputedStyle ( element ).fontSize );
+        },
+
+        /**
+         * Returns the minimum height of a text element
+         * @private
+         * @function
+         * @param           {HTMLElement} element           HTML DOM element
+         * @return          {number}                        Minimum height
+         */
+        textMinHeight ( element )
+        {
+            let _originalText = element.innerHTML.replaceAll ( '\n', '' ).replaceAll ( '\t', '' );
+
+
+            element.innerHTML = 'A';
+
+
+            let _height       = element.clientHeight
+
+
+            element.innerHTML = _originalText;
+
+
+            return _height;
+        }
+    }
+
     ////    VALIDATORS    //////////////////////////////////////////////////////////////////////////
 
         /**
          * Whether the passed value is an 'Object' canvasLab category
          * @public
-         * @name isCanvasLabObject
          * @function
          * @param           {string} value                      Object, i.e.: 'Line', 'Circle', 'Rectangle', etc...
          * @return          {boolean}                           True || False
@@ -1401,9 +1446,25 @@ class Tool
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
 
         /**
+         * Increments font size by 1px
+         * @private
+         * @function
+         * @param           {HTMLElement} element           HTML DOM Element
+         * @param           {boolean}     up                Increment up or down; True | False
+         */
+        _incrementFontSize ( element, up = false )
+        {
+            this._config.minFontSize = this._get.fontSize ( element );
+
+            this._config.minFontSize = ( up ) ? this._config.minFontSize + 1 : this._config.minFontSize - 1;
+
+
+            element.style.fontSize = `${this._config.minFontSize}px`;
+        }
+
+        /**
          * Simple programmatic delay
          * @public
-         * @name delay
          * @function
          * @param           {number} time                       Time to delay
          * @return          {Promise}                           An async promise
@@ -1416,7 +1477,6 @@ class Tool
         /**
          * Returns a copied object
          * @public
-         * @name copyObjectWithKey
          * @function
          * @param           {Object} object                     Object to copy
          * @return          {Object}                            Copied object
@@ -1449,7 +1509,6 @@ class Tool
         /**
          * Copy code to clipboard
          * @public
-         * @name copyCode
          * @async
          * @function
          */
@@ -1474,6 +1533,52 @@ class Tool
 
             TOOL.delay ( 1000 ).then ( ( ) => document.querySelector ( '#copiedAlert' ).children [ 0 ].remove ( ) );
         }
+
+        /**
+         * Adjusts group of element font-sizes, with that groups min font-size
+         * @private
+         * @function
+         * @param           {string} selector               CSS selector
+         */
+        scaleText ( selector )
+        {
+            let _textBoxes  = document.querySelectorAll ( selector );
+
+            let _textBoxOne = _textBoxes [ 0 ];
+
+            let _minHeight  = this._get.textMinHeight ( _textBoxOne );
+
+
+            for ( let _textBox of _textBoxes )              // Check: for wrapped text boxes via element.clientHeight
+
+                while ( _textBox.clientHeight > _minHeight )
+
+                    this._incrementFontSize ( _textBox );
+
+
+            for ( let _textBox of _textBoxes )              // Resize: all text boxes to minimum font size
+
+                _textBox.style.fontSize = `${this._config.minFontSize}px`;
+
+
+            for ( let _textBox of _textBoxes )              // Check: that all _textBox.clientHeights are equal
+            {
+                if ( this._config.previousDivisionHeight === undefined )
+                {
+                    this._config.previousDivisionHeight = _textBox.clientHeight;
+
+                    continue;
+                }
+                else
+
+                    if ( _textBox.clientHeight > this._config.previousDivisionHeight )
+
+                        this.scaleText ( selector );
+
+
+                this._config.previousDivisionHeight = _textBox.clientHeight;
+            }
+        }
 }
  
 /**
@@ -1486,9 +1591,208 @@ class Ui
     _toggle =
     {
         /**
+         * Adds an additional card to cardObjects; mirroring the last card present
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Object or Subject type
+         */
+        _cardPlus ( element )
+        {
+            let _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length - 1;
+
+                _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ _card ];
+
+
+            cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].push ( _card );
+
+
+            UI._setAlbumCards ( );
+        },
+
+        /**
+         * Subtracts the last card from cardObjects
+         * @private
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _cardClose ( element )
+        {
+            let _close = element.classList.contains ( 'close' );
+
+
+            if ( _close )
+            {
+                let _cardNumber = Number ( element.nextElementSibling.innerHTML );
+
+
+                if ( cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length > 1 )
+
+                     cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
+
+
+                UI._setAlbumCards ( );
+            }
+        },
+
+        /**
+         * Sets markdown content for the off canvas documentation element
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Object or Subject type
+         */
+        _documentation ( element )
+        {
+            let _isBaseIcon = ( element.getAttribute ( 'suite-data-type' ) === 'Base' );
+
+            if ( ! _isBaseIcon )
+            {
+                let _converter = new showdown.Converter;
+
+                _converter.setOption ( 'tables', true );
+
+
+                let _type = element.getAttribute ( 'suite-data-type' );
+
+                let _text = md2json [ _type ];
+
+                    _text = _text.replace ( /&amp;quot;&amp;#x27;/g, '"' )
+                                 .replace ( /&amp;#x27;&amp;quot;/g, '"' )
+                                 .replace ( /&amp;lt;/g,         '"' )
+                                 .replace ( /&amp;gt;/g,         '"' );
+
+
+                let _html = _converter.makeHtml ( _text );
+
+                    _html = _html.replace ( /_new">new/,                      "_new\">&lt;b>new&lt;/b>" )
+                                 .replace ( /&lt;strong>Access&lt;[^:]+[^>]+>/g,    "" )
+                                 .replace ( /&lt;strong>Read only&lt;[^:]+[^>]+>/g, "" )
+                                 .replace ( /&lt;strong>See&lt;[^:]+[^>]+>[^>]+>/g, "" );
+
+
+                let _offcanvas     = document.querySelector ( '.offcanvas' );
+
+                let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
+
+                    _offcanvasBody.innerHTML = _html;
+
+
+                let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );
+
+                    _bsOffcanvas.toggle ( );
+
+
+                let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
+
+
+                    _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
+                        {
+                            _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
+
+                            // @TODO: optimize this
+                            // This shouldn't have to run multiple times
+                            // to get accuracy throughout all text-boxes
+                            TOOL.scaleText ( 'h3' );
+
+                            _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
+                        } );
+            }
+        },
+
+        /**
+         * Toggles visibility of easing functions
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Index of animation card
+         */
+        _easingFunctions ( element )
+        {
+            UI._embedEasingButtons ( );
+
+
+            let _index     = Number ( element.getAttribute ( 'suite-data-index' ) );
+
+            let _functions = document.querySelectorAll ( '.easing-functions' );
+
+
+            ( _functions [ _index ].style.visibility === 'hidden' || _functions [ _index ].style.visibility === '' )
+
+                ? [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 1, 'visible' ]
+
+                : [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 0, 'hidden'  ];
+        },
+
+        /**
+         * Toggles modal code element
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Main button element
+         */
+        _modalCode ( element )
+        {
+            let _element   = element.offsetParent;
+
+            let _blankCard = ( _element.tagName === 'MAIN' );
+
+
+            if ( ! _blankCard )
+            {
+                let _card =
+                {
+                    title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
+
+                    code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
+                }
+
+                let _modal =
+                {
+                    title:   document.querySelector ( '#modal-code-label' ),
+
+                    code:    document.querySelector ( 'code' ),
+
+                    element: document.querySelector ( '#modal-code' )
+                }
+
+                let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
+
+
+                [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
+
+
+                    _boostrapModal.toggle ( );
+
+                    hljs.highlightAll ( );
+            }
+        },
+
+        /**
+         * Toggles drop-down navigation menu
+         * @private
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _navDropdown ( element )
+        {
+            let _ul     = ( element.parentNode.nextSibling.data ) ? element.parentNode.nextSibling.nextSibling : element.parentNode.nextSibling;
+
+            let _isOpen = ( element.getAttribute ( 'data-button-open' ) === 'false' );
+
+            let _isShow = ( _ul.classList.contains ( 'show' ) );
+
+
+            ( _isShow ) ? _ul.classList.remove ( 'show' )
+
+                        : _ul.classList.add    ( 'show' );
+
+
+            element.setAttribute ( 'data-button-open', _isOpen )
+
+
+            this.externalLinks ( _isOpen )
+        },
+
+        /**
          * Toggles the card button associated with the passed 'event' param
          * @public
-         * @name cardButton
          * @function
          * @param           {HTMLEvent} event                   UI DOM event
          */
@@ -1540,81 +1844,22 @@ class Ui
         /**
          * Toggles opacity from bottom links in navigation area
          * @public
-         * @name externalLinks
          * @function
          * @param           {HTMLElement} element               Main button element
          */
-        externalLinks ( element )
+        externalLinks ( show = true )
         {
             let _links = document.querySelector ( '.external-links' );
 
-            let _value = element.target.attributes [ "data-button-state" ].value;
 
-            let _state = ( _value === 'closed' &amp;&amp; ! _links.classList.contains ( 'fade' ) );
+            ( show ) ? _links.classList.add    ( 'fade' )
 
-
-            ( _state ) ? _links.classList.add    ( 'fade' )
-
-                       : _links.classList.remove ( 'fade' );
-
-
-            ( _state ) ? element.target.setAttribute ( 'data-button-state', 'open'   )
-
-                       : element.target.setAttribute ( 'data-button-state', 'closed' );
-
-
-            ( _state ) ? element.target.focus ( )
-
-                       : element.target.blur  ( );
-        },
-
-        /**
-         * Toggles visibility of navigation menu
-         * @public
-         * @name navigation
-         * @function
-         */
-        navigation ( )
-        {
-            let _lab  = document.querySelector ( 'div.lab-station' );
-
-            let _nav  = document.querySelector ( 'nav'             );
-
-            let _main = document.querySelector ( 'main'            );
-
-            let _open = document.querySelector ( '#nav-open'       );
-
-
-            ( UI._isNavOpen ( ) )
-
-                ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-200px', '-0px'  ]
-
-                : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '200px' ];
-
-
-            if ( _lab.style.display === 'block' )
-            {
-                LAB.setCanvasSize ( );
-
-                LAB.runCode ( );
-            }
-
-
-            let _navIcons = _nav.querySelector ( '#nav-icon' ).children;
-
-
-            for ( let _navIcon of _navIcons )               // Blink eye
-
-                _navIcon.style.display = ( _navIcon.style.display === 'none' ) ? 'block' : 'none';
-
-
-            _open.style.display = ( _open.style.display === 'none' ) ? 'block' : 'none';
+                     : _links.classList.remove ( 'fade' );
         },
 
         /**
          * Toggles fullscreen mode                          @TODO: fix this crap
          * @public
-         * @name fullscreen
          * @function
          * @param           {HTMLElement} button                Button under the #control-panel .button class
          */
@@ -1664,191 +1909,45 @@ class Ui
         },
 
         /**
-         * Toggles modal code element
-         * @private
-         * @name _modalCode
+         * Toggles visibility of navigation menu
+         * @public
          * @function
-         * @param           {HTMLElement} element               Main button element
          */
-        _modalCode ( element )
+        navigation ( )
         {
-            let _element   = element.offsetParent;
+            let _lab  = document.querySelector ( 'div.lab-station' );
 
-            let _blankCard = ( _element.tagName === 'MAIN' );
+            let _nav  = document.querySelector ( 'nav'             );
+
+            let _main = document.querySelector ( 'main'            );
+
+            let _open = document.querySelector ( '#nav-open'       );
 
 
-            if ( ! _blankCard )
+            ( UI._isNavOpen ( ) )
+
+                ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-200px', '-0px'  ]
+
+                : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '200px' ];
+
+
+            if ( _lab.style.display === 'block' )
             {
-                let _card =
-                {
-                    title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
+                LAB.setCanvasSize ( );
 
-                    code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
-                }
-
-                let _modal =
-                {
-                    title:   document.querySelector ( '#modal-code-label' ),
-
-                    code:    document.querySelector ( 'code' ),
-
-                    element: document.querySelector ( '#modal-code' )
-                }
-
-                let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
-
-
-                [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
-
-
-                    _boostrapModal.toggle ( );
-
-                    hljs.highlightAll ( );
+                LAB.runCode ( );
             }
-        },
-
-        /**
-         * Toggles visibility of easing functions
-         * @private
-         * @name _easingFunctions
-         * @function
-         * @param           {HTMLElement} element               Index of animation card
-         */
-        _easingFunctions ( element )
-        {
-            UI._embedEasingButtons ( );
 
 
-            let _index     = Number ( element.getAttribute ( 'suite-data-index' ) );
-
-            let _functions = document.querySelectorAll ( '.easing-functions' );
+            let _navIcons = _nav.querySelector ( '#nav-icon' ).children;
 
 
-            ( _functions [ _index ].style.visibility === 'hidden' || _functions [ _index ].style.visibility === '' )
+            for ( let _navIcon of _navIcons )               // Blink eye
 
-                ? [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 1, 'visible' ]
-
-                : [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 0, 'hidden'  ];
-        },
-
-        /**
-         * Sets markdown content for the off canvas documentation element
-         * @private
-         * @name _documentation
-         * @function
-         * @param           {HTMLElement} element               Object or Subject type
-         */
-        _documentation ( element )
-        {
-            let _converter = new showdown.Converter;
-
-                _converter.setOption ( 'tables', true );
+                _navIcon.style.display = ( _navIcon.style.display === 'none' ) ? 'block' : 'none';
 
 
-            let _type = element.getAttribute ( 'suite-data-type' );
-
-            let _text = md2json [ _type ];
-
-                _text = _text.replace ( /&amp;quot;&amp;#x27;/g, '"' )
-                             .replace ( /&amp;#x27;&amp;quot;/g, '"' );
-
-
-            let _html = _converter.makeHtml ( _text );
-
-
-            let _offcanvas     = document.querySelector ( '.offcanvas' );
-
-            let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
-
-                _offcanvasBody.innerHTML = _html;
-
-
-            let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );        // @TODO Investigate here !
-
-                _bsOffcanvas.toggle ( );
-
-
-            let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
-
-
-                _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
-                    {
-                        _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
-
-                        _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
-                    } );
-        },
-
-        /**
-         * Adds an additional card to cardObjects; mirroring the last card present
-         * @private
-         * @name _cardPlus
-         * @function
-         * @param           {HTMLElement} element               Object or Subject type
-         */
-        _cardPlus ( element )
-        {
-            let _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length - 1;
-
-                _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ _card ];
-
-
-            cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].push ( _card );
-
-
-            UI._setAlbumCards ( );
-        },
-
-        /**
-         * Subtracts the last card from cardObjects
-         * @private
-         * @name _cardClose
-         * @function
-         * @param           {HTMLElement} element               HTML DOM Element
-         */
-        _cardClose ( element )
-        {
-            let _close = element.classList.contains ( 'close' );
-
-
-            if ( _close )
-            {
-                let _cardNumber = Number ( element.nextElementSibling.innerHTML );
-
-
-                if ( cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length > 1 )
-
-                     cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
-
-
-                UI._setAlbumCards ( );
-            }
-        },
-
-        /**
-         * Toggles drop-down navigation menu
-         * @private
-         * @name _navDropdown
-         * @function
-         * @param           {HTMLElement} element               HTML DOM Element
-         */
-        _navDropdown ( element )
-        {
-            let _ul     = ( element.parentNode.nextSibling.data ) ? element.parentNode.nextSibling.nextSibling : element.parentNode.nextSibling;
-
-            let _isOpen = ( element.getAttribute ( 'data-button-open' ) === 'false' );
-
-            let _isShow = ( _ul.classList.contains ( 'show' ) );
-
-
-            ( _isShow ) ? _ul.classList.remove ( 'show' )
-
-                        : _ul.classList.add    ( 'show' );
-
-
-            ( _isOpen ) ? element.setAttribute ( 'data-button-open', true )
-
-                        : element.setAttribute ( 'data-button-open', false );
+            _open.style.display = ( _open.style.display === 'none' ) ? 'block' : 'none';
         }
     }
 
@@ -1857,7 +1956,6 @@ class Ui
         /**
          * Cleans script of it's function wrapper
          * @public
-         * @name script
          * @function
          * @param           {Function} script                   JavaScript function
          * @return          {string}                            Function as a string
@@ -1872,7 +1970,6 @@ class Ui
         /**
          * Cleans code of enumerators for card-objects
          * @public
-         * @name code
          * @function
          * @param           {Function} script                   JavaScript function; for card-objects only
          * @return          {string}                            Function as a string
@@ -1895,7 +1992,6 @@ class Ui
         /**
          * Cleans the remaining '.blank' cards while converting the first to a '.plus' card; @see Ui.toggle._cardPlus ( )
          * @public
-         * @name blankCards
          * @function
          */
         blankCards ( )
@@ -1939,7 +2035,6 @@ class Ui
         /**
          * Gets toggle object
          * @public
-         * @name toggle
          * @function
          * @return          {Object}                            Toggle object
          */
@@ -1953,7 +2048,6 @@ class Ui
         /**
          * Gets clean object
          * @public
-         * @name clean
          * @function
          * @return          {Object}                            Clean object
          */
@@ -1967,7 +2061,6 @@ class Ui
         /**
          * Returns a button for navigation links
          * @private
-         * @name _getButton
          * @function
          * @param           {Object} button                     Navigation link object
          * @return          {HTMLElement}                       List item HTML element
@@ -2000,7 +2093,6 @@ class Ui
         /**
          * Returns eval ready code for passed card-objects
          * @private
-         * @name _getCode
          * @function
          * @param           {Array.&lt;Object>} objects            Array of card-objects
          * @return          {string}                            String to be evaluated for all card-objects
@@ -2021,7 +2113,6 @@ class Ui
         /**
          * Returns a link for navigation links
          * @private
-         * @name _getLink
          * @function
          * @param           {Object} link                       Navigation link object
          * @return          {HTMLElement}                       List item HTML element
@@ -2058,7 +2149,6 @@ class Ui
         /**
          * Returns the likely class name for the passed code
          * @public
-         * @name getClass
          * @function
          * @param           {string} code                       Code string
          * @return          {string}                            Likely class name
@@ -2089,7 +2179,6 @@ class Ui
         /**
          * Sets the album cards for the current 'Page'
          * @private
-         * @name _setAlbumCards
          * @function
          */
         _setAlbumCards ( )
@@ -2108,7 +2197,6 @@ class Ui
         /**
          * Sets byrne-systems logo
          * @private
-         * @name _setByrneSystemsLogo
          * @function
          */
         _setByrneSystemsLogo ( )
@@ -2150,7 +2238,6 @@ class Ui
         /**
          * Sets card section's inner HTML
          * @private
-         * @name _setCardSection
          * @function
          * @param           {Array.&lt;Object>} cardObjects        Array of card-objects
          */
@@ -2172,7 +2259,6 @@ class Ui
         /**
          * Sets cards
          * @private
-         * @name _setCards
          * @function
          * @param           {HTMLElement} element               HTML DOM Element
          */
@@ -2207,7 +2293,6 @@ class Ui
         /**
          * Sets all event listeners for this object
          * @private
-         * @name _setEventListeners
          * @function
          */
         _setEventListeners ( )
@@ -2288,7 +2373,6 @@ class Ui
         /**
          * Sets navigation links
          * @public
-         * @name setNavLinks
          * @function
          * @param           {HTMLElement}    element            Parent navigation element
          * @param           {Array.&lt;Object>} links              Array of Objects containing navigation link data
@@ -2330,7 +2414,6 @@ class Ui
         /**
          * Checks whether ancillary sub animation buttons are collapsible
          * @private
-         * @name _checkCollapsible
          * @function
          * @param           {number} index                      Index to check
          */
@@ -2344,7 +2427,6 @@ class Ui
         /**
          * Collapses uncollapsed ancillary buttons, outside of the present button
          * @private
-         * @name _collapseButtons
          * @function
          * @param           {string} present                    data-bs-target attribute
          */
@@ -2366,7 +2448,6 @@ class Ui
         /**
          * Creates easing links for animation cards
          * @private
-         * @name _createEasingButtons
          * @function
          * @return          {HTMLElement}                       UL element with all necessary nested elements
          */
@@ -2430,7 +2511,6 @@ class Ui
         /**
          * Runs code from within the passed 'cardObjects' param
          * @private
-         * @name _evalCardObjects
          * @function
          * @param           {Array.&lt;Object>} cardObjects        Array of card-objects
          */
@@ -2439,7 +2519,6 @@ class Ui
         /**
          * Embeds easing buttons for each animation card
          * @private
-         * @name _embedEasingButtons
          * @function
          */
         _embedEasingButtons ( )
@@ -2469,7 +2548,6 @@ class Ui
         /**
          * Returns whether the navigation bar is open
          * @private
-         * @name _isNavOpen
          * @function
          * @return          {boolean}                           True | False
          */
@@ -2478,7 +2556,6 @@ class Ui
         /**
          * Displays an alert message within the modal
          * @public
-         * @name alert
          * @async
          * @function
          * @param           {string} message                    Message to display
@@ -2497,7 +2574,6 @@ class Ui
         /**
          * Clears screen prior to rebuilding
          * @public
-         * @name clearScreen
          * @function
          * @param           {boolean} setCardAlbum              Sets card album display to block (true) || none (false)
          */
@@ -2542,7 +2618,6 @@ class Ui
         /**
          * Sets User Interface
          * @public
-         * @name init
          * @function
          */
         init ( )
@@ -2558,7 +2633,6 @@ class Ui
         /**
          * Sets easing animation for an animation card
          * @public
-         * @name runEasingAnimation
          * @function
          * @param           {string} easingFunction             Easing function; as a string
          * @param           {number} index                      Index of animation card
@@ -2945,7 +3019,64 @@ class Ui
                     children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
-                        _circle.fill.alpha  = 0.25;
+                        _circle.fill.color = new Rgb ( 0,  150,  200 );
+
+                        _circle.fill.color.alpha = 0.25;
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill linear',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'linear', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill radial',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'radial', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Radial ( { x: 180, y: 110 }, 0, { x: 180, y: 110 }, 50 );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill conic',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'conic', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Conic ( 0, { x: 77, y: 155 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
 
                         _circle.draw ( );
                     }
@@ -3135,7 +3266,64 @@ class Ui
                     children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
-                        _rectangle.fill.alpha = 0.25;
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
+
+                        _rectangle.fill.color.alpha = 0.25;
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill linear',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'linear', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill radial',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'radial', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Radial ( { x: 180, y: 110 }, 0, { x: 180, y: 110 }, 50 );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill conic',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'conic', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Conic ( 0, { x: 77, y: 155 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
 
                         _rectangle.draw ( );
                     }
@@ -4562,19 +4750,21 @@ class Ui
 
 
 
+    
+    
 </div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-devSuite.html">devSuite</a></li></ul><h3>Classes</h3><ul><li><a href="Lab.html">Lab</a></li><li><a href="Log.html">Log</a></li><li><a href="Page.html">Page</a></li><li><a href="Template.html">Template</a></li><li><a href="Tool.html">Tool</a></li><li><a href="Ui.html">Ui</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_cardClose">_cardClose</a></li><li><a href="global.html#_cardPlus">_cardPlus</a></li><li><a href="global.html#_checkCollapsible">_checkCollapsible</a></li><li><a href="global.html#_cleanCode">_cleanCode</a></li><li><a href="global.html#_collapseButtons">_collapseButtons</a></li><li><a href="global.html#_createEasingButtons">_createEasingButtons</a></li><li><a href="global.html#_documentation">_documentation</a></li><li><a href="global.html#_download">_download</a></li><li><a href="global.html#_easingFunctions">_easingFunctions</a></li><li><a href="global.html#_embedEasingButtons">_embedEasingButtons</a></li><li><a href="global.html#_evalCardObjects">_evalCardObjects</a></li><li><a href="global.html#_getBlankCount">_getBlankCount</a></li><li><a href="global.html#_getBlankTemplates">_getBlankTemplates</a></li><li><a href="global.html#_getBoundingCharactersPositions">_getBoundingCharactersPositions</a></li><li><a href="global.html#_getButton">_getButton</a></li><li><a href="global.html#_getCode">_getCode</a></li><li><a href="global.html#_getCodeTemplate">_getCodeTemplate</a></li><li><a href="global.html#_getColorPicker">_getColorPicker</a></li><li><a href="global.html#_getColumnCount">_getColumnCount</a></li><li><a href="global.html#_getImages">_getImages</a></li><li><a href="global.html#_getLink">_getLink</a></li><li><a href="global.html#_getSpecialVariables">_getSpecialVariables</a></li><li><a href="global.html#_getStandardTemplates">_getStandardTemplates</a></li><li><a href="global.html#_increment">_increment</a></li><li><a href="global.html#_incrementValue">_incrementValue</a></li><li><a href="global.html#_isNavOpen">_isNavOpen</a></li><li><a href="global.html#_modalCode">_modalCode</a></li><li><a href="global.html#_navDropdown">_navDropdown</a></li><li><a href="global.html#_padZeros">_padZeros</a></li><li><a href="global.html#_setAlbumCards">_setAlbumCards</a></li><li><a href="global.html#_setByrneSystemsLogo">_setByrneSystemsLogo</a></li><li><a href="global.html#_setCardSection">_setCardSection</a></li><li><a href="global.html#_setCards">_setCards</a></li><li><a href="global.html#_setColorPickerPosition">_setColorPickerPosition</a></li><li><a href="global.html#_setEventListeners">_setEventListeners</a></li><li><a href="global.html#_setFontSize">_setFontSize</a></li><li><a href="global.html#_setImagePaths">_setImagePaths</a></li><li><a href="global.html#_setNumbericValue">_setNumbericValue</a></li><li><a href="global.html#_setPropertiesBy">_setPropertiesBy</a></li><li><a href="global.html#_swapRgbValue">_swapRgbValue</a></li><li><a href="global.html#alert">alert</a></li><li><a href="global.html#blank">blank</a></li><li><a href="global.html#blankCards">blankCards</a></li><li><a href="global.html#cardButton">cardButton</a></li><li><a href="global.html#clean">clean</a></li><li><a href="global.html#clearScreen">clearScreen</a></li><li><a href="global.html#code">code</a></li><li><a href="global.html#copyCode">copyCode</a></li><li><a href="global.html#copyObjectWithKey">copyObjectWithKey</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#editor">editor</a></li><li><a href="global.html#entries">entries</a></li><li><a href="global.html#externalLinks">externalLinks</a></li><li><a href="global.html#fullscreen">fullscreen</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getClass">getClass</a></li><li><a href="global.html#group">group</a></li><li><a href="global.html#handler">handler</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isCanvasLabObject">isCanvasLabObject</a></li><li><a href="global.html#navigation">navigation</a></li><li><a href="global.html#runCode">runCode</a></li><li><a href="global.html#runEasingAnimation">runEasingAnimation</a></li><li><a href="global.html#script">script</a></li><li><a href="global.html#setCanvasSize">setCanvasSize</a></li><li><a href="global.html#setNavLinks">setNavLinks</a></li><li><a href="global.html#standard">standard</a></li><li><a href="global.html#subStringRange">subStringRange</a></li><li><a href="global.html#to2Digits">to2Digits</a></li><li><a href="global.html#toTitleCase">toTitleCase</a></li><li><a href="global.html#toggle">toggle</a></li><li><a href="global.html#type">type</a></li></ul>
-</nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun May 26 2024 18:34:07 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.0</a> on Wed May 29 2024 17:52:18 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
 </body>
 </html>

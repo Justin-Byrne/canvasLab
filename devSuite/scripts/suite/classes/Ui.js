@@ -8,9 +8,208 @@ class Ui
     _toggle =
     {
         /**
+         * Adds an additional card to cardObjects; mirroring the last card present
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Object or Subject type
+         */
+        _cardPlus ( element )
+        {
+            let _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length - 1;
+
+                _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ _card ];
+
+
+            cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].push ( _card );
+
+
+            UI._setAlbumCards ( );
+        },
+
+        /**
+         * Subtracts the last card from cardObjects
+         * @private
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _cardClose ( element )
+        {
+            let _close = element.classList.contains ( 'close' );
+
+
+            if ( _close )
+            {
+                let _cardNumber = Number ( element.nextElementSibling.innerHTML );
+
+
+                if ( cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length > 1 )
+
+                     cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
+
+
+                UI._setAlbumCards ( );
+            }
+        },
+
+        /**
+         * Sets markdown content for the off canvas documentation element
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Object or Subject type
+         */
+        _documentation ( element )
+        {
+            let _isBaseIcon = ( element.getAttribute ( 'suite-data-type' ) === 'Base' );
+
+            if ( ! _isBaseIcon )
+            {
+                let _converter = new showdown.Converter;
+
+                _converter.setOption ( 'tables', true );
+
+
+                let _type = element.getAttribute ( 'suite-data-type' );
+
+                let _text = md2json [ _type ];
+
+                    _text = _text.replace ( /&quot;&#x27;/g, '"' )
+                                 .replace ( /&#x27;&quot;/g, '"' )
+                                 .replace ( /&lt;/g,         '"' )
+                                 .replace ( /&gt;/g,         '"' );
+
+
+                let _html = _converter.makeHtml ( _text );
+
+                    _html = _html.replace ( /_new">new/,                      "_new\"><b>new</b>" )
+                                 .replace ( /<strong>Access<[^:]+[^>]+>/g,    "" )
+                                 .replace ( /<strong>Read only<[^:]+[^>]+>/g, "" )
+                                 .replace ( /<strong>See<[^:]+[^>]+>[^>]+>/g, "" );
+
+
+                let _offcanvas     = document.querySelector ( '.offcanvas' );
+
+                let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
+
+                    _offcanvasBody.innerHTML = _html;
+
+
+                let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );
+
+                    _bsOffcanvas.toggle ( );
+
+
+                let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
+
+
+                    _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
+                        {
+                            _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
+
+                            // @TODO: optimize this
+                            // This shouldn't have to run multiple times
+                            // to get accuracy throughout all text-boxes
+                            TOOL.scaleText ( 'h3' );
+
+                            _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
+                        } );
+            }
+        },
+
+        /**
+         * Toggles visibility of easing functions
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Index of animation card
+         */
+        _easingFunctions ( element )
+        {
+            UI._embedEasingButtons ( );
+
+
+            let _index     = Number ( element.getAttribute ( 'suite-data-index' ) );
+
+            let _functions = document.querySelectorAll ( '.easing-functions' );
+
+
+            ( _functions [ _index ].style.visibility === 'hidden' || _functions [ _index ].style.visibility === '' )
+
+                ? [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 1, 'visible' ]
+
+                : [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 0, 'hidden'  ];
+        },
+
+        /**
+         * Toggles modal code element
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Main button element
+         */
+        _modalCode ( element )
+        {
+            let _element   = element.offsetParent;
+
+            let _blankCard = ( _element.tagName === 'MAIN' );
+
+
+            if ( ! _blankCard )
+            {
+                let _card =
+                {
+                    title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
+
+                    code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
+                }
+
+                let _modal =
+                {
+                    title:   document.querySelector ( '#modal-code-label' ),
+
+                    code:    document.querySelector ( 'code' ),
+
+                    element: document.querySelector ( '#modal-code' )
+                }
+
+                let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
+
+
+                [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
+
+
+                    _boostrapModal.toggle ( );
+
+                    hljs.highlightAll ( );
+            }
+        },
+
+        /**
+         * Toggles drop-down navigation menu
+         * @private
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _navDropdown ( element )
+        {
+            let _ul     = ( element.parentNode.nextSibling.data ) ? element.parentNode.nextSibling.nextSibling : element.parentNode.nextSibling;
+
+            let _isOpen = ( element.getAttribute ( 'data-button-open' ) === 'false' );
+
+            let _isShow = ( _ul.classList.contains ( 'show' ) );
+
+
+            ( _isShow ) ? _ul.classList.remove ( 'show' )
+
+                        : _ul.classList.add    ( 'show' );
+
+
+            element.setAttribute ( 'data-button-open', _isOpen )
+
+
+            this.externalLinks ( _isOpen )
+        },
+
+        /**
          * Toggles the card button associated with the passed 'event' param
          * @public
-         * @name cardButton
          * @function
          * @param           {HTMLEvent} event                   UI DOM event
          */
@@ -62,81 +261,22 @@ class Ui
         /**
          * Toggles opacity from bottom links in navigation area
          * @public
-         * @name externalLinks
          * @function
          * @param           {HTMLElement} element               Main button element
          */
-        externalLinks ( element )
+        externalLinks ( show = true )
         {
             let _links = document.querySelector ( '.external-links' );
 
-            let _value = element.target.attributes [ "data-button-state" ].value;
 
-            let _state = ( _value === 'closed' && ! _links.classList.contains ( 'fade' ) );
+            ( show ) ? _links.classList.add    ( 'fade' )
 
-
-            ( _state ) ? _links.classList.add    ( 'fade' )
-
-                       : _links.classList.remove ( 'fade' );
-
-
-            ( _state ) ? element.target.setAttribute ( 'data-button-state', 'open'   )
-
-                       : element.target.setAttribute ( 'data-button-state', 'closed' );
-
-
-            ( _state ) ? element.target.focus ( )
-
-                       : element.target.blur  ( );
-        },
-
-        /**
-         * Toggles visibility of navigation menu
-         * @public
-         * @name navigation
-         * @function
-         */
-        navigation ( )
-        {
-            let _lab  = document.querySelector ( 'div.lab-station' );
-
-            let _nav  = document.querySelector ( 'nav'             );
-
-            let _main = document.querySelector ( 'main'            );
-
-            let _open = document.querySelector ( '#nav-open'       );
-
-
-            ( UI._isNavOpen ( ) )
-
-                ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-200px', '-0px'  ]
-
-                : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '200px' ];
-
-
-            if ( _lab.style.display === 'block' )
-            {
-                LAB.setCanvasSize ( );
-
-                LAB.runCode ( );
-            }
-
-
-            let _navIcons = _nav.querySelector ( '#nav-icon' ).children;
-
-
-            for ( let _navIcon of _navIcons )               // Blink eye
-
-                _navIcon.style.display = ( _navIcon.style.display === 'none' ) ? 'block' : 'none';
-
-
-            _open.style.display = ( _open.style.display === 'none' ) ? 'block' : 'none';
+                     : _links.classList.remove ( 'fade' );
         },
 
         /**
          * Toggles fullscreen mode                          @TODO: fix this crap
          * @public
-         * @name fullscreen
          * @function
          * @param           {HTMLElement} button                Button under the #control-panel .button class
          */
@@ -186,191 +326,45 @@ class Ui
         },
 
         /**
-         * Toggles modal code element
-         * @private
-         * @name _modalCode
+         * Toggles visibility of navigation menu
+         * @public
          * @function
-         * @param           {HTMLElement} element               Main button element
          */
-        _modalCode ( element )
+        navigation ( )
         {
-            let _element   = element.offsetParent;
+            let _lab  = document.querySelector ( 'div.lab-station' );
 
-            let _blankCard = ( _element.tagName === 'MAIN' );
+            let _nav  = document.querySelector ( 'nav'             );
+
+            let _main = document.querySelector ( 'main'            );
+
+            let _open = document.querySelector ( '#nav-open'       );
 
 
-            if ( ! _blankCard )
+            ( UI._isNavOpen ( ) )
+
+                ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-200px', '-0px'  ]
+
+                : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '200px' ];
+
+
+            if ( _lab.style.display === 'block' )
             {
-                let _card =
-                {
-                    title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
+                LAB.setCanvasSize ( );
 
-                    code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
-                }
-
-                let _modal =
-                {
-                    title:   document.querySelector ( '#modal-code-label' ),
-
-                    code:    document.querySelector ( 'code' ),
-
-                    element: document.querySelector ( '#modal-code' )
-                }
-
-                let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
-
-
-                [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
-
-
-                    _boostrapModal.toggle ( );
-
-                    hljs.highlightAll ( );
+                LAB.runCode ( );
             }
-        },
-
-        /**
-         * Toggles visibility of easing functions
-         * @private
-         * @name _easingFunctions
-         * @function
-         * @param           {HTMLElement} element               Index of animation card
-         */
-        _easingFunctions ( element )
-        {
-            UI._embedEasingButtons ( );
 
 
-            let _index     = Number ( element.getAttribute ( 'suite-data-index' ) );
-
-            let _functions = document.querySelectorAll ( '.easing-functions' );
+            let _navIcons = _nav.querySelector ( '#nav-icon' ).children;
 
 
-            ( _functions [ _index ].style.visibility === 'hidden' || _functions [ _index ].style.visibility === '' )
+            for ( let _navIcon of _navIcons )               // Blink eye
 
-                ? [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 1, 'visible' ]
-
-                : [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 0, 'hidden'  ];
-        },
-
-        /**
-         * Sets markdown content for the off canvas documentation element
-         * @private
-         * @name _documentation
-         * @function
-         * @param           {HTMLElement} element               Object or Subject type
-         */
-        _documentation ( element )
-        {
-            let _converter = new showdown.Converter;
-
-                _converter.setOption ( 'tables', true );
+                _navIcon.style.display = ( _navIcon.style.display === 'none' ) ? 'block' : 'none';
 
 
-            let _type = element.getAttribute ( 'suite-data-type' );
-
-            let _text = md2json [ _type ];
-
-                _text = _text.replace ( /&quot;&#x27;/g, '"' )
-                             .replace ( /&#x27;&quot;/g, '"' );
-
-
-            let _html = _converter.makeHtml ( _text );
-
-
-            let _offcanvas     = document.querySelector ( '.offcanvas' );
-
-            let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
-
-                _offcanvasBody.innerHTML = _html;
-
-
-            let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );        // @TODO Investigate here !
-
-                _bsOffcanvas.toggle ( );
-
-
-            let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
-
-
-                _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
-                    {
-                        _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
-
-                        _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
-                    } );
-        },
-
-        /**
-         * Adds an additional card to cardObjects; mirroring the last card present
-         * @private
-         * @name _cardPlus
-         * @function
-         * @param           {HTMLElement} element               Object or Subject type
-         */
-        _cardPlus ( element )
-        {
-            let _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length - 1;
-
-                _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ _card ];
-
-
-            cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].push ( _card );
-
-
-            UI._setAlbumCards ( );
-        },
-
-        /**
-         * Subtracts the last card from cardObjects
-         * @private
-         * @name _cardClose
-         * @function
-         * @param           {HTMLElement} element               HTML DOM Element
-         */
-        _cardClose ( element )
-        {
-            let _close = element.classList.contains ( 'close' );
-
-
-            if ( _close )
-            {
-                let _cardNumber = Number ( element.nextElementSibling.innerHTML );
-
-
-                if ( cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length > 1 )
-
-                     cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
-
-
-                UI._setAlbumCards ( );
-            }
-        },
-
-        /**
-         * Toggles drop-down navigation menu
-         * @private
-         * @name _navDropdown
-         * @function
-         * @param           {HTMLElement} element               HTML DOM Element
-         */
-        _navDropdown ( element )
-        {
-            let _ul     = ( element.parentNode.nextSibling.data ) ? element.parentNode.nextSibling.nextSibling : element.parentNode.nextSibling;
-
-            let _isOpen = ( element.getAttribute ( 'data-button-open' ) === 'false' );
-
-            let _isShow = ( _ul.classList.contains ( 'show' ) );
-
-
-            ( _isShow ) ? _ul.classList.remove ( 'show' )
-
-                        : _ul.classList.add    ( 'show' );
-
-
-            ( _isOpen ) ? element.setAttribute ( 'data-button-open', true )
-
-                        : element.setAttribute ( 'data-button-open', false );
+            _open.style.display = ( _open.style.display === 'none' ) ? 'block' : 'none';
         }
     }
 
@@ -379,7 +373,6 @@ class Ui
         /**
          * Cleans script of it's function wrapper
          * @public
-         * @name script
          * @function
          * @param           {Function} script                   JavaScript function
          * @return          {string}                            Function as a string
@@ -394,7 +387,6 @@ class Ui
         /**
          * Cleans code of enumerators for card-objects
          * @public
-         * @name code
          * @function
          * @param           {Function} script                   JavaScript function; for card-objects only
          * @return          {string}                            Function as a string
@@ -417,7 +409,6 @@ class Ui
         /**
          * Cleans the remaining '.blank' cards while converting the first to a '.plus' card; @see Ui.toggle._cardPlus ( )
          * @public
-         * @name blankCards
          * @function
          */
         blankCards ( )
@@ -461,7 +452,6 @@ class Ui
         /**
          * Gets toggle object
          * @public
-         * @name toggle
          * @function
          * @return          {Object}                            Toggle object
          */
@@ -475,7 +465,6 @@ class Ui
         /**
          * Gets clean object
          * @public
-         * @name clean
          * @function
          * @return          {Object}                            Clean object
          */
@@ -489,7 +478,6 @@ class Ui
         /**
          * Returns a button for navigation links
          * @private
-         * @name _getButton
          * @function
          * @param           {Object} button                     Navigation link object
          * @return          {HTMLElement}                       List item HTML element
@@ -522,7 +510,6 @@ class Ui
         /**
          * Returns eval ready code for passed card-objects
          * @private
-         * @name _getCode
          * @function
          * @param           {Array.<Object>} objects            Array of card-objects
          * @return          {string}                            String to be evaluated for all card-objects
@@ -543,7 +530,6 @@ class Ui
         /**
          * Returns a link for navigation links
          * @private
-         * @name _getLink
          * @function
          * @param           {Object} link                       Navigation link object
          * @return          {HTMLElement}                       List item HTML element
@@ -580,7 +566,6 @@ class Ui
         /**
          * Returns the likely class name for the passed code
          * @public
-         * @name getClass
          * @function
          * @param           {string} code                       Code string
          * @return          {string}                            Likely class name
@@ -611,7 +596,6 @@ class Ui
         /**
          * Sets the album cards for the current 'Page'
          * @private
-         * @name _setAlbumCards
          * @function
          */
         _setAlbumCards ( )
@@ -630,7 +614,6 @@ class Ui
         /**
          * Sets byrne-systems logo
          * @private
-         * @name _setByrneSystemsLogo
          * @function
          */
         _setByrneSystemsLogo ( )
@@ -672,7 +655,6 @@ class Ui
         /**
          * Sets card section's inner HTML
          * @private
-         * @name _setCardSection
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          */
@@ -694,7 +676,6 @@ class Ui
         /**
          * Sets cards
          * @private
-         * @name _setCards
          * @function
          * @param           {HTMLElement} element               HTML DOM Element
          */
@@ -729,7 +710,6 @@ class Ui
         /**
          * Sets all event listeners for this object
          * @private
-         * @name _setEventListeners
          * @function
          */
         _setEventListeners ( )
@@ -810,7 +790,6 @@ class Ui
         /**
          * Sets navigation links
          * @public
-         * @name setNavLinks
          * @function
          * @param           {HTMLElement}    element            Parent navigation element
          * @param           {Array.<Object>} links              Array of Objects containing navigation link data
@@ -852,7 +831,6 @@ class Ui
         /**
          * Checks whether ancillary sub animation buttons are collapsible
          * @private
-         * @name _checkCollapsible
          * @function
          * @param           {number} index                      Index to check
          */
@@ -866,7 +844,6 @@ class Ui
         /**
          * Collapses uncollapsed ancillary buttons, outside of the present button
          * @private
-         * @name _collapseButtons
          * @function
          * @param           {string} present                    data-bs-target attribute
          */
@@ -888,7 +865,6 @@ class Ui
         /**
          * Creates easing links for animation cards
          * @private
-         * @name _createEasingButtons
          * @function
          * @return          {HTMLElement}                       UL element with all necessary nested elements
          */
@@ -952,7 +928,6 @@ class Ui
         /**
          * Runs code from within the passed 'cardObjects' param
          * @private
-         * @name _evalCardObjects
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          */
@@ -961,7 +936,6 @@ class Ui
         /**
          * Embeds easing buttons for each animation card
          * @private
-         * @name _embedEasingButtons
          * @function
          */
         _embedEasingButtons ( )
@@ -991,7 +965,6 @@ class Ui
         /**
          * Returns whether the navigation bar is open
          * @private
-         * @name _isNavOpen
          * @function
          * @return          {boolean}                           True | False
          */
@@ -1000,7 +973,6 @@ class Ui
         /**
          * Displays an alert message within the modal
          * @public
-         * @name alert
          * @async
          * @function
          * @param           {string} message                    Message to display
@@ -1019,7 +991,6 @@ class Ui
         /**
          * Clears screen prior to rebuilding
          * @public
-         * @name clearScreen
          * @function
          * @param           {boolean} setCardAlbum              Sets card album display to block (true) || none (false)
          */
@@ -1064,7 +1035,6 @@ class Ui
         /**
          * Sets User Interface
          * @public
-         * @name init
          * @function
          */
         init ( )
@@ -1080,7 +1050,6 @@ class Ui
         /**
          * Sets easing animation for an animation card
          * @public
-         * @name runEasingAnimation
          * @function
          * @param           {string} easingFunction             Easing function; as a string
          * @param           {number} index                      Index of animation card

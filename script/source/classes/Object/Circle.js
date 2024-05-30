@@ -94,7 +94,6 @@ class Circle
         /**
          * Set point
          * @public
-         * @name point
          * @function
          * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
@@ -104,7 +103,6 @@ class Circle
         /**
          * Get point
          * @public
-         * @name point
          * @function
          * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
@@ -115,7 +113,6 @@ class Circle
         /**
          * Set x-axis value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.pointX}
@@ -125,7 +122,6 @@ class Circle
         /**
          * Get x-axis value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.pointX}
@@ -136,7 +132,6 @@ class Circle
         /**
          * Set the y-axis value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.pointY}
@@ -146,7 +141,6 @@ class Circle
         /**
          * Get y-axis value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.pointY}
@@ -158,7 +152,6 @@ class Circle
         /**
          * Set radius value
          * @public
-         * @name radius
          * @function
          * @param           {number} value                              Radius of circle
          */
@@ -170,7 +163,6 @@ class Circle
         /**
          * Get radius value
          * @readOnly
-         * @name radius
          * @function
          * @return          {number}                                    Radius of circle
          */
@@ -184,7 +176,6 @@ class Circle
         /**
          * Get angle properties
          * @public
-         * @name angle
          * @function
          * @return          {Angle}                                     Angle properties
          */
@@ -198,7 +189,6 @@ class Circle
         /**
          * Get stroke properties
          * @public
-         * @name stroke
          * @function
          * @return          {Stroke}                                    Stroke properties
          */
@@ -212,7 +202,6 @@ class Circle
         /**
          * Get fill properties
          * @public
-         * @name fill
          * @function
          * @return          {Fill}                                      Fill properties
          */
@@ -226,7 +215,6 @@ class Circle
         /**
          * Get shadow properties
          * @public
-         * @name shadow
          * @function
          * @return          {Shadow}                                    Shadow properties
          */
@@ -240,7 +228,6 @@ class Circle
         /**
          * Set canvas value
          * @public
-         * @name canvas
          * @function
          * @param           {string} value                              Canvas id
          * @see             {@link discrete.canvas}
@@ -250,7 +237,6 @@ class Circle
         /**
          * Get canvas value
          * @readOnly
-         * @name canvas
          * @function
          * @return          {string}                                    Canvas id
          * @see             {@link discrete.canvas}
@@ -262,7 +248,6 @@ class Circle
         /**
          * Get anchor
          * @public
-         * @name anchor
          * @function
          * @return          {Anchor}                                    Anchor properties
          */
@@ -276,7 +261,6 @@ class Circle
         /**
          * Get options properties
          * @public
-         * @name options
          * @function
          * @return          {Options}                                   Options properties
          */
@@ -290,7 +274,6 @@ class Circle
         /**
          * Get area of this object
          * @readOnly
-         * @name area
          * @function
          * @return          {number}                                    Area of circle
          */
@@ -302,7 +285,6 @@ class Circle
         /**
          * Get diameter of circle
          * @readOnly
-         * @name diameter
          * @function
          * @return          {number}                                    Diameter of circle
          */
@@ -314,7 +296,6 @@ class Circle
         /**
          * Get center of this object
          * @readOnly
-         * @name center
          * @function
          * @return          {Point}                                     Point coordinates
          */
@@ -334,7 +315,6 @@ class Circle
         /**
          * Get circumference of circle
          * @readOnly
-         * @name circumference
          * @function
          * @return          {number}                                    Circumference of circle
          */
@@ -348,7 +328,6 @@ class Circle
         /**
          * Returns whether the passed value is an Anchor alignment
          * @private
-         * @name _isAnchor
          * @function
          * @param           {string} value                              Anchor alignment
          * @return          {boolean}                                   True || False
@@ -359,7 +338,6 @@ class Circle
         /**
          * Returns whether the passed value is an Aspect
          * @private
-         * @name _isAspect
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
@@ -370,7 +348,6 @@ class Circle
         /**
          * Returns whether the passed value is a degree
          * @private
-         * @name _isDegree
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
@@ -381,7 +358,6 @@ class Circle
         /**
          * Returns whether the passed value is an element id within the DOM
          * @private
-         * @name _isInDom
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
@@ -392,7 +368,6 @@ class Circle
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name _isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
@@ -403,7 +378,6 @@ class Circle
         /**
          * Check whether the passed object is already present
          * @public
-         * @name isThere
          * @function
          * @param           {Circle} circle                             Object to validate
          * @return          {boolean}                                   True || False
@@ -431,7 +405,6 @@ class Circle
         /**
          * Clears canvas
          * @private
-         * @name _clearCanvas
          * @function
          * @param           {boolean} value                             Whether to redraw background
          * @see             {@link Utilities.misc.clearCanvas}
@@ -441,7 +414,6 @@ class Circle
         /**
          * Draws anchor point
          * @private
-         * @name _drawAnchor
          * @function
          */
         _drawAnchor ( )
@@ -459,7 +431,6 @@ class Circle
         /**
          * Draws an axis for the associated object
          * @private
-         * @name _drawAxis
          * @function
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
@@ -471,7 +442,6 @@ class Circle
         /**
          * Draws an axis for the associated object
          * @private
-         * @name _drawBorder
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
@@ -482,7 +452,6 @@ class Circle
         /**
          * Draws associated options
          * @private
-         * @name _drawOptions
          * @function
          */
         _drawOptions ( )
@@ -505,7 +474,6 @@ class Circle
         /**
          * Rotates the origin point by the degree & distance passed
          * @private
-         * @name _rotatePoint
          * @function
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
@@ -517,7 +485,6 @@ class Circle
         /**
          * Sets anchor's point against this object's point location
          * @private
-         * @name _setAnchorPoint
          * @function
          */
         _setAnchorPoint ( )
@@ -550,7 +517,6 @@ class Circle
         /**
          * Sets fill type of the associated object
          * @private
-         * @name _setFillType
          * @function
          * @see             {@link Utilities.set.fillType}
          */
@@ -559,7 +525,6 @@ class Circle
         /**
          * Sets shadow properties
          * @private
-         * @name _setShadow
          * @function
          * @see             {@link Utilities.set.shadow}
          */
@@ -568,7 +533,6 @@ class Circle
         /**
          * Cycle colors for fill
          * @public
-         * @name fillColorCycle
          * @function
          * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
          * @param           {Rgb}    start                              Starting RGB value
@@ -581,7 +545,6 @@ class Circle
         /**
          * Cycle colors for gradient
          * @public
-         * @name gradientColorCycle
          * @function
          * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
          * @param           {Rgb}    start                              Starting RGB value
@@ -595,7 +558,6 @@ class Circle
         /**
          * Move this object
          * @public
-         * @name move
          * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
@@ -617,7 +579,6 @@ class Circle
         /**
          * Rotate this object
          * @public
-         * @name rotate
          * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {number} [clear=true]                       Clear canvas during each rotation
@@ -650,7 +611,6 @@ class Circle
         /**
          * Shows coordinates of this object
          * @public
-         * @name showCordinates
          * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
@@ -684,7 +644,6 @@ class Circle
         /**
          * Cycle colors for stroke
          * @public
-         * @name strokeColorCycle
          * @function
          * @param           {Rgb}    start                              Starting RGB value
          * @param           {Rgb}    end                                Ending RGB value
@@ -699,7 +658,6 @@ class Circle
         /**
          * Draw this object
          * @public
-         * @name draw
          * @function
          * @param           {string} canvas                             Canvas Id
          */
@@ -748,7 +706,6 @@ class Circle
         /**
          * Redraw this object
          * @public
-         * @name redraw
          * @function
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location

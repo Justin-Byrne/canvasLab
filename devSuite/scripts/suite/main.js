@@ -354,7 +354,64 @@
                     children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
-                        _circle.fill.alpha  = 0.25;
+                        _circle.fill.color = new Rgb ( 0,  150,  200 );
+
+                        _circle.fill.color.alpha = 0.25;
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill linear',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'linear', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill radial',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'radial', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Radial ( { x: 180, y: 110 }, 0, { x: 180, y: 110 }, 50 );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill conic',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'conic', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Conic ( 0, { x: 77, y: 155 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
 
                         _circle.draw ( );
                     }
@@ -544,7 +601,64 @@
                     children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
-                        _rectangle.fill.alpha = 0.25;
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
+
+                        _rectangle.fill.color.alpha = 0.25;
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill linear',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'linear', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill radial',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'radial', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Radial ( { x: 180, y: 110 }, 0, { x: 180, y: 110 }, 50 );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill conic',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'conic', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Conic ( 0, { x: 77, y: 155 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
 
                         _rectangle.draw ( );
                     }

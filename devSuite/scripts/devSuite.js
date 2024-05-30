@@ -81,7 +81,6 @@ class Lab
         /**
          * Sets editor
          * @public
-         * @name editor
          * @function
          * @param           {Object} editor                     Primary ace-editor object
          */
@@ -93,7 +92,6 @@ class Lab
         /**
          * Gets editor
          * @public
-         * @name editor
          * @function
          * @return          {Object}                            Primary ace-editor object
          */
@@ -107,7 +105,6 @@ class Lab
         /**
          * Returns positions of bounding characters within the ace-editor
          * @private
-         * @name _getBoundingCharactersPositions
          * @function
          * @param           {Array<string>} characters          Bounding characters
          * @param           {string}        data                Data to parse
@@ -119,7 +116,6 @@ class Lab
         /**
          * Returns a new color-picker object
          * @private
-         * @name _getColorPicker
          * @function
          * @param           {string} id                         Element id
          * @return          {Object}                            Color-picker object
@@ -154,7 +150,6 @@ class Lab
         /**
          * Sets numeric value within ace-editor up (+) or down (-)
          * @private
-         * @name _setNumbericValue
          * @function
          * @param           {boolean} up                        True (+) || false (-)
          */
@@ -186,7 +181,6 @@ class Lab
         /**
          * Sets the font size within ace-editor up (+) or down (-)
          * @private
-         * @name _setFontSize
          * @function
          * @param           {boolean} up                        True (+) || false (-)
          */
@@ -205,7 +199,6 @@ class Lab
         /**
          * Sets color-picker's position within ace-editor
          * @private
-         * @name _setColorPickerPosition
          * @function
          */
         _setColorPickerPosition ( )
@@ -220,7 +213,6 @@ class Lab
         /**
          * Sets the lab's canvas & ruler dimensions
          * @private
-         * @name setCanvasSize
          * @async
          * @function
          */
@@ -253,7 +245,6 @@ class Lab
         /**
          * Sets all event listeners for this object
          * @private
-         * @name _setEventListeners
          * @function
          */
         _setEventListeners ( )
@@ -424,7 +415,6 @@ class Lab
         /**
          * Increment the value passed up (+) or down (-)
          * @private
-         * @name _increment
          * @function
          * @param           {string|number} value               Value to increment
          * @param           {boolean}       up                  True (+) || false (-)
@@ -435,7 +425,6 @@ class Lab
         /**
          * Pad a string with a specified amount of zeros
          * @private
-         * @name _padZeros
          * @function
          * @param           {string|number} value               Value to pad
          * @param           {number}        amount              Amount to pad
@@ -446,7 +435,6 @@ class Lab
         /**
          * Increments a numeric selection from ace-editor up (+) or down (-)
          * @private
-         * @name _incrementValue
          * @function
          * @param           {string}  value                     Value from ace-editor
          * @param           {boolean} up                        True (+) || false (-)
@@ -496,7 +484,6 @@ class Lab
         /**
          * Swap rgb values between color-picker and ace-editor
          * @private
-         * @name _swapRgbValue
          * @function
          * @param           {string} color                      Rgb color value from color-picker
          */
@@ -541,7 +528,6 @@ class Lab
         /**
          * Cleans code of enumerators for ace-editor
          * @private
-         * @name _cleanCode
          * @function
          * @param           {Function} script                   JavaScript function; for ace-editor only
          * @return          {string}                            Function as a string
@@ -564,7 +550,6 @@ class Lab
         /**
          * Generates a downloadable file & initiates that download
          * @private
-         * @name _download
          * @function
          * @param           {File} file                         File to download
          */
@@ -595,7 +580,6 @@ class Lab
         /**
          * Executes lab code from editor
          * @public
-         * @name runCode
          * @function
          */
         runCode ( )
@@ -615,7 +599,6 @@ class Lab
         /**
          * Sets lab & ace-editor
          * @public
-         * @name init
          * @function
          */
         init ( )
@@ -700,7 +683,6 @@ class Log
         /**
          * Gets entries
          * @public
-         * @name entries
          * @function
          * @return          {string}                            Page's entries
          */
@@ -773,7 +755,6 @@ class Page
         /**
          * Sets type
          * @public
-         * @name type
          * @function
          * @param           {string} value                      Page's type
          */
@@ -785,7 +766,6 @@ class Page
         /**
          * Gets type
          * @readOnly
-         * @name type
          * @function
          * @return          {string}                            Page's type
          */
@@ -799,7 +779,6 @@ class Page
         /**
          * Sets group
          * @public
-         * @name group
          * @function
          * @param           {string} value                      Page's group
          */
@@ -811,7 +790,6 @@ class Page
         /**
          * Gets group
          * @readOnly
-         * @name group
          * @function
          * @return          {string}                            Page's group
          */
@@ -825,7 +803,6 @@ class Page
         /**
          * Sets handler
          * @public
-         * @name handler
          * @function
          * @param           {string} value                      Page's handler
          */
@@ -837,7 +814,6 @@ class Page
         /**
          * Gets handler
          * @readOnly
-         * @name handler
          * @function
          * @return          {string}                            Page's handler
          */
@@ -851,7 +827,6 @@ class Page
         /**
          * Sets all properties by the passed 'button' param
          * @private
-         * @name _setPropertiesBy
          * @function
          * @param           {HTMLElement} button                HTML DOM Element
          */
@@ -912,8 +887,6 @@ class Template
 
                                </div>
 
-                               <div class="title">{{title}}</div>
-
                                <div class="card-number">
 
                                    <span class="close"></span>
@@ -927,6 +900,8 @@ class Template
                            <canvas id="canvas_{{index}}"></canvas>
 
                            <div class="card-body">
+
+                               <div class="title">{{title}}</div>
 
                                <div class="card-body-buttons">
 
@@ -993,7 +968,6 @@ class Template
         /**
          * Returns a standard HTML card template
          * @readOnly
-         * @name standard
          * @function
          * @return          {string}                            HTML card standard template
          */
@@ -1004,7 +978,6 @@ class Template
         /**
          * Returns a blank HTML card template
          * @readOnly
-         * @name blank
          * @function
          * @return          {string}                            HTML card blank template
          */
@@ -1015,7 +988,6 @@ class Template
         /**
          * Returns the amount of extra cards to embed
          * @private
-         * @name _getBlankCount
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          * @return          {number}                            Amount of extra cards
@@ -1033,7 +1005,6 @@ class Template
         /**
          * Returns an Array of extra HTML templates; to align cards
          * @private
-         * @name _getBlankTemplates
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          * @return          {Array}                             Array of extra HTML templates for each card-object
@@ -1068,7 +1039,6 @@ class Template
         /**
          * Returns rendered HTML for a card-object
          * @private
-         * @name _getCodeTemplate
          * @function
          * @param           {Object} cardObject                 Card-object
          * @param           {string} template                   HTML card template
@@ -1118,7 +1088,6 @@ class Template
         /**
          * Returns the amount of columns available per the present resolution
          * @private
-         * @name _getColumnCount
          * @function
          * @return          {number}                            Number of columns
          */
@@ -1145,7 +1114,6 @@ class Template
         /**
          * Sets image paths for each card-object passed through the param
          * @private
-         * @name _setImagePaths
          * @function
          * @param           {Object} cardObject                 Card-object
          */
@@ -1194,7 +1162,6 @@ class Template
         /**
          * Return a template with the appropriate canvasLab images embedded
          * @private
-         * @name _getImages
          * @param           {Object} cardObject                 Card-object
          * @param           {string} template                   HTML card template
          */
@@ -1236,6 +1203,11 @@ class Template
                 }
             }
 
+
+            // If no children, place slash-square symbol
+            template = ( ! cardObject.images.children ) ? template.replace ( /{{childGroup}}/, 'General' ).replace ( /{{childType}}/, 'slash-square' ).replace ( /{{childType}}/, 'Base' ) : template;
+
+
             // Clean remaining unused image tags
             template = template.replaceAll ( new RegExp ( '<img src="images/svg(/Handler)?/{{[^>]+>', 'g' ), '' );
 
@@ -1246,7 +1218,6 @@ class Template
         /**
          * Returns an Array of standard HTML templates for each card-object
          * @private
-         * @name _getStandardTemplates
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          * @return          {Array}                             Array of standard HTML templates for each card-object
@@ -1278,7 +1249,6 @@ class Template
         /**
          * Returns a code string with special variable formatting
          * @private
-         * @name _getSpecialVariables
          * @function
          * @param           {string} code                       Code as a string
          * @param           {number} count                      Card-object number
@@ -1331,7 +1301,6 @@ class Template
         /**
          * Returns an Array of standard & extra HTML templates for each card-object
          * @public
-         * @name getCards
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          * @return          {Array}                             Array of HTML templates for each card-object
@@ -1355,12 +1324,69 @@ class Tool
 {
     constructor ( ) { }
 
+    _config =
+    {
+        minFontSize:            undefined,
+        maxDivisionHeight:      undefined,
+        previousDivisionHeight: undefined,
+    }
+
+    _get =
+    {
+        /**
+         * Returns CSS pixel value as number
+         * @private
+         * @function
+         * @param           {string} value                  CSS pixel value
+         * @return          {number}                        Number
+         */
+        numberFromPx ( value )
+        {
+            return Number ( value.replace ( 'px', '' ) );
+        },
+
+        /**
+         * Returns CSS font size of HTML element
+         * @private
+         * @function
+         * @param           {HTMLElement} element           HTML DOM Element
+         * @return          {string}                        CSS font size
+         */
+        fontSize ( element )
+        {
+            return this.numberFromPx ( window.getComputedStyle ( element ).fontSize );
+        },
+
+        /**
+         * Returns the minimum height of a text element
+         * @private
+         * @function
+         * @param           {HTMLElement} element           HTML DOM element
+         * @return          {number}                        Minimum height
+         */
+        textMinHeight ( element )
+        {
+            let _originalText = element.innerHTML.replaceAll ( '\n', '' ).replaceAll ( '\t', '' );
+
+
+            element.innerHTML = 'A';
+
+
+            let _height       = element.clientHeight
+
+
+            element.innerHTML = _originalText;
+
+
+            return _height;
+        }
+    }
+
     ////    VALIDATORS    //////////////////////////////////////////////////////////////////////////
 
         /**
          * Whether the passed value is an 'Object' canvasLab category
          * @public
-         * @name isCanvasLabObject
          * @function
          * @param           {string} value                      Object, i.e.: 'Line', 'Circle', 'Rectangle', etc...
          * @return          {boolean}                           True || False
@@ -1373,9 +1399,25 @@ class Tool
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
 
         /**
+         * Increments font size by 1px
+         * @private
+         * @function
+         * @param           {HTMLElement} element           HTML DOM Element
+         * @param           {boolean}     up                Increment up or down; True | False
+         */
+        _incrementFontSize ( element, up = false )
+        {
+            this._config.minFontSize = this._get.fontSize ( element );
+
+            this._config.minFontSize = ( up ) ? this._config.minFontSize + 1 : this._config.minFontSize - 1;
+
+
+            element.style.fontSize = `${this._config.minFontSize}px`;
+        }
+
+        /**
          * Simple programmatic delay
          * @public
-         * @name delay
          * @function
          * @param           {number} time                       Time to delay
          * @return          {Promise}                           An async promise
@@ -1388,7 +1430,6 @@ class Tool
         /**
          * Returns a copied object
          * @public
-         * @name copyObjectWithKey
          * @function
          * @param           {Object} object                     Object to copy
          * @return          {Object}                            Copied object
@@ -1421,7 +1462,6 @@ class Tool
         /**
          * Copy code to clipboard
          * @public
-         * @name copyCode
          * @async
          * @function
          */
@@ -1446,6 +1486,52 @@ class Tool
 
             TOOL.delay ( 1000 ).then ( ( ) => document.querySelector ( '#copiedAlert' ).children [ 0 ].remove ( ) );
         }
+
+        /**
+         * Adjusts group of element font-sizes, with that groups min font-size
+         * @private
+         * @function
+         * @param           {string} selector               CSS selector
+         */
+        scaleText ( selector )
+        {
+            let _textBoxes  = document.querySelectorAll ( selector );
+
+            let _textBoxOne = _textBoxes [ 0 ];
+
+            let _minHeight  = this._get.textMinHeight ( _textBoxOne );
+
+
+            for ( let _textBox of _textBoxes )              // Check: for wrapped text boxes via element.clientHeight
+
+                while ( _textBox.clientHeight > _minHeight )
+
+                    this._incrementFontSize ( _textBox );
+
+
+            for ( let _textBox of _textBoxes )              // Resize: all text boxes to minimum font size
+
+                _textBox.style.fontSize = `${this._config.minFontSize}px`;
+
+
+            for ( let _textBox of _textBoxes )              // Check: that all _textBox.clientHeights are equal
+            {
+                if ( this._config.previousDivisionHeight === undefined )
+                {
+                    this._config.previousDivisionHeight = _textBox.clientHeight;
+
+                    continue;
+                }
+                else
+
+                    if ( _textBox.clientHeight > this._config.previousDivisionHeight )
+
+                        this.scaleText ( selector );
+
+
+                this._config.previousDivisionHeight = _textBox.clientHeight;
+            }
+        }
 }
  
 /**
@@ -1458,9 +1544,208 @@ class Ui
     _toggle =
     {
         /**
+         * Adds an additional card to cardObjects; mirroring the last card present
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Object or Subject type
+         */
+        _cardPlus ( element )
+        {
+            let _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length - 1;
+
+                _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ _card ];
+
+
+            cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].push ( _card );
+
+
+            UI._setAlbumCards ( );
+        },
+
+        /**
+         * Subtracts the last card from cardObjects
+         * @private
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _cardClose ( element )
+        {
+            let _close = element.classList.contains ( 'close' );
+
+
+            if ( _close )
+            {
+                let _cardNumber = Number ( element.nextElementSibling.innerHTML );
+
+
+                if ( cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length > 1 )
+
+                     cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
+
+
+                UI._setAlbumCards ( );
+            }
+        },
+
+        /**
+         * Sets markdown content for the off canvas documentation element
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Object or Subject type
+         */
+        _documentation ( element )
+        {
+            let _isBaseIcon = ( element.getAttribute ( 'suite-data-type' ) === 'Base' );
+
+            if ( ! _isBaseIcon )
+            {
+                let _converter = new showdown.Converter;
+
+                _converter.setOption ( 'tables', true );
+
+
+                let _type = element.getAttribute ( 'suite-data-type' );
+
+                let _text = md2json [ _type ];
+
+                    _text = _text.replace ( /&quot;&#x27;/g, '"' )
+                                 .replace ( /&#x27;&quot;/g, '"' )
+                                 .replace ( /&lt;/g,         '"' )
+                                 .replace ( /&gt;/g,         '"' );
+
+
+                let _html = _converter.makeHtml ( _text );
+
+                    _html = _html.replace ( /_new">new/,                      "_new\"><b>new</b>" )
+                                 .replace ( /<strong>Access<[^:]+[^>]+>/g,    "" )
+                                 .replace ( /<strong>Read only<[^:]+[^>]+>/g, "" )
+                                 .replace ( /<strong>See<[^:]+[^>]+>[^>]+>/g, "" );
+
+
+                let _offcanvas     = document.querySelector ( '.offcanvas' );
+
+                let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
+
+                    _offcanvasBody.innerHTML = _html;
+
+
+                let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );
+
+                    _bsOffcanvas.toggle ( );
+
+
+                let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
+
+
+                    _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
+                        {
+                            _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
+
+                            // @TODO: optimize this
+                            // This shouldn't have to run multiple times
+                            // to get accuracy throughout all text-boxes
+                            TOOL.scaleText ( 'h3' );
+
+                            _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
+                        } );
+            }
+        },
+
+        /**
+         * Toggles visibility of easing functions
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Index of animation card
+         */
+        _easingFunctions ( element )
+        {
+            UI._embedEasingButtons ( );
+
+
+            let _index     = Number ( element.getAttribute ( 'suite-data-index' ) );
+
+            let _functions = document.querySelectorAll ( '.easing-functions' );
+
+
+            ( _functions [ _index ].style.visibility === 'hidden' || _functions [ _index ].style.visibility === '' )
+
+                ? [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 1, 'visible' ]
+
+                : [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 0, 'hidden'  ];
+        },
+
+        /**
+         * Toggles modal code element
+         * @private
+         * @function
+         * @param           {HTMLElement} element               Main button element
+         */
+        _modalCode ( element )
+        {
+            let _element   = element.offsetParent;
+
+            let _blankCard = ( _element.tagName === 'MAIN' );
+
+
+            if ( ! _blankCard )
+            {
+                let _card =
+                {
+                    title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
+
+                    code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
+                }
+
+                let _modal =
+                {
+                    title:   document.querySelector ( '#modal-code-label' ),
+
+                    code:    document.querySelector ( 'code' ),
+
+                    element: document.querySelector ( '#modal-code' )
+                }
+
+                let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
+
+
+                [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
+
+
+                    _boostrapModal.toggle ( );
+
+                    hljs.highlightAll ( );
+            }
+        },
+
+        /**
+         * Toggles drop-down navigation menu
+         * @private
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _navDropdown ( element )
+        {
+            let _ul     = ( element.parentNode.nextSibling.data ) ? element.parentNode.nextSibling.nextSibling : element.parentNode.nextSibling;
+
+            let _isOpen = ( element.getAttribute ( 'data-button-open' ) === 'false' );
+
+            let _isShow = ( _ul.classList.contains ( 'show' ) );
+
+
+            ( _isShow ) ? _ul.classList.remove ( 'show' )
+
+                        : _ul.classList.add    ( 'show' );
+
+
+            element.setAttribute ( 'data-button-open', _isOpen )
+
+
+            this.externalLinks ( _isOpen )
+        },
+
+        /**
          * Toggles the card button associated with the passed 'event' param
          * @public
-         * @name cardButton
          * @function
          * @param           {HTMLEvent} event                   UI DOM event
          */
@@ -1512,81 +1797,22 @@ class Ui
         /**
          * Toggles opacity from bottom links in navigation area
          * @public
-         * @name externalLinks
          * @function
          * @param           {HTMLElement} element               Main button element
          */
-        externalLinks ( element )
+        externalLinks ( show = true )
         {
             let _links = document.querySelector ( '.external-links' );
 
-            let _value = element.target.attributes [ "data-button-state" ].value;
 
-            let _state = ( _value === 'closed' && ! _links.classList.contains ( 'fade' ) );
+            ( show ) ? _links.classList.add    ( 'fade' )
 
-
-            ( _state ) ? _links.classList.add    ( 'fade' )
-
-                       : _links.classList.remove ( 'fade' );
-
-
-            ( _state ) ? element.target.setAttribute ( 'data-button-state', 'open'   )
-
-                       : element.target.setAttribute ( 'data-button-state', 'closed' );
-
-
-            ( _state ) ? element.target.focus ( )
-
-                       : element.target.blur  ( );
-        },
-
-        /**
-         * Toggles visibility of navigation menu
-         * @public
-         * @name navigation
-         * @function
-         */
-        navigation ( )
-        {
-            let _lab  = document.querySelector ( 'div.lab-station' );
-
-            let _nav  = document.querySelector ( 'nav'             );
-
-            let _main = document.querySelector ( 'main'            );
-
-            let _open = document.querySelector ( '#nav-open'       );
-
-
-            ( UI._isNavOpen ( ) )
-
-                ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-200px', '-0px'  ]
-
-                : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '200px' ];
-
-
-            if ( _lab.style.display === 'block' )
-            {
-                LAB.setCanvasSize ( );
-
-                LAB.runCode ( );
-            }
-
-
-            let _navIcons = _nav.querySelector ( '#nav-icon' ).children;
-
-
-            for ( let _navIcon of _navIcons )               // Blink eye
-
-                _navIcon.style.display = ( _navIcon.style.display === 'none' ) ? 'block' : 'none';
-
-
-            _open.style.display = ( _open.style.display === 'none' ) ? 'block' : 'none';
+                     : _links.classList.remove ( 'fade' );
         },
 
         /**
          * Toggles fullscreen mode                          @TODO: fix this crap
          * @public
-         * @name fullscreen
          * @function
          * @param           {HTMLElement} button                Button under the #control-panel .button class
          */
@@ -1636,191 +1862,45 @@ class Ui
         },
 
         /**
-         * Toggles modal code element
-         * @private
-         * @name _modalCode
+         * Toggles visibility of navigation menu
+         * @public
          * @function
-         * @param           {HTMLElement} element               Main button element
          */
-        _modalCode ( element )
+        navigation ( )
         {
-            let _element   = element.offsetParent;
+            let _lab  = document.querySelector ( 'div.lab-station' );
 
-            let _blankCard = ( _element.tagName === 'MAIN' );
+            let _nav  = document.querySelector ( 'nav'             );
+
+            let _main = document.querySelector ( 'main'            );
+
+            let _open = document.querySelector ( '#nav-open'       );
 
 
-            if ( ! _blankCard )
+            ( UI._isNavOpen ( ) )
+
+                ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-200px', '-0px'  ]
+
+                : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '200px' ];
+
+
+            if ( _lab.style.display === 'block' )
             {
-                let _card =
-                {
-                    title: _element.getAttribute ( 'suite-data-title' ).toTitleCase ( ),
+                LAB.setCanvasSize ( );
 
-                    code:  _element.getAttribute ( 'suite-data-code' ).replace ( /_\d{1,3}/g, '' )
-                }
-
-                let _modal =
-                {
-                    title:   document.querySelector ( '#modal-code-label' ),
-
-                    code:    document.querySelector ( 'code' ),
-
-                    element: document.querySelector ( '#modal-code' )
-                }
-
-                let _boostrapModal = bootstrap.Modal.getOrCreateInstance ( _modal.element );
-
-
-                [ _modal.title.innerHTML, _modal.code.innerHTML ] = [ _card.title, _card.code ]
-
-
-                    _boostrapModal.toggle ( );
-
-                    hljs.highlightAll ( );
+                LAB.runCode ( );
             }
-        },
-
-        /**
-         * Toggles visibility of easing functions
-         * @private
-         * @name _easingFunctions
-         * @function
-         * @param           {HTMLElement} element               Index of animation card
-         */
-        _easingFunctions ( element )
-        {
-            UI._embedEasingButtons ( );
 
 
-            let _index     = Number ( element.getAttribute ( 'suite-data-index' ) );
-
-            let _functions = document.querySelectorAll ( '.easing-functions' );
+            let _navIcons = _nav.querySelector ( '#nav-icon' ).children;
 
 
-            ( _functions [ _index ].style.visibility === 'hidden' || _functions [ _index ].style.visibility === '' )
+            for ( let _navIcon of _navIcons )               // Blink eye
 
-                ? [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 1, 'visible' ]
-
-                : [ _functions [ _index ].style.opacity, _functions [ _index ].style.visibility ] = [ 0, 'hidden'  ];
-        },
-
-        /**
-         * Sets markdown content for the off canvas documentation element
-         * @private
-         * @name _documentation
-         * @function
-         * @param           {HTMLElement} element               Object or Subject type
-         */
-        _documentation ( element )
-        {
-            let _converter = new showdown.Converter;
-
-                _converter.setOption ( 'tables', true );
+                _navIcon.style.display = ( _navIcon.style.display === 'none' ) ? 'block' : 'none';
 
 
-            let _type = element.getAttribute ( 'suite-data-type' );
-
-            let _text = md2json [ _type ];
-
-                _text = _text.replace ( /&quot;&#x27;/g, '"' )
-                             .replace ( /&#x27;&quot;/g, '"' );
-
-
-            let _html = _converter.makeHtml ( _text );
-
-
-            let _offcanvas     = document.querySelector ( '.offcanvas' );
-
-            let _offcanvasBody = _offcanvas.querySelector ( '.offcanvas-body' );
-
-                _offcanvasBody.innerHTML = _html;
-
-
-            let _bsOffcanvas   = new bootstrap.Offcanvas ( _offcanvas );        // @TODO Investigate here !
-
-                _bsOffcanvas.toggle ( );
-
-
-            let _offcanvasReset = document.getElementById ( 'offcanvas-reset' );
-
-
-                _offcanvasBody.addEventListener ( 'scroll', ( element ) =>
-                    {
-                        _offcanvasReset.style.opacity = ( _offcanvasBody.scrollTop > 1 ) ? '1' : '0';
-
-                        _offcanvasReset.addEventListener ( 'click', ( element ) => { _offcanvasBody.scrollTop = 0; } );
-                    } );
-        },
-
-        /**
-         * Adds an additional card to cardObjects; mirroring the last card present
-         * @private
-         * @name _cardPlus
-         * @function
-         * @param           {HTMLElement} element               Object or Subject type
-         */
-        _cardPlus ( element )
-        {
-            let _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length - 1;
-
-                _card = cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ] [ _card ];
-
-
-            cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].push ( _card );
-
-
-            UI._setAlbumCards ( );
-        },
-
-        /**
-         * Subtracts the last card from cardObjects
-         * @private
-         * @name _cardClose
-         * @function
-         * @param           {HTMLElement} element               HTML DOM Element
-         */
-        _cardClose ( element )
-        {
-            let _close = element.classList.contains ( 'close' );
-
-
-            if ( _close )
-            {
-                let _cardNumber = Number ( element.nextElementSibling.innerHTML );
-
-
-                if ( cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].length > 1 )
-
-                     cardObjects [ PAGE.handler ] [ PAGE.group ] [ PAGE.type ].splice ( _cardNumber, 1 );
-
-
-                UI._setAlbumCards ( );
-            }
-        },
-
-        /**
-         * Toggles drop-down navigation menu
-         * @private
-         * @name _navDropdown
-         * @function
-         * @param           {HTMLElement} element               HTML DOM Element
-         */
-        _navDropdown ( element )
-        {
-            let _ul     = ( element.parentNode.nextSibling.data ) ? element.parentNode.nextSibling.nextSibling : element.parentNode.nextSibling;
-
-            let _isOpen = ( element.getAttribute ( 'data-button-open' ) === 'false' );
-
-            let _isShow = ( _ul.classList.contains ( 'show' ) );
-
-
-            ( _isShow ) ? _ul.classList.remove ( 'show' )
-
-                        : _ul.classList.add    ( 'show' );
-
-
-            ( _isOpen ) ? element.setAttribute ( 'data-button-open', true )
-
-                        : element.setAttribute ( 'data-button-open', false );
+            _open.style.display = ( _open.style.display === 'none' ) ? 'block' : 'none';
         }
     }
 
@@ -1829,7 +1909,6 @@ class Ui
         /**
          * Cleans script of it's function wrapper
          * @public
-         * @name script
          * @function
          * @param           {Function} script                   JavaScript function
          * @return          {string}                            Function as a string
@@ -1844,7 +1923,6 @@ class Ui
         /**
          * Cleans code of enumerators for card-objects
          * @public
-         * @name code
          * @function
          * @param           {Function} script                   JavaScript function; for card-objects only
          * @return          {string}                            Function as a string
@@ -1867,7 +1945,6 @@ class Ui
         /**
          * Cleans the remaining '.blank' cards while converting the first to a '.plus' card; @see Ui.toggle._cardPlus ( )
          * @public
-         * @name blankCards
          * @function
          */
         blankCards ( )
@@ -1911,7 +1988,6 @@ class Ui
         /**
          * Gets toggle object
          * @public
-         * @name toggle
          * @function
          * @return          {Object}                            Toggle object
          */
@@ -1925,7 +2001,6 @@ class Ui
         /**
          * Gets clean object
          * @public
-         * @name clean
          * @function
          * @return          {Object}                            Clean object
          */
@@ -1939,7 +2014,6 @@ class Ui
         /**
          * Returns a button for navigation links
          * @private
-         * @name _getButton
          * @function
          * @param           {Object} button                     Navigation link object
          * @return          {HTMLElement}                       List item HTML element
@@ -1972,7 +2046,6 @@ class Ui
         /**
          * Returns eval ready code for passed card-objects
          * @private
-         * @name _getCode
          * @function
          * @param           {Array.<Object>} objects            Array of card-objects
          * @return          {string}                            String to be evaluated for all card-objects
@@ -1993,7 +2066,6 @@ class Ui
         /**
          * Returns a link for navigation links
          * @private
-         * @name _getLink
          * @function
          * @param           {Object} link                       Navigation link object
          * @return          {HTMLElement}                       List item HTML element
@@ -2030,7 +2102,6 @@ class Ui
         /**
          * Returns the likely class name for the passed code
          * @public
-         * @name getClass
          * @function
          * @param           {string} code                       Code string
          * @return          {string}                            Likely class name
@@ -2061,7 +2132,6 @@ class Ui
         /**
          * Sets the album cards for the current 'Page'
          * @private
-         * @name _setAlbumCards
          * @function
          */
         _setAlbumCards ( )
@@ -2080,7 +2150,6 @@ class Ui
         /**
          * Sets byrne-systems logo
          * @private
-         * @name _setByrneSystemsLogo
          * @function
          */
         _setByrneSystemsLogo ( )
@@ -2122,7 +2191,6 @@ class Ui
         /**
          * Sets card section's inner HTML
          * @private
-         * @name _setCardSection
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          */
@@ -2144,7 +2212,6 @@ class Ui
         /**
          * Sets cards
          * @private
-         * @name _setCards
          * @function
          * @param           {HTMLElement} element               HTML DOM Element
          */
@@ -2179,7 +2246,6 @@ class Ui
         /**
          * Sets all event listeners for this object
          * @private
-         * @name _setEventListeners
          * @function
          */
         _setEventListeners ( )
@@ -2260,7 +2326,6 @@ class Ui
         /**
          * Sets navigation links
          * @public
-         * @name setNavLinks
          * @function
          * @param           {HTMLElement}    element            Parent navigation element
          * @param           {Array.<Object>} links              Array of Objects containing navigation link data
@@ -2302,7 +2367,6 @@ class Ui
         /**
          * Checks whether ancillary sub animation buttons are collapsible
          * @private
-         * @name _checkCollapsible
          * @function
          * @param           {number} index                      Index to check
          */
@@ -2316,7 +2380,6 @@ class Ui
         /**
          * Collapses uncollapsed ancillary buttons, outside of the present button
          * @private
-         * @name _collapseButtons
          * @function
          * @param           {string} present                    data-bs-target attribute
          */
@@ -2338,7 +2401,6 @@ class Ui
         /**
          * Creates easing links for animation cards
          * @private
-         * @name _createEasingButtons
          * @function
          * @return          {HTMLElement}                       UL element with all necessary nested elements
          */
@@ -2402,7 +2464,6 @@ class Ui
         /**
          * Runs code from within the passed 'cardObjects' param
          * @private
-         * @name _evalCardObjects
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          */
@@ -2411,7 +2472,6 @@ class Ui
         /**
          * Embeds easing buttons for each animation card
          * @private
-         * @name _embedEasingButtons
          * @function
          */
         _embedEasingButtons ( )
@@ -2441,7 +2501,6 @@ class Ui
         /**
          * Returns whether the navigation bar is open
          * @private
-         * @name _isNavOpen
          * @function
          * @return          {boolean}                           True | False
          */
@@ -2450,7 +2509,6 @@ class Ui
         /**
          * Displays an alert message within the modal
          * @public
-         * @name alert
          * @async
          * @function
          * @param           {string} message                    Message to display
@@ -2469,7 +2527,6 @@ class Ui
         /**
          * Clears screen prior to rebuilding
          * @public
-         * @name clearScreen
          * @function
          * @param           {boolean} setCardAlbum              Sets card album display to block (true) || none (false)
          */
@@ -2514,7 +2571,6 @@ class Ui
         /**
          * Sets User Interface
          * @public
-         * @name init
          * @function
          */
         init ( )
@@ -2530,7 +2586,6 @@ class Ui
         /**
          * Sets easing animation for an animation card
          * @public
-         * @name runEasingAnimation
          * @function
          * @param           {string} easingFunction             Easing function; as a string
          * @param           {number} index                      Index of animation card
@@ -2917,7 +2972,64 @@ class Ui
                     children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
-                        _circle.fill.alpha  = 0.25;
+                        _circle.fill.color = new Rgb ( 0,  150,  200 );
+
+                        _circle.fill.color.alpha = 0.25;
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill linear',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'linear', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill radial',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'radial', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Radial ( { x: 180, y: 110 }, 0, { x: 180, y: 110 }, 50 );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _circle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill conic',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'conic', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _circle.fill.gradient = new Conic ( 0, { x: 77, y: 155 } );
+
+                        _circle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
 
                         _circle.draw ( );
                     }
@@ -3107,7 +3219,64 @@ class Ui
                     children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
-                        _rectangle.fill.alpha = 0.25;
+                        _rectangle.fill.color = new Rgb ( 0,  150,  200 );
+
+                        _rectangle.fill.color.alpha = 0.25;
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill linear',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'linear', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0.5, color: new Rgb ( 0, 150, 200, 1 ) },
+                            { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill radial',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'radial', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Radial ( { x: 180, y: 110 }, 0, { x: 180, y: 110 }, 50 );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,   color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.5, color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
+
+                        _rectangle.draw ( );
+                    }
+                },
+                {
+                    title:   'fill conic',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill', 'conic', 'stop', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.fill.gradient = new Conic ( 0, { x: 77, y: 155 } );
+
+                        _rectangle.fill.gradient.stops =
+                        [
+                            { offset: 0,    color: new Rgb ( 0,   150, 200, 1 ) },
+                            { offset: 0.25, color: new Rgb ( 50,  125, 175, 1 ) },
+                            { offset: 0.5,  color: new Rgb ( 100, 100, 150, 1 ) },
+                            { offset: 0.75, color: new Rgb ( 150,  75, 125, 1 ) },
+                            { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
+                        ];
 
                         _rectangle.draw ( );
                     }

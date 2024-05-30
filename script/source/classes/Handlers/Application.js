@@ -23,8 +23,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'May, 26 2024',
-            Version:   '0.3.54',
+            Updated:   'May, 29 2024',
+            Version:   '0.3.55',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -81,7 +81,6 @@ class Application
         /**
          * Set canvas element
          * @public
-         * @name canvas
          * @function
          * @param           {string} value                              Element Id
          */
@@ -116,7 +115,6 @@ class Application
         /**
          * Get canvas element
          * @public
-         * @name canvas
          * @function
          * @return          {HTMLCanvasElement}                         Canvas context
          */
@@ -130,7 +128,6 @@ class Application
         /**
          * Get application details
          * @readOnly
-         * @name about
          * @function
          * @return          {Object}                                    Application details
          */
@@ -144,7 +141,6 @@ class Application
         /**
          * Returns whether the passed value is an element id within the DOM
          * @private
-         * @name _isInDom
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False

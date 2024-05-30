@@ -36,7 +36,6 @@ class StrokeCollection
         /**
          * Set color value
          * @public
-         * @name color
          * @function
          * @param           {string} value                              RGB color value
          */
@@ -48,7 +47,6 @@ class StrokeCollection
         /**
          * Get color value
          * @public
-         * @name color
          * @function
          * @return          {string}                                    RGB color value
          */
@@ -62,7 +60,6 @@ class StrokeCollection
         /**
          * Set type
          * @public
-         * @name type
          * @function
          * @param           {number} value                              Type: (0) Solid or (1) Dashed
          */
@@ -74,7 +71,6 @@ class StrokeCollection
         /**
          * Get type
          * @readOnly
-         * @name type
          * @function
          * @return          {number}                                    Type: (0) Solid or (1) Dashed
          */
@@ -88,7 +84,6 @@ class StrokeCollection
         /**
          * Set segment value
          * @public
-         * @name segments
          * @function
          * @param           {Array} value                               Dashed line segment distance(s)
          */
@@ -100,7 +95,6 @@ class StrokeCollection
         /**
          * Get segment value
          * @readOnly
-         * @name segments
          * @function
          * @return          {Array}                                     Dashed line segment distance(s)
          */
@@ -114,7 +108,6 @@ class StrokeCollection
         /**
          * Set width value
          * @public
-         * @name width
          * @function
          * @param           {number} value                              Thickness of stroke
          */
@@ -126,7 +119,6 @@ class StrokeCollection
         /**
          * Get width value
          * @readOnly
-         * @name width
          * @function
          * @return          {number}                                    Thickness of stroke
          */
@@ -140,7 +132,6 @@ class StrokeCollection
         /**
          * Set master object
          * @public
-         * @name master
          * @function
          */
         set master ( value )
@@ -155,7 +146,6 @@ class StrokeCollection
         /**
          * Returns whether the passed value is a color model
          * @private
-         * @name _isColorModel
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
@@ -166,7 +156,6 @@ class StrokeCollection
         /**
          * Returns whether the passed value is an Array of segment values
          * @private
-         * @name _isSegments
          * @function
          * @param           {Array.<number>} value                      Array of segment values
          * @return          {boolean}                                   True || False
@@ -177,7 +166,6 @@ class StrokeCollection
         /**
          * Returns whether the passed value is a stroke type
          * @private
-         * @name _isStrokeType
          * @function
          * @param           {string} value                              Stroke type
          * @return          {boolean}                                   True || False
@@ -188,7 +176,6 @@ class StrokeCollection
         /**
          * Returns whether the passed value is a width value
          * @private
-         * @name _isWidth
          * @function
          * @param           {number} value                              Width value
          * @return          {boolean}                                   True || False
@@ -201,7 +188,6 @@ class StrokeCollection
         /**
          * Sets all option values throughout a collection
          * @private
-         * @name _setAll
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False

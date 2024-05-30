@@ -71,7 +71,6 @@ class Animation
         /**
          * Set timing
          * @public
-         * @name timing
          * @function
          * @param           {function} value                            Timing function
          */
@@ -100,7 +99,6 @@ class Animation
         /**
          * Get timing
          * @readOnly
-         * @name timing
          * @function
          * @return          {function}                                  Timing function
          */
@@ -114,7 +112,6 @@ class Animation
         /**
          * Set draw function
          * @public
-         * @name draw
          * @function
          * @param           {function}                                  Draw function
          */
@@ -126,7 +123,6 @@ class Animation
         /**
          * Get draw function
          * @readOnly
-         * @name draw
          * @function
          * @return          {function}                                  Draw function
          */
@@ -140,7 +136,6 @@ class Animation
         /**
          * Set duration
          * @public
-         * @name duration
          * @function
          * @param           {number} value                              Duration
          */
@@ -152,7 +147,6 @@ class Animation
         /**
          * Get duration
          * @readOnly
-         * @name duration
          * @function
          * @return          {number}                                    Duration
          */
@@ -166,7 +160,6 @@ class Animation
         /**
          * Returns whether the passed value is a Number value
          * @private
-         * @name _isNumber
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False
@@ -179,7 +172,6 @@ class Animation
         /**
          * Initiates animation
          * @public
-         * @name animate
          * @function
          */
         animate ( )

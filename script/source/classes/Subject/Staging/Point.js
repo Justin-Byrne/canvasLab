@@ -42,7 +42,6 @@ class Point
         /**
          * Set x-axis value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          */
@@ -54,7 +53,6 @@ class Point
         /**
          * Get x-axis value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          */
@@ -68,7 +66,6 @@ class Point
         /**
          * Set the y-axis value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          */
@@ -80,7 +77,6 @@ class Point
         /**
          * Get y-axis value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          */
@@ -94,7 +90,6 @@ class Point
         /**
          * Set canvas value
          * @public
-         * @name canvas
          * @function
          * @param           {string} value                              Canvas id
          */
@@ -103,7 +98,6 @@ class Point
         /**
          * Get canvas value
          * @readOnly
-         * @name canvas
          * @function
          * @return          {string}                                     Canvas id
          */
@@ -114,7 +108,6 @@ class Point
         /**
          * Get options
          * @public
-         * @name options
          * @function
          * @return          {Options}                                   Options object
          */
@@ -128,7 +121,6 @@ class Point
         /**
          * Get center of this object
          * @readOnly
-         * @name center
          * @function
          * @return          {Point}                                     Center point coordinates
          */
@@ -152,7 +144,6 @@ class Point
         /**
          * Draws associated options
          * @public
-         * @name drawOptions
          * @function
          * @param           {number} offset                             Offset of drawable options
          */
@@ -172,7 +163,6 @@ class Point
         /**
          * Invert x & y coordinate values
          * @public
-         * @name invert
          * @function
          */
         invert ( )

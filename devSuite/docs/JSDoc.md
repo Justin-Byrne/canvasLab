@@ -41,71 +41,17 @@
 <dt><a href="#subStringRange">subStringRange(start, end, substring)</a> ⇒ <code>string</code></dt>
 <dd><p>Substitute a string within a range</p>
 </dd>
-<dt><a href="#editor">editor(editor)</a></dt>
-<dd><p>Sets editor</p>
-</dd>
-<dt><a href="#editor">editor()</a> ⇒ <code>Object</code></dt>
-<dd><p>Gets editor</p>
-</dd>
-<dt><a href="#runCode">runCode()</a></dt>
-<dd><p>Executes lab code from editor</p>
-</dd>
-<dt><a href="#init">init()</a></dt>
-<dd><p>Sets lab &amp; ace-editor</p>
-</dd>
-<dt><a href="#entries">entries()</a> ⇒ <code>string</code></dt>
-<dd><p>Gets entries</p>
-</dd>
-<dt><a href="#type">type(value)</a></dt>
-<dd><p>Sets type</p>
-</dd>
-<dt><a href="#type">type()</a> ⇒ <code>string</code></dt>
-<dd><p>Gets type</p>
-</dd>
-<dt><a href="#group">group(value)</a></dt>
-<dd><p>Sets group</p>
-</dd>
-<dt><a href="#group">group()</a> ⇒ <code>string</code></dt>
-<dd><p>Gets group</p>
-</dd>
-<dt><a href="#handler">handler(value)</a></dt>
-<dd><p>Sets handler</p>
-</dd>
-<dt><a href="#handler">handler()</a> ⇒ <code>string</code></dt>
-<dd><p>Gets handler</p>
-</dd>
-<dt><a href="#standard">standard()</a> ⇒ <code>string</code></dt>
-<dd><p>Returns a standard HTML card template</p>
-</dd>
-<dt><a href="#blank">blank()</a> ⇒ <code>string</code></dt>
-<dd><p>Returns a blank HTML card template</p>
-</dd>
-<dt><a href="#getCards">getCards(cardObjects)</a> ⇒ <code>Array</code></dt>
-<dd><p>Returns an Array of standard &amp; extra HTML templates for each card-object</p>
-</dd>
-<dt><a href="#isCanvasLabObject">isCanvasLabObject(value)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Whether the passed value is an &#39;Object&#39; canvasLab category</p>
-</dd>
-<dt><a href="#delay">delay(time)</a> ⇒ <code>Promise</code></dt>
-<dd><p>Simple programmatic delay</p>
-</dd>
-<dt><a href="#copyObjectWithKey">copyObjectWithKey(object)</a> ⇒ <code>Object</code></dt>
-<dd><p>Returns a copied object</p>
-</dd>
-<dt><a href="#copyCode">copyCode()</a></dt>
-<dd><p>Copy code to clipboard</p>
-</dd>
 <dt><a href="#cardButton">cardButton(event)</a></dt>
 <dd><p>Toggles the card button associated with the passed &#39;event&#39; param</p>
 </dd>
 <dt><a href="#externalLinks">externalLinks(element)</a></dt>
 <dd><p>Toggles opacity from bottom links in navigation area</p>
 </dd>
-<dt><a href="#navigation">navigation()</a></dt>
-<dd><p>Toggles visibility of navigation menu</p>
-</dd>
 <dt><a href="#fullscreen">fullscreen(button)</a></dt>
 <dd><p>Toggles fullscreen mode                          @TODO: fix this crap</p>
+</dd>
+<dt><a href="#navigation">navigation()</a></dt>
+<dd><p>Toggles visibility of navigation menu</p>
 </dd>
 <dt><a href="#script">script(script)</a> ⇒ <code>string</code></dt>
 <dd><p>Cleans script of it&#39;s function wrapper</p>
@@ -115,30 +61,6 @@
 </dd>
 <dt><a href="#blankCards">blankCards()</a></dt>
 <dd><p>Cleans the remaining &#39;.blank&#39; cards while converting the first to a &#39;.plus&#39; card; @see Ui.toggle._cardPlus ( )</p>
-</dd>
-<dt><a href="#toggle">toggle()</a> ⇒ <code>Object</code></dt>
-<dd><p>Gets toggle object</p>
-</dd>
-<dt><a href="#clean">clean()</a> ⇒ <code>Object</code></dt>
-<dd><p>Gets clean object</p>
-</dd>
-<dt><a href="#getClass">getClass(code)</a> ⇒ <code>string</code></dt>
-<dd><p>Returns the likely class name for the passed code</p>
-</dd>
-<dt><a href="#setNavLinks">setNavLinks(element, links)</a></dt>
-<dd><p>Sets navigation links</p>
-</dd>
-<dt><a href="#alert">alert(message, type)</a></dt>
-<dd><p>Displays an alert message within the modal</p>
-</dd>
-<dt><a href="#clearScreen">clearScreen(setCardAlbum)</a></dt>
-<dd><p>Clears screen prior to rebuilding</p>
-</dd>
-<dt><a href="#init">init()</a></dt>
-<dd><p>Sets User Interface</p>
-</dd>
-<dt><a href="#runEasingAnimation">runEasingAnimation(easingFunction, index)</a></dt>
-<dd><p>Sets easing animation for an animation card</p>
 </dd>
 </dl>
 
@@ -203,6 +125,47 @@ Runs lab-station code from editor
 | --- | --- | --- |
 | editor | <code>Object</code> | Primary ace-editor object |
 
+
+* [Lab](#Lab)
+    * [.editor(editor)](#Lab+editor)
+    * [.editor()](#Lab+editor) ⇒ <code>Object</code>
+    * [.runCode()](#Lab+runCode)
+    * [.init()](#Lab+init)
+
+<a name="Lab+editor"></a>
+
+### lab.editor(editor)
+Sets editor
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| editor | <code>Object</code> | Primary ace-editor object |
+
+<a name="Lab+editor"></a>
+
+### lab.editor() ⇒ <code>Object</code>
+Gets editor
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Returns**: <code>Object</code> - Primary ace-editor object  
+**Access**: public  
+<a name="Lab+runCode"></a>
+
+### lab.runCode()
+Executes lab code from editor
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+<a name="Lab+init"></a>
+
+### lab.init()
+Sets lab & ace-editor
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
 <a name="Log"></a>
 
 ## Log
@@ -215,6 +178,14 @@ Runs lab-station code from editor
 | --- | --- | --- |
 | entries | <code>string</code> | Log entries |
 
+<a name="Log+entries"></a>
+
+### log.entries() ⇒ <code>string</code>
+Gets entries
+
+**Kind**: instance method of [<code>Log</code>](#Log)  
+**Returns**: <code>string</code> - Page's entries  
+**Access**: public  
 <a name="Page"></a>
 
 ## Page
@@ -229,11 +200,81 @@ Runs lab-station code from editor
 | group | <code>string</code> | Page's group |
 | handler | <code>string</code> | Page's handler |
 
+
+* [Page](#Page)
+    * [new Page()](#new_Page_new)
+    * [.type(value)](#Page+type)
+    * [.type()](#Page+type) ⇒ <code>string</code>
+    * [.group(value)](#Page+group)
+    * [.group()](#Page+group) ⇒ <code>string</code>
+    * [.handler(value)](#Page+handler)
+    * [.handler()](#Page+handler) ⇒ <code>string</code>
+
 <a name="new_Page_new"></a>
 
 ### new Page()
 Creates a page
 
+<a name="Page+type"></a>
+
+### page.type(value)
+Sets type
+
+**Kind**: instance method of [<code>Page</code>](#Page)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Page's type |
+
+<a name="Page+type"></a>
+
+### page.type() ⇒ <code>string</code>
+Gets type
+
+**Kind**: instance method of [<code>Page</code>](#Page)  
+**Returns**: <code>string</code> - Page's type  
+**Read only**: true  
+<a name="Page+group"></a>
+
+### page.group(value)
+Sets group
+
+**Kind**: instance method of [<code>Page</code>](#Page)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Page's group |
+
+<a name="Page+group"></a>
+
+### page.group() ⇒ <code>string</code>
+Gets group
+
+**Kind**: instance method of [<code>Page</code>](#Page)  
+**Returns**: <code>string</code> - Page's group  
+**Read only**: true  
+<a name="Page+handler"></a>
+
+### page.handler(value)
+Sets handler
+
+**Kind**: instance method of [<code>Page</code>](#Page)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Page's handler |
+
+<a name="Page+handler"></a>
+
+### page.handler() ⇒ <code>string</code>
+Gets handler
+
+**Kind**: instance method of [<code>Page</code>](#Page)  
+**Returns**: <code>string</code> - Page's handler  
+**Read only**: true  
 <a name="Template"></a>
 
 ## Template
@@ -247,6 +288,41 @@ Creates a page
 | standard | <code>string</code> | Standard HTML card template |
 | blank | <code>string</code> | Blank HTML card template |
 
+
+* [Template](#Template)
+    * [.standard()](#Template+standard) ⇒ <code>string</code>
+    * [.blank()](#Template+blank) ⇒ <code>string</code>
+    * [.getCards(cardObjects)](#Template+getCards) ⇒ <code>Array</code>
+
+<a name="Template+standard"></a>
+
+### template.standard() ⇒ <code>string</code>
+Returns a standard HTML card template
+
+**Kind**: instance method of [<code>Template</code>](#Template)  
+**Returns**: <code>string</code> - HTML card standard template  
+**Read only**: true  
+<a name="Template+blank"></a>
+
+### template.blank() ⇒ <code>string</code>
+Returns a blank HTML card template
+
+**Kind**: instance method of [<code>Template</code>](#Template)  
+**Returns**: <code>string</code> - HTML card blank template  
+**Read only**: true  
+<a name="Template+getCards"></a>
+
+### template.getCards(cardObjects) ⇒ <code>Array</code>
+Returns an Array of standard & extra HTML templates for each card-object
+
+**Kind**: instance method of [<code>Template</code>](#Template)  
+**Returns**: <code>Array</code> - Array of HTML templates for each card-object  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cardObjects | <code>Array.&lt;Object&gt;</code> | Array of card-objects |
+
 <a name="Tool"></a>
 
 ## Tool
@@ -259,6 +335,59 @@ Creates a page
 | --- | --- | --- |
 | copy | <code>Object</code> | Standard HTML card template |
 
+
+* [Tool](#Tool)
+    * [.isCanvasLabObject(value)](#Tool+isCanvasLabObject) ⇒ <code>boolean</code>
+    * [.delay(time)](#Tool+delay) ⇒ <code>Promise</code>
+    * [.copyObjectWithKey(object)](#Tool+copyObjectWithKey) ⇒ <code>Object</code>
+    * [.copyCode()](#Tool+copyCode)
+
+<a name="Tool+isCanvasLabObject"></a>
+
+### tool.isCanvasLabObject(value) ⇒ <code>boolean</code>
+Whether the passed value is an 'Object' canvasLab category
+
+**Kind**: instance method of [<code>Tool</code>](#Tool)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Object, i.e.: 'Line', 'Circle', 'Rectangle', etc... |
+
+<a name="Tool+delay"></a>
+
+### tool.delay(time) ⇒ <code>Promise</code>
+Simple programmatic delay
+
+**Kind**: instance method of [<code>Tool</code>](#Tool)  
+**Returns**: <code>Promise</code> - An async promise  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| time | <code>number</code> | Time to delay |
+
+<a name="Tool+copyObjectWithKey"></a>
+
+### tool.copyObjectWithKey(object) ⇒ <code>Object</code>
+Returns a copied object
+
+**Kind**: instance method of [<code>Tool</code>](#Tool)  
+**Returns**: <code>Object</code> - Copied object  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>Object</code> | Object to copy |
+
+<a name="Tool+copyCode"></a>
+
+### tool.copyCode()
+Copy code to clipboard
+
+**Kind**: instance method of [<code>Tool</code>](#Tool)  
+**Access**: public  
 <a name="Ui"></a>
 
 ## Ui
@@ -271,6 +400,104 @@ Creates a page
 | --- | --- | --- |
 | toggle | <code>Object</code> | Toggling functions |
 | clean | <code>Object</code> | Cleaning functions |
+
+
+* [Ui](#Ui)
+    * [.toggle()](#Ui+toggle) ⇒ <code>Object</code>
+    * [.clean()](#Ui+clean) ⇒ <code>Object</code>
+    * [.getClass(code)](#Ui+getClass) ⇒ <code>string</code>
+    * [.setNavLinks(element, links)](#Ui+setNavLinks)
+    * [.alert(message, type)](#Ui+alert)
+    * [.clearScreen(setCardAlbum)](#Ui+clearScreen)
+    * [.init()](#Ui+init)
+    * [.runEasingAnimation(easingFunction, index)](#Ui+runEasingAnimation)
+
+<a name="Ui+toggle"></a>
+
+### ui.toggle() ⇒ <code>Object</code>
+Gets toggle object
+
+**Kind**: instance method of [<code>Ui</code>](#Ui)  
+**Returns**: <code>Object</code> - Toggle object  
+**Access**: public  
+<a name="Ui+clean"></a>
+
+### ui.clean() ⇒ <code>Object</code>
+Gets clean object
+
+**Kind**: instance method of [<code>Ui</code>](#Ui)  
+**Returns**: <code>Object</code> - Clean object  
+**Access**: public  
+<a name="Ui+getClass"></a>
+
+### ui.getClass(code) ⇒ <code>string</code>
+Returns the likely class name for the passed code
+
+**Kind**: instance method of [<code>Ui</code>](#Ui)  
+**Returns**: <code>string</code> - Likely class name  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| code | <code>string</code> | Code string |
+
+<a name="Ui+setNavLinks"></a>
+
+### ui.setNavLinks(element, links)
+Sets navigation links
+
+**Kind**: instance method of [<code>Ui</code>](#Ui)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>HTMLElement</code> | Parent navigation element |
+| links | <code>Array.&lt;Object&gt;</code> | Array of Objects containing navigation link data |
+
+<a name="Ui+alert"></a>
+
+### ui.alert(message, type)
+Displays an alert message within the modal
+
+**Kind**: instance method of [<code>Ui</code>](#Ui)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| message | <code>string</code> | Message to display |
+| type | <code>string</code> | Type of message; success || failure |
+
+<a name="Ui+clearScreen"></a>
+
+### ui.clearScreen(setCardAlbum)
+Clears screen prior to rebuilding
+
+**Kind**: instance method of [<code>Ui</code>](#Ui)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| setCardAlbum | <code>boolean</code> | <code>false</code> | Sets card album display to block (true) || none (false) |
+
+<a name="Ui+init"></a>
+
+### ui.init()
+Sets User Interface
+
+**Kind**: instance method of [<code>Ui</code>](#Ui)  
+**Access**: public  
+<a name="Ui+runEasingAnimation"></a>
+
+### ui.runEasingAnimation(easingFunction, index)
+Sets easing animation for an animation card
+
+**Kind**: instance method of [<code>Ui</code>](#Ui)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| easingFunction | <code>string</code> | Easing function; as a string |
+| index | <code>number</code> | Index of animation card |
 
 <a name="toTitleCase"></a>
 
@@ -313,183 +540,6 @@ Substitute a string within a range
 | end | <code>number</code> | Substitution's ending point |
 | substring | <code>string</code> | Substitution |
 
-<a name="editor"></a>
-
-## editor(editor)
-Sets editor
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| editor | <code>Object</code> | Primary ace-editor object |
-
-<a name="editor"></a>
-
-## editor() ⇒ <code>Object</code>
-Gets editor
-
-**Kind**: global function  
-**Returns**: <code>Object</code> - Primary ace-editor object  
-**Access**: public  
-<a name="runCode"></a>
-
-## runCode()
-Executes lab code from editor
-
-**Kind**: global function  
-**Access**: public  
-<a name="init"></a>
-
-## init()
-Sets lab & ace-editor
-
-**Kind**: global function  
-**Access**: public  
-<a name="entries"></a>
-
-## entries() ⇒ <code>string</code>
-Gets entries
-
-**Kind**: global function  
-**Returns**: <code>string</code> - Page's entries  
-**Access**: public  
-<a name="type"></a>
-
-## type(value)
-Sets type
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | Page's type |
-
-<a name="type"></a>
-
-## type() ⇒ <code>string</code>
-Gets type
-
-**Kind**: global function  
-**Returns**: <code>string</code> - Page's type  
-**Read only**: true  
-<a name="group"></a>
-
-## group(value)
-Sets group
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | Page's group |
-
-<a name="group"></a>
-
-## group() ⇒ <code>string</code>
-Gets group
-
-**Kind**: global function  
-**Returns**: <code>string</code> - Page's group  
-**Read only**: true  
-<a name="handler"></a>
-
-## handler(value)
-Sets handler
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | Page's handler |
-
-<a name="handler"></a>
-
-## handler() ⇒ <code>string</code>
-Gets handler
-
-**Kind**: global function  
-**Returns**: <code>string</code> - Page's handler  
-**Read only**: true  
-<a name="standard"></a>
-
-## standard() ⇒ <code>string</code>
-Returns a standard HTML card template
-
-**Kind**: global function  
-**Returns**: <code>string</code> - HTML card standard template  
-**Read only**: true  
-<a name="blank"></a>
-
-## blank() ⇒ <code>string</code>
-Returns a blank HTML card template
-
-**Kind**: global function  
-**Returns**: <code>string</code> - HTML card blank template  
-**Read only**: true  
-<a name="getCards"></a>
-
-## getCards(cardObjects) ⇒ <code>Array</code>
-Returns an Array of standard & extra HTML templates for each card-object
-
-**Kind**: global function  
-**Returns**: <code>Array</code> - Array of HTML templates for each card-object  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| cardObjects | <code>Array.&lt;Object&gt;</code> | Array of card-objects |
-
-<a name="isCanvasLabObject"></a>
-
-## isCanvasLabObject(value) ⇒ <code>boolean</code>
-Whether the passed value is an 'Object' canvasLab category
-
-**Kind**: global function  
-**Returns**: <code>boolean</code> - True || False  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | Object, i.e.: 'Line', 'Circle', 'Rectangle', etc... |
-
-<a name="delay"></a>
-
-## delay(time) ⇒ <code>Promise</code>
-Simple programmatic delay
-
-**Kind**: global function  
-**Returns**: <code>Promise</code> - An async promise  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| time | <code>number</code> | Time to delay |
-
-<a name="copyObjectWithKey"></a>
-
-## copyObjectWithKey(object) ⇒ <code>Object</code>
-Returns a copied object
-
-**Kind**: global function  
-**Returns**: <code>Object</code> - Copied object  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| object | <code>Object</code> | Object to copy |
-
-<a name="copyCode"></a>
-
-## copyCode()
-Copy code to clipboard
-
-**Kind**: global function  
-**Access**: public  
 <a name="cardButton"></a>
 
 ## cardButton(event)
@@ -514,13 +564,6 @@ Toggles opacity from bottom links in navigation area
 | --- | --- | --- |
 | element | <code>HTMLElement</code> | Main button element |
 
-<a name="navigation"></a>
-
-## navigation()
-Toggles visibility of navigation menu
-
-**Kind**: global function  
-**Access**: public  
 <a name="fullscreen"></a>
 
 ## fullscreen(button)
@@ -533,6 +576,13 @@ Toggles fullscreen mode                          @TODO: fix this crap
 | --- | --- | --- |
 | button | <code>HTMLElement</code> | Button under the #control-panel .button class |
 
+<a name="navigation"></a>
+
+## navigation()
+Toggles visibility of navigation menu
+
+**Kind**: global function  
+**Access**: public  
 <a name="script"></a>
 
 ## script(script) ⇒ <code>string</code>
@@ -566,90 +616,3 @@ Cleans the remaining '.blank' cards while converting the first to a '.plus' card
 
 **Kind**: global function  
 **Access**: public  
-<a name="toggle"></a>
-
-## toggle() ⇒ <code>Object</code>
-Gets toggle object
-
-**Kind**: global function  
-**Returns**: <code>Object</code> - Toggle object  
-**Access**: public  
-<a name="clean"></a>
-
-## clean() ⇒ <code>Object</code>
-Gets clean object
-
-**Kind**: global function  
-**Returns**: <code>Object</code> - Clean object  
-**Access**: public  
-<a name="getClass"></a>
-
-## getClass(code) ⇒ <code>string</code>
-Returns the likely class name for the passed code
-
-**Kind**: global function  
-**Returns**: <code>string</code> - Likely class name  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| code | <code>string</code> | Code string |
-
-<a name="setNavLinks"></a>
-
-## setNavLinks(element, links)
-Sets navigation links
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| element | <code>HTMLElement</code> | Parent navigation element |
-| links | <code>Array.&lt;Object&gt;</code> | Array of Objects containing navigation link data |
-
-<a name="alert"></a>
-
-## alert(message, type)
-Displays an alert message within the modal
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>string</code> | Message to display |
-| type | <code>string</code> | Type of message; success || failure |
-
-<a name="clearScreen"></a>
-
-## clearScreen(setCardAlbum)
-Clears screen prior to rebuilding
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| setCardAlbum | <code>boolean</code> | Sets card album display to block (true) || none (false) |
-
-<a name="init"></a>
-
-## init()
-Sets User Interface
-
-**Kind**: global function  
-**Access**: public  
-<a name="runEasingAnimation"></a>
-
-## runEasingAnimation(easingFunction, index)
-Sets easing animation for an animation card
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| easingFunction | <code>string</code> | Easing function; as a string |
-| index | <code>number</code> | Index of animation card |
-

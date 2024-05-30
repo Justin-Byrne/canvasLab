@@ -98,7 +98,6 @@ class Text extends Font
         /**
          * Set point
          * @public
-         * @name point
          * @function
          * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
@@ -108,7 +107,6 @@ class Text extends Font
         /**
          * Get point
          * @public
-         * @name point
          * @function
          * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
@@ -119,7 +117,6 @@ class Text extends Font
         /**
          * Set x-axis value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.pointX}
@@ -129,7 +126,6 @@ class Text extends Font
         /**
          * Get x-axis value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.pointX}
@@ -140,7 +136,6 @@ class Text extends Font
         /**
          * Set the y-axis value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.pointY}
@@ -150,7 +145,6 @@ class Text extends Font
         /**
          * Get y-axis value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.pointY}
@@ -162,7 +156,6 @@ class Text extends Font
         /**
          * Set text
          * @public
-         * @name text
          * @function
          * @param           {string} value                              Text of object
          */
@@ -174,7 +167,6 @@ class Text extends Font
         /**
          * Get text
          * @readOnly
-         * @name text
          * @function
          * @return          {string}                                    Text of object
          */
@@ -188,7 +180,6 @@ class Text extends Font
         /**
          * Get stroke properties
          * @public
-         * @name stroke
          * @function
          * @return          {Stroke}                                    Stroke properties
          */
@@ -202,7 +193,6 @@ class Text extends Font
         /**
          * Get fill properties
          * @public
-         * @name fill
          * @function
          * @return          {Fill}                                      Fill properties
          */
@@ -216,7 +206,6 @@ class Text extends Font
         /**
          * Get shadow properties
          * @public
-         * @name shadow
          * @function
          * @return          {Shadow}                                    Shadow properties
          */
@@ -230,7 +219,6 @@ class Text extends Font
         /**
          * Set canvas value
          * @public
-         * @name canvas
          * @function
          * @param           {string} value                              Canvas id
          * @see             {@link discrete.canvas}
@@ -240,7 +228,6 @@ class Text extends Font
         /**
          * Get canvas value
          * @readOnly
-         * @name canvas
          * @function
          * @return          {string}                                    Canvas id
          * @see             {@link discrete.canvas}
@@ -252,7 +239,6 @@ class Text extends Font
         /**
          * Get options properties
          * @public
-         * @name options
          * @function
          * @return          {Options}                                   Options properties
          */
@@ -266,7 +252,6 @@ class Text extends Font
         /**
          * Draws associated options
          * @protected
-         * @name #_drawOptions
          * @function
          */
         #_drawOptions ( )
@@ -283,7 +268,6 @@ class Text extends Font
             /**
              * Set font's type
              * @public
-             * @name type
              * @function
              * @param           {string} value                              Font's type
              */
@@ -292,7 +276,6 @@ class Text extends Font
             /**
              * Get font's type
              * @readOnly
-             * @name type
              * @function
              * @return          {string}                                    Font's type
              */
@@ -303,7 +286,6 @@ class Text extends Font
             /**
              * Set font's size
              * @public
-             * @name size
              * @function
              * @param           {number} value                              Font's size
              */
@@ -312,7 +294,6 @@ class Text extends Font
             /**
              * Get font's size
              * @readOnly
-             * @name size
              * @function
              * @return          {number}                                    Font's size
              */
@@ -323,7 +304,6 @@ class Text extends Font
             /**
              * Set font's weight
              * @public
-             * @name weight
              * @function
              * @param           {string} value                              Font's weight
              */
@@ -332,7 +312,6 @@ class Text extends Font
             /**
              * Get font's weight
              * @readOnly
-             * @name weight
              * @function
              * @return          {string}                                    Font's weight
              */
@@ -343,7 +322,6 @@ class Text extends Font
             /**
              * Set font's max width
              * @public
-             * @name maxWidth
              * @function
              * @param           {number} value                              Font's max width
              */
@@ -363,7 +341,6 @@ class Text extends Font
             /**
              * Get font's max width
              * @readOnly
-             * @name maxWidth
              * @function
              * @return          {number}                                    Font's max width
              */
@@ -374,7 +351,6 @@ class Text extends Font
             /**
              * Set offset
              * @public
-             * @name offset
              * @function
              * @param           {Point} value                               Shadow offset
              * @see             {@link discrete.offset}
@@ -384,7 +360,6 @@ class Text extends Font
             /**
              * Get offset
              * @readOnly
-             * @name offset
              * @function
              * @return          {Point}                                     Shadow offset
              * @see             {@link discrete.offset}
@@ -396,7 +371,6 @@ class Text extends Font
             /**
              * Get font
              * @public
-             * @name font
              * @function
              * @return          {string}                                    CSS style font property syntax
              */
@@ -410,7 +384,6 @@ class Text extends Font
         /**
          * Returns whether the passed value is a degree
          * @private
-         * @name isDegree
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
@@ -421,7 +394,6 @@ class Text extends Font
         /**
          * Returns whether the passed value is an element id within the DOM
          * @private
-         * @name isInDom
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
@@ -432,7 +404,6 @@ class Text extends Font
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
@@ -445,7 +416,6 @@ class Text extends Font
         /**
          * Clears canvas
          * @private
-         * @name clearCanvas
          * @function
          * @param           {boolean} value                             Whether to redraw background
          * @see             {@link Utilities.misc.clearCanvas}
@@ -455,7 +425,6 @@ class Text extends Font
         /**
          * Rotates the origin point by the degree & distance passed
          * @private
-         * @name rotatePoint
          * @function
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
@@ -467,7 +436,6 @@ class Text extends Font
         /**
          * Sets shadow properties
          * @private
-         * @name shadow
          * @function
          * @see             {@link Utilities.set.shadow}
          */
@@ -476,7 +444,6 @@ class Text extends Font
         /**
          * Draws border around this object
          * @public
-         * @name drawBorder
          * @function
          * @param           {number} [offset=10]                        Offset of border's perimeter
          */
@@ -501,7 +468,6 @@ class Text extends Font
         /**
          * Draws axis through center of this object
          * @public
-         * @name drawAxis
          * @function
          * @param           {number} [offset=10]                        Offset of axis's edges
          */
@@ -539,7 +505,6 @@ class Text extends Font
         /**
          * Cycle colors for fill
          * @public
-         * @name fillColorCycle
          * @function
          * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
          * @param           {Rgb}    start                              Starting RGB value
@@ -552,7 +517,6 @@ class Text extends Font
         /**
          * Move this object
          * @public
-         * @name move
          * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
@@ -574,7 +538,6 @@ class Text extends Font
         /**
          * Rotate this object
          * @public
-         * @name rotate
          * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
@@ -631,7 +594,6 @@ class Text extends Font
         /**
          * Cycle colors for stroke
          * @public
-         * @name strokeColorCycle
          * @function
          * @param           {Rgb}    start                              Starting RGB value
          * @param           {Rgb}    end                                Ending RGB value
@@ -646,7 +608,6 @@ class Text extends Font
         /**
          * Draw this object
          * @public
-         * @name draw
          * @function
          * @param           {string} canvas                             Canvas Id
          */

@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.55] - 2024-06-29
+### Added
+- **devSuite**
+  - `Tool` class
+    - `_get.numberFromPx ( )` to return CSS pixel value as number
+    - `_get.fontSize ( )` to return CSS font size of HTML element
+    - `_get.textMinHeight ( )` to return the minimum height of a text element
+    - `_incrementFontSize ( )` to increment font size by 1px
+    - `scaleText ( )` to adjust group of element font-sizes, with that groups min font-size
+
+### Refactored
+- **devSuite**
+  - `Ui` class, refactored `externalLinks ( )`, `toggle._documentation ( )`, `toggle._navDropdown ( )`
+
 ## [0.3.54] - 2024-06-26
 ### Added
 - **devSuite**
@@ -358,7 +372,8 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.3.54] | 2024-06-26 | CURRENT                                                             | Added child class accessibility nodes to devSuite.                                           |
+| [0.3.55] | 2024-06-29 | CURRENT                                                             | Refactored in app documentation.                                                        |
+| [0.3.54] | 2024-06-26 | [fd05d82](https://github.com/Justin-Byrne/canvasLab/commit/fd05d82) | Added child class accessibility nodes to devSuite.                                           |
 | [0.3.48] | 2024-06-10 | [0032dc5](https://github.com/Justin-Byrne/canvasLab/commit/0032dc5) | Added gradient classes, expanded upon UTILITIES & VALIDATION modules.                        |
 | [0.3.30] | 2024-06-06 | [a4b29b5](https://github.com/Justin-Byrne/canvasLab/commit/a4b29b5) | Refactored navigation links as self generative.                                              |
 | [0.3.25] | 2024-06-02 | [80ece25](https://github.com/Justin-Byrne/canvasLab/commit/80ece25) | Added color models, and general cleanup.                                                     |

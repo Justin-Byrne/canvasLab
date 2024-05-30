@@ -45,7 +45,6 @@ class OptionsCollection
         /**
          * Set shadow value
          * @public
-         * @name shadow
          * @function
          * @param           {boolean} value                             Shadow; true | false
          */
@@ -57,7 +56,6 @@ class OptionsCollection
         /**
          * Get shadow value
          * @readOnly
-         * @name shadow
          * @function
          * @return          {boolean}                                   Shadow; true | false
          */
@@ -71,7 +69,6 @@ class OptionsCollection
         /**
          * Set border value
          * @public
-         * @name border
          * @function
          * @param           {boolean} value                             Border; true | false
          */
@@ -83,7 +80,6 @@ class OptionsCollection
         /**
          * Get border value
          * @readOnly
-         * @name border
          * @function
          * @return          {boolean}                                   Border; true | false
          */
@@ -97,7 +93,6 @@ class OptionsCollection
         /**
          * Set axis value
          * @public
-         * @name axis
          * @function
          * @param           {boolean} value                             Axis; true | false
          */
@@ -109,7 +104,6 @@ class OptionsCollection
         /**
          * Get axis value
          * @readOnly
-         * @name axis
          * @function
          * @return          {boolean}                                   Axis; true | false
          */
@@ -123,7 +117,6 @@ class OptionsCollection
         /**
          * Set coordinates value
          * @public
-         * @name coordinates
          * @function
          * @param           {boolean} value                             Coordinates; true | false
          */
@@ -135,7 +128,6 @@ class OptionsCollection
         /**
          * Get coordinates value
          * @readOnly
-         * @name coordinates
          * @function
          * @return          {boolean}                                   Coordinates; true | false
          */
@@ -149,7 +141,6 @@ class OptionsCollection
         /**
          * Set control points value
          * @public
-         * @name controlPoints
          * @function
          * @param           {boolean} value                             Control points; true | false
          */
@@ -161,7 +152,6 @@ class OptionsCollection
         /**
          * Get control points value
          * @readOnly
-         * @name controlPoints
          * @function
          * @return          {boolean}                                   Control points; true | false
          */
@@ -175,7 +165,6 @@ class OptionsCollection
         /**
          * Sets all option values throughout a collection
          * @private
-         * @name _setAll
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False

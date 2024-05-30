@@ -2,7 +2,7 @@
  * @class           {Object}   Stroke                           Stroke properties of associated object
  * @property        {Object}   [color=<Rgb>]                    Color model & value
  * @property        {string}   [type='solid']                   Stroke type; solid | dashed
- * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s); <array<numbers>>
+ * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s)
  * @property        {number}   [width=2]                        Thickness of stroke
  * @property        {Shadow}   shadow                           Shadow properties
  */
@@ -41,7 +41,6 @@ class Stroke
         /**
          * Set type
          * @public
-         * @name type
          * @function
          * @param           {number} value                              Type: (0) Solid or (1) Dashed
          */
@@ -53,7 +52,6 @@ class Stroke
         /**
          * Get type
          * @readOnly
-         * @name type
          * @function
          * @return          {number}                                    Type: (0) Solid or (1) Dashed
          */
@@ -67,7 +65,6 @@ class Stroke
         /**
          * Set segment value
          * @public
-         * @name segments
          * @function
          * @param           {Array} value                               Dashed line segment distance(s)
          */
@@ -81,7 +78,6 @@ class Stroke
         /**
          * Get segment value
          * @readOnly
-         * @name segments
          * @function
          * @return          {Array}                                     Dashed line segment distance(s)
          */
@@ -95,7 +91,6 @@ class Stroke
         /**
          * Set color value
          * @public
-         * @name color
          * @function
          * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
          */
@@ -107,7 +102,6 @@ class Stroke
         /**
          * Get color value
          * @public
-         * @name color
          * @function
          * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
          */
@@ -121,7 +115,6 @@ class Stroke
         /**
          * Set width value
          * @public
-         * @name width
          * @function
          * @param           {number} value                              Thickness of stroke
          */
@@ -133,7 +126,6 @@ class Stroke
         /**
          * Get width value
          * @readOnly
-         * @name width
          * @function
          * @return          {number}                                    Thickness of stroke
          */
@@ -147,7 +139,6 @@ class Stroke
         /**
          * Returns whether the passed value is a color model
          * @private
-         * @name _isColorModel
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
@@ -158,7 +149,6 @@ class Stroke
         /**
          * Returns whether the passed value is an Array of segment values
          * @private
-         * @name _isSegments
          * @function
          * @param           {Array.<number>} value                      Array of segment values
          * @return          {boolean}                                   True || False
@@ -169,7 +159,6 @@ class Stroke
         /**
          * Returns whether the passed value is a stroke type
          * @private
-         * @name _isStrokeType
          * @function
          * @param           {string} value                              Stroke type
          * @return          {boolean}                                   True || False
@@ -180,7 +169,6 @@ class Stroke
         /**
          * Returns whether the passed value is a width value
          * @private
-         * @name _isWidth
          * @function
          * @param           {number} value                              Width value
          * @return          {boolean}                                   True || False

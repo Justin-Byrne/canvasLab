@@ -90,7 +90,6 @@ class Rectangle
         /**
          * Set point
          * @public
-         * @name point
          * @function
          * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
@@ -100,7 +99,6 @@ class Rectangle
         /**
          * Get point
          * @public
-         * @name point
          * @function
          * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
@@ -111,7 +109,6 @@ class Rectangle
         /**
          * Set x-axis value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.pointX}
@@ -121,7 +118,6 @@ class Rectangle
         /**
          * Get x-axis value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.pointX}
@@ -132,7 +128,6 @@ class Rectangle
         /**
          * Set the y-axis value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.pointY}
@@ -142,7 +137,6 @@ class Rectangle
         /**
          * Get y-axis value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.pointY}
@@ -154,7 +148,6 @@ class Rectangle
         /**
          * Set aspect properties
          * @public
-         * @name aspect
          * @function
          * @param           {Aspect} value                              Aspect properties
          */
@@ -166,7 +159,6 @@ class Rectangle
         /**
          * Get aspect properties
          * @readOnly
-         * @name aspect
          * @function
          * @return          {Aspect}                                    Aspect properties
          */
@@ -179,7 +171,6 @@ class Rectangle
         /**
          * Set aspect width
          * @public
-         * @name width
          * @function
          * @param           {number} value                              Width value
          */
@@ -191,7 +182,6 @@ class Rectangle
         /**
          * Get aspect with
          * @readOnly
-         * @name width
          * @function
          * @return          {number}                                    Width value
          */
@@ -204,7 +194,6 @@ class Rectangle
         /**
          * Set aspect height
          * @public
-         * @name height
          * @function
          * @param           {number} value                              Height value
          */
@@ -216,7 +205,6 @@ class Rectangle
         /**
          * Get aspect height
          * @readOnly
-         * @name height
          * @function
          * @return          {number}                                    Height value
          */
@@ -230,7 +218,6 @@ class Rectangle
         /**
          * Get stroke properties
          * @public
-         * @name stroke
          * @function
          * @return          {Stroke}                                    Stroke properties
          */
@@ -244,7 +231,6 @@ class Rectangle
         /**
          * Get fill properties
          * @public
-         * @name fill
          * @function
          * @return          {Fill}                                      Fill properties
          */
@@ -258,7 +244,6 @@ class Rectangle
         /**
          * Get shadow properties
          * @public
-         * @name shadow
          * @function
          * @return          {Shadow}                                    Shadow properties
          */
@@ -272,7 +257,6 @@ class Rectangle
         /**
          * Set canvas value
          * @public
-         * @name canvas
          * @function
          * @param           {string} value                              Canvas id
          * @see             {@link discrete.canvas}
@@ -282,7 +266,6 @@ class Rectangle
         /**
          * Get canvas value
          * @readOnly
-         * @name canvas
          * @function
          * @return          {string}                                    Canvas id
          * @see             {@link discrete.canvas}
@@ -294,7 +277,6 @@ class Rectangle
         /**
          * Get anchor
          * @public
-         * @name anchor
          * @function
          * @return          {Anchor}                                    Anchor properties
          */
@@ -308,7 +290,6 @@ class Rectangle
         /**
          * Get options properties
          * @public
-         * @name options
          * @function
          * @return          {Options}                                   Options properties
          */
@@ -322,7 +303,6 @@ class Rectangle
         /**
          * Returns whether the passed value is an Aspect
          * @private
-         * @name isAspect
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
@@ -333,7 +313,6 @@ class Rectangle
         /**
          * Returns whether the passed value is a degree
          * @private
-         * @name isDegree
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
@@ -344,7 +323,6 @@ class Rectangle
         /**
          * Returns whether the passed value is an element id within the DOM
          * @private
-         * @name isInDom
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
@@ -355,7 +333,6 @@ class Rectangle
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
@@ -366,7 +343,6 @@ class Rectangle
         /**
          * Check whether the passed object is already present
          * @public
-         * @name isThere
          * @function
          * @param           {Rectangle} rectangle                       Object to validate
          */
@@ -395,7 +371,6 @@ class Rectangle
         /**
          * Clears canvas
          * @private
-         * @name clearCanvas
          * @function
          * @param           {boolean} value                             Whether to redraw background
          * @see             {@link Utilities.misc.clearCanvas}
@@ -405,7 +380,6 @@ class Rectangle
         /**
          * Draws anchor point
          * @private
-         * @name _drawAnchor
          * @function
          */
         _drawAnchor ( )
@@ -423,7 +397,6 @@ class Rectangle
         /**
          * Draws an axis for the associated object
          * @private
-         * @name axis
          * @function
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
@@ -435,7 +408,6 @@ class Rectangle
         /**
          * Draws an axis for the associated object
          * @private
-         * @name border
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
@@ -446,7 +418,6 @@ class Rectangle
         /**
          * Draws associated options
          * @private
-         * @name _drawOptions
          * @function
          */
         _drawOptions ( )
@@ -467,7 +438,6 @@ class Rectangle
         /**
          * Rotates the origin point by the degree & distance passed
          * @private
-         * @name rotatePoint
          * @function
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
@@ -479,7 +449,6 @@ class Rectangle
         /**
          * Sets anchor's point against this object's point location
          * @private
-         * @name _setAnchorPoint
          * @function
          */
         _setAnchorPoint ( )
@@ -512,7 +481,6 @@ class Rectangle
         /**
          * Sets fill type of the associated object
          * @private
-         * @name fillType
          * @function
          * @see             {@link Utilities.set.fillType}
          */
@@ -521,7 +489,6 @@ class Rectangle
         /**
          * Sets shadow properties
          * @private
-         * @name shadow
          * @function
          * @see             {@link Utilities.set.shadow}
          */
@@ -530,7 +497,6 @@ class Rectangle
         /**
          * Cycle colors for fill
          * @public
-         * @name fillColorCycle
          * @function
          * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
          * @param           {Rgb}    start                              Starting RGB value
@@ -543,7 +509,6 @@ class Rectangle
         /**
          * Cycle colors for gradient
          * @public
-         * @name gradientColorCycle
          * @function
          * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
          * @param           {Rgb}    start                              Starting RGB value
@@ -557,7 +522,6 @@ class Rectangle
         /**
          * Move this object
          * @public
-         * @name move
          * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
@@ -579,7 +543,6 @@ class Rectangle
         /**
          * Rotate this object
          * @public
-         * @name rotate
          * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {number} [clear=true]                       Clear canvas during each rotation
@@ -612,7 +575,6 @@ class Rectangle
         /**
          * Cycle colors for stroke
          * @public
-         * @name strokeColorCycle
          * @function
          * @param           {Rgb}    start                              Starting RGB value
          * @param           {Rgb}    end                                Ending RGB value
@@ -627,7 +589,6 @@ class Rectangle
         /**
          * Get area of this object
          * @readOnly
-         * @name area
          * @function
          * @return          {number}                                    Area of rectangle
          */
@@ -639,7 +600,6 @@ class Rectangle
         /**
          * Get center of this object
          * @readOnly
-         * @name center
          * @function
          * @return          {Point}                                     Center point coordinates
          */
@@ -656,7 +616,6 @@ class Rectangle
         /**
          * Get perimeter of this object
          * @readOnly
-         * @name perimeter
          * @function
          * @return          {number}                                    Perimeter of rectangle
          */
@@ -670,7 +629,6 @@ class Rectangle
         /**
          * Draw this object
          * @public
-         * @name draw
          * @function
          * @param           {string} canvas                             Canvas Id
          */

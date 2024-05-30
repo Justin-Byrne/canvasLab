@@ -38,7 +38,6 @@ class Rgb
 		/**
 		 * Sets the red value
 		 * @public
-		 * @name red
 		 * @function
 		 * @param           {number} red                        		Red value; 0 - 255
 		 */
@@ -50,7 +49,6 @@ class Rgb
 		/**
 		 * Gets the red value
 		 * @readOnly
-		 * @name red
 		 * @function
 		 * @return 			{number}									Red value; 0 - 255
 		 */
@@ -64,7 +62,6 @@ class Rgb
 		/**
 		 * Sets the green value
 		 * @public
-		 * @name green
 		 * @function
 		 * @param 			{number} green 								Green value; 0 - 255
 		 */
@@ -76,7 +73,6 @@ class Rgb
 		/**
 		 * Gets the green value
 		 * @readOnly
-		 * @name green
 		 * @function
 		 * @return 			{number} 									Green value; 0 - 255
 		 */
@@ -90,7 +86,6 @@ class Rgb
 		/**
 		 * Sets the blue value
 		 * @public
-		 * @name blue
 		 * @function
 		 * @param 			{number} blue 								Blue value; 0 - 255
 		 */
@@ -102,7 +97,6 @@ class Rgb
 		/**
 		 * Gets the blue value
 		 * @readOnly
-		 * @name blue
 		 * @function
 		 * @return 			{number} 									Blue value; 0 - 255
 		 */
@@ -116,7 +110,6 @@ class Rgb
 		/**
 	     * Returns whether the passed value is a 256 color value; 0 - 255
 	     * @private
-	     * @name _is256
 	     * @function
 	     * @param           {number} value 								256 color value; 0 - 255
 	     * @return          {boolean} 									True || False
@@ -129,7 +122,6 @@ class Rgb
 		/**
 		 * Color cycling
 		 * @private
-		 * @name _cycle
 		 * @function
 		 * @param  			{Object}   start							Color model & values
 		 * @param  			{Object}   end 								Color model & values
@@ -150,7 +142,6 @@ class Rgb
 		/**
 		 * Linear interpolation color transitions
 		 * @private
-		 * @name _lerp
 		 * @function
 		 * @param  			{Object} start 								Color model & values
 		 * @param  			{Object} end 								Color model & values
@@ -165,7 +156,6 @@ class Rgb
 		/**
 		 * Linear interpolation of Rgb values
 		 * @private
-		 * @name _lerpRgb
 		 * @function
 		 * @param  			{Object} start 								Color model & values
 		 * @param  			{Object} end 								Color model & values
@@ -184,7 +174,6 @@ class Rgb
 		/**
 		 * Returns a CSS compatible <color> string value
 		 * @public
-		 * @name toCss
 		 * @function
 		 * @return 			{string} 									CSS <color> string
 		 */

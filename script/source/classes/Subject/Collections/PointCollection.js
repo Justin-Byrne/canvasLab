@@ -29,7 +29,6 @@ class PointCollection
         /**
          * Set x-axis value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          */
@@ -41,7 +40,6 @@ class PointCollection
         /**
          * Get x-axis value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          */
@@ -55,7 +53,6 @@ class PointCollection
         /**
          * Set the y-axis value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          */
@@ -67,7 +64,6 @@ class PointCollection
         /**
          * Get y-axis value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          */
@@ -81,7 +77,6 @@ class PointCollection
         /**
          * Get options
          * @public
-         * @name options
          * @function
          * @return          {OptionsCollection}                         Options collection object
          */
@@ -95,7 +90,6 @@ class PointCollection
         /**
          * Sets all option values throughout a collection
          * @private
-         * @name _setAll
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False
@@ -106,7 +100,6 @@ class PointCollection
         /**
          * Invert x & y coordinate values
          * @public
-         * @name invert
          * @function
          */
         invert ( )

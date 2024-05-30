@@ -24,7 +24,6 @@ class Anchor
         /**
          * Set point
          * @public
-         * @name point
          * @function
          * @param           {Point} point                               X & Y axis coordinates
          */
@@ -33,7 +32,6 @@ class Anchor
         /**
          * Get point
          * @public
-         * @name point
          * @function
          * @return          {Point}                                     X & Y axis coordinates
          */
@@ -43,7 +41,6 @@ class Anchor
 		/**
          * Set x-axis value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          */
@@ -52,7 +49,6 @@ class Anchor
         /**
          * Get x-axis value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          */
@@ -62,7 +58,6 @@ class Anchor
         /**
          * Set y-axis value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          */
@@ -71,7 +66,6 @@ class Anchor
         /**
          * Get y-axis value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          */
@@ -82,7 +76,6 @@ class Anchor
         /**
          * Set anchor alignment
          * @public
-         * @name align
          * @function
          * @param           {string} value                              Anchor alignment
          */
@@ -94,7 +87,6 @@ class Anchor
         /**
          * Get anchor alignment
          * @readOnly
-         * @name align
          * @function
          * @return          {string}                                    Anchor alignment
          */
@@ -108,7 +100,6 @@ class Anchor
         /**
          * Returns whether the passed value is an Anchor alignment
          * @private
-         * @name _isAnchor
          * @function
          * @param           {string} value                              Anchor alignment
          * @return          {boolean}                                   True || False

@@ -16,7 +16,6 @@ class Log
         /**
          * Gets entries
          * @public
-         * @name entries
          * @function
          * @return          {string}                            Page's entries
          */

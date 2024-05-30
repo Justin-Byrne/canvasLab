@@ -13,7 +13,6 @@ class Lab
         /**
          * Sets editor
          * @public
-         * @name editor
          * @function
          * @param           {Object} editor                     Primary ace-editor object
          */
@@ -25,7 +24,6 @@ class Lab
         /**
          * Gets editor
          * @public
-         * @name editor
          * @function
          * @return          {Object}                            Primary ace-editor object
          */
@@ -39,7 +37,6 @@ class Lab
         /**
          * Returns positions of bounding characters within the ace-editor
          * @private
-         * @name _getBoundingCharactersPositions
          * @function
          * @param           {Array<string>} characters          Bounding characters
          * @param           {string}        data                Data to parse
@@ -51,7 +48,6 @@ class Lab
         /**
          * Returns a new color-picker object
          * @private
-         * @name _getColorPicker
          * @function
          * @param           {string} id                         Element id
          * @return          {Object}                            Color-picker object
@@ -86,7 +82,6 @@ class Lab
         /**
          * Sets numeric value within ace-editor up (+) or down (-)
          * @private
-         * @name _setNumbericValue
          * @function
          * @param           {boolean} up                        True (+) || false (-)
          */
@@ -118,7 +113,6 @@ class Lab
         /**
          * Sets the font size within ace-editor up (+) or down (-)
          * @private
-         * @name _setFontSize
          * @function
          * @param           {boolean} up                        True (+) || false (-)
          */
@@ -137,7 +131,6 @@ class Lab
         /**
          * Sets color-picker's position within ace-editor
          * @private
-         * @name _setColorPickerPosition
          * @function
          */
         _setColorPickerPosition ( )
@@ -152,7 +145,6 @@ class Lab
         /**
          * Sets the lab's canvas & ruler dimensions
          * @private
-         * @name setCanvasSize
          * @async
          * @function
          */
@@ -185,7 +177,6 @@ class Lab
         /**
          * Sets all event listeners for this object
          * @private
-         * @name _setEventListeners
          * @function
          */
         _setEventListeners ( )
@@ -356,7 +347,6 @@ class Lab
         /**
          * Increment the value passed up (+) or down (-)
          * @private
-         * @name _increment
          * @function
          * @param           {string|number} value               Value to increment
          * @param           {boolean}       up                  True (+) || false (-)
@@ -367,7 +357,6 @@ class Lab
         /**
          * Pad a string with a specified amount of zeros
          * @private
-         * @name _padZeros
          * @function
          * @param           {string|number} value               Value to pad
          * @param           {number}        amount              Amount to pad
@@ -378,7 +367,6 @@ class Lab
         /**
          * Increments a numeric selection from ace-editor up (+) or down (-)
          * @private
-         * @name _incrementValue
          * @function
          * @param           {string}  value                     Value from ace-editor
          * @param           {boolean} up                        True (+) || false (-)
@@ -428,7 +416,6 @@ class Lab
         /**
          * Swap rgb values between color-picker and ace-editor
          * @private
-         * @name _swapRgbValue
          * @function
          * @param           {string} color                      Rgb color value from color-picker
          */
@@ -473,7 +460,6 @@ class Lab
         /**
          * Cleans code of enumerators for ace-editor
          * @private
-         * @name _cleanCode
          * @function
          * @param           {Function} script                   JavaScript function; for ace-editor only
          * @return          {string}                            Function as a string
@@ -496,7 +482,6 @@ class Lab
         /**
          * Generates a downloadable file & initiates that download
          * @private
-         * @name _download
          * @function
          * @param           {File} file                         File to download
          */
@@ -527,7 +512,6 @@ class Lab
         /**
          * Executes lab code from editor
          * @public
-         * @name runCode
          * @function
          */
         runCode ( )
@@ -547,7 +531,6 @@ class Lab
         /**
          * Sets lab & ace-editor
          * @public
-         * @name init
          * @function
          */
         init ( )

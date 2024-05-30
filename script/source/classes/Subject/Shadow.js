@@ -38,7 +38,6 @@ class Shadow
         /**
          * Set color value
          * @public
-         * @name color
          * @function
          * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
          */
@@ -50,7 +49,6 @@ class Shadow
         /**
          * Get color value
          * @public
-         * @name color
          * @function
          * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
          */
@@ -64,7 +62,6 @@ class Shadow
         /**
          * Set blur value
          * @public
-         * @name blur
          * @function
          * @param           {number} blur                               Blur value
          */
@@ -76,7 +73,6 @@ class Shadow
         /**
          * Get blur value
          * @readOnly
-         * @name blur
          * @function
          * @return          {number}                                    Blur value
          */
@@ -90,7 +86,6 @@ class Shadow
         /**
          * Set offset
          * @public
-         * @name offset
          * @function
          * @param           {Point} value                               Shadow offset
          * @see             {@link discrete.offset}
@@ -100,7 +95,6 @@ class Shadow
         /**
          * Get offset
          * @public
-         * @name offset
          * @function
          * @return          {Point}                                     Shadow offset
          * @see             {@link discrete.offset}
@@ -111,7 +105,6 @@ class Shadow
         /**
          * Set x-axis offset value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.offsetX}
@@ -121,7 +114,6 @@ class Shadow
         /**
          * Get x-axis offset value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.offsetX}
@@ -132,7 +124,6 @@ class Shadow
         /**
          * Set the y-axis offset value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.offsetY}
@@ -142,7 +133,6 @@ class Shadow
         /**
          * Get y-axis offset value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.offsetY}
@@ -154,7 +144,6 @@ class Shadow
         /**
          * Returns whether the passed value is a color model
          * @private
-         * @name _isColorModel
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
@@ -165,7 +154,6 @@ class Shadow
         /**
          * Returns whether the passed value is a blur value
          * @private
-         * @name _isBlur
          * @function
          * @param           {number} value                              Blur value
          * @return          {boolean}                                   True || False
@@ -176,7 +164,6 @@ class Shadow
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name _isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False

@@ -1,20 +1,45 @@
 /**
- * DEBUG General debug module
+ * Shared utility functions
+ * @namespace       DEBUG
+ *
  */
 const DEBUG =
 {
+    /**
+     * Sets canvas's aspect ratio
+     * @public
+     * @memberof DEBUG
+     * @function
+     * @param           {string} canvasId                           Canvas identifier
+     */
     setCanvasStyleToHTML ( canvasId )
     {
         let _canvas = document.getElementById ( canvasId );
 
             [ _canvas.style.width, _canvas.style.height ]  = [ `${_canvas.width}px`, `${_canvas.height}px` ];
     },
+
+    /**
+     * Sets canvas's max aspect ratio
+     * @public
+     * @memberof DEBUG
+     * @function
+     * @param           {string} canvasId                           Canvas identifier
+     */
     setCanvasStyleToHTMLMAX ( canvasId )
     {
         let _canvas = document.getElementById ( canvasId );
 
             _canvas.style.width = _canvas.style.height = '100%';
     },
+
+    /**
+     * Fixes pixel blur
+     * @public
+     * @memberof DEBUG
+     * @function
+     * @param           {string} canvasId                           Canvas identifier
+     */
     fixBlur ( canvasId )
     {
         let _dpi    = window.devicePixelRatio;

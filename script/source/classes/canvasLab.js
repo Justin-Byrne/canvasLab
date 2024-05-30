@@ -32,7 +32,6 @@ class canvasLab
         /**
          * Set canvas value
          * @public
-         * @name canvas
          * @function
          * @param           {string} value                              Canvas identifier
          */
@@ -48,7 +47,6 @@ class canvasLab
         /**
          * Get canvas value
          * @readOnly
-         * @name canvas
          * @function
          * @return          {string}                                    Canvas identifier
          * @see             {@link discrete.canvas}
@@ -63,7 +61,6 @@ class canvasLab
         /**
          * Set canvas value
          * @public
-         * @name canvases
          * @function
          * @param           {string} canvasId                           Canvas identifier
          */
@@ -89,7 +86,6 @@ class canvasLab
         /**
          * Set canvas value
          * @readOnly
-         * @name canvases
          * @function
          * @return          {Array}                                     Array of canvas contexts
          */
@@ -103,7 +99,6 @@ class canvasLab
         /**
          * Set main font type
          * @public
-         * @name font
          * @function
          * @param           {string} font                               Main font type
          */
@@ -115,7 +110,6 @@ class canvasLab
         /**
          * Get main font type
          * @readOnly
-         * @name font
          * @function
          * @return          {string} font                               Main font type
          */
@@ -129,7 +123,6 @@ class canvasLab
         /**
          * Returns whether the passed value is an element id within the DOM
          * @private
-         * @name _isInDom
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
@@ -158,7 +151,6 @@ class canvasLab
         /**
          * CanvasLab initializer
          * @private
-         * @name _init
          * @function
          */
         _init ( )

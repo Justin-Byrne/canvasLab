@@ -65,7 +65,6 @@ class Lines extends Array
         /**
          * Set point
          * @public
-         * @name point
          * @function
          * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
@@ -75,7 +74,6 @@ class Lines extends Array
         /**
          * Get point
          * @public
-         * @name point
          * @function
          * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
@@ -86,7 +84,6 @@ class Lines extends Array
         /**
          * Set x-axis value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          * @see             {@link discrete.pointX}
@@ -96,7 +93,6 @@ class Lines extends Array
         /**
          * Get x-axis value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          * @see             {@link discrete.pointX}
@@ -106,7 +102,6 @@ class Lines extends Array
         /**
          * Set the y-axis value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          * @see             {@link discrete.pointY}
@@ -116,7 +111,6 @@ class Lines extends Array
         /**
          * Get y-axis value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          * @see             {@link discrete.pointY}
@@ -128,7 +122,6 @@ class Lines extends Array
         /**
          * Get stroke properties
          * @public
-         * @name stroke
          * @function
          * @return          {Stroke}                                    Stroke properties
          */
@@ -142,7 +135,6 @@ class Lines extends Array
         /**
          * Get shadow properties
          * @public
-         * @name shadow
          * @function
          * @return          {Shadow}                                    Shadow properties
          */
@@ -156,7 +148,6 @@ class Lines extends Array
         /**
          * Get options
          * @public
-         * @name options
          * @function
          * @return          {Object}                                    Options object
          */
@@ -170,7 +161,6 @@ class Lines extends Array
         /**
          * Set line cap
          * @public
-         * @name lineCap
          * @function
          * @param           {string} value                              Line cap
          */
@@ -182,7 +172,6 @@ class Lines extends Array
         /**
          * Get line cap
          * @readOnly
-         * @name lineCap
          * @function
          * @return          {string}                                    Line cap
          */
@@ -196,7 +185,6 @@ class Lines extends Array
         /**
          * Set canvas value
          * @public
-         * @name canvas
          * @function
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
@@ -206,7 +194,6 @@ class Lines extends Array
         /**
          * Get canvas value
          * @readOnly
-         * @name canvas
          * @function
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
@@ -218,7 +205,6 @@ class Lines extends Array
         /**
          * Get aspect properties
          * @public
-         * @name aspect
          * @function
          * @return          {Aspect}                                    Aspect properties
          */
@@ -233,7 +219,6 @@ class Lines extends Array
         /**
          * Get aspect with
          * @readOnly
-         * @name width
          * @function
          * @return          {number}                                    Width value
          */
@@ -245,7 +230,6 @@ class Lines extends Array
         /**
          * Get aspect height
          * @readOnly
-         * @name height
          * @function
          * @return          {number}                                    Height value
          */
@@ -259,7 +243,6 @@ class Lines extends Array
         /**
          * Set anchor type
          * @public
-         * @name anchor
          * @function
          * @param           {string} value                              Anchor type
          */
@@ -274,7 +257,6 @@ class Lines extends Array
         /**
          * Get anchor
          * @public
-         * @name anchor
          * @function
          * @return          {Anchor}                                    Anchor properties
          */
@@ -288,7 +270,6 @@ class Lines extends Array
         /**
          * Get area of this object
          * @readOnly
-         * @name area
          * @function
          * @return          {number}                                    Area of rectangle
          */
@@ -300,7 +281,6 @@ class Lines extends Array
         /**
          * Get perimeter of this object
          * @readOnly
-         * @name perimeter
          * @function
          * @return          {number}                                    Perimeter of rectangle
          */
@@ -312,7 +292,6 @@ class Lines extends Array
         /**
          * Get center of this object
          * @readOnly
-         * @name center
          * @function
          * @return          {Point}                                     Center point coordinates
          */
@@ -345,7 +324,6 @@ class Lines extends Array
         /**
          * Appends property values
          * @protected
-         * @name #_appendProperties
          * @function
          * @param           {Line} line                                 Line object
          */
@@ -372,7 +350,6 @@ class Lines extends Array
         /**
          * Returns whether the passed value is an Aspect
          * @public
-         * @name _isAspect
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
@@ -383,7 +360,6 @@ class Lines extends Array
         /**
          * Returns whether the passed value is an element id within the DOM
          * @private
-         * @name _isInDom
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
@@ -394,7 +370,6 @@ class Lines extends Array
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name _isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
@@ -407,7 +382,6 @@ class Lines extends Array
         /**
          * Draws an axis for the associated object
          * @private
-         * @name _drawAxis
          * @function
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
@@ -419,7 +393,6 @@ class Lines extends Array
         /**
          * Draws an axis for the associated object
          * @private
-         * @name _drawBorder
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
@@ -430,7 +403,6 @@ class Lines extends Array
         /**
          * Draws associated options
          * @private
-         * @name _drawOptions
          * @function
          */
         _drawOptions ( )
@@ -451,7 +423,6 @@ class Lines extends Array
         /**
          * Draws anchor point
          * @private
-         * @name _drawAnchor
          * @function
          */
         _drawAnchor ( )
@@ -469,7 +440,6 @@ class Lines extends Array
         /**
          * Sets anchor's point against this object's point location
          * @private
-         * @name _setAnchorPoint
          * @function
          */
         _setAnchorPoint ( )
@@ -505,7 +475,6 @@ class Lines extends Array
         /**
          * Sets aspect
          * @private
-         * @name _setAspect
          * @function
          */
         _setAspect ( )
@@ -535,7 +504,6 @@ class Lines extends Array
         /**
          * Pushes Line(s) into this collection
          * @public
-         * @name push
          * @function
          */
         push ( )
@@ -557,7 +525,6 @@ class Lines extends Array
         /**
          * A-typical draw function for collections; Lines
          * @public
-         * @name draw
          * @function
          * @param           {string} canvas                             Canvas Id
          * @see             {@link Utilities.draw.collection.aTypical}

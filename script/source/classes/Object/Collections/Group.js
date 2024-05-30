@@ -46,7 +46,6 @@ class Group extends Array
         /**
          * Set point
          * @public
-         * @name point
          * @function
          * @param           {Point} value                               X & Y coordinates
          */
@@ -58,7 +57,6 @@ class Group extends Array
         /**
          * Get point
          * @public
-         * @name point
          * @function
          * @return          {Point}                                     X & Y coordinates
          */
@@ -70,7 +68,6 @@ class Group extends Array
         /**
          * Set x-axis value
          * @public
-         * @name x
          * @function
          * @param           {number} value                              X coordinate value
          */
@@ -79,7 +76,6 @@ class Group extends Array
         /**
          * Get x-axis value
          * @readOnly
-         * @name x
          * @function
          * @return          {number}                                    X coordinate value
          */
@@ -88,7 +84,6 @@ class Group extends Array
         /**
          * Set the y-axis value
          * @public
-         * @name y
          * @function
          * @param           {number} value                              Y coordinate value
          */
@@ -97,7 +92,6 @@ class Group extends Array
         /**
          * Get y-axis value
          * @readOnly
-         * @name y
          * @function
          * @return          {number}                                    Y coordinate value
          */
@@ -108,7 +102,6 @@ class Group extends Array
         /**
          * Set canvas value
          * @public
-         * @name canvas
          * @function
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
@@ -118,7 +111,6 @@ class Group extends Array
         /**
          * Get canvas value
          * @readOnly
-         * @name canvas
          * @function
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
@@ -130,7 +122,6 @@ class Group extends Array
         /**
          * Returns whether the passed value is an element id within the DOM
          * @private
-         * @name _isInDom
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
@@ -141,7 +132,6 @@ class Group extends Array
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name _isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
@@ -154,7 +144,6 @@ class Group extends Array
         /**
          * Pushes an object into this group
          * @public
-         * @name push
          * @function
          * @param           {Object} object                             Object; Line(s), Circle(s), Rectangle(S)
          */
@@ -191,7 +180,6 @@ class Group extends Array
         /**
          * Pops an object out of this group
          * @public
-         * @name pop
          * @function
          * @param           {Object} object                             Object; Line(s), Circle(s), Rectangle(S)
          */
@@ -230,7 +218,6 @@ class Group extends Array
         /**
          * A-typical draw function for collections; Lines
          * @public
-         * @name aTypical
          * @function
          * @param           {string} canvas                             Canvas Id
          * @see             {@link Utilities.draw.aTypical}
@@ -240,7 +227,6 @@ class Group extends Array
         /**
          * Typical draw function for collections; Circles, Rectangles, Texts
          * @public
-         * @name typical
          * @function
          * @param           {string} canvas                             Canvas Id
          * @see             {@link Utilities.draw.typical}
@@ -250,7 +236,6 @@ class Group extends Array
         /**
          * Draw this group
          * @public
-         * @name draw
          * @function
          * @param           {string} canvas                             Canvas Id
          */

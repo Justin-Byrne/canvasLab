@@ -24,7 +24,6 @@ class Page
         /**
          * Sets type
          * @public
-         * @name type
          * @function
          * @param           {string} value                      Page's type
          */
@@ -36,7 +35,6 @@ class Page
         /**
          * Gets type
          * @readOnly
-         * @name type
          * @function
          * @return          {string}                            Page's type
          */
@@ -50,7 +48,6 @@ class Page
         /**
          * Sets group
          * @public
-         * @name group
          * @function
          * @param           {string} value                      Page's group
          */
@@ -62,7 +59,6 @@ class Page
         /**
          * Gets group
          * @readOnly
-         * @name group
          * @function
          * @return          {string}                            Page's group
          */
@@ -76,7 +72,6 @@ class Page
         /**
          * Sets handler
          * @public
-         * @name handler
          * @function
          * @param           {string} value                      Page's handler
          */
@@ -88,7 +83,6 @@ class Page
         /**
          * Gets handler
          * @readOnly
-         * @name handler
          * @function
          * @return          {string}                            Page's handler
          */
@@ -102,7 +96,6 @@ class Page
         /**
          * Sets all properties by the passed 'button' param
          * @private
-         * @name _setPropertiesBy
          * @function
          * @param           {HTMLElement} button                HTML DOM Element
          */

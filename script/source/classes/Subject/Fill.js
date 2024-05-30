@@ -36,7 +36,6 @@ class Fill
         /**
          * Set color type
          * @public
-         * @name color
          * @function
          * @param           {Object} value                              Color model
          */
@@ -48,7 +47,6 @@ class Fill
         /**
          * Get color type
          * @readOnly
-         * @name color
          * @function
          * @return          {Object}                                    Color model
          */
@@ -62,7 +60,6 @@ class Fill
         /**
          * Set type value
          * @public
-         * @name type
          * @function
          * @param           {string} value                              Fill type value
          */
@@ -74,7 +71,6 @@ class Fill
         /**
          * Get type value
          * @readOnly
-         * @name type
          * @function
          * @return          {string}                                    Fill type value
          */
@@ -88,7 +84,6 @@ class Fill
         /**
          * Set gradient gradient properties
          * @public
-         * @name gradient
          * @function
          * @param           {Object} value                              Gradient object & properties
          */
@@ -102,7 +97,6 @@ class Fill
         /**
          * Get gradient gradient properties
          * @readOnly
-         * @name gradient
          * @function
          * @return          {Object}                                    Gradient object & properties
          */
@@ -116,7 +110,6 @@ class Fill
         /**
          * Get pattern fill object
          * @public
-         * @name pattern
          * @function
          * @return          {Pattern}                                   Pattern fill object
          */
@@ -130,7 +123,6 @@ class Fill
         /**
          * Returns whether the passed value is a color model
          * @private
-         * @name _isColorModel
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
@@ -141,7 +133,6 @@ class Fill
         /**
          * Returns whether the passed value is a gradient object
          * @private
-         * @name _isGradient
          * @function
          * @param           {Object} value                              Gradient object
          * @return          {boolean}                                   True || False
@@ -152,7 +143,6 @@ class Fill
         /**
          * Returns whether the passed value is a fill type
          * @private
-         * @name _isFillType
          * @function
          * @param           {string} value                              Fill type
          * @return          {boolean}                                   True || False

@@ -29,7 +29,6 @@ class Stop
         /**
          * Set offset value
          * @public
-         * @name offset
          * @function
          * @param           {number} value                              Offset value
          */
@@ -41,7 +40,6 @@ class Stop
         /**
          * Get offset value
          * @readOnly
-         * @name offset
          * @function
          * @return          {number}                                    Offset value
          */
@@ -55,7 +53,6 @@ class Stop
         /**
          * Set color value
          * @public
-         * @name color
          * @function
          * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
          */
@@ -67,7 +64,6 @@ class Stop
         /**
          * Get color value
          * @public
-         * @name color
          * @function
          * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
          */
@@ -81,7 +77,6 @@ class Stop
         /**
          * Returns whether the passed value is a color model
          * @private
-         * @name _isColorModel
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
@@ -92,7 +87,6 @@ class Stop
         /**
          * Returns whether the passed value is a decimal value; 0.00 - 1
          * @private
-         * @name _isDecimal
          * @function
          * @param           {number} value                              Decimal value; 0.00 - 1
          * @return          {boolean}                                   True || False

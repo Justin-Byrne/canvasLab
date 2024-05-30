@@ -132,7 +132,6 @@ class Line
         /**
          * Set starting point
          * @public
-         * @name start
          * @function
          * @param           {Point} value                               Starting point
          */
@@ -144,7 +143,6 @@ class Line
         /**
          * Set starting point
          * @public
-         * @name start
          * @function
          * @return          {Point}                                     Starting point
          */
@@ -158,7 +156,6 @@ class Line
         /**
          * Set ending point
          * @public
-         * @name end
          * @function
          * @param           {Point} value                               Ending point
          */
@@ -170,7 +167,6 @@ class Line
         /**
          * Set ending point
          * @public
-         * @name end
          * @function
          * @return          {Point}                                     Ending point
          */
@@ -184,7 +180,6 @@ class Line
         /**
          * Get stroke properties
          * @public
-         * @name stroke
          * @function
          * @return          {Stroke}                                    Stroke properties
          */
@@ -198,7 +193,6 @@ class Line
         /**
          * Get shadow properties
          * @public
-         * @name shadow
          * @function
          * @return          {Shadow}                                    Shadow properties
          */
@@ -212,7 +206,6 @@ class Line
         /**
          * Set line cap
          * @public
-         * @name lineCap
          * @function
          * @param           {string} value                              Line cap
          */
@@ -224,7 +217,6 @@ class Line
         /**
          * Get line cap
          * @readOnly
-         * @name lineCap
          * @function
          * @return          {string}                                    Line cap
          */
@@ -238,7 +230,6 @@ class Line
         /**
          * Set canvas value
          * @public
-         * @name canvas
          * @function
          * @param           {string} value                              Canvas id
          * @see             {@link discrete.canvas}
@@ -248,7 +239,6 @@ class Line
         /**
          * Get canvas value
          * @readOnly
-         * @name canvas
          * @function
          * @return          {string}                                    Canvas id
          * @see             {@link discrete.canvas}
@@ -260,7 +250,6 @@ class Line
         /**
          * Get options properties
          * @public
-         * @name options
          * @function
          * @return          {Options}                                   Options properties
          */
@@ -274,7 +263,6 @@ class Line
         /**
          * Get control point properties
          * @public
-         * @name controlPoints
          * @function
          * @return          {ControlPoints}                             Control points properties
          */
@@ -288,7 +276,6 @@ class Line
         /**
          * Get center of this object
          * @readOnly
-         * @name center
          * @function
          * @return          {Point}                                     Center point coordinates
          */
@@ -315,7 +302,6 @@ class Line
         /**
          * Set line's path
          * @protected
-         * @name #_setPath
          * @function
          */
         #_setPath ( )
@@ -336,7 +322,6 @@ class Line
         /**
          * Returns whether the passed value is an Aspect
          * @private
-         * @name _isAspect
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
@@ -347,7 +332,6 @@ class Line
         /**
          * Returns whether the passed value is a degree
          * @private
-         * @name _isDegree
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
@@ -358,7 +342,6 @@ class Line
         /**
          * Returns whether the passed value is an element id within the DOM
          * @private
-         * @name _isInDom
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
@@ -369,7 +352,6 @@ class Line
         /**
          * Returns whether the passed value is a Number value
          * @private
-         * @name _isNumber
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False
@@ -380,7 +362,6 @@ class Line
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name _isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
@@ -391,7 +372,6 @@ class Line
         /**
          * Check whether the passed object is already present
          * @public
-         * @name isThere
          * @function
          * @param           {Line} line                                 Object to validate
          */
@@ -423,7 +403,6 @@ class Line
         /**
          * Clears canvas
          * @private
-         * @name _clearCanvas
          * @function
          * @param           {boolean} value                             Whether to redraw background
          * @see             {@link Utilities.misc.clearCanvas}
@@ -433,7 +412,6 @@ class Line
         /**
          * Draws an axis for the associated object
          * @private
-         * @name _drawAxis
          * @function
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
@@ -445,7 +423,6 @@ class Line
         /**
          * Draws an axis for the associated object
          * @private
-         * @name _drawBorder
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
@@ -456,7 +433,6 @@ class Line
         /**
          * Draws associated options
          * @private
-         * @name _drawOptions
          * @function
          */
         _drawOptions ( )
@@ -483,7 +459,6 @@ class Line
         /**
          * Rotates the origin point by the degree & distance passed
          * @private
-         * @name _rotatePoint
          * @function
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
@@ -495,7 +470,6 @@ class Line
         /**
          * Sets shadow properties
          * @private
-         * @name _setShadow
          * @function
          * @see             {@link Utilities.set.shadow}
          */
@@ -504,7 +478,6 @@ class Line
         /**
          * Set control points for bezier curve
          * @public
-         * @name curve
          * @function
          * @param           {number} p0                                 Control point 0
          * @param           {number} p1                                 Control point 1
@@ -525,7 +498,6 @@ class Line
         /**
          * Draws start & end points
          * @public
-         * @name drawPoints
          * @function
          */
         drawPoints ( )
@@ -538,7 +510,6 @@ class Line
         /**
          * Cycle colors for fill
          * @public
-         * @name fillColorCycle
          * @function
          * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
          * @param           {Rgb}    start                              Starting RGB value
@@ -551,7 +522,6 @@ class Line
         /**
          * Move this object
          * @public
-         * @name move
          * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
@@ -578,7 +548,6 @@ class Line
         /**
          * Rotate this object
          * @public
-         * @name rotate
          * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
@@ -631,7 +600,6 @@ class Line
         /**
          * Show control points for this object
          * @public
-         * @name showControlPoints
          * @function
          * @param           {number} [offset=10]                        Offset of control points y origin
          * @param           {number} [fontSize=16]                      Control points font size
@@ -737,7 +705,6 @@ class Line
         /**
          * Shows coordinates of this object
          * @public
-         * @name showCoordinates
          * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
@@ -776,7 +743,6 @@ class Line
         /**
          * Cycle colors for stroke
          * @public
-         * @name strokeColorCycle
          * @function
          * @param           {Rgb}    start                              Starting RGB value
          * @param           {Rgb}    end                                Ending RGB value
@@ -791,7 +757,6 @@ class Line
         /**
          * Draw this object
          * @public
-         * @name draw
          * @function
          * @param           {string} canvas                             Canvas Id
          */
@@ -842,7 +807,6 @@ class Line
         /**
          * Redraw this object
          * @public
-         * @name redraw
          * @function
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   start                             Point of new start location

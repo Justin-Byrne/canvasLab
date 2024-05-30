@@ -36,7 +36,6 @@ class Linear
         /**
          * Set starting point
          * @public
-         * @name start
          * @function
          * @param           {Point} value                               Starting point
          */
@@ -48,7 +47,6 @@ class Linear
         /**
          * Set starting point
          * @readOnly
-         * @name start
          * @function
          * @return          {Point}                                     Starting point
          */
@@ -62,7 +60,6 @@ class Linear
         /**
          * Set ending point
          * @public
-         * @name end
          * @function
          * @param           {Point} value                               Ending point
          */
@@ -74,7 +71,6 @@ class Linear
         /**
          * Set ending point
          * @readOnly
-         * @name end
          * @function
          * @return          {Point}                                     Ending point
          */
@@ -88,7 +84,6 @@ class Linear
         /**
          * Set color stops
          * @public
-         * @name stops
          * @function
          * @param           {Array.<Stop>} values                       Color stops
          */
@@ -109,7 +104,6 @@ class Linear
         /**
          * Get color stops
          * @readOnly
-         * @name stops
          * @function
          * @return          {Array.<Stop>}                              Color stops
          */
@@ -123,7 +117,6 @@ class Linear
         /**
          * Returns whether the passed value is a color model
          * @private
-         * @name _isColorModel
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
@@ -134,7 +127,6 @@ class Linear
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name _isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
@@ -145,7 +137,6 @@ class Linear
         /**
          * Returns whether the passed value is a Stop or object equivalent
          * @private
-         * @name _isStop
          * @function
          * @param           {Object} value                              Stop or object equivalent
          * @return          {boolean}                                   True || False
@@ -158,7 +149,6 @@ class Linear
         /**
          * Cycle colors for gradient stop(s)
          * @private
-         * @name stop
          * @function
          * @param           {Object}   start                            Color model & values
          * @param           {Object}   end                              Color model & values

@@ -36,7 +36,6 @@ class ControlPoints
         /**
          * Set control point one
          * @public
-         * @name p0
          * @function
          * @param           {number} value                              Control point one
          */
@@ -48,7 +47,6 @@ class ControlPoints
         /**
          * Get control point one
          * @readOnly
-         * @name p0
          * @function
          * @return          {number}                                    Control point one
          */
@@ -62,7 +60,6 @@ class ControlPoints
         /**
          * Set control point one
          * @public
-         * @name p1
          * @function
          * @param           {number} value                              Control point two
          */
@@ -74,7 +71,6 @@ class ControlPoints
         /**
          * Get control point one
          * @readOnly
-         * @name p1
          * @function
          * @return          {number}                                    Control point two
          */
@@ -88,7 +84,6 @@ class ControlPoints
         /**
          * Set control point one
          * @public
-         * @name p2
          * @function
          * @param           {number} value                              Control point three
          */
@@ -100,7 +95,6 @@ class ControlPoints
         /**
          * Get control point one
          * @readOnly
-         * @name p2
          * @function
          * @return          {number}                                    Control point three
          */
@@ -114,7 +108,6 @@ class ControlPoints
         /**
          * Set control point one
          * @public
-         * @name p3
          * @function
          * @param           {number} value                              Control point four
          */
@@ -126,7 +119,6 @@ class ControlPoints
         /**
          * Get control point one
          * @readOnly
-         * @name p3
          * @function
          * @return          {number}                                    Control point four
          */
@@ -140,7 +132,6 @@ class ControlPoints
         /**
          * Returns whether the passed value is a Number value
          * @private
-         * @name _isNumber
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False

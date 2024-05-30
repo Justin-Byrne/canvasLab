@@ -416,21 +416,16 @@ main
                                 .icons > img
                                 {
                                     display: inline-block;
+
+                                    &[suite-data-type="Base"]
+                                    {
+                                        background-color:   unset;
+                                        border:             unset;
+                                        box-shadow:         unset;
+
+                                        &:hover { cursor: default; }
+                                    }
                                 }
-                            }
-
-                            .title
-                            {
-                                display:        inline-block;
-                                position:       relative;
-                                bottom:         8px;
-
-                                font-family:    monospace;
-                                text-align:     center;
-                                text-transform: capitalize;
-                                letter-spacing: 1px;
-
-                                color:          rgb(83, 93, 126);
                             }
 
                             .card-number
@@ -442,7 +437,6 @@ main
                                 width:              42px;
                                 float:              right;
                                 z-index:            100;
-
 
                                 font-family:        'Roboto';
                                 font-size:          22px;
@@ -485,20 +479,28 @@ main
                         {
                             padding: 0.5rem 0.5rem;
 
+                            .title
+                            {
+                                display:        inline-block;
+                                position:       relative;
+                                padding-top:    5px;
+                                padding-left:   5px;
+
+                                font-family:    monospace;
+                                text-align:     center;
+                                text-transform: capitalize;
+                                letter-spacing: 1px;
+
+                                color:          white;
+                            }
+
                             .card-body-buttons
                             {
-                                width:           100%;
-
                                 display:         inline-block;
+                                float:           right;
+
                                 justify-content: center;
                                 flex-wrap:       nowrap;
-
-                                .symbol
-                                {
-                                    position: absolute;
-                                    bottom:   10px;
-                                    left:     17px;
-                                }
                             }
                         }
 
@@ -815,84 +817,80 @@ main
 
     .offcanvas
     {
-        width: 45%;
+        cursor: default;
 
-        @media ( max-width: 1200px )
-        {
-            width: 95%;
-        }
+        width:  45%;
+
+        @media ( max-width: 1200px ) { width: 95%; }
 
         .offcanvas-body
         {
+            background-color:   rgb(80, 95, 115);
+            color:              white;
+            border-left:        1px solid rgb(66, 69, 81);
+
+            h2:nth-child(2) { padding-left: 10px; }
+
             h2, h3, h4
             {
-                padding-bottom: 8px;
+                &::before
+                {
+                    position:      relative;
+                    top:           2px;
+                    padding-right: 6px;
+                    padding-left:  0px;
+
+                    content:       url('../images/svg/General/c-circle-fill.svg');
+                }
 
                 & + p
                 {
-                    font-family:        'CascadiaCode';
-                    background:         linear-gradient(90deg, rgba(210,234,255,1) 0%, rgba(255,255,255,1) 50%);
                     padding:            7px 7px 7px 9px;
                     margin-bottom:      13px;
+
+                    background-color:   black;
                     border-radius:      3px;
+
+                    font-family:        'CascadiaCode';
                 }
             }
 
             h3, h4
             {
-                background:     linear-gradient(180deg, rgba(239,239,239,1) 0%, rgba(255,255,255,1) 75%);
+                color:          black;
 
-                margin-top:     42px;
-                padding-top:    26px;
-                padding-left:   16px;
-
-                border-top:     1px solid rgb(229, 229, 229);
-
-                border-radius:  0px 10px 0px 0px;
+                letter-spacing: 1px;
 
                 &::before
                 {
-                    content:        url('../images/svg/General/caret-right.svg');
+                    content:        url('../images/svg/General/function-black.svg');
 
                     position:       relative;
-                    top:            3px;
-                    padding-right:  3px;
-                }
-
-                & + p
-                {
-                    margin-left: 45px;
-
-                    & + table
-                    {
-                        margin-left: 45px;
-                    }
-
-                    & + p
-                    {
-                        margin-left: 45px;
-
-                        & + table
-                        {
-                            margin-left: 45px;
-                        }
-                    }
+                    top:            10px;
+                    padding-right:  6px;
                 }
             }
 
             p
             {
+                margin-left:  10px;
                 margin-bottom: 6px;
 
-                strong:nth-child(1)::before                 // Kind
+                strong:nth-child(1)
                 {
-                    display:        inline-block;
+                    color: rgb(140, 215, 205);
 
-                    content:        url('../images/svg/General/puzzle.svg');
+                    &::before                 // Kind
+                    {
+                        position:       relative;
+                        display:        inline-block;
+                        bottom:         -2px;
+                        padding-right:  5px;
 
-                    transform:      rotate(315deg);
+                        color: red;
 
-                    padding-right:  3px;
+                        content:        url('../images/svg/General/box-green.svg');
+                    }
                 }
 
                 strong:nth-child(4)::before                 // Return
@@ -900,10 +898,9 @@ main
                     display:        inline-block;
                     position:       relative;
                     top:            3px;
+                    padding-right:  3px;
 
                     content:        url('../images/svg/General/return-left.svg');
-
-                    padding-right:  3px;
                 }
 
                 &:nth-child(4)
@@ -914,12 +911,20 @@ main
                         padding-top:    10px;
                     }
                 }
+
+                a
+                {
+                    color:           rgb(151, 200, 255);
+                    text-decoration: none;
+                }
+
+                &:nth-child(3) { margin-left: 10px; }
             }
 
             ul
             {
                 list-style-type:    none;
-                padding-left:       2px;
+                padding-left:       10px;
                 margin-bottom:      0;
 
                 li
@@ -928,24 +933,46 @@ main
                     {
                         text-decoration: none;
 
+                        color:           white;
+
                         &::before                           // Object
                         {
                             position:       relative;
                             display:        inline-block;
                             top:            2px;
-                            padding-right:  4px;
+                            padding-right:  6px;
 
-                            content:        url('../images/svg/General/book-half.svg');
+                            content:        url('../images/svg/General/box.svg');
+                        }
+
+                        b
+                        {
+                            color: rgb(214, 51, 132);
                         }
                     }
 
                     ul
                     {
-                        padding-left: 18px;
+                        position:     relative;
+                        padding-left: 10px;
 
-                        li:nth-child(n - 1) > a::before     // Function
+                        li
                         {
-                            content: url('../images/svg/General/bookmark-plus.svg');
+                            a
+                            {
+                                color: rgb(151, 200, 255);
+
+                                cursor: pointer;
+                            }
+
+                            &:nth-child(n - 1) > a::before     // Function
+                            {
+                                position:       relative;
+                                top:            6px;
+                                padding-right:  6px;
+
+                                content:        url('../images/svg/General/function.svg');
+                            }
                         }
                     }
                 }
@@ -954,50 +981,47 @@ main
             table
             {
                 outline:        1px solid black;
+
+                margin-top:     10px;
                 margin-bottom:  12px;
+                margin-left:    10px;
 
-                thead
-                {
-                    background-color: rgb(177, 219, 255);
+                border-radius:  2px;
 
-                    th
-                    {
-                        border-right:  1px solid black;
-                        border-bottom: 1px solid black;
+                color:          white;
 
-                        &:last-of-type
-                        {
-                            border-right: none;
-                        }
-                    }
-                }
+                thead { background-color: rgb(42, 80, 97); }
 
                 tbody
                 {
                     tr
                     {
-                        &:nth-child(odd)  { background-color: rgb(235, 235, 235); }
+                        border: 1px solid black;
 
-                        &:nth-child(even) { background-color: rgb(255, 255, 255); }
+                        &:nth-child(odd)  { background-color: rgb(99, 112, 128); }
+
+                        &:nth-child(even) { background-color: rgb(80, 95, 115); }
                     }
 
                     td
                     {
-                        border-right: 1px solid rgb(187, 187, 187);
+                        border: 1px solid black;
 
-                        &:last-of-type
-                        {
-                            border-right: none;
-                        }
+                        color:  rgb(200, 200, 200);
+
+                        &:last-of-type { border-right: none; }
                     }
                 }
 
                 th, td
                 {
-                    border-collapse: separate;
-                    border-spacing:  8px;
+                    padding:            5px 10px;
 
-                    padding: 5px 10px;
+                    border:             1px solid black;
+                    border-collapse:    separate;
+                    border-spacing:     8px;
+
+
                 }
             }
         }

@@ -36,7 +36,6 @@ class Conic
         /**
          * Set angle property
          * @public
-         * @name angle
          * @function
          * @param           {Angle} value                               Angle object
          */
@@ -48,7 +47,6 @@ class Conic
         /**
          * Set angle property
          * @readOnly
-         * @name angle
          * @function
          * @return          {Angle}                                     Angle object
          */
@@ -62,7 +60,6 @@ class Conic
         /**
          * Set point
          * @public
-         * @name point
          * @function
          * @param           {Point} value                               Point
          */
@@ -74,7 +71,6 @@ class Conic
         /**
          * Get point
          * @readOnly
-         * @name point
          * @function
          * @return          {Point}                                     Point
          */
@@ -88,7 +84,6 @@ class Conic
         /**
          * Set color stops
          * @public
-         * @name stops
          * @function
          * @param           {Array.<Stop>} values                       Color stops
          */
@@ -109,7 +104,6 @@ class Conic
         /**
          * Get color stops
          * @readOnly
-         * @name stops
          * @function
          * @return          {Array.<Stop>}                              Color stops
          */
@@ -123,7 +117,6 @@ class Conic
         /**
          * Returns whether the passed value is a Point
          * @private
-         * @name _isPoint
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
@@ -134,7 +127,6 @@ class Conic
         /**
          * Returns whether the passed value is a radian; 0 - 6.28...
          * @private
-         * @name _isRadian
          * @function
          * @param           {number} value                              Radian value; 0 - 6.28...
          * @return          {boolean}                                   True || False
@@ -145,7 +137,6 @@ class Conic
         /**
          * Returns whether the passed value is a Stop or object equivalent
          * @private
-         * @name _isStop
          * @function
          * @param           {Object} value                              Stop or object equivalent
          * @return          {boolean}                                   True || False
@@ -158,7 +149,6 @@ class Conic
         /**
          * Cycle colors for gradient stop(s)
          * @private
-         * @name stop
          * @function
          * @param           {Object}   start                            Color model & values
          * @param           {Object}   end                              Color model & values

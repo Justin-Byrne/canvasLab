@@ -4,7 +4,10 @@
  */
 const PROPERTY_BLOCKS =
 {
-    /** @var            {Object} discrete                                                           **/
+    /**
+     * Discrete property accessors & mutators
+     * @function PROPERTY_BLOCKS.discrete
+     */
     discrete:
     {
         /** @var            {Object} discrete.canvas                                                **/
@@ -113,7 +116,11 @@ const PROPERTY_BLOCKS =
             }
         },
     },
-    /** @var            {Object} combined                                                           **/
+
+    /**
+     * Combined property accessors & mutators
+     * @function PROPERTY_BLOCKS.combined
+     */
     combined:
     {
         /** @var            {Object} combined.canvas                                                **/

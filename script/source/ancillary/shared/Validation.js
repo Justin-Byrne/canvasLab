@@ -7,7 +7,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a 256 color value; 0 - 255
      * @public
-     * @name is256
+     * @memberof VALIDATION
      * @function
      * @param           {number} value                              256 color value; 0 - 255
      * @return          {boolean}                                   True || False
@@ -20,7 +20,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is an Anchor alignment
      * @public
-     * @name isAnchor
+     * @memberof VALIDATION
      * @function
      * @param           {string} value                              Anchor alignment
      * @return          {boolean}                                   True || False
@@ -39,7 +39,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is an Angle or equivalent value
      * @public
-     * @name isAngle
+     * @memberof VALIDATION
      * @function
      * @param           {Object|number} value                       Angle object or number value
      * @return          {boolean}                                   True || False
@@ -55,7 +55,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is an Anchor alignment
      * @public
-     * @name isAnchor
+     * @memberof VALIDATION
      * @function
      * @param           {string} value                              Anchor alignment
      * @return          {boolean}                                   True || False
@@ -74,7 +74,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is an alpha value; 0.00 - 1
      * @public
-     * @name isAlpha
+     * @memberof VALIDATION
      * @function
      * @param           {number} value                              Alpha value; 0.00 - 1
      * @return          {boolean}                                   True || False
@@ -87,7 +87,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is an Aspect
      * @public
-     * @name isAspect
+     * @memberof VALIDATION
      * @function
      * @param           {Object} value                              Aspect or object equivalent
      * @return          {boolean}                                   True || False
@@ -111,7 +111,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a blur value
      * @public
-     * @name isBlur
+     * @memberof VALIDATION
      * @function
      * @param           {number} value                              Blur value
      * @return          {boolean}                                   True || False
@@ -124,7 +124,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
      * @public
-     * @name isCanvasLabObject
+     * @memberof VALIDATION
      * @function
      * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
      * @return          {boolean}                                   True || False
@@ -146,7 +146,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a CSS color name
      * @public
-     * @name isColorName
+     * @memberof VALIDATION
      * @function
      * @param           {string} value                              CSS color name
      * @return          {boolean}                                   True || False
@@ -371,7 +371,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a color model
      * @public
-     * @name isColorModel
+     * @memberof VALIDATION
      * @function
      * @param           {Object} value                              Color model or object equivalent
      * @return          {boolean}                                   True || False
@@ -391,7 +391,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a decimal value; 0.00 - 1
      * @public
-     * @name isDecimal
+     * @memberof VALIDATION
      * @function
      * @param           {number} value                              Decimal value; 0.00 - 1
      * @return          {boolean}                                   True || False
@@ -404,7 +404,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a degree
      * @public
-     * @name isDegree
+     * @memberof VALIDATION
      * @function
      * @param           {number} value                              Degree
      * @return          {boolean}                                   True || False
@@ -417,7 +417,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a fill type
      * @public
-     * @name isFillType
+     * @memberof VALIDATION
      * @function
      * @param           {string} value                              Fill type
      * @return          {boolean}                                   True || False
@@ -430,7 +430,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a gradient object
      * @public
-     * @name isGradient
+     * @memberof VALIDATION
      * @function
      * @param           {Object} value                              Gradient object
      * @return          {boolean}                                   True || False
@@ -450,7 +450,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is an element id within the DOM
      * @public
-     * @name isInDom
+     * @memberof VALIDATION
      * @function
      * @param           {string} value                              Element id
      * @return          {boolean}                                   True || False
@@ -463,7 +463,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a Number value
      * @public
-     * @name isNumber
+     * @memberof VALIDATION
      * @function
      * @param           {number} value                              Number value
      * @return          {boolean}                                   True || False
@@ -476,7 +476,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a Point
      * @public
-     * @name isPoint
+     * @memberof VALIDATION
      * @function
      * @param           {Object} value                              Point or object equivalent
      * @return          {boolean}                                   True || False
@@ -500,7 +500,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a radian; 0 - 6.28...
      * @public
-     * @name isRadian
+     * @memberof VALIDATION
      * @function
      * @param           {number} value                              Radian value; 0 - 6.28...
      * @return          {boolean}                                   True || False
@@ -513,7 +513,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a radius value
      * @public
-     * @name isRadius
+     * @memberof VALIDATION
      * @function
      * @param           {number} value                              Radius value
      * @return          {boolean}                                   True || False
@@ -526,7 +526,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is an Array of segment values
      * @public
-     * @name isRadius
+     * @memberof VALIDATION
      * @function
      * @param           {Array.<number>} value                      Array of segment values
      * @return          {boolean}                                   True || False
@@ -557,7 +557,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a Stop or object equivalent
      * @public
-     * @name isStop
+     * @memberof VALIDATION
      * @function
      * @param           {Object} value                              Stop or object equivalent
      * @return          {boolean}                                   True || False
@@ -581,7 +581,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a stroke type
      * @public
-     * @name isStrokeType
+     * @memberof VALIDATION
      * @function
      * @param           {string} value                              Stroke type
      * @return          {boolean}                                   True || False
@@ -594,7 +594,7 @@ const VALIDATION =
     /**
      * Returns whether the passed value is a width value
      * @public
-     * @name isWidth
+     * @memberof VALIDATION
      * @function
      * @param           {number} value                              Width value
      * @return          {boolean}                                   True || False

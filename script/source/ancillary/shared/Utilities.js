@@ -4,16 +4,20 @@
  */
 const UTILITIES =
 {
-    /** @var            {Object} color                                                              **/
+    /**
+     * Utility color functions
+     * @function UTILITIES.color
+     */
     color:
     {
-        /** @var            {Object} cycle                                      **/
+        /**
+         * Utility color cycling functions
+         */
         cycle:
         {
             /**
              * Cycle colors for stroke
              * @public
-             * @name stroke
              * @function
              * @param           {Rgb}    start                              Starting RGB value
              * @param           {Rgb}    end                                Ending RGB value
@@ -33,7 +37,6 @@ const UTILITIES =
             /**
              * Cycle colors for fill
              * @public
-             * @name fill
              * @function
              * @param           {Rgb}    start                              Starting RGB value
              * @param           {Rgb}    end                                Ending RGB value
@@ -53,7 +56,6 @@ const UTILITIES =
             /**
              * Cycle colors for gradient
              * @public
-             * @name gradient
              * @function
              * @param           {Rgb}    start                              Starting RGB value
              * @param           {Rgb}    end                                Ending RGB value
@@ -74,7 +76,6 @@ const UTILITIES =
             /**
              * Cycle colors for gradient stop(s)
              * @public
-             * @name stop
              * @function
              * @param           {Object}   start                    Color model & values
              * @param           {Object}   end                      Color model & values
@@ -91,13 +92,15 @@ const UTILITIES =
         }
     },
 
-    /** @var            {Object} draw                                                               **/
+    /**
+     * Utility draw functions
+     * @function UTILITIES.draw
+     */
     draw:
     {
         /**
          * Draws an axis for the associated object
          * @public
-         * @name axis
          * @function
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
@@ -126,7 +129,6 @@ const UTILITIES =
         /**
          * Draws an axis for the associated object
          * @public
-         * @name border
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
@@ -152,14 +154,15 @@ const UTILITIES =
                 console.warn ( `"${value}" is not a valid aspect !` );
         },
 
-        /** @var            {Object} collection                                                     **/
+        /**
+         * Utility draw collection functions
+         */
         collection:
         {
 
             /**
              * Typical draw function for collections; Circles, Rectangles, Texts
              * @public
-             * @name typical
              * @function
              * @param           {string} canvas                             Canvas Id
              */
@@ -191,7 +194,6 @@ const UTILITIES =
             /**
              * A-typical draw function for collections; Lines
              * @public
-             * @name aTypical
              * @function
              * @param           {string} canvas                             Canvas Id
              */
@@ -233,13 +235,15 @@ const UTILITIES =
         }
     },
 
-    /** @var            {Object} misc                                                               **/
+    /**
+     * Utility draw collection functions
+     * @function UTILITIES.misc
+     */
     misc:
     {
         /**
          * Clears canvas
          * @public
-         * @name clearCanvas
          * @function
          * @param           {boolean} value                             Whether to redraw background
          */
@@ -254,7 +258,6 @@ const UTILITIES =
         /**
          * Push or pops the passed object
          * @public
-         * @name pushPop
          * @function
          * @param           {Object} object                             Object; Circle, Rectangle, Text
          */
@@ -303,7 +306,6 @@ const UTILITIES =
         /**
          * Rotates the origin point by the degree & distance passed
          * @public
-         * @name rotatePoint
          * @function
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
@@ -325,13 +327,15 @@ const UTILITIES =
         },
     },
 
-    /** @var            {Object} set                                                                **/
+    /**
+     * Utility draw collection functions
+     * @function UTILITIES.draw
+     */
     set:
     {
         /**
          * Sets all option values throughout a collection
          * @public
-         * @name all
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False
@@ -354,7 +358,6 @@ const UTILITIES =
         /**
          * Sets shadow properties
          * @public
-         * @name shadow
          * @function
          */
         shadow ( )
@@ -371,7 +374,6 @@ const UTILITIES =
         /**
          * Sets fill type of the associated object
          * @public
-         * @name fillType
          * @function
          */
         fillType ( )
@@ -379,7 +381,6 @@ const UTILITIES =
             /**
              * Sets stops for gradient fill types
              * @public
-             * @name _setStops
              * @function
              * @param           {Object}        gradient                    [description]
              * @param           {Array.<Stops>} stops                       [description]
