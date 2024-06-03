@@ -4,15 +4,6 @@
 <dt><a href="#canvasLab">canvasLab</a></dt>
 <dd><p>{Object} canvasLab                          CanvasLab core application</p>
 </dd>
-<dt><a href="#Cmyk">Cmyk</a></dt>
-<dd><p>{Object} Cmyk 								CMYK color model</p>
-</dd>
-<dt><a href="#Hsl">Hsl</a></dt>
-<dd><p>{Object} Hsl 								HSL color model</p>
-</dd>
-<dt><a href="#Hwb">Hwb</a></dt>
-<dd><p>{Object} Hwb 								HWB color model</p>
-</dd>
 <dt><a href="#Rgb">Rgb</a></dt>
 <dd><p>{Object} Rgb 								RGB color model</p>
 </dd>
@@ -235,380 +226,6 @@ Animates onscreen objects in accordance with passed param values
 | flow.timing | <code>function</code> | Timing function |
 | flow.draw | <code>function</code> | Draw function |
 
-<a name="Cmyk"></a>
-
-## Cmyk
-{Object} Cmyk 								CMYK color model
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [cyan] | <code>number</code> | <code>0</code> | Cyan value; 0 - 255 |
-| [magenta] | <code>number</code> | <code>0</code> | Magenta value; 0 - 255 |
-| [yellow] | <code>number</code> | <code>0</code> | Yellow value; 0 - 255 |
-| [black] | <code>number</code> | <code>1</code> | Black value; 0 - 255 |
-| [alpha] | <code>number</code> | <code>1</code> | Alpha value; 0 - 1 (decimal) |
-
-
-* [Cmyk](#Cmyk)
-    * [new Cmyk(cyan, magenta, yellow, black)](#new_Cmyk_new)
-    * [.cyan(cyan)](#Cmyk+cyan)
-    * [.cyan()](#Cmyk+cyan) ⇒ <code>number</code>
-    * [.magenta(magenta)](#Cmyk+magenta)
-    * [.magenta()](#Cmyk+magenta) ⇒ <code>number</code>
-    * [.yellow(yellow)](#Cmyk+yellow)
-    * [.yellow()](#Cmyk+yellow) ⇒ <code>number</code>
-    * [.black(black)](#Cmyk+black)
-    * [.black()](#Cmyk+black) ⇒ <code>number</code>
-    * [.toCss()](#Cmyk+toCss) ⇒ <code>string</code>
-
-<a name="new_Cmyk_new"></a>
-
-### new Cmyk(cyan, magenta, yellow, black)
-Create a Cmyk color model
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| cyan | <code>number</code> | Cyan value |
-| magenta | <code>number</code> | Magenta value |
-| yellow | <code>number</code> | Yellow value |
-| black | <code>number</code> | Black value |
-
-<a name="Cmyk+cyan"></a>
-
-### cmyk.cyan(cyan)
-Sets the cyan value
-
-**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| cyan | <code>number</code> | Cyan value; 0 - 255 |
-
-<a name="Cmyk+cyan"></a>
-
-### cmyk.cyan() ⇒ <code>number</code>
-Gets the cyan value
-
-**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
-**Returns**: <code>number</code> - Cyan value; 0 - 255  
-**Read only**: true  
-<a name="Cmyk+magenta"></a>
-
-### cmyk.magenta(magenta)
-Sets the magenta value
-
-**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| magenta | <code>number</code> | Magenta value; 0 - 255 |
-
-<a name="Cmyk+magenta"></a>
-
-### cmyk.magenta() ⇒ <code>number</code>
-Gets the magenta value
-
-**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
-**Returns**: <code>number</code> - Magenta value; 0 - 255  
-**Read only**: true  
-<a name="Cmyk+yellow"></a>
-
-### cmyk.yellow(yellow)
-Sets the yellow value
-
-**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| yellow | <code>number</code> | Yellow value; 0 - 255 |
-
-<a name="Cmyk+yellow"></a>
-
-### cmyk.yellow() ⇒ <code>number</code>
-Gets the yellow value
-
-**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
-**Returns**: <code>number</code> - Yellow value; 0 - 255  
-**Read only**: true  
-<a name="Cmyk+black"></a>
-
-### cmyk.black(black)
-Sets the black value
-
-**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| black | <code>number</code> | Black value; 0 - 255 |
-
-<a name="Cmyk+black"></a>
-
-### cmyk.black() ⇒ <code>number</code>
-Gets the black value
-
-**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
-**Returns**: <code>number</code> - Black value; 0 - 255  
-**Read only**: true  
-<a name="Cmyk+toCss"></a>
-
-### cmyk.toCss() ⇒ <code>string</code>
-Returns a CSS compatible <color> string value
-
-**Kind**: instance method of [<code>Cmyk</code>](#Cmyk)  
-**Returns**: <code>string</code> - CSS <color> string  
-**Access**: public  
-<a name="Hsl"></a>
-
-## Hsl
-{Object} Hsl 								HSL color model
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [hue] | <code>number</code> | <code>0</code> | Hue value; 0 - 360 (degree) |
-| [saturation] | <code>number</code> | <code>0</code> | Saturation value; 0 - 1 (decimal) |
-| [lightness] | <code>number</code> | <code>0</code> | Lightness value; 0 - 1 (decimal) |
-| [alpha] | <code>number</code> | <code>1</code> | Alpha value; 0 - 1 (decimal) |
-
-
-* [Hsl](#Hsl)
-    * [new Hsl(hue, saturation, lightness, alpha)](#new_Hsl_new)
-    * [.hue(hue)](#Hsl+hue)
-    * [.hue()](#Hsl+hue) ⇒ <code>number</code>
-    * [.saturation(saturation)](#Hsl+saturation)
-    * [.saturation()](#Hsl+saturation) ⇒ <code>number</code>
-    * [.lightness(lightness)](#Hsl+lightness)
-    * [.lightness()](#Hsl+lightness) ⇒ <code>number</code>
-    * [._isDegree(value)](#Hsl+_isDegree) ⇒ <code>boolean</code>
-    * [.toCss()](#Hsl+toCss) ⇒ <code>string</code>
-
-<a name="new_Hsl_new"></a>
-
-### new Hsl(hue, saturation, lightness, alpha)
-Create an HSL color model
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| hue | <code>number</code> | Hue value |
-| saturation | <code>number</code> | Saturation value |
-| lightness | <code>number</code> | Lightness value |
-| alpha | <code>number</code> | Alpha value |
-
-<a name="Hsl+hue"></a>
-
-### hsl.hue(hue)
-Sets the hue value
-
-**Kind**: instance method of [<code>Hsl</code>](#Hsl)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| hue | <code>number</code> | Hue value; 0 - 360 |
-
-<a name="Hsl+hue"></a>
-
-### hsl.hue() ⇒ <code>number</code>
-Gets the hue value
-
-**Kind**: instance method of [<code>Hsl</code>](#Hsl)  
-**Returns**: <code>number</code> - Hue value; 0 - 360  
-**Access**: public  
-<a name="Hsl+saturation"></a>
-
-### hsl.saturation(saturation)
-Sets the saturation value
-
-**Kind**: instance method of [<code>Hsl</code>](#Hsl)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| saturation | <code>number</code> | Saturation value; 0.00 - 1 |
-
-<a name="Hsl+saturation"></a>
-
-### hsl.saturation() ⇒ <code>number</code>
-Gets the saturation value
-
-**Kind**: instance method of [<code>Hsl</code>](#Hsl)  
-**Returns**: <code>number</code> - Saturation value; 0.00 - 1  
-**Access**: public  
-<a name="Hsl+lightness"></a>
-
-### hsl.lightness(lightness)
-Sets the lightness value
-
-**Kind**: instance method of [<code>Hsl</code>](#Hsl)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| lightness | <code>number</code> | Lightness value; 0.00 - 1 |
-
-<a name="Hsl+lightness"></a>
-
-### hsl.lightness() ⇒ <code>number</code>
-Gets the lightness value
-
-**Kind**: instance method of [<code>Hsl</code>](#Hsl)  
-**Returns**: <code>number</code> - Lightness value; 0.00 - 1  
-**Access**: public  
-<a name="Hsl+_isDegree"></a>
-
-### hsl.\_isDegree(value) ⇒ <code>boolean</code>
-Returns whether the passed value is a degree
-
-**Kind**: instance method of [<code>Hsl</code>](#Hsl)  
-**Returns**: <code>boolean</code> - True || False  
-**Prviate**:   
-**See**: [Validation.isDegree](Validation.isDegree)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Degree |
-
-<a name="Hsl+toCss"></a>
-
-### hsl.toCss() ⇒ <code>string</code>
-Returns a CSS compatible <color> string value
-
-**Kind**: instance method of [<code>Hsl</code>](#Hsl)  
-**Returns**: <code>string</code> - CSS <color> string  
-**Access**: public  
-<a name="Hwb"></a>
-
-## Hwb
-{Object} Hwb 								HWB color model
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [hue] | <code>number</code> | <code>0</code> | Hue value; 0 - 360 (degree) |
-| [whiteness] | <code>number</code> | <code>0</code> | Whiteness value; 0 - 1 (decimal) |
-| [blackness] | <code>number</code> | <code>0</code> | Blackness value; 0 - 1 (decimal) |
-| [alpha] | <code>number</code> | <code>1</code> | Alpha value; 0 - 1 (decimal) |
-
-
-* [Hwb](#Hwb)
-    * [new Hwb(hue, whiteness, blackness, alpha)](#new_Hwb_new)
-    * [.hue(hue)](#Hwb+hue)
-    * [.hue()](#Hwb+hue) ⇒ <code>number</code>
-    * [.whiteness(whiteness)](#Hwb+whiteness)
-    * [.whiteness()](#Hwb+whiteness) ⇒ <code>number</code>
-    * [.blackness(blackness)](#Hwb+blackness)
-    * [.blackness()](#Hwb+blackness) ⇒ <code>number</code>
-    * [._isDegree(value)](#Hwb+_isDegree) ⇒ <code>boolean</code>
-    * [.toCss()](#Hwb+toCss) ⇒ <code>string</code>
-
-<a name="new_Hwb_new"></a>
-
-### new Hwb(hue, whiteness, blackness, alpha)
-Create an HWB color Model
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| hue | <code>number</code> | Hue value |
-| whiteness | <code>number</code> | Whiteness value |
-| blackness | <code>number</code> | Blackness value |
-| alpha | <code>number</code> | Alpha value |
-
-<a name="Hwb+hue"></a>
-
-### hwb.hue(hue)
-Sets the hue value
-
-**Kind**: instance method of [<code>Hwb</code>](#Hwb)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| hue | <code>number</code> | Hue value; 0 - 360 |
-
-<a name="Hwb+hue"></a>
-
-### hwb.hue() ⇒ <code>number</code>
-Gets the hue value
-
-**Kind**: instance method of [<code>Hwb</code>](#Hwb)  
-**Returns**: <code>number</code> - Hue value; 0 - 360  
-**Access**: public  
-<a name="Hwb+whiteness"></a>
-
-### hwb.whiteness(whiteness)
-Sets the whiteness value
-
-**Kind**: instance method of [<code>Hwb</code>](#Hwb)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| whiteness | <code>number</code> | Whiteness value; 0 - 1 |
-
-<a name="Hwb+whiteness"></a>
-
-### hwb.whiteness() ⇒ <code>number</code>
-Gets the whiteness value
-
-**Kind**: instance method of [<code>Hwb</code>](#Hwb)  
-**Returns**: <code>number</code> - Whiteness value; 0 - 1  
-**Access**: public  
-<a name="Hwb+blackness"></a>
-
-### hwb.blackness(blackness)
-Sets the blackness value
-
-**Kind**: instance method of [<code>Hwb</code>](#Hwb)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| blackness | <code>number</code> | Blackness value; 0 - 1 |
-
-<a name="Hwb+blackness"></a>
-
-### hwb.blackness() ⇒ <code>number</code>
-Gets the blackness value
-
-**Kind**: instance method of [<code>Hwb</code>](#Hwb)  
-**Returns**: <code>number</code> - Blackness value; 0 - 1  
-**Access**: public  
-<a name="Hwb+_isDegree"></a>
-
-### hwb.\_isDegree(value) ⇒ <code>boolean</code>
-Returns whether the passed value is a degree
-
-**Kind**: instance method of [<code>Hwb</code>](#Hwb)  
-**Returns**: <code>boolean</code> - True || False  
-**Prviate**:   
-**See**: [Validation.isDegree](Validation.isDegree)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Degree |
-
-<a name="Hwb+toCss"></a>
-
-### hwb.toCss() ⇒ <code>string</code>
-Returns a CSS compatible <color> string value
-
-**Kind**: instance method of [<code>Hwb</code>](#Hwb)  
-**Returns**: <code>string</code> - CSS <color> string  
-**Access**: public  
 <a name="Rgb"></a>
 
 ## Rgb
@@ -2045,7 +1662,7 @@ Set color type
 
 | Param | Type | Description |
 | --- | --- | --- |
-| value | <code>Object</code> | Color model |
+| value | <code>Object</code> | Color model; Rgb |
 
 <a name="Fill+color"></a>
 
@@ -2053,7 +1670,7 @@ Set color type
 Get color type
 
 **Kind**: instance method of [<code>Fill</code>](#Fill)  
-**Returns**: <code>Object</code> - Color model  
+**Returns**: <code>Object</code> - Color model; Rgb  
 **Read only**: true  
 <a name="Fill+type"></a>
 
@@ -2341,7 +1958,7 @@ Set color value
 
 | Param | Type | Description |
 | --- | --- | --- |
-| value | <code>Object</code> | Color model; Rgb, Hsl, Hwb |
+| value | <code>Object</code> | Color model; Rgb |
 
 <a name="Stroke+color"></a>
 
@@ -2349,7 +1966,7 @@ Set color value
 Get color value
 
 **Kind**: instance method of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>Object</code> - Color model; Rgb, Hsl, Hwb  
+**Returns**: <code>Object</code> - Color model; Rgb  
 **Access**: public  
 <a name="Stroke+width"></a>
 

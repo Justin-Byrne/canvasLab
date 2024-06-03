@@ -10,6 +10,7 @@ animation   {Object}
 __ Getter __
 canvas      {HTMLCanvasElement}
 about       {Object}
+dom
 __ Validation __
 _isInDom    <color:gray>{boolean}</color>
 }

@@ -1125,6 +1125,65 @@ main
                 }
             }
 
+            #grid
+            {
+                position:   absolute;
+                height:     100vh;
+                top:        1px;
+                left:       -1px;
+
+                opacity:    0;
+
+                transition: opacity 1s ease;
+
+                .horizontal-lines
+                {
+                    position: absolute;
+
+                    .horizontal
+                    {
+                        position:       relative;
+                        width:          100vh;
+                        height:         0px;
+                        margin-top:     16px;
+
+                        border-bottom:  1px solid rgb(115, 240, 255);
+                        opacity:        0.5;
+                    }
+
+                    .horizontal-bold
+                    {
+                        @extend .horizontal;
+
+                        border-bottom:  1px solid rgb(0, 0, 0);
+                    }
+                }
+
+                .vertical-lines
+                {
+                    position: inline-flex;
+
+                    .vertical
+                    {
+                        display:        inline-block;
+                        position:       relative;
+                        width:          1px;
+                        height:         100vh;
+                        margin-left:    16px;
+
+                        border-right:   1px solid rgb(115, 240, 255);
+                        opacity:        0.5;
+                    }
+
+                    .vertical-bold
+                    {
+                        @extend .vertical;
+
+                        border-right:   1px solid rgb(0, 0, 0);
+                    }
+                }
+            }
+
             canvas { background: white; }
 
             #editor
@@ -1226,6 +1285,10 @@ main
                     .menu         { content: url('../images/svg/General/caret-up.svg');       }
 
                     .sidebar      { content: url('../images/svg/General/layout-sidebar.svg'); }
+
+                    .ruler        { content: url('../images/svg/General/ruler.svg');          }
+
+                    .grid         { content: url('../images/svg/General/grid.svg');           }
 
                     .full-screen  { content: url('../images/svg/General/aspect-ratio.svg');   }
 
@@ -1339,6 +1402,32 @@ main
                         margin: 5px 5px 5px 0;
 
                         float:  right;
+                    }
+                }
+
+                .menu_popup
+                {
+                    outline: 1px solid black;
+
+                    position:       absolute;
+                    bottom:         40px;
+                    padding-left:   0px;
+
+                    background:     rgb(50, 50, 50);
+                    color:          white;
+
+                    list-style:     none;
+                    letter-spacing: 6px;
+
+                    li
+                    {
+                        padding: 2px 10px;
+
+                        &:hover
+                        {
+                            background-color: rgb(100, 100, 100);
+                            cursor:           pointer;
+                        }
                     }
                 }
 

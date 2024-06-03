@@ -211,7 +211,7 @@ class Ui
          * Toggles the card button associated with the passed 'event' param
          * @public
          * @function
-         * @param           {HTMLEvent} event                   UI DOM event
+         * @param           {HTMLEvent} event                   HTML DOM event
          */
         cardButton ( event )
         {
@@ -262,7 +262,7 @@ class Ui
          * Toggles opacity from bottom links in navigation area
          * @public
          * @function
-         * @param           {HTMLElement} element               Main button element
+         * @param           {boolean} show                      True || False
          */
         externalLinks ( show = true )
         {
@@ -275,7 +275,7 @@ class Ui
         },
 
         /**
-         * Toggles fullscreen mode                          @TODO: fix this crap
+         * Toggles fullscreen mode                              @TODO: fix this crap
          * @public
          * @function
          * @param           {HTMLElement} button                Button under the #control-panel .button class
@@ -326,19 +326,83 @@ class Ui
         },
 
         /**
+         * Toggles grid in lab
+         * @public
+         * @function
+         */
+        grid ( )
+        {
+            let _grid    = document.getElementById ( 'grid' );
+
+            let _button  = document.getElementById ( 'input-grid' );
+
+
+            this.labButton ( _button );
+
+
+            _grid.style.opacity = ( TOOL.isActive ( _button ) ) ? 1 : 0;
+        },
+
+        /**
+         * Toggles lab buttons active state
+         * @public
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        labButton ( element )
+        {
+            let _active = TOOL.isActive ( element );
+
+
+            ( _active ) ? element.style.backgroundColor = 'rgb(72, 79, 86)'
+
+                        : element.style.backgroundColor = 'rgb(166, 49, 49)';
+
+
+            ( _active ) ? element.setAttribute ( 'data-bs-active', false )
+
+                        : element.setAttribute ( 'data-bs-active', true  );
+        },
+
+        /**
+         * Toggles visibility of lab menu
+         * @public
+         * @function
+         */
+        labMenu ( )
+        {
+            let _button = document.querySelector ( '#input-menu' );
+
+            let _menu   = document.querySelector ( '.menu_popup' );
+
+            let _show   = ( _menu.style.display === 'none' );
+
+
+            _menu.style.display = ( _show ) ? 'block' : 'none';
+
+
+            this.labButton ( _button );
+        },
+
+        /**
          * Toggles visibility of navigation menu
          * @public
          * @function
          */
         navigation ( )
         {
-            let _lab  = document.querySelector ( 'div.lab-station' );
+            let _lab    = document.querySelector ( 'div.lab-station' );
 
-            let _nav  = document.querySelector ( 'nav'             );
+            let _nav    = document.querySelector ( 'nav' );
 
-            let _main = document.querySelector ( 'main'            );
+            let _main   = document.querySelector ( 'main' );
 
-            let _open = document.querySelector ( '#nav-open'       );
+            let _open   = document.querySelector ( '#nav-open' );
+
+            let _button = document.querySelector ( '#input-sidebar' );
+
+
+            this.labButton ( _button );
 
 
             ( UI._isNavOpen ( ) )
@@ -365,7 +429,25 @@ class Ui
 
 
             _open.style.display = ( _open.style.display === 'none' ) ? 'block' : 'none';
-        }
+        },
+
+        /**
+         * Toggles ruler in lab
+         * @public
+         * @function
+         */
+        ruler ( )
+        {
+            let _ruler  = document.getElementById ( 'ruler' );
+
+            let _button = document.getElementById ( 'input-ruler' );
+
+
+            this.labButton ( _button );
+
+
+            _ruler.style.opacity = ( TOOL.isActive ( _button ) ) ? 1 : 0;
+        },
     }
 
     _clean =
@@ -765,9 +847,10 @@ class Ui
 
                     let _labButton = document.querySelector ( 'button.lab-station' );
 
-                    let _labOpen   = document.querySelector ( '#lab-open'          );
+                    let _labOpen   = document.querySelector ( '#lab-open' );
 
-                    let _labLink   = document.querySelector ( '.lab-station-link'  );
+                    let _labLink   = document.querySelector ( '.lab-station-link' );
+
 
                         _labLink.addEventListener ( 'click', ( element ) =>
                             {
@@ -775,6 +858,7 @@ class Ui
 
 
                                 _labButton.click ( );
+
 
                                 LAB.editor.setValue ( _code );
 

@@ -67,7 +67,7 @@ class Tool
     ////    VALIDATORS    //////////////////////////////////////////////////////////////////////////
 
         /**
-         * Whether the passed value is an 'Object' canvasLab category
+         * Determine whether the passed value is an 'Object' canvasLab category
          * @public
          * @function
          * @param           {string} value                      Object, i.e.: 'Line', 'Circle', 'Rectangle', etc...
@@ -76,6 +76,18 @@ class Tool
         isCanvasLabObject ( value )
         {
             return [ 'Line', 'Circle', 'Rectangle', 'Text' ].includes ( value );
+        }
+
+        /**
+         * Determine whether the passed element is active
+         * @public
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         * @return          {boolean}                           True || False
+         */
+        isActive ( element )
+        {
+            return ( element.getAttribute ( 'data-bs-active' ) === 'true' );
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////

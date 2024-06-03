@@ -563,7 +563,7 @@ class Circle
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [clear=true]                      Clear canvas during each movement
          */
-        move ( degree, distance, clear = true )
+        move ( degree, distance, clear = false )
         {
             let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
 

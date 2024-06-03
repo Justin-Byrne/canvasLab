@@ -44,14 +44,26 @@
 <dt><a href="#cardButton">cardButton(event)</a></dt>
 <dd><p>Toggles the card button associated with the passed &#39;event&#39; param</p>
 </dd>
-<dt><a href="#externalLinks">externalLinks(element)</a></dt>
+<dt><a href="#externalLinks">externalLinks(show)</a></dt>
 <dd><p>Toggles opacity from bottom links in navigation area</p>
 </dd>
 <dt><a href="#fullscreen">fullscreen(button)</a></dt>
-<dd><p>Toggles fullscreen mode                          @TODO: fix this crap</p>
+<dd><p>Toggles fullscreen mode                              @TODO: fix this crap</p>
+</dd>
+<dt><a href="#grid">grid()</a></dt>
+<dd><p>Toggles grid in lab</p>
+</dd>
+<dt><a href="#labButton">labButton(element)</a></dt>
+<dd><p>Toggles lab buttons active state</p>
+</dd>
+<dt><a href="#labMenu">labMenu()</a></dt>
+<dd><p>Toggles visibility of lab menu</p>
 </dd>
 <dt><a href="#navigation">navigation()</a></dt>
 <dd><p>Toggles visibility of navigation menu</p>
+</dd>
+<dt><a href="#ruler">ruler()</a></dt>
+<dd><p>Toggles ruler in lab</p>
 </dd>
 <dt><a href="#script">script(script)</a> ⇒ <code>string</code></dt>
 <dd><p>Cleans script of it&#39;s function wrapper</p>
@@ -74,45 +86,6 @@ Call main module
 | --- | --- | --- |
 | window | <code>Object</code> | Window containing a DOM document |
 
-
-* [devSuite](#module_devSuite)
-    * [~toggleCardButton(easingFunction, index)](#module_devSuite..toggleCardButton)
-    * [~runEasingAnimation(easingFunction, index)](#module_devSuite..runEasingAnimation)
-    * [~_runLabStationCode()](#module_devSuite.._runLabStationCode)
-
-<a name="module_devSuite..toggleCardButton"></a>
-
-### devSuite~toggleCardButton(easingFunction, index)
-Toggles individual card buttons using their 'suite-data' attributes
-
-**Kind**: inner method of [<code>devSuite</code>](#module_devSuite)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| easingFunction | <code>string</code> | Easing function; as a string |
-| index | <code>number</code> | Index of animation card |
-
-<a name="module_devSuite..runEasingAnimation"></a>
-
-### devSuite~runEasingAnimation(easingFunction, index)
-Runs easing animation for an animation card
-
-**Kind**: inner method of [<code>devSuite</code>](#module_devSuite)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| easingFunction | <code>string</code> | Easing function; as a string |
-| index | <code>number</code> | Index of animation card |
-
-<a name="module_devSuite.._runLabStationCode"></a>
-
-### devSuite~\_runLabStationCode()
-Runs lab-station code from editor
-
-**Kind**: inner method of [<code>devSuite</code>](#module_devSuite)  
-**Access**: public  
 <a name="Lab"></a>
 
 ## Lab
@@ -129,7 +102,9 @@ Runs lab-station code from editor
 * [Lab](#Lab)
     * [.editor(editor)](#Lab+editor)
     * [.editor()](#Lab+editor) ⇒ <code>Object</code>
+    * [.loadScript(script)](#Lab+loadScript)
     * [.runCode()](#Lab+runCode)
+    * [.scripts()](#Lab+scripts)
     * [.init()](#Lab+init)
 
 <a name="Lab+editor"></a>
@@ -152,10 +127,29 @@ Gets editor
 **Kind**: instance method of [<code>Lab</code>](#Lab)  
 **Returns**: <code>Object</code> - Primary ace-editor object  
 **Access**: public  
+<a name="Lab+loadScript"></a>
+
+### lab.loadScript(script)
+Loads a script within ace-editor
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| script | <code>function</code> | Arrow function containing script |
+
 <a name="Lab+runCode"></a>
 
 ### lab.runCode()
 Executes lab code from editor
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+<a name="Lab+scripts"></a>
+
+### lab.scripts()
+Returns an object of lab-station specific scripts
 
 **Kind**: instance method of [<code>Lab</code>](#Lab)  
 **Access**: public  
@@ -338,6 +332,7 @@ Returns an Array of standard & extra HTML templates for each card-object
 
 * [Tool](#Tool)
     * [.isCanvasLabObject(value)](#Tool+isCanvasLabObject) ⇒ <code>boolean</code>
+    * [.isActive(element)](#Tool+isActive) ⇒ <code>boolean</code>
     * [.delay(time)](#Tool+delay) ⇒ <code>Promise</code>
     * [.copyObjectWithKey(object)](#Tool+copyObjectWithKey) ⇒ <code>Object</code>
     * [.copyCode()](#Tool+copyCode)
@@ -345,7 +340,7 @@ Returns an Array of standard & extra HTML templates for each card-object
 <a name="Tool+isCanvasLabObject"></a>
 
 ### tool.isCanvasLabObject(value) ⇒ <code>boolean</code>
-Whether the passed value is an 'Object' canvasLab category
+Determine whether the passed value is an 'Object' canvasLab category
 
 **Kind**: instance method of [<code>Tool</code>](#Tool)  
 **Returns**: <code>boolean</code> - True || False  
@@ -354,6 +349,19 @@ Whether the passed value is an 'Object' canvasLab category
 | Param | Type | Description |
 | --- | --- | --- |
 | value | <code>string</code> | Object, i.e.: 'Line', 'Circle', 'Rectangle', etc... |
+
+<a name="Tool+isActive"></a>
+
+### tool.isActive(element) ⇒ <code>boolean</code>
+Determine whether the passed element is active
+
+**Kind**: instance method of [<code>Tool</code>](#Tool)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>HTMLElement</code> | HTML DOM Element |
 
 <a name="Tool+delay"></a>
 
@@ -550,11 +558,11 @@ Toggles the card button associated with the passed 'event' param
 
 | Param | Type | Description |
 | --- | --- | --- |
-| event | <code>HTMLEvent</code> | UI DOM event |
+| event | <code>HTMLEvent</code> | HTML DOM event |
 
 <a name="externalLinks"></a>
 
-## externalLinks(element)
+## externalLinks(show)
 Toggles opacity from bottom links in navigation area
 
 **Kind**: global function  
@@ -562,12 +570,12 @@ Toggles opacity from bottom links in navigation area
 
 | Param | Type | Description |
 | --- | --- | --- |
-| element | <code>HTMLElement</code> | Main button element |
+| show | <code>boolean</code> | True || False |
 
 <a name="fullscreen"></a>
 
 ## fullscreen(button)
-Toggles fullscreen mode                          @TODO: fix this crap
+Toggles fullscreen mode                              @TODO: fix this crap
 
 **Kind**: global function  
 **Access**: public  
@@ -576,10 +584,43 @@ Toggles fullscreen mode                          @TODO: fix this crap
 | --- | --- | --- |
 | button | <code>HTMLElement</code> | Button under the #control-panel .button class |
 
+<a name="grid"></a>
+
+## grid()
+Toggles grid in lab
+
+**Kind**: global function  
+**Access**: public  
+<a name="labButton"></a>
+
+## labButton(element)
+Toggles lab buttons active state
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>HTMLElement</code> | HTML DOM Element |
+
+<a name="labMenu"></a>
+
+## labMenu()
+Toggles visibility of lab menu
+
+**Kind**: global function  
+**Access**: public  
 <a name="navigation"></a>
 
 ## navigation()
 Toggles visibility of navigation menu
+
+**Kind**: global function  
+**Access**: public  
+<a name="ruler"></a>
+
+## ruler()
+Toggles ruler in lab
 
 **Kind**: global function  
 **Access**: public  

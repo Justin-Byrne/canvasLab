@@ -3173,12 +3173,16 @@
         }
     ]
 
+    let _config =
+    {
+        labMode: false
+    }
+
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
 
         /**
          * Initializes classes for application use
          * @private
-         * @name _setClasses ( )
          * @function
          */
         function _setClasses ( )
@@ -3195,7 +3199,6 @@
         /**
          * Sets windows global variable space with this wrapper's declared classes
          * @private
-         * @name _setWindowsGlobal
          * @function
          */
         function _setEnvironment ( )
@@ -3213,12 +3216,26 @@
                 window.cardObjects = _cardObjects;
         }
 
+        /***
+         * Sets lab mode as the startup mode
+         * @private
+         * @function
+         */
+        function _setLabMode ( )
+        {
+            let _labButton = document.querySelector ( 'button.lab-station' );
+
+                _labButton.click ( );
+
+
+            UI._toggle.navigation ( );
+        }
+
     ////    LIBRARY WRAPPER    /////////////////////////////////////////////////////////////////////
 
         /**
          * Returns library object
          * @private
-         * @name _library
          * @function
          * @return          {Object}                            Library object
          */
@@ -3231,7 +3248,6 @@
                 /**
                  * Toggles individual card buttons using their 'suite-data' attributes
                  * @public
-                 * @name toggleCardButton
                  * @function
                  * @param           {string} easingFunction             Easing function; as a string
                  * @param           {number} index                      Index of animation card
@@ -3241,7 +3257,6 @@
                 /**
                  * Runs easing animation for an animation card
                  * @public
-                 * @name runEasingAnimation
                  * @function
                  * @param           {string} easingFunction             Easing function; as a string
                  * @param           {number} index                      Index of animation card
@@ -3251,7 +3266,6 @@
                 /**
                  * Runs lab-station code from editor
                  * @public
-                 * @name _runLabStationCode
                  * @function
                  */
                 _lib.runLabStationCode     = ( )                       => LAB.runCode ( );
@@ -3265,7 +3279,6 @@
         /**
          * Initiates devSuite
          * @private
-         * @name _init
          * @function
          */
         function _init ( )
@@ -3281,6 +3294,11 @@
                 UI.init  ( );
 
                 LAB.init ( );
+
+
+                if ( _config.labMode )
+
+                    _setLabMode ( );
             }
             else
 

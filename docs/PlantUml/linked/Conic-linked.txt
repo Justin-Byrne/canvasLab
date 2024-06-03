@@ -94,8 +94,8 @@ clockwise          <color:gray>{boolean}</color>
 startInRadians     <color:gray>{number}</color>
 endInRadians       <color:gray>{number}</color>
 __ Validation __
-_isDegree
-_isRadian
+_isDegree          <color:gray>{boolean}</color>
+_isRadian          <color:gray>{boolean}</color>
 __ Utility __
 _convert2Degree    <color:gray>{number}</color>
 _convert2Radian    <color:gray>{number}</color>

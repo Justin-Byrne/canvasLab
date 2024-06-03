@@ -2,7 +2,7 @@
 // @brief: 			HTML5 canvas drawing framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.3.55 
+// @version: 		0.3.59 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -1381,6 +1381,13 @@ class canvasLab
         get font ( )
         {
             return this._canvas.font;
+        }
+
+    ////    DOM    /////////////////////////////////////////
+
+        get dom ( )
+        {
+            return this.#application.dom;
         }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -5120,7 +5127,7 @@ class Circle
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [clear=true]                      Clear canvas during each movement
          */
-        move ( degree, distance, clear = true )
+        move ( degree, distance, clear = false )
         {
             let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
 
@@ -8945,8 +8952,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'May, 29 2024',
-            Version:   '0.3.55',
+            Updated:   'Jun, 03 2024',
+            Version:   '0.3.59',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -8974,8 +8981,8 @@ class Application
             height:    window.innerHeight -  4,
             center:
             {
-                x: ( window.innerWidth  /  2 ),
-                y: ( window.innerHeight /  2 )
+                x: ( ( window.innerWidth  - 18 ) /  4 ),
+                y: ( ( window.innerHeight - 4  ) /  2 )
             }
         },
         mouse:
@@ -9056,6 +9063,13 @@ class Application
         get about ( )
         {
             return this.#config.about;
+        }
+
+    ////    DOM    /////////////////////////////////////////
+
+        get dom ( )
+        {
+            return this.#dom;
         }
 
     ////    VALIDATION  ////////////////////////////////////

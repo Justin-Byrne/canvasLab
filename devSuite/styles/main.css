@@ -597,14 +597,14 @@ main {
           border-radius: 2px;
           outline: 3px solid white;
           background-color: #dfe7ff; }
-        main .lab-station #lab #ruler .horizontal {
+        main .lab-station #lab #ruler .horizontal, main .lab-station #lab #ruler #grid .horizontal-lines .horizontal-bold, main .lab-station #lab #grid .horizontal-lines #ruler .horizontal-bold {
           position: relative;
           top: 22px;
           width: 100%;
           height: 1px;
           margin-top: 10px;
           border-bottom: 1px solid #73f0ff; }
-        main .lab-station #lab #ruler .vertical {
+        main .lab-station #lab #ruler .vertical, main .lab-station #lab #ruler #grid .vertical-lines .vertical-bold, main .lab-station #lab #grid .vertical-lines #ruler .vertical-bold {
           position: relative;
           float: right;
           top: -10px;
@@ -612,6 +612,36 @@ main {
           width: 1px;
           height: 99vh;
           border-right: 1px solid #73f0ff; }
+      main .lab-station #lab #grid {
+        position: absolute;
+        height: 100vh;
+        top: 1px;
+        left: -1px;
+        opacity: 0;
+        transition: opacity 1s ease; }
+        main .lab-station #lab #grid .horizontal-lines {
+          position: absolute; }
+          main .lab-station #lab #grid .horizontal-lines .horizontal, main .lab-station #lab #grid .horizontal-lines .horizontal-bold {
+            position: relative;
+            width: 100vh;
+            height: 0px;
+            margin-top: 16px;
+            border-bottom: 1px solid #73f0ff;
+            opacity: 0.5; }
+          main .lab-station #lab #grid .horizontal-lines .horizontal-bold {
+            border-bottom: 1px solid black; }
+        main .lab-station #lab #grid .vertical-lines {
+          position: inline-flex; }
+          main .lab-station #lab #grid .vertical-lines .vertical, main .lab-station #lab #grid .vertical-lines .vertical-bold {
+            display: inline-block;
+            position: relative;
+            width: 1px;
+            height: 100vh;
+            margin-left: 16px;
+            border-right: 1px solid #73f0ff;
+            opacity: 0.5; }
+          main .lab-station #lab #grid .vertical-lines .vertical-bold {
+            border-right: 1px solid black; }
       main .lab-station #lab canvas {
         background: white; }
       main .lab-station #lab #editor {
@@ -676,6 +706,10 @@ main {
             content: url("../images/svg/General/caret-up.svg"); }
           main .lab-station #lab #control-panel .button .sidebar {
             content: url("../images/svg/General/layout-sidebar.svg"); }
+          main .lab-station #lab #control-panel .button .ruler {
+            content: url("../images/svg/General/ruler.svg"); }
+          main .lab-station #lab #control-panel .button .grid {
+            content: url("../images/svg/General/grid.svg"); }
           main .lab-station #lab #control-panel .button .full-screen {
             content: url("../images/svg/General/aspect-ratio.svg"); }
           main .lab-station #lab #control-panel .button .color-picker {
@@ -738,6 +772,20 @@ main {
             height: 30px;
             margin: 5px 5px 5px 0;
             float: right; }
+        main .lab-station #lab #control-panel .menu_popup {
+          outline: 1px solid black;
+          position: absolute;
+          bottom: 40px;
+          padding-left: 0px;
+          background: #323232;
+          color: white;
+          list-style: none;
+          letter-spacing: 6px; }
+          main .lab-station #lab #control-panel .menu_popup li {
+            padding: 2px 10px; }
+            main .lab-station #lab #control-panel .menu_popup li:hover {
+              background-color: #646464;
+              cursor: pointer; }
         main .lab-station #lab #control-panel #execute {
           content: url("../images/svg/General/play.svg");
           display: flex;

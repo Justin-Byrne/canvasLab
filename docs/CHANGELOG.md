@@ -1,6 +1,25 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.59] - 2024-07-03
+### Added
+- **devSuite**
+  - `Tool` class, `isActive ( )` to determine whether the passed element is active
+  - `Ui` class
+    - `_toggle.labButton ( )` to toggle lab buttons active state
+    - `_toggle.labMenu ( )` to toggle visibility of lab menu
+    - `_toggle.grid ( )` to toggle grid in lab
+    - `_toggle.ruler ( )` to toggle ruler in lab
+  - `Lab` class
+    - `_scripts` object, to contain various loadable lab scripts
+    - `_setMenuPopup ( )` to set the lab's menu items in relation to internal scripts
+    - `_setGrid ( )` to set grid's horizontal & vertical lines
+    - `loadScript ( )` to load a script within ace-editor
+    - `runCode ( )` to execute lab code from editor
+
+### Refactored
+- `Lab` class, refactored `init ( )`, `_cleanCode ( )`
+
 ## [0.3.55] - 2024-06-29
 ### Added
 - **devSuite**
@@ -372,7 +391,8 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.3.55] | 2024-06-29 | CURRENT                                                             | Refactored in app (devSuite) documentation.                                                        |
+| [0.3.59] | 2024-07-03 | CURRENT                                                             | Implemented various lab-station features.                                                    |
+| [0.3.55] | 2024-06-29 | [d9ba544](https://github.com/Justin-Byrne/canvasLab/commit/d9ba544) | Refactored in app (devSuite) documentation.                                                  |
 | [0.3.54] | 2024-06-26 | [fd05d82](https://github.com/Justin-Byrne/canvasLab/commit/fd05d82) | Added child class accessibility nodes to devSuite.                                           |
 | [0.3.48] | 2024-06-10 | [0032dc5](https://github.com/Justin-Byrne/canvasLab/commit/0032dc5) | Added gradient classes, expanded upon UTILITIES & VALIDATION modules.                        |
 | [0.3.30] | 2024-06-06 | [a4b29b5](https://github.com/Justin-Byrne/canvasLab/commit/a4b29b5) | Refactored navigation links as self generative.                                              |

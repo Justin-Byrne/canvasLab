@@ -118,6 +118,13 @@ class canvasLab
             return this._canvas.font;
         }
 
+    ////    DOM    /////////////////////////////////////////
+
+        get dom ( )
+        {
+            return this.#application.dom;
+        }
+
     ////    VALIDATION  ////////////////////////////////////
 
         /**

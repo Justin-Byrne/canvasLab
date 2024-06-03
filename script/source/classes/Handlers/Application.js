@@ -23,8 +23,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'May, 29 2024',
-            Version:   '0.3.55',
+            Updated:   'Jun, 03 2024',
+            Version:   '0.3.59',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -52,8 +52,8 @@ class Application
             height:    window.innerHeight -  4,
             center:
             {
-                x: ( window.innerWidth  /  2 ),
-                y: ( window.innerHeight /  2 )
+                x: ( ( window.innerWidth  - 18 ) /  4 ),
+                y: ( ( window.innerHeight - 4  ) /  2 )
             }
         },
         mouse:
@@ -134,6 +134,13 @@ class Application
         get about ( )
         {
             return this.#config.about;
+        }
+
+    ////    DOM    /////////////////////////////////////////
+
+        get dom ( )
+        {
+            return this.#dom;
         }
 
     ////    VALIDATION  ////////////////////////////////////

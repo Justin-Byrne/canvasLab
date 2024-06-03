@@ -405,6 +405,8 @@
 
                         </div>
 
+                        <div id="grid"></div>
+
                         <canvas id="canvas">
 
                     </div>
@@ -416,6 +418,14 @@
                         <div id="control-panel">
 
                             <div class="container data">
+
+                                <ul class="menu_popup" style="display: none;"></ul>
+
+                                <span class="control button" id="input-menu" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toglle Menu">
+
+                                    <span class="icon menu"></span>
+
+                                </span>
 
                                 <span class="control" id="output-row">
 
@@ -441,17 +451,23 @@
 
                                 </span>
 
-                                <span class="control button" id="input-sidebar" data-bs-toggle="tooltip" data-bs-placement="top" title="Toggle Navigation">
+                                <span class="control button" id="input-grid" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Grid">
+
+                                    <span class="icon grid"></span>
+
+                                </span>
+
+                                <span class="control button" id="input-ruler" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Ruler">
+
+                                    <span class="icon ruler"></span>
+
+                                </span>
+
+                                <span class="control button" id="input-sidebar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Sidebar">
 
                                     <span class="icon sidebar"></span>
 
                                 </span>
-
-                                <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
-
-                                    Tooltip on top
-
-                                </button> -->
 
                                 <span class="control button" id="input-full-screen" data-bs-toggle="tooltip" data-bs-placement="top" title="Toggle Full-Screen">
 
@@ -489,7 +505,7 @@
 
                                 </span>
 
-                                <span class="control button" id="input-word-wrap" data-bs-toggle="tooltip" data-bs-placement="top" title="Word-Wrap">
+                                <span class="control button" id="input-word-wrap" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Word-Wrap">
 
                                     <span class="icon word-wrap"></span>
 
