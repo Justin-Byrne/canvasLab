@@ -5,7 +5,12 @@
  */
 ( ( window ) =>
 {
-    let _classes     = [ 'Template', 'Page', 'Tool', 'Ui', 'Lab' ];
+    let _config =
+    {
+        labMode: false
+    }
+
+    let _classes = [ 'Template', 'Page', 'Tool', 'Ui', 'Lab' ];
 
     /**
      * Object of demo cards
@@ -177,7 +182,7 @@
                     children: undefined,
                     code: ( ) =>
                     {
-                        _line.move ( 180, 100 );
+                        _line.move ( 180, 100, true );
                     }
                 },
                 // rotate
@@ -526,7 +531,7 @@
                     children: undefined,
                     code: ( ) =>
                     {
-                        _circle.move ( 180, 100 );
+                        _circle.move ( 180, 100, true );
                     }
                 },
                 // rotate
@@ -807,7 +812,7 @@
                     children: undefined,
                     code: ( ) =>
                     {
-                        _rectangle.move ( 180, 100 );
+                        _rectangle.move ( 180, 100, true );
                     }
                 },
                 // rotate
@@ -930,31 +935,31 @@
                     }
                 },
                 // stroke type
-                {
-                    title:   'stroke type',
-                    text:    'blah... blah... blah...',
-                    children: [ 'stroke' ],
-                    code: ( ) =>
-                    {
-                        _text.stroke.type = 'solid';
+                // {
+                //     title:   'stroke type',
+                //     text:    'blah... blah... blah...',
+                //     children: [ 'stroke' ],
+                //     code: ( ) =>
+                //     {
+                //         _text.stroke.type = 'solid';
 
-                        _text.draw ( );
-                    }
-                },
+                //         _text.draw ( );
+                //     }
+                // },
                 // stroke segments
-                {
-                    title:   'stroke segments',
-                    text:    'blah... blah... blah...',
-                    children: [ 'stroke' ],
-                    code: ( ) =>
-                    {
-                        _text.stroke.type = 'solid';
+                // {
+                //     title:   'stroke segments',
+                //     text:    'blah... blah... blah...',
+                //     children: [ 'stroke' ],
+                //     code: ( ) =>
+                //     {
+                //         _text.stroke.segments  = [ 2, 7, 10 ];
 
-                        _text.stroke.segments = [ 2, 7, 10 ];
+                //         _text.fill.color.alpha = 0;         // [ Optional ]
 
-                        _text.draw ( );
-                    }
-                },
+                //         _text.draw ( );
+                //     }
+                // },
                 // stroke color
                 {
                     title:   'stroke color',
@@ -962,6 +967,8 @@
                     children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
+                        _text.stroke.width = 1;
+
                         _text.stroke.color = new Rgb ( 0,  150,  200 );
 
                         _text.draw ( );
@@ -974,23 +981,29 @@
                     children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
-                        _text.stroke.alpha = 0.25;
+                        _text.stroke.width       = 1;
+
+                        _text.stroke.color.alpha = 0.25;
+
+                        _text.fill.color.alpha   = 0;       // [ Optional ]
 
                         _text.draw ( );
                     }
                 },
                 // stroke width
-                {
-                    title:   'stroke width',
-                    text:    'blah... blah... blah...',
-                    children: [ 'stroke' ],
-                    code: ( ) =>
-                    {
-                        _text.stroke.width = 5;
+                // {
+                //     title:   'stroke width',
+                //     text:    'blah... blah... blah...',
+                //     children: [ 'stroke' ],
+                //     code: ( ) =>
+                //     {
+                //         _text.stroke.width = 5;
 
-                        _text.draw ( );
-                    }
-                },
+                //         _text.stroke.color = new Rgb ( 0,  150,  200 );     // [ Optional ]
+
+                //         _text.draw ( );
+                //     }
+                // },
                 // fill color
                 {
                     title:   'fill color',
@@ -1010,7 +1023,7 @@
                     children: [ 'fill', 'rgb' ],
                     code: ( ) =>
                     {
-                        _text.fill.alpha  = 0.25;
+                        _text.fill.color.alpha   = 0.25;
 
                         _text.draw ( );
                     }
@@ -1041,18 +1054,6 @@
                         _text.draw ( );
                     }
                 },
-                // shadow alpha
-                {
-                    title:   'shadow alpha',
-                    text:    'blah... blah... blah...',
-                    children: [ 'options', 'shadow', 'rgb' ],
-                    code: ( ) =>
-                    {
-                        _text.options.shadow = true;
-
-                        _text.draw ( );
-                    }
-                },
                 // shadow blur
                 {
                     title:   'shadow blur',
@@ -1061,6 +1062,8 @@
                     code: ( ) =>
                     {
                         _text.options.shadow = true;
+
+                        _text.shadow.blur    = 10;
 
                         _text.draw ( );
                     }
@@ -1074,9 +1077,57 @@
                     {
                         _text.options.shadow = true;
 
+                        _text.shadow.x = 5;
+
+                        _text.shadow.y = 5;
+
                         _text.draw ( );
                     }
                 },
+                // move
+                {
+                    title:   'move',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _text.move ( 180, 100, true );
+                    }
+                },
+                // rotate
+                // {
+                //     title:   'rotate',
+                //     text:    'blah... blah... blah...',
+                //     children: undefined,
+                //     code: ( ) =>
+                //     {
+                //         _text.rotate ( 45 );
+                //     }
+                // },
+                // axis
+                // {
+                //     title:   'axis',
+                //     text:    'blah... blah... blah...',
+                //     children: [ 'options' ],
+                //     code: ( ) =>
+                //     {
+                //         _text.options.axis = true;
+
+                //         _text.draw ( );
+                //     }
+                // },
+                // border
+                // {
+                //     title:   'border',
+                //     text:    'blah... blah... blah...',
+                //     children: [ 'options' ],
+                //     code: ( ) =>
+                //     {
+                //         _text.options.border = true;
+
+                //         _text.draw ( );
+                //     }
+                // },
             ],
         },
         subject:
@@ -2005,6 +2056,8 @@
                     children: [ 'stroke' ],
                     code: ( ) =>
                     {
+                        _text.stroke.width = 1;
+
                         _text.stroke.color = new Rgb ( 0,  150,  200 );
 
                         _text.draw ( );
@@ -2017,7 +2070,11 @@
                     children: [ 'stroke' ],
                     code: ( ) =>
                     {
-                        _text.stroke.alpha = 0.25;
+                        _text.stroke.width       = 1;
+
+                        _text.stroke.color.alpha = 0.5;
+
+                        _text.fill.color.alpha   = 0;       // [ Optional ]
 
                         _text.draw ( );
                     }
@@ -2041,7 +2098,7 @@
                     children: [ 'fill' ],
                     code: ( ) =>
                     {
-                        _text.fill.alpha  = 0.25;
+                        _text.fill.color.alpha = 0.25;
 
                         _text.draw ( );
                     }
@@ -2592,31 +2649,31 @@
                     }
                 },
                 // stroke type
-                {
-                    title:   'stroke type',
-                    text:    'blah... blah... blah...',
-                    children: [ 'stroke' ],
-                    code: ( ) =>
-                    {
-                        _text.stroke.type = 'solid';
+                // {
+                //     title:   'stroke type',
+                //     text:    'blah... blah... blah...',
+                //     children: [ 'stroke' ],
+                //     code: ( ) =>
+                //     {
+                //         _text.stroke.type = 'solid';
 
-                        _text.draw ( );
-                    }
-                },
+                //         _text.draw ( );
+                //     }
+                // },
                 // stroke segments
-                {
-                    title:   'stroke segments',
-                    text:    'blah... blah... blah...',
-                    children: [ 'stroke' ],
-                    code: ( ) =>
-                    {
-                        _text.stroke.type = 'solid';
+                // {
+                //     title:   'stroke segments',
+                //     text:    'blah... blah... blah...',
+                //     children: [ 'stroke' ],
+                //     code: ( ) =>
+                //     {
+                //         _text.stroke.type = 'solid';
 
-                        _text.stroke.segments = [ 2, 7, 10 ];
+                //         _text.stroke.segments = [ 2, 7, 10 ];
 
-                        _text.draw ( );
-                    }
-                },
+                //         _text.draw ( );
+                //     }
+                // },
                 // stroke color
                 {
                     title:   'stroke color',
@@ -2624,6 +2681,8 @@
                     children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
+                        _text.stroke.width = 1;
+
                         _text.stroke.color = new Rgb ( 0,  150,  200 );
 
                         _text.draw ( );
@@ -2636,23 +2695,27 @@
                     children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
-                        _text.stroke.alpha = 0.25;
+                        _text.stroke.width       = 1;
+
+                        _text.stroke.color.alpha = 0.5;
+
+                        _text.fill.color.alpha   = 0;       // [ Optional ]
 
                         _text.draw ( );
                     }
                 },
                 // stroke width
-                {
-                    title:   'stroke width',
-                    text:    'blah... blah... blah...',
-                    children: [ 'stroke' ],
-                    code: ( ) =>
-                    {
-                        _text.stroke.width = 5;
+                // {
+                //     title:   'stroke width',
+                //     text:    'blah... blah... blah...',
+                //     children: [ 'stroke' ],
+                //     code: ( ) =>
+                //     {
+                //         _text.stroke.width = 5;
 
-                        _text.draw ( );
-                    }
-                },
+                //         _text.draw ( );
+                //     }
+                // },
             ]
         },
         animation:
@@ -3155,16 +3218,16 @@
                                     group:   'Subject',
                                     handler: 'Animation'
                                 },
-                                {
-                                    title:   'Fill',
-                                    group:   'Subject',
-                                    handler: 'Animation'
-                                },
-                                {
-                                    title:   'Stroke',
-                                    group:   'Subject',
-                                    handler: 'Animation'
-                                }
+                                // {
+                                //     title:   'Fill',
+                                //     group:   'Subject',
+                                //     handler: 'Animation'
+                                // },
+                                // {
+                                //     title:   'Stroke',
+                                //     group:   'Subject',
+                                //     handler: 'Animation'
+                                // }
                             ]
                         },
                     ]
@@ -3173,9 +3236,201 @@
         }
     ]
 
-    let _config =
+    /**
+     * Object of lab scripts
+     * @type {Object.<Object<Function>>}
+     * @example { <title>: <Function> }
+     */
+    let _scripts =
     {
-        labMode: false
+        circlesOfLife: ( ) =>
+        {
+            ////    GLOBAL VARIABLES    ////////////////////
+
+            let _alpha        = 0.40;
+
+            let _colorValues  =
+            [
+                new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                new Rgb (   0,  0,  255, _alpha ),      // Blue
+                new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                new Rgb (   0, 255,   0, _alpha ),      // Green
+                new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                new Rgb ( 255,   0,   0, _alpha ),      // Red
+                new Rgb (   0,   0,   0, _alpha ),      // Black
+            ]
+
+            let _degreeValues = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+            let _colors     = new Queue ( _colorValues  );
+
+            let _degrees    = new Queue ( _degreeValues );
+
+            let _center     = canvaslab.center;
+
+            ////    INPUTS    //////////////////////////////
+
+            let _multiplier = 1;
+
+            let _distance   = 25 * _multiplier;
+
+            let _reverse    = 1;
+
+            let _stroke     = 1;
+
+            let _fill       = 1;
+
+            let _iterations = 10;
+
+            let _circles    = new Array;
+
+
+            for ( let _i = 0; _i < _iterations; _i++ )
+            {
+                _degrees.reset;
+
+                ////    00    ////    270    /////////////////////////
+
+                let [ _degree, _color ] = [ _degrees.next, _colors.next ];
+
+                // FOUNDATION STONE
+                for ( let _stone = 0; _stone < 1; _stone++ )
+                {
+                    let _circle = new Circle ( _center );
+
+                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
+
+                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
+
+                        _circle.move ( _degree, _distance * _i );
+
+
+                    _circles.push ( _circle );
+                }
+
+                ////    01    ////    150    /////////////////////////
+
+                [ _degree, _color ] = [ _degrees.next, _colors.next ];
+
+                // FILLER STONES
+                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
+                {
+                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
+
+                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
+
+                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
+
+                        _circle.move ( _degree, _distance );
+
+
+                    _circles.push ( _circle );
+                }
+
+                ////    02    ////     90    /////////////////////////
+
+                [ _degree, _color ] = [ _degrees.next, _colors.next ];
+
+                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
+                {
+                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
+
+                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
+
+                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
+
+                        _circle.move ( _degree, _distance );
+
+
+                    _circles.push ( _circle );
+                }
+
+                ////    03    ////     30    /////////////////////////
+
+                [ _degree, _color ] = [ _degrees.next, _colors.next ];
+
+                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
+                {
+                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
+
+                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
+
+                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
+
+                        _circle.move ( _degree, _distance );
+
+
+                    _circles.push ( _circle );
+                }
+
+                ////    04    ////    330    /////////////////////////
+
+                [ _degree, _color ] = [ _degrees.next, _colors.next ];
+
+                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
+                {
+                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
+
+                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
+
+                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
+
+                        _circle.move ( _degree, _distance );
+
+
+                    _circles.push ( _circle );
+                }
+
+                ////    05    ////    270    /////////////////////////
+
+                [ _degree, _color ] = [ _degrees.next, _colors.next ];
+
+                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
+                {
+                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
+
+                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
+
+                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
+
+                        _circle.move ( _degree, _distance );
+
+
+                    _circles.push ( _circle );
+                }
+
+                ////    06    ////    210    /////////////////////////
+
+                [ _degree, _color ] = [ _degrees.next, _colors.next ];
+
+                // KEYSTONE
+                for ( let _stone = 0; _stone <= ( _i - 2 ); _stone++ )
+                {
+                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
+
+                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
+
+                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
+
+                        _circle.move ( _degree, _distance );
+
+
+                    _circles.push ( _circle );
+                }
+            }
+
+
+            if ( _reverse )
+
+                _circles.reverse ( );
+
+
+            for ( let _circle of _circles )
+            {
+                _circle.draw ( );
+            }
+        }
     }
 
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
@@ -3249,8 +3504,7 @@
                  * Toggles individual card buttons using their 'suite-data' attributes
                  * @public
                  * @function
-                 * @param           {string} easingFunction             Easing function; as a string
-                 * @param           {number} index                      Index of animation card
+                 * @param           {HTMLEvent} event                   HTML DOM event
                  */
                 _lib.toggleCardButton      = ( event )                 => UI.toggle.cardButton ( event );
 
@@ -3270,6 +3524,13 @@
                  */
                 _lib.runLabStationCode     = ( )                       => LAB.runCode ( );
 
+                /**
+                 * Returns internal scripts object
+                 * @public
+                 * @function
+                 * @return          {Object}                            Scripts object
+                 */
+                _lib.getScripts            = ( )                       => _scripts;
 
             return _lib;
         }
@@ -3293,7 +3554,7 @@
             {
                 UI.init  ( );
 
-                LAB.init ( );
+                LAB.init ( _scripts.circlesOfLife );
 
 
                 if ( _config.labMode )

@@ -23,8 +23,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Jun, 03 2024',
-            Version:   '0.3.59',
+            Updated:   'Jun, 11 2024',
+            Version:   '0.3.67',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -93,6 +93,7 @@ class Application
             {
                 this.#dom.canvases = new Object ( );
 
+
                 for ( let _canvas of _canvases )
                 {
                     this.#dom.canvases [ _canvas.id ] = document.getElementById ( _canvas.id );
@@ -100,6 +101,7 @@ class Application
                     this.#dom.contexts [ _canvas.id ] = document.getElementById ( _canvas.id ).getContext ( "2d" );
                 }
             }
+
 
             if ( this._isInDom ( value ) )
             {
@@ -156,6 +158,25 @@ class Application
         _isInDom ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Returns center ( x & y coordinates ) for the present window
+         * @private
+         * @function
+         * @return          {Object}                                    X & Y Coordinates
+         */
+        get _center ( )
+        {
+            let _center =
+            {
+                x: ( ( window.innerWidth  - 18 ) /  4 ),
+
+                y: ( ( window.innerHeight - 4  ) /  2 )
+            }
+
+
+            return _center;
+        }
 
         /**
          * Creates a new animation instance

@@ -1,6 +1,27 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.67] - 2024-07-11
+### Added
+- **devSuite**
+  - `main`, added `_scripts` object; to contain various loadable lab scripts
+  - `Lab` class
+    - `_setMenuPopups ( )` to set the lab's menu items in relation to internal scripts
+    - `_getMenuPopup ( )` to get menu popup item with the passed 'element' param
+  - `Ui` class, `_adjustGridCenter ( )` to adjust the center of the grid; temporary fix.
+- **canvasLab**
+  - `Application` class, `_center ( )` to return center ( x & y coordinates ) for the present window
+  - `Queue` class
+
+### Removed
+- **devSuite**
+  - `Lab` class, `_scripts` object
+
+### Refactored
+- **canvasLab**
+  - `PROPERTY_BLOCKS`, `discrete.point.set ( )`
+  - `move ( )` function, within `Circle`, `Line`, `Rectangle`, and `Text` classes
+
 ## [0.3.59] - 2024-07-03
 ### Added
 - **devSuite**
@@ -391,7 +412,8 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.3.59] | 2024-07-03 | CURRENT                                                             | Implemented various lab-station features.                                                    |
+| [0.3.67] | 2024-07-10 | CURRENT                                                             | Implemented Queue class, general cleanup & refactoring.                                      |
+| [0.3.59] | 2024-07-03 | [5d1df4a](https://github.com/Justin-Byrne/canvasLab/commit/5d1df4a) | Implemented various lab-station features.                                                    |
 | [0.3.55] | 2024-06-29 | [d9ba544](https://github.com/Justin-Byrne/canvasLab/commit/d9ba544) | Refactored in app (devSuite) documentation.                                                  |
 | [0.3.54] | 2024-06-26 | [fd05d82](https://github.com/Justin-Byrne/canvasLab/commit/fd05d82) | Added child class accessibility nodes to devSuite.                                           |
 | [0.3.48] | 2024-06-10 | [0032dc5](https://github.com/Justin-Byrne/canvasLab/commit/0032dc5) | Added gradient classes, expanded upon UTILITIES & VALIDATION modules.                        |

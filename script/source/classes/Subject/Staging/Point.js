@@ -25,8 +25,9 @@ class Point
             this._isAspect = VALIDATION.isAspect;
             this._isInDom  = VALIDATION.isInDom;
 
-            this._drawAxis   = UTILITIES.draw.axis;
-            this._drawBorder = UTILITIES.draw.border;
+            this._drawAxis    = UTILITIES.draw.axis;
+            this._drawBorder  = UTILITIES.draw.border;
+            this._rotatePoint = UTILITIES.misc.rotatePoint;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
@@ -131,15 +132,59 @@ class Point
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAspect}
+         */
         _isAspect ( ) { }
 
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
         _isInDom  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link Utilities.draw.axis}
+         */
+        _drawAxis   ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link Utilities.draw.border}
+         */
         _drawBorder ( ) { }
 
-        _drawAxis   ( ) { }
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @private
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link Utilities.misc.rotatePoint}
+         */
+        _rotatePoint ( ) { }
 
         /**
          * Draws associated options
@@ -170,5 +215,20 @@ class Point
             let _y = this.y;
 
             [ this.y, this.x ] = [ this.x, _y ];
+        }
+
+        /**
+         * Move this object
+         * @public
+         * @function
+         * @param           {number}  degree                            Direction to move; in degrees
+         * @param           {number}  distance                          Distance to move
+         */
+        move ( degree, distance )
+        {
+            let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
+
+
+            [ this.x, this.y ] = [ _point.x, _point.y ];
         }
 }

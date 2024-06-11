@@ -73,7 +73,7 @@ const PROPERTY_BLOCKS =
         {
             set ( value )
             {
-                this._point = ( this._isPoint ( value ) ) ? value : this._point;
+                this._point = ( this._isPoint ( value ) ) ? new Point ( value.x, value.y ) : this._point;
             },
             get ( )
             {

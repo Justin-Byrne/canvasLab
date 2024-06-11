@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>DEBUG - Documentation</title>
+    <title>Queue - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -35,7 +35,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">DEBUG</h1>
+    <h1 class="page-title">Queue</h1>
     
 
     
@@ -49,9 +49,11 @@
     
         <h2>
         
-            Namespace
+            Queue
         
         </h2>
+        
+            <div class="class-description usertext">{Object} Queue                              Queue object</div>
         
     
 </header>
@@ -62,10 +64,11 @@
         
             
 
-
+    
+    <h2>Constructor</h2>
     
 
-    <h4 class="name" id="DEBUG">DEBUG</h4>
+    <h4 class="name" id="Queue"><span class="type-signature"></span>new Queue<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -75,13 +78,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Shared utility functions</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Create a Queue object</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.3.67.js.html">canvasLab-v0.3.67.js</a>, <a href="canvasLab-v0.3.67.js.html#line1206">line 1206</a>
+        <a href="canvasLab-v0.3.67.js.html">canvasLab-v0.3.67.js</a>, <a href="canvasLab-v0.3.67.js.html#line9259">line 9259</a>
     </li></ul></dd>
     
 
@@ -115,6 +118,145 @@
 
     
 </dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Array of entries</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last">Current index</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Current entry</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
 
 
 
@@ -171,7 +313,7 @@
 
     
 
-    <h4 class="name" id=".fixBlur"><span class="type-signature type-signature-static">(static) </span>fixBlur<span class="signature">(canvasId)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="entries"><span class="type-signature"></span>entries<span class="signature">(value)</span><span class="type-signature"></span></h4>
 
     
 
@@ -181,13 +323,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Fixes pixel blur</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Set entries</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.3.67.js.html">canvasLab-v0.3.67.js</a>, <a href="canvasLab-v0.3.67.js.html#line1248">line 1248</a>
+        <a href="canvasLab-v0.3.67.js.html">canvasLab-v0.3.67.js</a>, <a href="canvasLab-v0.3.67.js.html#line9282">line 9282</a>
     </li></ul></dd>
     
 
@@ -259,13 +401,13 @@
 
         <tr>
             
-                <td class="name"><code>canvasId</code></td>
+                <td class="name"><code>value</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Array</span>
 
 
 
@@ -276,7 +418,7 @@
 
             
 
-            <td class="description last">Canvas identifier</td>
+            <td class="description last">Array of entries</td>
         </tr>
 
     
@@ -306,7 +448,7 @@
 
     
 
-    <h4 class="name" id=".setCanvasStyleToHTML"><span class="type-signature type-signature-static">(static) </span>setCanvasStyleToHTML<span class="signature">(canvasId)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="entries"><span class="type-signature"></span>entries<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
 
     
 
@@ -316,13 +458,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Sets canvas's aspect ratio</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Get entries</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.3.67.js.html">canvasLab-v0.3.67.js</a>, <a href="canvasLab-v0.3.67.js.html#line1220">line 1220</a>
+        <a href="canvasLab-v0.3.67.js.html">canvasLab-v0.3.67.js</a>, <a href="canvasLab-v0.3.67.js.html#line9293">line 9293</a>
     </li></ul></dd>
     
 
@@ -369,70 +511,43 @@
 
 
 
-    <h5 class="h5-parameters">Parameters:</h5>
-    
 
-<table class="params">
-    <thead>
-    <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
         
-        <th>Name</th>
+<div class="param-desc">
+    Array of entries
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
         
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>canvasId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
+<span class="param-type">Array</span>
 
 
 
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Canvas identifier</td>
-        </tr>
+    </dd>
+</dl>
 
     
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -441,7 +556,7 @@
 
     
 
-    <h4 class="name" id=".setCanvasStyleToHTMLMAX"><span class="type-signature type-signature-static">(static) </span>setCanvasStyleToHTMLMAX<span class="signature">(canvasId)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="entry"><span class="type-signature"></span>entry<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
 
@@ -451,13 +566,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Sets canvas's max aspect ratio</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Get current entry</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.3.67.js.html">canvasLab-v0.3.67.js</a>, <a href="canvasLab-v0.3.67.js.html#line1234">line 1234</a>
+        <a href="canvasLab-v0.3.67.js.html">canvasLab-v0.3.67.js</a>, <a href="canvasLab-v0.3.67.js.html#line9306">line 9306</a>
     </li></ul></dd>
     
 
@@ -504,54 +619,220 @@
 
 
 
-    <h5 class="h5-parameters">Parameters:</h5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Current entry
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
     
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
 
-        <th>Type</th>
 
         
+            
 
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
-        <tr>
-            
-                <td class="name"><code>canvasId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Canvas identifier</td>
-        </tr>
+    <h4 class="name" id="next"><span class="type-signature"></span>next<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
-    </tbody>
-</table>
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Returns next entry; begins with [ 0 ], or first entry</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.3.67.js.html">canvasLab-v0.3.67.js</a>, <a href="canvasLab-v0.3.67.js.html#line9319">line 9319</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Next entry
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="reset"><span class="type-signature"></span>reset<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Resets index to 0</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.3.67.js.html">canvasLab-v0.3.67.js</a>, <a href="canvasLab-v0.3.67.js.html#line9341">line 9341</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

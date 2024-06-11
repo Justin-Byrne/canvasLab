@@ -134,9 +134,9 @@ class Rgb
 	    {
 	    	this._lerpRgb ( start, end, progress, max );
 
-	    	clear ( );
+	    	// clear ( );
 
-	    	draw  ( );
+	    	// draw  ( );
 		}
 
 		/**
@@ -169,6 +169,13 @@ class Rgb
 	    	this._green = this._lerp ( start.green, end.green, progress, max );
 
 	    	this._blue  = this._lerp ( start.blue,  end.blue,  progress, max );
+		}
+
+		fade ( start, end, progress, max )
+	    {
+	    	this._cycle ( start, end, progress, max );
+
+	    	return this;
 		}
 
 		/**

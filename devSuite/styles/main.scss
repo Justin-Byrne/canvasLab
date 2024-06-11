@@ -315,7 +315,7 @@ nav
         {
             display:        flex;
             position:       absolute;
-            bottom:         14px;
+            bottom:         41px;
             width:          83%;
 
             background:     rgb(28, 38, 47);
@@ -345,6 +345,42 @@ nav
         }
 
         .nav-icons { width: 20%; }
+
+        #version
+        {
+            display:    flex;
+            position:   absolute;
+            bottom:     10px;
+            width:      83%;
+
+            font-size:  15px;
+
+            opacity:    0.9;
+
+            span
+            {
+                text-align:     center;
+                width:          50%;
+
+                color:          white;
+
+                &:nth-child(1)
+                {
+                    background-color:           rgb(104, 104, 104);
+
+                    border-top-left-radius:     2px;
+                    border-bottom-left-radius:  2px;
+                }
+
+                &:nth-child(2)
+                {
+                    background-color:           rgb(56, 159, 178);
+
+                    border-top-right-radius:    2px;
+                    border-bottom-right-radius: 2px;
+                }
+            }
+        }
     }
 }
 
@@ -1130,7 +1166,7 @@ main
                 position:   absolute;
                 height:     100vh;
                 top:        1px;
-                left:       -1px;
+                left:       200px;
 
                 opacity:    0;
 

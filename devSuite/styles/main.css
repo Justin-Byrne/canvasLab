@@ -180,7 +180,7 @@ nav {
     nav .nav-wrapper .external-links {
       display: flex;
       position: absolute;
-      bottom: 14px;
+      bottom: 41px;
       width: 83%;
       background: #1c262f;
       border-radius: 2px;
@@ -200,6 +200,25 @@ nav {
         padding: 5px 0px; }
     nav .nav-wrapper .nav-icons {
       width: 20%; }
+    nav .nav-wrapper #version {
+      display: flex;
+      position: absolute;
+      bottom: 10px;
+      width: 83%;
+      font-size: 15px;
+      opacity: 0.9; }
+      nav .nav-wrapper #version span {
+        text-align: center;
+        width: 50%;
+        color: white; }
+        nav .nav-wrapper #version span:nth-child(1) {
+          background-color: #686868;
+          border-top-left-radius: 2px;
+          border-bottom-left-radius: 2px; }
+        nav .nav-wrapper #version span:nth-child(2) {
+          background-color: #389fb2;
+          border-top-right-radius: 2px;
+          border-bottom-right-radius: 2px; }
 
 #nav-open {
   position: fixed;
@@ -616,7 +635,7 @@ main {
         position: absolute;
         height: 100vh;
         top: 1px;
-        left: -1px;
+        left: 200px;
         opacity: 0;
         transition: opacity 1s ease; }
         main .lab-station #lab #grid .horizontal-lines {

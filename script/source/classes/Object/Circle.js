@@ -561,9 +561,10 @@ class Circle
          * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [clear=true]                      Clear canvas during each movement
+         * @param           {boolean} [draw=false]                      Draw post movement
+         * @param           {boolean} [clear=false]                     Clear canvas during each movement
          */
-        move ( degree, distance, clear = false )
+        move ( degree, distance, draw = false, clear = false )
         {
             let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
 
@@ -573,7 +574,10 @@ class Circle
 
             this._clearCanvas ( clear );
 
-            this.draw    ( );
+
+            if ( draw )
+
+                this.draw ( );
         }
 
         /**

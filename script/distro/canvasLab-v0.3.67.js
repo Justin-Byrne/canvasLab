@@ -2,7 +2,7 @@
 // @brief: 			HTML5 canvas drawing framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.3.59 
+// @version: 		0.3.67 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -82,7 +82,7 @@ const PROPERTY_BLOCKS =
         {
             set ( value )
             {
-                this._point = ( this._isPoint ( value ) ) ? value : this._point;
+                this._point = ( this._isPoint ( value ) ) ? new Point ( value.x, value.y ) : this._point;
             },
             get ( )
             {
@@ -1404,6 +1404,11 @@ class canvasLab
 
     ////    UTILITIES   ////////////////////////////////////
 
+        get center ( )
+        {
+            return this.#application._center;
+        }
+
         /**
          * Animates onscreen objects in accordance with passed param values
          * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
@@ -1580,9 +1585,9 @@ class Rgb
 	    {
 	    	this._lerpRgb ( start, end, progress, max );
 
-	    	clear ( );
+	    	// clear ( );
 
-	    	draw  ( );
+	    	// draw  ( );
 		}
 
 		/**
@@ -1615,6 +1620,13 @@ class Rgb
 	    	this._green = this._lerp ( start.green, end.green, progress, max );
 
 	    	this._blue  = this._lerp ( start.blue,  end.blue,  progress, max );
+		}
+
+		fade ( start, end, progress, max )
+	    {
+	    	this._cycle ( start, end, progress, max );
+
+	    	return this;
 		}
 
 		/**
@@ -2596,8 +2608,9 @@ class Point
             this._isAspect = VALIDATION.isAspect;
             this._isInDom  = VALIDATION.isInDom;
 
-            this._drawAxis   = UTILITIES.draw.axis;
-            this._drawBorder = UTILITIES.draw.border;
+            this._drawAxis    = UTILITIES.draw.axis;
+            this._drawBorder  = UTILITIES.draw.border;
+            this._rotatePoint = UTILITIES.misc.rotatePoint;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
 
@@ -2702,15 +2715,59 @@ class Point
 
     ////    VALIDATION  ////////////////////////////////////
 
+        /**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAspect}
+         */
         _isAspect ( ) { }
 
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
         _isInDom  ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link Utilities.draw.axis}
+         */
+        _drawAxis   ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link Utilities.draw.border}
+         */
         _drawBorder ( ) { }
 
-        _drawAxis   ( ) { }
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @private
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link Utilities.misc.rotatePoint}
+         */
+        _rotatePoint ( ) { }
 
         /**
          * Draws associated options
@@ -2741,6 +2798,21 @@ class Point
             let _y = this.y;
 
             [ this.y, this.x ] = [ this.x, _y ];
+        }
+
+        /**
+         * Move this object
+         * @public
+         * @function
+         * @param           {number}  degree                            Direction to move; in degrees
+         * @param           {number}  distance                          Distance to move
+         */
+        move ( degree, distance )
+        {
+            let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
+
+
+            [ this.x, this.y ] = [ _point.x, _point.y ];
         }
 }
  
@@ -5125,9 +5197,10 @@ class Circle
          * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [clear=true]                      Clear canvas during each movement
+         * @param           {boolean} [draw=false]                      Draw post movement
+         * @param           {boolean} [clear=false]                     Clear canvas during each movement
          */
-        move ( degree, distance, clear = false )
+        move ( degree, distance, draw = false, clear = false )
         {
             let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
 
@@ -5137,7 +5210,10 @@ class Circle
 
             this._clearCanvas ( clear );
 
-            this.draw    ( );
+
+            if ( draw )
+
+                this.draw ( );
         }
 
         /**
@@ -5814,9 +5890,10 @@ class Line
          * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [clear=true]                      Clear canvas during each movement
+         * @param           {boolean} [draw=false]                      Draw post movement
+         * @param           {boolean} [clear=false]                     Clear canvas during each movement
          */
-        move ( degree, distance, clear = true )
+        move ( degree, distance, draw = false, clear = false )
         {
             let _pointStart = this._rotatePoint ( { x: this.start.x, y: this.start.y }, degree, distance );
 
@@ -5831,7 +5908,9 @@ class Line
             this._clearCanvas ( clear );
 
 
-            this.draw ( );
+            if ( draw )
+
+                this.draw ( );
         }
 
         /**
@@ -6643,9 +6722,10 @@ class Rectangle
          * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [clear=true]                      Clear canvas during each movement
+         * @param           {boolean} [draw=false]                      Draw post movement
+         * @param           {boolean} [clear=false]                     Clear canvas during each movement
          */
-        move ( degree, distance, clear = true )
+        move ( degree, distance, draw = false, clear = false )
         {
             let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
 
@@ -6655,7 +6735,10 @@ class Rectangle
 
             this._clearCanvas ( clear );
 
-            this.draw ( );
+
+            if ( draw )
+
+                this.draw ( );
         }
 
         /**
@@ -7315,9 +7398,10 @@ class Text extends Font
          * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [clear=true]                      Clear canvas during each movement
+         * @param           {boolean} [draw=false]                      Draw post movement
+         * @param           {boolean} [clear=false]                     Clear canvas during each movement
          */
-        move ( degree, distance, clear = true )
+        move ( degree, distance, draw = false, clear = false )
         {
             let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
 
@@ -7327,7 +7411,10 @@ class Text extends Font
 
             this._clearCanvas ( clear );
 
-            this.draw    ( );
+
+            if ( draw )
+
+                this.draw ( );
         }
 
         /**
@@ -8952,8 +9039,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Jun, 03 2024',
-            Version:   '0.3.59',
+            Updated:   'Jun, 11 2024',
+            Version:   '0.3.67',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -9022,6 +9109,7 @@ class Application
             {
                 this.#dom.canvases = new Object ( );
 
+
                 for ( let _canvas of _canvases )
                 {
                     this.#dom.canvases [ _canvas.id ] = document.getElementById ( _canvas.id );
@@ -9029,6 +9117,7 @@ class Application
                     this.#dom.contexts [ _canvas.id ] = document.getElementById ( _canvas.id ).getContext ( "2d" );
                 }
             }
+
 
             if ( this._isInDom ( value ) )
             {
@@ -9087,6 +9176,25 @@ class Application
     ////    UTILITIES   ////////////////////////////////////
 
         /**
+         * Returns center ( x & y coordinates ) for the present window
+         * @private
+         * @function
+         * @return          {Object}                                    X & Y Coordinates
+         */
+        get _center ( )
+        {
+            let _center =
+            {
+                x: ( ( window.innerWidth  - 18 ) /  4 ),
+
+                y: ( ( window.innerHeight - 4  ) /  2 )
+            }
+
+
+            return _center;
+        }
+
+        /**
          * Creates a new animation instance
          * @param           {Object}   flow                             Contains timing, draw, & duration values & functions
          * @param           {number}   flow.duration                    Duration of animation
@@ -9140,4 +9248,98 @@ class Processing
     ////    UTILITIES   ////////////////////////////////////
 
         // setState ( canvasId ) { }
+}
+ 
+/**
+ * @class           {Object} Queue                              Queue object
+ * @property        {Array}  entries                            Array of entries
+ * @property        {number} [index=0]                          Current index
+ * @property        {Object} entry                              Current entry
+ */
+class Queue
+{
+    _entries = undefined;
+    _index   = 0;
+    _entry   = undefined;
+    
+    /**
+     * Create a Queue object
+     * @property        {Array}  entries                            Array of entries
+     */
+    constructor ( entries )
+    {
+        this.entries = entries;
+    }
+
+    ////    [ ENTRIES ]    /////////////////////////////////
+
+        /**
+         * Set entries
+         * @public
+         * @function
+         * @param           {Array} value                               Array of entries
+         */
+        set entries ( value )
+        {
+            this._entries = Array.isArray ( value ) ? value : this._entries;
+        }
+
+        /**
+         * Get entries
+         * @public
+         * @function
+         * @return          {Array}                                     Array of entries
+         */
+        get entries ( )
+        {
+            this._entries;
+        }
+    
+    ////    [ ENTRY ]    ///////////////////////////////////
+
+        /**
+         * Get current entry
+         * @public
+         * @function
+         * @return          {Object}                                    Current entry
+         */
+        get entry ( )
+        {
+            this._entry;
+        }
+
+    ////    UTILITIES    ///////////////////////////////////
+
+        /**
+         * Returns next entry; begins with [ 0 ], or first entry
+         * @public
+         * @function
+         * @return          {Object}                                    Next entry
+         */
+        get next ( )
+        {
+            let _entry = this._entries [ this._index ];
+
+
+            if ( this._index === this._entries.length - 1 )
+
+                this._index = 0;
+
+            else
+
+                this._index = this._index + 1;
+
+
+            return _entry;
+        }
+
+        /**
+         * Resets index to 0
+         * @public
+         * @function
+         */
+        get reset ( )
+        {
+            this._index = 0;
+        }
 }

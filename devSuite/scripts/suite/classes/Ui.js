@@ -11,7 +11,7 @@ class Ui
          * Adds an additional card to cardObjects; mirroring the last card present
          * @private
          * @function
-         * @param           {HTMLElement} element               Object or Subject type
+         * @param           {HTMLEvent} event                   HTML DOM event
          */
         _cardPlus ( element )
         {
@@ -332,9 +332,9 @@ class Ui
          */
         grid ( )
         {
-            let _grid    = document.getElementById ( 'grid' );
+            let _grid   = document.getElementById ( 'grid' );
 
-            let _button  = document.getElementById ( 'input-grid' );
+            let _button = document.getElementById ( 'input-grid' );
 
 
             this.labButton ( _button );
@@ -362,6 +362,9 @@ class Ui
             ( _active ) ? element.setAttribute ( 'data-bs-active', false )
 
                         : element.setAttribute ( 'data-bs-active', true  );
+
+
+            UI._adjustGridCenter ( );
         },
 
         /**
@@ -399,6 +402,8 @@ class Ui
 
             let _open   = document.querySelector ( '#nav-open' );
 
+            let _grid   = document.querySelector ( '#grid' );
+
             let _button = document.querySelector ( '#input-sidebar' );
 
 
@@ -407,9 +412,9 @@ class Ui
 
             ( UI._isNavOpen ( ) )
 
-                ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-200px', '-0px'  ]
+                ? [ _nav.style.left, _main.style.paddingLeft, _grid.style.left ] = [ '-200px',  '-0px',   '0px' ]
 
-                : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '200px' ];
+                : [ _nav.style.left, _main.style.paddingLeft, _grid.style.left ] = [    '0px', '200px', '200px' ];
 
 
             if ( _lab.style.display === 'block' )
@@ -911,6 +916,24 @@ class Ui
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Adjusts the center of the grid; temporary fix
+         * @private
+         * @function
+         */
+        _adjustGridCenter ( )
+        {
+            let _lines = document.querySelectorAll ( '#grid > .vertical-lines div' );
+
+
+            if ( UI._isNavOpen ( ) )
+            {
+                _lines [ 17 ].classList.replace ( 'vertical-bold', 'vertical' );
+
+                _lines [ 20 ].classList.replace ( 'vertical', 'vertical-bold' );
+            }
+        }
 
         /**
          * Checks whether ancillary sub animation buttons are collapsible

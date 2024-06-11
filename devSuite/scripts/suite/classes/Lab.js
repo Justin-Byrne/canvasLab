@@ -8,400 +8,6 @@ class Lab
 
     constructor ( ) { }
 
-    _scripts =
-    {
-        simple:     ( ) =>
-        {
-            let _domCenter = canvaslab.dom.window.center;
-
-            let _center    = new Point ( _domCenter.x, _domCenter.y );
-
-            ////    CENTER    ////
-
-            let _circle  = new Circle ( _center );
-
-                _circle.canvas = 'canvas';
-
-                _circle.stroke.color = new Rgb ( 255, 0, 0 );
-
-                _circle.draw ( );
-
-            ///    INNER-CIRCLE    ////
-
-                _circle.stroke.color = new Rgb ( 0, 255, 0 );
-
-                _circle.move ( 270, 25, false );
-
-                _circle.move ( 150, 25, false );
-
-                _circle.move (  90, 25, false );
-
-                _circle.move (  30, 25, false );
-
-                _circle.move ( 330, 25, false );
-
-                _circle.move ( 270, 25, false );
-
-            ////    NEXT    ////
-
-                _circle.stroke.color = new Rgb ( 0, 0, 255 );
-
-                _circle.point        = new Point ( _domCenter.x, _domCenter.y )
-
-                _circle.move ( 270, 50, false );
-
-                _circle.move ( 150, 25, false );
-
-                _circle.move ( 150, 25, false );
-
-                _circle.move (  90, 25, false );
-
-                _circle.move (  90, 25, false );
-
-                _circle.move (  30, 25, false );
-
-                _circle.move (  30, 25, false );
-
-                _circle.move ( 330, 25, false );
-
-                _circle.move ( 330, 25, false );
-
-                _circle.move ( 270, 25, false );
-
-                _circle.move ( 270, 25, false );
-
-                _circle.move ( 210, 25, false );
-
-            ////    NEXT    ////
-
-                _circle.stroke.color = new Rgb ( 255, 0, 255 );
-
-                _circle.point        = new Point ( _domCenter.x, _domCenter.y )
-
-                _circle.move ( 270, 75, false );
-
-                _circle.move ( 150, 25, false );
-
-                _circle.move ( 150, 25, false );
-
-                _circle.move ( 150, 25, false );
-
-                _circle.move (  90, 25, false );
-
-                _circle.move (  90, 25, false );
-
-                _circle.move (  90, 25, false );
-
-                _circle.move (  30, 25, false );
-
-                _circle.move (  30, 25, false );
-
-                _circle.move (  30, 25, false );
-
-                _circle.move ( 330, 25, false );
-
-                _circle.move ( 330, 25, false );
-
-                _circle.move ( 330, 25, false );
-
-                _circle.move ( 270, 25, false );
-
-                _circle.move ( 270, 25, false );
-
-                _circle.move ( 270, 25, false );
-
-                _circle.move ( 210, 25, false );
-
-                _circle.move ( 210, 25, false );
-
-            ////    NEXT    ////
-
-                _circle.stroke.color = new Rgb ( 0, 0, 0 );
-
-                _circle.point        = new Point ( _domCenter.x, _domCenter.y )
-
-                _circle.move ( 270, 100, false );
-
-                _circle.move ( 150, 25, false );
-
-                _circle.move ( 150, 25, false );
-
-                _circle.move ( 150, 25, false );
-
-                _circle.move ( 150, 25, false );
-
-                _circle.move (  90, 25, false );
-
-                _circle.move (  90, 25, false );
-
-                _circle.move (  90, 25, false );
-
-                _circle.move (  90, 25, false );
-
-                _circle.move (  30, 25, false );
-
-                _circle.move (  30, 25, false );
-
-                _circle.move (  30, 25, false );
-
-                _circle.move (  30, 25, false );
-
-                _circle.move ( 330, 25, false );
-
-                _circle.move ( 330, 25, false );
-
-                _circle.move ( 330, 25, false );
-
-                _circle.move ( 330, 25, false );
-
-                _circle.move ( 270, 25, false );
-
-                _circle.move ( 270, 25, false );
-
-                _circle.move ( 270, 25, false );
-
-                _circle.move ( 270, 25, false );
-
-                _circle.move ( 210, 25, false );
-
-                _circle.move ( 210, 25, false );
-
-                _circle.move ( 210, 25, false );
-        },
-        complex:    ( ) =>
-        {
-            let _domCenter = canvaslab.dom.window.center;
-
-            let _center    = new Point ( _domCenter.x, _domCenter.y );
-
-            ////    CENTER    ////
-
-            let _circle  = new Circle ( _center );
-
-                _circle.canvas = 'canvas';
-
-                _circle.stroke.color = new Rgb ( 255, 0, 0 );
-
-                _circle.draw ( );
-
-            ///    INNER-CIRCLE    ////
-
-            function _grow ( i, callback )
-            {
-                let _n = i;
-
-                do
-                {
-                    callback ( );
-
-                    _n--;
-                }
-                while ( _n > 0 );
-            }
-
-            for ( let _i = 1; _i <= 24; _i++ )
-            {
-                _circle.stroke.color = new Rgb ( 5 * _i, 10 * _i, 20 * _i );
-
-                _circle.point        = new Point ( _domCenter.x, _domCenter.y )
-
-                _circle.move ( 270, 25 * _i, false );
-
-
-                _grow ( _i,     ( ) => _circle.move ( 150, 25 ) );
-
-                _grow ( _i,     ( ) => _circle.move (  90, 25 ) );
-
-                _grow ( _i,     ( ) => _circle.move (  30, 25 ) );
-
-                _grow ( _i,     ( ) => _circle.move ( 330, 25 ) );
-
-                _grow ( _i,     ( ) => _circle.move ( 270, 25 ) );
-
-                _grow ( _i - 1, ( ) => _circle.move ( 210, 25 ) );
-            }
-        },
-        animation1: ( ) =>
-        {
-            let _domCenter = canvaslab.dom.window.center;
-
-            let _center    = new Point ( _domCenter.x, _domCenter.y );
-
-            ////    CENTER    ////
-
-            let _circle  = new Circle ( _center );
-
-                _circle.canvas = 'canvas';
-
-                _circle.stroke.color = new Rgb ( 255, 0, 0 );
-
-                _circle.draw ( );
-
-            ///    INNER-CIRCLE    ////
-
-            function _grow ( i, callback )
-            {
-                let _n = i;
-
-                do
-                {
-                    callback ( );
-
-                    _n--;
-                }
-                while ( _n > 0 );
-            }
-
-            let _flow =
-            {
-                duration: 3000,
-                timing: 'easeInSine',
-                draw ( progress )
-                {
-                    _circle.move ( 270, progress * 0.5, true );
-                    _circle.move ( 150, progress * 0.5, false );
-                }
-            }
-
-            canvaslab.animate ( _flow );
-        },
-        animation2: ( ) =>
-        {
-            let _domCenter = canvaslab.dom.window.center;
-
-            let _center    = new Point ( _domCenter.x, _domCenter.y );
-
-            let _clear     = ( ) => document.getElementById ( 'canvas' ).getContext ( '2d' ).clearRect ( 0, 0, document.getElementById ( 'canvas' ).width, document.getElementById ( 'canvas' ).height );
-
-            let _timing    = ( timeFraction ) => 1 - Math.cos ( ( timeFraction * Math.PI ) / 2 );
-
-            /**
-             * Grow algorithm
-             * @param           {number}   i                    Iterator
-             * @param           {Function} callback             Callback function
-             */
-            function _grow ( i, callback )
-            {
-                let _n = i;
-
-                do
-                {
-                    callback ( );
-
-                    _n--;
-                }
-                while ( _n > 0 );
-            }
-
-            let _colors  =
-            [
-                new Rgb ( 255,   0,   0 ),
-
-                new Rgb ( 0,     0, 255 ),
-
-                new Rgb ( 0,   255,   0 ),
-
-                new Rgb ( 120,   0,   0 ),
-
-                new Rgb ( 120, 120,   0 ),
-
-                new Rgb ( 120, 120, 120 ),
-
-                new Rgb ( 0,   120, 120 ),
-
-                new Rgb ( 0,     0, 120 ),
-            ]
-
-            let _degrees =
-            [
-                [ 270, 0.25 ],
-
-                [ 180, 0.25 ],
-
-                [ 90,  0.25 ],
-
-                [  0,  0.25 ],
-
-                [ 220, 0.25 ],
-
-                [ 140, 0.25 ],
-
-                [  40, 0.25 ],
-
-                [ 320, 0.25 ],
-            ]
-
-            ////    CIRCLES    ////
-
-            let _circles = new Array;
-
-
-            for ( let _i = 0; _i < 8; _i++ )
-            {
-                _circles.push ( new Circle ( new Point ( _center.x, _center.y ) ) );
-
-                _circles [ _i ].stroke.color = _colors [ _i ];
-            }
-
-            ////    ANIMTATION    ////
-
-            function _animate ( timing, duration, array )
-            {
-                if ( timing )
-                {
-                    let _start = performance.now ( );
-
-
-                    requestAnimationFrame (
-
-                        function animate ( time )
-                        {
-                            // CALCULATE PROGRESS
-                            let _timeFraction =  ( time - _start ) / duration;      // timeFraction goes from 0 to 1
-
-                            let _progress     = _timing ( _timeFraction );          // calculate the current animation state
-
-
-                            // CLEAR SCREEN
-                            _clear ( );
-
-
-                            // DRAW
-                            for ( let _i = 0; _i < array.length; _i++ )
-                            {
-                                let _object = array [ _i ];
-
-                                let _degree = _degrees [ _i ] [ 0 ];
-
-
-                                let _circle = new Circle ( _center );
-
-                                    _circle.stroke.color.alpha = 0.15;
-
-                                    _circle.draw ( );
-
-
-                                _object.move ( _degree, _progress * ( 0.25 * 2.2 ) );
-                            }
-
-
-                            // END
-                            if ( _timeFraction < 1 )
-
-                                requestAnimationFrame ( animate );
-                        }
-                    );
-                }
-            }
-
-
-            console.clear ( );
-
-
-            _animate ( _timing, 2000, _circles );
-        },
-    }
-
     ////    [ EDITOR ]    //////////////////////////////////////////////////////////////////////////
 
         /**
@@ -492,7 +98,7 @@ class Lab
 
             if ( _regex.test ( _value ) )
             {
-                _value  = this._incrementValue ( _value, up );
+                _value = this._incrementValue ( _value, up );
 
 
                 this.editor.session.replace    ( _range, `${_value}` );
@@ -541,11 +147,11 @@ class Lab
          * @private
          * @function
          */
-        _setMenuPopup ( )
+        _setMenuPopups (  )
         {
             let _menu    = document.querySelector ( '.menu_popup' );
 
-            let _scripts = this.scripts;
+            let _scripts = devSuite.getScripts ( );
 
             let _show    = ( _menu.style.display === 'none' );
 
@@ -561,6 +167,27 @@ class Lab
 
                         _menu.appendChild ( _li );
                 }
+        }
+
+        /**
+         * Gets menu popup item with the passed 'element' param
+         * @private
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _getMenuPopup ( element )
+        {
+            let _scripts = devSuite.getScripts ( );
+
+            let _script  = _scripts [ element.srcElement.innerHTML ];
+
+
+            this.loadScript ( _script );
+
+            this.runCode ( );
+
+
+            UI.toggle.labMenu ( );
         }
 
         /**
@@ -593,6 +220,7 @@ class Lab
             for ( let _div in _divs )
             {
                 let _center  = Math.floor ( ( _amount [ _div ] / 2 ) - 2 );
+
 
                 let _element = _divs [ _div ];
 
@@ -663,7 +291,7 @@ class Lab
             {
                 case 'menu':
 
-                    this._setMenuPopup ( );
+                    this._setMenuPopups ( );
 
 
                     let _menu   = document.querySelector    ( '#input-menu' );
@@ -676,18 +304,7 @@ class Lab
 
                     for ( let _popup of _popups )
 
-                        _popup.addEventListener ( 'click', ( element ) =>
-                            {
-                                let _script = this.scripts [ element.srcElement.innerHTML ];
-
-
-                                this.loadScript ( _script );
-
-                                this.runCode ( );
-
-
-                                UI.toggle.labMenu ( );
-                            } );
+                        _popup.addEventListener ( 'click', ( element ) => this._getMenuPopup ( element ) );
 
                 case 'ruler':
 
@@ -860,6 +477,58 @@ class Lab
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
 
         /**
+         * Cleans code of enumerators for ace-editor
+         * @private
+         * @function
+         * @param           {Function} script                   JavaScript function; for ace-editor only
+         * @return          {string}                            Function as a string
+         */
+        _cleanCode ( script )
+        {
+            let _code   = UI.clean.script ( script ).split ( /\n/g );
+
+                _code   = _code.slice ( 1 );
+
+            let _indent = 12;
+
+
+            for ( let _line in _code )
+
+                _code [ _line ] = _code [ _line ].substring ( _indent, _code [ _line ].length );
+
+
+            return _code.join ( '\n' );
+        }
+
+        /**
+         * Generates a downloadable file & initiates that download
+         * @private
+         * @function
+         * @param           {File} file                         File to download
+         */
+        _download ( file )
+        {
+            let _link = document.createElement ( 'a' );
+
+            let _url  = window.URL.createObjectURL ( file );
+
+                _link.href      = _url;
+
+                _link.download  = file.name
+
+
+            document.body.appendChild  ( _link );
+
+
+                _link.click ( );
+
+
+            document.body.removeChild  ( _link );
+
+            window.URL.revokeObjectURL ( _url  );
+        }
+
+        /**
          * Increment the value passed up (+) or down (-)
          * @private
          * @function
@@ -868,16 +537,6 @@ class Lab
          * @return          {number}                            Incremented value
          */
         _increment = ( value, up     ) => ( up ) ? Number ( value ) + 1 : Number ( value ) - 1;
-
-        /**
-         * Pad a string with a specified amount of zeros
-         * @private
-         * @function
-         * @param           {string|number} value               Value to pad
-         * @param           {number}        amount              Amount to pad
-         * @return          {string}                            Padded amount
-         */
-        _padZeros  = ( value, amount ) => String ( value ).padStart ( amount, '0' );
 
         /**
          * Increments a numeric selection from ace-editor up (+) or down (-)
@@ -929,6 +588,16 @@ class Lab
         }
 
         /**
+         * Pad a string with a specified amount of zeros
+         * @private
+         * @function
+         * @param           {string|number} value               Value to pad
+         * @param           {number}        amount              Amount to pad
+         * @return          {string}                            Padded amount
+         */
+        _padZeros  = ( value, amount ) => String ( value ).padStart ( amount, '0' );
+
+        /**
          * Swap rgb values between color-picker and ace-editor
          * @private
          * @function
@@ -970,58 +639,6 @@ class Lab
             else
 
                 console.warn ( '[ lab-station ]: no rgb value is present within selection !' );
-        }
-
-        /**
-         * Cleans code of enumerators for ace-editor
-         * @private
-         * @function
-         * @param           {Function} script                   JavaScript function; for ace-editor only
-         * @return          {string}                            Function as a string
-         */
-        _cleanCode ( script )
-        {
-            let _code   = UI.clean.script ( script ).split ( /\n/g );
-
-                _code   = _code.slice ( 1 );
-
-            let _indent = 12;
-
-
-            for ( let _line in _code )
-
-                _code [ _line ] = _code [ _line ].substring ( _indent, _code [ _line ].length );
-
-
-            return _code.join ( '\n' );
-        }
-
-        /**
-         * Generates a downloadable file & initiates that download
-         * @private
-         * @function
-         * @param           {File} file                         File to download
-         */
-        _download ( file )
-        {
-            let _link = document.createElement ( 'a' );
-
-            let _url  = window.URL.createObjectURL ( file );
-
-                _link.href      = _url;
-
-                _link.download  = file.name
-
-
-            document.body.appendChild  ( _link );
-
-
-                _link.click ( );
-
-
-            document.body.removeChild  ( _link );
-
-            window.URL.revokeObjectURL ( _url  );
         }
 
         /**
@@ -1095,6 +712,11 @@ class Lab
                 _context.clearRect ( 0, 0, _canvas.width, _canvas.height );
 
 
+            if ( false )
+
+                console.clear ( );
+
+
             eval ( _code );
         }
 
@@ -1115,9 +737,12 @@ class Lab
          * @public
          * @function
          */
-        init ( )
+        init ( script )
         {
-            this.loadScript ( this.scripts.animation2 );
+            if ( script )
+
+                this.loadScript ( script );
+
 
             this._setEventListeners ( );
         }

@@ -139,6 +139,11 @@ class canvasLab
 
     ////    UTILITIES   ////////////////////////////////////
 
+        get center ( )
+        {
+            return this.#application._center;
+        }
+
         /**
          * Animates onscreen objects in accordance with passed param values
          * @param           {Object}   flow                     Contains timing, draw, & duration values & functions

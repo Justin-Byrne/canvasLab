@@ -94,6 +94,9 @@
 <dt><a href="#Application">Application</a></dt>
 <dd><p>{Object}   Application                      Application handler</p>
 </dd>
+<dt><a href="#Queue">Queue</a></dt>
+<dd><p>{Object} Queue                              Queue object</p>
+</dd>
 </dl>
 
 ## Objects
@@ -1128,6 +1131,7 @@ Get font
     * [.center()](#Point+center) ⇒ [<code>Point</code>](#Point)
     * [.drawOptions(offset)](#Point+drawOptions)
     * [.invert()](#Point+invert)
+    * [.move(degree, distance)](#Point+move)
 
 <a name="new_Point_new"></a>
 
@@ -1235,6 +1239,19 @@ Invert x & y coordinate values
 
 **Kind**: instance method of [<code>Point</code>](#Point)  
 **Access**: public  
+<a name="Point+move"></a>
+
+### point.move(degree, distance)
+Move this object
+
+**Kind**: instance method of [<code>Point</code>](#Point)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| degree | <code>number</code> | Direction to move; in degrees |
+| distance | <code>number</code> | Distance to move |
+
 <a name="Stop"></a>
 
 ## Stop
@@ -2517,7 +2534,7 @@ Set master object
     * [.isThere(circle)](#Circle+isThere) ⇒ <code>boolean</code>
     * [.fillColorCycle(progress, start, end, [max])](#Circle+fillColorCycle)
     * [.gradientColorCycle(progress, start, end, stop, [max])](#Circle+gradientColorCycle)
-    * [.move(degree, distance, [clear])](#Circle+move)
+    * [.move(degree, distance, [draw], [clear])](#Circle+move)
     * [.rotate(degree, [clear])](#Circle+rotate)
     * [.showCoordinates([offset], [fontSize])](#Circle+showCoordinates)
     * [.strokeColorCycle(start, end, progress, [max])](#Circle+strokeColorCycle)
@@ -2765,7 +2782,7 @@ Cycle colors for gradient
 
 <a name="Circle+move"></a>
 
-### circle.move(degree, distance, [clear])
+### circle.move(degree, distance, [draw], [clear])
 Move this object
 
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
@@ -2775,7 +2792,8 @@ Move this object
 | --- | --- | --- | --- |
 | degree | <code>number</code> |  | Direction to move; in degrees |
 | distance | <code>number</code> |  | Distance to move |
-| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each movement |
+| [draw] | <code>boolean</code> | <code>false</code> | Draw post movement |
+| [clear] | <code>boolean</code> | <code>false</code> | Clear canvas during each movement |
 
 <a name="Circle+rotate"></a>
 
@@ -2882,7 +2900,7 @@ Redraw this object
     * [.curve(p0, p1, p2, p3)](#Line+curve)
     * [.drawPoints()](#Line+drawPoints)
     * [.fillColorCycle(progress, start, end, [max])](#Line+fillColorCycle)
-    * [.move(degree, distance, [clear])](#Line+move)
+    * [.move(degree, distance, [draw], [clear])](#Line+move)
     * [.rotate(degree, [anchor], [clear])](#Line+rotate)
     * [.showControlPoints([offset], [fontSize])](#Line+showControlPoints)
     * [.showCoordinates([offset], [fontSize])](#Line+showCoordinates)
@@ -3069,7 +3087,7 @@ Cycle colors for fill
 
 <a name="Line+move"></a>
 
-### line.move(degree, distance, [clear])
+### line.move(degree, distance, [draw], [clear])
 Move this object
 
 **Kind**: instance method of [<code>Line</code>](#Line)  
@@ -3079,7 +3097,8 @@ Move this object
 | --- | --- | --- | --- |
 | degree | <code>number</code> |  | Direction to move; in degrees |
 | distance | <code>number</code> |  | Distance to move |
-| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each movement |
+| [draw] | <code>boolean</code> | <code>false</code> | Draw post movement |
+| [clear] | <code>boolean</code> | <code>false</code> | Clear canvas during each movement |
 
 <a name="Line+rotate"></a>
 
@@ -3206,7 +3225,7 @@ Redraw this object
     * [.isThere(rectangle)](#Rectangle+isThere)
     * [.fillColorCycle(progress, start, end, [max])](#Rectangle+fillColorCycle)
     * [.gradientColorCycle(progress, start, end, stop, [max])](#Rectangle+gradientColorCycle)
-    * [.move(degree, distance, [clear])](#Rectangle+move)
+    * [.move(degree, distance, [draw], [clear])](#Rectangle+move)
     * [.rotate(degree, [clear])](#Rectangle+rotate)
     * [.strokeColorCycle(start, end, progress, [max])](#Rectangle+strokeColorCycle)
     * [.area()](#Rectangle+area) ⇒ <code>number</code>
@@ -3454,7 +3473,7 @@ Cycle colors for gradient
 
 <a name="Rectangle+move"></a>
 
-### rectangle.move(degree, distance, [clear])
+### rectangle.move(degree, distance, [draw], [clear])
 Move this object
 
 **Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
@@ -3464,7 +3483,8 @@ Move this object
 | --- | --- | --- | --- |
 | degree | <code>number</code> |  | Direction to move; in degrees |
 | distance | <code>number</code> |  | Distance to move |
-| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each movement |
+| [draw] | <code>boolean</code> | <code>false</code> | Draw post movement |
+| [clear] | <code>boolean</code> | <code>false</code> | Clear canvas during each movement |
 
 <a name="Rectangle+rotate"></a>
 
@@ -3579,7 +3599,7 @@ Draw this object
     * [.drawBorder([offset])](#Text+drawBorder)
     * [.drawAxis([offset])](#Text+drawAxis)
     * [.fillColorCycle(progress, start, end, [max])](#Text+fillColorCycle)
-    * [.move(degree, distance, [clear])](#Text+move)
+    * [.move(degree, distance, [draw], [clear])](#Text+move)
     * [.rotate(degree, [anchor], [clear])](#Text+rotate)
     * [.strokeColorCycle(start, end, progress, [max])](#Text+strokeColorCycle)
     * [.draw(canvas)](#Text+draw)
@@ -3896,7 +3916,7 @@ Cycle colors for fill
 
 <a name="Text+move"></a>
 
-### text.move(degree, distance, [clear])
+### text.move(degree, distance, [draw], [clear])
 Move this object
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
@@ -3906,7 +3926,8 @@ Move this object
 | --- | --- | --- | --- |
 | degree | <code>number</code> |  | Direction to move; in degrees |
 | distance | <code>number</code> |  | Distance to move |
-| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each movement |
+| [draw] | <code>boolean</code> | <code>false</code> | Draw post movement |
+| [clear] | <code>boolean</code> | <code>false</code> | Clear canvas during each movement |
 
 <a name="Text+rotate"></a>
 
@@ -4998,6 +5019,77 @@ Get application details
 **Kind**: instance method of [<code>Application</code>](#Application)  
 **Returns**: <code>Object</code> - Application details  
 **Read only**: true  
+<a name="Queue"></a>
+
+## Queue
+{Object} Queue                              Queue object
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| entries | <code>Array</code> |  | Array of entries |
+| [index] | <code>number</code> | <code>0</code> | Current index |
+| entry | <code>Object</code> |  | Current entry |
+
+
+* [Queue](#Queue)
+    * [new Queue()](#new_Queue_new)
+    * [.entries(value)](#Queue+entries)
+    * [.entries()](#Queue+entries) ⇒ <code>Array</code>
+    * [.entry()](#Queue+entry) ⇒ <code>Object</code>
+    * [.next()](#Queue+next) ⇒ <code>Object</code>
+    * [.reset()](#Queue+reset)
+
+<a name="new_Queue_new"></a>
+
+### new Queue()
+Create a Queue object
+
+<a name="Queue+entries"></a>
+
+### queue.entries(value)
+Set entries
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array</code> | Array of entries |
+
+<a name="Queue+entries"></a>
+
+### queue.entries() ⇒ <code>Array</code>
+Get entries
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Returns**: <code>Array</code> - Array of entries  
+**Access**: public  
+<a name="Queue+entry"></a>
+
+### queue.entry() ⇒ <code>Object</code>
+Get current entry
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Returns**: <code>Object</code> - Current entry  
+**Access**: public  
+<a name="Queue+next"></a>
+
+### queue.next() ⇒ <code>Object</code>
+Returns next entry; begins with [ 0 ], or first entry
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Returns**: <code>Object</code> - Next entry  
+**Access**: public  
+<a name="Queue+reset"></a>
+
+### queue.reset()
+Resets index to 0
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Access**: public  
 <a name="PROPERTY_BLOCKS"></a>
 
 ## PROPERTY\_BLOCKS : <code>object</code>

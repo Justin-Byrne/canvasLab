@@ -87,6 +87,7 @@ declare FOLDERS=(
     "${INPUT_FOLDER}/classes/Object/Collections"
     "${INPUT_FOLDER}/classes/Handlers/Properties"
     "${INPUT_FOLDER}/classes/Handlers"
+    "${INPUT_FOLDER}/classes/Data-Structures"
 )
 
 # ------------------------------------ #
@@ -99,7 +100,7 @@ declare FILES_FOOT=(
 ### GENERAL ########################################
 
 declare NO_ERRORS=true
-declare WITH_DOCUMENTS=false
+declare WITH_DOCUMENTS=true
 
 declare DATE=$(date +"%m-%d-%y")
 declare TIME=$(date +"%r")
@@ -409,6 +410,9 @@ function update_lead_js_file ()
 function update_lead_html_file ()
 {
     sed -r -i '' -e 's/'${VC_PACKAGE}'-v.+/'${VC_PACKAGE}'-v'${VERSION}'-min.js"><\/script>/' ${1}
+    sed -r -i '' -e 's/<[^>]*>[0-9].[0-9].[0-9].<[^>]*>/<span>'${VERSION}'<\/span>/' ${1}
+
+    # -e 's/<[^>]*>[0-9].[0-9].[0-9].<[^>]*>/<span>${VERSION}<\/span>/g'
 }
 
 function update_minified_js_preamble ()

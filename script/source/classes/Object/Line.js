@@ -525,9 +525,10 @@ class Line
          * @function
          * @param           {number}  degree                            Direction to move; in degrees
          * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [clear=true]                      Clear canvas during each movement
+         * @param           {boolean} [draw=false]                      Draw post movement
+         * @param           {boolean} [clear=false]                     Clear canvas during each movement
          */
-        move ( degree, distance, clear = true )
+        move ( degree, distance, draw = false, clear = false )
         {
             let _pointStart = this._rotatePoint ( { x: this.start.x, y: this.start.y }, degree, distance );
 
@@ -542,7 +543,9 @@ class Line
             this._clearCanvas ( clear );
 
 
-            this.draw ( );
+            if ( draw )
+
+                this.draw ( );
         }
 
         /**
