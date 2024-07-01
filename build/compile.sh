@@ -38,7 +38,7 @@ declare PLANT_OUTPUT=~/Programs/HTML5/canvasLab/docs/PlantUml
 
 ### MD2JSON ########################################
 
-declare MD2JSON_BUILD=~/Programs/Python/Md2Json/source/app
+declare MD2JSON_BUILD=~/Programs/Python/Markdown-to-json/source/app
 
 declare MD2JSON_SOURCE=~/Programs/HTML5/canvasLab/devSuite/docs/archive
 
@@ -81,12 +81,18 @@ declare FOLDERS=(
     "${INPUT_FOLDER}/classes/Subject/Staging"
     "${INPUT_FOLDER}/classes/Subject/Color/Gradient/Properties"
     "${INPUT_FOLDER}/classes/Subject/Color/Gradient"
+    "${INPUT_FOLDER}/classes/Subject/Plans"
     "${INPUT_FOLDER}/classes/Subject"
+
     "${INPUT_FOLDER}/classes/Subject/Collections"
+
     "${INPUT_FOLDER}/classes/Object"
+
     "${INPUT_FOLDER}/classes/Object/Collections"
+
     "${INPUT_FOLDER}/classes/Handlers/Properties"
     "${INPUT_FOLDER}/classes/Handlers"
+
     "${INPUT_FOLDER}/classes/Data-Structures"
 )
 
@@ -100,7 +106,7 @@ declare FILES_FOOT=(
 ### GENERAL ########################################
 
 declare NO_ERRORS=true
-declare WITH_DOCUMENTS=true
+declare WITH_DOCUMENTS=false
 
 declare DATE=$(date +"%m-%d-%y")
 declare TIME=$(date +"%r")
@@ -248,7 +254,7 @@ function compile_minified ()
 
     if command -v uglifyjs
     then
-        if $(uglifyjs ${OUTPUT} --source-map -o ${FILE_MIN} --compress --mangle reserved=['window']);
+        if $(uglifyjs ${OUTPUT} --source-map -o ${FILE_MIN} --compress --mangle reserved=['window','_instance']);
         then echo "." >/dev/null
         else
             NO_ERRORS=false

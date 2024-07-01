@@ -258,6 +258,19 @@
                     }
                 },
             ],
+            lines:
+            [
+                // draw
+                {
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _line.draw ( );
+                    }
+                },
+            ],
             circle:
             [
                 // draw
@@ -581,6 +594,19 @@
                     }
                 },
             ],
+            circles:
+            [
+                // draw
+                {
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _circle.draw ( );
+                    }
+                },
+            ],
             rectangle:
             [
                 // draw
@@ -846,6 +872,19 @@
                     {
                         _rectangle.options.border = true;
 
+                        _rectangle.draw ( );
+                    }
+                },
+            ],
+            rectangles:
+            [
+                // draw
+                {
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
                         _rectangle.draw ( );
                     }
                 },
@@ -1128,6 +1167,19 @@
                 //         _text.draw ( );
                 //     }
                 // },
+            ],
+            texts:
+            [
+                // draw
+                {
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _text.draw ( );
+                    }
+                },
             ],
         },
         subject:
@@ -3076,22 +3128,38 @@
                     title: 'Line',
                     group: 'Object'
                 },
+                // {
+                //     title: 'Lines',
+                //     group: 'Object'
+                // },
                 {
                     title: 'Circle',
                     group: 'Object'
                 },
+                // {
+                //     title: 'Circles',
+                //     group: 'Object'
+                // },
                 {
                     title: 'Rectangle',
                     group: 'Object'
                 },
+                // {
+                //     title: 'Rectangles',
+                //     group: 'Object'
+                // },
                 {
                     title: 'Text',
                     group: 'Object'
                 },
                 // {
-                //     title: 'Group',
+                //     title: 'Texts',
                 //     group: 'Object'
-                // }
+                // },
+                {
+                    title: 'Group',
+                    group: 'Object'
+                },
             ]
         },
         {
@@ -3140,6 +3208,16 @@
                                 },
                             ]
                         }
+                    ]
+                },
+                {
+                    title: 'Plans',
+                    links:
+                    [
+                        {
+                            title: 'SacredCircles',
+                            group: 'Subject'
+                        },
                     ]
                 },
                 {
@@ -3245,11 +3323,19 @@
     {
         circlesOfLife: ( ) =>
         {
-            ////    GLOBAL VARIABLES    ////////////////////
+            ////    INPUTS    //////////////////////////////
 
-            let _alpha        = 0.40;
+            let _center     = canvaslab.center;
 
-            let _colorValues  =
+            let _radius     = 25;
+
+            let _iterations = 15;
+
+            let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+            let _alpha      = 0.40;
+
+            let _colors     =
             [
                 new Rgb ( 255,  0,  255, _alpha ),      // Magenta
                 new Rgb (   0,  0,  255, _alpha ),      // Blue
@@ -3261,176 +3347,14 @@
                 new Rgb (   0,   0,   0, _alpha ),      // Black
             ]
 
-            let _degreeValues = [ 270, 150, 90, 30, 330, 270, 210 ];
+            ////    POPULATION    //////////////////////////
 
-            let _colors     = new Queue ( _colorValues  );
+            let _group      = new Group ( _center );
 
-            let _degrees    = new Queue ( _degreeValues );
+                _group.plan = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
 
-            let _center     = canvaslab.center;
-
-            ////    INPUTS    //////////////////////////////
-
-            let _multiplier = 1;
-
-            let _distance   = 25 * _multiplier;
-
-            let _reverse    = 1;
-
-            let _stroke     = 1;
-
-            let _fill       = 1;
-
-            let _iterations = 10;
-
-            let _circles    = new Array;
-
-
-            for ( let _i = 0; _i < _iterations; _i++ )
-            {
-                _degrees.reset;
-
-                ////    00    ////    270    /////////////////////////
-
-                let [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                // FOUNDATION STONE
-                for ( let _stone = 0; _stone < 1; _stone++ )
-                {
-                    let _circle = new Circle ( _center );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance * _i );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    01    ////    150    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                // FILLER STONES
-                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    02    ////     90    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    03    ////     30    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    04    ////    330    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    05    ////    270    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    06    ////    210    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                // KEYSTONE
-                for ( let _stone = 0; _stone <= ( _i - 2 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-            }
-
-
-            if ( _reverse )
-
-                _circles.reverse ( );
-
-
-            for ( let _circle of _circles )
-            {
-                _circle.draw ( );
-            }
-        }
+                _group.circles.draw ( );
+        },
     }
 
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
@@ -3478,9 +3402,14 @@
          */
         function _setLabMode ( )
         {
-            let _labButton = document.querySelector ( 'button.lab-station' );
+            let _labButton    = document.querySelector ( 'button.lab-station' );
 
-                _labButton.click ( );
+            let _clearConsole = document.querySelector ( '#input-clear' );
+
+
+                _labButton.click    ( );
+
+                _clearConsole.click ( );
 
 
             UI._toggle.navigation ( );

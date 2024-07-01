@@ -21,10 +21,9 @@ _is256      <color:gray>{boolean}</color>
 __ Utility __
 toCss       <color:gray>{string}</color>
 _cycle
-clear
-draw
 _lerp
 _lerpRgb
+fade
 }
 
 @enduml

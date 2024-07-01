@@ -1,0 +1,91 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class SacredCircles {
+point          {Point}
+[radius=25]    <color:gray>{number}</color>
+iterations     <color:gray>{number}</color>
+degrees        {Queue}
+colors         {Queue}
+master         {Object}
+__ Setter __
+point          {Point}
+radius         <color:gray>{number}</color>
+iterations     <color:gray>{number}</color>
+degrees        {Array}
+colors         {Array}
+_numbers       {Array}
+_tangents      <color:gray>{number}</color>
+__ Getter __
+point          {Point}
+radius         <color:gray>{number}</color>
+iterations     <color:gray>{number}</color>
+degrees        {Queue}
+colors         {Queue}
+master         {Object}
+totalObjects   <color:gray>{number}</color>
+__ Validation __
+_isNumber      <color:gray>{boolean}</color>
+_isPoint       <color:gray>{boolean}</color>
+__ Utility __
+_getTangents   {Array}
+init
+}
+
+SacredCircles o-- Point
+SacredCircles o-- Queue
+SacredCircles o-- Object
+SacredCircles o-- Array
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Point {
+[x=0]          <color:gray>{number}</color>
+[y=0]          <color:gray>{number}</color>
+options        {Options}
+__ Setter __
+x              <color:gray>{number}</color>
+y              <color:gray>{number}</color>
+canvas         <color:gray>{string}</color>
+__ Getter __
+x              <color:gray>{number}</color>
+y              <color:gray>{number}</color>
+canvas         <color:gray>{string}</color>
+options        {Options}
+center         {Point}
+__ Validation __
+_isAspect      <color:gray>{boolean}</color>
+_isInDom       <color:gray>{boolean}</color>
+__ Utility __
+_drawAxis
+_drawBorder
+_rotatePoint
+drawOptions
+invert
+move
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Queue {
+entries     {Array}
+[index=0]   <color:gray>{number}</color>
+entry       {Object}
+__ Setter __
+entries     {Array}
+__ Getter __
+entries     {Array}
+entry       {Object}
+next        {Object}
+reset
+}
+
+@enduml

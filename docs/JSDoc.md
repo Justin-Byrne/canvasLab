@@ -40,6 +40,9 @@
 <dt><a href="#Radial">Radial</a></dt>
 <dd><p>{Object} Radial                             Radial gradient object type and properties</p>
 </dd>
+<dt><a href="#SacredCircles">SacredCircles</a></dt>
+<dd><p>{Object} SacredCircles                      SacredCircles plan</p>
+</dd>
 <dt><a href="#Fill">Fill</a></dt>
 <dd><p>{Object}  Fill                              Fill container for various fill types</p>
 </dd>
@@ -1631,6 +1634,170 @@ Get color stops
 **Kind**: instance method of [<code>Radial</code>](#Radial)  
 **Returns**: [<code>Array.&lt;Stop&gt;</code>](#Stop) - Color stops  
 **Read only**: true  
+<a name="SacredCircles"></a>
+
+## SacredCircles
+{Object} SacredCircles                      SacredCircles plan
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| point | [<code>Point</code>](#Point) |  | X & Y axis coordinates |
+| [radius] | <code>number</code> | <code>25</code> | Radius of circle |
+| iterations | <code>number</code> |  | Amount of iterations |
+| degrees | [<code>Queue</code>](#Queue) |  | Degrees for generation |
+| colors | [<code>Queue</code>](#Queue) |  | Colors for generation |
+| master | <code>Object</code> |  | Master collection |
+
+
+* [SacredCircles](#SacredCircles)
+    * [new SacredCircles()](#new_SacredCircles_new)
+    * [.point(value)](#SacredCircles+point)
+    * [.point()](#SacredCircles+point) ⇒ [<code>Point</code>](#Point)
+    * [.radius(value)](#SacredCircles+radius)
+    * [.radius()](#SacredCircles+radius) ⇒ <code>number</code>
+    * [.iterations(value)](#SacredCircles+iterations)
+    * [.iterations()](#SacredCircles+iterations) ⇒ <code>number</code>
+    * [.degrees(value)](#SacredCircles+degrees)
+    * [.degrees()](#SacredCircles+degrees) ⇒ [<code>Queue</code>](#Queue)
+    * [.colors(value)](#SacredCircles+colors)
+    * [.colors()](#SacredCircles+colors) ⇒ [<code>Queue</code>](#Queue)
+    * [.master()](#SacredCircles+master) ⇒ <code>Object</code>
+    * [.totalObjects()](#SacredCircles+totalObjects) ⇒ <code>number</code>
+    * [.init()](#SacredCircles+init)
+
+<a name="new_SacredCircles_new"></a>
+
+### new SacredCircles()
+Create a SacredCircles plan
+
+<a name="SacredCircles+point"></a>
+
+### sacredCircles.point(value)
+Set point
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Access**: public  
+**See**: [point](#discrete.point)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | X & Y coordinates |
+
+<a name="SacredCircles+point"></a>
+
+### sacredCircles.point() ⇒ [<code>Point</code>](#Point)
+Get point
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Returns**: [<code>Point</code>](#Point) - X & Y coordinates  
+**Access**: public  
+**See**: [point](#discrete.point)  
+<a name="SacredCircles+radius"></a>
+
+### sacredCircles.radius(value)
+Set radius value
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Radius of circle |
+
+<a name="SacredCircles+radius"></a>
+
+### sacredCircles.radius() ⇒ <code>number</code>
+Get radius value
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Returns**: <code>number</code> - Radius of circle  
+**Read only**: true  
+<a name="SacredCircles+iterations"></a>
+
+### sacredCircles.iterations(value)
+Set iterations value
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Number of iterations |
+
+<a name="SacredCircles+iterations"></a>
+
+### sacredCircles.iterations() ⇒ <code>number</code>
+Get iterations value
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Returns**: <code>number</code> - Number of iterations  
+**Read only**: true  
+<a name="SacredCircles+degrees"></a>
+
+### sacredCircles.degrees(value)
+Set degrees value
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array</code> | Array of degrees |
+
+<a name="SacredCircles+degrees"></a>
+
+### sacredCircles.degrees() ⇒ [<code>Queue</code>](#Queue)
+Get degrees value
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Returns**: [<code>Queue</code>](#Queue) - Queue of degrees  
+**Read only**: true  
+<a name="SacredCircles+colors"></a>
+
+### sacredCircles.colors(value)
+Set colors value
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array</code> | Array of colors |
+
+<a name="SacredCircles+colors"></a>
+
+### sacredCircles.colors() ⇒ [<code>Queue</code>](#Queue)
+Get colors value
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Returns**: [<code>Queue</code>](#Queue) - Queue of colors  
+**Read only**: true  
+<a name="SacredCircles+master"></a>
+
+### sacredCircles.master() ⇒ <code>Object</code>
+Get master collection
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Returns**: <code>Object</code> - Master collection  
+**Access**: public  
+<a name="SacredCircles+totalObjects"></a>
+
+### sacredCircles.totalObjects() ⇒ <code>number</code>
+Get total objects
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Returns**: <code>number</code> - Total objects  
+**Access**: public  
+<a name="SacredCircles+init"></a>
+
+### sacredCircles.init()
+Sets this plan
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Access**: public  
 <a name="Fill"></a>
 
 ## Fill
@@ -2899,7 +3066,6 @@ Redraw this object
     * [.isThere(line)](#Line+isThere)
     * [.curve(p0, p1, p2, p3)](#Line+curve)
     * [.drawPoints()](#Line+drawPoints)
-    * [.fillColorCycle(progress, start, end, [max])](#Line+fillColorCycle)
     * [.move(degree, distance, [draw], [clear])](#Line+move)
     * [.rotate(degree, [anchor], [clear])](#Line+rotate)
     * [.showControlPoints([offset], [fontSize])](#Line+showControlPoints)
@@ -3069,22 +3235,6 @@ Draws start & end points
 
 **Kind**: instance method of [<code>Line</code>](#Line)  
 **Access**: public  
-<a name="Line+fillColorCycle"></a>
-
-### line.fillColorCycle(progress, start, end, [max])
-Cycle colors for fill
-
-**Kind**: instance method of [<code>Line</code>](#Line)  
-**Access**: public  
-**See**: [Utilities.color.cycle.fill](Utilities.color.cycle.fill)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
-| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
-| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
-| [max] | <code>number</code> | <code>1</code> | Maximum increments |
-
 <a name="Line+move"></a>
 
 ### line.move(degree, distance, [draw], [clear])
@@ -3995,8 +4145,10 @@ Draw this object
     * [.y()](#Circles+y) ⇒ <code>number</code>
     * [.canvas(value)](#Circles+canvas)
     * [.canvas()](#Circles+canvas) ⇒ <code>string</code>
+    * [.endPoint()](#Circles+endPoint) ⇒ [<code>Point</code>](#Point)
     * [.pushPop(object)](#Circles+pushPop)
     * [.draw(canvas)](#Circles+draw)
+    * [.redraw(canvas, point, [clear])](#Circles+redraw)
 
 <a name="new_Circles_new"></a>
 
@@ -4085,6 +4237,14 @@ Get canvas value
 **Returns**: <code>string</code> - Canvas id  
 **Read only**: true  
 **See**: [canvas](#combined.canvas)  
+<a name="Circles+endPoint"></a>
+
+### circles.endPoint() ⇒ [<code>Point</code>](#Point)
+Returns the last Point within this Array
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Returns**: [<code>Point</code>](#Point) - Last Array element's X & Y Coordinates  
+**Access**: public  
 <a name="Circles+pushPop"></a>
 
 ### circles.pushPop(object)
@@ -4105,11 +4265,25 @@ Typical draw function for collections; Circles, Texts
 
 **Kind**: instance method of [<code>Circles</code>](#Circles)  
 **Access**: public  
-**See**: [typical](#UTILITIES.draw.collection.typical)  
+**See**: [UTILITIES.draw.collection.typical](UTILITIES.draw.collection.typical)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | canvas | <code>string</code> | Canvas Id |
+
+<a name="Circles+redraw"></a>
+
+### circles.redraw(canvas, point, [clear])
+Redraw this object
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| canvas | <code>string</code> |  | Canvas Id |
+| point | [<code>Point</code>](#Point) |  | Point of new location |
+| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
 
 <a name="Group"></a>
 
@@ -4141,8 +4315,6 @@ Typical draw function for collections; Circles, Texts
     * [.canvas()](#Group+canvas) ⇒ <code>string</code>
     * [.push(object)](#Group+push)
     * [.pop(object)](#Group+pop)
-    * [.drawLines(canvas)](#Group+drawLines)
-    * [.drawShapes(canvas)](#Group+drawShapes)
     * [.draw(canvas)](#Group+draw)
 
 <a name="new_Group_new"></a>
@@ -4256,32 +4428,6 @@ Pops an object out of this group
 | --- | --- | --- |
 | object | <code>Object</code> | Object; Line(s), Circle(s), Rectangle(S) |
 
-<a name="Group+drawLines"></a>
-
-### group.drawLines(canvas)
-A-typical draw function for collections; Lines
-
-**Kind**: instance method of [<code>Group</code>](#Group)  
-**Access**: public  
-**See**: [Utilities.draw.aTypical](Utilities.draw.aTypical)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| canvas | <code>string</code> | Canvas Id |
-
-<a name="Group+drawShapes"></a>
-
-### group.drawShapes(canvas)
-Typical draw function for collections; Circles, Rectangles, Texts
-
-**Kind**: instance method of [<code>Group</code>](#Group)  
-**Access**: public  
-**See**: [Utilities.draw.typical](Utilities.draw.typical)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| canvas | <code>string</code> | Canvas Id |
-
 <a name="Group+draw"></a>
 
 ### group.draw(canvas)
@@ -4335,13 +4481,15 @@ Draw this group
     * [.perimeter()](#Lines+perimeter) ⇒ <code>number</code>
     * [.center()](#Lines+center) ⇒ [<code>Point</code>](#Point)
     * [._isAspect(value)](#Lines+_isAspect) ⇒ <code>boolean</code>
+    * [.endPoint()](#Lines+endPoint) ⇒ [<code>Point</code>](#Point)
     * [.push()](#Lines+push)
     * [.draw(canvas)](#Lines+draw)
+    * [.redraw(canvas, point, [clear])](#Lines+redraw)
 
 <a name="new_Lines_new"></a>
 
 ### new Lines()
-Create a lines array
+Create a Lines object
 
 <a name="Lines+point"></a>
 
@@ -4557,6 +4705,14 @@ Returns whether the passed value is an Aspect
 | --- | --- | --- |
 | value | <code>Object</code> | Aspect or object equivalent |
 
+<a name="Lines+endPoint"></a>
+
+### lines.endPoint() ⇒ [<code>Point</code>](#Point)
+Returns the last Point within this Array
+
+**Kind**: instance method of [<code>Lines</code>](#Lines)  
+**Returns**: [<code>Point</code>](#Point) - Last Array element's X & Y Coordinates  
+**Access**: public  
 <a name="Lines+push"></a>
 
 ### lines.push()
@@ -4576,6 +4732,20 @@ A-typical draw function for collections; Lines
 | Param | Type | Description |
 | --- | --- | --- |
 | canvas | <code>string</code> | Canvas Id |
+
+<a name="Lines+redraw"></a>
+
+### lines.redraw(canvas, point, [clear])
+Redraw this object
+
+**Kind**: instance method of [<code>Lines</code>](#Lines)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| canvas | <code>string</code> |  | Canvas Id |
+| point | [<code>Point</code>](#Point) |  | Point of new location |
+| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
 
 <a name="Rectangles"></a>
 
@@ -4601,8 +4771,10 @@ A-typical draw function for collections; Lines
     * [.x()](#Rectangles+x) ⇒ <code>number</code>
     * [.y(value)](#Rectangles+y)
     * [.y()](#Rectangles+y) ⇒ <code>number</code>
+    * [.endPoint()](#Rectangles+endPoint) ⇒ [<code>Point</code>](#Point)
     * [.pushPop(object)](#Rectangles+pushPop)
     * [.draw(canvas)](#Rectangles+draw)
+    * [.redraw(canvas, point, [clear])](#Rectangles+redraw)
 
 <a name="new_Rectangles_new"></a>
 
@@ -4695,6 +4867,14 @@ Get y-axis value
 **Returns**: <code>number</code> - Y coordinate value  
 **Read only**: true  
 **See**: [pointY](#discrete.pointY)  
+<a name="Rectangles+endPoint"></a>
+
+### rectangles.endPoint() ⇒ [<code>Point</code>](#Point)
+Returns the last Point within this Array
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: [<code>Point</code>](#Point) - Last Array element's X & Y Coordinates  
+**Access**: public  
 <a name="Rectangles+pushPop"></a>
 
 ### rectangles.pushPop(object)
@@ -4720,6 +4900,20 @@ Draw this object
 | --- | --- | --- |
 | canvas | <code>string</code> | Canvas Id |
 
+<a name="Rectangles+redraw"></a>
+
+### rectangles.redraw(canvas, point, [clear])
+Redraw this object
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| canvas | <code>string</code> |  | Canvas Id |
+| point | [<code>Point</code>](#Point) |  | Point of new location |
+| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
+
 <a name="Texts"></a>
 
 ## Texts
@@ -4743,8 +4937,10 @@ Draw this object
     * [.y()](#Texts+y) ⇒ <code>number</code>
     * [.canvas(value)](#Texts+canvas)
     * [.canvas()](#Texts+canvas) ⇒ <code>string</code>
+    * [.endPoint()](#Texts+endPoint) ⇒ [<code>Point</code>](#Point)
     * [.pushPop(object)](#Texts+pushPop)
     * [.draw(canvas)](#Texts+draw)
+    * [.redraw(canvas, point, [clear])](#Texts+redraw)
 
 <a name="Texts+point"></a>
 
@@ -4828,6 +5024,14 @@ Get canvas value
 **Returns**: <code>string</code> - Canvas id  
 **Read only**: true  
 **See**: [canvas](#combined.canvas)  
+<a name="Texts+endPoint"></a>
+
+### texts.endPoint() ⇒ [<code>Point</code>](#Point)
+Returns the last Point within this Array
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Returns**: [<code>Point</code>](#Point) - Last Array element's X & Y Coordinates  
+**Access**: public  
 <a name="Texts+pushPop"></a>
 
 ### texts.pushPop(object)
@@ -4848,11 +5052,25 @@ Typical draw function for collections; Circles, Texts
 
 **Kind**: instance method of [<code>Texts</code>](#Texts)  
 **Access**: public  
-**See**: [typical](#UTILITIES.draw.collection.typical)  
+**See**: [UTILITIES.draw.collection.typical](UTILITIES.draw.collection.typical)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | canvas | <code>string</code> | Canvas Id |
+
+<a name="Texts+redraw"></a>
+
+### texts.redraw(canvas, point, [clear])
+Redraw this object
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| canvas | <code>string</code> |  | Canvas Id |
+| point | [<code>Point</code>](#Point) |  | Point of new location |
+| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
 
 <a name="Animation"></a>
 
@@ -5129,8 +5347,8 @@ Shared utility functions
             * [.stop(start, end, progress, stop, max, clear, draw)](#UTILITIES.color.cycle.stop)
     * [.draw()](#UTILITIES.draw)
         * [.collection](#UTILITIES.draw.collection)
-            * [.typical(canvas)](#UTILITIES.draw.collection.typical)
-            * [.aTypical(canvas)](#UTILITIES.draw.collection.aTypical)
+            * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
+            * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
         * [.axis(offset, color, stop)](#UTILITIES.draw.axis)
         * [.border(aspect, color)](#UTILITIES.draw.border)
     * [.misc()](#UTILITIES.misc)
@@ -5139,8 +5357,8 @@ Shared utility functions
         * [.rotatePoint(origin, degree, distance)](#UTILITIES.misc.rotatePoint)
     * [.draw()](#UTILITIES.draw)
         * [.collection](#UTILITIES.draw.collection)
-            * [.typical(canvas)](#UTILITIES.draw.collection.typical)
-            * [.aTypical(canvas)](#UTILITIES.draw.collection.aTypical)
+            * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
+            * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
         * [.axis(offset, color, stop)](#UTILITIES.draw.axis)
         * [.border(aspect, color)](#UTILITIES.draw.border)
 
@@ -5244,8 +5462,8 @@ Utility draw functions
 
 * [.draw()](#UTILITIES.draw)
     * [.collection](#UTILITIES.draw.collection)
-        * [.typical(canvas)](#UTILITIES.draw.collection.typical)
-        * [.aTypical(canvas)](#UTILITIES.draw.collection.aTypical)
+        * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
+        * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
     * [.axis(offset, color, stop)](#UTILITIES.draw.axis)
     * [.border(aspect, color)](#UTILITIES.draw.border)
 
@@ -5257,13 +5475,13 @@ Utility draw collection functions
 **Kind**: static property of [<code>draw</code>](#UTILITIES.draw)  
 
 * [.collection](#UTILITIES.draw.collection)
-    * [.typical(canvas)](#UTILITIES.draw.collection.typical)
-    * [.aTypical(canvas)](#UTILITIES.draw.collection.aTypical)
+    * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
+    * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
 
-<a name="UTILITIES.draw.collection.typical"></a>
+<a name="UTILITIES.draw.collection.twoDimensional"></a>
 
-##### collection.typical(canvas)
-Typical draw function for collections; Circles, Rectangles, Texts
+##### collection.twoDimensional(canvas)
+Two dimensional draw function for collections; Circles, Rectangles, Texts
 
 **Kind**: static method of [<code>collection</code>](#UTILITIES.draw.collection)  
 **Access**: public  
@@ -5272,10 +5490,10 @@ Typical draw function for collections; Circles, Rectangles, Texts
 | --- | --- | --- |
 | canvas | <code>string</code> | Canvas Id |
 
-<a name="UTILITIES.draw.collection.aTypical"></a>
+<a name="UTILITIES.draw.collection.oneDimensional"></a>
 
-##### collection.aTypical(canvas)
-A-typical draw function for collections; Lines
+##### collection.oneDimensional(canvas)
+One dimensional draw function for collections; Lines
 
 **Kind**: static method of [<code>collection</code>](#UTILITIES.draw.collection)  
 **Access**: public  
@@ -5370,8 +5588,8 @@ Utility draw collection functions
 
 * [.draw()](#UTILITIES.draw)
     * [.collection](#UTILITIES.draw.collection)
-        * [.typical(canvas)](#UTILITIES.draw.collection.typical)
-        * [.aTypical(canvas)](#UTILITIES.draw.collection.aTypical)
+        * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
+        * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
     * [.axis(offset, color, stop)](#UTILITIES.draw.axis)
     * [.border(aspect, color)](#UTILITIES.draw.border)
 
@@ -5383,13 +5601,13 @@ Utility draw collection functions
 **Kind**: static property of [<code>draw</code>](#UTILITIES.draw)  
 
 * [.collection](#UTILITIES.draw.collection)
-    * [.typical(canvas)](#UTILITIES.draw.collection.typical)
-    * [.aTypical(canvas)](#UTILITIES.draw.collection.aTypical)
+    * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
+    * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
 
-<a name="UTILITIES.draw.collection.typical"></a>
+<a name="UTILITIES.draw.collection.twoDimensional"></a>
 
-##### collection.typical(canvas)
-Typical draw function for collections; Circles, Rectangles, Texts
+##### collection.twoDimensional(canvas)
+Two dimensional draw function for collections; Circles, Rectangles, Texts
 
 **Kind**: static method of [<code>collection</code>](#UTILITIES.draw.collection)  
 **Access**: public  
@@ -5398,10 +5616,10 @@ Typical draw function for collections; Circles, Rectangles, Texts
 | --- | --- | --- |
 | canvas | <code>string</code> | Canvas Id |
 
-<a name="UTILITIES.draw.collection.aTypical"></a>
+<a name="UTILITIES.draw.collection.oneDimensional"></a>
 
-##### collection.aTypical(canvas)
-A-typical draw function for collections; Lines
+##### collection.oneDimensional(canvas)
+One dimensional draw function for collections; Lines
 
 **Kind**: static method of [<code>collection</code>](#UTILITIES.draw.collection)  
 **Access**: public  
@@ -5461,6 +5679,7 @@ Shared validation functions
     * [.isGradient(value)](#VALIDATION.isGradient) ⇒ <code>boolean</code>
     * [.isInDom(value)](#VALIDATION.isInDom) ⇒ <code>boolean</code>
     * [.isNumber(value)](#VALIDATION.isNumber) ⇒ <code>boolean</code>
+    * [.isPlan(value)](#VALIDATION.isPlan) ⇒ <code>boolean</code>
     * [.isPoint(value)](#VALIDATION.isPoint) ⇒ <code>boolean</code>
     * [.isRadian(value)](#VALIDATION.isRadian) ⇒ <code>boolean</code>
     * [.isRadius(value)](#VALIDATION.isRadius) ⇒ <code>boolean</code>
@@ -5468,6 +5687,8 @@ Shared validation functions
     * [.isStop(value)](#VALIDATION.isStop) ⇒ <code>boolean</code>
     * [.isStrokeType(value)](#VALIDATION.isStrokeType) ⇒ <code>boolean</code>
     * [.isWidth(value)](#VALIDATION.isWidth) ⇒ <code>boolean</code>
+    * [.Group#_isPlan(value)](#VALIDATION.Group+_isPlan) ⇒ <code>boolean</code>
+    * [.Lines#isCanvasLabObject(value)](#VALIDATION.Lines+isCanvasLabObject) ⇒ <code>boolean</code>
 
 <a name="VALIDATION.is256"></a>
 
@@ -5677,6 +5898,19 @@ Returns whether the passed value is a Number value
 | --- | --- | --- |
 | value | <code>number</code> | Number value |
 
+<a name="VALIDATION.isPlan"></a>
+
+### VALIDATION.isPlan(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a Plan
+
+**Kind**: static method of [<code>VALIDATION</code>](#VALIDATION)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | Plan object |
+
 <a name="VALIDATION.isPoint"></a>
 
 ### VALIDATION.isPoint(value) ⇒ <code>boolean</code>
@@ -5767,6 +6001,34 @@ Returns whether the passed value is a width value
 | Param | Type | Description |
 | --- | --- | --- |
 | value | <code>number</code> | Width value |
+
+<a name="VALIDATION.Group+_isPlan"></a>
+
+### VALIDATION.Group#\_isPlan(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a Plan
+
+**Kind**: static method of [<code>VALIDATION</code>](#VALIDATION)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+**See**: [Validation.isPlan](Validation.isPlan)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | Plan object |
+
+<a name="VALIDATION.Lines+isCanvasLabObject"></a>
+
+### VALIDATION.Lines#isCanvasLabObject(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
+
+**Kind**: static method of [<code>VALIDATION</code>](#VALIDATION)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+**See**: [Validation.isCanvasLabObject](Validation.isCanvasLabObject)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | CanvasLab object; Line, Circle, Rectangle, Text |
 
 <a name="DEBUG"></a>
 

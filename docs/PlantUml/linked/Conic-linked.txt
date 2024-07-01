@@ -33,27 +33,29 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Point {
-[x=0]         <color:gray>{number}</color>
-[y=0]         <color:gray>{number}</color>
-options       {Options}
+[x=0]          <color:gray>{number}</color>
+[y=0]          <color:gray>{number}</color>
+options        {Options}
 __ Setter __
-x             <color:gray>{number}</color>
-y             <color:gray>{number}</color>
-canvas        <color:gray>{string}</color>
+x              <color:gray>{number}</color>
+y              <color:gray>{number}</color>
+canvas         <color:gray>{string}</color>
 __ Getter __
-x             <color:gray>{number}</color>
-y             <color:gray>{number}</color>
-canvas        <color:gray>{string}</color>
-options       {Options}
-center        {Point}
+x              <color:gray>{number}</color>
+y              <color:gray>{number}</color>
+canvas         <color:gray>{string}</color>
+options        {Options}
+center         {Point}
 __ Validation __
-_isAspect
-_isInDom
+_isAspect      <color:gray>{boolean}</color>
+_isInDom       <color:gray>{boolean}</color>
 __ Utility __
-_drawBorder
 _drawAxis
+_drawBorder
+_rotatePoint
 drawOptions
 invert
+move
 }
 
 

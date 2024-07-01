@@ -10,6 +10,18 @@ const PROPERTY_BLOCKS =
      */
     discrete:
     {
+        /** @var            {Object} discrete.alpha                                                 **/
+        alpha:
+        {
+            set ( value )
+            {
+                this._alpha = ( value <= 1  &&  value >= 0 ) ? value : this._alpha;
+            },
+            get ( )
+            {
+                return this._alpha;
+            }
+        },
         /** @var            {Object} discrete.canvas                                                **/
         canvas:
         {
@@ -104,15 +116,16 @@ const PROPERTY_BLOCKS =
                 return this._point.y;
             }
         },
-        alpha:
+        /** @var            {Object} discrete.radius                                                **/
+        radius:
         {
             set ( value )
             {
-                this._alpha = ( value <= 1  &&  value >= 0 ) ? value : this._alpha;
+                this._radius = ( typeof value === 'number' && value > 0 ) ? value : this._radius;
             },
             get ( )
             {
-                return this._alpha;
+                return this._radius;
             }
         },
     },
@@ -132,7 +145,11 @@ const PROPERTY_BLOCKS =
 
                                                ? document.getElementById ( value ).getContext ( '2d' )
 
-                                               : console.warn ( `"${value}" is not a valid DOM element !` )
+                                               : ( this._isCanvasLabObject ( value ) )
+
+                                                     ? null
+
+                                                     : console.warn ( `"${value}" is not a valid DOM element !` )
 
                                          : ( document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' ) )
 

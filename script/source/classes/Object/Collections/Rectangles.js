@@ -25,9 +25,8 @@ class Rectangles extends Array
             this._isInDom = VALIDATION.isInDom;
             this._isPoint = VALIDATION.isPoint;
 
-            this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
-            this.fillColorCycle     = UTILITIES.color.cycle.fill;
-            this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this._clearCanvas       = UTILITIES.misc.clearCanvas;
+            this.draw               = UTILITIES.draw.collection.twoDimensional;
             this.pushPop            = UTILITIES.pushPop;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
@@ -130,6 +129,17 @@ class Rectangles extends Array
     ////    UTILITIES   ////////////////////////////////////
 
         /**
+         * Returns the last Point within this Array
+         * @public
+         * @function
+         * @return          {Point}                                     Last Array element's X & Y Coordinates
+         */
+        get endPoint ( )
+        {
+            return this [ this.length - 1 ].point;
+        }
+
+        /**
          * Push or pops the passed object
          * @public
          * @function
@@ -146,23 +156,24 @@ class Rectangles extends Array
          * @function
          * @param           {string} canvas                             Canvas Id
          */
-        draw ( canvas )
+        draw ( ) { }
+
+        /**
+         * Redraw this object
+         * @public
+         * @function
+         * @param           {string}  canvas                            Canvas Id
+         * @param           {Point}   point                             Point of new location
+         * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         */
+        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
         {
-            if ( canvas != undefined ) this.canvas = canvas;
+            [ this.x, this.y ] = [ point.x, point.y ]
 
 
-            if ( this.length > 0 )
+            this._clearCanvas ( clear );
 
-                for ( let _rectangle of this )
-                {
-                    _rectangle.x += this.x;
-                    _rectangle.y += this.y;
 
-                    _rectangle.draw ( );
-                }
-
-            else
-
-                console.warn ( `No ${this.constructor.name} exist to draw !` );
+            this.draw ( canvas );
         }
 }

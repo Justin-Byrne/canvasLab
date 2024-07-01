@@ -10,35 +10,34 @@
 class Group extends Array
 {
     _point      = new Point;
+    _canvas     = undefined;
+    _plan       = undefined;
 
     _lines      = new Lines;
     _circles    = new Circles;
     _rectangles = new Rectangles;
-    _text       = new Texts;
-
-    _canvas     = undefined;
+    _texts      = new Texts;
 
     /**
      * Create Group object
      * @property        {Point}             point                   X & Y axis coordinates
      * @property        {HTMLCanvasElement} canvas                  Canvas Id
      */
-    constructor ( point = { x: undefined, y: undefined }, canvas )
+    constructor ( point = { x: undefined, y: undefined }, canvas, plan )
     {
         super ( );
 
         ////    COMPOSITION     ////////////////////////////
 
             this._isInDom = VALIDATION.isInDom;
+            this._isPlan  = VALIDATION.isPlan;
             this._isPoint = VALIDATION.isPoint;
-
-            this.drawLines  = UTILITIES.draw.aTypicalCollection;
-            this.drawShapes = UTILITIES.draw.typicalCollection;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.point  = point;
         this.canvas = canvas;
+        this.plan   = plan;
     }
 
     ////    [ POINT ]   ////////////////////////////////////
@@ -117,6 +116,52 @@ class Group extends Array
          */
         get canvas ( ) { }
 
+    ////    [ PLAN ]  //////////////////////////////////////
+
+        set plan ( value )
+        {
+            if ( this._isPlan ( value ) )
+            {
+                [ this._plan, this._plan._master ] = [ value, this ];
+
+
+                this._plan.init ( );
+            }
+        }
+
+        get plan ( )
+        {
+            return this._plan;
+        }
+
+    ////    [ LINES ]    ///////////////////////////////////
+
+        get lines ( )
+        {
+            return this._lines;
+        }
+
+    ////    [ CIRCLES ]    /////////////////////////////////
+
+        get circles ( )
+        {
+            return this._circles;
+        }
+
+    ////    [ RECTANGLES ]    //////////////////////////////
+
+        get rectangles ( )
+        {
+            return this._rectangles;
+        }
+
+    ////    [ TEXTS ]    ///////////////////////////////////
+
+        get texts ( )
+        {
+            return this._texts;
+        }
+
     ////    VALIDATION  ////////////////////////////////////
 
         /**
@@ -127,7 +172,18 @@ class Group extends Array
          * @return          {boolean}                                   True || False
          * @see             {@link Validation.isInDom}
          */
-        _isInDom  ( ) { }
+        _isInDom ( ) { }
+
+        /**
+         * Returns whether the passed value is a Plan
+         * @public
+         * @memberof VALIDATION
+         * @function
+         * @param           {Object} value                              Plan object
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPlan}
+         */
+        _isPlan   ( ) { }
 
         /**
          * Returns whether the passed value is a Point
@@ -137,7 +193,7 @@ class Group extends Array
          * @return          {boolean}                                   True || False
          * @see             {@link Validation.isPoint}
          */
-        _isPoint  ( ) { }
+        _isPoint ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
@@ -216,24 +272,6 @@ class Group extends Array
     ////    DRAW    ////////////////////////////////////////
 
         /**
-         * A-typical draw function for collections; Lines
-         * @public
-         * @function
-         * @param           {string} canvas                             Canvas Id
-         * @see             {@link Utilities.draw.aTypical}
-         */
-        drawLines  ( ) { }
-
-        /**
-         * Typical draw function for collections; Circles, Rectangles, Texts
-         * @public
-         * @function
-         * @param           {string} canvas                             Canvas Id
-         * @see             {@link Utilities.draw.typical}
-         */
-        drawShapes ( ) { }
-
-        /**
          * Draw this group
          * @public
          * @function
@@ -244,12 +282,51 @@ class Group extends Array
             if ( canvas != undefined ) this.canvas = canvas;
 
 
-            ( this.lines.length      > 0 ) ? this.drawLines  ( canvas ) : console.warn ( `No ${this.constructor.name} exist to draw !` );
+            ////    LINES    ///////////////////////////////
 
-            ( this.circles.length    > 0 ) ? this.drawShapes ( canvas ) : console.warn ( `No ${this.constructor.name} exist to draw !` );
+                if ( this.lines.length > 0 )
 
-            ( this.rectangles.length > 0 ) ? this.drawShapes ( canvas ) : console.warn ( `No ${this.constructor.name} exist to draw !` );
+                    for ( let _line of this.lines )
 
-            ( this.texts.length      > 0 ) ? this.drawShapes ( canvas ) : console.warn ( `No ${this.constructor.name} exist to draw !` );
+                        _line.draw ( );
+                else
+
+                    console.warn ( `No ${this.constructor.name} exist to draw !` );
+
+            ////    CIRCLES    /////////////////////////////
+
+                if ( this.circles.length > 0 )
+
+                    for ( let _circle of this.circles )
+
+                        _circle.draw ( );
+
+                else
+
+                    console.warn ( `No ${this.constructor.name} exist to draw !` );
+
+            ////    RECTANGLES    //////////////////////////
+
+                if ( this.rectangles.length > 0 )
+
+                    for ( let _rectangle of this.rectangles )
+
+                        _rectangle.draw ( );
+
+                else
+
+                    console.warn ( `No ${this.constructor.name} exist to draw !` );
+
+            ////    TEXTS    ///////////////////////////////
+
+                if ( this.texts.length > 0 )
+
+                    for ( let _text of this.texts )
+
+                        _text.draw ( );
+
+                else
+
+                    console.warn ( `No ${this.constructor.name} exist to draw !` );
         }
 }

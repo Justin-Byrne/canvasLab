@@ -24,10 +24,8 @@ class Circles extends Array
             this._isInDom = VALIDATION.isInDom;
             this._isPoint = VALIDATION.isPoint;
 
-            this.draw               = UTILITIES.draw.collection.typical;
-            this.fillColorCycle     = UTILITIES.color.cycle.fill;
-            this.gradientColorCycle = UTILITIES.color.cycle.gradient;
-            this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
+            this._clearCanvas       = UTILITIES.misc.clearCanvas;
+            this.draw               = UTILITIES.draw.collection.twoDimensional;
             this.pushPop            = UTILITIES.misc.pushPop;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
@@ -35,7 +33,7 @@ class Circles extends Array
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
 
-        this.point = point;
+        this.point  = point;
         this.canvas = canvas;
     }
 
@@ -135,6 +133,17 @@ class Circles extends Array
     ////    UTILITIES   ////////////////////////////////////
 
         /**
+         * Returns the last Point within this Array
+         * @public
+         * @function
+         * @return          {Point}                                     Last Array element's X & Y Coordinates
+         */
+        get endPoint ( )
+        {
+            return this [ this.length - 1 ].point;
+        }
+
+        /**
          * Push or pops the passed object
          * @public
          * @function
@@ -153,4 +162,23 @@ class Circles extends Array
          * @see             {@link UTILITIES.draw.collection.typical}
          */
         draw ( ) { }
+
+        /**
+         * Redraw this object
+         * @public
+         * @function
+         * @param           {string}  canvas                            Canvas Id
+         * @param           {Point}   point                             Point of new location
+         * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         */
+        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
+        {
+            [ this.x, this.y ] = [ point.x, point.y ]
+
+
+            this._clearCanvas ( clear );
+
+
+            this.draw ( canvas );
+        }
 }

@@ -35,10 +35,10 @@ class Circle
     constructor (
                     point  = { x: undefined, y: undefined },
                     radius,
-                    angle  = { start: undefined, end:   undefined, clockwise:   undefined },
-                    stroke = { color: undefined, type:  undefined, segments:    undefined, width: undefined },
-                    fill   = { color: undefined, type:  undefined },
-                    shadow = { color: undefined, blur:  undefined, offset: { x: undefined, y:     undefined } },
+                    angle  = { start: undefined, end:  undefined, clockwise:   undefined },
+                    stroke = { color: undefined, type: undefined, segments:    undefined, width: undefined },
+                    fill   = { color: undefined, type: undefined },
+                    shadow = { color: undefined, blur: undefined, offset: { x: undefined, y:     undefined } },
                     canvas = undefined
                 )
     {
@@ -56,9 +56,9 @@ class Circle
             this._rotatePoint       = UTILITIES.misc.rotatePoint;
             this._setFillType       = UTILITIES.set.fillType;
             this._setShadow         = UTILITIES.set.shadow;
-            this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
             this.fillColorCycle     = UTILITIES.color.cycle.fill;
             this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );

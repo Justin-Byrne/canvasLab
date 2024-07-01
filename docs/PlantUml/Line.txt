@@ -40,7 +40,6 @@ _rotatePoint
 _setShadow
 curve
 drawPoints
-fillColorCycle
 move
 rotate
 showControlPoints

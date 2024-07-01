@@ -100,7 +100,7 @@ const VALIDATION =
 
         let _length = ( Object.keys ( value ).length == 2 );
 
-        let _width  = ( value.hasOwnProperty ( 'width'  ) ) ? ( typeof value.width === 'number' )  : false;
+        let _width  = ( value.hasOwnProperty ( 'width'  ) ) ? ( typeof value.width  === 'number' ) : false;
 
         let _height = ( value.hasOwnProperty ( 'height' ) ) ? ( typeof value.height === 'number' ) : false;
 
@@ -135,7 +135,7 @@ const VALIDATION =
 
         if ( value instanceof Circle    ) return true;
 
-        if ( value instanceof Rectangle ) return true
+        if ( value instanceof Rectangle ) return true;
 
         if ( value instanceof Text      ) return true;
 
@@ -464,6 +464,33 @@ const VALIDATION =
     isNumber ( value )
     {
         return ( ( typeof value === 'number')  &&  !isNaN ( value ) );
+    },
+
+    /**
+     * Returns whether the passed value is a Plan
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {Object} value                              Plan object
+     * @return          {boolean}                                   True || False
+     */
+    isPlan ( value )
+    {
+        if ( value != undefined )
+        {
+            let _instance = eval ( `new ${value.constructor.name};` );
+
+
+            let _point    = ( Object.hasOwn ( _instance, '_point'  ) );
+
+            let _master   = ( Object.hasOwn ( _instance, '_master' ) );
+
+
+            return ( _point && _master );
+        }
+        else
+
+            return false;
     },
 
     /**

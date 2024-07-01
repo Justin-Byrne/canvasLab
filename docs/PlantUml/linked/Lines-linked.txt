@@ -4,38 +4,40 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Lines {
-point             {Point}
-stroke            {StrokeCollection}
-shadow            {ShadowCollection}
-lineCap           <color:gray>{string}</color>
-canvas            {HTMLCanvasElement}
+point               {Point}
+stroke              {StrokeCollection}
+shadow              {ShadowCollection}
+lineCap             <color:gray>{string}</color>
+canvas              {HTMLCanvasElement}
 __ Setter __
-point             {Point}
-x                 <color:gray>{number}</color>
-y                 <color:gray>{number}</color>
-lineCap           <color:gray>{string}</color>
-canvas            <color:gray>{string}</color>
-anchor            <color:gray>{string}</color>
+point               {Point}
+x                   <color:gray>{number}</color>
+y                   <color:gray>{number}</color>
+lineCap             <color:gray>{string}</color>
+canvas              <color:gray>{string}</color>
+anchor              <color:gray>{string}</color>
 __ Getter __
-point             {Point}
-x                 <color:gray>{number}</color>
-y                 <color:gray>{number}</color>
-stroke            {Stroke}
-shadow            {Shadow}
-options           {Object}
-lineCap           <color:gray>{string}</color>
-canvas            <color:gray>{string}</color>
-aspect            {Aspect}
-width             <color:gray>{number}</color>
-height            <color:gray>{number}</color>
-anchor            {Anchor}
-area              <color:gray>{number}</color>
-perimeter         <color:gray>{number}</color>
-center            {Point}
+point               {Point}
+x                   <color:gray>{number}</color>
+y                   <color:gray>{number}</color>
+stroke              {Stroke}
+shadow              {Shadow}
+options             {Object}
+lineCap             <color:gray>{string}</color>
+canvas              <color:gray>{string}</color>
+aspect              {Aspect}
+width               <color:gray>{number}</color>
+height              <color:gray>{number}</color>
+anchor              {Anchor}
+area                <color:gray>{number}</color>
+perimeter           <color:gray>{number}</color>
+center              {Point}
+endPoint            {Point}
 __ Validation __
-_isAspect         <color:gray>{boolean}</color>
-_isInDom          <color:gray>{boolean}</color>
-_isPoint          <color:gray>{boolean}</color>
+_isAspect           <color:gray>{boolean}</color>
+isCanvasLabObject   <color:gray>{boolean}</color>
+_isInDom            <color:gray>{boolean}</color>
+_isPoint            <color:gray>{boolean}</color>
 __ Utility __
 _drawAxis
 _drawBorder
@@ -45,6 +47,7 @@ _setAnchorPoint
 _setAspect
 push
 draw
+redraw
 }
 
 Lines o-- Point
@@ -63,27 +66,29 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Point {
-[x=0]         <color:gray>{number}</color>
-[y=0]         <color:gray>{number}</color>
-options       {Options}
+[x=0]          <color:gray>{number}</color>
+[y=0]          <color:gray>{number}</color>
+options        {Options}
 __ Setter __
-x             <color:gray>{number}</color>
-y             <color:gray>{number}</color>
-canvas        <color:gray>{string}</color>
+x              <color:gray>{number}</color>
+y              <color:gray>{number}</color>
+canvas         <color:gray>{string}</color>
 __ Getter __
-x             <color:gray>{number}</color>
-y             <color:gray>{number}</color>
-canvas        <color:gray>{string}</color>
-options       {Options}
-center        {Point}
+x              <color:gray>{number}</color>
+y              <color:gray>{number}</color>
+canvas         <color:gray>{string}</color>
+options        {Options}
+center         {Point}
 __ Validation __
-_isAspect
-_isInDom
+_isAspect      <color:gray>{boolean}</color>
+_isInDom       <color:gray>{boolean}</color>
 __ Utility __
-_drawBorder
 _drawAxis
+_drawBorder
+_rotatePoint
 drawOptions
 invert
+move
 }
 
 

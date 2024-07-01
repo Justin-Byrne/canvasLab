@@ -20,38 +20,37 @@ class Lines extends Array
     #_options = new Options;
 
     #_origin  = new Point;
-    // #_coordinates =
-    // {
-    //     origin:
-    //     {
-    //         x: undefined,
-    //         y: undefined
-    //     }
-    // }
 
     _storage  = { type: Line }
 
     /**
-     * Create a lines array
+     * Create a Lines object
+     * @property        {Point}             point                   X & Y axis coordinates
+     * @property        {HTMLCanvasElement} canvas                  Canvas Id
      */
-    constructor ( )
+    constructor ( point = { x: undefined, y: undefined }, canvas )
     {
         super ( );
 
         ////    COMPOSITION     ////////////////////////////
 
-            this._isAspect = VALIDATION.isAspect;
-            this._isInDom  = VALIDATION.isInDom;
-            this._isPoint  = VALIDATION.isPoint;
+            this._isAspect          = VALIDATION.isAspect;
+            this._isCanvasLabObject = VALIDATION.isCanvasLabObject;
+            this._isInDom           = VALIDATION.isInDom;
+            this._isPoint           = VALIDATION.isPoint;
 
-            this._drawAxis   = UTILITIES.draw.axis;
-            this._drawBorder = UTILITIES.draw.border;
-            this.draw        = UTILITIES.draw.collection.aTypical;
+            this._clearCanvas = UTILITIES.misc.clearCanvas;
+            this._drawAxis    = UTILITIES.draw.axis;
+            this._drawBorder  = UTILITIES.draw.border;
+            this.draw         = UTILITIES.draw.collection.oneDimensional;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
             Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
+
+        this.point  = point;
+        this.canvas = canvas;
 
         this.stroke.master = this;
 
@@ -358,6 +357,17 @@ class Lines extends Array
         _isAspect ( ) { }
 
         /**
+         * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
+         * @public
+         * @memberof VALIDATION
+         * @function
+         * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isCanvasLabObject}
+         */
+        isCanvasLabObject ( value ) { }
+
+        /**
          * Returns whether the passed value is an element id within the DOM
          * @private
          * @function
@@ -365,7 +375,7 @@ class Lines extends Array
          * @return          {boolean}                                   True || False
          * @see             {@link Validation.isInDom}
          */
-        _isInDom  ( ) { }
+        _isInDom ( ) { }
 
         /**
          * Returns whether the passed value is a Point
@@ -375,7 +385,7 @@ class Lines extends Array
          * @return          {boolean}                                   True || False
          * @see             {@link Validation.isPoint}
          */
-        _isPoint  ( ) { }
+        _isPoint ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
@@ -502,6 +512,17 @@ class Lines extends Array
         }
 
         /**
+         * Returns the last Point within this Array
+         * @public
+         * @function
+         * @return          {Point}                                     Last Array element's X & Y Coordinates
+         */
+        get endPoint ( )
+        {
+            return this [ this.length - 1 ].point;
+        }
+
+        /**
          * Pushes Line(s) into this collection
          * @public
          * @function
@@ -530,4 +551,23 @@ class Lines extends Array
          * @see             {@link Utilities.draw.collection.aTypical}
          */
         draw ( ) { }
+
+        /**
+         * Redraw this object
+         * @public
+         * @function
+         * @param           {string}  canvas                            Canvas Id
+         * @param           {Point}   point                             Point of new location
+         * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         */
+        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
+        {
+            [ this.x, this.y ] = [ point.x, point.y ]
+
+
+            this._clearCanvas ( clear );
+
+
+            this.draw ( canvas );
+        }
 }

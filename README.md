@@ -1,15 +1,16 @@
 # canvasLab
 
 ![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Chrome-125.0.6422.142-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
+<img src="https://img.shields.io/badge/Chrome-126.0.6478.116-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
 ![issues](https://img.shields.io/github/issues/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Version-0.3.67-green?style=flat-square" />
+<img src="https://img.shields.io/badge/Version-0.3.78-green?style=flat-square" />
 <img src="https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab?style=flat-square" />
 
 HTML5 canvas drawing framework
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Examples](#examples)
 - [Documentation](#documentation)
 - [Support](#support)
 - [Structure](#structure)
@@ -49,9 +50,15 @@ git clone https://github.com/Justin-Byrne/canvasLab.git
 initCanvasLab ( 'my-canvas-id' );
 ```
 
+## Examples
+
+:computer: [Developer Suite](https://byrne-systems.com/portal/canvasLab/devSuite/index.html)
+
+See our developer suite to view various functions & effects in real-time.
+
 ## Documentation
 
-[:book: JSDoc](https://github.com/Justin-Byrne/canvasLab/blob/main/docs/JSDoc.md)
+[:book: JSDocs](https://byrne-systems.com/portal/canvasLab/docs/JSDoc/index.html)
 
 
 ## Support
@@ -75,8 +82,8 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── JSDoc.md
 ├── script
 │   ├── distro
-│   │   ├── canvasLab-v0.3.67.js    [ 324 kb ]
-│   │   ├── canvasLab.min.js        [ 60 kb ]
+│   │   ├── canvasLab-v0.3.78.js    [ 324 kb ]
+│   │   ├── canvasLab.min.js        [ 64 kb ]
 │   │   └── canvasLab.min.js.map
 │   └── source
 │       ├── ancillary
@@ -118,6 +125,8 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │           │   │   │   └── Radial.js
 │           │   │   └── Model
 │           │   │       └── Rgb.js
+│           │   ├── Plans
+│           │   │   └── SacredCircles.js
 │           │   ├── Staging
 │           │   │   ├── Properties
 │           │   │   │   └── Options.js

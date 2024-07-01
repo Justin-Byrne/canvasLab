@@ -108,8 +108,9 @@ const UTILITIES =
          */
         axis ( edgeOffset = 20, color = new Rgb ( 245, 80, 50 ) )
         {
-            let _lines = new Lines ( new Line, new Line );
+            let _lines = new Lines;
 
+                _lines.push ( new Line, new Line );
 
                 _lines.stroke.color = color;
 
@@ -118,9 +119,14 @@ const UTILITIES =
                 _lines.canvas       = ( this instanceof Point ) ? this.options._master.canvas : this.canvas;
 
 
-                [  _lines [ 0 ].start.x, _lines [ 0 ].end.x  ] = [  - ( edgeOffset ), + ( edgeOffset )  ];
+                _lines [ 0 ].start  = new Point ( this.center.x - edgeOffset, this.center.y );
 
-                [  _lines [ 1 ].start.y, _lines [ 1 ].end.y  ] = [  - ( edgeOffset ), + ( edgeOffset )  ];
+                _lines [ 0 ].end    = new Point ( this.center.x + edgeOffset, this.center.y );
+
+
+                _lines [ 1 ].start  = new Point ( this.center.x, this.center.y - edgeOffset );
+
+                _lines [ 1 ].end    = new Point ( this.center.x, this.center.y + edgeOffset );
 
 
                 _lines.draw ( );
@@ -161,12 +167,12 @@ const UTILITIES =
         {
 
             /**
-             * Typical draw function for collections; Circles, Rectangles, Texts
+             * Two dimensional draw function for collections; Circles, Rectangles, Texts
              * @public
              * @function
              * @param           {string} canvas                             Canvas Id
              */
-            typical ( canvas )
+            twoDimensional ( canvas )
             {
                 if ( canvas != undefined ) this.canvas = canvas;
 
@@ -177,7 +183,7 @@ const UTILITIES =
 
                         for ( let _object of this )
                         {
-                            _object.point = new Point (  ( _object.origin.x + this.x ), ( _object.origin.y + this.y )  );
+                            _object.point = new Point (  ( _object.x + this.x ), ( _object.y + this.y )  );
 
                             _object.draw ( );
                         }
@@ -192,12 +198,12 @@ const UTILITIES =
             },
 
             /**
-             * A-typical draw function for collections; Lines
+             * One dimensional draw function for collections; Lines
              * @public
              * @function
              * @param           {string} canvas                             Canvas Id
              */
-            aTypical ( canvas )
+            oneDimensional ( canvas )
             {
                 if ( canvas != undefined ) this.canvas = canvas;
 
@@ -211,11 +217,6 @@ const UTILITIES =
                             this._setAspect      ( );
 
                             this._setAnchorPoint ( );
-
-
-                            _object._start = new Point (  ( _object.origin.start.x + this.x ), ( _object.origin.start.y + this.y )  );
-
-                            _object._end   = new Point (  ( _object.origin.end.x   + this.x ), ( _object.origin.end.y   + this.y )  );
 
 
                             _object.draw ( );

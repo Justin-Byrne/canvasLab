@@ -208,6 +208,35 @@ class Ui
         },
 
         /**
+         * Toggles boolean value in lab
+         * @public
+         * @function
+         */
+        boolean ( )
+        {
+            let _regex  = new RegExp ( /true|false/ );
+
+            let _cursor = LAB.editor.selection.getCursor ( );
+
+            let _line   = LAB.editor.session.getLine ( _cursor.row );
+
+
+            if ( _regex.test ( _line ) )
+            {
+                let _range   = new ace.Range ( _cursor.row, 0, _cursor.row, _line.length );
+
+                let _match   = _line.match ( _regex ) [ 0 ];
+
+                let _newLine = ( _match === 'true' ) ? _line.replace ( 'true', 'false' ) : _line.replace ( 'false', 'true' );
+
+
+                LAB.editor.session.replace ( _range, _newLine );
+
+                LAB.runCode ( );
+            }
+        },
+
+        /**
          * Toggles the card button associated with the passed 'event' param
          * @public
          * @function
@@ -278,7 +307,6 @@ class Ui
          * Toggles fullscreen mode                              @TODO: fix this crap
          * @public
          * @function
-         * @param           {HTMLElement} button                Button under the #control-panel .button class
          */
         fullscreen ( )
         {
@@ -412,7 +440,7 @@ class Ui
 
             ( UI._isNavOpen ( ) )
 
-                ? [ _nav.style.left, _main.style.paddingLeft, _grid.style.left ] = [ '-200px',  '-0px',   '0px' ]
+                ? [ _nav.style.left, _main.style.paddingLeft, _grid.style.left ] = [ '-200px',  '-0px',   '-1px' ]
 
                 : [ _nav.style.left, _main.style.paddingLeft, _grid.style.left ] = [    '0px', '200px', '200px' ];
 
@@ -924,14 +952,20 @@ class Ui
          */
         _adjustGridCenter ( )
         {
-            let _lines = document.querySelectorAll ( '#grid > .vertical-lines div' );
+            let _lab = document.querySelector ( 'div.lab-station' );
 
 
-            if ( UI._isNavOpen ( ) )
+            if ( _lab.style.display === 'block' )
             {
-                _lines [ 17 ].classList.replace ( 'vertical-bold', 'vertical' );
+                let _lines = document.querySelectorAll ( '#grid > .vertical-lines div' );
 
-                _lines [ 20 ].classList.replace ( 'vertical', 'vertical-bold' );
+
+                if ( UI._isNavOpen ( ) )
+                {
+                    _lines [ 17 ].classList.replace ( 'vertical-bold', 'vertical' );
+
+                    _lines [ 20 ].classList.replace ( 'vertical', 'vertical-bold' );
+                }
             }
         }
 
@@ -1038,7 +1072,10 @@ class Ui
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          */
-        _evalCardObjects = ( cardObjects ) => { eval ( this._getCode ( cardObjects ) ); }
+        _evalCardObjects ( cardObjects )
+        {
+            eval ( this._getCode ( cardObjects ) );
+        }
 
         /**
          * Embeds easing buttons for each animation card
@@ -1075,7 +1112,10 @@ class Ui
          * @function
          * @return          {boolean}                           True | False
          */
-        _isNavOpen       = (             ) => ( document.querySelector ( 'nav' ).style.left === '0px' );
+        _isNavOpen ( )
+        {
+            return ( document.querySelector ( 'nav' ).style.left === '0px' );
+        }
 
         /**
          * Displays an alert message within the modal

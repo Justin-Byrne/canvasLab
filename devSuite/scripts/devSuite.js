@@ -111,7 +111,7 @@ class Lab
          * @param           {number}        position            Cursor position; from ace-editor
          * @return          {Object}                            Bounding character's starting & ending position(s)
          */
-        _getBoundingCharactersPositions = ( characters, data, position ) => new Object ( { start: data.indexOf ( characters [ 0 ] ) + 1, end:   data.indexOf ( characters [ 1 ] ) } );
+        _getBoundingCharactersPositions = ( characters, data, position ) => new Object ( { start: data.indexOf ( characters [ 0 ] ) + 1, end: data.indexOf ( characters [ 1 ] ) } );
 
         /**
          * Returns a new color-picker object
@@ -398,13 +398,17 @@ class Lab
 
                         _fullscreen.addEventListener ( 'click', ( ) => UI.toggle.fullscreen ( ) );
 
-                case 'colorPicker':
+                case 'clearConsole':
 
-                    let _colorPicker = this._getColorPicker ( 'input-color-picker' );
+                    let _clear = document.querySelector ( '#input-clear' );
 
-                        _colorPicker.onOpen   = (       ) => this._setColorPickerPosition ( );
+                        _clear.addEventListener ( 'click', ( ) => UI.toggle.labButton ( _clear ) );
 
-                        _colorPicker.onChange = ( color ) => this._swapRgbValue ( color );
+                case 'boolean':
+
+                    let _boolean = document.querySelector ( '#input-boolean' );
+
+                        _boolean.addEventListener ( 'click', ( ) => UI.toggle.boolean ( ) );
 
                 case 'valuePlus':
 
@@ -417,6 +421,14 @@ class Lab
                     let _minus = document.querySelector ( '#input-value-minus' );
 
                         _minus.addEventListener ( 'click', ( ) => this._setNumbericValue ( false ) );
+
+                case 'colorPicker':
+
+                    let _colorPicker = this._getColorPicker ( 'input-color-picker' );
+
+                        _colorPicker.onOpen   = (       ) => this._setColorPickerPosition ( );
+
+                        _colorPicker.onChange = ( color ) => this._swapRgbValue ( color );
 
                 case 'fontPlus':
 
@@ -779,8 +791,10 @@ class Lab
 
                 _context.clearRect ( 0, 0, _canvas.width, _canvas.height );
 
+            let _clear   = document.querySelector ( '#input-clear' );
 
-            if ( false )
+
+            if ( TOOL.isActive ( _clear ) )
 
                 console.clear ( );
 
@@ -804,6 +818,7 @@ class Lab
          * Sets lab & ace-editor
          * @public
          * @function
+         * @param           {function} script                   Arrow function containing script
          */
         init ( script )
         {
@@ -1544,7 +1559,7 @@ class Tool
          */
         isCanvasLabObject ( value )
         {
-            return [ 'Line', 'Circle', 'Rectangle', 'Text' ].includes ( value );
+            return [ 'Line', 'Lines', 'Circle', 'Circles', 'Rectangle', 'Rectangles', 'Text', 'Texts', 'Group' ].includes ( value );
         }
 
         /**
@@ -1907,6 +1922,35 @@ class Ui
         },
 
         /**
+         * Toggles boolean value in lab
+         * @public
+         * @function
+         */
+        boolean ( )
+        {
+            let _regex  = new RegExp ( /true|false/ );
+
+            let _cursor = LAB.editor.selection.getCursor ( );
+
+            let _line   = LAB.editor.session.getLine ( _cursor.row );
+
+
+            if ( _regex.test ( _line ) )
+            {
+                let _range   = new ace.Range ( _cursor.row, 0, _cursor.row, _line.length );
+
+                let _match   = _line.match ( _regex ) [ 0 ];
+
+                let _newLine = ( _match === 'true' ) ? _line.replace ( 'true', 'false' ) : _line.replace ( 'false', 'true' );
+
+
+                LAB.editor.session.replace ( _range, _newLine );
+
+                LAB.runCode ( );
+            }
+        },
+
+        /**
          * Toggles the card button associated with the passed 'event' param
          * @public
          * @function
@@ -1977,7 +2021,6 @@ class Ui
          * Toggles fullscreen mode                              @TODO: fix this crap
          * @public
          * @function
-         * @param           {HTMLElement} button                Button under the #control-panel .button class
          */
         fullscreen ( )
         {
@@ -2111,7 +2154,7 @@ class Ui
 
             ( UI._isNavOpen ( ) )
 
-                ? [ _nav.style.left, _main.style.paddingLeft, _grid.style.left ] = [ '-200px',  '-0px',   '0px' ]
+                ? [ _nav.style.left, _main.style.paddingLeft, _grid.style.left ] = [ '-200px',  '-0px',   '-1px' ]
 
                 : [ _nav.style.left, _main.style.paddingLeft, _grid.style.left ] = [    '0px', '200px', '200px' ];
 
@@ -2623,14 +2666,20 @@ class Ui
          */
         _adjustGridCenter ( )
         {
-            let _lines = document.querySelectorAll ( '#grid > .vertical-lines div' );
+            let _lab = document.querySelector ( 'div.lab-station' );
 
 
-            if ( UI._isNavOpen ( ) )
+            if ( _lab.style.display === 'block' )
             {
-                _lines [ 17 ].classList.replace ( 'vertical-bold', 'vertical' );
+                let _lines = document.querySelectorAll ( '#grid > .vertical-lines div' );
 
-                _lines [ 20 ].classList.replace ( 'vertical', 'vertical-bold' );
+
+                if ( UI._isNavOpen ( ) )
+                {
+                    _lines [ 17 ].classList.replace ( 'vertical-bold', 'vertical' );
+
+                    _lines [ 20 ].classList.replace ( 'vertical', 'vertical-bold' );
+                }
             }
         }
 
@@ -2737,7 +2786,10 @@ class Ui
          * @function
          * @param           {Array.<Object>} cardObjects        Array of card-objects
          */
-        _evalCardObjects = ( cardObjects ) => { eval ( this._getCode ( cardObjects ) ); }
+        _evalCardObjects ( cardObjects )
+        {
+            eval ( this._getCode ( cardObjects ) );
+        }
 
         /**
          * Embeds easing buttons for each animation card
@@ -2774,7 +2826,10 @@ class Ui
          * @function
          * @return          {boolean}                           True | False
          */
-        _isNavOpen       = (             ) => ( document.querySelector ( 'nav' ).style.left === '0px' );
+        _isNavOpen ( )
+        {
+            return ( document.querySelector ( 'nav' ).style.left === '0px' );
+        }
 
         /**
          * Displays an alert message within the modal
@@ -3146,6 +3201,19 @@ class Ui
                     }
                 },
             ],
+            lines:
+            [
+                // draw
+                {
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _line.draw ( );
+                    }
+                },
+            ],
             circle:
             [
                 // draw
@@ -3469,6 +3537,19 @@ class Ui
                     }
                 },
             ],
+            circles:
+            [
+                // draw
+                {
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _circle.draw ( );
+                    }
+                },
+            ],
             rectangle:
             [
                 // draw
@@ -3734,6 +3815,19 @@ class Ui
                     {
                         _rectangle.options.border = true;
 
+                        _rectangle.draw ( );
+                    }
+                },
+            ],
+            rectangles:
+            [
+                // draw
+                {
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
                         _rectangle.draw ( );
                     }
                 },
@@ -4016,6 +4110,19 @@ class Ui
                 //         _text.draw ( );
                 //     }
                 // },
+            ],
+            texts:
+            [
+                // draw
+                {
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _text.draw ( );
+                    }
+                },
             ],
         },
         subject:
@@ -5964,22 +6071,38 @@ class Ui
                     title: 'Line',
                     group: 'Object'
                 },
+                // {
+                //     title: 'Lines',
+                //     group: 'Object'
+                // },
                 {
                     title: 'Circle',
                     group: 'Object'
                 },
+                // {
+                //     title: 'Circles',
+                //     group: 'Object'
+                // },
                 {
                     title: 'Rectangle',
                     group: 'Object'
                 },
+                // {
+                //     title: 'Rectangles',
+                //     group: 'Object'
+                // },
                 {
                     title: 'Text',
                     group: 'Object'
                 },
                 // {
-                //     title: 'Group',
+                //     title: 'Texts',
                 //     group: 'Object'
-                // }
+                // },
+                {
+                    title: 'Group',
+                    group: 'Object'
+                },
             ]
         },
         {
@@ -6028,6 +6151,16 @@ class Ui
                                 },
                             ]
                         }
+                    ]
+                },
+                {
+                    title: 'Plans',
+                    links:
+                    [
+                        {
+                            title: 'SacredCircles',
+                            group: 'Subject'
+                        },
                     ]
                 },
                 {
@@ -6133,11 +6266,19 @@ class Ui
     {
         circlesOfLife: ( ) =>
         {
-            ////    GLOBAL VARIABLES    ////////////////////
+            ////    INPUTS    //////////////////////////////
 
-            let _alpha        = 0.40;
+            let _center     = canvaslab.center;
 
-            let _colorValues  =
+            let _radius     = 25;
+
+            let _iterations = 15;
+
+            let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+            let _alpha      = 0.40;
+
+            let _colors     =
             [
                 new Rgb ( 255,  0,  255, _alpha ),      // Magenta
                 new Rgb (   0,  0,  255, _alpha ),      // Blue
@@ -6149,176 +6290,14 @@ class Ui
                 new Rgb (   0,   0,   0, _alpha ),      // Black
             ]
 
-            let _degreeValues = [ 270, 150, 90, 30, 330, 270, 210 ];
+            ////    POPULATION    //////////////////////////
 
-            let _colors     = new Queue ( _colorValues  );
+            let _group      = new Group ( _center );
 
-            let _degrees    = new Queue ( _degreeValues );
+                _group.plan = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
 
-            let _center     = canvaslab.center;
-
-            ////    INPUTS    //////////////////////////////
-
-            let _multiplier = 1;
-
-            let _distance   = 25 * _multiplier;
-
-            let _reverse    = 1;
-
-            let _stroke     = 1;
-
-            let _fill       = 1;
-
-            let _iterations = 10;
-
-            let _circles    = new Array;
-
-
-            for ( let _i = 0; _i < _iterations; _i++ )
-            {
-                _degrees.reset;
-
-                ////    00    ////    270    /////////////////////////
-
-                let [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                // FOUNDATION STONE
-                for ( let _stone = 0; _stone < 1; _stone++ )
-                {
-                    let _circle = new Circle ( _center );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance * _i );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    01    ////    150    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                // FILLER STONES
-                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    02    ////     90    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    03    ////     30    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    04    ////    330    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    05    ////    270    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-
-                ////    06    ////    210    /////////////////////////
-
-                [ _degree, _color ] = [ _degrees.next, _colors.next ];
-
-                // KEYSTONE
-                for ( let _stone = 0; _stone <= ( _i - 2 ); _stone++ )
-                {
-                    let _circle = new Circle ( _circles [ _circles.length - 1 ].point );
-
-                        _circle.fill.color         = ( _fill   ) ? _color : new Rgb ( 255, 255, 255, 0 );
-
-                        _circle.stroke.color.alpha = ( _stroke ) ? _alpha : 0;
-
-                        _circle.move ( _degree, _distance );
-
-
-                    _circles.push ( _circle );
-                }
-            }
-
-
-            if ( _reverse )
-
-                _circles.reverse ( );
-
-
-            for ( let _circle of _circles )
-            {
-                _circle.draw ( );
-            }
-        }
+                _group.circles.draw ( );
+        },
     }
 
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
@@ -6366,9 +6345,14 @@ class Ui
          */
         function _setLabMode ( )
         {
-            let _labButton = document.querySelector ( 'button.lab-station' );
+            let _labButton    = document.querySelector ( 'button.lab-station' );
 
-                _labButton.click ( );
+            let _clearConsole = document.querySelector ( '#input-clear' );
+
+
+                _labButton.click    ( );
+
+                _clearConsole.click ( );
 
 
             UI._toggle.navigation ( );

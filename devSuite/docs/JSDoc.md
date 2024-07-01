@@ -41,13 +41,16 @@
 <dt><a href="#subStringRange">subStringRange(start, end, substring)</a> ⇒ <code>string</code></dt>
 <dd><p>Substitute a string within a range</p>
 </dd>
+<dt><a href="#boolean">boolean()</a></dt>
+<dd><p>Toggles boolean value in lab</p>
+</dd>
 <dt><a href="#cardButton">cardButton(event)</a></dt>
 <dd><p>Toggles the card button associated with the passed &#39;event&#39; param</p>
 </dd>
 <dt><a href="#externalLinks">externalLinks(show)</a></dt>
 <dd><p>Toggles opacity from bottom links in navigation area</p>
 </dd>
-<dt><a href="#fullscreen">fullscreen(button)</a></dt>
+<dt><a href="#fullscreen">fullscreen()</a></dt>
 <dd><p>Toggles fullscreen mode                              @TODO: fix this crap</p>
 </dd>
 <dt><a href="#grid">grid()</a></dt>
@@ -105,7 +108,7 @@ Call main module
     * [.loadScript(script)](#Lab+loadScript)
     * [.runCode()](#Lab+runCode)
     * [.scripts()](#Lab+scripts)
-    * [.init()](#Lab+init)
+    * [.init(script)](#Lab+init)
 
 <a name="Lab+editor"></a>
 
@@ -155,11 +158,16 @@ Returns an object of lab-station specific scripts
 **Access**: public  
 <a name="Lab+init"></a>
 
-### lab.init()
+### lab.init(script)
 Sets lab & ace-editor
 
 **Kind**: instance method of [<code>Lab</code>](#Lab)  
 **Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| script | <code>function</code> | Arrow function containing script |
+
 <a name="Log"></a>
 
 ## Log
@@ -331,19 +339,19 @@ Returns an Array of standard & extra HTML templates for each card-object
 
 
 * [Tool](#Tool)
-    * [.isCanvasLabObject(value)](#Tool+isCanvasLabObject) ⇒ <code>boolean</code>
-    * [.isActive(element)](#Tool+isActive) ⇒ <code>boolean</code>
+    * [.isCanvasLabObject(value)](#Tool+isCanvasLabObject) ⇒ [<code>boolean</code>](#boolean)
+    * [.isActive(element)](#Tool+isActive) ⇒ [<code>boolean</code>](#boolean)
     * [.delay(time)](#Tool+delay) ⇒ <code>Promise</code>
     * [.copyObjectWithKey(object)](#Tool+copyObjectWithKey) ⇒ <code>Object</code>
     * [.copyCode()](#Tool+copyCode)
 
 <a name="Tool+isCanvasLabObject"></a>
 
-### tool.isCanvasLabObject(value) ⇒ <code>boolean</code>
+### tool.isCanvasLabObject(value) ⇒ [<code>boolean</code>](#boolean)
 Determine whether the passed value is an 'Object' canvasLab category
 
 **Kind**: instance method of [<code>Tool</code>](#Tool)  
-**Returns**: <code>boolean</code> - True || False  
+**Returns**: [<code>boolean</code>](#boolean) - True || False  
 **Access**: public  
 
 | Param | Type | Description |
@@ -352,11 +360,11 @@ Determine whether the passed value is an 'Object' canvasLab category
 
 <a name="Tool+isActive"></a>
 
-### tool.isActive(element) ⇒ <code>boolean</code>
+### tool.isActive(element) ⇒ [<code>boolean</code>](#boolean)
 Determine whether the passed element is active
 
 **Kind**: instance method of [<code>Tool</code>](#Tool)  
-**Returns**: <code>boolean</code> - True || False  
+**Returns**: [<code>boolean</code>](#boolean) - True || False  
 **Access**: public  
 
 | Param | Type | Description |
@@ -485,7 +493,7 @@ Clears screen prior to rebuilding
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| setCardAlbum | <code>boolean</code> | <code>false</code> | Sets card album display to block (true) || none (false) |
+| setCardAlbum | [<code>boolean</code>](#boolean) | <code>false</code> | Sets card album display to block (true) || none (false) |
 
 <a name="Ui+init"></a>
 
@@ -548,6 +556,13 @@ Substitute a string within a range
 | end | <code>number</code> | Substitution's ending point |
 | substring | <code>string</code> | Substitution |
 
+<a name="boolean"></a>
+
+## boolean()
+Toggles boolean value in lab
+
+**Kind**: global function  
+**Access**: public  
 <a name="cardButton"></a>
 
 ## cardButton(event)
@@ -570,20 +585,15 @@ Toggles opacity from bottom links in navigation area
 
 | Param | Type | Description |
 | --- | --- | --- |
-| show | <code>boolean</code> | True || False |
+| show | [<code>boolean</code>](#boolean) | True || False |
 
 <a name="fullscreen"></a>
 
-## fullscreen(button)
+## fullscreen()
 Toggles fullscreen mode                              @TODO: fix this crap
 
 **Kind**: global function  
 **Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| button | <code>HTMLElement</code> | Button under the #control-panel .button class |
-
 <a name="grid"></a>
 
 ## grid()

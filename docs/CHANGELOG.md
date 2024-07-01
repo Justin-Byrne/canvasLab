@@ -1,7 +1,35 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [0.3.67] - 2024-07-11
+## [0.3.78] - 2024-07-01
+### Added
+- **devSuite**
+  - `Lab` class, `clearConsole` case to `_setEventListeners ( )`, to toggle lab *clear console* feature
+  - `Tool` class, added Collection objects to `isCanvasLabObject ( )`
+  - `Ui` class, `toggle.boolean ( )`, to toggle boolean value in lab
+
+- **canvasLab**
+  - `PROPERTY_BLOCKS` module, `discrete.alpha ( )` mutators
+  - `VALIDATION` module, `isPlan ( )`, to returns whether the passed value is a Plan
+  - `Circles`, `Lines`, `Rectangles`, and `Texts` classes,
+    - `endPoint ( )` to return the last Point within this Array
+    - `redraw ( )` to redraw this object
+  - `Group` class, an array class to group any and all object type
+  - `SacredCircles` class, Group Plan
+
+### Removed
+- **canvasLab**
+  - `Line` class, `fillColorCycle ( )`
+
+### Changed
+- **canvasLab**
+  - `UTILITIES`, `draw.collection.typical ( )` to `draw.collection.twoDimensional ( )` & `draw.collection.aTypical ( )` to `draw.collection.oneDimensional ( )`
+
+### Fixed
+- **canvasLab**
+  - `UTILITIES`, `draw.axis ( )` where axis doesn't display
+
+## [0.3.67] - 2024-06-10
 ### Added
 - **devSuite**
   - `main`, added `_scripts` object; to contain various loadable lab scripts
@@ -19,10 +47,10 @@ All notable changes to this project will be documented in this file.
 
 ### Refactored
 - **canvasLab**
-  - `PROPERTY_BLOCKS`, `discrete.point.set ( )`
+  - `PROPERTY_BLOCKS`, `discrete.point` mutators
   - `move ( )` function, within `Circle`, `Line`, `Rectangle`, and `Text` classes
 
-## [0.3.59] - 2024-07-03
+## [0.3.59] - 2024-06-03
 ### Added
 - **devSuite**
   - `Tool` class, `isActive ( )` to determine whether the passed element is active
@@ -41,7 +69,7 @@ All notable changes to this project will be documented in this file.
 ### Refactored
 - `Lab` class, refactored `init ( )`, `_cleanCode ( )`
 
-## [0.3.55] - 2024-06-29
+## [0.3.55] - 2024-05-29
 ### Added
 - **devSuite**
   - `Tool` class
@@ -55,7 +83,7 @@ All notable changes to this project will be documented in this file.
 - **devSuite**
   - `Ui` class, refactored `externalLinks ( )`, `toggle._documentation ( )`, `toggle._navDropdown ( )`
 
-## [0.3.54] - 2024-06-26
+## [0.3.54] - 2024-05-26
 ### Added
 - **devSuite**
   - `Template` class
@@ -74,7 +102,7 @@ All notable changes to this project will be documented in this file.
 ### Removed
 - `Ui` class, `clean.imageTags ( )` & `_setImagePath ( )` functions
 
-## [0.3.48] - 2024-06-10
+## [0.3.48] - 2024-05-10
 ### Added
 - **canvasLab**
   - `Linear` class, for Linear gradient objects
@@ -105,7 +133,7 @@ All notable changes to this project will be documented in this file.
 - **canvasLab**
   - `VALIDATION` module, `isColorStop ( )` to `isStop ( )`
 
-## [0.3.30] - 2024-06-06
+## [0.3.30] - 2024-05-02
 ### Added
 - **devSuite**
   - **`Ui`**
@@ -119,7 +147,7 @@ All notable changes to this project will be documented in this file.
 - **devSuite**
   - Removed `navMainLinks` & `navPageLinks` cases from `UI._setEventListeners ( )`
 
-## [0.3.25] - 2024-06-02
+## [0.3.25] - 2024-05-02
 ### Added
 - **canvasLab**
   - `Rgb` class, for RGB color model
@@ -174,7 +202,7 @@ All notable changes to this project will be documented in this file.
   - `cardPlus` & `cardPlus` cases removed from `Ui._setEventListeners ( )`
 
 
-## [0.2.17] - 2024-05-26
+## [0.2.17] - 2024-04-26
 ### Fixed
 - Fix unintentional recursive calls within the `Ui` class
 
@@ -198,7 +226,7 @@ All notable changes to this project will be documented in this file.
 - Removed `Ui._isCardIcon ( )`
 - Removed `devSuite.toggleEasingFunctions ( )` & `devSuite.setOffCanvasDocument ( )` from `main.js`
 
-## [0.2.11] - 2024-05-22
+## [0.2.11] - 2024-04-22
 ### Changed
 - **dev-tools** to **devSuite**
 - Updated UI
@@ -412,15 +440,16 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.3.67] | 2024-07-10 | CURRENT                                                             | Implemented Queue class, general cleanup & refactoring.                                      |
-| [0.3.59] | 2024-07-03 | [5d1df4a](https://github.com/Justin-Byrne/canvasLab/commit/5d1df4a) | Implemented various lab-station features.                                                    |
-| [0.3.55] | 2024-06-29 | [d9ba544](https://github.com/Justin-Byrne/canvasLab/commit/d9ba544) | Refactored in app (devSuite) documentation.                                                  |
-| [0.3.54] | 2024-06-26 | [fd05d82](https://github.com/Justin-Byrne/canvasLab/commit/fd05d82) | Added child class accessibility nodes to devSuite.                                           |
-| [0.3.48] | 2024-06-10 | [0032dc5](https://github.com/Justin-Byrne/canvasLab/commit/0032dc5) | Added gradient classes, expanded upon UTILITIES & VALIDATION modules.                        |
-| [0.3.30] | 2024-06-06 | [a4b29b5](https://github.com/Justin-Byrne/canvasLab/commit/a4b29b5) | Refactored navigation links as self generative.                                              |
-| [0.3.25] | 2024-06-02 | [80ece25](https://github.com/Justin-Byrne/canvasLab/commit/80ece25) | Added color models, and general cleanup.                                                     |
-| [0.2.17] | 2024-05-26 | [be58a6e](https://github.com/Justin-Byrne/canvasLab/commit/be58a6e) | Fixed unintentional recursive calls & minor refactoring for UI, Page, & Template classes.    |
-| [0.2.11] | 2024-05-22 | [671c1da](https://github.com/Justin-Byrne/canvasLab/commit/671c1da) | Refactored dev-tools (devSuite) into independent classes & updated UI.                       |
+| [0.3.78] | 2024-07-01 | CURRENT                                                             | Fixed UTILITIES.draw.axis, and added boolean toggle & clear console feature(s) to lab.       |
+| [0.3.67] | 2024-06-11 | [2a1cc1b](https://github.com/Justin-Byrne/canvasLab/commit/2a1cc1b) | Implemented Queue class, general cleanup & refactoring.                                      |
+| [0.3.59] | 2024-06-03 | [5d1df4a](https://github.com/Justin-Byrne/canvasLab/commit/5d1df4a) | Implemented various lab-station features.                                                    |
+| [0.3.55] | 2024-05-29 | [d9ba544](https://github.com/Justin-Byrne/canvasLab/commit/d9ba544) | Refactored in app (devSuite) documentation.                                                  |
+| [0.3.54] | 2024-05-26 | [fd05d82](https://github.com/Justin-Byrne/canvasLab/commit/fd05d82) | Added child class accessibility nodes to devSuite.                                           |
+| [0.3.48] | 2024-05-10 | [0032dc5](https://github.com/Justin-Byrne/canvasLab/commit/0032dc5) | Added gradient classes, expanded upon UTILITIES & VALIDATION modules.                        |
+| [0.3.30] | 2024-05-06 | [a4b29b5](https://github.com/Justin-Byrne/canvasLab/commit/a4b29b5) | Refactored navigation links as self generative.                                              |
+| [0.3.25] | 2024-05-02 | [80ece25](https://github.com/Justin-Byrne/canvasLab/commit/80ece25) | Added color models, and general cleanup.                                                     |
+| [0.2.17] | 2024-04-26 | [be58a6e](https://github.com/Justin-Byrne/canvasLab/commit/be58a6e) | Fixed unintentional recursive calls & minor refactoring for UI, Page, & Template classes.    |
+| [0.2.11] | 2024-04-22 | [671c1da](https://github.com/Justin-Byrne/canvasLab/commit/671c1da) | Refactored dev-tools (devSuite) into independent classes & updated UI.                       |
 | [0.1.11] | 2024-04-03 | [6df392e](https://github.com/Justin-Byrne/canvasLab/commit/6df392e) | Implemented dev-tools navigation toggle & refactored RWD for mobile devices.                 |
 | [0.1.10] | 2023-12-27 | [3ccf9b4](https://github.com/Justin-Byrne/canvasLab/commit/3ccf9b4) | Implemented lab-station full-screen & navigation toggles.                                    |
 | [0.1.9]  | 2023-12-26 | [c694fb6](https://github.com/Justin-Byrne/canvasLab/commit/c694fb6) | Implemented UI enhancements & color-picker for ace-editor.                                   |

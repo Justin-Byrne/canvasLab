@@ -47,10 +47,10 @@ class Line
             this._isNumber = VALIDATION.isNumber;
             this._isPoint  = VALIDATION.isPoint;
 
+            this._clearCanvas     = UTILITIES.misc.clearCanvas;
             this._drawAxis        = UTILITIES.draw.axis;
             this._drawBorder      = UTILITIES.draw.border;
             this._rotatePoint     = UTILITIES.misc.rotatePoint;
-            this._clearCanvas     = UTILITIES.misc.clearCanvas;
             this._setShadow       = UTILITIES.set.shadow;
             this.strokeColorCycle = UTILITIES.color.cycle.stroke;
 
@@ -506,18 +506,6 @@ class Line
 
               this._end.drawOptions ( );
         }
-
-        /**
-         * Cycle colors for fill
-         * @public
-         * @function
-         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
-         * @param           {Rgb}    start                              Starting RGB value
-         * @param           {Rgb}    end                                Ending RGB value
-         * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.fill}
-         */
-        fillColorCycle ( ) { }
 
         /**
          * Move this object

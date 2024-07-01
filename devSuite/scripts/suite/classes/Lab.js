@@ -43,7 +43,7 @@ class Lab
          * @param           {number}        position            Cursor position; from ace-editor
          * @return          {Object}                            Bounding character's starting & ending position(s)
          */
-        _getBoundingCharactersPositions = ( characters, data, position ) => new Object ( { start: data.indexOf ( characters [ 0 ] ) + 1, end:   data.indexOf ( characters [ 1 ] ) } );
+        _getBoundingCharactersPositions = ( characters, data, position ) => new Object ( { start: data.indexOf ( characters [ 0 ] ) + 1, end: data.indexOf ( characters [ 1 ] ) } );
 
         /**
          * Returns a new color-picker object
@@ -330,13 +330,17 @@ class Lab
 
                         _fullscreen.addEventListener ( 'click', ( ) => UI.toggle.fullscreen ( ) );
 
-                case 'colorPicker':
+                case 'clearConsole':
 
-                    let _colorPicker = this._getColorPicker ( 'input-color-picker' );
+                    let _clear = document.querySelector ( '#input-clear' );
 
-                        _colorPicker.onOpen   = (       ) => this._setColorPickerPosition ( );
+                        _clear.addEventListener ( 'click', ( ) => UI.toggle.labButton ( _clear ) );
 
-                        _colorPicker.onChange = ( color ) => this._swapRgbValue ( color );
+                case 'boolean':
+
+                    let _boolean = document.querySelector ( '#input-boolean' );
+
+                        _boolean.addEventListener ( 'click', ( ) => UI.toggle.boolean ( ) );
 
                 case 'valuePlus':
 
@@ -349,6 +353,14 @@ class Lab
                     let _minus = document.querySelector ( '#input-value-minus' );
 
                         _minus.addEventListener ( 'click', ( ) => this._setNumbericValue ( false ) );
+
+                case 'colorPicker':
+
+                    let _colorPicker = this._getColorPicker ( 'input-color-picker' );
+
+                        _colorPicker.onOpen   = (       ) => this._setColorPickerPosition ( );
+
+                        _colorPicker.onChange = ( color ) => this._swapRgbValue ( color );
 
                 case 'fontPlus':
 
@@ -711,8 +723,10 @@ class Lab
 
                 _context.clearRect ( 0, 0, _canvas.width, _canvas.height );
 
+            let _clear   = document.querySelector ( '#input-clear' );
 
-            if ( false )
+
+            if ( TOOL.isActive ( _clear ) )
 
                 console.clear ( );
 
@@ -736,6 +750,7 @@ class Lab
          * Sets lab & ace-editor
          * @public
          * @function
+         * @param           {function} script                   Arrow function containing script
          */
         init ( script )
         {
