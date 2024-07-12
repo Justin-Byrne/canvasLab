@@ -267,7 +267,91 @@
                     children: undefined,
                     code: ( ) =>
                     {
-                        _line.draw ( );
+                        _lines.draw ( );
+                    }
+                },
+                // shadow
+                {
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.shadow = true;
+
+                        _lines.draw ( );
+                    }
+                },
+                // border
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.border = true;
+
+                        _lines.draw ( );
+                    }
+                },
+                // axis
+                {
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.axis = true;
+
+                        _lines.draw ( );
+                    }
+                },
+                // anchor
+                // {
+                //     title:   'anchor',
+                //     text:    'blah... blah... blah...',
+                //     children: undefined,
+                //     code: ( ) =>
+                //     {
+                //         _lines.options.anchor   = true;
+
+                //         _lines.draw ( );
+                //     }
+                // },
+                // points
+                {
+                    title:   'points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.points = true;
+
+                        _lines.draw ( );
+                    }
+                },
+                // coordinates
+                {
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.coordinates = true;
+
+                        _lines.draw ( );
+                    }
+                },
+                // controlPoints
+                {
+                    title:   'controlPoints',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.controlPoints = true;
+
+                        _lines.draw ( );
                     }
                 },
             ],
@@ -603,7 +687,67 @@
                     children: undefined,
                     code: ( ) =>
                     {
-                        _circle.draw ( );
+                        _circles.draw ( );
+                    }
+                },
+                // shadow
+                {
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _circles.options.shadow = true;
+
+                        _circles.draw ( );
+                    }
+                },
+                // border
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _circles.options.border = true;
+
+                        _circles.draw ( );
+                    }
+                },
+                // axis
+                {
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _circles.options.axis = true;
+
+                        _circles.draw ( );
+                    }
+                },
+                // anchor
+                // {
+                //     title:   'anchor',
+                //     text:    'blah... blah... blah...',
+                //     children: undefined,
+                //     code: ( ) =>
+                //     {
+                //         _circles.options.anchor   = true;
+
+                //         _circles.draw ( );
+                //     }
+                // },
+                // coordinates
+                {
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _circles.options.coordinates = true;
+
+                        _circles.draw ( );
                     }
                 },
             ],
@@ -851,6 +995,18 @@
                         _rectangle.rotate ( 45 );
                     }
                 },
+                // border
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.options.border = true;
+
+                        _rectangle.draw ( );
+                    }
+                },
                 // axis
                 {
                     title:   'axis',
@@ -863,14 +1019,14 @@
                         _rectangle.draw ( );
                     }
                 },
-                // border
+                // coordinates
                 {
-                    title:   'border',
+                    title:   'coordinates',
                     text:    'blah... blah... blah...',
                     children: [ 'options' ],
                     code: ( ) =>
                     {
-                        _rectangle.options.border = true;
+                        _rectangle.options.coordinates = true;
 
                         _rectangle.draw ( );
                     }
@@ -885,7 +1041,67 @@
                     children: undefined,
                     code: ( ) =>
                     {
-                        _rectangle.draw ( );
+                        _rectangles.draw ( );
+                    }
+                },
+                // shadow
+                {
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _rectangles.options.shadow = true;
+
+                        _rectangles.draw ( );
+                    }
+                },
+                // border
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _rectangles.options.border = true;
+
+                        _rectangles.draw ( );
+                    }
+                },
+                // axis
+                {
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _rectangles.options.axis = true;
+
+                        _rectangles.draw ( );
+                    }
+                },
+                // anchor
+                // {
+                //     title:   'anchor',
+                //     text:    'blah... blah... blah...',
+                //     children: undefined,
+                //     code: ( ) =>
+                //     {
+                //         _rectangles.options.anchor   = true;
+
+                //         _rectangles.draw ( );
+                //     }
+                // },
+                // coordinates
+                {
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _rectangles.options.coordinates = true;
+
+                        _rectangles.draw ( );
                     }
                 },
             ],
@@ -1030,19 +1246,21 @@
                     }
                 },
                 // stroke width
-                // {
-                //     title:   'stroke width',
-                //     text:    'blah... blah... blah...',
-                //     children: [ 'stroke' ],
-                //     code: ( ) =>
-                //     {
-                //         _text.stroke.width = 5;
+                {
+                    title:   'stroke width',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
+                    code: ( ) =>
+                    {
+                        _text.stroke.width     = 2;
 
-                //         _text.stroke.color = new Rgb ( 0,  150,  200 );     // [ Optional ]
+                        _text.stroke.color     = new Rgb ( 0,  150,  200 ); // [ Optional ]
 
-                //         _text.draw ( );
-                //     }
-                // },
+                        _text.fill.color.alpha = 0; // [ Optional ]
+
+                        _text.draw ( );
+                    }
+                },
                 // fill color
                 {
                     title:   'fill color',
@@ -1134,39 +1352,51 @@
                     }
                 },
                 // rotate
-                // {
-                //     title:   'rotate',
-                //     text:    'blah... blah... blah...',
-                //     children: undefined,
-                //     code: ( ) =>
-                //     {
-                //         _text.rotate ( 45 );
-                //     }
-                // },
-                // axis
-                // {
-                //     title:   'axis',
-                //     text:    'blah... blah... blah...',
-                //     children: [ 'options' ],
-                //     code: ( ) =>
-                //     {
-                //         _text.options.axis = true;
-
-                //         _text.draw ( );
-                //     }
-                // },
+                {
+                    title:   'rotate',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _text.rotate ( 45 );
+                    }
+                },
                 // border
-                // {
-                //     title:   'border',
-                //     text:    'blah... blah... blah...',
-                //     children: [ 'options' ],
-                //     code: ( ) =>
-                //     {
-                //         _text.options.border = true;
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
+                    code: ( ) =>
+                    {
+                        _text.options.border = true;
 
-                //         _text.draw ( );
-                //     }
-                // },
+                        _text.draw ( );
+                    }
+                },
+                // axis
+                {
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
+                    code: ( ) =>
+                    {
+                        _text.options.axis = true;
+
+                        _text.draw ( );
+                    }
+                },
+                // coordinates
+                {
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
+                    code: ( ) =>
+                    {
+                        _text.options.coordinates = true;
+
+                        _text.draw ( );
+                    }
+                },
             ],
             texts:
             [
@@ -1177,10 +1407,83 @@
                     children: undefined,
                     code: ( ) =>
                     {
-                        _text.draw ( );
+                        _texts.draw ( );
+                    }
+                },
+                // shadow
+                {
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _texts.options.shadow = true;
+
+                        _texts.draw ( );
+                    }
+                },
+                // border
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _texts.options.border = true;
+
+                        _texts.draw ( );
+                    }
+                },
+                // axis
+                {
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _texts.options.axis = true;
+
+                        _texts.draw ( );
+                    }
+                },
+                // anchor
+                // {
+                //     title:   'anchor',
+                //     text:    'blah... blah... blah...',
+                //     children: undefined,
+                //     code: ( ) =>
+                //     {
+                //         _texts.options.anchor   = true;
+
+                //         _texts.draw ( );
+                //     }
+                // },
+                // coordinates
+                {
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _texts.options.coordinates = true;
+
+                        _texts.draw ( );
                     }
                 },
             ],
+            group:
+            [
+                // draw
+                {
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _group.draw ( );
+                    }
+                },
+            ]
         },
         subject:
         {
@@ -1812,6 +2115,19 @@
                     }
                 },
             ],
+            // plans:
+            // [
+            //     // draw : plans
+            //     {
+            //         title:   'draw',
+            //         text:    'blah... blah... blah...',
+            //         children: [ 'plans', 'lines', 'circles', 'rectangles', 'texts' ],
+            //         code: ( ) =>
+            //         {
+            //             _group.draw ( );
+            //         }
+            //     },
+            // ],
             point:
             [
                 // draw : line
@@ -1866,8 +2182,6 @@
                         _text.draw ( );
                     }
                 },
-
-
                 // shadow offset : line
                 {
                     title:   'shadow offset',
@@ -1932,7 +2246,6 @@
                         _text.draw ( );
                     }
                 },
-
             ],
             radial:
             [
@@ -3128,34 +3441,34 @@
                     title: 'Line',
                     group: 'Object'
                 },
-                // {
-                //     title: 'Lines',
-                //     group: 'Object'
-                // },
+                {
+                    title: 'Lines',
+                    group: 'Object'
+                },
                 {
                     title: 'Circle',
                     group: 'Object'
                 },
-                // {
-                //     title: 'Circles',
-                //     group: 'Object'
-                // },
+                {
+                    title: 'Circles',
+                    group: 'Object'
+                },
                 {
                     title: 'Rectangle',
                     group: 'Object'
                 },
-                // {
-                //     title: 'Rectangles',
-                //     group: 'Object'
-                // },
+                {
+                    title: 'Rectangles',
+                    group: 'Object'
+                },
                 {
                     title: 'Text',
                     group: 'Object'
                 },
-                // {
-                //     title: 'Texts',
-                //     group: 'Object'
-                // },
+                {
+                    title: 'Texts',
+                    group: 'Object'
+                },
                 {
                     title: 'Group',
                     group: 'Object'
@@ -3248,10 +3561,6 @@
                             title: 'Point',
                             group: 'Subject'
                         },
-                        // {
-                        //     title: 'Stage',
-                        //     group: 'Subject'
-                        // }
                     ]
                 },
                 {
@@ -3349,7 +3658,7 @@
 
             ////    POPULATION    //////////////////////////
 
-            let _group      = new Group ( _center );
+            let _group      = new Group;
 
                 _group.plan = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
 
@@ -3372,7 +3681,7 @@
 
                     ? eval ( `window.${_class.toUpperCase ( )} = new ${_class};` )
 
-                    : console.log ( `[ ERROR ]: window.${_class.toUpperCase ( )} already exists !` );
+                    : console.error ( `[ ERROR ]: window.${_class.toUpperCase ( )} already exists !` );
         }
 
         /**

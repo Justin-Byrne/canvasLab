@@ -83,9 +83,14 @@ class Template
         object:
         {
             Line:       '{ x: 100, y: 50 }, { x: 200, y: 100 }',
+            Lines:      '{ x: 0, y: 0 }',
             Circle:     '{ x: 154, y: 77 }',
+            Circles:    '{ x: 50, y: 10 }',
             Rectangle:  '{ x: 154, y: 77 }',
-            Text:       '{ x: 154, y: 77 }, \'Text\''
+            Rectangles: '{ x: 50, y: 10 }',
+            Text:       '{ x: 154, y: 77 }, \'Text\'',
+            Texts:      '{ x: 50, y: 10 }',
+            Group:      '{ x: 20, y: 0 }',
         },
         subject:
         {
@@ -202,15 +207,37 @@ class Template
 
                     let _regex    = new RegExp ( _variable, 'g' );
 
-
                     let _init     = ( PAGE.handler ) ? this._initializer [ PAGE.handler ] [ _class ] : this._initializer [ PAGE.group ] [ _class ];
 
 
-                        _code     = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;
+                    if ( TOOL.isCanvasLabCollection ( _class ) )
+                    {
+                        switch ( _class )
+                        {
+                            case 'Lines':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Line ( { x:  60, y: 50 }, { x: 160, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 240, y: 100 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
 
-                        _code     = _code.replace ( _regex, `${_variable}_${count}` );
+                            case 'Circles':     _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                         break;
 
-                        _code     = this._getSpecialVariables ( _code, count );
+                            case 'Rectangles':  _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Rectangle ( { x:  60, y: 50 } ),\n        new Rectangle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                   break;
+
+                            case 'Texts':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Text ( { x:  60, y: 50 } ),\n        new Text ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n\n    ${_variable} [ 0 ].text = ${_variable} [ 1 ].text = 'Text';\n${_code}`;                                             break;
+
+                            case 'Group':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.lines.push (\n        new Line ( { x:  60, y: 50 }, { x: 120, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 200, y: 100 } )\n    );\n\n     ${_variable}.circles.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.rectangles.push (\n        new Rectangle ( { x:  120, y: 100 } ),\n        new Rectangle ( { x: 200, y: 100 } )\n    );\n\n    ${_variable}.texts.push (\n        new Text ( { x:  60, y: 120 } ),\n        new Text ( { x: 200, y: 50 } )\n    );\n\n    ${_variable}.texts [ 0 ].text = ${_variable}.texts [ 1 ].text = 'Text';\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
+                        }
+
+
+                        _code = _code.replace ( _regex, `${_variable}_${count}` );
+
+                        _code = this._getSpecialVariables ( _code, count );
+                    }
+                    else
+                    {
+                        _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;
+
+                        _code = _code.replace ( _regex, `${_variable}_${count}` );
+
+                        _code = this._getSpecialVariables ( _code, count );
+                    }
 
 
                     cardObject [ _entry ] = _code;

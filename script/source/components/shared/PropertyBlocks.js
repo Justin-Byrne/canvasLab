@@ -136,6 +136,56 @@ const PROPERTY_BLOCKS =
      */
     combined:
     {
+        /** @var            {Object} combined.anchor                                                **/
+        anchor:
+        {
+            set ( value )
+            {
+                this._anchor.type = ( this._isAnchor ( value ) ) ? value : this._anchor.type;
+
+
+                this._setAnchorPoint ( );
+            },
+            get ( )
+            {
+                return this._anchor;
+            }
+        },
+        /** @var            {Object} combined.area                                                  **/
+        area:
+        {
+            get ( )
+            {
+                return ( this.width * this.height );
+            }
+        },
+        /** @var            {Object} combined.aspect                                                **/
+        aspect:
+        {
+            get ( )
+            {
+                this._setAspect ( );
+
+
+                return this._aspect;
+            }
+        },
+        /** @var            {Object} combined.aspectWidth                                           **/
+        aspectWidth:
+        {
+            get ( )
+            {
+                return this._aspect.width;
+            }
+        },
+        /** @var            {Object} combined.aspectHeight                                          **/
+        aspectHeight:
+        {
+            get ( )
+            {
+                return this._aspect.height;
+            }
+        },
         /** @var            {Object} combined.canvas                                                **/
         canvas:
         {
@@ -158,13 +208,42 @@ const PROPERTY_BLOCKS =
                                                : this._canvas;
 
 
-                for ( let _element of this )
+                if ( ( this.length > 0 )  &&  ( this._canvas instanceof CanvasRenderingContext2D ) )
 
-                    _element.canvas = value;
+                    for ( let _object of this )
+
+                        _object.canvas = this.canvas;
             },
             get ( )
             {
                 return ( this._canvas != undefined ) ? this._canvas.canvas.id : undefined;
+            }
+        },
+        /** @var            {Object} combined.center                                                **/
+        center:
+        {
+            get ( )
+            {
+                let [ _x, _y ] = [ this.width / 2, this.height / 2 ];
+
+
+                return new Point ( _x, _y );
+            }
+        },
+        /** @var            {Object} combined.endPoint                                              **/
+        endPoint:
+        {
+            get ( )
+            {
+                return this [ this.length - 1 ].point;
+            }
+        },
+        /** @var            {Object} combined.perimeter                                             **/
+        perimeter:
+        {
+            get ( )
+            {
+                return ( this.area * 2 );
             }
         },
         /** @var            {Object} combined.start                                                 **/

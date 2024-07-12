@@ -4,47 +4,49 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Lines {
-point               {Point}
-stroke              {StrokeCollection}
-shadow              {ShadowCollection}
-lineCap             <color:gray>{string}</color>
-canvas              {HTMLCanvasElement}
+point                {Point}
+stroke               {StrokeCollection}
+shadow               {ShadowCollection}
+lineCap              <color:gray>{string}</color>
+canvas               {HTMLCanvasElement}
 __ Setter __
-point               {Point}
-x                   <color:gray>{number}</color>
-y                   <color:gray>{number}</color>
-lineCap             <color:gray>{string}</color>
-canvas              <color:gray>{string}</color>
-anchor              <color:gray>{string}</color>
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+lineCap              <color:gray>{string}</color>
+canvas               <color:gray>{string}</color>
+anchor               <color:gray>{string}</color>
 __ Getter __
-point               {Point}
-x                   <color:gray>{number}</color>
-y                   <color:gray>{number}</color>
-stroke              {Stroke}
-shadow              {Shadow}
-options             {Object}
-lineCap             <color:gray>{string}</color>
-canvas              <color:gray>{string}</color>
-aspect              {Aspect}
-width               <color:gray>{number}</color>
-height              <color:gray>{number}</color>
-anchor              {Anchor}
-area                <color:gray>{number}</color>
-perimeter           <color:gray>{number}</color>
-center              {Point}
-endPoint            {Point}
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+stroke               {Stroke}
+shadow               {Shadow}
+options              {Object}
+lineCap              <color:gray>{string}</color>
+canvas               <color:gray>{string}</color>
+aspect               {Aspect}
+width                <color:gray>{number}</color>
+height               <color:gray>{number}</color>
+anchor               {Anchor}
+area                 <color:gray>{number}</color>
+center               {Point}
+endPoint             {Point}
+perimeter            <color:gray>{number}</color>
 __ Validation __
-_isAspect           <color:gray>{boolean}</color>
-isCanvasLabObject   <color:gray>{boolean}</color>
-_isInDom            <color:gray>{boolean}</color>
-_isPoint            <color:gray>{boolean}</color>
+_isAspect            <color:gray>{boolean}</color>
+_isCanvasLabObject   <color:gray>{boolean}</color>
+_isInDom             <color:gray>{boolean}</color>
+_isPoint             <color:gray>{boolean}</color>
 __ Utility __
+_drawAnchor
 _drawAxis
 _drawBorder
-_drawOptions
-_drawAnchor
+_drawOptionsPost
+_drawOptionsPre
 _setAnchorPoint
 _setAspect
+_setPointOffset
 push
 draw
 redraw
@@ -211,9 +213,12 @@ height         <color:gray>{number}</color>
 __ Getter __
 width          <color:gray>{number}</color>
 height         <color:gray>{number}</color>
-center         {Point}
+offset         {Point}
+center         <color:gray>{boolean}</color>
 heightCenter   <color:gray>{number}</color>
 widthCenter    <color:gray>{number}</color>
+__ Validation __
+_isPoint       <color:gray>{boolean}</color>
 }
 
 

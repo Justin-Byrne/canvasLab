@@ -12,9 +12,12 @@ height         <color:gray>{number}</color>
 __ Getter __
 width          <color:gray>{number}</color>
 height         <color:gray>{number}</color>
-center         {Point}
+offset         {Point}
+center         <color:gray>{boolean}</color>
 heightCenter   <color:gray>{number}</color>
 widthCenter    <color:gray>{number}</color>
+__ Validation __
+_isPoint       <color:gray>{boolean}</color>
 }
 
 Aspect o-- Point

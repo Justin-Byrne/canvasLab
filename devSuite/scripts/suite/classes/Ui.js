@@ -52,6 +52,27 @@ class Ui
         },
 
         /**
+         * Toggles collapsible nav-menu menu items
+         * @private
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _collapsibles ( elements )
+        {
+            for ( let _i = 0; _i < elements.length; _i++ )
+
+                elements [ _i ].addEventListener ( 'click', ( element ) =>
+                    {
+                        let _element = element.srcElement;
+
+
+                        if ( UI._isButtonOpen ( _element ) )
+
+                            UI._collapseButtonsExcept ( elements, _i );
+                    } );
+        },
+
+        /**
          * Sets markdown content for the off canvas documentation element
          * @private
          * @function
@@ -237,14 +258,14 @@ class Ui
         },
 
         /**
-         * Toggles the card button associated with the passed 'event' param
+         * Toggles the card button associated with the passed 'element' param
          * @public
          * @function
-         * @param           {HTMLEvent} event                   HTML DOM event
+         * @param           {HTMLElement} element               HTML DOM Element
          */
-        cardButton ( event )
+        cardButton ( element )
         {
-            let _element  = event.srcElement;
+            let _element  = element.srcElement;
 
             let _cardPlus = _element.classList.contains ( 'plus' );
 
@@ -284,7 +305,7 @@ class Ui
                 }
 
 
-            event.stopPropagation ( );
+            element.stopPropagation ( );
         },
 
         /**
@@ -687,12 +708,14 @@ class Ui
          */
         getClass ( code )
         {
-            let _class  = code.match ( /_(\w+)/ ) [ 1 ];
+            let _class   = code.match ( /_(\w+)/ ) [ 1 ];
 
-            let _regex  = new RegExp ( '_(line|circle|rectangle|text)', 'g' );
+            let _regex   = new RegExp ( '_(line|lines|circle|circles|rectangle|rectangles|text|texts)', 'g' );
+
+            let _objects = [ 'line', 'lines', 'rectangle', 'rectangles', 'circle', 'circles', 'text', 'texts' ]
 
 
-            let _result = ( ! [ 'line', 'rectangle', 'circle', 'text' ].includes ( _class ) )
+            let _result = ( ! _objects.includes ( _class ) )
 
                               ? ( _regex.test ( code ) )
 
@@ -796,13 +819,13 @@ class Ui
          */
         _setCards ( element )
         {
-            let _link = element.srcElement;
+            let _element = element.srcElement;
 
 
             element.preventDefault ( );
 
 
-            PAGE = new Page ( _link );
+            PAGE = new Page ( _element );
 
 
             if ( PAGE.handler )
@@ -869,6 +892,13 @@ class Ui
                     for ( let _link of _links )
 
                         _link.addEventListener ( 'click', ( element ) => this._setCards ( element ) );
+
+                case 'navButtons-collapse':
+
+                    let _mainButtons = document.querySelectorAll ( '#nav-links > li > button, #doc-links > li > button' );
+
+
+                    this.toggle._collapsibles ( _mainButtons );
 
                 case 'copy':
 
@@ -970,36 +1000,35 @@ class Ui
         }
 
         /**
-         * Checks whether ancillary sub animation buttons are collapsible
+         * Checks whether collapsible button is open
          * @private
          * @function
-         * @param           {number} index                      Index to check
+         * @param           {HTMLElement} button                Element to validate
          */
-        _checkCollapsible ( buttons, index )
+        _isButtonOpen ( button )
         {
-            if ( ! buttons [ index ].classList.contains ( 'collapsed' ) )
-
-                buttons [ index ].click ( );
+            return ( button.getAttribute ( 'data-button-open' ) === 'true' );
         }
 
         /**
-         * Collapses uncollapsed ancillary buttons, outside of the present button
+         * Collapses all passed buttons, outside of index passed
          * @private
          * @function
-         * @param           {string} present                    data-bs-target attribute
+         * @param           {Array}  buttons                    Array of collapsible buttons
+         * @param           {number} index                      Index of button to leave open
          */
-        _collapseButtons ( buttons, present )
+        _collapseButtonsExcept ( buttons, index )
         {
-            for ( let _button of buttons )
+            for ( let _i = 0; _i < buttons.length; _i++ )
             {
-                if ( _button.getAttribute ( 'data-bs-target' ) === present )
+                if ( _i === index )
 
                     continue;
 
 
-                if ( ! _button.classList.contains ( 'collapsed' ) )
+                if ( this._isButtonOpen ( buttons [ _i ] ) )
 
-                    _button.click ( );
+                    buttons [ _i ].click ( );
             }
         }
 

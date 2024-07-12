@@ -1,5 +1,5 @@
 /**
- * @class           {Object}  Options                           Options for shapes, lines, and groups
+ * @class           {Object}  Options                           Options for collections
  * @property        {boolean} [shadow=false]                    Show shadow
  * @property        {boolean} [border=false]                    Show border
  * @property        {boolean} [axis=false]                      Show axis

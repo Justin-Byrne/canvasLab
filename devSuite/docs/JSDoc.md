@@ -44,8 +44,8 @@
 <dt><a href="#boolean">boolean()</a></dt>
 <dd><p>Toggles boolean value in lab</p>
 </dd>
-<dt><a href="#cardButton">cardButton(event)</a></dt>
-<dd><p>Toggles the card button associated with the passed &#39;event&#39; param</p>
+<dt><a href="#cardButton">cardButton(element)</a></dt>
+<dd><p>Toggles the card button associated with the passed &#39;element&#39; param</p>
 </dd>
 <dt><a href="#externalLinks">externalLinks(show)</a></dt>
 <dd><p>Toggles opacity from bottom links in navigation area</p>
@@ -565,15 +565,15 @@ Toggles boolean value in lab
 **Access**: public  
 <a name="cardButton"></a>
 
-## cardButton(event)
-Toggles the card button associated with the passed 'event' param
+## cardButton(element)
+Toggles the card button associated with the passed 'element' param
 
 **Kind**: global function  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| event | <code>HTMLEvent</code> | HTML DOM event |
+| element | <code>HTMLElement</code> | HTML DOM Element |
 
 <a name="externalLinks"></a>
 

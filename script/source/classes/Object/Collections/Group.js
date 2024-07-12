@@ -18,6 +18,8 @@ class Group extends Array
     _rectangles = new Rectangles;
     _texts      = new Texts;
 
+    #storage    = { types: [ 'lines', 'circles', 'rectangles', 'texts' ] }
+
     /**
      * Create Group object
      * @property        {Point}             point                   X & Y axis coordinates
@@ -32,8 +34,6 @@ class Group extends Array
             this._isInDom = VALIDATION.isInDom;
             this._isPlan  = VALIDATION.isPlan;
             this._isPoint = VALIDATION.isPoint;
-
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
 
         this.point  = point;
         this.canvas = canvas;
@@ -105,7 +105,33 @@ class Group extends Array
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
          */
-        set canvas ( value ) { }
+        set canvas ( value )
+        {
+            this._canvas = ( value ) ? ( this._isInDom ( value ) )
+
+                                               ? document.getElementById ( value ).getContext ( '2d' )
+
+                                               : ( this._isCanvasLabObject ( value ) )
+
+                                                     ? null
+
+                                                     : console.warn ( `"${value}" is not a valid DOM element !` )
+
+                                         : ( document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' ) )
+
+                                               ? document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' )
+
+                                               : this._canvas;
+
+
+            for ( let _type of this.#storage.types )
+
+                if ( ( this [ _type ].length > 0 )  &&  ( this._canvas instanceof CanvasRenderingContext2D ) )
+
+                    for ( let _object of this [ _type ] )
+
+                        _object.canvas = this.canvas;
+        }
 
         /**
          * Get canvas value
@@ -114,7 +140,10 @@ class Group extends Array
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
          */
-        get canvas ( ) { }
+        get canvas ( )
+        {
+            return ( this._canvas != undefined ) ? this._canvas.canvas.id : undefined;
+        }
 
     ////    [ PLAN ]  //////////////////////////////////////
 
@@ -196,6 +225,19 @@ class Group extends Array
         _isPoint ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Sets offset of child Rectangle against this constructor's point
+         * @private
+         * @function
+         * @param           {Rectangle} Object                          Rectangle object
+         */
+        _setPointOffset ( Object )
+        {
+            Object.x += this.x;
+
+            Object.y += this.y;
+        }
 
         /**
          * Pushes an object into this group
@@ -282,51 +324,17 @@ class Group extends Array
             if ( canvas != undefined ) this.canvas = canvas;
 
 
-            ////    LINES    ///////////////////////////////
+            for ( let _type of this.#storage.types )
 
-                if ( this.lines.length > 0 )
+                if ( this [ _type ].length > 0 )
+                {
+                    this._setPointOffset ( this [ _type ] );
 
-                    for ( let _line of this.lines )
 
-                        _line.draw ( );
+                    this [ _type ].draw ( );
+                }
                 else
 
-                    console.warn ( `No ${this.constructor.name} exist to draw !` );
-
-            ////    CIRCLES    /////////////////////////////
-
-                if ( this.circles.length > 0 )
-
-                    for ( let _circle of this.circles )
-
-                        _circle.draw ( );
-
-                else
-
-                    console.warn ( `No ${this.constructor.name} exist to draw !` );
-
-            ////    RECTANGLES    //////////////////////////
-
-                if ( this.rectangles.length > 0 )
-
-                    for ( let _rectangle of this.rectangles )
-
-                        _rectangle.draw ( );
-
-                else
-
-                    console.warn ( `No ${this.constructor.name} exist to draw !` );
-
-            ////    TEXTS    ///////////////////////////////
-
-                if ( this.texts.length > 0 )
-
-                    for ( let _text of this.texts )
-
-                        _text.draw ( );
-
-                else
-
-                    console.warn ( `No ${this.constructor.name} exist to draw !` );
+                    console.warn ( `No ${_type} exist to draw !` );
         }
 }

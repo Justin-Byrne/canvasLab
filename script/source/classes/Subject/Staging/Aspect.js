@@ -8,6 +8,8 @@ class Aspect
     _width  = 0;
     _height = 0;
 
+    #offset = new Point;
+
     /**
      * Create an aspect
      * @param           {number} width                              Width of aspect
@@ -15,6 +17,10 @@ class Aspect
      */
     constructor ( width, height )
     {
+        ////    COMPOSITION     ////////////////////////////
+
+            this._isPoint  = VALIDATION.isPoint;
+
         this.width  = width;
         this.height = height;
     }
@@ -67,7 +73,32 @@ class Aspect
             return this._height;
         }
 
-    ////    & EXTEND &   ///////////////////////////////////
+    ////    [ OFFSET ]  ////////////////////////////////////
+
+        /**
+         * Get offset
+         * @readOnly
+         * @function
+         * @return          {Point}                                     Aspect offset
+         */
+        get offset ( )
+        {
+            return this.#offset;
+        }
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
+
+    ////    UTILITIES   ////////////////////////////////////
 
         /**
          * Get center of aspect
@@ -77,7 +108,9 @@ class Aspect
          */
         get center ( )
         {
-            return new Point ( this.widthCenter, this.heightCenter );
+            let _point = new Point ( this.widthCenter, this.heightCenter );
+
+            return _point;
         }
 
         /**

@@ -4,23 +4,45 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Rectangles {
-point      {Point}
-canvas     {HTMLCanvasElement}
+point                {Point}
+canvas               {HTMLCanvasElement}
 __ Setter __
-point      {Point}
-x          <color:gray>{number}</color>
-y          <color:gray>{number}</color>
-canvas     <color:gray>{string}</color>
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+canvas               <color:gray>{string}</color>
+anchor               <color:gray>{string}</color>
 __ Getter __
-point      {Point}
-x          <color:gray>{number}</color>
-y          <color:gray>{number}</color>
-canvas     <color:gray>{string}</color>
-endPoint   <color:gray>{boolean}</color>
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+stroke               {Stroke}
+shadow               {Shadow}
+options              {Object}
+canvas               <color:gray>{string}</color>
+aspect               {Aspect}
+width                <color:gray>{number}</color>
+height               <color:gray>{number}</color>
+anchor               {Anchor}
+area                 <color:gray>{number}</color>
+center               {Point}
+endPoint             {Point}
+perimeter            <color:gray>{number}</color>
 __ Validation __
-_isInDom   <color:gray>{boolean}</color>
+_isAspect            <color:gray>{boolean}</color>
+_isCanvasLabObject   <color:gray>{boolean}</color>
+_isInDom             <color:gray>{boolean}</color>
+_isPoint             <color:gray>{boolean}</color>
 __ Utility __
-pushPop
+_drawAnchor
+_drawAxis
+_drawBorder
+_drawOptionsPost
+_drawOptionsPre
+_setAnchorPoint
+_setAspect
+_setPointOffset
+push
 draw
 redraw
 }

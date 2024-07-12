@@ -92,12 +92,197 @@ const UTILITIES =
         }
     },
 
+    collection:
+    {
+        /**
+         * Draw function
+         * @public
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         */
+        draw ( canvas )
+        {
+            if ( canvas != undefined ) this.canvas = canvas;
+
+
+                if ( this._canvas instanceof CanvasRenderingContext2D )
+
+                    if ( this.length > 0 )
+                    {
+                        this._setAnchorPoint ( );
+
+
+                        for ( let _object of this )
+                        {
+                            this._setPointOffset ( _object );
+
+                            this._drawOptionsPre ( _object, this.options );
+
+
+                            _object.draw ( );
+                        }
+
+
+                        this._drawOptionsPost ( );
+                    }
+                    else
+
+                        console.warn ( `No ${this.constructor.name} exist to draw !` );
+
+                else
+
+                    console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
+        },
+
+        /**
+         * Redraw this object
+         * @public
+         * @function
+         * @param           {string}  canvas                            Canvas Id
+         * @param           {Point}   point                             Point of new location
+         * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         */
+        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
+        {
+            [ this.x, this.y ] = [ point.x, point.y ]
+
+
+            this._clearCanvas ( clear );
+
+
+            this.draw ( canvas );
+        },
+
+        /**
+         * Draws anchor point
+         * @public
+         * @function
+         */
+        drawAnchor ( )
+        {
+            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
+
+                _anchor.fill.color = '255, 0, 0';
+
+                _anchor.canvas     = this.canvas;
+
+
+                _anchor.draw ( );
+        },
+
+        /**
+         * Draws associated options
+         * @public
+         * @function
+         */
+        drawOptionsPost ( )
+        {
+            let _offset = 20;
+
+            let _aspect = new Aspect ( this.width + _offset, this.height + _offset );
+
+            ////////////////////////////////////////////////////////////////////
+
+            if ( this.options.border ) this._drawBorder ( _aspect );
+
+            if ( this.options.axis   ) this._drawAxis   ( );
+
+            if ( this.options.anchor ) this._drawAnchor ( );
+        },
+
+        /**
+         * Pushes child object(s) into this collection
+         * @public
+         * @function
+         */
+        push ( )
+        {
+            for ( let _i = 0; _i < arguments.length; _i++ )
+            {
+                if ( arguments [ _i ] instanceof this._storage.type )
+
+                    Array.prototype.push.apply ( this, [ arguments [ _i ] ] );
+
+                else
+
+                    if ( ! this._isPoint ( arguments [ _i ] ) )
+
+                        console.error ( `[ERROR] Argument ${ ( _i + 1 ) }, of type "${ arguments [ _i ].constructor.name }", is not a valid type !` );
+            }
+        },
+
+        /**
+         * Sets anchor's point against this object's point location
+         * @public
+         * @function
+         */
+        setAnchorPoint ( )
+        {
+            this._setAspect ( );
+
+
+            this._anchor = this.center;
+
+
+            switch ( this.anchor.type )
+            {
+                case 'center':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height / 2;  break;
+
+                case 'top':          this.anchor.x -= this.width / 2;   /*       ... do nothing        */  break;
+
+                case 'topRight':     this.anchor.x -= this.width;       /*       ... do nothing        */  break;
+
+                case 'right':        this.anchor.x -= this.width;       this.anchor.y -= this.height / 2;  break;
+
+                case 'bottomRight':  this.anchor.x -= this.width;       this.anchor.y -= this.height;      break;
+
+                case 'bottom':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height;      break;
+
+                case 'bottomLeft':   /*       ... do nothing       */   this.anchor.y -= this.height;      break;
+
+                case 'left':         /*       ... do nothing       */   this.anchor.y -= this.height / 2;  break;
+
+                case 'topLeft':      /*       ... do nothing       */   /*       ... do nothing        */  break;
+            }
+        },
+
+        /**
+         * Sets offset of child object against this constructor's point
+         * @public
+         * @function
+         * @param           {Object} Object                             CanvasLab Object
+         */
+        setPointOffset ( Object )
+        {
+            Object.x += this.x;
+
+            Object.y += this.y;
+        },
+    },
+
     /**
      * Utility draw functions
      * @function UTILITIES.draw
      */
     draw:
     {
+        /**
+         * Draws anchor point
+         * @public
+         * @function
+         */
+        anchor ( )
+        {
+            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
+
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
+
+                _anchor.canvas     = this.canvas;
+
+
+                _anchor.draw ( );
+        },
+
         /**
          * Draws an axis for the associated object
          * @public
@@ -108,6 +293,9 @@ const UTILITIES =
          */
         axis ( edgeOffset = 20, color = new Rgb ( 245, 80, 50 ) )
         {
+            let _collections = [ 'Circles', 'Rectangles', 'Texts' ];
+
+
             let _lines = new Lines;
 
                 _lines.push ( new Line, new Line );
@@ -116,17 +304,23 @@ const UTILITIES =
 
                 _lines.point        = this.center;
 
+
+            if ( _collections.includes ( this.constructor.name ) )              // Fix offset issue(s)
+
+                [ _lines.point.x, _lines.point.y ] = [ _lines.point.x + this.aspect.offset.x, _lines.point.y + this.aspect.offset.y ];
+
+
                 _lines.canvas       = ( this instanceof Point ) ? this.options._master.canvas : this.canvas;
 
 
-                _lines [ 0 ].start  = new Point ( this.center.x - edgeOffset, this.center.y );
+                _lines [ 0 ].start  = new Point ( - edgeOffset, 0 );
 
-                _lines [ 0 ].end    = new Point ( this.center.x + edgeOffset, this.center.y );
+                _lines [ 0 ].end    = new Point (   edgeOffset, 0 );
 
 
-                _lines [ 1 ].start  = new Point ( this.center.x, this.center.y - edgeOffset );
+                _lines [ 1 ].start  = new Point ( 0, - edgeOffset );
 
-                _lines [ 1 ].end    = new Point ( this.center.x, this.center.y + edgeOffset );
+                _lines [ 1 ].end    = new Point ( 0,   edgeOffset );
 
 
                 _lines.draw ( );
@@ -141,9 +335,17 @@ const UTILITIES =
          */
         border ( aspect, color = new Rgb ( 245, 80, 50 ) )
         {
+            let _collections = [ 'Circles', 'Rectangles', 'Texts' ];
+
+
             if ( this._isAspect ( aspect ) )
             {
                 let _border = new Rectangle ( this.center, aspect );
+
+
+                if ( _collections.includes ( this.constructor.name ) )          // Fix offset issue(s)
+
+                    [ _border.x, _border.y ] = [ _border.x + this.aspect.offset.x, _border.y + this.aspect.offset.y ]
 
 
                     _border.stroke.color     = color;
@@ -159,85 +361,10 @@ const UTILITIES =
 
                 console.warn ( `"${value}" is not a valid aspect !` );
         },
-
-        /**
-         * Utility draw collection functions
-         */
-        collection:
-        {
-
-            /**
-             * Two dimensional draw function for collections; Circles, Rectangles, Texts
-             * @public
-             * @function
-             * @param           {string} canvas                             Canvas Id
-             */
-            twoDimensional ( canvas )
-            {
-                if ( canvas != undefined ) this.canvas = canvas;
-
-
-                if ( this._canvas instanceof CanvasRenderingContext2D )
-                {
-                    if ( this.length > 0 )
-
-                        for ( let _object of this )
-                        {
-                            _object.point = new Point (  ( _object.x + this.x ), ( _object.y + this.y )  );
-
-                            _object.draw ( );
-                        }
-
-                    else
-
-                        console.warn ( `No ${this.constructor.name} exist to draw !` );
-                }
-                else
-
-                    console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
-            },
-
-            /**
-             * One dimensional draw function for collections; Lines
-             * @public
-             * @function
-             * @param           {string} canvas                             Canvas Id
-             */
-            oneDimensional ( canvas )
-            {
-                if ( canvas != undefined ) this.canvas = canvas;
-
-
-                if ( this._canvas instanceof CanvasRenderingContext2D )
-                {
-                    if ( this.length > 0 )
-                    {
-                        for ( let _object of this )
-                        {
-                            this._setAspect      ( );
-
-                            this._setAnchorPoint ( );
-
-
-                            _object.draw ( );
-                        }
-
-
-                        this._drawOptions ( );
-                    }
-                    else
-
-                        console.warn ( `No ${this.constructor.name} exist to draw !` );
-                }
-                else
-
-                    console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
-            }
-        }
     },
 
     /**
-     * Utility draw collection functions
+     * Utility misc functions
      * @function UTILITIES.misc
      */
     misc:
@@ -326,11 +453,44 @@ const UTILITIES =
 
             return _point;
         },
+
+        /**
+         * Shows coordinates of this object
+         * @public
+         * @function
+         * @param           {number} [offset=10]                        Offset of coordinates y origin
+         * @param           {number} [fontSize=16]                      Coordinates font size
+         */
+        showCoordinates ( offset = 10, fontSize = 16 )
+        {
+            let _text  = new Text ( this.point, `( ${this.x}, ${this.y} )` );
+
+                _text.canvas         =  this.canvas;
+
+                _text.size           =  fontSize;
+
+                _text.options.shadow =  false;
+
+                _text.offset.y       =  ( offset / 2 );
+
+
+                _text.options.shadow = true;
+
+
+                _text.shadow.color   = new Rgb ( 255, 255, 255 );
+
+                _text.shadow.blur    = 1;
+
+                _text.shadow.x       = _text.shadow.y    = 1;
+
+
+                _text.draw ( );
+        },
     },
 
     /**
      * Utility draw collection functions
-     * @function UTILITIES.draw
+     * @function UTILITIES.set
      */
     set:
     {
@@ -412,6 +572,70 @@ const UTILITIES =
 
                                 this._canvas.fillStyle = _setStops ( _conic, this.fill.gradient.stops );        break;
             }
-        }
+        },
+    },
+
+    /**
+     * Utility draw collection functions
+     * @function UTILITIES.transition
+     */
+    transition:
+    {
+        /**
+         * Move this object
+         * @public
+         * @function
+         * @param           {number}  degree                            Direction to move; in degrees
+         * @param           {number}  distance                          Distance to move
+         * @param           {boolean} [draw=false]                      Draw post movement
+         * @param           {boolean} [clear=false]                     Clear canvas during each movement
+         */
+        move ( degree, distance, draw = false, clear = false )
+        {
+            let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
+
+
+                [ this.x, this.y ] = [ _point.x, _point.y ];
+
+
+            this._clearCanvas ( clear );
+
+
+            if ( draw )
+
+                this.draw ( );
+        },
+
+        /**
+         * Rotate this object
+         * @public
+         * @function
+         * @param           {number} degree                             Distance to rotate; in degrees
+         * @param           {number} [clear=true]                       Clear canvas during each rotation
+         */
+        rotate ( degree, clear = true )
+        {
+            if ( this._isDegree ( degree ) )
+            {
+                let [ _x, _y ] = [ this.x, this.y ];
+
+
+                this._canvas.save      ( );
+
+                this._canvas.translate ( _x, _y );
+
+                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
+
+                this._canvas.translate ( -_x, -_y );
+
+
+                this._clearCanvas ( clear );
+
+                this.draw ( );
+
+
+                this._canvas.restore ( );
+            }
+        },
     },
 }

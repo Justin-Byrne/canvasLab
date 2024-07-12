@@ -8,7 +8,7 @@
 <dd><p>{Object} Rgb 								RGB color model</p>
 </dd>
 <dt><a href="#Options">Options</a></dt>
-<dd><p>{Object}  Options                           Options for shapes, lines, and groups</p>
+<dd><p>{Object}  Options                           Options for collections</p>
 </dd>
 <dt><a href="#Anchor">Anchor</a></dt>
 <dd><p>{Object} Anchor                             Anchor object</p>
@@ -342,7 +342,7 @@ Returns a CSS compatible <color> string value
 <a name="Options"></a>
 
 ## Options
-{Object}  Options                           Options for shapes, lines, and groups
+{Object}  Options                           Options for collections
 
 **Kind**: global class  
 **Properties**
@@ -770,6 +770,7 @@ Get end angle in radians
     * [.width()](#Aspect+width) ⇒ <code>number</code>
     * [.height(value)](#Aspect+height)
     * [.height()](#Aspect+height) ⇒ <code>number</code>
+    * [.offset()](#Aspect+offset) ⇒ [<code>Point</code>](#Point)
     * [.center()](#Aspect+center) ⇒ [<code>Point</code>](#Point)
     * [.heightCenter()](#Aspect+heightCenter) ⇒ <code>number</code>
     * [.widthCenter()](#Aspect+widthCenter) ⇒ <code>number</code>
@@ -824,6 +825,14 @@ Get height
 
 **Kind**: instance method of [<code>Aspect</code>](#Aspect)  
 **Returns**: <code>number</code> - Height value  
+**Read only**: true  
+<a name="Aspect+offset"></a>
+
+### aspect.offset() ⇒ [<code>Point</code>](#Point)
+Get offset
+
+**Kind**: instance method of [<code>Aspect</code>](#Aspect)  
+**Returns**: [<code>Point</code>](#Point) - Aspect offset  
 **Read only**: true  
 <a name="Aspect+center"></a>
 
@@ -2694,15 +2703,14 @@ Set master object
     * [.canvas()](#Circle+canvas) ⇒ <code>string</code>
     * [.anchor()](#Circle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.options()](#Circle+options) ⇒ [<code>Options</code>](#Options)
+    * [.isThere(circle)](#Circle+isThere) ⇒ <code>boolean</code>
     * [.area()](#Circle+area) ⇒ <code>number</code>
     * [.diameter()](#Circle+diameter) ⇒ <code>number</code>
     * [.center()](#Circle+center) ⇒ [<code>Point</code>](#Point)
     * [.circumference()](#Circle+circumference) ⇒ <code>number</code>
-    * [.isThere(circle)](#Circle+isThere) ⇒ <code>boolean</code>
     * [.fillColorCycle(progress, start, end, [max])](#Circle+fillColorCycle)
     * [.gradientColorCycle(progress, start, end, stop, [max])](#Circle+gradientColorCycle)
-    * [.move(degree, distance, [draw], [clear])](#Circle+move)
-    * [.rotate(degree, [clear])](#Circle+rotate)
+    * [.rotate(degree, [anchor], [clear])](#Circle+rotate)
     * [.showCoordinates([offset], [fontSize])](#Circle+showCoordinates)
     * [.strokeColorCycle(start, end, progress, [max])](#Circle+strokeColorCycle)
     * [.draw(canvas)](#Circle+draw)
@@ -2760,7 +2768,7 @@ Get x-axis value
 <a name="Circle+y"></a>
 
 ### circle.y(value)
-Set the y-axis value
+Set y-axis value
 
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
 **Access**: public  
@@ -2869,13 +2877,26 @@ Get options properties
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
 **Returns**: [<code>Options</code>](#Options) - Options properties  
 **Access**: public  
+<a name="Circle+isThere"></a>
+
+### circle.isThere(circle) ⇒ <code>boolean</code>
+Check whether the passed object is already present
+
+**Kind**: instance method of [<code>Circle</code>](#Circle)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| circle | [<code>Circle</code>](#Circle) | Object to validate |
+
 <a name="Circle+area"></a>
 
 ### circle.area() ⇒ <code>number</code>
 Get area of this object
 
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
-**Returns**: <code>number</code> - Area of circle  
+**Returns**: <code>number</code> - Area of this object  
 **Read only**: true  
 <a name="Circle+diameter"></a>
 
@@ -2901,19 +2922,6 @@ Get circumference of circle
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
 **Returns**: <code>number</code> - Circumference of circle  
 **Read only**: true  
-<a name="Circle+isThere"></a>
-
-### circle.isThere(circle) ⇒ <code>boolean</code>
-Check whether the passed object is already present
-
-**Kind**: instance method of [<code>Circle</code>](#Circle)  
-**Returns**: <code>boolean</code> - True || False  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| circle | [<code>Circle</code>](#Circle) | Object to validate |
-
 <a name="Circle+fillColorCycle"></a>
 
 ### circle.fillColorCycle(progress, start, end, [max])
@@ -2947,32 +2955,19 @@ Cycle colors for gradient
 | stop | <code>number</code> |  | Gradient color stop |
 | [max] | <code>number</code> | <code>1</code> | Maximum increments |
 
-<a name="Circle+move"></a>
-
-### circle.move(degree, distance, [draw], [clear])
-Move this object
-
-**Kind**: instance method of [<code>Circle</code>](#Circle)  
-**Access**: public  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| degree | <code>number</code> |  | Direction to move; in degrees |
-| distance | <code>number</code> |  | Distance to move |
-| [draw] | <code>boolean</code> | <code>false</code> | Draw post movement |
-| [clear] | <code>boolean</code> | <code>false</code> | Clear canvas during each movement |
-
 <a name="Circle+rotate"></a>
 
-### circle.rotate(degree, [clear])
+### circle.rotate(degree, [anchor], [clear])
 Rotate this object
 
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
 **Access**: public  
+**See**: [Utilities.transition.rotate](Utilities.transition.rotate)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | degree | <code>number</code> |  | Distance to rotate; in degrees |
+| [anchor] | <code>string</code> | <code>&quot;&#x27;center&#x27;&quot;</code> | Anchoring point during rotation |
 | [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
 
 <a name="Circle+showCoordinates"></a>
@@ -2982,6 +2977,7 @@ Shows coordinates of this object
 
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
 **Access**: public  
+**See**: [Utilities.misc.showCoordinates](Utilities.misc.showCoordinates)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -3023,6 +3019,7 @@ Redraw this object
 
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
 **Access**: public  
+**See**: [Utilities.draw.redraw](Utilities.draw.redraw)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -3373,15 +3370,17 @@ Redraw this object
     * [.anchor()](#Rectangle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.options()](#Rectangle+options) ⇒ [<code>Options</code>](#Options)
     * [.isThere(rectangle)](#Rectangle+isThere)
+    * [.area()](#Rectangle+area) ⇒ <code>number</code>
+    * [.center()](#Rectangle+center) ⇒ [<code>Point</code>](#Point)
     * [.fillColorCycle(progress, start, end, [max])](#Rectangle+fillColorCycle)
     * [.gradientColorCycle(progress, start, end, stop, [max])](#Rectangle+gradientColorCycle)
     * [.move(degree, distance, [draw], [clear])](#Rectangle+move)
-    * [.rotate(degree, [clear])](#Rectangle+rotate)
-    * [.strokeColorCycle(start, end, progress, [max])](#Rectangle+strokeColorCycle)
-    * [.area()](#Rectangle+area) ⇒ <code>number</code>
-    * [.center()](#Rectangle+center) ⇒ [<code>Point</code>](#Point)
     * [.perimeter()](#Rectangle+perimeter) ⇒ <code>number</code>
+    * [.rotate(degree, [anchor], [clear])](#Rectangle+rotate)
+    * [.showCoordinates([offset], [fontSize])](#Rectangle+showCoordinates)
+    * [.strokeColorCycle(start, end, progress, [max])](#Rectangle+strokeColorCycle)
     * [.draw(canvas)](#Rectangle+draw)
+    * [.redraw(canvas, point, [clear])](#Rectangle+redraw)
 
 <a name="new_Rectangle_new"></a>
 
@@ -3435,7 +3434,7 @@ Get x-axis value
 <a name="Rectangle+y"></a>
 
 ### rectangle.y(value)
-Set the y-axis value
+Set y-axis value
 
 **Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
 **Access**: public  
@@ -3588,6 +3587,22 @@ Check whether the passed object is already present
 | --- | --- | --- |
 | rectangle | [<code>Rectangle</code>](#Rectangle) | Object to validate |
 
+<a name="Rectangle+area"></a>
+
+### rectangle.area() ⇒ <code>number</code>
+Get area of this object
+
+**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
+**Returns**: <code>number</code> - Area of this object  
+**Read only**: true  
+<a name="Rectangle+center"></a>
+
+### rectangle.center() ⇒ [<code>Point</code>](#Point)
+Get center of this object
+
+**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
+**Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+**Read only**: true  
 <a name="Rectangle+fillColorCycle"></a>
 
 ### rectangle.fillColorCycle(progress, start, end, [max])
@@ -3628,6 +3643,7 @@ Move this object
 
 **Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
 **Access**: public  
+**See**: [Utilities.transition.move](Utilities.transition.move)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -3636,18 +3652,42 @@ Move this object
 | [draw] | <code>boolean</code> | <code>false</code> | Draw post movement |
 | [clear] | <code>boolean</code> | <code>false</code> | Clear canvas during each movement |
 
+<a name="Rectangle+perimeter"></a>
+
+### rectangle.perimeter() ⇒ <code>number</code>
+Get perimeter of this object
+
+**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
+**Returns**: <code>number</code> - Perimeter of rectangle  
+**Read only**: true  
 <a name="Rectangle+rotate"></a>
 
-### rectangle.rotate(degree, [clear])
+### rectangle.rotate(degree, [anchor], [clear])
 Rotate this object
 
 **Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
 **Access**: public  
+**See**: [Utilities.transition.rotate](Utilities.transition.rotate)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | degree | <code>number</code> |  | Distance to rotate; in degrees |
+| [anchor] | <code>string</code> | <code>&quot;&#x27;center&#x27;&quot;</code> | Anchoring point during rotation |
 | [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
+
+<a name="Rectangle+showCoordinates"></a>
+
+### rectangle.showCoordinates([offset], [fontSize])
+Shows coordinates of this object
+
+**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
+**Access**: public  
+**See**: [Utilities.misc.showCoordinates](Utilities.misc.showCoordinates)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
+| [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
 
 <a name="Rectangle+strokeColorCycle"></a>
 
@@ -3665,30 +3705,6 @@ Cycle colors for stroke
 | progress | <code>number</code> |  | Progress time unit; 0.00 - 1.00 |
 | [max] | <code>number</code> | <code>1</code> | Maximum increments |
 
-<a name="Rectangle+area"></a>
-
-### rectangle.area() ⇒ <code>number</code>
-Get area of this object
-
-**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
-**Returns**: <code>number</code> - Area of rectangle  
-**Read only**: true  
-<a name="Rectangle+center"></a>
-
-### rectangle.center() ⇒ [<code>Point</code>](#Point)
-Get center of this object
-
-**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
-**Returns**: [<code>Point</code>](#Point) - Center point coordinates  
-**Read only**: true  
-<a name="Rectangle+perimeter"></a>
-
-### rectangle.perimeter() ⇒ <code>number</code>
-Get perimeter of this object
-
-**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
-**Returns**: <code>number</code> - Perimeter of rectangle  
-**Read only**: true  
 <a name="Rectangle+draw"></a>
 
 ### rectangle.draw(canvas)
@@ -3700,6 +3716,21 @@ Draw this object
 | Param | Type | Description |
 | --- | --- | --- |
 | canvas | <code>string</code> | Canvas Id |
+
+<a name="Rectangle+redraw"></a>
+
+### rectangle.redraw(canvas, point, [clear])
+Redraw this object
+
+**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
+**Access**: public  
+**See**: [Utilities.draw.redraw](Utilities.draw.redraw)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| canvas | <code>string</code> |  | Canvas Id |
+| point | [<code>Point</code>](#Point) |  | Point of new location |
+| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
 
 <a name="Text"></a>
 
@@ -3735,6 +3766,7 @@ Draw this object
     * [.canvas(value)](#Text+canvas)
     * [.canvas()](#Text+canvas) ⇒ <code>string</code>
     * [.options()](#Text+options) ⇒ [<code>Options</code>](#Options)
+    * [._drawOptions()](#Text+_drawOptions)
     * [.type(value)](#Text+type)
     * [.type()](#Text+type) ⇒ <code>string</code>
     * [.size(value)](#Text+size)
@@ -3746,13 +3778,15 @@ Draw this object
     * [.offset(value)](#Text+offset)
     * [.offset()](#Text+offset) ⇒ [<code>Point</code>](#Point)
     * [.font()](#Text+font) ⇒ <code>string</code>
-    * [.drawBorder([offset])](#Text+drawBorder)
-    * [.drawAxis([offset])](#Text+drawAxis)
+    * [._drawAxis([offset])](#Text+_drawAxis)
+    * [._drawBorder([offset])](#Text+_drawBorder)
     * [.fillColorCycle(progress, start, end, [max])](#Text+fillColorCycle)
     * [.move(degree, distance, [draw], [clear])](#Text+move)
     * [.rotate(degree, [anchor], [clear])](#Text+rotate)
+    * [.showCoordinates([offset], [fontSize])](#Text+showCoordinates)
     * [.strokeColorCycle(start, end, progress, [max])](#Text+strokeColorCycle)
     * [.draw(canvas)](#Text+draw)
+    * [.redraw(canvas, point, [clear])](#Text+redraw)
 
 <a name="new_Text_new"></a>
 
@@ -3781,7 +3815,7 @@ Set point
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Access**: public  
-**See**: [point](#discrete.point)  
+**See**: [Property_Blocks.discrete.point](Property_Blocks.discrete.point)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -3795,7 +3829,7 @@ Get point
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: [<code>Point</code>](#Point) - X & Y coordinates  
 **Access**: public  
-**See**: [point](#discrete.point)  
+**See**: [Property_Blocks.discrete.point](Property_Blocks.discrete.point)  
 <a name="Text+x"></a>
 
 ### text.x(value)
@@ -3803,7 +3837,7 @@ Set x-axis value
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Access**: public  
-**See**: [pointX](#discrete.pointX)  
+**See**: [Property_Blocks.discrete.pointX](Property_Blocks.discrete.pointX)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -3817,7 +3851,7 @@ Get x-axis value
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: <code>number</code> - X coordinate value  
 **Read only**: true  
-**See**: [pointX](#discrete.pointX)  
+**See**: [Property_Blocks.discrete.pointX](Property_Blocks.discrete.pointX)  
 <a name="Text+y"></a>
 
 ### text.y(value)
@@ -3825,7 +3859,7 @@ Set the y-axis value
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Access**: public  
-**See**: [pointY](#discrete.pointY)  
+**See**: [Property_Blocks.discrete.pointY](Property_Blocks.discrete.pointY)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -3839,7 +3873,7 @@ Get y-axis value
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: <code>number</code> - Y coordinate value  
 **Read only**: true  
-**See**: [pointY](#discrete.pointY)  
+**See**: [Property_Blocks.discrete.pointY](Property_Blocks.discrete.pointY)  
 <a name="Text+text"></a>
 
 ### text.text(value)
@@ -3891,7 +3925,7 @@ Set canvas value
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Access**: public  
-**See**: [canvas](#discrete.canvas)  
+**See**: [Property_Blocks.discrete.canvas](Property_Blocks.discrete.canvas)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -3905,7 +3939,7 @@ Get canvas value
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: <code>string</code> - Canvas id  
 **Read only**: true  
-**See**: [canvas](#discrete.canvas)  
+**See**: [Property_Blocks.discrete.canvas](Property_Blocks.discrete.canvas)  
 <a name="Text+options"></a>
 
 ### text.options() ⇒ [<code>Options</code>](#Options)
@@ -3914,6 +3948,13 @@ Get options properties
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: [<code>Options</code>](#Options) - Options properties  
 **Access**: public  
+<a name="Text+_drawOptions"></a>
+
+### text.\_drawOptions()
+Draws associated options
+
+**Kind**: instance method of [<code>Text</code>](#Text)  
+**Access**: protected  
 <a name="Text+type"></a>
 
 ### text.type(value)
@@ -4001,7 +4042,7 @@ Set offset
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Access**: public  
-**See**: [offset](#discrete.offset)  
+**See**: [Property_Blocks.discrete.offset](Property_Blocks.discrete.offset)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -4015,7 +4056,7 @@ Get offset
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: [<code>Point</code>](#Point) - Shadow offset  
 **Read only**: true  
-**See**: [offset](#discrete.offset)  
+**See**: [Property_Blocks.discrete.offset](Property_Blocks.discrete.offset)  
 <a name="Text+font"></a>
 
 ### text.font() ⇒ <code>string</code>
@@ -4024,21 +4065,9 @@ Get font
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: <code>string</code> - CSS style font property syntax  
 **Access**: public  
-<a name="Text+drawBorder"></a>
+<a name="Text+_drawAxis"></a>
 
-### text.drawBorder([offset])
-Draws border around this object
-
-**Kind**: instance method of [<code>Text</code>](#Text)  
-**Access**: public  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [offset] | <code>number</code> | <code>10</code> | Offset of border's perimeter |
-
-<a name="Text+drawAxis"></a>
-
-### text.drawAxis([offset])
+### text.\_drawAxis([offset])
 Draws axis through center of this object
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
@@ -4047,6 +4076,18 @@ Draws axis through center of this object
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [offset] | <code>number</code> | <code>10</code> | Offset of axis's edges |
+
+<a name="Text+_drawBorder"></a>
+
+### text.\_drawBorder([offset])
+Draws border around this object
+
+**Kind**: instance method of [<code>Text</code>](#Text)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [offset] | <code>number</code> | <code>10</code> | Offset of border's perimeter |
 
 <a name="Text+fillColorCycle"></a>
 
@@ -4071,6 +4112,7 @@ Move this object
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Access**: public  
+**See**: [Utilities.transition.move](Utilities.transition.move)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -4086,12 +4128,27 @@ Rotate this object
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Access**: public  
+**See**: [Utilities.transition.rotate](Utilities.transition.rotate)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | degree | <code>number</code> |  | Distance to rotate; in degrees |
 | [anchor] | <code>string</code> | <code>&quot;&#x27;center&#x27;&quot;</code> | Anchoring point during rotation |
 | [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
+
+<a name="Text+showCoordinates"></a>
+
+### text.showCoordinates([offset], [fontSize])
+Shows coordinates of this object
+
+**Kind**: instance method of [<code>Text</code>](#Text)  
+**Access**: public  
+**See**: [Utilities.misc.showCoordinates](Utilities.misc.showCoordinates)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
+| [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
 
 <a name="Text+strokeColorCycle"></a>
 
@@ -4121,6 +4178,21 @@ Draw this object
 | --- | --- | --- |
 | canvas | <code>string</code> | Canvas Id |
 
+<a name="Text+redraw"></a>
+
+### text.redraw(canvas, point, [clear])
+Redraw this object
+
+**Kind**: instance method of [<code>Text</code>](#Text)  
+**Access**: public  
+**See**: [Utilities.draw.redraw](Utilities.draw.redraw)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| canvas | <code>string</code> |  | Canvas Id |
+| point | [<code>Point</code>](#Point) |  | Point of new location |
+| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
+
 <a name="Circles"></a>
 
 ## Circles
@@ -4137,16 +4209,28 @@ Draw this object
 
 * [Circles](#Circles)
     * [new Circles()](#new_Circles_new)
-    * [.point(point)](#Circles+point)
+    * [.point(value)](#Circles+point)
     * [.point()](#Circles+point) ⇒ [<code>Point</code>](#Point)
     * [.x(value)](#Circles+x)
     * [.x()](#Circles+x) ⇒ <code>number</code>
     * [.y(value)](#Circles+y)
     * [.y()](#Circles+y) ⇒ <code>number</code>
+    * [.stroke()](#Circles+stroke) ⇒ [<code>Stroke</code>](#Stroke)
+    * [.shadow()](#Circles+shadow) ⇒ [<code>Shadow</code>](#Shadow)
+    * [.options()](#Circles+options) ⇒ <code>Object</code>
     * [.canvas(value)](#Circles+canvas)
     * [.canvas()](#Circles+canvas) ⇒ <code>string</code>
+    * [.aspect()](#Circles+aspect) ⇒ [<code>Aspect</code>](#Aspect)
+    * [.width()](#Circles+width) ⇒ <code>number</code>
+    * [.height()](#Circles+height) ⇒ <code>number</code>
+    * [.anchor(value)](#Circles+anchor)
+    * [.anchor()](#Circles+anchor) ⇒ [<code>Anchor</code>](#Anchor)
+    * [._setPointOffset(Object)](#Circles+_setPointOffset)
+    * [.area()](#Circles+area) ⇒ <code>number</code>
+    * [.center()](#Circles+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Circles+endPoint) ⇒ [<code>Point</code>](#Point)
-    * [.pushPop(object)](#Circles+pushPop)
+    * [.perimeter()](#Circles+perimeter) ⇒ <code>number</code>
+    * [.push()](#Circles+push)
     * [.draw(canvas)](#Circles+draw)
     * [.redraw(canvas, point, [clear])](#Circles+redraw)
 
@@ -4157,15 +4241,16 @@ Create Circles object
 
 <a name="Circles+point"></a>
 
-### circles.point(point)
+### circles.point(value)
 Set point
 
 **Kind**: instance method of [<code>Circles</code>](#Circles)  
 **Access**: public  
+**See**: [point](#discrete.point)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| point | [<code>Point</code>](#Point) | X & Y axis coordinates |
+| value | [<code>Point</code>](#Point) | X & Y coordinates |
 
 <a name="Circles+point"></a>
 
@@ -4173,8 +4258,9 @@ Set point
 Get point
 
 **Kind**: instance method of [<code>Circles</code>](#Circles)  
-**Returns**: [<code>Point</code>](#Point) - X & Y axis coordinates  
+**Returns**: [<code>Point</code>](#Point) - X & Y coordinates  
 **Access**: public  
+**See**: [point](#discrete.point)  
 <a name="Circles+x"></a>
 
 ### circles.x(value)
@@ -4182,6 +4268,7 @@ Set x-axis value
 
 **Kind**: instance method of [<code>Circles</code>](#Circles)  
 **Access**: public  
+**See**: [pointX](#discrete.pointX)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -4195,13 +4282,15 @@ Get x-axis value
 **Kind**: instance method of [<code>Circles</code>](#Circles)  
 **Returns**: <code>number</code> - X coordinate value  
 **Read only**: true  
+**See**: [pointX](#discrete.pointX)  
 <a name="Circles+y"></a>
 
 ### circles.y(value)
-Set y-axis value
+Set the y-axis value
 
 **Kind**: instance method of [<code>Circles</code>](#Circles)  
 **Access**: public  
+**See**: [pointY](#discrete.pointY)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -4215,6 +4304,31 @@ Get y-axis value
 **Kind**: instance method of [<code>Circles</code>](#Circles)  
 **Returns**: <code>number</code> - Y coordinate value  
 **Read only**: true  
+**See**: [pointY](#discrete.pointY)  
+<a name="Circles+stroke"></a>
+
+### circles.stroke() ⇒ [<code>Stroke</code>](#Stroke)
+Get stroke properties
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
+**Access**: public  
+<a name="Circles+shadow"></a>
+
+### circles.shadow() ⇒ [<code>Shadow</code>](#Shadow)
+Get shadow properties
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Returns**: [<code>Shadow</code>](#Shadow) - Shadow properties  
+**Access**: public  
+<a name="Circles+options"></a>
+
+### circles.options() ⇒ <code>Object</code>
+Get options
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Returns**: <code>Object</code> - Options object  
+**Access**: public  
 <a name="Circles+canvas"></a>
 
 ### circles.canvas(value)
@@ -4237,6 +4351,86 @@ Get canvas value
 **Returns**: <code>string</code> - Canvas id  
 **Read only**: true  
 **See**: [canvas](#combined.canvas)  
+<a name="Circles+aspect"></a>
+
+### circles.aspect() ⇒ [<code>Aspect</code>](#Aspect)
+Get aspect properties
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Returns**: [<code>Aspect</code>](#Aspect) - Aspect properties  
+**Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.aspect](PROPERTY_BLOCKS.combined.aspect)  
+<a name="Circles+width"></a>
+
+### circles.width() ⇒ <code>number</code>
+Get aspect with
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Returns**: <code>number</code> - Width value  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.aspectWidth](PROPERTY_BLOCKS.combined.aspectWidth)  
+<a name="Circles+height"></a>
+
+### circles.height() ⇒ <code>number</code>
+Get aspect height
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Returns**: <code>number</code> - Height value  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.aspectHeight](PROPERTY_BLOCKS.combined.aspectHeight)  
+<a name="Circles+anchor"></a>
+
+### circles.anchor(value)
+Set anchor type
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.anchor](PROPERTY_BLOCKS.combined.anchor)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Anchor type |
+
+<a name="Circles+anchor"></a>
+
+### circles.anchor() ⇒ [<code>Anchor</code>](#Anchor)
+Get anchor
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Returns**: [<code>Anchor</code>](#Anchor) - Anchor properties  
+**Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.anchor](PROPERTY_BLOCKS.combined.anchor)  
+<a name="Circles+_setPointOffset"></a>
+
+### circles.\_setPointOffset(Object)
+Sets offset of child object against this constructor's point
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Access**: public  
+**See**: [UTILITIES.collection.setAnchorPoint;](UTILITIES.collection.setAnchorPoint;)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Object | <code>Object</code> | CanvasLab Object |
+
+<a name="Circles+area"></a>
+
+### circles.area() ⇒ <code>number</code>
+Get area of this object
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Returns**: <code>number</code> - Area of rectangle  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.area;](PROPERTY_BLOCKS.combined.area;)  
+<a name="Circles+center"></a>
+
+### circles.center() ⇒ [<code>Point</code>](#Point)
+Get center of this object
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.center;](PROPERTY_BLOCKS.combined.center;)  
 <a name="Circles+endPoint"></a>
 
 ### circles.endPoint() ⇒ [<code>Point</code>](#Point)
@@ -4245,27 +4439,32 @@ Returns the last Point within this Array
 **Kind**: instance method of [<code>Circles</code>](#Circles)  
 **Returns**: [<code>Point</code>](#Point) - Last Array element's X & Y Coordinates  
 **Access**: public  
-<a name="Circles+pushPop"></a>
+**See**: [PROPERTY_BLOCKS.combined.endPoint;](PROPERTY_BLOCKS.combined.endPoint;)  
+<a name="Circles+perimeter"></a>
 
-### circles.pushPop(object)
-Push or pops the passed object
+### circles.perimeter() ⇒ <code>number</code>
+Get perimeter of this object
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Returns**: <code>number</code> - Perimeter of rectangle  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.perimeter;](PROPERTY_BLOCKS.combined.perimeter;)  
+<a name="Circles+push"></a>
+
+### circles.push()
+Pushes child object(s) into this collection
 
 **Kind**: instance method of [<code>Circles</code>](#Circles)  
 **Access**: public  
-**See**: [Utilities.misc.pushPop](Utilities.misc.pushPop)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| object | <code>Object</code> | Object; Circle, Rectangle, Text |
-
+**See**: [UTILITIES.collection.push;](UTILITIES.collection.push;)  
 <a name="Circles+draw"></a>
 
 ### circles.draw(canvas)
-Typical draw function for collections; Circles, Texts
+Draw function for collections
 
 **Kind**: instance method of [<code>Circles</code>](#Circles)  
 **Access**: public  
-**See**: [UTILITIES.draw.collection.typical](UTILITIES.draw.collection.typical)  
+**See**: [draw](#UTILITIES.collection.draw)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -4278,6 +4477,7 @@ Redraw this object
 
 **Kind**: instance method of [<code>Circles</code>](#Circles)  
 **Access**: public  
+**See**: [redraw](#UTILITIES.collection.redraw)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -4478,10 +4678,9 @@ Draw this group
     * [.anchor(value)](#Lines+anchor)
     * [.anchor()](#Lines+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.area()](#Lines+area) ⇒ <code>number</code>
-    * [.perimeter()](#Lines+perimeter) ⇒ <code>number</code>
     * [.center()](#Lines+center) ⇒ [<code>Point</code>](#Point)
-    * [._isAspect(value)](#Lines+_isAspect) ⇒ <code>boolean</code>
     * [.endPoint()](#Lines+endPoint) ⇒ [<code>Point</code>](#Point)
+    * [.perimeter()](#Lines+perimeter) ⇒ <code>number</code>
     * [.push()](#Lines+push)
     * [.draw(canvas)](#Lines+draw)
     * [.redraw(canvas, point, [clear])](#Lines+redraw)
@@ -4631,6 +4830,7 @@ Get aspect properties
 **Kind**: instance method of [<code>Lines</code>](#Lines)  
 **Returns**: [<code>Aspect</code>](#Aspect) - Aspect properties  
 **Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.aspect](PROPERTY_BLOCKS.combined.aspect)  
 <a name="Lines+width"></a>
 
 ### lines.width() ⇒ <code>number</code>
@@ -4639,6 +4839,7 @@ Get aspect with
 **Kind**: instance method of [<code>Lines</code>](#Lines)  
 **Returns**: <code>number</code> - Width value  
 **Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.aspectWidth](PROPERTY_BLOCKS.combined.aspectWidth)  
 <a name="Lines+height"></a>
 
 ### lines.height() ⇒ <code>number</code>
@@ -4647,6 +4848,7 @@ Get aspect height
 **Kind**: instance method of [<code>Lines</code>](#Lines)  
 **Returns**: <code>number</code> - Height value  
 **Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.aspectHeight](PROPERTY_BLOCKS.combined.aspectHeight)  
 <a name="Lines+anchor"></a>
 
 ### lines.anchor(value)
@@ -4654,6 +4856,7 @@ Set anchor type
 
 **Kind**: instance method of [<code>Lines</code>](#Lines)  
 **Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.anchor](PROPERTY_BLOCKS.combined.anchor)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -4667,6 +4870,7 @@ Get anchor
 **Kind**: instance method of [<code>Lines</code>](#Lines)  
 **Returns**: [<code>Anchor</code>](#Anchor) - Anchor properties  
 **Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.anchor](PROPERTY_BLOCKS.combined.anchor)  
 <a name="Lines+area"></a>
 
 ### lines.area() ⇒ <code>number</code>
@@ -4675,14 +4879,7 @@ Get area of this object
 **Kind**: instance method of [<code>Lines</code>](#Lines)  
 **Returns**: <code>number</code> - Area of rectangle  
 **Read only**: true  
-<a name="Lines+perimeter"></a>
-
-### lines.perimeter() ⇒ <code>number</code>
-Get perimeter of this object
-
-**Kind**: instance method of [<code>Lines</code>](#Lines)  
-**Returns**: <code>number</code> - Perimeter of rectangle  
-**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.area;](PROPERTY_BLOCKS.combined.area;)  
 <a name="Lines+center"></a>
 
 ### lines.center() ⇒ [<code>Point</code>](#Point)
@@ -4691,20 +4888,6 @@ Get center of this object
 **Kind**: instance method of [<code>Lines</code>](#Lines)  
 **Returns**: [<code>Point</code>](#Point) - Center point coordinates  
 **Read only**: true  
-<a name="Lines+_isAspect"></a>
-
-### lines.\_isAspect(value) ⇒ <code>boolean</code>
-Returns whether the passed value is an Aspect
-
-**Kind**: instance method of [<code>Lines</code>](#Lines)  
-**Returns**: <code>boolean</code> - True || False  
-**Access**: public  
-**See**: [Validation.isAspect](Validation.isAspect)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>Object</code> | Aspect or object equivalent |
-
 <a name="Lines+endPoint"></a>
 
 ### lines.endPoint() ⇒ [<code>Point</code>](#Point)
@@ -4713,21 +4896,32 @@ Returns the last Point within this Array
 **Kind**: instance method of [<code>Lines</code>](#Lines)  
 **Returns**: [<code>Point</code>](#Point) - Last Array element's X & Y Coordinates  
 **Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.endPoint;](PROPERTY_BLOCKS.combined.endPoint;)  
+<a name="Lines+perimeter"></a>
+
+### lines.perimeter() ⇒ <code>number</code>
+Get perimeter of this object
+
+**Kind**: instance method of [<code>Lines</code>](#Lines)  
+**Returns**: <code>number</code> - Perimeter of rectangle  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.perimeter;](PROPERTY_BLOCKS.combined.perimeter;)  
 <a name="Lines+push"></a>
 
 ### lines.push()
-Pushes Line(s) into this collection
+Pushes child object(s) into this collection
 
 **Kind**: instance method of [<code>Lines</code>](#Lines)  
 **Access**: public  
+**See**: [UTILITIES.collection.push;](UTILITIES.collection.push;)  
 <a name="Lines+draw"></a>
 
 ### lines.draw(canvas)
-A-typical draw function for collections; Lines
+Draw function for collections
 
 **Kind**: instance method of [<code>Lines</code>](#Lines)  
 **Access**: public  
-**See**: [Utilities.draw.collection.aTypical](Utilities.draw.collection.aTypical)  
+**See**: [draw](#UTILITIES.collection.draw)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -4740,6 +4934,7 @@ Redraw this object
 
 **Kind**: instance method of [<code>Lines</code>](#Lines)  
 **Access**: public  
+**See**: [redraw](#UTILITIES.collection.redraw)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -4763,16 +4958,28 @@ Redraw this object
 
 * [Rectangles](#Rectangles)
     * [new Rectangles()](#new_Rectangles_new)
-    * [.canvas](#Rectangles+canvas)
-    * [.canvas](#Rectangles+canvas) ⇒ <code>string</code>
     * [.point(value)](#Rectangles+point)
     * [.point()](#Rectangles+point) ⇒ [<code>Point</code>](#Point)
     * [.x(value)](#Rectangles+x)
     * [.x()](#Rectangles+x) ⇒ <code>number</code>
     * [.y(value)](#Rectangles+y)
     * [.y()](#Rectangles+y) ⇒ <code>number</code>
+    * [.stroke()](#Rectangles+stroke) ⇒ [<code>Stroke</code>](#Stroke)
+    * [.shadow()](#Rectangles+shadow) ⇒ [<code>Shadow</code>](#Shadow)
+    * [.options()](#Rectangles+options) ⇒ <code>Object</code>
+    * [.canvas(value)](#Rectangles+canvas)
+    * [.canvas()](#Rectangles+canvas) ⇒ <code>string</code>
+    * [.aspect()](#Rectangles+aspect) ⇒ [<code>Aspect</code>](#Aspect)
+    * [.width()](#Rectangles+width) ⇒ <code>number</code>
+    * [.height()](#Rectangles+height) ⇒ <code>number</code>
+    * [.anchor(value)](#Rectangles+anchor)
+    * [.anchor()](#Rectangles+anchor) ⇒ [<code>Anchor</code>](#Anchor)
+    * [._setPointOffset(Object)](#Rectangles+_setPointOffset)
+    * [.area()](#Rectangles+area) ⇒ <code>number</code>
+    * [.center()](#Rectangles+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Rectangles+endPoint) ⇒ [<code>Point</code>](#Point)
-    * [.pushPop(object)](#Rectangles+pushPop)
+    * [.perimeter()](#Rectangles+perimeter) ⇒ <code>number</code>
+    * [.push()](#Rectangles+push)
     * [.draw(canvas)](#Rectangles+draw)
     * [.redraw(canvas, point, [clear])](#Rectangles+redraw)
 
@@ -4781,26 +4988,6 @@ Redraw this object
 ### new Rectangles()
 Create Rectangles object
 
-<a name="Rectangles+canvas"></a>
-
-### rectangles.canvas
-Set canvas value
-
-**Kind**: instance property of [<code>Rectangles</code>](#Rectangles)  
-**See**: [canvas](#combined.canvas)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | Canvas id |
-
-<a name="Rectangles+canvas"></a>
-
-### rectangles.canvas ⇒ <code>string</code>
-Get canvas value
-
-**Kind**: instance property of [<code>Rectangles</code>](#Rectangles)  
-**Returns**: <code>string</code> - Canvas id  
-**See**: [canvas](#combined.canvas)  
 <a name="Rectangles+point"></a>
 
 ### rectangles.point(value)
@@ -4867,6 +5054,132 @@ Get y-axis value
 **Returns**: <code>number</code> - Y coordinate value  
 **Read only**: true  
 **See**: [pointY](#discrete.pointY)  
+<a name="Rectangles+stroke"></a>
+
+### rectangles.stroke() ⇒ [<code>Stroke</code>](#Stroke)
+Get stroke properties
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
+**Access**: public  
+<a name="Rectangles+shadow"></a>
+
+### rectangles.shadow() ⇒ [<code>Shadow</code>](#Shadow)
+Get shadow properties
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: [<code>Shadow</code>](#Shadow) - Shadow properties  
+**Access**: public  
+<a name="Rectangles+options"></a>
+
+### rectangles.options() ⇒ <code>Object</code>
+Get options
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: <code>Object</code> - Options object  
+**Access**: public  
+<a name="Rectangles+canvas"></a>
+
+### rectangles.canvas(value)
+Set canvas value
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Access**: public  
+**See**: [canvas](#combined.canvas)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Canvas id |
+
+<a name="Rectangles+canvas"></a>
+
+### rectangles.canvas() ⇒ <code>string</code>
+Get canvas value
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: <code>string</code> - Canvas id  
+**Read only**: true  
+**See**: [canvas](#combined.canvas)  
+<a name="Rectangles+aspect"></a>
+
+### rectangles.aspect() ⇒ [<code>Aspect</code>](#Aspect)
+Get aspect properties
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: [<code>Aspect</code>](#Aspect) - Aspect properties  
+**Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.aspect](PROPERTY_BLOCKS.combined.aspect)  
+<a name="Rectangles+width"></a>
+
+### rectangles.width() ⇒ <code>number</code>
+Get aspect with
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: <code>number</code> - Width value  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.aspectWidth](PROPERTY_BLOCKS.combined.aspectWidth)  
+<a name="Rectangles+height"></a>
+
+### rectangles.height() ⇒ <code>number</code>
+Get aspect height
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: <code>number</code> - Height value  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.aspectHeight](PROPERTY_BLOCKS.combined.aspectHeight)  
+<a name="Rectangles+anchor"></a>
+
+### rectangles.anchor(value)
+Set anchor type
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.anchor](PROPERTY_BLOCKS.combined.anchor)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Anchor type |
+
+<a name="Rectangles+anchor"></a>
+
+### rectangles.anchor() ⇒ [<code>Anchor</code>](#Anchor)
+Get anchor
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: [<code>Anchor</code>](#Anchor) - Anchor properties  
+**Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.anchor](PROPERTY_BLOCKS.combined.anchor)  
+<a name="Rectangles+_setPointOffset"></a>
+
+### rectangles.\_setPointOffset(Object)
+Sets offset of child object against this constructor's point
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Access**: public  
+**See**: [UTILITIES.collection.setAnchorPoint;](UTILITIES.collection.setAnchorPoint;)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Object | <code>Object</code> | CanvasLab Object |
+
+<a name="Rectangles+area"></a>
+
+### rectangles.area() ⇒ <code>number</code>
+Get area of this object
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: <code>number</code> - Area of rectangle  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.area;](PROPERTY_BLOCKS.combined.area;)  
+<a name="Rectangles+center"></a>
+
+### rectangles.center() ⇒ [<code>Point</code>](#Point)
+Get center of this object
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.center;](PROPERTY_BLOCKS.combined.center;)  
 <a name="Rectangles+endPoint"></a>
 
 ### rectangles.endPoint() ⇒ [<code>Point</code>](#Point)
@@ -4875,26 +5188,32 @@ Returns the last Point within this Array
 **Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
 **Returns**: [<code>Point</code>](#Point) - Last Array element's X & Y Coordinates  
 **Access**: public  
-<a name="Rectangles+pushPop"></a>
+**See**: [PROPERTY_BLOCKS.combined.endPoint;](PROPERTY_BLOCKS.combined.endPoint;)  
+<a name="Rectangles+perimeter"></a>
 
-### rectangles.pushPop(object)
-Push or pops the passed object
+### rectangles.perimeter() ⇒ <code>number</code>
+Get perimeter of this object
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Returns**: <code>number</code> - Perimeter of rectangle  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.perimeter;](PROPERTY_BLOCKS.combined.perimeter;)  
+<a name="Rectangles+push"></a>
+
+### rectangles.push()
+Pushes child object(s) into this collection
 
 **Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
 **Access**: public  
-**See**: [Utilities.misc.pushPop](Utilities.misc.pushPop)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| object | <code>Object</code> | Object; Circle, Rectangle, Text |
-
+**See**: [UTILITIES.collection.push;](UTILITIES.collection.push;)  
 <a name="Rectangles+draw"></a>
 
 ### rectangles.draw(canvas)
-Draw this object
+Draw function for collections
 
 **Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
 **Access**: public  
+**See**: [draw](#UTILITIES.collection.draw)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -4907,6 +5226,7 @@ Redraw this object
 
 **Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
 **Access**: public  
+**See**: [redraw](#UTILITIES.collection.redraw)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -4929,18 +5249,36 @@ Redraw this object
 
 
 * [Texts](#Texts)
+    * [new Texts()](#new_Texts_new)
     * [.point(point)](#Texts+point)
     * [.point()](#Texts+point) ⇒ [<code>Point</code>](#Point)
     * [.x(value)](#Texts+x)
     * [.x()](#Texts+x) ⇒ <code>number</code>
     * [.y(value)](#Texts+y)
     * [.y()](#Texts+y) ⇒ <code>number</code>
+    * [.stroke()](#Texts+stroke) ⇒ [<code>Stroke</code>](#Stroke)
+    * [.shadow()](#Texts+shadow) ⇒ [<code>Shadow</code>](#Shadow)
+    * [.options()](#Texts+options) ⇒ <code>Object</code>
     * [.canvas(value)](#Texts+canvas)
     * [.canvas()](#Texts+canvas) ⇒ <code>string</code>
+    * [.aspect()](#Texts+aspect) ⇒ [<code>Aspect</code>](#Aspect)
+    * [.width()](#Texts+width) ⇒ <code>number</code>
+    * [.height()](#Texts+height) ⇒ <code>number</code>
+    * [.anchor(value)](#Texts+anchor)
+    * [.anchor()](#Texts+anchor) ⇒ [<code>Anchor</code>](#Anchor)
+    * [._setPointOffset(Object)](#Texts+_setPointOffset)
+    * [.area()](#Texts+area) ⇒ <code>number</code>
+    * [.center()](#Texts+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Texts+endPoint) ⇒ [<code>Point</code>](#Point)
-    * [.pushPop(object)](#Texts+pushPop)
+    * [.perimeter()](#Texts+perimeter) ⇒ <code>number</code>
+    * [.push()](#Texts+push)
     * [.draw(canvas)](#Texts+draw)
     * [.redraw(canvas, point, [clear])](#Texts+redraw)
+
+<a name="new_Texts_new"></a>
+
+### new Texts()
+Create Texts object
 
 <a name="Texts+point"></a>
 
@@ -5002,6 +5340,30 @@ Get y-axis value
 **Kind**: instance method of [<code>Texts</code>](#Texts)  
 **Returns**: <code>number</code> - Y coordinate value  
 **Read only**: true  
+<a name="Texts+stroke"></a>
+
+### texts.stroke() ⇒ [<code>Stroke</code>](#Stroke)
+Get stroke properties
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
+**Access**: public  
+<a name="Texts+shadow"></a>
+
+### texts.shadow() ⇒ [<code>Shadow</code>](#Shadow)
+Get shadow properties
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Returns**: [<code>Shadow</code>](#Shadow) - Shadow properties  
+**Access**: public  
+<a name="Texts+options"></a>
+
+### texts.options() ⇒ <code>Object</code>
+Get options
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Returns**: <code>Object</code> - Options object  
+**Access**: public  
 <a name="Texts+canvas"></a>
 
 ### texts.canvas(value)
@@ -5009,7 +5371,7 @@ Set canvas value
 
 **Kind**: instance method of [<code>Texts</code>](#Texts)  
 **Access**: public  
-**See**: [canvas](#combined.canvas)  
+**See**: [PROPERTY_BLOCKS.combined.canvas](PROPERTY_BLOCKS.combined.canvas)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -5023,7 +5385,87 @@ Get canvas value
 **Kind**: instance method of [<code>Texts</code>](#Texts)  
 **Returns**: <code>string</code> - Canvas id  
 **Read only**: true  
-**See**: [canvas](#combined.canvas)  
+**See**: [PROPERTY_BLOCKS.combined.canvas](PROPERTY_BLOCKS.combined.canvas)  
+<a name="Texts+aspect"></a>
+
+### texts.aspect() ⇒ [<code>Aspect</code>](#Aspect)
+Get aspect properties
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Returns**: [<code>Aspect</code>](#Aspect) - Aspect properties  
+**Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.aspect](PROPERTY_BLOCKS.combined.aspect)  
+<a name="Texts+width"></a>
+
+### texts.width() ⇒ <code>number</code>
+Get aspect with
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Returns**: <code>number</code> - Width value  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.aspectWidth](PROPERTY_BLOCKS.combined.aspectWidth)  
+<a name="Texts+height"></a>
+
+### texts.height() ⇒ <code>number</code>
+Get aspect height
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Returns**: <code>number</code> - Height value  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.aspectHeight](PROPERTY_BLOCKS.combined.aspectHeight)  
+<a name="Texts+anchor"></a>
+
+### texts.anchor(value)
+Set anchor type
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.anchor](PROPERTY_BLOCKS.combined.anchor)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Anchor type |
+
+<a name="Texts+anchor"></a>
+
+### texts.anchor() ⇒ [<code>Anchor</code>](#Anchor)
+Get anchor
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Returns**: [<code>Anchor</code>](#Anchor) - Anchor properties  
+**Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.anchor](PROPERTY_BLOCKS.combined.anchor)  
+<a name="Texts+_setPointOffset"></a>
+
+### texts.\_setPointOffset(Object)
+Sets offset of child object against this constructor's point
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Access**: public  
+**See**: [UTILITIES.collection.setAnchorPoint;](UTILITIES.collection.setAnchorPoint;)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Object | <code>Object</code> | CanvasLab Object |
+
+<a name="Texts+area"></a>
+
+### texts.area() ⇒ <code>number</code>
+Get area of this object
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Returns**: <code>number</code> - Area of rectangle  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.area;](PROPERTY_BLOCKS.combined.area;)  
+<a name="Texts+center"></a>
+
+### texts.center() ⇒ [<code>Point</code>](#Point)
+Get center of this object
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.center;](PROPERTY_BLOCKS.combined.center;)  
 <a name="Texts+endPoint"></a>
 
 ### texts.endPoint() ⇒ [<code>Point</code>](#Point)
@@ -5032,27 +5474,32 @@ Returns the last Point within this Array
 **Kind**: instance method of [<code>Texts</code>](#Texts)  
 **Returns**: [<code>Point</code>](#Point) - Last Array element's X & Y Coordinates  
 **Access**: public  
-<a name="Texts+pushPop"></a>
+**See**: [PROPERTY_BLOCKS.combined.endPoint;](PROPERTY_BLOCKS.combined.endPoint;)  
+<a name="Texts+perimeter"></a>
 
-### texts.pushPop(object)
-Push or pops the passed object
+### texts.perimeter() ⇒ <code>number</code>
+Get perimeter of this object
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Returns**: <code>number</code> - Perimeter of rectangle  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.perimeter;](PROPERTY_BLOCKS.combined.perimeter;)  
+<a name="Texts+push"></a>
+
+### texts.push()
+Pushes child object(s) into this collection
 
 **Kind**: instance method of [<code>Texts</code>](#Texts)  
 **Access**: public  
-**See**: [Utilities.misc.pushPop](Utilities.misc.pushPop)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| object | <code>Object</code> | Object; Circle, Rectangle, Text |
-
+**See**: [UTILITIES.collection.push;](UTILITIES.collection.push;)  
 <a name="Texts+draw"></a>
 
 ### texts.draw(canvas)
-Typical draw function for collections; Circles, Texts
+Draw function for collections
 
 **Kind**: instance method of [<code>Texts</code>](#Texts)  
 **Access**: public  
-**See**: [UTILITIES.draw.collection.typical](UTILITIES.draw.collection.typical)  
+**See**: [draw](#UTILITIES.collection.draw)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -5065,6 +5512,7 @@ Redraw this object
 
 **Kind**: instance method of [<code>Texts</code>](#Texts)  
 **Access**: public  
+**See**: [redraw](#UTILITIES.collection.redraw)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -5346,21 +5794,22 @@ Shared utility functions
             * [.gradient(start, end, progress, stop, [max])](#UTILITIES.color.cycle.gradient)
             * [.stop(start, end, progress, stop, max, clear, draw)](#UTILITIES.color.cycle.stop)
     * [.draw()](#UTILITIES.draw)
-        * [.collection](#UTILITIES.draw.collection)
-            * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
-            * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
+        * [.anchor()](#UTILITIES.draw.anchor)
         * [.axis(offset, color, stop)](#UTILITIES.draw.axis)
         * [.border(aspect, color)](#UTILITIES.draw.border)
     * [.misc()](#UTILITIES.misc)
         * [.clearCanvas(value)](#UTILITIES.misc.clearCanvas)
         * [.pushPop(object)](#UTILITIES.misc.pushPop)
         * [.rotatePoint(origin, degree, distance)](#UTILITIES.misc.rotatePoint)
-    * [.draw()](#UTILITIES.draw)
-        * [.collection](#UTILITIES.draw.collection)
-            * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
-            * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
-        * [.axis(offset, color, stop)](#UTILITIES.draw.axis)
-        * [.border(aspect, color)](#UTILITIES.draw.border)
+        * [.showCoordinates([offset], [fontSize])](#UTILITIES.misc.showCoordinates)
+    * [.set()](#UTILITIES.set)
+        * [.all(property, value)](#UTILITIES.set.all)
+        * [.shadow()](#UTILITIES.set.shadow)
+        * [.fillType()](#UTILITIES.set.fillType)
+            * [~_setStops(gradient, stops)](#UTILITIES.set.fillType.._setStops)
+    * [.transition()](#UTILITIES.transition)
+        * [.move(degree, distance, [draw], [clear])](#UTILITIES.transition.move)
+        * [.rotate(degree, [clear])](#UTILITIES.transition.rotate)
 
 <a name="UTILITIES.color"></a>
 
@@ -5461,47 +5910,17 @@ Utility draw functions
 **Kind**: static method of [<code>UTILITIES</code>](#UTILITIES)  
 
 * [.draw()](#UTILITIES.draw)
-    * [.collection](#UTILITIES.draw.collection)
-        * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
-        * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
+    * [.anchor()](#UTILITIES.draw.anchor)
     * [.axis(offset, color, stop)](#UTILITIES.draw.axis)
     * [.border(aspect, color)](#UTILITIES.draw.border)
 
-<a name="UTILITIES.draw.collection"></a>
+<a name="UTILITIES.draw.anchor"></a>
 
-#### draw.collection
-Utility draw collection functions
+#### draw.anchor()
+Draws anchor point
 
-**Kind**: static property of [<code>draw</code>](#UTILITIES.draw)  
-
-* [.collection](#UTILITIES.draw.collection)
-    * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
-    * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
-
-<a name="UTILITIES.draw.collection.twoDimensional"></a>
-
-##### collection.twoDimensional(canvas)
-Two dimensional draw function for collections; Circles, Rectangles, Texts
-
-**Kind**: static method of [<code>collection</code>](#UTILITIES.draw.collection)  
+**Kind**: static method of [<code>draw</code>](#UTILITIES.draw)  
 **Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| canvas | <code>string</code> | Canvas Id |
-
-<a name="UTILITIES.draw.collection.oneDimensional"></a>
-
-##### collection.oneDimensional(canvas)
-One dimensional draw function for collections; Lines
-
-**Kind**: static method of [<code>collection</code>](#UTILITIES.draw.collection)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| canvas | <code>string</code> | Canvas Id |
-
 <a name="UTILITIES.draw.axis"></a>
 
 #### draw.axis(offset, color, stop)
@@ -5532,7 +5951,7 @@ Draws an axis for the associated object
 <a name="UTILITIES.misc"></a>
 
 ### UTILITIES.misc()
-Utility draw collection functions
+Utility misc functions
 
 **Kind**: static method of [<code>UTILITIES</code>](#UTILITIES)  
 
@@ -5540,6 +5959,7 @@ Utility draw collection functions
     * [.clearCanvas(value)](#UTILITIES.misc.clearCanvas)
     * [.pushPop(object)](#UTILITIES.misc.pushPop)
     * [.rotatePoint(origin, degree, distance)](#UTILITIES.misc.rotatePoint)
+    * [.showCoordinates([offset], [fontSize])](#UTILITIES.misc.showCoordinates)
 
 <a name="UTILITIES.misc.clearCanvas"></a>
 
@@ -5579,81 +5999,110 @@ Rotates the origin point by the degree & distance passed
 | degree | <code>number</code> | Degree to rotate |
 | distance | <code>number</code> | Distance from origin |
 
-<a name="UTILITIES.draw"></a>
+<a name="UTILITIES.misc.showCoordinates"></a>
 
-### UTILITIES.draw()
+#### misc.showCoordinates([offset], [fontSize])
+Shows coordinates of this object
+
+**Kind**: static method of [<code>misc</code>](#UTILITIES.misc)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
+| [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
+
+<a name="UTILITIES.set"></a>
+
+### UTILITIES.set()
 Utility draw collection functions
 
 **Kind**: static method of [<code>UTILITIES</code>](#UTILITIES)  
 
-* [.draw()](#UTILITIES.draw)
-    * [.collection](#UTILITIES.draw.collection)
-        * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
-        * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
-    * [.axis(offset, color, stop)](#UTILITIES.draw.axis)
-    * [.border(aspect, color)](#UTILITIES.draw.border)
+* [.set()](#UTILITIES.set)
+    * [.all(property, value)](#UTILITIES.set.all)
+    * [.shadow()](#UTILITIES.set.shadow)
+    * [.fillType()](#UTILITIES.set.fillType)
+        * [~_setStops(gradient, stops)](#UTILITIES.set.fillType.._setStops)
 
-<a name="UTILITIES.draw.collection"></a>
+<a name="UTILITIES.set.all"></a>
 
-#### draw.collection
+#### set.all(property, value)
+Sets all option values throughout a collection
+
+**Kind**: static method of [<code>set</code>](#UTILITIES.set)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| property | <code>string</code> | Option property |
+| value | <code>boolean</code> | True || False |
+
+<a name="UTILITIES.set.shadow"></a>
+
+#### set.shadow()
+Sets shadow properties
+
+**Kind**: static method of [<code>set</code>](#UTILITIES.set)  
+**Access**: public  
+<a name="UTILITIES.set.fillType"></a>
+
+#### set.fillType()
+Sets fill type of the associated object
+
+**Kind**: static method of [<code>set</code>](#UTILITIES.set)  
+**Access**: public  
+<a name="UTILITIES.set.fillType.._setStops"></a>
+
+##### fillType~\_setStops(gradient, stops)
+Sets stops for gradient fill types
+
+**Kind**: inner method of [<code>fillType</code>](#UTILITIES.set.fillType)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| gradient | <code>Object</code> | [description] |
+| stops | <code>Array.&lt;Stops&gt;</code> | [description] |
+
+<a name="UTILITIES.transition"></a>
+
+### UTILITIES.transition()
 Utility draw collection functions
 
-**Kind**: static property of [<code>draw</code>](#UTILITIES.draw)  
+**Kind**: static method of [<code>UTILITIES</code>](#UTILITIES)  
 
-* [.collection](#UTILITIES.draw.collection)
-    * [.twoDimensional(canvas)](#UTILITIES.draw.collection.twoDimensional)
-    * [.oneDimensional(canvas)](#UTILITIES.draw.collection.oneDimensional)
+* [.transition()](#UTILITIES.transition)
+    * [.move(degree, distance, [draw], [clear])](#UTILITIES.transition.move)
+    * [.rotate(degree, [clear])](#UTILITIES.transition.rotate)
 
-<a name="UTILITIES.draw.collection.twoDimensional"></a>
+<a name="UTILITIES.transition.move"></a>
 
-##### collection.twoDimensional(canvas)
-Two dimensional draw function for collections; Circles, Rectangles, Texts
+#### transition.move(degree, distance, [draw], [clear])
+Move this object
 
-**Kind**: static method of [<code>collection</code>](#UTILITIES.draw.collection)  
+**Kind**: static method of [<code>transition</code>](#UTILITIES.transition)  
 **Access**: public  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| canvas | <code>string</code> | Canvas Id |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| degree | <code>number</code> |  | Direction to move; in degrees |
+| distance | <code>number</code> |  | Distance to move |
+| [draw] | <code>boolean</code> | <code>false</code> | Draw post movement |
+| [clear] | <code>boolean</code> | <code>false</code> | Clear canvas during each movement |
 
-<a name="UTILITIES.draw.collection.oneDimensional"></a>
+<a name="UTILITIES.transition.rotate"></a>
 
-##### collection.oneDimensional(canvas)
-One dimensional draw function for collections; Lines
+#### transition.rotate(degree, [clear])
+Rotate this object
 
-**Kind**: static method of [<code>collection</code>](#UTILITIES.draw.collection)  
+**Kind**: static method of [<code>transition</code>](#UTILITIES.transition)  
 **Access**: public  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| canvas | <code>string</code> | Canvas Id |
-
-<a name="UTILITIES.draw.axis"></a>
-
-#### draw.axis(offset, color, stop)
-Draws an axis for the associated object
-
-**Kind**: static method of [<code>draw</code>](#UTILITIES.draw)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| offset | <code>number</code> | Offset of axis |
-| color | <code>Object</code> | Color model |
-| stop | <code>number</code> | Gradient color stop |
-
-<a name="UTILITIES.draw.border"></a>
-
-#### draw.border(aspect, color)
-Draws an axis for the associated object
-
-**Kind**: static method of [<code>draw</code>](#UTILITIES.draw)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| aspect | [<code>Aspect</code>](#Aspect) | Aspect properties |
-| color | <code>Object</code> | Color model |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| degree | <code>number</code> |  | Distance to rotate; in degrees |
+| [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
 
 <a name="VALIDATION"></a>
 
@@ -5688,7 +6137,6 @@ Shared validation functions
     * [.isStrokeType(value)](#VALIDATION.isStrokeType) ⇒ <code>boolean</code>
     * [.isWidth(value)](#VALIDATION.isWidth) ⇒ <code>boolean</code>
     * [.Group#_isPlan(value)](#VALIDATION.Group+_isPlan) ⇒ <code>boolean</code>
-    * [.Lines#isCanvasLabObject(value)](#VALIDATION.Lines+isCanvasLabObject) ⇒ <code>boolean</code>
 
 <a name="VALIDATION.is256"></a>
 
@@ -6015,20 +6463,6 @@ Returns whether the passed value is a Plan
 | Param | Type | Description |
 | --- | --- | --- |
 | value | <code>Object</code> | Plan object |
-
-<a name="VALIDATION.Lines+isCanvasLabObject"></a>
-
-### VALIDATION.Lines#isCanvasLabObject(value) ⇒ <code>boolean</code>
-Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
-
-**Kind**: static method of [<code>VALIDATION</code>](#VALIDATION)  
-**Returns**: <code>boolean</code> - True || False  
-**Access**: public  
-**See**: [Validation.isCanvasLabObject](Validation.isCanvasLabObject)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>Object</code> | CanvasLab object; Line, Circle, Rectangle, Text |
 
 <a name="DEBUG"></a>
 

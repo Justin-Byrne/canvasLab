@@ -42,16 +42,20 @@ _isDegree          <color:gray>{boolean}</color>
 _isInDom           <color:gray>{boolean}</color>
 _isPoint           <color:gray>{boolean}</color>
 __ Utility __
+_drawOptions
 _clearCanvas
 _rotatePoint
 _setShadow
-drawBorder
-drawAxis
+_drawAnchor
+_drawAxis
+_drawBorder
 fillColorCycle
 move
 rotate
+showCoordinates
 strokeColorCycle
 draw
+redraw
 }
 
 Text o-- Point

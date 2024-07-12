@@ -17,8 +17,8 @@ class Rectangle
 
     _canvas = undefined;
 
-    #_anchor  = new Anchor;
-    #_options = new Options;
+    #anchor  = new Anchor;
+    #options = new Options;
 
     /**
      * Create a Rectangle object
@@ -46,14 +46,19 @@ class Rectangle
             this._isPoint  = VALIDATION.isPoint;
 
             this._clearCanvas       = UTILITIES.misc.clearCanvas;
+            this._drawAnchor        = UTILITIES.draw.anchor;
             this._drawAxis          = UTILITIES.draw.axis;
             this._drawBorder        = UTILITIES.draw.border;
             this._rotatePoint       = UTILITIES.misc.rotatePoint;
-
             this._setFillType       = UTILITIES.set.fillType;
             this._setShadow         = UTILITIES.set.shadow;
+
             this.fillColorCycle     = UTILITIES.color.cycle.fill;
             this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this.move               = UTILITIES.transition.move;
+            this.redraw             = UTILITIES.draw.redraw;
+            this.rotate             = UTILITIES.transition.rotate;
+            this.showCoordinates    = UTILITIES.misc.showCoordinates;
             this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
@@ -61,9 +66,9 @@ class Rectangle
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
 
-            delete this.#_options._controlPoints;
-            delete this.#_options._points;
-            delete this.#_options._master;
+            delete this.#options._controlPoints;
+            delete this.#options._points;
+            delete this.#options._master;
 
         this.point  = point;
 
@@ -76,13 +81,13 @@ class Rectangle
 
             this._fill   = new Fill   ( fill.color,   fill.type );
 
-            this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
+            this._shadow = new Shadow ( shadow.color, shadow.blur, shadow.offset );
 
         this.canvas = canvas;
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+            this.#options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
     }
 
     ////    [ POINT ]   ////////////////////////////////////
@@ -126,7 +131,7 @@ class Rectangle
 
 
         /**
-         * Set the y-axis value
+         * Set y-axis value
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
@@ -282,7 +287,7 @@ class Rectangle
          */
         get anchor ( )
         {
-            return this.#_anchor;
+            return this.#anchor;
         }
 
     ////    [ OPTIONS ] ////////////////////////////////////
@@ -295,7 +300,7 @@ class Rectangle
          */
         get options ( )
         {
-            return this.#_options;
+            return this.#options;
         }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -381,18 +386,9 @@ class Rectangle
          * Draws anchor point
          * @private
          * @function
+         * @see             {@link Utilities.draw.anchor}
          */
-        _drawAnchor ( )
-        {
-            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
-
-                _anchor.fill.color = new Rgb ( 255, 0, 0 );
-
-                _anchor.canvas     = this.canvas;
-
-
-                _anchor.draw ( );
-        }
+        _drawAnchor ( ) { }
 
         /**
          * Draws an axis for the associated object
@@ -403,7 +399,7 @@ class Rectangle
          * @param           {number} stop                               Gradient color stop
          * @see             {@link Utilities.draw.axis}
          */
-        _drawAxis    ( ) { }
+        _drawAxis ( ) { }
 
         /**
          * Draws an axis for the associated object
@@ -413,7 +409,7 @@ class Rectangle
          * @param           {Object} color                              Color model
          * @see             {@link Utilities.draw.border}
          */
-        _drawBorder  ( ) { }
+        _drawBorder ( ) { }
 
         /**
          * Draws associated options
@@ -428,11 +424,13 @@ class Rectangle
 
             ////////////////////////////////////////////////////////////////////
 
-            if ( this.#_options.border ) this._drawBorder ( _aspect );
+            if ( this.#options.border      ) this._drawBorder     ( _aspect );
 
-            if ( this.#_options.axis   ) this._drawAxis   ( );
+            if ( this.#options.axis        ) this._drawAxis       ( );
 
-            if ( this.#_options.anchor ) this._drawAnchor ( );
+            if ( this.#options.anchor      ) this._drawAnchor     ( );
+
+            if ( this.#options.coordinates ) this.showCoordinates ( );
         }
 
         /**
@@ -453,7 +451,7 @@ class Rectangle
          */
         _setAnchorPoint ( )
         {
-            [ this.#_anchor.x, this.#_anchor.y ] = [ this.x, this.y ];
+            [ this.#anchor.x, this.#anchor.y ] = [ this.x, this.y ];
 
 
             switch ( this.anchor.align )
@@ -492,109 +490,13 @@ class Rectangle
          * @function
          * @see             {@link Utilities.set.shadow}
          */
-        _setShadow   ( ) { }
-
-        /**
-         * Cycle colors for fill
-         * @public
-         * @function
-         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
-         * @param           {Rgb}    start                              Starting RGB value
-         * @param           {Rgb}    end                                Ending RGB value
-         * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.fill}
-         */
-        fillColorCycle     ( ) { }
-
-        /**
-         * Cycle colors for gradient
-         * @public
-         * @function
-         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
-         * @param           {Rgb}    start                              Starting RGB value
-         * @param           {Rgb}    end                                Ending RGB value
-         * @param           {number} stop                               Gradient color stop
-         * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.gradient}
-         */
-        gradientColorCycle ( ) { }
-
-        /**
-         * Move this object
-         * @public
-         * @function
-         * @param           {number}  degree                            Direction to move; in degrees
-         * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [draw=false]                      Draw post movement
-         * @param           {boolean} [clear=false]                     Clear canvas during each movement
-         */
-        move ( degree, distance, draw = false, clear = false )
-        {
-            let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
-
-
-                [ this.x, this.y ] = [ _point.x, _point.y ];
-
-
-            this._clearCanvas ( clear );
-
-
-            if ( draw )
-
-                this.draw ( );
-        }
-
-        /**
-         * Rotate this object
-         * @public
-         * @function
-         * @param           {number} degree                             Distance to rotate; in degrees
-         * @param           {number} [clear=true]                       Clear canvas during each rotation
-         */
-        rotate ( degree, clear = true )
-        {
-            if ( this._isDegree ( degree ) )
-            {
-                let [ _x, _y ] = [ this.x, this.y ];
-
-
-                this._canvas.save      ( );
-
-                this._canvas.translate ( _x, _y );
-
-                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
-
-                this._canvas.translate ( -_x, -_y );
-
-
-                this._clearCanvas ( clear );
-
-                this.draw ( );
-
-
-                this._canvas.restore ( );
-            }
-        }
-
-        /**
-         * Cycle colors for stroke
-         * @public
-         * @function
-         * @param           {Rgb}    start                              Starting RGB value
-         * @param           {Rgb}    end                                Ending RGB value
-         * @param           {number} progress                           Progress time unit; 0.00 - 1.00
-         * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.stroke}
-         */
-        strokeColorCycle   ( ) { }
-
-    ////    & EXTEND &  ////////////////////////////////////
+        _setShadow ( ) { }
 
         /**
          * Get area of this object
          * @readOnly
          * @function
-         * @return          {number}                                    Area of rectangle
+         * @return          {number}                                    Area of this object
          */
         get area ( )
         {
@@ -618,6 +520,43 @@ class Rectangle
         }
 
         /**
+         * Cycle colors for fill
+         * @public
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.fill}
+         */
+        fillColorCycle ( ) { }
+
+        /**
+         * Cycle colors for gradient
+         * @public
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} stop                               Gradient color stop
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.gradient}
+         */
+        gradientColorCycle ( ) { }
+
+        /**
+         * Move this object
+         * @public
+         * @function
+         * @param           {number}  degree                            Direction to move; in degrees
+         * @param           {number}  distance                          Distance to move
+         * @param           {boolean} [draw=false]                      Draw post movement
+         * @param           {boolean} [clear=false]                     Clear canvas during each movement
+         * @see             {@link Utilities.transition.move}
+         */
+        move ( ) { }
+
+        /**
          * Get perimeter of this object
          * @readOnly
          * @function
@@ -627,6 +566,39 @@ class Rectangle
         {
             return ( this.area * 2 );
         }
+
+        /**
+         * Rotate this object
+         * @public
+         * @function
+         * @param           {number} degree                             Distance to rotate; in degrees
+         * @param           {string} [anchor='center']                  Anchoring point during rotation
+         * @param           {number} [clear=true]                       Clear canvas during each rotation
+         * @see             {@link Utilities.transition.rotate}
+         */
+        rotate ( ) { }
+
+        /**
+         * Shows coordinates of this object
+         * @public
+         * @function
+         * @param           {number} [offset=10]                        Offset of coordinates y origin
+         * @param           {number} [fontSize=16]                      Coordinates font size
+         * @see             {@link Utilities.misc.showCoordinates}
+         */
+        showCoordinates ( ) { }
+
+        /**
+         * Cycle colors for stroke
+         * @public
+         * @function
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} progress                           Progress time unit; 0.00 - 1.00
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.stroke}
+         */
+        strokeColorCycle   ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
@@ -646,7 +618,7 @@ class Rectangle
                 this._setAnchorPoint ( );
 
 
-                if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
+                if ( this.#options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
                 this._canvas.strokeStyle = this.stroke.color.toCss ( );
@@ -668,7 +640,7 @@ class Rectangle
                 this._canvas.fill        ( );
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
+                if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
                 this._drawOptions ( );
@@ -677,4 +649,15 @@ class Rectangle
 
                 console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
         }
+
+        /**
+         * Redraw this object
+         * @public
+         * @function
+         * @param           {string}  canvas                            Canvas Id
+         * @param           {Point}   point                             Point of new location
+         * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link Utilities.draw.redraw}
+         */
+        redraw ( ) { }
 }

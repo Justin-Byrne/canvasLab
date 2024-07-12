@@ -38,6 +38,7 @@ _isAnchor            <color:gray>{boolean}</color>
 _isAspect            <color:gray>{boolean}</color>
 _isDegree            <color:gray>{boolean}</color>
 _isInDom             <color:gray>{boolean}</color>
+_isNumber            <color:gray>{boolean}</color>
 _isPoint             <color:gray>{boolean}</color>
 isThere              <color:gray>{boolean}</color>
 __ Utility __
@@ -52,7 +53,6 @@ _setFillType
 _setShadow
 fillColorCycle
 gradientColorCycle
-move
 rotate
 showCoordinates
 strokeColorCycle

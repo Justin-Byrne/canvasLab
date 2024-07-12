@@ -54,8 +54,10 @@ fillColorCycle
 gradientColorCycle
 move
 rotate
+showCoordinates
 strokeColorCycle
 draw
+redraw
 }
 
 @enduml

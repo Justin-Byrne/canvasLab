@@ -19,8 +19,8 @@ class Circle
 
     _canvas = undefined;
 
-    #_anchor  = new Anchor;
-    #_options = new Options;
+    #anchor  = new Anchor;
+    #options = new Options;
 
     /**
      * Create a Circle object
@@ -48,16 +48,23 @@ class Circle
             this._isAnchor = VALIDATION.isAnchor;
             this._isDegree = VALIDATION.isDegree;
             this._isInDom  = VALIDATION.isInDom;
+            this._isNumber = VALIDATION.isNumber;
             this._isPoint  = VALIDATION.isPoint;
 
             this._clearCanvas       = UTILITIES.misc.clearCanvas;
+            this._drawAnchor        = UTILITIES.draw.anchor;
             this._drawAxis          = UTILITIES.draw.axis;
             this._drawBorder        = UTILITIES.draw.border;
             this._rotatePoint       = UTILITIES.misc.rotatePoint;
             this._setFillType       = UTILITIES.set.fillType;
             this._setShadow         = UTILITIES.set.shadow;
+
             this.fillColorCycle     = UTILITIES.color.cycle.fill;
             this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this.move               = UTILITIES.transition.move;
+            this.redraw             = UTILITIES.draw.redraw;
+            this.rotate             = UTILITIES.transition.rotate;
+            this.showCoordinates    = UTILITIES.misc.showCoordinates;
             this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
@@ -65,9 +72,9 @@ class Circle
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
 
-            delete this.#_options._controlPoints;
-            delete this.#_options._points;
-            delete this.#_options._master;
+            delete this.#options._controlPoints;
+            delete this.#options._points;
+            delete this.#options._master;
 
         this.point  = point;
         this.radius = radius;
@@ -86,7 +93,7 @@ class Circle
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+            this.#options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
     }
 
     ////    [ POINT ]   ////////////////////////////////////
@@ -130,7 +137,7 @@ class Circle
 
 
         /**
-         * Set the y-axis value
+         * Set y-axis value
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
@@ -157,7 +164,7 @@ class Circle
          */
         set radius ( value )
         {
-            this._radius = ( typeof value === 'number' && value > 0 ) ? value : this._radius;
+            this._radius = ( this._isNumber ( value ) ) ? value : this._radius;
         }
 
         /**
@@ -253,7 +260,7 @@ class Circle
          */
         get anchor ( )
         {
-            return this.#_anchor;
+            return this.#anchor;
         }
 
     ////    [ OPTIONS ] ////////////////////////////////////
@@ -266,61 +273,7 @@ class Circle
          */
         get options ( )
         {
-            return this.#_options;
-        }
-
-    ////    & EXTEND &  ////////////////////////////////////
-
-        /**
-         * Get area of this object
-         * @readOnly
-         * @function
-         * @return          {number}                                    Area of circle
-         */
-        get area ( )
-        {
-            return (  Math.PI * Math.pow ( this.radius, 2 )  );
-        }
-
-        /**
-         * Get diameter of circle
-         * @readOnly
-         * @function
-         * @return          {number}                                    Diameter of circle
-         */
-        get diameter ( )
-        {
-            return (  this.radius * 2  );
-        }
-
-        /**
-         * Get center of this object
-         * @readOnly
-         * @function
-         * @return          {Point}                                     Point coordinates
-         */
-        get center ( )
-        {
-            this._setAnchorPoint ( );
-
-
-            let _x = this.x - ( this.x - this.anchor.x );
-
-            let _y = this.y - ( this.y - this.anchor.y );
-
-
-            return new Point ( _x, _y );
-        }
-
-        /**
-         * Get circumference of circle
-         * @readOnly
-         * @function
-         * @return          {number}                                    Circumference of circle
-         */
-        get circumference ( )
-        {
-            return (  Math.PI * this.diameter ( )  );
+            return this.#options;
         }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -364,6 +317,16 @@ class Circle
          * @see             {@link Validation.isInDom}
          */
         _isInDom  ( ) { }
+
+        /**
+         * Returns whether the passed value is a Number value
+         * @private
+         * @function
+         * @param           {number} value                              Number value
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isNumber}
+         */
+        _isNumber ( ) { }
 
         /**
          * Returns whether the passed value is a Point
@@ -415,18 +378,9 @@ class Circle
          * Draws anchor point
          * @private
          * @function
+         * @see             {@link Utilities.draw.anchor}
          */
-        _drawAnchor ( )
-        {
-            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
-
-                _anchor.fill.color = new Rgb ( 255, 0, 0 );
-
-                _anchor.canvas     = this.canvas;
-
-
-                _anchor.draw ( );
-        }
+        _drawAnchor ( ) { }
 
         /**
          * Draws an axis for the associated object
@@ -462,13 +416,13 @@ class Circle
 
             ////////////////////////////////////////////////////////////////////
 
-            if ( this.#_options.border      ) this._drawBorder     ( _aspect );
+            if ( this.#options.border      ) this._drawBorder     ( _aspect );
 
-            if ( this.#_options.axis        ) this._drawAxis       ( _offset );
+            if ( this.#options.axis        ) this._drawAxis       ( _offset );
 
-            if ( this.#_options.anchor      ) this._drawAnchor     ( );
+            if ( this.#options.anchor      ) this._drawAnchor     ( );
 
-            if ( this.#_options.coordinates ) this.showCoordinates ( );
+            if ( this.#options.coordinates ) this.showCoordinates ( );
         }
 
         /**
@@ -489,7 +443,7 @@ class Circle
          */
         _setAnchorPoint ( )
         {
-            [ this.#_anchor.x, this.#_anchor.y ] = [ this.x, this.y ];
+            [ this.#anchor.x, this.#anchor.y ] = [ this.x, this.y ];
 
 
             switch ( this.anchor.type )
@@ -531,6 +485,58 @@ class Circle
         _setShadow   ( ) { }
 
         /**
+         * Get area of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Area of this object
+         */
+        get area ( )
+        {
+            return (  Math.PI * Math.pow ( this.radius, 2 )  );
+        }
+
+        /**
+         * Get diameter of circle
+         * @readOnly
+         * @function
+         * @return          {number}                                    Diameter of circle
+         */
+        get diameter ( )
+        {
+            return (  this.radius * 2  );
+        }
+
+        /**
+         * Get center of this object
+         * @readOnly
+         * @function
+         * @return          {Point}                                     Point coordinates
+         */
+        get center ( )
+        {
+            this._setAnchorPoint ( );
+
+
+            let _x = this.x - ( this.x - this.anchor.x );
+
+            let _y = this.y - ( this.y - this.anchor.y );
+
+
+            return new Point ( _x, _y );
+        }
+
+        /**
+         * Get circumference of circle
+         * @readOnly
+         * @function
+         * @return          {number}                                    Circumference of circle
+         */
+        get circumference ( )
+        {
+            return (  Math.PI * this.diameter ( )  );
+        }
+
+        /**
          * Cycle colors for fill
          * @public
          * @function
@@ -556,61 +562,15 @@ class Circle
         gradientColorCycle ( ) { }
 
         /**
-         * Move this object
-         * @public
-         * @function
-         * @param           {number}  degree                            Direction to move; in degrees
-         * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [draw=false]                      Draw post movement
-         * @param           {boolean} [clear=false]                     Clear canvas during each movement
-         */
-        move ( degree, distance, draw = false, clear = false )
-        {
-            let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
-
-
-                [ this.x, this.y ] = [ _point.x, _point.y ];
-
-
-            this._clearCanvas ( clear );
-
-
-            if ( draw )
-
-                this.draw ( );
-        }
-
-        /**
          * Rotate this object
          * @public
          * @function
          * @param           {number} degree                             Distance to rotate; in degrees
+         * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
+         * @see             {@link Utilities.transition.rotate}
          */
-        rotate ( degree, clear = true )
-        {
-            if ( this._isDegree ( degree ) )
-            {
-                let [ _x, _y ] = [ this.x, this.y ];
-
-
-                this._canvas.save      ( );
-
-                this._canvas.translate ( _x, _y );
-
-                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
-
-                this._canvas.translate ( -_x, -_y );
-
-
-                this._clearCanvas ( clear );
-
-                this.draw    ( );
-
-
-                this._canvas.restore ( );
-            }
-        }
+        rotate ( ) { }
 
         /**
          * Shows coordinates of this object
@@ -618,32 +578,9 @@ class Circle
          * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
+         * @see             {@link Utilities.misc.showCoordinates}
          */
-        showCoordinates ( offset = 10, fontSize = 16 )
-        {
-            let _text  = new Text ( this.point, `( ${this.x}, ${this.y} )` );
-
-                _text.canvas         =  this.canvas;
-
-                _text.size           =  fontSize;
-
-                _text.options.shadow =  false;
-
-                _text.offset.y       =  ( offset / 2 );
-
-
-                _text.options.shadow = true;
-
-
-                _text.shadow.color   = new Rgb ( 255, 255, 255 );
-
-                _text.shadow.blur    = 1;
-
-                _text.shadow.x       = _text.shadow.y    = 1;
-
-
-                _text.draw ( );
-        }
+        showCoordinates ( ) { }
 
         /**
          * Cycle colors for stroke
@@ -675,7 +612,7 @@ class Circle
                 this._setAnchorPoint ( );
 
 
-                if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
+                if ( this.#options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
                 this._canvas.strokeStyle = this.stroke.color.toCss ( );
@@ -697,7 +634,7 @@ class Circle
                 this._canvas.fill        ( );
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );         // Reset: shadow
+                if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );         // Reset: shadow
 
 
                 this._drawOptions ( );
@@ -714,15 +651,7 @@ class Circle
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link Utilities.draw.redraw}
          */
-        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
-        {
-            [ this.x, this.y ] = [ point.x, point.y ]
-
-
-            this._clearCanvas ( clear );
-
-
-            this.draw ( canvas );
-        }
+        redraw ( ) { }
 }

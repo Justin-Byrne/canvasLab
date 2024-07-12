@@ -1,67 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    
-    <meta charset="utf-8">
-    <title>canvasLab-v0.3.78.js - Documentation</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
-    <script src="scripts/nav.js" defer></script>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav >
-    
-    
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Anchor.html">Anchor</a><ul class='methods'><li data-type='method'><a href="Anchor.html#align">align</a></li><li data-type='method'><a href="Anchor.html#align">align</a></li><li data-type='method'><a href="Anchor.html#point">point</a></li><li data-type='method'><a href="Anchor.html#point">point</a></li><li data-type='method'><a href="Anchor.html#x">x</a></li><li data-type='method'><a href="Anchor.html#x">x</a></li><li data-type='method'><a href="Anchor.html#y">y</a></li><li data-type='method'><a href="Anchor.html#y">y</a></li></ul></li><li><a href="Angle.html">Angle</a><ul class='methods'><li data-type='method'><a href="Angle.html#clockwise">clockwise</a></li><li data-type='method'><a href="Angle.html#clockwise">clockwise</a></li><li data-type='method'><a href="Angle.html#end">end</a></li><li data-type='method'><a href="Angle.html#end">end</a></li><li data-type='method'><a href="Angle.html#endInRadians">endInRadians</a></li><li data-type='method'><a href="Angle.html#start">start</a></li><li data-type='method'><a href="Angle.html#start">start</a></li><li data-type='method'><a href="Angle.html#startInRadians">startInRadians</a></li></ul></li><li><a href="Animation.html">Animation</a><ul class='methods'><li data-type='method'><a href="Animation.html#animate">animate</a></li><li data-type='method'><a href="Animation.html#draw">draw</a></li><li data-type='method'><a href="Animation.html#draw">draw</a></li><li data-type='method'><a href="Animation.html#duration">duration</a></li><li data-type='method'><a href="Animation.html#duration">duration</a></li><li data-type='method'><a href="Animation.html#timing">timing</a></li><li data-type='method'><a href="Animation.html#timing">timing</a></li></ul></li><li><a href="Application.html">Application</a><ul class='methods'><li data-type='method'><a href="Application.html#about">about</a></li><li data-type='method'><a href="Application.html#canvas">canvas</a></li><li data-type='method'><a href="Application.html#canvas">canvas</a></li></ul></li><li><a href="Aspect.html">Aspect</a><ul class='methods'><li data-type='method'><a href="Aspect.html#center">center</a></li><li data-type='method'><a href="Aspect.html#height">height</a></li><li data-type='method'><a href="Aspect.html#height">height</a></li><li data-type='method'><a href="Aspect.html#heightCenter">heightCenter</a></li><li data-type='method'><a href="Aspect.html#width">width</a></li><li data-type='method'><a href="Aspect.html#width">width</a></li><li data-type='method'><a href="Aspect.html#widthCenter">widthCenter</a></li></ul></li><li><a href="Circle.html">Circle</a><ul class='methods'><li data-type='method'><a href="Circle.html#anchor">anchor</a></li><li data-type='method'><a href="Circle.html#angle">angle</a></li><li data-type='method'><a href="Circle.html#area">area</a></li><li data-type='method'><a href="Circle.html#canvas">canvas</a></li><li data-type='method'><a href="Circle.html#canvas">canvas</a></li><li data-type='method'><a href="Circle.html#center">center</a></li><li data-type='method'><a href="Circle.html#circumference">circumference</a></li><li data-type='method'><a href="Circle.html#diameter">diameter</a></li><li data-type='method'><a href="Circle.html#draw">draw</a></li><li data-type='method'><a href="Circle.html#fill">fill</a></li><li data-type='method'><a href="Circle.html#fillColorCycle">fillColorCycle</a></li><li data-type='method'><a href="Circle.html#gradientColorCycle">gradientColorCycle</a></li><li data-type='method'><a href="Circle.html#isThere">isThere</a></li><li data-type='method'><a href="Circle.html#move">move</a></li><li data-type='method'><a href="Circle.html#options">options</a></li><li data-type='method'><a href="Circle.html#point">point</a></li><li data-type='method'><a href="Circle.html#point">point</a></li><li data-type='method'><a href="Circle.html#radius">radius</a></li><li data-type='method'><a href="Circle.html#radius">radius</a></li><li data-type='method'><a href="Circle.html#redraw">redraw</a></li><li data-type='method'><a href="Circle.html#rotate">rotate</a></li><li data-type='method'><a href="Circle.html#shadow">shadow</a></li><li data-type='method'><a href="Circle.html#showCoordinates">showCoordinates</a></li><li data-type='method'><a href="Circle.html#stroke">stroke</a></li><li data-type='method'><a href="Circle.html#strokeColorCycle">strokeColorCycle</a></li><li data-type='method'><a href="Circle.html#x">x</a></li><li data-type='method'><a href="Circle.html#x">x</a></li><li data-type='method'><a href="Circle.html#y">y</a></li><li data-type='method'><a href="Circle.html#y">y</a></li></ul></li><li><a href="Circles.html">Circles</a><ul class='methods'><li data-type='method'><a href="Circles.html#canvas">canvas</a></li><li data-type='method'><a href="Circles.html#canvas">canvas</a></li><li data-type='method'><a href="Circles.html#draw">draw</a></li><li data-type='method'><a href="Circles.html#endPoint">endPoint</a></li><li data-type='method'><a href="Circles.html#point">point</a></li><li data-type='method'><a href="Circles.html#point">point</a></li><li data-type='method'><a href="Circles.html#pushPop">pushPop</a></li><li data-type='method'><a href="Circles.html#redraw">redraw</a></li><li data-type='method'><a href="Circles.html#x">x</a></li><li data-type='method'><a href="Circles.html#x">x</a></li><li data-type='method'><a href="Circles.html#y">y</a></li><li data-type='method'><a href="Circles.html#y">y</a></li></ul></li><li><a href="Conic.html">Conic</a><ul class='methods'><li data-type='method'><a href="Conic.html#angle">angle</a></li><li data-type='method'><a href="Conic.html#angle">angle</a></li><li data-type='method'><a href="Conic.html#point">point</a></li><li data-type='method'><a href="Conic.html#point">point</a></li><li data-type='method'><a href="Conic.html#stops">stops</a></li><li data-type='method'><a href="Conic.html#stops">stops</a></li></ul></li><li><a href="ControlPoints.html">ControlPoints</a><ul class='methods'><li data-type='method'><a href="ControlPoints.html#p0">p0</a></li><li data-type='method'><a href="ControlPoints.html#p0">p0</a></li><li data-type='method'><a href="ControlPoints.html#p1">p1</a></li><li data-type='method'><a href="ControlPoints.html#p1">p1</a></li><li data-type='method'><a href="ControlPoints.html#p2">p2</a></li><li data-type='method'><a href="ControlPoints.html#p2">p2</a></li><li data-type='method'><a href="ControlPoints.html#p3">p3</a></li><li data-type='method'><a href="ControlPoints.html#p3">p3</a></li></ul></li><li><a href="Fill.html">Fill</a><ul class='methods'><li data-type='method'><a href="Fill.html#color">color</a></li><li data-type='method'><a href="Fill.html#color">color</a></li><li data-type='method'><a href="Fill.html#gradient">gradient</a></li><li data-type='method'><a href="Fill.html#gradient">gradient</a></li><li data-type='method'><a href="Fill.html#pattern">pattern</a></li><li data-type='method'><a href="Fill.html#type">type</a></li><li data-type='method'><a href="Fill.html#type">type</a></li></ul></li><li><a href="Font.html">Font</a><ul class='methods'><li data-type='method'><a href="Font.html#font">font</a></li><li data-type='method'><a href="Font.html#font">font</a></li><li data-type='method'><a href="Font.html#maxWidth">maxWidth</a></li><li data-type='method'><a href="Font.html#maxWidth">maxWidth</a></li><li data-type='method'><a href="Font.html#offset">offset</a></li><li data-type='method'><a href="Font.html#size">size</a></li><li data-type='method'><a href="Font.html#size">size</a></li><li data-type='method'><a href="Font.html#type">type</a></li><li data-type='method'><a href="Font.html#type">type</a></li><li data-type='method'><a href="Font.html#weight">weight</a></li><li data-type='method'><a href="Font.html#weight">weight</a></li></ul></li><li><a href="Group.html">Group</a><ul class='methods'><li data-type='method'><a href="Group.html#canvas">canvas</a></li><li data-type='method'><a href="Group.html#canvas">canvas</a></li><li data-type='method'><a href="Group.html#draw">draw</a></li><li data-type='method'><a href="Group.html#point">point</a></li><li data-type='method'><a href="Group.html#point">point</a></li><li data-type='method'><a href="Group.html#pop">pop</a></li><li data-type='method'><a href="Group.html#push">push</a></li><li data-type='method'><a href="Group.html#x">x</a></li><li data-type='method'><a href="Group.html#x">x</a></li><li data-type='method'><a href="Group.html#y">y</a></li><li data-type='method'><a href="Group.html#y">y</a></li></ul></li><li><a href="Line.html">Line</a><ul class='methods'><li data-type='method'><a href="Line.html#canvas">canvas</a></li><li data-type='method'><a href="Line.html#canvas">canvas</a></li><li data-type='method'><a href="Line.html#center">center</a></li><li data-type='method'><a href="Line.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="Line.html#curve">curve</a></li><li data-type='method'><a href="Line.html#draw">draw</a></li><li data-type='method'><a href="Line.html#drawPoints">drawPoints</a></li><li data-type='method'><a href="Line.html#end">end</a></li><li data-type='method'><a href="Line.html#end">end</a></li><li data-type='method'><a href="Line.html#isThere">isThere</a></li><li data-type='method'><a href="Line.html#lineCap">lineCap</a></li><li data-type='method'><a href="Line.html#lineCap">lineCap</a></li><li data-type='method'><a href="Line.html#move">move</a></li><li data-type='method'><a href="Line.html#options">options</a></li><li data-type='method'><a href="Line.html#redraw">redraw</a></li><li data-type='method'><a href="Line.html#rotate">rotate</a></li><li data-type='method'><a href="Line.html#shadow">shadow</a></li><li data-type='method'><a href="Line.html#showControlPoints">showControlPoints</a></li><li data-type='method'><a href="Line.html#showCoordinates">showCoordinates</a></li><li data-type='method'><a href="Line.html#start">start</a></li><li data-type='method'><a href="Line.html#start">start</a></li><li data-type='method'><a href="Line.html#stroke">stroke</a></li><li data-type='method'><a href="Line.html#strokeColorCycle">strokeColorCycle</a></li></ul></li><li><a href="Linear.html">Linear</a><ul class='methods'><li data-type='method'><a href="Linear.html#end">end</a></li><li data-type='method'><a href="Linear.html#end">end</a></li><li data-type='method'><a href="Linear.html#start">start</a></li><li data-type='method'><a href="Linear.html#start">start</a></li><li data-type='method'><a href="Linear.html#stops">stops</a></li><li data-type='method'><a href="Linear.html#stops">stops</a></li></ul></li><li><a href="Lines.html">Lines</a><ul class='methods'><li data-type='method'><a href="Lines.html#_isAspect">_isAspect</a></li><li data-type='method'><a href="Lines.html#anchor">anchor</a></li><li data-type='method'><a href="Lines.html#anchor">anchor</a></li><li data-type='method'><a href="Lines.html#area">area</a></li><li data-type='method'><a href="Lines.html#aspect">aspect</a></li><li data-type='method'><a href="Lines.html#canvas">canvas</a></li><li data-type='method'><a href="Lines.html#canvas">canvas</a></li><li data-type='method'><a href="Lines.html#center">center</a></li><li data-type='method'><a href="Lines.html#draw">draw</a></li><li data-type='method'><a href="Lines.html#endPoint">endPoint</a></li><li data-type='method'><a href="Lines.html#height">height</a></li><li data-type='method'><a href="Lines.html#lineCap">lineCap</a></li><li data-type='method'><a href="Lines.html#lineCap">lineCap</a></li><li data-type='method'><a href="Lines.html#options">options</a></li><li data-type='method'><a href="Lines.html#perimeter">perimeter</a></li><li data-type='method'><a href="Lines.html#point">point</a></li><li data-type='method'><a href="Lines.html#point">point</a></li><li data-type='method'><a href="Lines.html#push">push</a></li><li data-type='method'><a href="Lines.html#redraw">redraw</a></li><li data-type='method'><a href="Lines.html#shadow">shadow</a></li><li data-type='method'><a href="Lines.html#stroke">stroke</a></li><li data-type='method'><a href="Lines.html#width">width</a></li><li data-type='method'><a href="Lines.html#x">x</a></li><li data-type='method'><a href="Lines.html#x">x</a></li><li data-type='method'><a href="Lines.html#y">y</a></li><li data-type='method'><a href="Lines.html#y">y</a></li></ul></li><li><a href="Options.html">Options</a><ul class='methods'><li data-type='method'><a href="Options.html#anchor">anchor</a></li><li data-type='method'><a href="Options.html#anchor">anchor</a></li><li data-type='method'><a href="Options.html#axis">axis</a></li><li data-type='method'><a href="Options.html#axis">axis</a></li><li data-type='method'><a href="Options.html#border">border</a></li><li data-type='method'><a href="Options.html#border">border</a></li><li data-type='method'><a href="Options.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="Options.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="Options.html#coordinates">coordinates</a></li><li data-type='method'><a href="Options.html#coordinates">coordinates</a></li><li data-type='method'><a href="Options.html#master">master</a></li><li data-type='method'><a href="Options.html#master">master</a></li><li data-type='method'><a href="Options.html#shadow">shadow</a></li><li data-type='method'><a href="Options.html#shadow">shadow</a></li></ul></li><li><a href="OptionsCollection.html">OptionsCollection</a><ul class='methods'><li data-type='method'><a href="OptionsCollection.html#axis">axis</a></li><li data-type='method'><a href="OptionsCollection.html#axis">axis</a></li><li data-type='method'><a href="OptionsCollection.html#border">border</a></li><li data-type='method'><a href="OptionsCollection.html#border">border</a></li><li data-type='method'><a href="OptionsCollection.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="OptionsCollection.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="OptionsCollection.html#coordinates">coordinates</a></li><li data-type='method'><a href="OptionsCollection.html#coordinates">coordinates</a></li><li data-type='method'><a href="OptionsCollection.html#shadow">shadow</a></li><li data-type='method'><a href="OptionsCollection.html#shadow">shadow</a></li></ul></li><li><a href="Point.html">Point</a><ul class='methods'><li data-type='method'><a href="Point.html#canvas">canvas</a></li><li data-type='method'><a href="Point.html#canvas">canvas</a></li><li data-type='method'><a href="Point.html#center">center</a></li><li data-type='method'><a href="Point.html#drawOptions">drawOptions</a></li><li data-type='method'><a href="Point.html#invert">invert</a></li><li data-type='method'><a href="Point.html#move">move</a></li><li data-type='method'><a href="Point.html#options">options</a></li><li data-type='method'><a href="Point.html#x">x</a></li><li data-type='method'><a href="Point.html#x">x</a></li><li data-type='method'><a href="Point.html#y">y</a></li><li data-type='method'><a href="Point.html#y">y</a></li></ul></li><li><a href="PointCollection.html">PointCollection</a><ul class='methods'><li data-type='method'><a href="PointCollection.html#invert">invert</a></li><li data-type='method'><a href="PointCollection.html#options">options</a></li><li data-type='method'><a href="PointCollection.html#x">x</a></li><li data-type='method'><a href="PointCollection.html#x">x</a></li><li data-type='method'><a href="PointCollection.html#y">y</a></li><li data-type='method'><a href="PointCollection.html#y">y</a></li></ul></li><li><a href="Queue.html">Queue</a><ul class='methods'><li data-type='method'><a href="Queue.html#entries">entries</a></li><li data-type='method'><a href="Queue.html#entries">entries</a></li><li data-type='method'><a href="Queue.html#entry">entry</a></li><li data-type='method'><a href="Queue.html#next">next</a></li><li data-type='method'><a href="Queue.html#reset">reset</a></li></ul></li><li><a href="Radial.html">Radial</a><ul class='methods'><li data-type='method'><a href="Radial.html#end">end</a></li><li data-type='method'><a href="Radial.html#end">end</a></li><li data-type='method'><a href="Radial.html#endRadius">endRadius</a></li><li data-type='method'><a href="Radial.html#endRadius">endRadius</a></li><li data-type='method'><a href="Radial.html#start">start</a></li><li data-type='method'><a href="Radial.html#start">start</a></li><li data-type='method'><a href="Radial.html#startRadius">startRadius</a></li><li data-type='method'><a href="Radial.html#startRadius">startRadius</a></li><li data-type='method'><a href="Radial.html#stops">stops</a></li><li data-type='method'><a href="Radial.html#stops">stops</a></li></ul></li><li><a href="Rectangle.html">Rectangle</a><ul class='methods'><li data-type='method'><a href="Rectangle.html#anchor">anchor</a></li><li data-type='method'><a href="Rectangle.html#area">area</a></li><li data-type='method'><a href="Rectangle.html#aspect">aspect</a></li><li data-type='method'><a href="Rectangle.html#aspect">aspect</a></li><li data-type='method'><a href="Rectangle.html#canvas">canvas</a></li><li data-type='method'><a href="Rectangle.html#canvas">canvas</a></li><li data-type='method'><a href="Rectangle.html#center">center</a></li><li data-type='method'><a href="Rectangle.html#draw">draw</a></li><li data-type='method'><a href="Rectangle.html#fill">fill</a></li><li data-type='method'><a href="Rectangle.html#fillColorCycle">fillColorCycle</a></li><li data-type='method'><a href="Rectangle.html#gradientColorCycle">gradientColorCycle</a></li><li data-type='method'><a href="Rectangle.html#height">height</a></li><li data-type='method'><a href="Rectangle.html#height">height</a></li><li data-type='method'><a href="Rectangle.html#isThere">isThere</a></li><li data-type='method'><a href="Rectangle.html#move">move</a></li><li data-type='method'><a href="Rectangle.html#options">options</a></li><li data-type='method'><a href="Rectangle.html#perimeter">perimeter</a></li><li data-type='method'><a href="Rectangle.html#point">point</a></li><li data-type='method'><a href="Rectangle.html#point">point</a></li><li data-type='method'><a href="Rectangle.html#rotate">rotate</a></li><li data-type='method'><a href="Rectangle.html#shadow">shadow</a></li><li data-type='method'><a href="Rectangle.html#stroke">stroke</a></li><li data-type='method'><a href="Rectangle.html#strokeColorCycle">strokeColorCycle</a></li><li data-type='method'><a href="Rectangle.html#width">width</a></li><li data-type='method'><a href="Rectangle.html#width">width</a></li><li data-type='method'><a href="Rectangle.html#x">x</a></li><li data-type='method'><a href="Rectangle.html#x">x</a></li><li data-type='method'><a href="Rectangle.html#y">y</a></li><li data-type='method'><a href="Rectangle.html#y">y</a></li></ul></li><li><a href="Rectangles.html">Rectangles</a><ul class='methods'><li data-type='method'><a href="Rectangles.html#draw">draw</a></li><li data-type='method'><a href="Rectangles.html#endPoint">endPoint</a></li><li data-type='method'><a href="Rectangles.html#point">point</a></li><li data-type='method'><a href="Rectangles.html#point">point</a></li><li data-type='method'><a href="Rectangles.html#pushPop">pushPop</a></li><li data-type='method'><a href="Rectangles.html#redraw">redraw</a></li><li data-type='method'><a href="Rectangles.html#x">x</a></li><li data-type='method'><a href="Rectangles.html#x">x</a></li><li data-type='method'><a href="Rectangles.html#y">y</a></li><li data-type='method'><a href="Rectangles.html#y">y</a></li></ul></li><li><a href="Rgb.html">Rgb</a><ul class='methods'><li data-type='method'><a href="Rgb.html#blue">blue</a></li><li data-type='method'><a href="Rgb.html#blue">blue</a></li><li data-type='method'><a href="Rgb.html#green">green</a></li><li data-type='method'><a href="Rgb.html#green">green</a></li><li data-type='method'><a href="Rgb.html#red">red</a></li><li data-type='method'><a href="Rgb.html#red">red</a></li><li data-type='method'><a href="Rgb.html#toCss">toCss</a></li></ul></li><li><a href="SacredCircles.html">SacredCircles</a><ul class='methods'><li data-type='method'><a href="SacredCircles.html#colors">colors</a></li><li data-type='method'><a href="SacredCircles.html#colors">colors</a></li><li data-type='method'><a href="SacredCircles.html#degrees">degrees</a></li><li data-type='method'><a href="SacredCircles.html#degrees">degrees</a></li><li data-type='method'><a href="SacredCircles.html#init">init</a></li><li data-type='method'><a href="SacredCircles.html#iterations">iterations</a></li><li data-type='method'><a href="SacredCircles.html#iterations">iterations</a></li><li data-type='method'><a href="SacredCircles.html#master">master</a></li><li data-type='method'><a href="SacredCircles.html#point">point</a></li><li data-type='method'><a href="SacredCircles.html#point">point</a></li><li data-type='method'><a href="SacredCircles.html#radius">radius</a></li><li data-type='method'><a href="SacredCircles.html#radius">radius</a></li><li data-type='method'><a href="SacredCircles.html#totalObjects">totalObjects</a></li></ul></li><li><a href="Shadow.html">Shadow</a><ul class='methods'><li data-type='method'><a href="Shadow.html#blur">blur</a></li><li data-type='method'><a href="Shadow.html#blur">blur</a></li><li data-type='method'><a href="Shadow.html#color">color</a></li><li data-type='method'><a href="Shadow.html#color">color</a></li><li data-type='method'><a href="Shadow.html#offset">offset</a></li><li data-type='method'><a href="Shadow.html#offset">offset</a></li><li data-type='method'><a href="Shadow.html#x">x</a></li><li data-type='method'><a href="Shadow.html#x">x</a></li><li data-type='method'><a href="Shadow.html#y">y</a></li><li data-type='method'><a href="Shadow.html#y">y</a></li></ul></li><li><a href="ShadowCollection.html">ShadowCollection</a><ul class='methods'><li data-type='method'><a href="ShadowCollection.html#blur">blur</a></li><li data-type='method'><a href="ShadowCollection.html#blur">blur</a></li><li data-type='method'><a href="ShadowCollection.html#color">color</a></li><li data-type='method'><a href="ShadowCollection.html#color">color</a></li><li data-type='method'><a href="ShadowCollection.html#offset">offset</a></li><li data-type='method'><a href="ShadowCollection.html#offset">offset</a></li><li data-type='method'><a href="ShadowCollection.html#x">x</a></li><li data-type='method'><a href="ShadowCollection.html#x">x</a></li><li data-type='method'><a href="ShadowCollection.html#y">y</a></li><li data-type='method'><a href="ShadowCollection.html#y">y</a></li></ul></li><li><a href="Stop.html">Stop</a><ul class='methods'><li data-type='method'><a href="Stop.html#color">color</a></li><li data-type='method'><a href="Stop.html#color">color</a></li><li data-type='method'><a href="Stop.html#offset">offset</a></li><li data-type='method'><a href="Stop.html#offset">offset</a></li></ul></li><li><a href="Stroke.html">Stroke</a><ul class='methods'><li data-type='method'><a href="Stroke.html#color">color</a></li><li data-type='method'><a href="Stroke.html#color">color</a></li><li data-type='method'><a href="Stroke.html#segments">segments</a></li><li data-type='method'><a href="Stroke.html#segments">segments</a></li><li data-type='method'><a href="Stroke.html#type">type</a></li><li data-type='method'><a href="Stroke.html#type">type</a></li><li data-type='method'><a href="Stroke.html#width">width</a></li><li data-type='method'><a href="Stroke.html#width">width</a></li></ul></li><li><a href="StrokeCollection.html">StrokeCollection</a><ul class='methods'><li data-type='method'><a href="StrokeCollection.html#color">color</a></li><li data-type='method'><a href="StrokeCollection.html#color">color</a></li><li data-type='method'><a href="StrokeCollection.html#master">master</a></li><li data-type='method'><a href="StrokeCollection.html#segments">segments</a></li><li data-type='method'><a href="StrokeCollection.html#segments">segments</a></li><li data-type='method'><a href="StrokeCollection.html#type">type</a></li><li data-type='method'><a href="StrokeCollection.html#type">type</a></li><li data-type='method'><a href="StrokeCollection.html#width">width</a></li><li data-type='method'><a href="StrokeCollection.html#width">width</a></li></ul></li><li><a href="Text.html">Text</a><ul class='methods'><li data-type='method'><a href="Text.html#canvas">canvas</a></li><li data-type='method'><a href="Text.html#canvas">canvas</a></li><li data-type='method'><a href="Text.html#draw">draw</a></li><li data-type='method'><a href="Text.html#drawAxis">drawAxis</a></li><li data-type='method'><a href="Text.html#drawBorder">drawBorder</a></li><li data-type='method'><a href="Text.html#fill">fill</a></li><li data-type='method'><a href="Text.html#fillColorCycle">fillColorCycle</a></li><li data-type='method'><a href="Text.html#font">font</a></li><li data-type='method'><a href="Text.html#maxWidth">maxWidth</a></li><li data-type='method'><a href="Text.html#maxWidth">maxWidth</a></li><li data-type='method'><a href="Text.html#move">move</a></li><li data-type='method'><a href="Text.html#offset">offset</a></li><li data-type='method'><a href="Text.html#offset">offset</a></li><li data-type='method'><a href="Text.html#options">options</a></li><li data-type='method'><a href="Text.html#point">point</a></li><li data-type='method'><a href="Text.html#point">point</a></li><li data-type='method'><a href="Text.html#rotate">rotate</a></li><li data-type='method'><a href="Text.html#shadow">shadow</a></li><li data-type='method'><a href="Text.html#size">size</a></li><li data-type='method'><a href="Text.html#size">size</a></li><li data-type='method'><a href="Text.html#stroke">stroke</a></li><li data-type='method'><a href="Text.html#strokeColorCycle">strokeColorCycle</a></li><li data-type='method'><a href="Text.html#text">text</a></li><li data-type='method'><a href="Text.html#text">text</a></li><li data-type='method'><a href="Text.html#type">type</a></li><li data-type='method'><a href="Text.html#type">type</a></li><li data-type='method'><a href="Text.html#weight">weight</a></li><li data-type='method'><a href="Text.html#weight">weight</a></li><li data-type='method'><a href="Text.html#x">x</a></li><li data-type='method'><a href="Text.html#x">x</a></li><li data-type='method'><a href="Text.html#y">y</a></li><li data-type='method'><a href="Text.html#y">y</a></li></ul></li><li><a href="Texts.html">Texts</a><ul class='methods'><li data-type='method'><a href="Texts.html#canvas">canvas</a></li><li data-type='method'><a href="Texts.html#canvas">canvas</a></li><li data-type='method'><a href="Texts.html#draw">draw</a></li><li data-type='method'><a href="Texts.html#endPoint">endPoint</a></li><li data-type='method'><a href="Texts.html#point">point</a></li><li data-type='method'><a href="Texts.html#point">point</a></li><li data-type='method'><a href="Texts.html#pushPop">pushPop</a></li><li data-type='method'><a href="Texts.html#redraw">redraw</a></li><li data-type='method'><a href="Texts.html#x">x</a></li><li data-type='method'><a href="Texts.html#x">x</a></li><li data-type='method'><a href="Texts.html#y">y</a></li><li data-type='method'><a href="Texts.html#y">y</a></li></ul></li><li><a href="canvasLab.html">canvasLab</a><ul class='methods'><li data-type='method'><a href="canvasLab.html#animate">animate</a></li><li data-type='method'><a href="canvasLab.html#canvas">canvas</a></li><li data-type='method'><a href="canvasLab.html#canvas">canvas</a></li><li data-type='method'><a href="canvasLab.html#canvases">canvases</a></li><li data-type='method'><a href="canvasLab.html#canvases">canvases</a></li><li data-type='method'><a href="canvasLab.html#font">font</a></li><li data-type='method'><a href="canvasLab.html#font">font</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="DEBUG.html">DEBUG</a><ul class='methods'><li data-type='method'><a href="DEBUG.html#.fixBlur">fixBlur</a></li><li data-type='method'><a href="DEBUG.html#.setCanvasStyleToHTML">setCanvasStyleToHTML</a></li><li data-type='method'><a href="DEBUG.html#.setCanvasStyleToHTMLMAX">setCanvasStyleToHTMLMAX</a></li></ul></li><li><a href="PROPERTY_BLOCKS.html">PROPERTY_BLOCKS</a><ul class='methods'><li data-type='method'><a href="PROPERTY_BLOCKS.html#.combined">combined</a></li><li data-type='method'><a href="PROPERTY_BLOCKS.html#.discrete">discrete</a></li></ul></li><li><a href="UTILITIES.html">UTILITIES</a><ul class='methods'><li data-type='method'><a href="UTILITIES.html#.color">color</a></li><li data-type='method'><a href="UTILITIES.html#.draw">draw</a></li><li data-type='method'><a href="UTILITIES.html#.draw">draw</a></li><li data-type='method'><a href="UTILITIES.html#.misc">misc</a></li></ul></li><li><a href="VALIDATION.html">VALIDATION</a><ul class='methods'><li data-type='method'><a href="VALIDATION.html#.Group#_isPlan">Group#_isPlan</a></li><li data-type='method'><a href="VALIDATION.html#.Lines#isCanvasLabObject">Lines#isCanvasLabObject</a></li><li data-type='method'><a href="VALIDATION.html#.is256">is256</a></li><li data-type='method'><a href="VALIDATION.html#.isAlign">isAlign</a></li><li data-type='method'><a href="VALIDATION.html#.isAlpha">isAlpha</a></li><li data-type='method'><a href="VALIDATION.html#.isAnchor">isAnchor</a></li><li data-type='method'><a href="VALIDATION.html#.isAngle">isAngle</a></li><li data-type='method'><a href="VALIDATION.html#.isAspect">isAspect</a></li><li data-type='method'><a href="VALIDATION.html#.isBlur">isBlur</a></li><li data-type='method'><a href="VALIDATION.html#.isCanvasLabObject">isCanvasLabObject</a></li><li data-type='method'><a href="VALIDATION.html#.isColorModel">isColorModel</a></li><li data-type='method'><a href="VALIDATION.html#.isColorName">isColorName</a></li><li data-type='method'><a href="VALIDATION.html#.isDecimal">isDecimal</a></li><li data-type='method'><a href="VALIDATION.html#.isDegree">isDegree</a></li><li data-type='method'><a href="VALIDATION.html#.isFillType">isFillType</a></li><li data-type='method'><a href="VALIDATION.html#.isGradient">isGradient</a></li><li data-type='method'><a href="VALIDATION.html#.isInDom">isInDom</a></li><li data-type='method'><a href="VALIDATION.html#.isNumber">isNumber</a></li><li data-type='method'><a href="VALIDATION.html#.isPlan">isPlan</a></li><li data-type='method'><a href="VALIDATION.html#.isPoint">isPoint</a></li><li data-type='method'><a href="VALIDATION.html#.isRadian">isRadian</a></li><li data-type='method'><a href="VALIDATION.html#.isRadius">isRadius</a></li><li data-type='method'><a href="VALIDATION.html#.isSegments">isSegments</a></li><li data-type='method'><a href="VALIDATION.html#.isStop">isStop</a></li><li data-type='method'><a href="VALIDATION.html#.isStrokeType">isStrokeType</a></li><li data-type='method'><a href="VALIDATION.html#.isWidth">isWidth</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#initCanvasLab">initCanvasLab</a></li></ul>
-    
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">canvasLab-v0.3.78.js</h1>
-    
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>// @program: 		canvasLab 
+// @program: 		canvasLab 
 // @brief: 			HTML5 canvas drawing framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.3.78 
+// @version: 		0.4.88 
 // @license: 		GPL-2.0
 
 "use strict";
+
+////    COMPONENTS    //////////////////////////////////////
  
 /**
- * Base object for shared accessors &amp; mutators
+ * Base object for shared accessors & mutators
  * @namespace       PROPERTY_BLOCKS
  */
 const PROPERTY_BLOCKS =
 {
     /**
-     * Discrete property accessors &amp; mutators
+     * Discrete property accessors & mutators
      * @function PROPERTY_BLOCKS.discrete
      */
     discrete:
@@ -71,7 +26,7 @@ const PROPERTY_BLOCKS =
         {
             set ( value )
             {
-                this._alpha = ( value &lt;= 1  &amp;&amp;  value >= 0 ) ? value : this._alpha;
+                this._alpha = ( value <= 1  &&  value >= 0 ) ? value : this._alpha;
             },
             get ( )
             {
@@ -177,7 +132,7 @@ const PROPERTY_BLOCKS =
         {
             set ( value )
             {
-                this._radius = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._radius;
+                this._radius = ( typeof value === 'number' && value > 0 ) ? value : this._radius;
             },
             get ( )
             {
@@ -187,11 +142,61 @@ const PROPERTY_BLOCKS =
     },
 
     /**
-     * Combined property accessors &amp; mutators
+     * Combined property accessors & mutators
      * @function PROPERTY_BLOCKS.combined
      */
     combined:
     {
+        /** @var            {Object} combined.anchor                                                **/
+        anchor:
+        {
+            set ( value )
+            {
+                this._anchor.type = ( this._isAnchor ( value ) ) ? value : this._anchor.type;
+
+
+                this._setAnchorPoint ( );
+            },
+            get ( )
+            {
+                return this._anchor;
+            }
+        },
+        /** @var            {Object} combined.area                                                  **/
+        area:
+        {
+            get ( )
+            {
+                return ( this.width * this.height );
+            }
+        },
+        /** @var            {Object} combined.aspect                                                **/
+        aspect:
+        {
+            get ( )
+            {
+                this._setAspect ( );
+
+
+                return this._aspect;
+            }
+        },
+        /** @var            {Object} combined.aspectWidth                                           **/
+        aspectWidth:
+        {
+            get ( )
+            {
+                return this._aspect.width;
+            }
+        },
+        /** @var            {Object} combined.aspectHeight                                          **/
+        aspectHeight:
+        {
+            get ( )
+            {
+                return this._aspect.height;
+            }
+        },
         /** @var            {Object} combined.canvas                                                **/
         canvas:
         {
@@ -214,13 +219,42 @@ const PROPERTY_BLOCKS =
                                                : this._canvas;
 
 
-                for ( let _element of this )
+                if ( ( this.length > 0 )  &&  ( this._canvas instanceof CanvasRenderingContext2D ) )
 
-                    _element.canvas = value;
+                    for ( let _object of this )
+
+                        _object.canvas = this.canvas;
             },
             get ( )
             {
                 return ( this._canvas != undefined ) ? this._canvas.canvas.id : undefined;
+            }
+        },
+        /** @var            {Object} combined.center                                                **/
+        center:
+        {
+            get ( )
+            {
+                let [ _x, _y ] = [ this.width / 2, this.height / 2 ];
+
+
+                return new Point ( _x, _y );
+            }
+        },
+        /** @var            {Object} combined.endPoint                                              **/
+        endPoint:
+        {
+            get ( )
+            {
+                return this [ this.length - 1 ].point;
+            }
+        },
+        /** @var            {Object} combined.perimeter                                             **/
+        perimeter:
+        {
+            get ( )
+            {
+                return ( this.area * 2 );
             }
         },
         /** @var            {Object} combined.start                                                 **/
@@ -329,8 +363,8 @@ const UTILITIES =
              * Cycle colors for gradient stop(s)
              * @public
              * @function
-             * @param           {Object}   start                    Color model &amp; values
-             * @param           {Object}   end                      Color model &amp; values
+             * @param           {Object}   start                    Color model & values
+             * @param           {Object}   end                      Color model & values
              * @param           {number}   progress                 Progress time unit; 0.00 - 1.00
              * @param           {number}   stop                     Color stop to cycle
              * @param           {number}   max                      Maximum number of steps between interpolation
@@ -344,12 +378,197 @@ const UTILITIES =
         }
     },
 
+    collection:
+    {
+        /**
+         * Draw function
+         * @public
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         */
+        draw ( canvas )
+        {
+            if ( canvas != undefined ) this.canvas = canvas;
+
+
+                if ( this._canvas instanceof CanvasRenderingContext2D )
+
+                    if ( this.length > 0 )
+                    {
+                        this._setAnchorPoint ( );
+
+
+                        for ( let _object of this )
+                        {
+                            this._setPointOffset ( _object );
+
+                            this._drawOptionsPre ( _object, this.options );
+
+
+                            _object.draw ( );
+                        }
+
+
+                        this._drawOptionsPost ( );
+                    }
+                    else
+
+                        console.warn ( `No ${this.constructor.name} exist to draw !` );
+
+                else
+
+                    console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
+        },
+
+        /**
+         * Redraw this object
+         * @public
+         * @function
+         * @param           {string}  canvas                            Canvas Id
+         * @param           {Point}   point                             Point of new location
+         * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         */
+        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
+        {
+            [ this.x, this.y ] = [ point.x, point.y ]
+
+
+            this._clearCanvas ( clear );
+
+
+            this.draw ( canvas );
+        },
+
+        /**
+         * Draws anchor point
+         * @public
+         * @function
+         */
+        drawAnchor ( )
+        {
+            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
+
+                _anchor.fill.color = '255, 0, 0';
+
+                _anchor.canvas     = this.canvas;
+
+
+                _anchor.draw ( );
+        },
+
+        /**
+         * Draws associated options
+         * @public
+         * @function
+         */
+        drawOptionsPost ( )
+        {
+            let _offset = 20;
+
+            let _aspect = new Aspect ( this.width + _offset, this.height + _offset );
+
+            ////////////////////////////////////////////////////////////////////
+
+            if ( this.options.border ) this._drawBorder ( _aspect );
+
+            if ( this.options.axis   ) this._drawAxis   ( );
+
+            if ( this.options.anchor ) this._drawAnchor ( );
+        },
+
+        /**
+         * Pushes child object(s) into this collection
+         * @public
+         * @function
+         */
+        push ( )
+        {
+            for ( let _i = 0; _i < arguments.length; _i++ )
+            {
+                if ( arguments [ _i ] instanceof this._storage.type )
+
+                    Array.prototype.push.apply ( this, [ arguments [ _i ] ] );
+
+                else
+
+                    if ( ! this._isPoint ( arguments [ _i ] ) )
+
+                        console.error ( `[ERROR] Argument ${ ( _i + 1 ) }, of type "${ arguments [ _i ].constructor.name }", is not a valid type !` );
+            }
+        },
+
+        /**
+         * Sets anchor's point against this object's point location
+         * @public
+         * @function
+         */
+        setAnchorPoint ( )
+        {
+            this._setAspect ( );
+
+
+            this._anchor = this.center;
+
+
+            switch ( this.anchor.type )
+            {
+                case 'center':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height / 2;  break;
+
+                case 'top':          this.anchor.x -= this.width / 2;   /*       ... do nothing        */  break;
+
+                case 'topRight':     this.anchor.x -= this.width;       /*       ... do nothing        */  break;
+
+                case 'right':        this.anchor.x -= this.width;       this.anchor.y -= this.height / 2;  break;
+
+                case 'bottomRight':  this.anchor.x -= this.width;       this.anchor.y -= this.height;      break;
+
+                case 'bottom':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height;      break;
+
+                case 'bottomLeft':   /*       ... do nothing       */   this.anchor.y -= this.height;      break;
+
+                case 'left':         /*       ... do nothing       */   this.anchor.y -= this.height / 2;  break;
+
+                case 'topLeft':      /*       ... do nothing       */   /*       ... do nothing        */  break;
+            }
+        },
+
+        /**
+         * Sets offset of child object against this constructor's point
+         * @public
+         * @function
+         * @param           {Object} Object                             CanvasLab Object
+         */
+        setPointOffset ( Object )
+        {
+            Object.x += this.x;
+
+            Object.y += this.y;
+        },
+    },
+
     /**
      * Utility draw functions
      * @function UTILITIES.draw
      */
     draw:
     {
+        /**
+         * Draws anchor point
+         * @public
+         * @function
+         */
+        anchor ( )
+        {
+            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
+
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
+
+                _anchor.canvas     = this.canvas;
+
+
+                _anchor.draw ( );
+        },
+
         /**
          * Draws an axis for the associated object
          * @public
@@ -360,6 +579,9 @@ const UTILITIES =
          */
         axis ( edgeOffset = 20, color = new Rgb ( 245, 80, 50 ) )
         {
+            let _collections = [ 'Circles', 'Rectangles', 'Texts' ];
+
+
             let _lines = new Lines;
 
                 _lines.push ( new Line, new Line );
@@ -368,17 +590,23 @@ const UTILITIES =
 
                 _lines.point        = this.center;
 
+
+            if ( _collections.includes ( this.constructor.name ) )              // Fix offset issue(s)
+
+                [ _lines.point.x, _lines.point.y ] = [ _lines.point.x + this.aspect.offset.x, _lines.point.y + this.aspect.offset.y ];
+
+
                 _lines.canvas       = ( this instanceof Point ) ? this.options._master.canvas : this.canvas;
 
 
-                _lines [ 0 ].start  = new Point ( this.center.x - edgeOffset, this.center.y );
+                _lines [ 0 ].start  = new Point ( - edgeOffset, 0 );
 
-                _lines [ 0 ].end    = new Point ( this.center.x + edgeOffset, this.center.y );
+                _lines [ 0 ].end    = new Point (   edgeOffset, 0 );
 
 
-                _lines [ 1 ].start  = new Point ( this.center.x, this.center.y - edgeOffset );
+                _lines [ 1 ].start  = new Point ( 0, - edgeOffset );
 
-                _lines [ 1 ].end    = new Point ( this.center.x, this.center.y + edgeOffset );
+                _lines [ 1 ].end    = new Point ( 0,   edgeOffset );
 
 
                 _lines.draw ( );
@@ -393,9 +621,17 @@ const UTILITIES =
          */
         border ( aspect, color = new Rgb ( 245, 80, 50 ) )
         {
+            let _collections = [ 'Circles', 'Rectangles', 'Texts' ];
+
+
             if ( this._isAspect ( aspect ) )
             {
                 let _border = new Rectangle ( this.center, aspect );
+
+
+                if ( _collections.includes ( this.constructor.name ) )          // Fix offset issue(s)
+
+                    [ _border.x, _border.y ] = [ _border.x + this.aspect.offset.x, _border.y + this.aspect.offset.y ]
 
 
                     _border.stroke.color     = color;
@@ -411,85 +647,10 @@ const UTILITIES =
 
                 console.warn ( `"${value}" is not a valid aspect !` );
         },
-
-        /**
-         * Utility draw collection functions
-         */
-        collection:
-        {
-
-            /**
-             * Two dimensional draw function for collections; Circles, Rectangles, Texts
-             * @public
-             * @function
-             * @param           {string} canvas                             Canvas Id
-             */
-            twoDimensional ( canvas )
-            {
-                if ( canvas != undefined ) this.canvas = canvas;
-
-
-                if ( this._canvas instanceof CanvasRenderingContext2D )
-                {
-                    if ( this.length > 0 )
-
-                        for ( let _object of this )
-                        {
-                            _object.point = new Point (  ( _object.x + this.x ), ( _object.y + this.y )  );
-
-                            _object.draw ( );
-                        }
-
-                    else
-
-                        console.warn ( `No ${this.constructor.name} exist to draw !` );
-                }
-                else
-
-                    console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
-            },
-
-            /**
-             * One dimensional draw function for collections; Lines
-             * @public
-             * @function
-             * @param           {string} canvas                             Canvas Id
-             */
-            oneDimensional ( canvas )
-            {
-                if ( canvas != undefined ) this.canvas = canvas;
-
-
-                if ( this._canvas instanceof CanvasRenderingContext2D )
-                {
-                    if ( this.length > 0 )
-                    {
-                        for ( let _object of this )
-                        {
-                            this._setAspect      ( );
-
-                            this._setAnchorPoint ( );
-
-
-                            _object.draw ( );
-                        }
-
-
-                        this._drawOptions ( );
-                    }
-                    else
-
-                        console.warn ( `No ${this.constructor.name} exist to draw !` );
-                }
-                else
-
-                    console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
-            }
-        }
     },
 
     /**
-     * Utility draw collection functions
+     * Utility misc functions
      * @function UTILITIES.misc
      */
     misc:
@@ -557,7 +718,7 @@ const UTILITIES =
         },
 
         /**
-         * Rotates the origin point by the degree &amp; distance passed
+         * Rotates the origin point by the degree & distance passed
          * @public
          * @function
          * @param           {Point}  origin                             Origin point
@@ -578,11 +739,44 @@ const UTILITIES =
 
             return _point;
         },
+
+        /**
+         * Shows coordinates of this object
+         * @public
+         * @function
+         * @param           {number} [offset=10]                        Offset of coordinates y origin
+         * @param           {number} [fontSize=16]                      Coordinates font size
+         */
+        showCoordinates ( offset = 10, fontSize = 16 )
+        {
+            let _text  = new Text ( this.point, `( ${this.x}, ${this.y} )` );
+
+                _text.canvas         =  this.canvas;
+
+                _text.size           =  fontSize;
+
+                _text.options.shadow =  false;
+
+                _text.offset.y       =  ( offset / 2 );
+
+
+                _text.options.shadow = true;
+
+
+                _text.shadow.color   = new Rgb ( 255, 255, 255 );
+
+                _text.shadow.blur    = 1;
+
+                _text.shadow.x       = _text.shadow.y    = 1;
+
+
+                _text.draw ( );
+        },
     },
 
     /**
      * Utility draw collection functions
-     * @function UTILITIES.draw
+     * @function UTILITIES.set
      */
     set:
     {
@@ -636,7 +830,7 @@ const UTILITIES =
              * @public
              * @function
              * @param           {Object}        gradient                    [description]
-             * @param           {Array.&lt;Stops>} stops                       [description]
+             * @param           {Array.<Stops>} stops                       [description]
              */
             function _setStops ( gradient, stops )
             {
@@ -664,7 +858,71 @@ const UTILITIES =
 
                                 this._canvas.fillStyle = _setStops ( _conic, this.fill.gradient.stops );        break;
             }
-        }
+        },
+    },
+
+    /**
+     * Utility draw collection functions
+     * @function UTILITIES.transition
+     */
+    transition:
+    {
+        /**
+         * Move this object
+         * @public
+         * @function
+         * @param           {number}  degree                            Direction to move; in degrees
+         * @param           {number}  distance                          Distance to move
+         * @param           {boolean} [draw=false]                      Draw post movement
+         * @param           {boolean} [clear=false]                     Clear canvas during each movement
+         */
+        move ( degree, distance, draw = false, clear = false )
+        {
+            let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
+
+
+                [ this.x, this.y ] = [ _point.x, _point.y ];
+
+
+            this._clearCanvas ( clear );
+
+
+            if ( draw )
+
+                this.draw ( );
+        },
+
+        /**
+         * Rotate this object
+         * @public
+         * @function
+         * @param           {number} degree                             Distance to rotate; in degrees
+         * @param           {number} [clear=true]                       Clear canvas during each rotation
+         */
+        rotate ( degree, clear = true )
+        {
+            if ( this._isDegree ( degree ) )
+            {
+                let [ _x, _y ] = [ this.x, this.y ];
+
+
+                this._canvas.save      ( );
+
+                this._canvas.translate ( _x, _y );
+
+                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
+
+                this._canvas.translate ( -_x, -_y );
+
+
+                this._clearCanvas ( clear );
+
+                this.draw ( );
+
+
+                this._canvas.restore ( );
+            }
+        },
     },
 }
  
@@ -684,7 +942,7 @@ const VALIDATION =
      */
     is256 ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 255 ) );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 255 ) );
     },
 
     /**
@@ -719,7 +977,7 @@ const VALIDATION =
         if ( value instanceof Angle ) return true;
 
 
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value &lt;= 360 ) );
+        return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
     },
 
     /**
@@ -751,7 +1009,7 @@ const VALIDATION =
      */
     isAlpha ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 1  )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  )  );
     },
 
     /**
@@ -775,7 +1033,7 @@ const VALIDATION =
         let _height = ( value.hasOwnProperty ( 'height' ) ) ? ( typeof value.height === 'number' ) : false;
 
 
-        return ( _width &amp;&amp; _height &amp;&amp; _length );
+        return ( _width && _height && _length );
     },
 
     /**
@@ -788,7 +1046,7 @@ const VALIDATION =
      */
     isBlur ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 ) );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );
     },
 
     /**
@@ -1061,7 +1319,7 @@ const VALIDATION =
      */
     isDecimal ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 1  ) );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  ) );
     },
 
     /**
@@ -1074,7 +1332,7 @@ const VALIDATION =
      */
     isDegree ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value &lt;= 360 ) );
+        return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
     },
 
     /**
@@ -1133,7 +1391,7 @@ const VALIDATION =
      */
     isNumber ( value )
     {
-        return ( ( typeof value === 'number')  &amp;&amp;  !isNaN ( value ) );
+        return ( ( typeof value === 'number')  &&  !isNaN ( value ) );
     },
 
     /**
@@ -1156,7 +1414,7 @@ const VALIDATION =
             let _master   = ( Object.hasOwn ( _instance, '_master' ) );
 
 
-            return ( _point &amp;&amp; _master );
+            return ( _point && _master );
         }
         else
 
@@ -1184,7 +1442,7 @@ const VALIDATION =
         let _y      = ( value.hasOwnProperty ( 'y' ) ) ? ( typeof value.y === 'number' ) : false;
 
 
-        return ( _length &amp;&amp; _x &amp;&amp; _y );
+        return ( _length && _x && _y );
     },
 
     /**
@@ -1197,7 +1455,7 @@ const VALIDATION =
      */
     isRadian ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 6.283185307179586 ) );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 6.283185307179586 ) );
     },
 
     /**
@@ -1210,7 +1468,7 @@ const VALIDATION =
      */
     isRadius ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value > 0 ) );
+        return ( ( typeof value === 'number' )  &&  ( value > 0 ) );
     },
 
     /**
@@ -1218,7 +1476,7 @@ const VALIDATION =
      * @public
      * @memberof VALIDATION
      * @function
-     * @param           {Array.&lt;number>} value                      Array of segment values
+     * @param           {Array.<number>} value                      Array of segment values
      * @return          {boolean}                                   True || False
      */
     isSegments ( value )
@@ -1258,14 +1516,14 @@ const VALIDATION =
 
         // // // // // // // // // // // // // // // // // // // // // // // //
 
-        let _object = ( typeof value === 'object'  &amp;&amp;  ! Array.isArray ( value ) );
+        let _object = ( typeof value === 'object'  &&  ! Array.isArray ( value ) );
 
         let _offset = ( value.hasOwnProperty ( 'offset' ) ) ? VALIDATION.isNumber     ( value.offset ) : false;
 
         let _color  = ( value.hasOwnProperty ( 'color'  ) ) ? VALIDATION.isColorModel ( value.color  ) : false;
 
 
-        return ( _object &amp;&amp; _offset &amp;&amp; _color );
+        return ( _object && _offset && _color );
     },
 
     /**
@@ -1278,7 +1536,7 @@ const VALIDATION =
      */
     isStrokeType ( value )
     {
-        return ( ( typeof value === 'string' )  &amp;&amp;  [ 'solid', 'dashed' ].includes ( value ) );
+        return ( ( typeof value === 'string' )  &&  [ 'solid', 'dashed' ].includes ( value ) );
     },
 
     /**
@@ -1291,7 +1549,7 @@ const VALIDATION =
      */
     isWidth ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 ) );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );
     }
 }
  
@@ -1354,6 +1612,8 @@ const DEBUG =
         _canvas.setAttribute ( 'width',  style_width  * _dpi );
     }
 }
+
+////    CANVASLAB    ///////////////////////////////////////
  
 /**
  * @class           {Object} canvasLab                          CanvasLab core application
@@ -1503,7 +1763,7 @@ class canvasLab
 
         /**
          * Animates onscreen objects in accordance with passed param values
-         * @param           {Object}   flow                     Contains timing, draw, &amp; duration values &amp; functions
+         * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
          * @param           {number}   flow.duration            Duration of animation
          * @param           {Function} flow.timing              Timing function
          * @param           {Function} flow.draw                Draw function
@@ -1527,7 +1787,7 @@ class canvasLab
             let _canvases = document.getElementsByTagName ( 'canvas' );
 
 
-            if ( typeof _canvases === 'object' &amp;&amp; this._canvases === undefined )
+            if ( typeof _canvases === 'object' && this._canvases === undefined )
 
                 for ( let _id in _canvases )
 
@@ -1540,6 +1800,8 @@ class canvasLab
                         this.canvases = _canvases [ _id ].id;
         }
 }
+
+////    SUBJECTS    ////////////////////////////////////////
  
 /**
  * @class           {Object} Rgb 								RGB color model
@@ -1666,8 +1928,8 @@ class Rgb
 		 * Color cycling
 		 * @private
 		 * @function
-		 * @param  			{Object}   start							Color model &amp; values
-		 * @param  			{Object}   end 								Color model &amp; values
+		 * @param  			{Object}   start							Color model & values
+		 * @param  			{Object}   end 								Color model & values
 		 * @param 			{number}   progress 						Progress time unit; 0.00 - 1.00
 		 * @param 			{number}   max 								Maximum number of steps between interpolation
 		 * @param 			{function} clear 							Clear callback from root object
@@ -1686,8 +1948,8 @@ class Rgb
 		 * Linear interpolation color transitions
 		 * @private
 		 * @function
-		 * @param  			{Object} start 								Color model &amp; values
-		 * @param  			{Object} end 								Color model &amp; values
+		 * @param  			{Object} start 								Color model & values
+		 * @param  			{Object} end 								Color model & values
 		 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
 		 * @param 			{number} max 								Maximum number of steps between interpolation
 		 */
@@ -1700,8 +1962,8 @@ class Rgb
 		 * Linear interpolation of Rgb values
 		 * @private
 		 * @function
-		 * @param  			{Object} start 								Color model &amp; values
-		 * @param  			{Object} end 								Color model &amp; values
+		 * @param  			{Object} start 								Color model & values
+		 * @param  			{Object} end 								Color model & values
 		 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
 		 * @param 			{number} max 								Maximum number of steps between interpolation
 		 */
@@ -1722,10 +1984,10 @@ class Rgb
 		}
 
 		/**
-		 * Returns a CSS compatible &lt;color> string value
+		 * Returns a CSS compatible <color> string value
 		 * @public
 		 * @function
-		 * @return 			{string} 									CSS &lt;color> string
+		 * @return 			{string} 									CSS <color> string
 		 */
 		toCss ( )
 		{
@@ -1734,7 +1996,7 @@ class Rgb
 }
  
 /**
- * @class           {Object}  Options                           Options for shapes, lines, and groups
+ * @class           {Object}  Options                           Options for collections
  * @property        {boolean} [shadow=false]                    Show shadow
  * @property        {boolean} [border=false]                    Show border
  * @property        {boolean} [axis=false]                      Show axis
@@ -1964,7 +2226,7 @@ class Options
  
 /**
  * @class           {Object} Anchor                             Anchor object
- * @property        {Point}  point                              X &amp; Y axis coordinates
+ * @property        {Point}  point                              X & Y axis coordinates
  * @property        {string} align                              Anchor alignment
  */
 class Anchor
@@ -1989,7 +2251,7 @@ class Anchor
          * Set point
          * @public
          * @function
-         * @param           {Point} point                               X &amp; Y axis coordinates
+         * @param           {Point} point                               X & Y axis coordinates
          */
         set point ( value ) { }
 
@@ -1997,7 +2259,7 @@ class Anchor
          * Get point
          * @public
          * @function
-         * @return          {Point}                                     X &amp; Y axis coordinates
+         * @return          {Point}                                     X & Y axis coordinates
          */
         get point ( ) { }
 
@@ -2255,6 +2517,8 @@ class Aspect
     _width  = 0;
     _height = 0;
 
+    #offset = new Point;
+
     /**
      * Create an aspect
      * @param           {number} width                              Width of aspect
@@ -2262,6 +2526,10 @@ class Aspect
      */
     constructor ( width, height )
     {
+        ////    COMPOSITION     ////////////////////////////
+
+            this._isPoint  = VALIDATION.isPoint;
+
         this.width  = width;
         this.height = height;
     }
@@ -2276,7 +2544,7 @@ class Aspect
          */
         set width ( value )
         {
-            this._width = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._width;
+            this._width = ( typeof value === 'number' && value > 0 ) ? value : this._width;
         }
 
         /**
@@ -2300,7 +2568,7 @@ class Aspect
          */
         set height ( value )
         {
-            this._height = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._height;
+            this._height = ( typeof value === 'number' && value > 0 ) ? value : this._height;
         }
 
         /**
@@ -2314,7 +2582,32 @@ class Aspect
             return this._height;
         }
 
-    ////    &amp; EXTEND &amp;   ///////////////////////////////////
+    ////    [ OFFSET ]  ////////////////////////////////////
+
+        /**
+         * Get offset
+         * @readOnly
+         * @function
+         * @return          {Point}                                     Aspect offset
+         */
+        get offset ( )
+        {
+            return this.#offset;
+        }
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
+
+    ////    UTILITIES   ////////////////////////////////////
 
         /**
          * Get center of aspect
@@ -2324,7 +2617,9 @@ class Aspect
          */
         get center ( )
         {
-            return new Point ( this.widthCenter, this.heightCenter );
+            let _point = new Point ( this.widthCenter, this.heightCenter );
+
+            return _point;
         }
 
         /**
@@ -2527,7 +2822,7 @@ class Font
 
                 if ( window.canvaslab instanceof canvasLab )
                 {
-                    let _regex = /(\w+(\s))?(?&lt;size>\d+)px\s(?&lt;type>\w.+)/;
+                    let _regex = /(\w+(\s))?(?<size>\d+)px\s(?<type>\w.+)/;
 
                     let _font  = canvaslab.font;
 
@@ -2635,7 +2930,7 @@ class Font
             return this._maxWidth;
         }
 
-    ////    [ OFFSET.(X)(Y) ]   ////////////////////////////
+    ////    [ OFFSET ]   ///////////////////////////////////
 
         /**
          * Get font's offset
@@ -2648,7 +2943,7 @@ class Font
             return this._offset;
         }
 
-    ////    &amp; EXTEND &amp;   ///////////////////////////////////
+    ////    & EXTEND &   ///////////////////////////////////
 
         /**
          * Set font
@@ -2674,7 +2969,7 @@ class Font
 }
  
 /**
- * @class           {Object}  Point                             X &amp; Y coordinates for an object
+ * @class           {Object}  Point                             X & Y coordinates for an object
  * @property        {number}  [x=0]                             X - x-axis coordinate
  * @property        {number}  [y=0]                             Y - y-axis coordinate
  * @property        {Options} options                           Ancillary properties
@@ -2723,7 +3018,7 @@ class Point
          */
         set x ( value )
         {
-            this._x = (  ( typeof value === 'number' )  &amp;&amp;  !isNaN ( value )  ) ? value : this._x;
+            this._x = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._x;
         }
 
         /**
@@ -2747,7 +3042,7 @@ class Point
          */
         set y ( value )
         {
-            this._y = (  ( typeof value === 'number' )  &amp;&amp;  !isNaN ( value )  ) ? value : this._y;
+            this._y = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._y;
         }
 
         /**
@@ -2792,7 +3087,7 @@ class Point
             return this.#_options;
         }
 
-    ////    &amp; EXTEND &amp;  ////////////////////////////////////
+    ////    & EXTEND &  ////////////////////////////////////
 
         /**
          * Get center of this object
@@ -2851,7 +3146,7 @@ class Point
         _drawBorder ( ) { }
 
         /**
-         * Rotates the origin point by the degree &amp; distance passed
+         * Rotates the origin point by the degree & distance passed
          * @private
          * @function
          * @param           {Point}  origin                             Origin point
@@ -2881,7 +3176,7 @@ class Point
         }
 
         /**
-         * Invert x &amp; y coordinate values
+         * Invert x & y coordinate values
          * @public
          * @function
          */
@@ -2910,8 +3205,8 @@ class Point
  
 /**
  * @class           {Object} Stop                               Color stop properties for associated array(s)
- * @property        {number} offset                             Representation of the color stop position; 0 = start, &amp; 1 = end
- * @property        {string} [color=&lt;Rgb>]                      Color model &amp; value
+ * @property        {number} offset                             Representation of the color stop position; 0 = start, & 1 = end
+ * @property        {string} [color=<Rgb>]                      Color model & value
  */
 class Stop
 {
@@ -3007,9 +3302,9 @@ class Stop
  
 /**
  * @class           {Object} Conic                              Conic gradient object type and properties
- * @property        {Point}  point                              X &amp; Y axis coordinates
+ * @property        {Point}  point                              X & Y axis coordinates
  * @property        {number} angle                              Angle in radians
- * @property        {Array.&lt;Stop>} stops                        Array of color stops
+ * @property        {Array.<Stop>} stops                        Array of color stops
  */
 class Conic
 {
@@ -3021,7 +3316,7 @@ class Conic
      * Create a Conic gradient object type
      * @property        {number} angle                              Angle in radians
      * @property        {Point}  point                              Starting point of linear gradient
-     * @property        {Array.&lt;Stop>} stops                        Array of color stops
+     * @property        {Array.<Stop>} stops                        Array of color stops
      */
     constructor ( angle, point, stops )
     {
@@ -3092,7 +3387,7 @@ class Conic
          * Set color stops
          * @public
          * @function
-         * @param           {Array.&lt;Stop>} values                       Color stops
+         * @param           {Array.<Stop>} values                       Color stops
          */
         set stops ( value )
         {
@@ -3112,7 +3407,7 @@ class Conic
          * Get color stops
          * @readOnly
          * @function
-         * @return          {Array.&lt;Stop>}                              Color stops
+         * @return          {Array.<Stop>}                              Color stops
          */
         get stops ( )
         {
@@ -3157,8 +3452,8 @@ class Conic
          * Cycle colors for gradient stop(s)
          * @private
          * @function
-         * @param           {Object}   start                            Color model &amp; values
-         * @param           {Object}   end                              Color model &amp; values
+         * @param           {Object}   start                            Color model & values
+         * @param           {Object}   end                              Color model & values
          * @param           {number}   progress                         Progress time unit; 0.00 - 1.00
          * @param           {number}   stop                             Color stop to cycle
          * @param           {number}   max                              Maximum number of steps between interpolation
@@ -3171,9 +3466,9 @@ class Conic
  
 /**
  * @class           {Object} Linear                             Linear gradient object type and properties
- * @property        {Point}  start                              X &amp; Y axis coordinates (start)
- * @property        {Point}  end                                X &amp; Y axis coordinates (end)
- * @property        {Array.&lt;Stop>} stops                        Array of color stops
+ * @property        {Point}  start                              X & Y axis coordinates (start)
+ * @property        {Point}  end                                X & Y axis coordinates (end)
+ * @property        {Array.<Stop>} stops                        Array of color stops
  */
 class Linear
 {
@@ -3185,7 +3480,7 @@ class Linear
      * Create a Linear gradient object type
      * @property        {Point} start                               Starting point of linear gradient
      * @property        {Point} end                                 Ending point of linear gradient
-     * @property        {Array.&lt;Stop>} stops                        Array of color stops
+     * @property        {Array.<Stop>} stops                        Array of color stops
      */
     constructor ( start, end, stops )
     {
@@ -3256,7 +3551,7 @@ class Linear
          * Set color stops
          * @public
          * @function
-         * @param           {Array.&lt;Stop>} values                       Color stops
+         * @param           {Array.<Stop>} values                       Color stops
          */
         set stops ( value )
         {
@@ -3276,7 +3571,7 @@ class Linear
          * Get color stops
          * @readOnly
          * @function
-         * @return          {Array.&lt;Stop>}                              Color stops
+         * @return          {Array.<Stop>}                              Color stops
          */
         get stops ( )
         {
@@ -3321,8 +3616,8 @@ class Linear
          * Cycle colors for gradient stop(s)
          * @private
          * @function
-         * @param           {Object}   start                            Color model &amp; values
-         * @param           {Object}   end                              Color model &amp; values
+         * @param           {Object}   start                            Color model & values
+         * @param           {Object}   end                              Color model & values
          * @param           {number}   progress                         Progress time unit; 0.00 - 1.00
          * @param           {number}   stop                             Color stop to cycle
          * @param           {number}   max                              Maximum number of steps between interpolation
@@ -3335,11 +3630,11 @@ class Linear
  
 /**
  * @class           {Object} Radial                             Radial gradient object type and properties
- * @property        {Point}  start                              X &amp; Y axis coordinates (start)
+ * @property        {Point}  start                              X & Y axis coordinates (start)
  * @property        {Number} startRadius                        Starting radius of linear gradient
- * @property        {Point}  end                                X &amp; Y axis coordinates (end)
+ * @property        {Point}  end                                X & Y axis coordinates (end)
  * @property        {Number} endRadius                          Ending radius of linear gradient gradient
- * @property        {Array.&lt;Stop>} stops                        Array of color stops
+ * @property        {Array.<Stop>} stops                        Array of color stops
  */
 class Radial
 {
@@ -3357,7 +3652,7 @@ class Radial
      * @property        {Number} startRadius                        Starting radius of linear gradient gradient
      * @property        {Point}  end                                Ending point of linear gradient
      * @property        {Number} endRadius                          Ending radius of linear gradient gradient
-     * @property        {Array.&lt;Stop>} stops                        Array of color stops
+     * @property        {Array.<Stop>} stops                        Array of color stops
      */
     constructor ( start, startRadius, end, endRadius, stops )
     {
@@ -3481,7 +3776,7 @@ class Radial
          * Set color stops
          * @public
          * @function
-         * @param           {Array.&lt;Stop>} value                        Color stops
+         * @param           {Array.<Stop>} value                        Color stops
          */
         set stops ( value )
         {
@@ -3501,7 +3796,7 @@ class Radial
          * Get color stops
          * @readOnly
          * @function
-         * @return          {Array.&lt;Stop>}                              Color stops
+         * @return          {Array.<Stop>}                              Color stops
          */
         get stops ( )
         {
@@ -3556,8 +3851,8 @@ class Radial
          * Cycle colors for gradient stop(s)
          * @private
          * @function
-         * @param           {Object}   start                            Color model &amp; values
-         * @param           {Object}   end                              Color model &amp; values
+         * @param           {Object}   start                            Color model & values
+         * @param           {Object}   end                              Color model & values
          * @param           {number}   progress                         Progress time unit; 0.00 - 1.00
          * @param           {number}   stop                             Color stop to cycle
          * @param           {number}   max                              Maximum number of steps between interpolation
@@ -3570,7 +3865,7 @@ class Radial
  
 /**
  * @class           {Object} SacredCircles                      SacredCircles plan
- * @property        {Point}  point                              X &amp; Y axis coordinates
+ * @property        {Point}  point                              X & Y axis coordinates
  * @property        {number} [radius=25]                        Radius of circle
  * @property        {number} iterations 						Amount of iterations
  * @property        {Queue}  degrees                            Degrees for generation
@@ -3593,7 +3888,7 @@ class SacredCircles
 
 	/**
      * Create a SacredCircles plan
-     * @property        {Point}  point                              X &amp; Y axis coordinates
+     * @property        {Point}  point                              X & Y axis coordinates
 	 * @property        {number} [radius=25]                        Radius of circle
 	 * @property        {number} iterations 						Amount of iterations
 	 * @property        {Queue}  degrees                            Degrees for generation
@@ -3624,7 +3919,7 @@ class SacredCircles
          * Set point
          * @public
          * @function
-         * @param           {Point} value                               X &amp; Y coordinates
+         * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
         set point ( value ) { }
@@ -3633,7 +3928,7 @@ class SacredCircles
          * Get point
          * @public
          * @function
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
         get point ( ) { }
@@ -3804,7 +4099,7 @@ class SacredCircles
 		    let _count   = 0;
 
 
-		    for ( let _i = 1; _i &lt;= this.iterations; _i++ )
+		    for ( let _i = 1; _i <= this.iterations; _i++ )
 		    {
 		        _results.push ( _count * 6 );
 
@@ -3851,7 +4146,7 @@ class SacredCircles
 			let _alpha = 0.1;
 
 
-			for ( let _i = 0; _i &lt; this.iterations; _i++ )
+			for ( let _i = 0; _i < this.iterations; _i++ )
 			{
 			    this.degrees.reset;
 
@@ -3860,7 +4155,7 @@ class SacredCircles
 			    let [ _degree, _color ] = [ this.degrees.next, this.colors.next ];
 
 			    // FOUNDATION STONE
-			    for ( let _stone = 0; _stone &lt; 1; _stone++ )
+			    for ( let _stone = 0; _stone < 1; _stone++ )
 			    {
 			        let _circle = new Circle ( this.point );
 
@@ -3895,7 +4190,7 @@ class SacredCircles
 			    [ _degree, _color ] = [ this.degrees.next, this.colors.next ];
 
 			    // FILLER STONES
-			    for ( let _stone = 0; _stone &lt;= ( _i - 1 ); _stone++ )
+			    for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
 			    {
 			        let _circle = new Circle ( this.master.circles.endPoint );
 
@@ -3934,7 +4229,7 @@ class SacredCircles
 
 			    [ _degree, _color ] = [ this.degrees.next, this.colors.next ];
 
-			    for ( let _stone = 0; _stone &lt;= ( _i - 1 ); _stone++ )
+			    for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
 			    {
 			        let _circle = new Circle ( this.master.circles.endPoint );
 
@@ -3973,7 +4268,7 @@ class SacredCircles
 
 			    [ _degree, _color ] = [ this.degrees.next, this.colors.next ];
 
-			    for ( let _stone = 0; _stone &lt;= ( _i - 1 ); _stone++ )
+			    for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
 			    {
 			        let _circle = new Circle ( this.master.circles.endPoint );
 
@@ -4012,7 +4307,7 @@ class SacredCircles
 
 			    [ _degree, _color ] = [ this.degrees.next, this.colors.next ];
 
-			    for ( let _stone = 0; _stone &lt;= ( _i - 1 ); _stone++ )
+			    for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
 			    {
 			        let _circle = new Circle ( this.master.circles.endPoint );
 
@@ -4051,7 +4346,7 @@ class SacredCircles
 
 			    [ _degree, _color ] = [ this.degrees.next, this.colors.next ];
 
-			    for ( let _stone = 0; _stone &lt;= ( _i - 1 ); _stone++ )
+			    for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
 			    {
 			        let _circle = new Circle ( this.master.circles.endPoint );
 
@@ -4092,7 +4387,7 @@ class SacredCircles
 			    [ _degree, _color ] = [ this.degrees.next, this.colors.next ];
 
 			    // KEYSTONE
-			    for ( let _stone = 0; _stone &lt;= ( _i - 2 ); _stone++ )
+			    for ( let _stone = 0; _stone <= ( _i - 2 ); _stone++ )
 			    {
 			        let _circle = new Circle ( this.master.circles.endPoint );
 
@@ -4155,7 +4450,7 @@ class SacredCircles
  
 /**
  * @class           {Object}  Fill                              Fill container for various fill types
- * @property        {Object}  [color=&lt;Rgb>]                     Color model &amp; value
+ * @property        {Object}  [color=<Rgb>]                     Color model & value
  * @property        {string}  [type='solid']                    Fill type; solid | linear | radial | conic | pattern
  * @property        {Object}  gradient                          Gradient object; Linear | Radial | Conic
  * @property        {Pattern} pattern                           Pattern fill object
@@ -4169,7 +4464,7 @@ class Fill
 
     /**
      * Create a fill type
-     * @param           {Object} [color=&lt;Rgb>]                      Color model &amp; value
+     * @param           {Object} [color=<Rgb>]                      Color model & value
      * @param           {string} [type='solid']                     Fill type
      * @param           {Object} gradient                           Gradient object
      */
@@ -4240,7 +4535,7 @@ class Fill
          * Set gradient gradient properties
          * @public
          * @function
-         * @param           {Object} value                              Gradient object &amp; properties
+         * @param           {Object} value                              Gradient object & properties
          */
         set gradient ( value )
         {
@@ -4253,7 +4548,7 @@ class Fill
          * Get gradient gradient properties
          * @readOnly
          * @function
-         * @return          {Object}                                    Gradient object &amp; properties
+         * @return          {Object}                                    Gradient object & properties
          */
         get gradient ( )
         {
@@ -4308,7 +4603,7 @@ class Fill
  
 /**
  * @class           {Object} Shadow                             Shadow of associated object
- * @property        {Object} [color=&lt;Rgb>]                      RGB color value; r, g, b
+ * @property        {Object} [color=<Rgb>]                      RGB color value; r, g, b
  * @property        {number} [blur=3]                           Blur strength
  * @property        {Point}  offset                             Point offset coordinates
  */
@@ -4482,7 +4777,7 @@ class Shadow
  
 /**
  * @class           {Object}   Stroke                           Stroke properties of associated object
- * @property        {Object}   [color=&lt;Rgb>]                    Color model &amp; value
+ * @property        {Object}   [color=<Rgb>]                    Color model & value
  * @property        {string}   [type='solid']                   Stroke type; solid | dashed
  * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s)
  * @property        {number}   [width=2]                        Thickness of stroke
@@ -4632,7 +4927,7 @@ class Stroke
          * Returns whether the passed value is an Array of segment values
          * @private
          * @function
-         * @param           {Array.&lt;number>} value                      Array of segment values
+         * @param           {Array.<number>} value                      Array of segment values
          * @return          {boolean}                                   True || False
          * @see             {@link Validation.isSegments}
          */
@@ -4835,7 +5130,7 @@ class OptionsCollection
 }
  
 /**
- * @class           {Object}  PointCollection                   X &amp; Y coordinates for an object
+ * @class           {Object}  PointCollection                   X & Y coordinates for an object
  * @property        {number}  [x=0]                             X - x-axis coordinate
  * @property        {number}  [y=0]                             Y - y-axis coordinate
  * @property        {OptionsCollection} options                 Ancillary properties
@@ -4934,7 +5229,7 @@ class PointCollection
         _setAll ( ) { }
 
         /**
-         * Invert x &amp; y coordinate values
+         * Invert x & y coordinate values
          * @public
          * @function
          */
@@ -4948,7 +5243,7 @@ class PointCollection
  
 /**
  * @class           {Object} ShadowCollection                   Shadow of associated object
- * @property        {Object} [color=&lt;Rgb>]                      Color model &amp; value
+ * @property        {Object} [color=<Rgb>]                      Color model & value
  * @property        {number} blur                               Blur strength
  * @property        {Point}  offset                             Point offset coordinates
  */
@@ -5115,7 +5410,7 @@ class ShadowCollection
  
 /**
  * @class           {Object}   StrokeCollection                 Stroke properties of associated object
- * @property        {Object}   [color=&lt;Rgb>]                    Color model &amp; value
+ * @property        {Object}   [color=<Rgb>]                    Color model & value
  * @property        {string}   [type='solid']                   Stroke type; solid | dashed
  * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s)
  * @property        {number}   [alpha=1]                        Alpha (transparency); number/decimal
@@ -5272,7 +5567,7 @@ class StrokeCollection
          * Returns whether the passed value is an Array of segment values
          * @private
          * @function
-         * @param           {Array.&lt;number>} value                      Array of segment values
+         * @param           {Array.<number>} value                      Array of segment values
          * @return          {boolean}                                   True || False
          * @see             {@link Validation.isSegments}
          */
@@ -5310,10 +5605,12 @@ class StrokeCollection
          */
         _setAll ( ) { }
 }
+
+////    OBJECTS    /////////////////////////////////////////
  
 /**
  * @class           {Object} Circle                             Circle object
- * @property        {Point}  point                              X &amp; Y axis coordinates
+ * @property        {Point}  point                              X & Y axis coordinates
  * @property        {number} [radius=25]                        Radius of circle
  * @property        {Angle}  angle                              Angle properties
  * @property        {Stroke} stroke                             Stroke properties
@@ -5332,12 +5629,12 @@ class Circle
 
     _canvas = undefined;
 
-    #_anchor  = new Anchor;
-    #_options = new Options;
+    #anchor  = new Anchor;
+    #options = new Options;
 
     /**
      * Create a Circle object
-     * @property        {Point}  point                              X &amp; Y axis coordinates
+     * @property        {Point}  point                              X & Y axis coordinates
      * @property        {number} radius                             Radius of circle
      * @property        {Angle}  angle                              Angle properties
      * @property        {Stroke} stroke                             Stroke properties
@@ -5361,16 +5658,23 @@ class Circle
             this._isAnchor = VALIDATION.isAnchor;
             this._isDegree = VALIDATION.isDegree;
             this._isInDom  = VALIDATION.isInDom;
+            this._isNumber = VALIDATION.isNumber;
             this._isPoint  = VALIDATION.isPoint;
 
             this._clearCanvas       = UTILITIES.misc.clearCanvas;
+            this._drawAnchor        = UTILITIES.draw.anchor;
             this._drawAxis          = UTILITIES.draw.axis;
             this._drawBorder        = UTILITIES.draw.border;
             this._rotatePoint       = UTILITIES.misc.rotatePoint;
             this._setFillType       = UTILITIES.set.fillType;
             this._setShadow         = UTILITIES.set.shadow;
+
             this.fillColorCycle     = UTILITIES.color.cycle.fill;
             this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this.move               = UTILITIES.transition.move;
+            this.redraw             = UTILITIES.draw.redraw;
+            this.rotate             = UTILITIES.transition.rotate;
+            this.showCoordinates    = UTILITIES.misc.showCoordinates;
             this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
@@ -5378,9 +5682,9 @@ class Circle
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
 
-            delete this.#_options._controlPoints;
-            delete this.#_options._points;
-            delete this.#_options._master;
+            delete this.#options._controlPoints;
+            delete this.#options._points;
+            delete this.#options._master;
 
         this.point  = point;
         this.radius = radius;
@@ -5399,7 +5703,7 @@ class Circle
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
+            this.#options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
     }
 
     ////    [ POINT ]   ////////////////////////////////////
@@ -5408,7 +5712,7 @@ class Circle
          * Set point
          * @public
          * @function
-         * @param           {Point} value                               X &amp; Y coordinates
+         * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
         set point ( value ) { }
@@ -5417,7 +5721,7 @@ class Circle
          * Get point
          * @public
          * @function
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
         get point ( ) { }
@@ -5443,7 +5747,7 @@ class Circle
 
 
         /**
-         * Set the y-axis value
+         * Set y-axis value
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
@@ -5470,7 +5774,7 @@ class Circle
          */
         set radius ( value )
         {
-            this._radius = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._radius;
+            this._radius = ( this._isNumber ( value ) ) ? value : this._radius;
         }
 
         /**
@@ -5566,7 +5870,7 @@ class Circle
          */
         get anchor ( )
         {
-            return this.#_anchor;
+            return this.#anchor;
         }
 
     ////    [ OPTIONS ] ////////////////////////////////////
@@ -5579,16 +5883,222 @@ class Circle
          */
         get options ( )
         {
-            return this.#_options;
+            return this.#options;
         }
 
-    ////    &amp; EXTEND &amp;  ////////////////////////////////////
+    ////    VALIDATION  ////////////////////////////////////
+
+        /**
+         * Returns whether the passed value is an Anchor alignment
+         * @private
+         * @function
+         * @param           {string} value                              Anchor alignment
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAnchor}
+         */
+        _isAnchor ( ) { }
+
+        /**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAspect}
+         */
+        _isAspect ( ) { }
+
+        /**
+         * Returns whether the passed value is a degree
+         * @private
+         * @function
+         * @param           {number} value                              Degree
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isDegree}
+         */
+        _isDegree ( ) { }
+
+        /**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isInDom}
+         */
+        _isInDom  ( ) { }
+
+        /**
+         * Returns whether the passed value is a Number value
+         * @private
+         * @function
+         * @param           {number} value                              Number value
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isNumber}
+         */
+        _isNumber ( ) { }
+
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint  ( ) { }
+
+        /**
+         * Check whether the passed object is already present
+         * @public
+         * @function
+         * @param           {Circle} circle                             Object to validate
+         * @return          {boolean}                                   True || False
+         */
+        isThere ( circle )
+        {
+            if ( circle instanceof this.constructor )
+
+                return (
+                           ( this.point.x == circle.point.x ) &&                // Point X
+
+                           ( this.point.y == circle.point.y ) &&                // Point Y
+
+                           ( this.radius  == circle.radius  )                   // Radius
+
+                       ) ? true : false;
+
+            else
+
+                console.warn ( `"${circle.constructor.name}" is not of type ${this.constructor.name}` );
+        }
+
+    ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Clears canvas
+         * @private
+         * @function
+         * @param           {boolean} value                             Whether to redraw background
+         * @see             {@link Utilities.misc.clearCanvas}
+         */
+        _clearCanvas ( ) { }
+
+        /**
+         * Draws anchor point
+         * @private
+         * @function
+         * @see             {@link Utilities.draw.anchor}
+         */
+        _drawAnchor ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link Utilities.draw.axis}
+         */
+        _drawAxis    ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link Utilities.draw.border}
+         */
+        _drawBorder  ( ) { }
+
+        /**
+         * Draws associated options
+         * @private
+         * @function
+         */
+        _drawOptions ( )
+        {
+            let _offset = this.radius + 20;
+
+            let _aspect = new Aspect ( ( this.radius ) + ( _offset ), ( this.radius ) + ( _offset ) );
+
+            ////////////////////////////////////////////////////////////////////
+
+            if ( this.#options.border      ) this._drawBorder     ( _aspect );
+
+            if ( this.#options.axis        ) this._drawAxis       ( _offset );
+
+            if ( this.#options.anchor      ) this._drawAnchor     ( );
+
+            if ( this.#options.coordinates ) this.showCoordinates ( );
+        }
+
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @private
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link Utilities.misc.rotatePoint}
+         */
+        _rotatePoint ( ) { }
+
+        /**
+         * Sets anchor's point against this object's point location
+         * @private
+         * @function
+         */
+        _setAnchorPoint ( )
+        {
+            [ this.#anchor.x, this.#anchor.y ] = [ this.x, this.y ];
+
+
+            switch ( this.anchor.type )
+            {
+                case 'center':      /*     ... do nothing      */   /*     ... do nothing      */   break;
+
+                case 'top':         /*     ... do nothing      */   this.anchor.y += this.radius;   break;
+
+                case 'topRight':    this.anchor.x -= this.radius;   this.anchor.y += this.radius;   break;
+
+                case 'right':       this.anchor.x -= this.radius;   /*     ... do nothing      */   break;
+
+                case 'bottomRight': this.anchor.x -= this.radius;   this.anchor.y -= this.radius;   break;
+
+                case 'bottom':      /*     ... do nothing      */   this.anchor.y -= this.radius;   break;
+
+                case 'bottomLeft':  this.anchor.x += this.radius;   this.anchor.y -= this.radius;   break;
+
+                case 'left':        this.anchor.x += this.radius;   /*     ... do nothing      */   break;
+
+                case 'topLeft':     this.anchor.x += this.radius;   this.anchor.y += this.radius;   break;
+            }
+        }
+
+        /**
+         * Sets fill type of the associated object
+         * @private
+         * @function
+         * @see             {@link Utilities.set.fillType}
+         */
+        _setFillType ( ) { }
+
+        /**
+         * Sets shadow properties
+         * @private
+         * @function
+         * @see             {@link Utilities.set.shadow}
+         */
+        _setShadow   ( ) { }
 
         /**
          * Get area of this object
          * @readOnly
          * @function
-         * @return          {number}                                    Area of circle
+         * @return          {number}                                    Area of this object
          */
         get area ( )
         {
@@ -5636,213 +6146,6 @@ class Circle
             return (  Math.PI * this.diameter ( )  );
         }
 
-    ////    VALIDATION  ////////////////////////////////////
-
-        /**
-         * Returns whether the passed value is an Anchor alignment
-         * @private
-         * @function
-         * @param           {string} value                              Anchor alignment
-         * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAnchor}
-         */
-        _isAnchor ( ) { }
-
-        /**
-         * Returns whether the passed value is an Aspect
-         * @private
-         * @function
-         * @param           {Object} value                              Aspect or object equivalent
-         * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
-         */
-        _isAspect ( ) { }
-
-        /**
-         * Returns whether the passed value is a degree
-         * @private
-         * @function
-         * @param           {number} value                              Degree
-         * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDegree}
-         */
-        _isDegree ( ) { }
-
-        /**
-         * Returns whether the passed value is an element id within the DOM
-         * @private
-         * @function
-         * @param           {string} value                              Element id
-         * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
-         */
-        _isInDom  ( ) { }
-
-        /**
-         * Returns whether the passed value is a Point
-         * @private
-         * @function
-         * @param           {Object} value                              Point or object equivalent
-         * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
-         */
-        _isPoint  ( ) { }
-
-        /**
-         * Check whether the passed object is already present
-         * @public
-         * @function
-         * @param           {Circle} circle                             Object to validate
-         * @return          {boolean}                                   True || False
-         */
-        isThere ( circle )
-        {
-            if ( circle instanceof this.constructor )
-
-                return (
-                           ( this.point.x == circle.point.x ) &amp;&amp;                // Point X
-
-                           ( this.point.y == circle.point.y ) &amp;&amp;                // Point Y
-
-                           ( this.radius  == circle.radius  )                   // Radius
-
-                       ) ? true : false;
-
-            else
-
-                console.warn ( `"${circle.constructor.name}" is not of type ${this.constructor.name}` );
-        }
-
-    ////    UTILITIES   ////////////////////////////////////
-
-        /**
-         * Clears canvas
-         * @private
-         * @function
-         * @param           {boolean} value                             Whether to redraw background
-         * @see             {@link Utilities.misc.clearCanvas}
-         */
-        _clearCanvas ( ) { }
-
-        /**
-         * Draws anchor point
-         * @private
-         * @function
-         */
-        _drawAnchor ( )
-        {
-            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
-
-                _anchor.fill.color = new Rgb ( 255, 0, 0 );
-
-                _anchor.canvas     = this.canvas;
-
-
-                _anchor.draw ( );
-        }
-
-        /**
-         * Draws an axis for the associated object
-         * @private
-         * @function
-         * @param           {number} offset                             Offset of axis
-         * @param           {Object} color                              Color model
-         * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
-         */
-        _drawAxis    ( ) { }
-
-        /**
-         * Draws an axis for the associated object
-         * @private
-         * @function
-         * @param           {Aspect} aspect                             Aspect properties
-         * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
-         */
-        _drawBorder  ( ) { }
-
-        /**
-         * Draws associated options
-         * @private
-         * @function
-         */
-        _drawOptions ( )
-        {
-            let _offset = this.radius + 20;
-
-            let _aspect = new Aspect ( ( this.radius ) + ( _offset ), ( this.radius ) + ( _offset ) );
-
-            ////////////////////////////////////////////////////////////////////
-
-            if ( this.#_options.border      ) this._drawBorder     ( _aspect );
-
-            if ( this.#_options.axis        ) this._drawAxis       ( _offset );
-
-            if ( this.#_options.anchor      ) this._drawAnchor     ( );
-
-            if ( this.#_options.coordinates ) this.showCoordinates ( );
-        }
-
-        /**
-         * Rotates the origin point by the degree &amp; distance passed
-         * @private
-         * @function
-         * @param           {Point}  origin                             Origin point
-         * @param           {number} degree                             Degree to rotate
-         * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
-         */
-        _rotatePoint ( ) { }
-
-        /**
-         * Sets anchor's point against this object's point location
-         * @private
-         * @function
-         */
-        _setAnchorPoint ( )
-        {
-            [ this.#_anchor.x, this.#_anchor.y ] = [ this.x, this.y ];
-
-
-            switch ( this.anchor.type )
-            {
-                case 'center':      /*     ... do nothing      */   /*     ... do nothing      */   break;
-
-                case 'top':         /*     ... do nothing      */   this.anchor.y += this.radius;   break;
-
-                case 'topRight':    this.anchor.x -= this.radius;   this.anchor.y += this.radius;   break;
-
-                case 'right':       this.anchor.x -= this.radius;   /*     ... do nothing      */   break;
-
-                case 'bottomRight': this.anchor.x -= this.radius;   this.anchor.y -= this.radius;   break;
-
-                case 'bottom':      /*     ... do nothing      */   this.anchor.y -= this.radius;   break;
-
-                case 'bottomLeft':  this.anchor.x += this.radius;   this.anchor.y -= this.radius;   break;
-
-                case 'left':        this.anchor.x += this.radius;   /*     ... do nothing      */   break;
-
-                case 'topLeft':     this.anchor.x += this.radius;   this.anchor.y += this.radius;   break;
-            }
-        }
-
-        /**
-         * Sets fill type of the associated object
-         * @private
-         * @function
-         * @see             {@link Utilities.set.fillType}
-         */
-        _setFillType ( ) { }
-
-        /**
-         * Sets shadow properties
-         * @private
-         * @function
-         * @see             {@link Utilities.set.shadow}
-         */
-        _setShadow   ( ) { }
-
         /**
          * Cycle colors for fill
          * @public
@@ -5869,61 +6172,15 @@ class Circle
         gradientColorCycle ( ) { }
 
         /**
-         * Move this object
-         * @public
-         * @function
-         * @param           {number}  degree                            Direction to move; in degrees
-         * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [draw=false]                      Draw post movement
-         * @param           {boolean} [clear=false]                     Clear canvas during each movement
-         */
-        move ( degree, distance, draw = false, clear = false )
-        {
-            let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
-
-
-                [ this.x, this.y ] = [ _point.x, _point.y ];
-
-
-            this._clearCanvas ( clear );
-
-
-            if ( draw )
-
-                this.draw ( );
-        }
-
-        /**
          * Rotate this object
          * @public
          * @function
          * @param           {number} degree                             Distance to rotate; in degrees
+         * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
+         * @see             {@link Utilities.transition.rotate}
          */
-        rotate ( degree, clear = true )
-        {
-            if ( this._isDegree ( degree ) )
-            {
-                let [ _x, _y ] = [ this.x, this.y ];
-
-
-                this._canvas.save      ( );
-
-                this._canvas.translate ( _x, _y );
-
-                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
-
-                this._canvas.translate ( -_x, -_y );
-
-
-                this._clearCanvas ( clear );
-
-                this.draw    ( );
-
-
-                this._canvas.restore ( );
-            }
-        }
+        rotate ( ) { }
 
         /**
          * Shows coordinates of this object
@@ -5931,32 +6188,9 @@ class Circle
          * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
+         * @see             {@link Utilities.misc.showCoordinates}
          */
-        showCoordinates ( offset = 10, fontSize = 16 )
-        {
-            let _text  = new Text ( this.point, `( ${this.x}, ${this.y} )` );
-
-                _text.canvas         =  this.canvas;
-
-                _text.size           =  fontSize;
-
-                _text.options.shadow =  false;
-
-                _text.offset.y       =  ( offset / 2 );
-
-
-                _text.options.shadow = true;
-
-
-                _text.shadow.color   = new Rgb ( 255, 255, 255 );
-
-                _text.shadow.blur    = 1;
-
-                _text.shadow.x       = _text.shadow.y    = 1;
-
-
-                _text.draw ( );
-        }
+        showCoordinates ( ) { }
 
         /**
          * Cycle colors for stroke
@@ -5988,7 +6222,7 @@ class Circle
                 this._setAnchorPoint ( );
 
 
-                if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
+                if ( this.#options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
                 this._canvas.strokeStyle = this.stroke.color.toCss ( );
@@ -6010,7 +6244,7 @@ class Circle
                 this._canvas.fill        ( );
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );         // Reset: shadow
+                if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );         // Reset: shadow
 
 
                 this._drawOptions ( );
@@ -6027,23 +6261,15 @@ class Circle
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link Utilities.draw.redraw}
          */
-        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
-        {
-            [ this.x, this.y ] = [ point.x, point.y ]
-
-
-            this._clearCanvas ( clear );
-
-
-            this.draw ( canvas );
-        }
+        redraw ( ) { }
 }
  
 /**
  * @class           {Object} Line                               Line object
- * @property        {Point}  start                              X &amp; Y axis coordinates (start)
- * @property        {Point}  end                                X &amp; Y axis coordinates (end)
+ * @property        {Point}  start                              X & Y axis coordinates (start)
+ * @property        {Point}  end                                X & Y axis coordinates (end)
  * @property        {Stroke} stroke                             Stroke properties
  * @property        {Shadow} shadow                             Shadow properties
  * @property        {string} [lineCap='round']                  Shape of end points
@@ -6060,8 +6286,8 @@ class Line
 
     _canvas  = undefined;
 
-    #_options       = new Options;
-    #_controlPoints = new ControlPoints;
+    #options       = new Options;
+    #controlPoints = new ControlPoints;
 
     /**
      * Create a Line object
@@ -6144,18 +6370,18 @@ class Line
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow      = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
-            this.#_options.master      = this;
+            this.#options.shadow      = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+            this.#options.master      = this;
 
             this._start.options.master = this;
               this._end.options.master = this;
 
 
-            Object.defineProperty ( this.#_options, "points",
+            Object.defineProperty ( this.#options, "points",
             {
                 set ( value )
                 {
-                    this._points = ( typeof value === 'boolean' ) ? value : this.#_options.points;
+                    this._points = ( typeof value === 'boolean' ) ? value : this.#options.points;
 
 
                     this._master._start.options.points = value;
@@ -6297,7 +6523,7 @@ class Line
          */
         get options ( )
         {
-            return this.#_options;
+            return this.#options;
         }
 
     ////    [ CONTROL POINTS ]  ////////////////////////////
@@ -6310,10 +6536,10 @@ class Line
          */
         get controlPoints ( )
         {
-            return this.#_controlPoints;
+            return this.#controlPoints;
         }
 
-    ////    &amp; EXTEND &amp;  ////////////////////////////////////
+    ////    & EXTEND &  ////////////////////////////////////
 
         /**
          * Get center of this object
@@ -6429,11 +6655,11 @@ class Line
                 let _lineStart = _toString ( line.start.x, line.start.y ), _lineEnd = _toString ( line.end.x, line.end.y );
 
 
-                return (  ( _thisStart == _lineStart )  &amp;&amp;  ( _thisEnd == _lineEnd )  )
+                return (  ( _thisStart == _lineStart )  &&  ( _thisEnd == _lineEnd )  )
 
                            ? true
 
-                           : (  ( _thisStart == _lineEnd )  &amp;&amp;  ( _thisEnd == _lineStart )  );
+                           : (  ( _thisStart == _lineEnd )  &&  ( _thisEnd == _lineStart )  );
             }
             else
 
@@ -6487,19 +6713,19 @@ class Line
 
             ////////////////////////////////////////////////////////////////////
 
-            if ( this.#_options.border        ) this._drawBorder       ( _aspect );
+            if ( this.#options.border        ) this._drawBorder       ( _aspect );
 
-            if ( this.#_options.axis          ) this._drawAxis         ( );
+            if ( this.#options.axis          ) this._drawAxis         ( );
 
-            if ( this.#_options.points        ) this.drawPoints        ( );
+            if ( this.#options.points        ) this.drawPoints        ( );
 
-            if ( this.#_options.coordinates   ) this.showCoordinates   ( );
+            if ( this.#options.coordinates   ) this.showCoordinates   ( );
 
-            if ( this.#_options.controlPoints ) this.showControlPoints ( );
+            if ( this.#options.controlPoints ) this.showControlPoints ( );
         }
 
         /**
-         * Rotates the origin point by the degree &amp; distance passed
+         * Rotates the origin point by the degree & distance passed
          * @private
          * @function
          * @param           {Point}  origin                             Origin point
@@ -6538,7 +6764,7 @@ class Line
         }
 
         /**
-         * Draws start &amp; end points
+         * Draws start & end points
          * @public
          * @function
          */
@@ -6648,9 +6874,9 @@ class Line
             let _point3 = new Point ( this.end.x,                           this.end.y                           );
 
 
-            let _textStart  = new Text ( _point1.x, _point1.y, `( ${this.#_controlPoints.p0}, ${this.#_controlPoints.p1} )` );
+            let _textStart  = new Text ( _point1.x, _point1.y, `( ${this.#controlPoints.p0}, ${this.#controlPoints.p1} )` );
 
-            let _textEnd    = new Text ( _point2.x, _point2.y, `( ${this.#_controlPoints.p3}, ${this.#_controlPoints.p4} )` );
+            let _textEnd    = new Text ( _point2.x, _point2.y, `( ${this.#controlPoints.p3}, ${this.#controlPoints.p4} )` );
 
 
                 _textStart.canvas         = _textEnd.canvas         = this.canvas;
@@ -6803,7 +7029,7 @@ class Line
                 let _straddle = 0.5;
 
 
-                if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
+                if ( this.#options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
                 this._canvas.strokeStyle = this.stroke.color.toCss ( );
@@ -6824,10 +7050,10 @@ class Line
                 this.#_setPath ( );
 
 
-                this._canvas.stroke    ( );
+                this._canvas.stroke ( );
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
+                if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
                 this._drawOptions ( );
@@ -6862,7 +7088,7 @@ class Line
  
 /**
  * @class           {Object} Rectangle                          Rectangle object
- * @property        {Point}  point                              X &amp; Y axis coordinates
+ * @property        {Point}  point                              X & Y axis coordinates
  * @property        {Aspect} aspect                             Aspect properties
  * @property        {Stroke} stroke                             Stroke properties
  * @property        {Fill}   fill                               Fill properties
@@ -6879,12 +7105,12 @@ class Rectangle
 
     _canvas = undefined;
 
-    #_anchor  = new Anchor;
-    #_options = new Options;
+    #anchor  = new Anchor;
+    #options = new Options;
 
     /**
      * Create a Rectangle object
-     * @property        {Point}  point                              X &amp; Y axis coordinates
+     * @property        {Point}  point                              X & Y axis coordinates
      * @property        {Aspect} aspect                             Aspect properties
      * @property        {Stroke} stroke                             Stroke properties
      * @property        {Fill}   fill                               Fill properties
@@ -6908,14 +7134,19 @@ class Rectangle
             this._isPoint  = VALIDATION.isPoint;
 
             this._clearCanvas       = UTILITIES.misc.clearCanvas;
+            this._drawAnchor        = UTILITIES.draw.anchor;
             this._drawAxis          = UTILITIES.draw.axis;
             this._drawBorder        = UTILITIES.draw.border;
             this._rotatePoint       = UTILITIES.misc.rotatePoint;
-
             this._setFillType       = UTILITIES.set.fillType;
             this._setShadow         = UTILITIES.set.shadow;
+
             this.fillColorCycle     = UTILITIES.color.cycle.fill;
             this.gradientColorCycle = UTILITIES.color.cycle.gradient;
+            this.move               = UTILITIES.transition.move;
+            this.redraw             = UTILITIES.draw.redraw;
+            this.rotate             = UTILITIES.transition.rotate;
+            this.showCoordinates    = UTILITIES.misc.showCoordinates;
             this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
@@ -6923,9 +7154,9 @@ class Rectangle
             Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
             Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
 
-            delete this.#_options._controlPoints;
-            delete this.#_options._points;
-            delete this.#_options._master;
+            delete this.#options._controlPoints;
+            delete this.#options._points;
+            delete this.#options._master;
 
         this.point  = point;
 
@@ -6938,13 +7169,13 @@ class Rectangle
 
             this._fill   = new Fill   ( fill.color,   fill.type );
 
-            this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
+            this._shadow = new Shadow ( shadow.color, shadow.blur, shadow.offset );
 
         this.canvas = canvas;
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
+            this.#options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
     }
 
     ////    [ POINT ]   ////////////////////////////////////
@@ -6953,7 +7184,7 @@ class Rectangle
          * Set point
          * @public
          * @function
-         * @param           {Point} value                               X &amp; Y coordinates
+         * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
         set point ( value ) { }
@@ -6962,7 +7193,7 @@ class Rectangle
          * Get point
          * @public
          * @function
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
         get point ( ) { }
@@ -6988,7 +7219,7 @@ class Rectangle
 
 
         /**
-         * Set the y-axis value
+         * Set y-axis value
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
@@ -7038,7 +7269,7 @@ class Rectangle
          */
         set width  ( value )
         {
-            this._aspect.width = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._aspect._width;
+            this._aspect.width = ( typeof value === 'number' && value > 0 ) ? value : this._aspect._width;
         }
 
         /**
@@ -7061,7 +7292,7 @@ class Rectangle
          */
         set height ( value )
         {
-            this._aspect.height = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._aspect._height;
+            this._aspect.height = ( typeof value === 'number' && value > 0 ) ? value : this._aspect._height;
         }
 
         /**
@@ -7144,7 +7375,7 @@ class Rectangle
          */
         get anchor ( )
         {
-            return this.#_anchor;
+            return this.#anchor;
         }
 
     ////    [ OPTIONS ] ////////////////////////////////////
@@ -7157,7 +7388,7 @@ class Rectangle
          */
         get options ( )
         {
-            return this.#_options;
+            return this.#options;
         }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -7213,11 +7444,11 @@ class Rectangle
             if ( rectangle instanceof this.constructor )
 
                 return (
-                           ( this.x      == rectangle.x      ) &amp;&amp;               // Point X
+                           ( this.x      == rectangle.x      ) &&               // Point X
 
-                           ( this.y      == rectangle.y      ) &amp;&amp;               // Point Y
+                           ( this.y      == rectangle.y      ) &&               // Point Y
 
-                           ( this.width  == rectangle.width  ) &amp;&amp;               // Width
+                           ( this.width  == rectangle.width  ) &&               // Width
 
                            ( this.height == rectangle.height )                  // Height
 
@@ -7243,18 +7474,9 @@ class Rectangle
          * Draws anchor point
          * @private
          * @function
+         * @see             {@link Utilities.draw.anchor}
          */
-        _drawAnchor ( )
-        {
-            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
-
-                _anchor.fill.color = new Rgb ( 255, 0, 0 );
-
-                _anchor.canvas     = this.canvas;
-
-
-                _anchor.draw ( );
-        }
+        _drawAnchor ( ) { }
 
         /**
          * Draws an axis for the associated object
@@ -7265,7 +7487,7 @@ class Rectangle
          * @param           {number} stop                               Gradient color stop
          * @see             {@link Utilities.draw.axis}
          */
-        _drawAxis    ( ) { }
+        _drawAxis ( ) { }
 
         /**
          * Draws an axis for the associated object
@@ -7275,7 +7497,7 @@ class Rectangle
          * @param           {Object} color                              Color model
          * @see             {@link Utilities.draw.border}
          */
-        _drawBorder  ( ) { }
+        _drawBorder ( ) { }
 
         /**
          * Draws associated options
@@ -7290,15 +7512,17 @@ class Rectangle
 
             ////////////////////////////////////////////////////////////////////
 
-            if ( this.#_options.border ) this._drawBorder ( _aspect );
+            if ( this.#options.border      ) this._drawBorder     ( _aspect );
 
-            if ( this.#_options.axis   ) this._drawAxis   ( );
+            if ( this.#options.axis        ) this._drawAxis       ( );
 
-            if ( this.#_options.anchor ) this._drawAnchor ( );
+            if ( this.#options.anchor      ) this._drawAnchor     ( );
+
+            if ( this.#options.coordinates ) this.showCoordinates ( );
         }
 
         /**
-         * Rotates the origin point by the degree &amp; distance passed
+         * Rotates the origin point by the degree & distance passed
          * @private
          * @function
          * @param           {Point}  origin                             Origin point
@@ -7315,7 +7539,7 @@ class Rectangle
          */
         _setAnchorPoint ( )
         {
-            [ this.#_anchor.x, this.#_anchor.y ] = [ this.x, this.y ];
+            [ this.#anchor.x, this.#anchor.y ] = [ this.x, this.y ];
 
 
             switch ( this.anchor.align )
@@ -7354,109 +7578,13 @@ class Rectangle
          * @function
          * @see             {@link Utilities.set.shadow}
          */
-        _setShadow   ( ) { }
-
-        /**
-         * Cycle colors for fill
-         * @public
-         * @function
-         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
-         * @param           {Rgb}    start                              Starting RGB value
-         * @param           {Rgb}    end                                Ending RGB value
-         * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.fill}
-         */
-        fillColorCycle     ( ) { }
-
-        /**
-         * Cycle colors for gradient
-         * @public
-         * @function
-         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
-         * @param           {Rgb}    start                              Starting RGB value
-         * @param           {Rgb}    end                                Ending RGB value
-         * @param           {number} stop                               Gradient color stop
-         * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.gradient}
-         */
-        gradientColorCycle ( ) { }
-
-        /**
-         * Move this object
-         * @public
-         * @function
-         * @param           {number}  degree                            Direction to move; in degrees
-         * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [draw=false]                      Draw post movement
-         * @param           {boolean} [clear=false]                     Clear canvas during each movement
-         */
-        move ( degree, distance, draw = false, clear = false )
-        {
-            let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
-
-
-                [ this.x, this.y ] = [ _point.x, _point.y ];
-
-
-            this._clearCanvas ( clear );
-
-
-            if ( draw )
-
-                this.draw ( );
-        }
-
-        /**
-         * Rotate this object
-         * @public
-         * @function
-         * @param           {number} degree                             Distance to rotate; in degrees
-         * @param           {number} [clear=true]                       Clear canvas during each rotation
-         */
-        rotate ( degree, clear = true )
-        {
-            if ( this._isDegree ( degree ) )
-            {
-                let [ _x, _y ] = [ this.x, this.y ];
-
-
-                this._canvas.save      ( );
-
-                this._canvas.translate ( _x, _y );
-
-                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
-
-                this._canvas.translate ( -_x, -_y );
-
-
-                this._clearCanvas ( clear );
-
-                this.draw ( );
-
-
-                this._canvas.restore ( );
-            }
-        }
-
-        /**
-         * Cycle colors for stroke
-         * @public
-         * @function
-         * @param           {Rgb}    start                              Starting RGB value
-         * @param           {Rgb}    end                                Ending RGB value
-         * @param           {number} progress                           Progress time unit; 0.00 - 1.00
-         * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.stroke}
-         */
-        strokeColorCycle   ( ) { }
-
-    ////    &amp; EXTEND &amp;  ////////////////////////////////////
+        _setShadow ( ) { }
 
         /**
          * Get area of this object
          * @readOnly
          * @function
-         * @return          {number}                                    Area of rectangle
+         * @return          {number}                                    Area of this object
          */
         get area ( )
         {
@@ -7480,6 +7608,43 @@ class Rectangle
         }
 
         /**
+         * Cycle colors for fill
+         * @public
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.fill}
+         */
+        fillColorCycle ( ) { }
+
+        /**
+         * Cycle colors for gradient
+         * @public
+         * @function
+         * @param           {number} progress                           Progress time unit between; 0.00 - 1.00
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} stop                               Gradient color stop
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.gradient}
+         */
+        gradientColorCycle ( ) { }
+
+        /**
+         * Move this object
+         * @public
+         * @function
+         * @param           {number}  degree                            Direction to move; in degrees
+         * @param           {number}  distance                          Distance to move
+         * @param           {boolean} [draw=false]                      Draw post movement
+         * @param           {boolean} [clear=false]                     Clear canvas during each movement
+         * @see             {@link Utilities.transition.move}
+         */
+        move ( ) { }
+
+        /**
          * Get perimeter of this object
          * @readOnly
          * @function
@@ -7489,6 +7654,39 @@ class Rectangle
         {
             return ( this.area * 2 );
         }
+
+        /**
+         * Rotate this object
+         * @public
+         * @function
+         * @param           {number} degree                             Distance to rotate; in degrees
+         * @param           {string} [anchor='center']                  Anchoring point during rotation
+         * @param           {number} [clear=true]                       Clear canvas during each rotation
+         * @see             {@link Utilities.transition.rotate}
+         */
+        rotate ( ) { }
+
+        /**
+         * Shows coordinates of this object
+         * @public
+         * @function
+         * @param           {number} [offset=10]                        Offset of coordinates y origin
+         * @param           {number} [fontSize=16]                      Coordinates font size
+         * @see             {@link Utilities.misc.showCoordinates}
+         */
+        showCoordinates ( ) { }
+
+        /**
+         * Cycle colors for stroke
+         * @public
+         * @function
+         * @param           {Rgb}    start                              Starting RGB value
+         * @param           {Rgb}    end                                Ending RGB value
+         * @param           {number} progress                           Progress time unit; 0.00 - 1.00
+         * @param           {number} [max=1]                            Maximum increments
+         * @see             {@link Utilities.color.cycle.stroke}
+         */
+        strokeColorCycle   ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
@@ -7508,7 +7706,7 @@ class Rectangle
                 this._setAnchorPoint ( );
 
 
-                if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
+                if ( this.#options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
                 this._canvas.strokeStyle = this.stroke.color.toCss ( );
@@ -7530,7 +7728,7 @@ class Rectangle
                 this._canvas.fill        ( );
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
+                if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
                 this._drawOptions ( );
@@ -7539,11 +7737,22 @@ class Rectangle
 
                 console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
         }
+
+        /**
+         * Redraw this object
+         * @public
+         * @function
+         * @param           {string}  canvas                            Canvas Id
+         * @param           {Point}   point                             Point of new location
+         * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link Utilities.draw.redraw}
+         */
+        redraw ( ) { }
 }
  
 /**
  * @class           {Object} Text                               Text element to render within a canvas element
- * @property        {Point}  point                              X &amp; Y axis coordinates
+ * @property        {Point}  point                              X & Y axis coordinates
  * @property        {string} text                               Text to display
  * @property        {Stroke} stroke                             Stroke properties
  * @property        {Fill}   fill                               Fill properties
@@ -7560,11 +7769,11 @@ class Text extends Font
 
     _canvas = undefined;
 
-    #_options = new Options;
+    #options = new Options;
 
     /**
      * Create a Text object
-     * @param           {Point}  point                              X &amp; Y axis coordinates
+     * @param           {Point}  point                              X & Y axis coordinates
      * @param           {string} text                               Text of text object
      * @param           {string} type                               Font type
      * @param           {number} size                               Font size
@@ -7595,9 +7804,15 @@ class Text extends Font
             this._isPoint  = VALIDATION.isPoint;
 
             this._clearCanvas     = UTILITIES.misc.clearCanvas;
+            this._drawAnchor      = UTILITIES.draw.anchor;
             this._rotatePoint     = UTILITIES.misc.rotatePoint;
             this._setShadow       = UTILITIES.set.shadow;
+
             this.fillColorCycle   = UTILITIES.color.cycle.fill;
+            this.move             = UTILITIES.transition.move;
+            this.redraw           = UTILITIES.draw.redraw;
+            this.rotate           = UTILITIES.transition.rotate;
+            this.showCoordinates  = UTILITIES.misc.showCoordinates;
             this.strokeColorCycle = UTILITIES.color.cycle.stroke;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
@@ -7623,7 +7838,7 @@ class Text extends Font
 
         ////    OBJECT INITIALIZER(S)   ////////////////////
 
-            this._stroke = new Stroke ( stroke.color, stroke.type,  stroke.segments, stroke.width );
+            this._stroke = new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width );
 
             this._fill   = new Fill   ( fill.color,   fill.type );
 
@@ -7633,7 +7848,7 @@ class Text extends Font
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
+            this.#options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
     }
 
     ////    [ POINT ]   ////////////////////////////////////
@@ -7642,8 +7857,8 @@ class Text extends Font
          * Set point
          * @public
          * @function
-         * @param           {Point} value                               X &amp; Y coordinates
-         * @see             {@link discrete.point}
+         * @param           {Point} value                               X & Y coordinates
+         * @see             {@link Property_Blocks.discrete.point}
          */
         set point ( value ) { }
 
@@ -7651,8 +7866,8 @@ class Text extends Font
          * Get point
          * @public
          * @function
-         * @return          {Point}                                     X &amp; Y coordinates
-         * @see             {@link discrete.point}
+         * @return          {Point}                                     X & Y coordinates
+         * @see             {@link Property_Blocks.discrete.point}
          */
         get point ( ) { }
 
@@ -7662,7 +7877,7 @@ class Text extends Font
          * @public
          * @function
          * @param           {number} value                              X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link Property_Blocks.discrete.pointX}
          */
         set x ( value ) { }
 
@@ -7671,7 +7886,7 @@ class Text extends Font
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link Property_Blocks.discrete.pointX}
          */
         get x ( ) { }
 
@@ -7681,7 +7896,7 @@ class Text extends Font
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link Property_Blocks.discrete.pointY}
          */
         set y ( value ) { }
 
@@ -7690,7 +7905,7 @@ class Text extends Font
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link Property_Blocks.discrete.pointY}
          */
         get y ( ) { }
 
@@ -7764,7 +7979,7 @@ class Text extends Font
          * @public
          * @function
          * @param           {string} value                              Canvas id
-         * @see             {@link discrete.canvas}
+         * @see             {@link Property_Blocks.discrete.canvas}
          */
         set canvas ( value ) { }
 
@@ -7773,7 +7988,7 @@ class Text extends Font
          * @readOnly
          * @function
          * @return          {string}                                    Canvas id
-         * @see             {@link discrete.canvas}
+         * @see             {@link Property_Blocks.discrete.canvas}
          */
         get canvas ( ) { }
 
@@ -7787,7 +8002,7 @@ class Text extends Font
          */
         get options ( )
         {
-            return this.#_options;
+            return this.#options;
         }
 
     ////    ( PRIVATE ) ////////////////////////////////////
@@ -7797,16 +8012,20 @@ class Text extends Font
          * @protected
          * @function
          */
-        #_drawOptions ( )
+        _drawOptions ( )
         {
-            if ( this.#_options.border ) this.drawBorder ( );
+            if ( this.#options.border      ) this._drawBorder      ( );
 
-            if ( this.#_options.axis   ) this.drawAxis   ( );
+            if ( this.#options.axis        ) this._drawAxis        ( );
+
+            if ( this.#options.anchor      ) this._drawAnchor      ( );
+
+            if ( this.#options.coordinates ) this.showCoordinates  ( );
         }
 
     ////    * SUPER *   ////////////////////////////////////
 
-        ////    [ type ]    ////////
+        ////    [ type ]    ////////////////////
 
             /**
              * Set font's type
@@ -7824,7 +8043,7 @@ class Text extends Font
              */
             get type ( )       { return super.type;  }
 
-        ////    [ size ]    ////////
+        ////    [ size ]    ////////////////////
 
             /**
              * Set font's size
@@ -7842,7 +8061,7 @@ class Text extends Font
              */
             get size ( )       { return super.size;  }
 
-        ////    [ weight ]  ////////
+        ////    [ weight ]    //////////////////
 
             /**
              * Set font's weight
@@ -7860,7 +8079,7 @@ class Text extends Font
              */
             get weight ( )       { return super.weight;  }
 
-        ////    [ maxWidth ]    ////
+        ////    [ maxWidth ]    ////////////////
 
             /**
              * Set font's max width
@@ -7889,14 +8108,14 @@ class Text extends Font
              */
             get maxWidth ( ) { return super.maxWidth; }
 
-        ////    [ offset ]  ////////
+        ////    [ offset ]    //////////////////
 
             /**
              * Set offset
              * @public
              * @function
              * @param           {Point} value                               Shadow offset
-             * @see             {@link discrete.offset}
+             * @see             {@link Property_Blocks.discrete.offset}
              */
             set offset ( value ) { }
 
@@ -7905,11 +8124,11 @@ class Text extends Font
              * @readOnly
              * @function
              * @return          {Point}                                     Shadow offset
-             * @see             {@link discrete.offset}
+             * @see             {@link Property_Blocks.discrete.offset}
              */
             get offset ( ) { }
 
-        ////    [ font ]    ////////
+        ////    [ font ]    ////////////////////
 
             /**
              * Get font
@@ -7966,7 +8185,7 @@ class Text extends Font
         _clearCanvas ( ) { }
 
         /**
-         * Rotates the origin point by the degree &amp; distance passed
+         * Rotates the origin point by the degree & distance passed
          * @private
          * @function
          * @param           {Point}  origin                             Origin point
@@ -7985,28 +8204,12 @@ class Text extends Font
         _setShadow   ( ) { }
 
         /**
-         * Draws border around this object
-         * @public
+         * Draws anchor point
+         * @private
          * @function
-         * @param           {number} [offset=10]                        Offset of border's perimeter
+         * @see             {@link Utilities.draw.anchor}
          */
-        drawBorder ( offset = 10 )
-        {
-            let _red    = new Rgb ( 245, 80, 50, 1 );
-
-            let _aspect = new Aspect ( this._canvas.measureText ( this.text ).width, super.size );
-
-            let _point  = new Point  ( this.x - ( aspect.width / 2 ) - offset, this.y - ( aspect.height / 2 ) - ( offset * 2 ) );
-
-
-            let _border = new Rectangle ( _point, aspect.width + ( offset * 2 ), aspect.height + ( offset * 2 ),    /* Point, Aspect */
-                /* Stroke */            { color: _red,      type: 'solid', segments: undefined,  width: 1 },
-                /* Fill   */            { color: undefined, type: 'solid' },
-                /* Shadow */              undefined,
-                /* Canvas */              this.canvas );
-
-                _border.draw ( );
-        }
+        _drawAnchor ( ) { }
 
         /**
          * Draws axis through center of this object
@@ -8014,26 +8217,38 @@ class Text extends Font
          * @function
          * @param           {number} [offset=10]                        Offset of axis's edges
          */
-        drawAxis ( offset = 10 )
+        _drawAxis ( offset = 10 )
         {
             let _red        = new Rgb ( 245, 80, 50, 1 );
 
-            let _aspect     = new Aspect ( this._canvas.measureText ( this.text ).width, super.size );
-
-            let _xAxisStart = new Point  ( this.x - ( aspect.width / 2 ) - ( offset * 2 ), this.y - ( aspect.height / 4 ) );
-            let _xAxisEnd   = new Point  ( this.x + ( aspect.width / 2 ) + ( offset * 2 ), this.y - ( aspect.height / 4 ) );
-
-            let _yAxisStart = new Point  ( aspect.width, this.y - ( aspect.height     ) - offset );
-            let _yAxisEnd   = new Point  ( aspect.width, this.y + ( aspect.height / 2 ) + offset );
+            let _size       = super.size;
 
 
-            let _xAxis = new Line ( _xAxisStart, _xAxisEnd,     /* Point */
+            let _width      = this._canvas.measureText ( this.text ).width;
+
+            let _height     = _size - ( offset / 2 );
+
+
+            let _aspect     = new Aspect ( _width + offset, _height );
+
+
+            let _xAxisStart = new Point ( this.x - ( _aspect.width / 2 ) - ( offset * 2 ), this.y - ( _aspect.height / 2.5 ) );
+
+            let _xAxisEnd   = new Point ( this.x + ( _aspect.width / 2 ) + ( offset * 2 ), this.y - ( _aspect.height / 2.5 ) );
+
+
+            let _yAxisStart = new Point ( this.x, this.y - _aspect.height - offset );
+
+            let _yAxisEnd   = new Point ( this.x, this.y + _aspect.height - ( _size / 2 ) );
+
+
+            let _xAxis = new Line ( _xAxisStart, _xAxisEnd,     /* Point ( Start, End ) */
                 /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
                 /* Shadow     */      undefined,
                 /* LineCap    */      undefined,
                 /* Canvas     */      this.canvas );
 
-            let _yAxis = new Line ( _yAxisStart, _yAxisEnd,     /* Point */
+            let _yAxis = new Line ( _yAxisStart, _yAxisEnd,     /* Point ( Start, End ) */
                 /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
                 /* Shadow     */      undefined,
                 /* LineCap    */      undefined,
@@ -8043,6 +8258,48 @@ class Text extends Font
                 _xAxis.draw ( );
 
                 _yAxis.draw ( );
+        }
+
+        /**
+         * Draws border around this object
+         * @public
+         * @function
+         * @param           {number} [offset=10]                        Offset of border's perimeter
+         */
+        _drawBorder ( offset = 10 )
+        {
+            let _red    = new Rgb ( 245, 80, 50, 1 );
+
+            let _clear  = new Rgb ( 0, 0, 0, 0 );
+
+
+            let _size   = super.size;
+
+
+            let _width  = this._canvas.measureText ( this.text ).width;
+
+            let _height = _size - ( offset / 2 );
+
+
+            let _aspect = new Aspect ( _width + offset, _height );
+
+
+            let _scaler = ( _size > 60 ) ? 3 : ( _size > 30 ) ? 3.5 : 4.5;
+
+            let _y      = this.y  - ( _height / _scaler ) - ( offset / 2 );
+
+
+            let _point  = new Point  ( this.x, _y );
+
+
+            let _border = new Rectangle ( _point, _aspect,  /* Point, Aspect */
+                /* Stroke */            { color: _red,   type: 'solid', segments: undefined,  width: 1 },
+                /* Fill   */            { color: _clear, type: 'solid' },
+                /* Shadow */              undefined,
+                /* Canvas */              this.canvas );
+
+
+                _border.draw ( );
         }
 
         /**
@@ -8065,22 +8322,9 @@ class Text extends Font
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [draw=false]                      Draw post movement
          * @param           {boolean} [clear=false]                     Clear canvas during each movement
+         * @see             {@link Utilities.transition.move}
          */
-        move ( degree, distance, draw = false, clear = false )
-        {
-            let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
-
-
-                [ this.x, this.y ] = [ _point.x, _point.y ];
-
-
-            this._clearCanvas ( clear );
-
-
-            if ( draw )
-
-                this.draw ( );
-        }
+        move ( ) { }
 
         /**
          * Rotate this object
@@ -8089,54 +8333,19 @@ class Text extends Font
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
+         * @see             {@link Utilities.transition.rotate}
          */
-        rotate ( degree, anchor = 'center', clear = true )
-        {
-            if ( this._isDegree ( degree ) )
-            {
-                let _point = new Point;
+        rotate ( ) { }
 
-
-                let _width  = this._canvas.measureText ( this.text ).width / 2;
-
-                let _height = this.size / 2;
-
-
-                switch ( anchor )
-                {
-                    case 'topLeft':      [ _point.x, _point.y ] = [ _point.x - _width, _point.y - _height ];  break;
-
-                    case 'topRight':     [ _point.x, _point.y ] = [ _point.x + _width, _point.y - _height ];  break;
-
-                    case 'bottomRight':  [ _point.x, _point.y ] = [ _point.x + _width, _point.y + _height ];  break;
-
-                    case 'bottomLeft':   [ _point.x, _point.y ] = [ _point.x - _width, _point.y + _height ];  break;
-
-                    case 'center':       [ _point.x, _point.y ] = [ _point.x,          _point.y - _height ];  break;
-
-                    default:
-
-                        console.warn ( `"${anchor}" is not a valid 'anchor' variable !` );
-                }
-
-
-                this._canvas.save      ( );
-
-                this._canvas.translate (   _point.x,   _point.y );
-
-                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
-
-                this._canvas.translate ( - _point.x, - _point.y );
-
-
-                this._clearCanvas ( clear );
-
-                this.draw    ( );
-
-
-                this._canvas.restore ( );
-            }
-        }
+        /**
+         * Shows coordinates of this object
+         * @public
+         * @function
+         * @param           {number} [offset=10]                        Offset of coordinates y origin
+         * @param           {number} [fontSize=16]                      Coordinates font size
+         * @see             {@link Utilities.misc.showCoordinates}
+         */
+        showCoordinates ( ) { }
 
         /**
          * Cycle colors for stroke
@@ -8165,7 +8374,7 @@ class Text extends Font
 
             if ( this._canvas instanceof CanvasRenderingContext2D )
             {
-                if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
+                if ( this.#options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
                 [ this.x, this.y ] = [  ( this.x + this.offset.x ), ( this.y + this.offset.y )  ];  // Incorporate offset from super class
@@ -8182,38 +8391,64 @@ class Text extends Font
 
                 if ( this.stroke.width > 0 )
                 {
+                    let _width = this._canvas.lineWidth;
+
+                    this._canvas.lineWidth = this.stroke.width;
+
+
                     this._canvas.strokeStyle = this.stroke.color.toCss ( );
 
                     this._canvas.strokeText ( this.text, this.x, this.y, this.maxWidth );
+
+
+                    this._canvas.lineWidth = _width;
                 }
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
+                if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
-                this.#_drawOptions ( );
+                this._drawOptions ( );
             }
             else
 
                 console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
         }
+
+        /**
+         * Redraw this object
+         * @public
+         * @function
+         * @param           {string}  canvas                            Canvas Id
+         * @param           {Point}   point                             Point of new location
+         * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link Utilities.draw.redraw}
+         */
+        redraw ( ) { }
 }
  
 /**
  * @class           {Array} Circles                             Collection of circle elements within an array
- * @property        {Point} point                               X &amp; Y axis coordinates
+ * @property        {Point} point                               X & Y axis coordinates
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  */
 class Circles extends Array
 {
     _point   = new Point;
+    _stroke  = new StrokeCollection;
+    _shadow  = new ShadowCollection;
+
     _canvas  = undefined;
+
+    _aspect  = new Aspect;
+    _anchor  = new Anchor;
+    #options = new Options;
 
     _storage = { type: Circle }
 
     /**
      * Create Circles object
-     * @property        {Point}             point                   X &amp; Y axis coordinates
+     * @property        {Point}             point                   X & Y axis coordinates
      * @property        {HTMLCanvasElement} canvas                  Canvas Id
      */
     constructor ( point = { x: undefined, y: undefined }, canvas )
@@ -8222,17 +8457,35 @@ class Circles extends Array
 
         ////    COMPOSITION     ////////////////////////////
 
-            this._isInDom = VALIDATION.isInDom;
-            this._isPoint = VALIDATION.isPoint;
+            this._isAspect          = VALIDATION.isAspect;
+            this._isCanvasLabObject = VALIDATION.isCanvasLabObject;
+            this._isInDom           = VALIDATION.isInDom;
+            this._isPoint           = VALIDATION.isPoint;
 
-            this._clearCanvas       = UTILITIES.misc.clearCanvas;
-            this.draw               = UTILITIES.draw.collection.twoDimensional;
-            this.pushPop            = UTILITIES.misc.pushPop;
+            this._clearCanvas     = UTILITIES.misc.clearCanvas;
+            this._drawAnchor      = UTILITIES.collection.drawAnchor;
+            this._drawAxis        = UTILITIES.draw.axis;
+            this._drawBorder      = UTILITIES.draw.border;
+            this._drawOptionsPost = UTILITIES.collection.drawOptionsPost;
+            this._setAnchorPoint  = UTILITIES.collection.setAnchorPoint;
+            this._setPointOffset  = UTILITIES.collection.setPointOffset;
 
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
-            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
-            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
-            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
+            this.draw             = UTILITIES.collection.draw;
+            this.push             = UTILITIES.collection.push;
+            this.redraw           = UTILITIES.collection.redraw;
+
+            Object.defineProperty ( this, 'anchor',    PROPERTY_BLOCKS.combined.anchor       );
+            Object.defineProperty ( this, 'area',      PROPERTY_BLOCKS.combined.area         );
+            Object.defineProperty ( this, 'aspect',    PROPERTY_BLOCKS.combined.aspect       );
+            Object.defineProperty ( this, 'canvas',    PROPERTY_BLOCKS.combined.canvas       );
+            Object.defineProperty ( this, 'center',    PROPERTY_BLOCKS.combined.center       );
+            Object.defineProperty ( this, 'endPoint',  PROPERTY_BLOCKS.combined.endPoint     );
+            Object.defineProperty ( this, 'perimeter', PROPERTY_BLOCKS.combined.perimeter    );
+            Object.defineProperty ( this, 'point',     PROPERTY_BLOCKS.discrete.point        );
+            Object.defineProperty ( this, 'width',     PROPERTY_BLOCKS.combined.aspectWidth  );
+            Object.defineProperty ( this, 'height',    PROPERTY_BLOCKS.combined.aspectHeight );
+            Object.defineProperty ( this, 'x',         PROPERTY_BLOCKS.discrete.pointX       );
+            Object.defineProperty ( this, 'y',         PROPERTY_BLOCKS.discrete.pointY       );
 
         this.point  = point;
         this.canvas = canvas;
@@ -8244,7 +8497,8 @@ class Circles extends Array
          * Set point
          * @public
          * @function
-         * @param           {Point} point                               X &amp; Y axis coordinates
+         * @param           {Point} value                               X & Y coordinates
+         * @see             {@link discrete.point}
          */
         set point ( value ) { }
 
@@ -8252,7 +8506,8 @@ class Circles extends Array
          * Get point
          * @public
          * @function
-         * @return          {Point}                                     X &amp; Y axis coordinates
+         * @return          {Point}                                     X & Y coordinates
+         * @see             {@link discrete.point}
          */
         get point ( ) { }
 
@@ -8262,6 +8517,7 @@ class Circles extends Array
          * @public
          * @function
          * @param           {number} value                              X coordinate value
+         * @see             {@link discrete.pointX}
          */
         set x ( value ) { }
 
@@ -8270,14 +8526,17 @@ class Circles extends Array
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
+         * @see             {@link discrete.pointX}
          */
-        get x ( ) {  }
+        get x ( ) { }
+
 
         /**
-         * Set y-axis value
+         * Set the y-axis value
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
+         * @see             {@link discrete.pointY}
          */
         set y ( value ) { }
 
@@ -8286,8 +8545,48 @@ class Circles extends Array
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
+         * @see             {@link discrete.pointY}
          */
         get y ( ) { }
+
+    ////    [ STROKE ]  ////////////////////////////////////
+
+        /**
+         * Get stroke properties
+         * @public
+         * @function
+         * @return          {Stroke}                                    Stroke properties
+         */
+        get stroke ( )
+        {
+            return this._stroke;
+        }
+
+    ////    [ SHADOW ]  ////////////////////////////////////
+
+        /**
+         * Get shadow properties
+         * @public
+         * @function
+         * @return          {Shadow}                                    Shadow properties
+         */
+        get shadow ( )
+        {
+            return this._shadow;
+        }
+
+    ////    [ OPTIONS ] ////////////////////////////////////
+
+        /**
+         * Get options
+         * @public
+         * @function
+         * @return          {Object}                                    Options object
+         */
+        get options ( )
+        {
+            return this.#options;
+        }
 
     ////    [ CANVAS ]  ////////////////////////////////////
 
@@ -8309,7 +8608,76 @@ class Circles extends Array
          */
         get canvas ( ) { }
 
+    ////    [ ASPECT ]  ////////////////////////////////////
+
+        /**
+         * Get aspect properties
+         * @public
+         * @function
+         * @return          {Aspect}                                    Aspect properties
+         * @see             {@link PROPERTY_BLOCKS.combined.aspect}
+         */
+        get aspect ( ) { }
+
+        /**
+         * Get aspect with
+         * @readOnly
+         * @function
+         * @return          {number}                                    Width value
+         * @see             {@link PROPERTY_BLOCKS.combined.aspectWidth}
+         */
+        get width ( ) { }
+
+        /**
+         * Get aspect height
+         * @readOnly
+         * @function
+         * @return          {number}                                    Height value
+         * @see             {@link PROPERTY_BLOCKS.combined.aspectHeight}
+         */
+        get height ( ) { }
+
+    ////    [ ANCHOR ]  ////////////////////////////////////
+
+        /**
+         * Set anchor type
+         * @public
+         * @function
+         * @param           {string} value                              Anchor type
+         * @see             {@link PROPERTY_BLOCKS.combined.anchor}
+         */
+        set anchor ( value ) { }
+
+        /**
+         * Get anchor
+         * @public
+         * @function
+         * @return          {Anchor}                                    Anchor properties
+         * @see             {@link PROPERTY_BLOCKS.combined.anchor}
+         */
+        get anchor ( ) { }
+
     ////    VALIDATION  ////////////////////////////////////
+
+        /**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isAspect}
+         */
+        _isAspect ( ) { }
+
+        /**
+         * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
+         * @private
+         * @function
+         * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isCanvasLabObject}
+         */
+        _isCanvasLabObject ( ) { }
 
         /**
          * Returns whether the passed value is an element id within the DOM
@@ -8317,9 +8685,9 @@ class Circles extends Array
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
-        _isInDom  ( ) { }
+        _isInDom ( ) { }
 
         /**
          * Returns whether the passed value is a Point
@@ -8327,40 +8695,176 @@ class Circles extends Array
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
-        _isPoint  ( ) { }
+        _isPoint ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Draws anchor point
+         * @private
+         * @function
+         * @see             {@link UTILITIES.collection.drawAnchor;}
+         */
+        _drawAnchor ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link UTILITIES.draw.axis}
+         */
+        _drawAxis ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link UTILITIES.draw.border}
+         */
+        _drawBorder ( ) { }
+
+        /**
+         * Draws associated options
+         * @private
+         * @function
+         * @see             {@link UTILITIES.collection.drawOptionsPost;}
+         */
+        _drawOptionsPost ( ) { }
+
+        /**
+         * Triggers associated pre-draw options
+         * @private
+         * @function
+         * @param           {Object}  object                            CanvasLab Object
+         * @param           {Options} options                           Options for collections
+         */
+        _drawOptionsPre ( object, options )
+        {
+            let _types = [ 'shadow', 'points', 'controlPoints', 'coordinates' ];
+
+
+            for ( let _type of _types )
+
+                if ( options [ _type ] )
+
+                    object.options [ _type ] = true;
+        }
+
+        /**
+         * Sets anchor's point against this object's point location
+         * @private
+         * @function
+         * @see             {@link UTILITIES.collection.setAnchorPoint;}
+         */
+        _setAnchorPoint ( ) { }
+
+        /**
+         * Sets aspect
+         * @private
+         * @function
+         */
+        _setAspect ( )
+        {
+            let [ _width, _height ] = [ this._canvas.canvas.clientWidth  * 2, this._canvas.canvas.clientHeight * 2 ]
+
+            let [ _left,  _top    ] = [   _width,   _height ];
+
+            let [ _right, _bottom ] = [ - _width, - _height ];
+
+
+            if ( this.length > 0 )
+
+                for ( let _object of this )
+                {
+                    _left   = ( _object.x - _object.radius < _left   ) ? _object.x - _object.radius : _left;
+
+                    _right  = ( _object.x + _object.radius > _right  ) ? _object.x + _object.radius : _right;
+
+                    _top    = ( _object.y - _object.radius < _top    ) ? _object.y - _object.radius : _top;
+
+                    _bottom = ( _object.y + _object.radius > _bottom ) ? _object.y + _object.radius : _bottom;
+                }
+
+            else
+
+                console.warn ( `No ${this.constructor.name} exist to draw !` );
+
+
+            [ this._aspect.width,    this._aspect.height   ] = [ _right - _left, _bottom - _top ];
+
+            [ this._aspect.offset.x, this._aspect.offset.y ] = [ _left,          _top           ];
+        }
+
+        /**
+         * Sets offset of child object against this constructor's point
+         * @public
+         * @function
+         * @param           {Object} Object                             CanvasLab Object
+         * @see             {@link UTILITIES.collection.setAnchorPoint;}
+         */
+        _setPointOffset ( ) { }
+
+        /**
+         * Get area of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Area of rectangle
+         * @see             {@link PROPERTY_BLOCKS.combined.area;}
+         */
+        get area ( ) { }
+
+        /**
+         * Get center of this object
+         * @readOnly
+         * @function
+         * @return          {Point}                                     Center point coordinates
+         * @see             {@link PROPERTY_BLOCKS.combined.center;}
+         */
+        get center ( ) { }
 
         /**
          * Returns the last Point within this Array
          * @public
          * @function
-         * @return          {Point}                                     Last Array element's X &amp; Y Coordinates
+         * @return          {Point}                                     Last Array element's X & Y Coordinates
+         * @see             {@link PROPERTY_BLOCKS.combined.endPoint;}
          */
-        get endPoint ( )
-        {
-            return this [ this.length - 1 ].point;
-        }
+        get endPoint ( ) { }
 
         /**
-         * Push or pops the passed object
+         * Get perimeter of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Perimeter of rectangle
+         * @see             {@link PROPERTY_BLOCKS.combined.perimeter;}
+         */
+        get perimeter ( ) { }
+
+        /**
+         * Pushes child object(s) into this collection
          * @public
          * @function
-         * @param           {Object} object                             Object; Circle, Rectangle, Text
-         * @see             {@link Utilities.misc.pushPop}
+         * @see             {@link UTILITIES.collection.push;}
          */
-        pushPop ( ) { }
+        push ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
+        ////    DRAW    ////////////////////////////////////////
+
         /**
-         * Typical draw function for collections; Circles, Texts
+         * Draw function for collections
          * @public
          * @function
          * @param           {string} canvas                             Canvas Id
-         * @see             {@link UTILITIES.draw.collection.typical}
+         * @see             {@link UTILITIES.collection.draw}
          */
         draw ( ) { }
 
@@ -8371,22 +8875,14 @@ class Circles extends Array
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link UTILITIES.collection.redraw}
          */
-        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
-        {
-            [ this.x, this.y ] = [ point.x, point.y ]
-
-
-            this._clearCanvas ( clear );
-
-
-            this.draw ( canvas );
-        }
+        redraw ( ) { }
 }
  
 /**
- * @class           {Array} Group                               Collection of Line, Circle, Rectangle &amp; Text objects
- * @property        {Point} point                               X &amp; Y axis coordinates
+ * @class           {Array} Group                               Collection of Line, Circle, Rectangle & Text objects
+ * @property        {Point} point                               X & Y axis coordinates
  * @property        {Array} lines                               Collection of Line objects
  * @property        {Array} circles                             Collection of Circle objects
  * @property        {Array} rectangles                          Collection of Rectangle objects
@@ -8404,9 +8900,11 @@ class Group extends Array
     _rectangles = new Rectangles;
     _texts      = new Texts;
 
+    #storage    = { types: [ 'lines', 'circles', 'rectangles', 'texts' ] }
+
     /**
      * Create Group object
-     * @property        {Point}             point                   X &amp; Y axis coordinates
+     * @property        {Point}             point                   X & Y axis coordinates
      * @property        {HTMLCanvasElement} canvas                  Canvas Id
      */
     constructor ( point = { x: undefined, y: undefined }, canvas, plan )
@@ -8419,8 +8917,6 @@ class Group extends Array
             this._isPlan  = VALIDATION.isPlan;
             this._isPoint = VALIDATION.isPoint;
 
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
-
         this.point  = point;
         this.canvas = canvas;
         this.plan   = plan;
@@ -8432,7 +8928,7 @@ class Group extends Array
          * Set point
          * @public
          * @function
-         * @param           {Point} value                               X &amp; Y coordinates
+         * @param           {Point} value                               X & Y coordinates
          */
         set point ( value )
         {
@@ -8443,7 +8939,7 @@ class Group extends Array
          * Get point
          * @public
          * @function
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          */
         get point ( )
         {
@@ -8491,7 +8987,33 @@ class Group extends Array
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
          */
-        set canvas ( value ) { }
+        set canvas ( value )
+        {
+            this._canvas = ( value ) ? ( this._isInDom ( value ) )
+
+                                               ? document.getElementById ( value ).getContext ( '2d' )
+
+                                               : ( this._isCanvasLabObject ( value ) )
+
+                                                     ? null
+
+                                                     : console.warn ( `"${value}" is not a valid DOM element !` )
+
+                                         : ( document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' ) )
+
+                                               ? document.getElementById ( window.canvaslab.canvas ).getContext ( '2d' )
+
+                                               : this._canvas;
+
+
+            for ( let _type of this.#storage.types )
+
+                if ( ( this [ _type ].length > 0 )  &&  ( this._canvas instanceof CanvasRenderingContext2D ) )
+
+                    for ( let _object of this [ _type ] )
+
+                        _object.canvas = this.canvas;
+        }
 
         /**
          * Get canvas value
@@ -8500,7 +9022,10 @@ class Group extends Array
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
          */
-        get canvas ( ) { }
+        get canvas ( )
+        {
+            return ( this._canvas != undefined ) ? this._canvas.canvas.id : undefined;
+        }
 
     ////    [ PLAN ]  //////////////////////////////////////
 
@@ -8582,6 +9107,19 @@ class Group extends Array
         _isPoint ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Sets offset of child Rectangle against this constructor's point
+         * @private
+         * @function
+         * @param           {Rectangle} Object                          Rectangle object
+         */
+        _setPointOffset ( Object )
+        {
+            Object.x += this.x;
+
+            Object.y += this.y;
+        }
 
         /**
          * Pushes an object into this group
@@ -8668,58 +9206,24 @@ class Group extends Array
             if ( canvas != undefined ) this.canvas = canvas;
 
 
-            ////    LINES    ///////////////////////////////
+            for ( let _type of this.#storage.types )
 
-                if ( this.lines.length > 0 )
+                if ( this [ _type ].length > 0 )
+                {
+                    this._setPointOffset ( this [ _type ] );
 
-                    for ( let _line of this.lines )
 
-                        _line.draw ( );
+                    this [ _type ].draw ( );
+                }
                 else
 
-                    console.warn ( `No ${this.constructor.name} exist to draw !` );
-
-            ////    CIRCLES    /////////////////////////////
-
-                if ( this.circles.length > 0 )
-
-                    for ( let _circle of this.circles )
-
-                        _circle.draw ( );
-
-                else
-
-                    console.warn ( `No ${this.constructor.name} exist to draw !` );
-
-            ////    RECTANGLES    //////////////////////////
-
-                if ( this.rectangles.length > 0 )
-
-                    for ( let _rectangle of this.rectangles )
-
-                        _rectangle.draw ( );
-
-                else
-
-                    console.warn ( `No ${this.constructor.name} exist to draw !` );
-
-            ////    TEXTS    ///////////////////////////////
-
-                if ( this.texts.length > 0 )
-
-                    for ( let _text of this.texts )
-
-                        _text.draw ( );
-
-                else
-
-                    console.warn ( `No ${this.constructor.name} exist to draw !` );
+                    console.warn ( `No ${_type} exist to draw !` );
         }
 }
  
 /**
  * @class           {Array} Lines                               Collection of Line objects
- * @property        {Point} point                               X &amp; Y axis coordinates
+ * @property        {Point} point                               X & Y axis coordinates
  * @property        {StrokeCollection} stroke                   Stroke collection properties
  * @property        {ShadowCollection} shadow                   Shadow collection properties
  * @property        {string} lineCap                            Shape of end points
@@ -8734,17 +9238,15 @@ class Lines extends Array
 
     _canvas  = undefined;
 
-    #_aspect  = new Aspect;
-    #_anchor  = new Anchor;
-    #_options = new Options;
+    _aspect  = new Aspect;
+    _anchor  = new Anchor;
+    #options = new Options;
 
-    #_origin  = new Point;
-
-    _storage  = { type: Line }
+    _storage = { type: Line }
 
     /**
      * Create a Lines object
-     * @property        {Point}             point                   X &amp; Y axis coordinates
+     * @property        {Point}             point                   X & Y axis coordinates
      * @property        {HTMLCanvasElement} canvas                  Canvas Id
      */
     constructor ( point = { x: undefined, y: undefined }, canvas )
@@ -8758,15 +9260,27 @@ class Lines extends Array
             this._isInDom           = VALIDATION.isInDom;
             this._isPoint           = VALIDATION.isPoint;
 
-            this._clearCanvas = UTILITIES.misc.clearCanvas;
-            this._drawAxis    = UTILITIES.draw.axis;
-            this._drawBorder  = UTILITIES.draw.border;
-            this.draw         = UTILITIES.draw.collection.oneDimensional;
+            this._clearCanvas     = UTILITIES.misc.clearCanvas;
+            this._drawAnchor      = UTILITIES.collection.drawAnchor;
+            this._drawAxis        = UTILITIES.draw.axis;
+            this._drawBorder      = UTILITIES.draw.border;
+            this._drawOptionsPost = UTILITIES.collection.drawOptionsPost;
+            this._setAnchorPoint  = UTILITIES.collection.setAnchorPoint;
 
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
-            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
-            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
-            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
+            this.draw             = UTILITIES.collection.draw;
+            this.push             = UTILITIES.collection.push;
+            this.redraw           = UTILITIES.collection.redraw;
+
+            Object.defineProperty ( this, 'anchor',    PROPERTY_BLOCKS.combined.anchor       );
+            Object.defineProperty ( this, 'area',      PROPERTY_BLOCKS.combined.area         );
+            Object.defineProperty ( this, 'canvas',    PROPERTY_BLOCKS.combined.canvas       );
+            Object.defineProperty ( this, 'endPoint',  PROPERTY_BLOCKS.combined.endPoint     );
+            Object.defineProperty ( this, 'perimeter', PROPERTY_BLOCKS.combined.perimeter    );
+            Object.defineProperty ( this, 'point',     PROPERTY_BLOCKS.discrete.point        );
+            Object.defineProperty ( this, 'width',     PROPERTY_BLOCKS.combined.aspectWidth  );
+            Object.defineProperty ( this, 'height',    PROPERTY_BLOCKS.combined.aspectHeight );
+            Object.defineProperty ( this, 'x',         PROPERTY_BLOCKS.discrete.pointX       );
+            Object.defineProperty ( this, 'y',         PROPERTY_BLOCKS.discrete.pointY       );
 
         this.point  = point;
         this.canvas = canvas;
@@ -8784,7 +9298,7 @@ class Lines extends Array
          * Set point
          * @public
          * @function
-         * @param           {Point} value                               X &amp; Y coordinates
+         * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
         set point ( value ) { }
@@ -8793,7 +9307,7 @@ class Lines extends Array
          * Get point
          * @public
          * @function
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
         get point ( ) { }
@@ -8871,7 +9385,7 @@ class Lines extends Array
          */
         get options ( )
         {
-            return this.#_options;
+            return this.#options;
         }
 
     ////    [ LINECAP ]  ///////////////////////////////////
@@ -8925,36 +9439,27 @@ class Lines extends Array
          * @public
          * @function
          * @return          {Aspect}                                    Aspect properties
+         * @see             {@link PROPERTY_BLOCKS.combined.aspect}
          */
-        get aspect ( )
-        {
-            this._setAspect ( );
-
-
-            return this.#_aspect;
-        }
+        get aspect ( ) { }
 
         /**
          * Get aspect with
          * @readOnly
          * @function
          * @return          {number}                                    Width value
+         * @see             {@link PROPERTY_BLOCKS.combined.aspectWidth}
          */
-        get width  ( )
-        {
-            return this.#_aspect.width;
-        }
+        get width ( ) { }
 
         /**
          * Get aspect height
          * @readOnly
          * @function
          * @return          {number}                                    Height value
+         * @see             {@link PROPERTY_BLOCKS.combined.aspectHeight}
          */
-        get height ( )
-        {
-            return this.#_aspect.height;
-        }
+        get height ( ) { }
 
     ////    [ ANCHOR ]  ////////////////////////////////////
 
@@ -8963,111 +9468,24 @@ class Lines extends Array
          * @public
          * @function
          * @param           {string} value                              Anchor type
+         * @see             {@link PROPERTY_BLOCKS.combined.anchor}
          */
-        set anchor ( value )
-        {
-            this.#_anchor.type = ( this._isAnchor ( value ) ) ? value : this.#_anchor.type;
-
-
-            this._setAnchorPoint ( );
-        }
+        set anchor ( value ) { }
 
         /**
          * Get anchor
          * @public
          * @function
          * @return          {Anchor}                                    Anchor properties
+         * @see             {@link PROPERTY_BLOCKS.combined.anchor}
          */
-        get anchor ( )
-        {
-            return this.#_anchor;
-        }
-
-    ////    &amp; EXTEND &amp;  ////////////////////////////////////
-
-        /**
-         * Get area of this object
-         * @readOnly
-         * @function
-         * @return          {number}                                    Area of rectangle
-         */
-        get area ( )
-        {
-            return ( this.width * this.height );
-        }
-
-        /**
-         * Get perimeter of this object
-         * @readOnly
-         * @function
-         * @return          {number}                                    Perimeter of rectangle
-         */
-        get perimeter ( )
-        {
-            return ( this.area * 2 );
-        }
-
-        /**
-         * Get center of this object
-         * @readOnly
-         * @function
-         * @return          {Point}                                     Center point coordinates
-         */
-        get center ( )
-        {
-            const getMin = ( value, start, end ) => ( value === undefined ) ? start : ( start &lt; end ) ? ( start &lt; value ) ? start : value : ( end &lt; value ) ? end : value;
-
-            let _x = undefined;
-            let _y = undefined;
-
-            for ( let _object of this )
-            {
-                _x = getMin ( _x, _object.start.x, _object.end.x );
-
-                _y = getMin ( _y, _object.start.y, _object.end.y );
-
-
-                this.#_origin = new Point ( _x, _y );
-            }
-
-
-            [ _x, _y ] = [ _x + ( this.width  / 2 ), _y + ( this.height / 2 ) ];
-
-
-            return new Point ( _x, _y );
-        }
-
-    ////    ( PRIVATE ) ////////////////////////////////////
-
-        /**
-         * Appends property values
-         * @protected
-         * @function
-         * @param           {Line} line                                 Line object
-         */
-        #_appendProperties ( Line )
-        {
-            Object.defineProperty ( Line, 'origin',
-                {
-                    value:
-                    {
-                        start: new Point ( Line.start.x, Line.start.y ),
-                        end:   new Point ( Line.end.x,   Line.end.y   )
-                    },
-                    writable: false,
-                }
-            );
-
-            Object.defineProperty ( Line, 'start', PROPERTY_BLOCKS.combined.start );
-
-            Object.defineProperty ( Line, 'end',   PROPERTY_BLOCKS.combined.end   );
-        }
+        get anchor ( ) { }
 
     ////    VALIDATION  ////////////////////////////////////
 
         /**
          * Returns whether the passed value is an Aspect
-         * @public
+         * @private
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
@@ -9077,14 +9495,13 @@ class Lines extends Array
 
         /**
          * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
-         * @public
-         * @memberof VALIDATION
+         * @private
          * @function
          * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
          * @return          {boolean}                                   True || False
          * @see             {@link Validation.isCanvasLabObject}
          */
-        isCanvasLabObject ( value ) { }
+        _isCanvasLabObject ( value ) { }
 
         /**
          * Returns whether the passed value is an element id within the DOM
@@ -9109,13 +9526,21 @@ class Lines extends Array
     ////    UTILITIES   ////////////////////////////////////
 
         /**
+         * Draws anchor point
+         * @private
+         * @function
+         * @see             {@link UTILITIES.collection.drawAnchor;}
+         */
+        _drawAnchor ( ) { }
+
+        /**
          * Draws an axis for the associated object
          * @private
          * @function
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
         _drawAxis   ( ) { }
 
@@ -9125,7 +9550,7 @@ class Lines extends Array
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
         _drawBorder  ( ) { }
 
@@ -9133,73 +9558,36 @@ class Lines extends Array
          * Draws associated options
          * @private
          * @function
+         * @see             {@link UTILITIES.collection.drawOptionsPost;}
          */
-        _drawOptions ( )
-        {
-            let _offset = 20;
-
-            let _aspect = new Aspect ( this.width + _offset, this.height + _offset );
-
-            ////////////////////////////////////////////////////////////////////
-
-            if ( this.options.border ) this._drawBorder ( _aspect );
-
-            if ( this.options.axis   ) this._drawAxis   ( );
-
-            if ( this.options.anchor ) this._drawAnchor ( );
-        }
+        _drawOptionsPost ( ) { }
 
         /**
-         * Draws anchor point
+         * Triggers associated pre-draw options
          * @private
          * @function
+         * @param           {Object}  object                            CanvasLab Object
+         * @param           {Options} options                           Options for collections
          */
-        _drawAnchor ( )
+        _drawOptionsPre ( object, options )
         {
-            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
-
-                _anchor.fill.color = '255, 0, 0';
-
-                _anchor.canvas     = this.canvas;
+            let _types = [ 'shadow', 'points', 'controlPoints', 'coordinates' ];
 
 
-                _anchor.draw ( );
+            for ( let _type of _types )
+
+                if ( options [ _type ] )
+
+                    object.options [ _type ] = true;
         }
 
         /**
          * Sets anchor's point against this object's point location
          * @private
          * @function
+         * @see             {@link UTILITIES.collection.setAnchorPoint;}
          */
-        _setAnchorPoint ( )
-        {
-            this._setAspect ( );
-
-
-            this.#_anchor = this.center;
-
-
-            switch ( this.anchor.type )
-            {
-                case 'center':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height / 2;  break;
-
-                case 'top':          this.anchor.x -= this.width / 2;   /*       ... do nothing        */  break;
-
-                case 'topRight':     this.anchor.x -= this.width;       /*       ... do nothing        */  break;
-
-                case 'right':        this.anchor.x -= this.width;       this.anchor.y -= this.height / 2;  break;
-
-                case 'bottomRight':  this.anchor.x -= this.width;       this.anchor.y -= this.height;      break;
-
-                case 'bottom':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height;      break;
-
-                case 'bottomLeft':   /*       ... do nothing       */   this.anchor.y -= this.height;      break;
-
-                case 'left':         /*       ... do nothing       */   this.anchor.y -= this.height / 2;  break;
-
-                case 'topLeft':      /*       ... do nothing       */   /*       ... do nothing        */  break;
-            }
-        }
+        _setAnchorPoint ( ) { }
 
         /**
          * Sets aspect
@@ -9208,66 +9596,133 @@ class Lines extends Array
          */
         _setAspect ( )
         {
-            const getSpan = ( start, end ) => ( start &lt; end ) ? end - start : start - end;
+            let [ _width, _height ] = [ this._canvas.canvas.clientWidth  * 2, this._canvas.canvas.clientHeight * 2 ]
+
+            let [ _left,  _top    ] = [   _width,   _height ];
+
+            let [ _right, _bottom ] = [ - _width, - _height ];
 
 
             if ( this.length > 0 )
 
                 for ( let _object of this )
                 {
-                    let _width  = getSpan ( _object.start.x, _object.end.x );
+                    _left   = ( _object.start.x < _left   ) ? _object.start.x : _left;
 
-                    let _height = getSpan ( _object.start.y, _object.end.y );
+                    _left   = ( _object.end.x   < _left   ) ? _object.end.x   : _left;
 
 
-                    if ( _width  > this.#_aspect.width  ) this.#_aspect.width  = _width;
+                    _right  = ( _object.start.x > _right  ) ? _object.start.x : _right;
 
-                    if ( _height > this.#_aspect.height ) this.#_aspect.height = _height;
+                    _right  = ( _object.end.x   > _right  ) ? _object.end.x   : _right;
+
+
+                    _top    = ( _object.start.y < _top    ) ? _object.start.y : _top;
+
+                    _top    = ( _object.end.y   < _top    ) ? _object.end.y   : _top;
+
+
+                    _bottom = ( _object.start.y > _bottom ) ? _object.start.y : _bottom;
+
+                    _bottom = ( _object.end.y   > _bottom ) ? _object.end.y   : _bottom;
                 }
 
             else
 
                 console.warn ( `No ${this.constructor.name} exist to draw !` );
+
+
+            [ this._aspect.width, this._aspect.height ] = [ _right - _left, _bottom - _top ];
+        }
+
+        /**
+         * Sets offset of child Line against this constructor's point
+         * @private
+         * @function
+         * @param           {Line} Line                                 Line object
+         */
+        _setPointOffset ( Line )
+        {
+            Line.start.x += this.x;
+
+            Line.end.x   += this.x;
+
+
+            Line.start.y += this.y;
+
+            Line.end.y   += this.y;
+        }
+
+        /**
+         * Get area of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Area of rectangle
+         * @see             {@link PROPERTY_BLOCKS.combined.area;}
+         */
+        get area ( ) { }
+
+        /**
+         * Get center of this object
+         * @readOnly
+         * @function
+         * @return          {Point}                                     Center point coordinates
+         */
+        get center ( )
+        {
+            const getMin = ( value, start, end ) => ( value === undefined ) ? start : ( start < end ) ? ( start < value ) ? start : value : ( end < value ) ? end : value;
+
+            let _x, _y = undefined;
+
+
+            for ( let _object of this )
+            {
+                _x = getMin ( _x, _object.start.x, _object.end.x );
+
+                _y = getMin ( _y, _object.start.y, _object.end.y );
+            }
+
+
+            [ _x, _y ] = [ _x + ( this.width / 2 ), _y + ( this.height / 2 ) ];
+
+
+            return new Point ( _x, _y );
         }
 
         /**
          * Returns the last Point within this Array
          * @public
          * @function
-         * @return          {Point}                                     Last Array element's X &amp; Y Coordinates
+         * @return          {Point}                                     Last Array element's X & Y Coordinates
+         * @see             {@link PROPERTY_BLOCKS.combined.endPoint;}
          */
-        get endPoint ( )
-        {
-            return this [ this.length - 1 ].point;
-        }
+        get endPoint ( ) { }
 
         /**
-         * Pushes Line(s) into this collection
+         * Get perimeter of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Perimeter of rectangle
+         * @see             {@link PROPERTY_BLOCKS.combined.perimeter;}
+         */
+        get perimeter ( ) { }
+
+        /**
+         * Pushes child object(s) into this collection
          * @public
          * @function
+         * @see             {@link UTILITIES.collection.push;}
          */
-        push ( )
-        {
-            for ( let _i = 0; _i &lt; arguments.length; _i++ )
-
-                ( arguments [ _i ] instanceof Line )
-
-                    ? this.#_appendProperties ( arguments [ _i ] )
-
-                    : console.error ( `[ERROR] Argument ${ ( _i + 1 ) }, of type "${ arguments [ _i ].constructor.name }", is not a valid type !` );
-
-
-            return Array.prototype.push.apply ( this, arguments );
-        }
+        push ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
         /**
-         * A-typical draw function for collections; Lines
+         * Draw function for collections
          * @public
          * @function
          * @param           {string} canvas                             Canvas Id
-         * @see             {@link Utilities.draw.collection.aTypical}
+         * @see             {@link UTILITIES.collection.draw}
          */
         draw ( ) { }
 
@@ -9278,35 +9733,33 @@ class Lines extends Array
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link UTILITIES.collection.redraw}
          */
-        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
-        {
-            [ this.x, this.y ] = [ point.x, point.y ]
-
-
-            this._clearCanvas ( clear );
-
-
-            this.draw ( canvas );
-        }
+        redraw ( ) { }
 }
  
 /**
  * @class           {Array} Rectangles                          Collection of Rectangle objects
- * @property        {Point} point                               X &amp; Y axis coordinates
+ * @property        {Point} point                               X & Y axis coordinates
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  */
 class Rectangles extends Array
 {
     _point   = new Point;
+    _stroke  = new StrokeCollection;
+    _shadow  = new ShadowCollection;
 
     _canvas  = undefined;
+
+    _aspect  = new Aspect;
+    _anchor  = new Anchor;
+    #options = new Options;
 
     _storage = { type: Rectangle }
 
     /**
      * Create Rectangles object
-     * @property        {Point}             point                   X &amp; Y axis coordinates
+     * @property        {Point}             point                   X & Y axis coordinates
      * @property        {HTMLCanvasElement} canvas                  Canvas Id
      */
     constructor ( point = { x: undefined, y: undefined }, canvas )
@@ -9315,21 +9768,37 @@ class Rectangles extends Array
 
         ////    COMPOSITION     ////////////////////////////
 
-            this._isInDom = VALIDATION.isInDom;
-            this._isPoint = VALIDATION.isPoint;
+            this._isAspect          = VALIDATION.isAspect;
+            this._isCanvasLabObject = VALIDATION.isCanvasLabObject;
+            this._isInDom           = VALIDATION.isInDom;
+            this._isPoint           = VALIDATION.isPoint;
 
-            this._clearCanvas       = UTILITIES.misc.clearCanvas;
-            this.draw               = UTILITIES.draw.collection.twoDimensional;
-            this.pushPop            = UTILITIES.pushPop;
+            this._clearCanvas     = UTILITIES.misc.clearCanvas;
+            this._drawAnchor      = UTILITIES.collection.drawAnchor;
+            this._drawAxis        = UTILITIES.draw.axis;
+            this._drawBorder      = UTILITIES.draw.border;
+            this._drawOptionsPost = UTILITIES.collection.drawOptionsPost;
+            this._setAnchorPoint  = UTILITIES.collection.setAnchorPoint;
+            this._setPointOffset  = UTILITIES.collection.setPointOffset;
 
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
-            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
-            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
-            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
+            this.draw             = UTILITIES.collection.draw;
+            this.push             = UTILITIES.collection.push;
+            this.redraw           = UTILITIES.collection.redraw;
 
-        this.x = point.x;
-        this.y = point.y;
+            Object.defineProperty ( this, 'anchor',    PROPERTY_BLOCKS.combined.anchor       );
+            Object.defineProperty ( this, 'area',      PROPERTY_BLOCKS.combined.area         );
+            Object.defineProperty ( this, 'aspect',    PROPERTY_BLOCKS.combined.aspect       );
+            Object.defineProperty ( this, 'canvas',    PROPERTY_BLOCKS.combined.canvas       );
+            Object.defineProperty ( this, 'center',    PROPERTY_BLOCKS.combined.center       );
+            Object.defineProperty ( this, 'endPoint',  PROPERTY_BLOCKS.combined.endPoint     );
+            Object.defineProperty ( this, 'perimeter', PROPERTY_BLOCKS.combined.perimeter    );
+            Object.defineProperty ( this, 'point',     PROPERTY_BLOCKS.discrete.point        );
+            Object.defineProperty ( this, 'width',     PROPERTY_BLOCKS.combined.aspectWidth  );
+            Object.defineProperty ( this, 'height',    PROPERTY_BLOCKS.combined.aspectHeight );
+            Object.defineProperty ( this, 'x',         PROPERTY_BLOCKS.discrete.pointX       );
+            Object.defineProperty ( this, 'y',         PROPERTY_BLOCKS.discrete.pointY       );
 
+        this.point  = point;
         this.canvas = canvas;
     }
 
@@ -9339,7 +9808,7 @@ class Rectangles extends Array
          * Set point
          * @public
          * @function
-         * @param           {Point} value                               X &amp; Y coordinates
+         * @param           {Point} value                               X & Y coordinates
          * @see             {@link discrete.point}
          */
         set point ( value ) { }
@@ -9348,7 +9817,7 @@ class Rectangles extends Array
          * Get point
          * @public
          * @function
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          * @see             {@link discrete.point}
          */
         get point ( ) { }
@@ -9391,10 +9860,51 @@ class Rectangles extends Array
          */
         get y ( ) { }
 
+    ////    [ STROKE ]  ////////////////////////////////////
+
+        /**
+         * Get stroke properties
+         * @public
+         * @function
+         * @return          {Stroke}                                    Stroke properties
+         */
+        get stroke ( )
+        {
+            return this._stroke;
+        }
+
+    ////    [ SHADOW ]  ////////////////////////////////////
+
+        /**
+         * Get shadow properties
+         * @public
+         * @function
+         * @return          {Shadow}                                    Shadow properties
+         */
+        get shadow ( )
+        {
+            return this._shadow;
+        }
+
+    ////    [ OPTIONS ] ////////////////////////////////////
+
+        /**
+         * Get options
+         * @public
+         * @function
+         * @return          {Object}                                    Options object
+         */
+        get options ( )
+        {
+            return this.#options;
+        }
+
     ////    [ CANVAS ]  ////////////////////////////////////
 
         /**
          * Set canvas value
+         * @public
+         * @function
          * @param           {string} value                              Canvas id
          * @see             {@link combined.canvas}
          */
@@ -9402,12 +9912,83 @@ class Rectangles extends Array
 
         /**
          * Get canvas value
+         * @readOnly
+         * @function
          * @return          {string}                                    Canvas id
          * @see             {@link combined.canvas}
          */
         get canvas ( ) { }
 
+    ////    [ ASPECT ]  ////////////////////////////////////
+
+        /**
+         * Get aspect properties
+         * @public
+         * @function
+         * @return          {Aspect}                                    Aspect properties
+         * @see             {@link PROPERTY_BLOCKS.combined.aspect}
+         */
+        get aspect ( ) { }
+
+        /**
+         * Get aspect with
+         * @readOnly
+         * @function
+         * @return          {number}                                    Width value
+         * @see             {@link PROPERTY_BLOCKS.combined.aspectWidth}
+         */
+        get width ( ) { }
+
+        /**
+         * Get aspect height
+         * @readOnly
+         * @function
+         * @return          {number}                                    Height value
+         * @see             {@link PROPERTY_BLOCKS.combined.aspectHeight}
+         */
+        get height ( ) { }
+
+    ////    [ ANCHOR ]  ////////////////////////////////////
+
+        /**
+         * Set anchor type
+         * @public
+         * @function
+         * @param           {string} value                              Anchor type
+         * @see             {@link PROPERTY_BLOCKS.combined.anchor}
+         */
+        set anchor ( value ) { }
+
+        /**
+         * Get anchor
+         * @public
+         * @function
+         * @return          {Anchor}                                    Anchor properties
+         * @see             {@link PROPERTY_BLOCKS.combined.anchor}
+         */
+        get anchor ( ) { }
+
     ////    VALIDATION  ////////////////////////////////////
+
+        /**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isAspect}
+         */
+        _isAspect ( ) { }
+
+        /**
+         * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
+         * @private
+         * @function
+         * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isCanvasLabObject}
+         */
+        _isCanvasLabObject ( ) { }
 
         /**
          * Returns whether the passed value is an element id within the DOM
@@ -9417,37 +9998,182 @@ class Rectangles extends Array
          * @return          {boolean}                                   True || False
          * @see             {@link Validation.isInDom}
          */
-        _isInDom  ( ) { }
+        _isInDom ( ) { }
+
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isPoint}
+         */
+        _isPoint ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Draws anchor point
+         * @private
+         * @function
+         * @see             {@link UTILITIES.collection.drawAnchor;}
+         */
+        _drawAnchor ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link Utilities.draw.axis}
+         */
+        _drawAxis   ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link Utilities.draw.border}
+         */
+        _drawBorder  ( ) { }
+
+        /**
+         * Draws associated options
+         * @private
+         * @function
+         * @see             {@link UTILITIES.collection.drawOptionsPost;}
+         */
+        _drawOptionsPost ( ) { }
+
+        /**
+         * Triggers associated pre-draw options
+         * @private
+         * @function
+         * @param           {Object}  object                            CanvasLab Object
+         * @param           {Options} options                           Options for collections
+         */
+        _drawOptionsPre ( object, options )
+        {
+            let _types = [ 'shadow', 'points', 'controlPoints', 'coordinates' ];
+
+
+            for ( let _type of _types )
+
+                if ( options [ _type ] )
+
+                    object.options [ _type ] = true;
+        }
+
+        /**
+         * Sets anchor's point against this object's point location
+         * @private
+         * @function
+         * @see             {@link UTILITIES.collection.setAnchorPoint;}
+         */
+        _setAnchorPoint ( ) { }
+
+        /**
+         * Sets aspect
+         * @private
+         * @function
+         */
+        _setAspect ( )
+        {
+            let [ _width, _height ] = [ this._canvas.canvas.clientWidth  * 2, this._canvas.canvas.clientHeight * 2 ]
+
+            let [ _left,  _top    ] = [   _width,   _height ];
+
+            let [ _right, _bottom ] = [ - _width, - _height ];
+
+
+            if ( this.length > 0 )
+
+                for ( let _object of this )
+                {
+                    _left   = ( _object.x < _left                    ) ? _object.x                  : _left;
+
+                    _right  = ( _object.x + _object.width > _right   ) ? _object.x + _object.width  : _right;
+
+                    _top    = ( _object.y < _top                     ) ? _object.y                  : _top;
+
+                    _bottom = ( _object.y + _object.height > _bottom ) ? _object.y + _object.height : _bottom;
+                }
+
+            else
+
+                console.warn ( `No ${this.constructor.name} exist to draw !` );
+
+
+            [ this._aspect.width,    this._aspect.height   ] = [ _right - _left, _bottom - _top ];
+
+            [ this._aspect.offset.x, this._aspect.offset.y ] = [ _left - 25,     _top - 25      ];
+        }
+
+        /**
+         * Sets offset of child object against this constructor's point
+         * @public
+         * @function
+         * @param           {Object} Object                             CanvasLab Object
+         * @see             {@link UTILITIES.collection.setAnchorPoint;}
+         */
+        _setPointOffset ( ) { }
+
+        /**
+         * Get area of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Area of rectangle
+         * @see             {@link PROPERTY_BLOCKS.combined.area;}
+         */
+        get area ( ) { }
+
+        /**
+         * Get center of this object
+         * @readOnly
+         * @function
+         * @return          {Point}                                     Center point coordinates
+         * @see             {@link PROPERTY_BLOCKS.combined.center;}
+         */
+        get center ( ) { }
 
         /**
          * Returns the last Point within this Array
          * @public
          * @function
-         * @return          {Point}                                     Last Array element's X &amp; Y Coordinates
+         * @return          {Point}                                     Last Array element's X & Y Coordinates
+         * @see             {@link PROPERTY_BLOCKS.combined.endPoint;}
          */
-        get endPoint ( )
-        {
-            return this [ this.length - 1 ].point;
-        }
+        get endPoint ( ) { }
 
         /**
-         * Push or pops the passed object
+         * Get perimeter of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Perimeter of rectangle
+         * @see             {@link PROPERTY_BLOCKS.combined.perimeter;}
+         */
+        get perimeter ( ) { }
+
+        /**
+         * Pushes child object(s) into this collection
          * @public
          * @function
-         * @param           {Object} object                             Object; Circle, Rectangle, Text
-         * @see             {@link Utilities.misc.pushPop}
+         * @see             {@link UTILITIES.collection.push;}
          */
-        pushPop ( ) { }
+        push ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
         /**
-         * Draw this object
+         * Draw function for collections
          * @public
          * @function
          * @param           {string} canvas                             Canvas Id
+         * @see             {@link UTILITIES.collection.draw}
          */
         draw ( ) { }
 
@@ -9458,49 +10184,70 @@ class Rectangles extends Array
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link UTILITIES.collection.redraw}
          */
-        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
-        {
-            [ this.x, this.y ] = [ point.x, point.y ]
-
-
-            this._clearCanvas ( clear );
-
-
-            this.draw ( canvas );
-        }
+        redraw ( ) { }
 }
  
 /**
  * @class           {Array} Texts                               Collection of Text objects
- * @property        {Point} point                               X &amp; Y axis coordinates
+ * @property        {Point} point                               X & Y axis coordinates
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  */
 class Texts extends Array
 {
     _point   = new Point;
+    _stroke  = new StrokeCollection;
+    _shadow  = new ShadowCollection;
 
     _canvas  = undefined;
 
+    _aspect  = new Aspect;
+    _anchor  = new Anchor;
+    #options = new Options;
+
     _storage = { type: Text }
 
+    /**
+     * Create Texts object
+     * @property        {Point}             point                   X & Y axis coordinates
+     * @property        {HTMLCanvasElement} canvas                  Canvas Id
+     */
     constructor ( point = { x: undefined, y: undefined }, canvas )
     {
         super ( );
 
         ////    COMPOSITION     ////////////////////////////
 
-            this._isInDom = VALIDATION.isInDom;
-            this._isPoint = VALIDATION.isPoint;
+            this._isAspect          = VALIDATION.isAspect;
+            this._isCanvasLabObject = VALIDATION.isCanvasLabObject;
+            this._isInDom           = VALIDATION.isInDom;
+            this._isPoint           = VALIDATION.isPoint;
 
             this._clearCanvas     = UTILITIES.misc.clearCanvas;
-            this.draw             = UTILITIES.draw.collection.twoDimensional;
-            this.pushPop          = UTILITIES.misc.pushPop;
+            this._drawAnchor      = UTILITIES.collection.drawAnchor;
+            this._drawAxis        = UTILITIES.draw.axis;
+            this._drawBorder      = UTILITIES.draw.border;
+            this._drawOptionsPost = UTILITIES.collection.drawOptionsPost;
+            this._setAnchorPoint  = UTILITIES.collection.setAnchorPoint;
+            this._setPointOffset  = UTILITIES.collection.setPointOffset;
 
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
-            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
-            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
-            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
+            this.draw             = UTILITIES.collection.draw;
+            this.push             = UTILITIES.collection.push;
+            this.redraw           = UTILITIES.collection.redraw;
+
+            Object.defineProperty ( this, 'anchor',    PROPERTY_BLOCKS.combined.anchor       );
+            Object.defineProperty ( this, 'area',      PROPERTY_BLOCKS.combined.area         );
+            Object.defineProperty ( this, 'aspect',    PROPERTY_BLOCKS.combined.aspect       );
+            Object.defineProperty ( this, 'canvas',    PROPERTY_BLOCKS.combined.canvas       );
+            Object.defineProperty ( this, 'center',    PROPERTY_BLOCKS.combined.center       );
+            Object.defineProperty ( this, 'endPoint',  PROPERTY_BLOCKS.combined.endPoint     );
+            Object.defineProperty ( this, 'perimeter', PROPERTY_BLOCKS.combined.perimeter    );
+            Object.defineProperty ( this, 'point',     PROPERTY_BLOCKS.discrete.point        );
+            Object.defineProperty ( this, 'width',     PROPERTY_BLOCKS.combined.aspectWidth  );
+            Object.defineProperty ( this, 'height',    PROPERTY_BLOCKS.combined.aspectHeight );
+            Object.defineProperty ( this, 'x',         PROPERTY_BLOCKS.discrete.pointX       );
+            Object.defineProperty ( this, 'y',         PROPERTY_BLOCKS.discrete.pointY       );
 
         this.point  = point;
         this.canvas = canvas;
@@ -9512,7 +10259,7 @@ class Texts extends Array
          * Set point
          * @public
          * @function
-         * @param           {Point} point                               X &amp; Y axis coordinates
+         * @param           {Point} point                               X & Y axis coordinates
          */
         set point ( value ) { }
 
@@ -9520,7 +10267,7 @@ class Texts extends Array
          * Get point
          * @public
          * @function
-         * @return          {Point}                                     X &amp; Y axis coordinates
+         * @return          {Point}                                     X & Y axis coordinates
          */
         get point ( ) { }
 
@@ -9541,6 +10288,7 @@ class Texts extends Array
          */
         get x ( ) {  }
 
+
         /**
          * Set y-axis value
          * @public
@@ -9557,6 +10305,45 @@ class Texts extends Array
          */
         get y ( ) { }
 
+    ////    [ STROKE ]  ////////////////////////////////////
+
+        /**
+         * Get stroke properties
+         * @public
+         * @function
+         * @return          {Stroke}                                    Stroke properties
+         */
+        get stroke ( )
+        {
+            return this._stroke;
+        }
+
+    ////    [ SHADOW ]  ////////////////////////////////////
+
+        /**
+         * Get shadow properties
+         * @public
+         * @function
+         * @return          {Shadow}                                    Shadow properties
+         */
+        get shadow ( )
+        {
+            return this._shadow;
+        }
+
+    ////    [ OPTIONS ] ////////////////////////////////////
+
+        /**
+         * Get options
+         * @public
+         * @function
+         * @return          {Object}                                    Options object
+         */
+        get options ( )
+        {
+            return this.#options;
+        }
+
     ////    [ CANVAS ]  ////////////////////////////////////
 
         /**
@@ -9564,7 +10351,7 @@ class Texts extends Array
          * @public
          * @function
          * @param           {string} value                              Canvas id
-         * @see             {@link combined.canvas}
+         * @see             {@link PROPERTY_BLOCKS.combined.canvas}
          */
         set canvas ( value ) { }
 
@@ -9573,11 +10360,80 @@ class Texts extends Array
          * @readOnly
          * @function
          * @return          {string}                                    Canvas id
-         * @see             {@link combined.canvas}
+         * @see             {@link PROPERTY_BLOCKS.combined.canvas}
          */
         get canvas ( ) { }
 
+    ////    [ ASPECT ]  ////////////////////////////////////
+
+        /**
+         * Get aspect properties
+         * @public
+         * @function
+         * @return          {Aspect}                                    Aspect properties
+         * @see             {@link PROPERTY_BLOCKS.combined.aspect}
+         */
+        get aspect ( ) { }
+
+        /**
+         * Get aspect with
+         * @readOnly
+         * @function
+         * @return          {number}                                    Width value
+         * @see             {@link PROPERTY_BLOCKS.combined.aspectWidth}
+         */
+        get width ( ) { }
+
+        /**
+         * Get aspect height
+         * @readOnly
+         * @function
+         * @return          {number}                                    Height value
+         * @see             {@link PROPERTY_BLOCKS.combined.aspectHeight}
+         */
+        get height ( ) { }
+
+    ////    [ ANCHOR ]  ////////////////////////////////////
+
+        /**
+         * Set anchor type
+         * @public
+         * @function
+         * @param           {string} value                              Anchor type
+         * @see             {@link PROPERTY_BLOCKS.combined.anchor}
+         */
+        set anchor ( value ) { }
+
+        /**
+         * Get anchor
+         * @public
+         * @function
+         * @return          {Anchor}                                    Anchor properties
+         * @see             {@link PROPERTY_BLOCKS.combined.anchor}
+         */
+        get anchor ( ) { }
+
     ////    VALIDATION  ////////////////////////////////////
+
+        /**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isAspect}
+         */
+        _isAspect ( ) { }
+
+        /**
+         * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
+         * @private
+         * @function
+         * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isCanvasLabObject}
+         */
+        _isCanvasLabObject ( ) { }
 
         /**
          * Returns whether the passed value is an element id within the DOM
@@ -9585,9 +10441,9 @@ class Texts extends Array
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
-        _isInDom  ( ) { }
+        _isInDom ( ) { }
 
         /**
          * Returns whether the passed value is a Point
@@ -9595,40 +10451,181 @@ class Texts extends Array
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
-        _isPoint  ( ) { }
+        _isPoint ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Draws anchor point
+         * @private
+         * @function
+         * @see             {@link UTILITIES.collection.drawAnchor;}
+         */
+        _drawAnchor ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link UTILITIES.draw.axis}
+         */
+        _drawAxis ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link UTILITIES.draw.border}
+         */
+        _drawBorder ( ) { }
+
+        /**
+         * Draws associated options
+         * @private
+         * @function
+         * @see             {@link UTILITIES.collection.drawOptionsPost;}
+         */
+        _drawOptionsPost ( ) { }
+
+        /**
+         * Triggers associated pre-draw options
+         * @private
+         * @function
+         * @param           {Object}  object                            CanvasLab Object
+         * @param           {Options} options                           Options for collections
+         */
+        _drawOptionsPre ( object, options )
+        {
+            let _types = [ 'shadow', 'points', 'controlPoints', 'coordinates' ];
+
+
+            for ( let _type of _types )
+
+                if ( options [ _type ] )
+
+                    object.options [ _type ] = true;
+        }
+
+        /**
+         * Sets anchor's point against this object's point location
+         * @private
+         * @function
+         * @see             {@link UTILITIES.collection.setAnchorPoint;}
+         */
+        _setAnchorPoint ( ) { }
+
+        /**
+         * Sets aspect
+         * @private
+         * @function
+         */
+        _setAspect ( )
+        {
+            let [ _width, _height ] = [ this._canvas.canvas.clientWidth  * 2, this._canvas.canvas.clientHeight * 2 ]
+
+            let [ _left,  _top    ] = [   _width,   _height ];
+
+            let [ _right, _bottom ] = [ - _width, - _height ];
+
+            let _padding            = { left: 14, top: 9 }
+
+
+            if ( this.length > 0 )
+
+                for ( let _object of this )
+                {
+                    let _width  = this._canvas.measureText ( this.text ).width;
+
+                    let _height = this._canvas.fontBoundingBoxAscent + this._canvas.fontBoundingBoxDescent;
+
+
+                    _left   = ( _object.x < _left             ) ? _object.x           : _left;
+
+                    _right  = ( _object.x + _width > _right   ) ? _object.x + _width  : _right;
+
+                    _top    = ( _object.y < _top              ) ? _object.y           : _top;
+
+                    _bottom = ( _object.y + _height > _bottom ) ? _object.y + _height : _bottom;
+                }
+
+            else
+
+                console.warn ( `No ${this.constructor.name} exist to draw !` );
+
+
+            [ this._aspect.width,    this._aspect.height   ] = [ _right - _left, _bottom - _top ];
+
+            [ this._aspect.offset.x, this._aspect.offset.y ] = [ _left - _padding.left, _top - _padding.top ];
+        }
+
+        /**
+         * Sets offset of child object against this constructor's point
+         * @public
+         * @function
+         * @param           {Object} Object                             CanvasLab Object
+         * @see             {@link UTILITIES.collection.setAnchorPoint;}
+         */
+        _setPointOffset ( ) { }
+
+        /**
+         * Get area of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Area of rectangle
+         * @see             {@link PROPERTY_BLOCKS.combined.area;}
+         */
+        get area ( ) { }
+
+        /**
+         * Get center of this object
+         * @readOnly
+         * @function
+         * @return          {Point}                                     Center point coordinates
+         * @see             {@link PROPERTY_BLOCKS.combined.center;}
+         */
+        get center ( ) { }
 
         /**
          * Returns the last Point within this Array
          * @public
          * @function
-         * @return          {Point}                                     Last Array element's X &amp; Y Coordinates
+         * @return          {Point}                                     Last Array element's X & Y Coordinates
+         * @see             {@link PROPERTY_BLOCKS.combined.endPoint;}
          */
-        get endPoint ( )
-        {
-            return this [ this.length - 1 ].point;
-        }
+        get endPoint ( ) { }
 
         /**
-         * Push or pops the passed object
+         * Get perimeter of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Perimeter of rectangle
+         * @see             {@link PROPERTY_BLOCKS.combined.perimeter;}
+         */
+        get perimeter ( ) { }
+
+        /**
+         * Pushes child object(s) into this collection
          * @public
          * @function
-         * @param           {Object} object                             Object; Circle, Rectangle, Text
-         * @see             {@link Utilities.misc.pushPop}
+         * @see             {@link UTILITIES.collection.push;}
          */
-        pushPop ( ) { }
+        push ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
         /**
-         * Typical draw function for collections; Circles, Texts
+         * Draw function for collections
          * @public
          * @function
          * @param           {string} canvas                             Canvas Id
-         * @see             {@link UTILITIES.draw.collection.typical}
+         * @see             {@link UTILITIES.collection.draw}
          */
         draw ( ) { }
 
@@ -9639,18 +10636,12 @@ class Texts extends Array
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link UTILITIES.collection.redraw}
          */
-        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
-        {
-            [ this.x, this.y ] = [ point.x, point.y ]
-
-
-            this._clearCanvas ( clear );
-
-
-            this.draw ( canvas );
-        }
+        redraw ( ) { }
 }
+
+////    HANDLERS    ////////////////////////////////////////
  
 /**
  * @class           {Object}   Animation                        Animation handler
@@ -9693,14 +10684,14 @@ class Animation
         ////    EASE-IN-OUT    /////////////////////////////////
 
             'easeInOutSine':    ( timeFraction ) => - ( Math.cos ( Math.PI * timeFraction ) - 1 ) / 2,
-            'easeInOutCubic':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
-            'easeInOutQuint':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
-            'easeInOutCirc':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
-            'easeInOutElastic': ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction &lt; 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
-            'easeInOutQuad':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
-            'easeInOutQuart':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
-            'easeInOutExpo':    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction &lt; 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
-            'easeInOutBack':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
+            'easeInOutCubic':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
+            'easeInOutQuint':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
+            'easeInOutCirc':    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
+            'easeInOutElastic': ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
+            'easeInOutQuad':    ( timeFraction ) => ( timeFraction < 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
+            'easeInOutQuart':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
+            'easeInOutExpo':    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
+            'easeInOutBack':    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
     }
 
     /**
@@ -9835,7 +10826,7 @@ class Animation
             let [ _duration, _timing, _draw ] = [ this._duration, this._timing, this._draw ]
 
 
-            if ( this._timing &amp;&amp; this._draw )
+            if ( this._timing && this._draw )
             {
                 let _start = performance.now ( );
 
@@ -9852,7 +10843,7 @@ class Animation
                         _draw ( _progress );                                    // draw it
 
 
-                        if ( _timeFraction &lt; 1 )
+                        if ( _timeFraction < 1 )
 
                             requestAnimationFrame ( animate );
                     }
@@ -9870,7 +10861,7 @@ class Animation
 class Application
 {
     /**
-     * Application configurations &amp; details
+     * Application configurations & details
      * @type            {Object}
      * @property        {boolean} debug                             Whether to debug application
      * @property        {Object}  about                             About properties
@@ -9889,8 +10880,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Jul, 01 2024',
-            Version:   '0.3.78',
+            Updated:   'Jul, 12 2024',
+            Version:   '0.4.88',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -9903,7 +10894,7 @@ class Application
      * @property        {Object} window                             Window properties
      * @property        {number} window.width                       Window's width
      * @property        {number} window.height                      Window's height
-     * @property        {Object} window.center                      Window's center X &amp; Y coordinates
+     * @property        {Object} window.center                      Window's center X & Y coordinates
      * @property        {number} window.center.x                    X-axis coordinate
      * @property        {number} window.center.y                    Y-axis coordinate
      * @property        {Object} mouse                              Mouse properties
@@ -10026,10 +11017,10 @@ class Application
     ////    UTILITIES   ////////////////////////////////////
 
         /**
-         * Returns center ( x &amp; y coordinates ) for the present window
+         * Returns center ( x & y coordinates ) for the present window
          * @private
          * @function
-         * @return          {Object}                                    X &amp; Y Coordinates
+         * @return          {Object}                                    X & Y Coordinates
          */
         get _center ( )
         {
@@ -10046,7 +11037,7 @@ class Application
 
         /**
          * Creates a new animation instance
-         * @param           {Object}   flow                             Contains timing, draw, &amp; duration values &amp; functions
+         * @param           {Object}   flow                             Contains timing, draw, & duration values & functions
          * @param           {number}   flow.duration                    Duration of animation
          * @param           {Function} flow.timing                      Timing function
          * @param           {Function} flow.draw                        Draw function
@@ -10059,7 +11050,7 @@ class Application
         }
 }
 
-////    INITIALIZATION  ////////////////////////////////////////////////////////
+////    INITIALIZATION  ////////////////////////////////////
 
 /**
  * Initiates canvasLab
@@ -10067,38 +11058,12 @@ class Application
  */
 let initCanvasLab = ( canvas ) =>
 {
-    if ( typeof canvasLab === 'function' &amp;&amp; typeof window.canvaslab  === 'undefined' )
+    if ( typeof canvasLab === 'function' && typeof window.canvaslab  === 'undefined' )
 
         window.canvaslab = new canvasLab ( canvas );
 }
- 
-class Processing
-{
-    #config =
-    {
-        processing:
-        {
-            pre: undefined,
-            post:
-            {
-                canvas:
-                {
-                    state: undefined
-                },
-                line:
-                {
-                    prior: { },
-                    cache: { }
-                },
-                redraw: { }
-            }
-        }
-    }
 
-    ////    UTILITIES   ////////////////////////////////////
-
-        // setState ( canvasId ) { }
-}
+////    DATA_STRUCTURES    /////////////////////////////////
  
 /**
  * @class           {Object} Queue                              Queue object
@@ -10193,28 +11158,3 @@ class Queue
             this._index = 0;
         }
 }
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-    
-    
-</div>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.0</a> on Mon Jul 01 2024 12:58:57 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
-</footer>
-
-<script>prettyPrint();</script>
-<script src="scripts/polyfill.js"></script>
-<script src="scripts/linenumber.js"></script>
-
-
-
-</body>
-</html>

@@ -257,6 +257,11 @@ nav
                     display:   block;
                     opacity:   1;
                 }
+
+                &#objects-collapse
+                {
+                    li:nth-child(2n) { padding-left: 1.25rem !important; }
+                }
             }
 
             button

@@ -18,8 +18,8 @@ class Line
 
     _canvas  = undefined;
 
-    #_options       = new Options;
-    #_controlPoints = new ControlPoints;
+    #options       = new Options;
+    #controlPoints = new ControlPoints;
 
     /**
      * Create a Line object
@@ -102,18 +102,18 @@ class Line
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow      = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
-            this.#_options.master      = this;
+            this.#options.shadow      = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+            this.#options.master      = this;
 
             this._start.options.master = this;
               this._end.options.master = this;
 
 
-            Object.defineProperty ( this.#_options, "points",
+            Object.defineProperty ( this.#options, "points",
             {
                 set ( value )
                 {
-                    this._points = ( typeof value === 'boolean' ) ? value : this.#_options.points;
+                    this._points = ( typeof value === 'boolean' ) ? value : this.#options.points;
 
 
                     this._master._start.options.points = value;
@@ -255,7 +255,7 @@ class Line
          */
         get options ( )
         {
-            return this.#_options;
+            return this.#options;
         }
 
     ////    [ CONTROL POINTS ]  ////////////////////////////
@@ -268,7 +268,7 @@ class Line
          */
         get controlPoints ( )
         {
-            return this.#_controlPoints;
+            return this.#controlPoints;
         }
 
     ////    & EXTEND &  ////////////////////////////////////
@@ -445,15 +445,15 @@ class Line
 
             ////////////////////////////////////////////////////////////////////
 
-            if ( this.#_options.border        ) this._drawBorder       ( _aspect );
+            if ( this.#options.border        ) this._drawBorder       ( _aspect );
 
-            if ( this.#_options.axis          ) this._drawAxis         ( );
+            if ( this.#options.axis          ) this._drawAxis         ( );
 
-            if ( this.#_options.points        ) this.drawPoints        ( );
+            if ( this.#options.points        ) this.drawPoints        ( );
 
-            if ( this.#_options.coordinates   ) this.showCoordinates   ( );
+            if ( this.#options.coordinates   ) this.showCoordinates   ( );
 
-            if ( this.#_options.controlPoints ) this.showControlPoints ( );
+            if ( this.#options.controlPoints ) this.showControlPoints ( );
         }
 
         /**
@@ -606,9 +606,9 @@ class Line
             let _point3 = new Point ( this.end.x,                           this.end.y                           );
 
 
-            let _textStart  = new Text ( _point1.x, _point1.y, `( ${this.#_controlPoints.p0}, ${this.#_controlPoints.p1} )` );
+            let _textStart  = new Text ( _point1.x, _point1.y, `( ${this.#controlPoints.p0}, ${this.#controlPoints.p1} )` );
 
-            let _textEnd    = new Text ( _point2.x, _point2.y, `( ${this.#_controlPoints.p3}, ${this.#_controlPoints.p4} )` );
+            let _textEnd    = new Text ( _point2.x, _point2.y, `( ${this.#controlPoints.p3}, ${this.#controlPoints.p4} )` );
 
 
                 _textStart.canvas         = _textEnd.canvas         = this.canvas;
@@ -761,7 +761,7 @@ class Line
                 let _straddle = 0.5;
 
 
-                if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
+                if ( this.#options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
                 this._canvas.strokeStyle = this.stroke.color.toCss ( );
@@ -782,10 +782,10 @@ class Line
                 this.#_setPath ( );
 
 
-                this._canvas.stroke    ( );
+                this._canvas.stroke ( );
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
+                if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
                 this._drawOptions ( );

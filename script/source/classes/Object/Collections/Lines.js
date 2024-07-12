@@ -15,13 +15,11 @@ class Lines extends Array
 
     _canvas  = undefined;
 
-    #_aspect  = new Aspect;
-    #_anchor  = new Anchor;
-    #_options = new Options;
+    _aspect  = new Aspect;
+    _anchor  = new Anchor;
+    #options = new Options;
 
-    #_origin  = new Point;
-
-    _storage  = { type: Line }
+    _storage = { type: Line }
 
     /**
      * Create a Lines object
@@ -39,15 +37,27 @@ class Lines extends Array
             this._isInDom           = VALIDATION.isInDom;
             this._isPoint           = VALIDATION.isPoint;
 
-            this._clearCanvas = UTILITIES.misc.clearCanvas;
-            this._drawAxis    = UTILITIES.draw.axis;
-            this._drawBorder  = UTILITIES.draw.border;
-            this.draw         = UTILITIES.draw.collection.oneDimensional;
+            this._clearCanvas     = UTILITIES.misc.clearCanvas;
+            this._drawAnchor      = UTILITIES.collection.drawAnchor;
+            this._drawAxis        = UTILITIES.draw.axis;
+            this._drawBorder      = UTILITIES.draw.border;
+            this._drawOptionsPost = UTILITIES.collection.drawOptionsPost;
+            this._setAnchorPoint  = UTILITIES.collection.setAnchorPoint;
 
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.combined.canvas );
-            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
-            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
-            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
+            this.draw             = UTILITIES.collection.draw;
+            this.push             = UTILITIES.collection.push;
+            this.redraw           = UTILITIES.collection.redraw;
+
+            Object.defineProperty ( this, 'anchor',    PROPERTY_BLOCKS.combined.anchor       );
+            Object.defineProperty ( this, 'area',      PROPERTY_BLOCKS.combined.area         );
+            Object.defineProperty ( this, 'canvas',    PROPERTY_BLOCKS.combined.canvas       );
+            Object.defineProperty ( this, 'endPoint',  PROPERTY_BLOCKS.combined.endPoint     );
+            Object.defineProperty ( this, 'perimeter', PROPERTY_BLOCKS.combined.perimeter    );
+            Object.defineProperty ( this, 'point',     PROPERTY_BLOCKS.discrete.point        );
+            Object.defineProperty ( this, 'width',     PROPERTY_BLOCKS.combined.aspectWidth  );
+            Object.defineProperty ( this, 'height',    PROPERTY_BLOCKS.combined.aspectHeight );
+            Object.defineProperty ( this, 'x',         PROPERTY_BLOCKS.discrete.pointX       );
+            Object.defineProperty ( this, 'y',         PROPERTY_BLOCKS.discrete.pointY       );
 
         this.point  = point;
         this.canvas = canvas;
@@ -152,7 +162,7 @@ class Lines extends Array
          */
         get options ( )
         {
-            return this.#_options;
+            return this.#options;
         }
 
     ////    [ LINECAP ]  ///////////////////////////////////
@@ -206,36 +216,27 @@ class Lines extends Array
          * @public
          * @function
          * @return          {Aspect}                                    Aspect properties
+         * @see             {@link PROPERTY_BLOCKS.combined.aspect}
          */
-        get aspect ( )
-        {
-            this._setAspect ( );
-
-
-            return this.#_aspect;
-        }
+        get aspect ( ) { }
 
         /**
          * Get aspect with
          * @readOnly
          * @function
          * @return          {number}                                    Width value
+         * @see             {@link PROPERTY_BLOCKS.combined.aspectWidth}
          */
-        get width  ( )
-        {
-            return this.#_aspect.width;
-        }
+        get width ( ) { }
 
         /**
          * Get aspect height
          * @readOnly
          * @function
          * @return          {number}                                    Height value
+         * @see             {@link PROPERTY_BLOCKS.combined.aspectHeight}
          */
-        get height ( )
-        {
-            return this.#_aspect.height;
-        }
+        get height ( ) { }
 
     ////    [ ANCHOR ]  ////////////////////////////////////
 
@@ -244,111 +245,24 @@ class Lines extends Array
          * @public
          * @function
          * @param           {string} value                              Anchor type
+         * @see             {@link PROPERTY_BLOCKS.combined.anchor}
          */
-        set anchor ( value )
-        {
-            this.#_anchor.type = ( this._isAnchor ( value ) ) ? value : this.#_anchor.type;
-
-
-            this._setAnchorPoint ( );
-        }
+        set anchor ( value ) { }
 
         /**
          * Get anchor
          * @public
          * @function
          * @return          {Anchor}                                    Anchor properties
+         * @see             {@link PROPERTY_BLOCKS.combined.anchor}
          */
-        get anchor ( )
-        {
-            return this.#_anchor;
-        }
-
-    ////    & EXTEND &  ////////////////////////////////////
-
-        /**
-         * Get area of this object
-         * @readOnly
-         * @function
-         * @return          {number}                                    Area of rectangle
-         */
-        get area ( )
-        {
-            return ( this.width * this.height );
-        }
-
-        /**
-         * Get perimeter of this object
-         * @readOnly
-         * @function
-         * @return          {number}                                    Perimeter of rectangle
-         */
-        get perimeter ( )
-        {
-            return ( this.area * 2 );
-        }
-
-        /**
-         * Get center of this object
-         * @readOnly
-         * @function
-         * @return          {Point}                                     Center point coordinates
-         */
-        get center ( )
-        {
-            const getMin = ( value, start, end ) => ( value === undefined ) ? start : ( start < end ) ? ( start < value ) ? start : value : ( end < value ) ? end : value;
-
-            let _x = undefined;
-            let _y = undefined;
-
-            for ( let _object of this )
-            {
-                _x = getMin ( _x, _object.start.x, _object.end.x );
-
-                _y = getMin ( _y, _object.start.y, _object.end.y );
-
-
-                this.#_origin = new Point ( _x, _y );
-            }
-
-
-            [ _x, _y ] = [ _x + ( this.width  / 2 ), _y + ( this.height / 2 ) ];
-
-
-            return new Point ( _x, _y );
-        }
-
-    ////    ( PRIVATE ) ////////////////////////////////////
-
-        /**
-         * Appends property values
-         * @protected
-         * @function
-         * @param           {Line} line                                 Line object
-         */
-        #_appendProperties ( Line )
-        {
-            Object.defineProperty ( Line, 'origin',
-                {
-                    value:
-                    {
-                        start: new Point ( Line.start.x, Line.start.y ),
-                        end:   new Point ( Line.end.x,   Line.end.y   )
-                    },
-                    writable: false,
-                }
-            );
-
-            Object.defineProperty ( Line, 'start', PROPERTY_BLOCKS.combined.start );
-
-            Object.defineProperty ( Line, 'end',   PROPERTY_BLOCKS.combined.end   );
-        }
+        get anchor ( ) { }
 
     ////    VALIDATION  ////////////////////////////////////
 
         /**
          * Returns whether the passed value is an Aspect
-         * @public
+         * @private
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
@@ -358,14 +272,13 @@ class Lines extends Array
 
         /**
          * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
-         * @public
-         * @memberof VALIDATION
+         * @private
          * @function
          * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
          * @return          {boolean}                                   True || False
          * @see             {@link Validation.isCanvasLabObject}
          */
-        isCanvasLabObject ( value ) { }
+        _isCanvasLabObject ( value ) { }
 
         /**
          * Returns whether the passed value is an element id within the DOM
@@ -390,13 +303,21 @@ class Lines extends Array
     ////    UTILITIES   ////////////////////////////////////
 
         /**
+         * Draws anchor point
+         * @private
+         * @function
+         * @see             {@link UTILITIES.collection.drawAnchor;}
+         */
+        _drawAnchor ( ) { }
+
+        /**
          * Draws an axis for the associated object
          * @private
          * @function
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
         _drawAxis   ( ) { }
 
@@ -406,7 +327,7 @@ class Lines extends Array
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
         _drawBorder  ( ) { }
 
@@ -414,73 +335,36 @@ class Lines extends Array
          * Draws associated options
          * @private
          * @function
+         * @see             {@link UTILITIES.collection.drawOptionsPost;}
          */
-        _drawOptions ( )
-        {
-            let _offset = 20;
-
-            let _aspect = new Aspect ( this.width + _offset, this.height + _offset );
-
-            ////////////////////////////////////////////////////////////////////
-
-            if ( this.options.border ) this._drawBorder ( _aspect );
-
-            if ( this.options.axis   ) this._drawAxis   ( );
-
-            if ( this.options.anchor ) this._drawAnchor ( );
-        }
+        _drawOptionsPost ( ) { }
 
         /**
-         * Draws anchor point
+         * Triggers associated pre-draw options
          * @private
          * @function
+         * @param           {Object}  object                            CanvasLab Object
+         * @param           {Options} options                           Options for collections
          */
-        _drawAnchor ( )
+        _drawOptionsPre ( object, options )
         {
-            let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
-
-                _anchor.fill.color = '255, 0, 0';
-
-                _anchor.canvas     = this.canvas;
+            let _types = [ 'shadow', 'points', 'controlPoints', 'coordinates' ];
 
 
-                _anchor.draw ( );
+            for ( let _type of _types )
+
+                if ( options [ _type ] )
+
+                    object.options [ _type ] = true;
         }
 
         /**
          * Sets anchor's point against this object's point location
          * @private
          * @function
+         * @see             {@link UTILITIES.collection.setAnchorPoint;}
          */
-        _setAnchorPoint ( )
-        {
-            this._setAspect ( );
-
-
-            this.#_anchor = this.center;
-
-
-            switch ( this.anchor.type )
-            {
-                case 'center':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height / 2;  break;
-
-                case 'top':          this.anchor.x -= this.width / 2;   /*       ... do nothing        */  break;
-
-                case 'topRight':     this.anchor.x -= this.width;       /*       ... do nothing        */  break;
-
-                case 'right':        this.anchor.x -= this.width;       this.anchor.y -= this.height / 2;  break;
-
-                case 'bottomRight':  this.anchor.x -= this.width;       this.anchor.y -= this.height;      break;
-
-                case 'bottom':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height;      break;
-
-                case 'bottomLeft':   /*       ... do nothing       */   this.anchor.y -= this.height;      break;
-
-                case 'left':         /*       ... do nothing       */   this.anchor.y -= this.height / 2;  break;
-
-                case 'topLeft':      /*       ... do nothing       */   /*       ... do nothing        */  break;
-            }
-        }
+        _setAnchorPoint ( ) { }
 
         /**
          * Sets aspect
@@ -489,26 +373,97 @@ class Lines extends Array
          */
         _setAspect ( )
         {
-            const getSpan = ( start, end ) => ( start < end ) ? end - start : start - end;
+            let [ _width, _height ] = [ this._canvas.canvas.clientWidth  * 2, this._canvas.canvas.clientHeight * 2 ]
+
+            let [ _left,  _top    ] = [   _width,   _height ];
+
+            let [ _right, _bottom ] = [ - _width, - _height ];
 
 
             if ( this.length > 0 )
 
                 for ( let _object of this )
                 {
-                    let _width  = getSpan ( _object.start.x, _object.end.x );
+                    _left   = ( _object.start.x < _left   ) ? _object.start.x : _left;
 
-                    let _height = getSpan ( _object.start.y, _object.end.y );
+                    _left   = ( _object.end.x   < _left   ) ? _object.end.x   : _left;
 
 
-                    if ( _width  > this.#_aspect.width  ) this.#_aspect.width  = _width;
+                    _right  = ( _object.start.x > _right  ) ? _object.start.x : _right;
 
-                    if ( _height > this.#_aspect.height ) this.#_aspect.height = _height;
+                    _right  = ( _object.end.x   > _right  ) ? _object.end.x   : _right;
+
+
+                    _top    = ( _object.start.y < _top    ) ? _object.start.y : _top;
+
+                    _top    = ( _object.end.y   < _top    ) ? _object.end.y   : _top;
+
+
+                    _bottom = ( _object.start.y > _bottom ) ? _object.start.y : _bottom;
+
+                    _bottom = ( _object.end.y   > _bottom ) ? _object.end.y   : _bottom;
                 }
 
             else
 
                 console.warn ( `No ${this.constructor.name} exist to draw !` );
+
+
+            [ this._aspect.width, this._aspect.height ] = [ _right - _left, _bottom - _top ];
+        }
+
+        /**
+         * Sets offset of child Line against this constructor's point
+         * @private
+         * @function
+         * @param           {Line} Line                                 Line object
+         */
+        _setPointOffset ( Line )
+        {
+            Line.start.x += this.x;
+
+            Line.end.x   += this.x;
+
+
+            Line.start.y += this.y;
+
+            Line.end.y   += this.y;
+        }
+
+        /**
+         * Get area of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Area of rectangle
+         * @see             {@link PROPERTY_BLOCKS.combined.area;}
+         */
+        get area ( ) { }
+
+        /**
+         * Get center of this object
+         * @readOnly
+         * @function
+         * @return          {Point}                                     Center point coordinates
+         */
+        get center ( )
+        {
+            const getMin = ( value, start, end ) => ( value === undefined ) ? start : ( start < end ) ? ( start < value ) ? start : value : ( end < value ) ? end : value;
+
+            let _x, _y = undefined;
+
+
+            for ( let _object of this )
+            {
+                _x = getMin ( _x, _object.start.x, _object.end.x );
+
+                _y = getMin ( _y, _object.start.y, _object.end.y );
+            }
+
+
+            [ _x, _y ] = [ _x + ( this.width / 2 ), _y + ( this.height / 2 ) ];
+
+
+            return new Point ( _x, _y );
         }
 
         /**
@@ -516,39 +471,35 @@ class Lines extends Array
          * @public
          * @function
          * @return          {Point}                                     Last Array element's X & Y Coordinates
+         * @see             {@link PROPERTY_BLOCKS.combined.endPoint;}
          */
-        get endPoint ( )
-        {
-            return this [ this.length - 1 ].point;
-        }
+        get endPoint ( ) { }
 
         /**
-         * Pushes Line(s) into this collection
+         * Get perimeter of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Perimeter of rectangle
+         * @see             {@link PROPERTY_BLOCKS.combined.perimeter;}
+         */
+        get perimeter ( ) { }
+
+        /**
+         * Pushes child object(s) into this collection
          * @public
          * @function
+         * @see             {@link UTILITIES.collection.push;}
          */
-        push ( )
-        {
-            for ( let _i = 0; _i < arguments.length; _i++ )
-
-                ( arguments [ _i ] instanceof Line )
-
-                    ? this.#_appendProperties ( arguments [ _i ] )
-
-                    : console.error ( `[ERROR] Argument ${ ( _i + 1 ) }, of type "${ arguments [ _i ].constructor.name }", is not a valid type !` );
-
-
-            return Array.prototype.push.apply ( this, arguments );
-        }
+        push ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
         /**
-         * A-typical draw function for collections; Lines
+         * Draw function for collections
          * @public
          * @function
          * @param           {string} canvas                             Canvas Id
-         * @see             {@link Utilities.draw.collection.aTypical}
+         * @see             {@link UTILITIES.collection.draw}
          */
         draw ( ) { }
 
@@ -559,15 +510,7 @@ class Lines extends Array
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link UTILITIES.collection.redraw}
          */
-        redraw ( canvas, point = { x: undefined, y: undefined }, clear = true )
-        {
-            [ this.x, this.y ] = [ point.x, point.y ]
-
-
-            this._clearCanvas ( clear );
-
-
-            this.draw ( canvas );
-        }
+        redraw ( ) { }
 }

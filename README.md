@@ -1,9 +1,9 @@
 # canvasLab
 
 ![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Chrome-126.0.6478.116-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
+<img src="https://img.shields.io/badge/Chrome-126.0.6478.127-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
 ![issues](https://img.shields.io/github/issues/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Version-0.3.78-green?style=flat-square" />
+<img src="https://img.shields.io/badge/Version-0.4.88-green?style=flat-square" />
 <img src="https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab?style=flat-square" />
 
 HTML5 canvas drawing framework
@@ -82,64 +82,63 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── JSDoc.md
 ├── script
 │   ├── distro
-│   │   ├── canvasLab-v0.3.78.js    [ 324 kb ]
-│   │   ├── canvasLab.min.js        [ 64 kb ]
+│   │   ├── canvasLab-v0.4.88.js    [ 348 kb ]
+│   │   ├── canvasLab.min.js        [ 72 kb ]
 │   │   └── canvasLab.min.js.map
 │   └── source
-│       ├── ancillary
-│       │   ├── shared
-│       │   │   ├── PropertyBlocks.js
-│       │   │   ├── Utilities.js
-│       │   │   └── Validation.js
-│       │   └── debug.js
-│       └── classes
-│           ├── Data-Structures
-│           │   └── Queue.js
-│           ├── Handlers
-│           │   ├── Animation.js
-│           │   ├── Application.js
-│           │   └── Processing.js
-│           ├── Object
-│           │   ├── Collections
-│           │   │   ├── Circles.js
-│           │   │   ├── Group.js
-│           │   │   ├── Lines.js
-│           │   │   ├── Rectangles.js
-│           │   │   └── Texts.js
-│           │   ├── Circle.js
-│           │   ├── Line.js
-│           │   ├── Rectangle.js
-│           │   └── Text.js
-│           ├── Subject
-│           │   ├── Collections
-│           │   │   ├── OptionsCollection.js
-│           │   │   ├── PointCollection.js
-│           │   │   ├── ShadowCollection.js
-│           │   │   └── StrokeCollection.js
-│           │   ├── Color
-│           │   │   ├── Gradient
-│           │   │   │   ├── Properties
-│           │   │   │   │   └── Stop.js
-│           │   │   │   ├── Conic.js
-│           │   │   │   ├── Linear.js
-│           │   │   │   └── Radial.js
-│           │   │   └── Model
-│           │   │       └── Rgb.js
-│           │   ├── Plans
-│           │   │   └── SacredCircles.js
-│           │   ├── Staging
-│           │   │   ├── Properties
-│           │   │   │   └── Options.js
-│           │   │   ├── Anchor.js
-│           │   │   ├── Angle.js
-│           │   │   ├── Aspect.js
-│           │   │   ├── ControlPoints.js
-│           │   │   ├── Font.js
-│           │   │   └── Point.js
-│           │   ├── Fill.js
-│           │   ├── Shadow.js
-│           │   └── Stroke.js
-│           └── canvasLab.js
+│       ├── classes
+│       │   ├── Data-Structures
+│       │   │   └── Queue.js
+│       │   ├── Handlers
+│       │   │   ├── Animation.js
+│       │   │   └── Application.js
+│       │   ├── Object
+│       │   │   ├── Collections
+│       │   │   │   ├── Circles.js
+│       │   │   │   ├── Group.js
+│       │   │   │   ├── Lines.js
+│       │   │   │   ├── Rectangles.js
+│       │   │   │   └── Texts.js
+│       │   │   ├── Circle.js
+│       │   │   ├── Line.js
+│       │   │   ├── Rectangle.js
+│       │   │   └── Text.js
+│       │   ├── Subject
+│       │   │   ├── Collections
+│       │   │   │   ├── OptionsCollection.js
+│       │   │   │   ├── PointCollection.js
+│       │   │   │   ├── ShadowCollection.js
+│       │   │   │   └── StrokeCollection.js
+│       │   │   ├── Color
+│       │   │   │   ├── Gradient
+│       │   │   │   │   ├── Properties
+│       │   │   │   │   │   └── Stop.js
+│       │   │   │   │   ├── Conic.js
+│       │   │   │   │   ├── Linear.js
+│       │   │   │   │   └── Radial.js
+│       │   │   │   └── Model
+│       │   │   │       └── Rgb.js
+│       │   │   ├── Plans
+│       │   │   │   └── SacredCircles.js
+│       │   │   ├── Staging
+│       │   │   │   ├── Properties
+│       │   │   │   │   └── Options.js
+│       │   │   │   ├── Anchor.js
+│       │   │   │   ├── Angle.js
+│       │   │   │   ├── Aspect.js
+│       │   │   │   ├── ControlPoints.js
+│       │   │   │   ├── Font.js
+│       │   │   │   └── Point.js
+│       │   │   ├── Fill.js
+│       │   │   ├── Shadow.js
+│       │   │   └── Stroke.js
+│       │   └── canvasLab.js
+│       └── components
+│           ├── shared
+│           │   ├── PropertyBlocks.js
+│           │   ├── Utilities.js
+│           │   └── Validation.js
+│           └── debug.js
 ├── LICENSE
 └── README.md
 ```

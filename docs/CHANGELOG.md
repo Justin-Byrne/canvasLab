@@ -1,6 +1,74 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.88] - 2024-07-12
+### Added
+- **devSuite**
+  - `Tool` class, `isCanvasLabCollection ( )` to determine whether the passed value is an 'Object' canvasLab category
+  - `Ui` class
+    - `toggle._collapsibles ( )` to toggle collapsible nav-menu menu items
+    - `_collapseButtonsExcept ( )` to collapse all passed buttons, outside of index passed
+
+- **canvasLab**
+  - `PROPERTY_BLOCKS` module
+    - `combined` ↴
+      - `anchor` mutator & accessor
+      - `area` accessor
+      - `aspect` accessor
+      - `aspectWidth` accessor
+      - `aspectHeight` accessor
+      - `endPoint` accessor
+      - `perimeter` accessor
+  - `UTILITITES` module
+    - `collection` ↴
+      - `draw ( )` draw function
+      - `redraw ( )` redraw function
+      - `drawAnchor ( )` to draw anchor point
+      - `drawOptionsPost ( )` to draw associated options
+      - `push ( )` to push child object(s) into this collection
+      - `setAnchorPoint ( )` to set anchor's point against this object's point location
+      - `setPointOffset ( )` to set offset of child object against this constructor's point
+    - `misc.showCoordinates ( )` to show coordinates of this object
+    - `transition` ↴
+      - `move ( ) ` to move this object
+      - `rotate ( )` to rotate this object
+  - `Aspect` class, `#offset` property and accessor
+
+### Changed
+- **canvasLab**
+  - `ancillary` folder to `components`
+
+### Removed
+- **devSuite**
+  - `Ui` class
+    - `_checkCollapsible ( )`
+    - `_collapseButtons ( )`
+
+- **canvasLab**
+  - `PROPERTY_BLOCKS` module
+  - `UTILITITES` module
+    - `draw.collection.twoDimensional ( )`
+    - `draw.collection.oneDimensional ( )`
+  - `Processing` class
+
+### Refactored
+- **devSuite**
+  - `Template` class
+    - `_initializer.object` to include collections; `Lines`, `Circles`, `Rectangles`, `Texts`, and `Group`
+    - `_getCodeTemplate ( )`, to include collections: `Lines`, `Circles`, `Rectangles`, `Texts`, and `Group`
+  - `Ui` class, `getClass ( )` to include collections: `Lines`, `Circles`, `Rectangles`, `Texts`, and `Group`
+
+- **canvasLab**
+  - `Circle` class
+  - `Circles` class
+  - `Line` class
+  - `Lines` class
+  - `Text` class
+  - `Texts` class
+  - `Rectangle` class
+  - `Rectangles` class
+  - `Group` class
+
 ## [0.3.78] - 2024-07-01
 ### Added
 - **devSuite**
@@ -440,7 +508,8 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.3.78] | 2024-07-01 | CURRENT                                                             | Fixed UTILITIES.draw.axis, and added boolean toggle & clear console feature(s) to lab.       |
+| [0.4.88] | 2024-07-12 | CURRENT                                                             | Added collection classes, & major refactoring of PROPERTY_BLOCKS & UTILITIES.                |
+| [0.3.78] | 2024-07-01 | [62b10b3](https://github.com/Justin-Byrne/canvasLab/commit/62b10b3) | Fixed UTILITIES.draw.axis, and added boolean toggle & clear console feature(s) to lab.       |
 | [0.3.67] | 2024-06-11 | [2a1cc1b](https://github.com/Justin-Byrne/canvasLab/commit/2a1cc1b) | Implemented Queue class, general cleanup & refactoring.                                      |
 | [0.3.59] | 2024-06-03 | [5d1df4a](https://github.com/Justin-Byrne/canvasLab/commit/5d1df4a) | Implemented various lab-station features.                                                    |
 | [0.3.55] | 2024-05-29 | [d9ba544](https://github.com/Justin-Byrne/canvasLab/commit/d9ba544) | Refactored in app (devSuite) documentation.                                                  |

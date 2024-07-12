@@ -141,7 +141,7 @@ class Font
             return this._maxWidth;
         }
 
-    ////    [ OFFSET.(X)(Y) ]   ////////////////////////////
+    ////    [ OFFSET ]   ///////////////////////////////////
 
         /**
          * Get font's offset

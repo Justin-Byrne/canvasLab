@@ -59,23 +59,31 @@ declare PREAMBLE
 
 ### FILES ##########################################
 
-declare FILES
+declare SUBJECTS
 
-# ------------------------------------ #
-# Files to be inserted prior to $FILES #
-# ------------------------------------ #
-declare FILES_HEAD=(
-    "${INPUT_FOLDER}/ancillary/shared/PropertyBlocks.js"
-    "${INPUT_FOLDER}/ancillary/shared/Utilities.js"
-    "${INPUT_FOLDER}/ancillary/shared/Validation.js"
-    "${INPUT_FOLDER}/ancillary/debug.js"
+declare OBJECTS
+
+declare HANDLERS
+
+declare DATA_STRUCTURES
+
+# ------------------------------------------------------- #
+# Files to be inserted prior to SUBJECTS, OBJECTS, ETC... #
+# ------------------------------------------------------- #
+declare COMPONENTS=(
+    "${INPUT_FOLDER}/components/shared/PropertyBlocks.js"
+    "${INPUT_FOLDER}/components/shared/Utilities.js"
+    "${INPUT_FOLDER}/components/shared/Validation.js"
+    "${INPUT_FOLDER}/components/debug.js"
+)
+
+declare CANVASLAB=(
     "${INPUT_FOLDER}/classes/canvasLab.js"
 )
 
-# ------------------------------------ #
-# Specific folders to loop through     #
-# ------------------------------------ #
-declare FOLDERS=(
+### FOLDERS ########################################
+
+declare SUBJECTS_FOLDERS=(
     "${INPUT_FOLDER}/classes/Subject/Color/Model"
     "${INPUT_FOLDER}/classes/Subject/Staging/Properties"
     "${INPUT_FOLDER}/classes/Subject/Staging"
@@ -83,16 +91,20 @@ declare FOLDERS=(
     "${INPUT_FOLDER}/classes/Subject/Color/Gradient"
     "${INPUT_FOLDER}/classes/Subject/Plans"
     "${INPUT_FOLDER}/classes/Subject"
-
     "${INPUT_FOLDER}/classes/Subject/Collections"
+)
 
+declare OBJECTS_FOLDERS=(
     "${INPUT_FOLDER}/classes/Object"
-
     "${INPUT_FOLDER}/classes/Object/Collections"
+)
 
+declare HANDLERS_FOLERS=(
     "${INPUT_FOLDER}/classes/Handlers/Properties"
     "${INPUT_FOLDER}/classes/Handlers"
+)
 
+declare DATA_STRUCTURES_FOLDERS=(
     "${INPUT_FOLDER}/classes/Data-Structures"
 )
 
@@ -226,17 +238,49 @@ function compile_output ()
     compile_header
 
 
-    for FILE in ${FILES_HEAD[@]}        # HEAD
+    echo "\n////    COMPONENTS    //////////////////////////////////////" >> $OUTPUT
+
+    for FILE in ${COMPONENTS[@]}        # COMPONENTS
     do
         insert_file $FILE
     done
 
-    for FILE in ${FILES[@]}             # BODY
+
+    echo "\n////    CANVASLAB    ///////////////////////////////////////" >> $OUTPUT
+
+    for FILE in ${CANVASLAB[@]}        # COMPONENTS
     do
         insert_file $FILE
     done
 
-    for FILE in ${FILES_FOOT[@]}        # FOOT
+
+    echo "\n////    SUBJECTS    ////////////////////////////////////////" >> $OUTPUT
+
+    for FILE in ${SUBJECTS[@]}          # SUBJECTS
+    do
+        insert_file $FILE
+    done
+
+
+    echo "\n////    OBJECTS    /////////////////////////////////////////" >> $OUTPUT
+
+    for FILE in ${OBJECTS[@]}           # OBJECTS
+    do
+        insert_file $FILE
+    done
+
+
+    echo "\n////    HANDLERS    ////////////////////////////////////////" >> $OUTPUT
+
+    for FILE in ${HANDLERS[@]}          # HANDLERS
+    do
+        insert_file $FILE
+    done
+
+
+    echo "\n////    DATA_STRUCTURES    /////////////////////////////////" >> $OUTPUT
+
+    for FILE in ${DATA_STRUCTURES[@]}   # DATA_STRUCTURES
     do
         insert_file $FILE
     done
@@ -283,7 +327,8 @@ function compile_jsdoc ()
     if command -v jsdoc2md
     then
         if $(jsdoc2md ${1} > $2)
-            then echo "\n${PROMPT_B} ${FG_PINK}JSDoc ${FG_WHITE}Complete ${TITLE_NODE}\t\t\t${FG_BLUE}[${2}]${NOCOLOR}\n"
+        then
+            echo "\n${PROMPT_B} ${FG_PINK}JSDoc ${FG_WHITE}Complete ${TITLE_NODE}\t\t\t${FG_BLUE}[${2}]${NOCOLOR}\n"
         else
             NO_ERRORS=false
         fi
@@ -297,7 +342,8 @@ function compile_jsdocs ()
     if command -v jsdoc
     then
         if (jsdoc $1 -d $2 -t $OUTPUT_JSDOCS_TEMPLATE)
-            then echo "\n${PROMPT_B} ${FG_PINK}JSDocs ${FG_WHITE}Complete ${TITLE_NODE}\t\t\t${FG_BLUE}[${2}]${NOCOLOR}\n"
+        then
+            echo "\n${PROMPT_B} ${FG_PINK}JSDocs ${FG_WHITE}Complete ${TITLE_NODE}\t\t\t${FG_BLUE}[${2}]${NOCOLOR}\n"
         else
             NO_ERRORS=false
         fi
@@ -307,6 +353,17 @@ function compile_jsdocs ()
 function compile_md2json ()
 {
     declare DEFAULT_PATH=$(pwd)
+
+
+    declare FILES
+
+    FILES+=(${SUBJECTS[@]})
+
+    FILES+=(${OBJECTS[@]})
+
+    FILES+=(${HANDLERS[@]})
+
+    FILES+=(${DATA_STRUCTURES[@]})
 
 
     function compile_markdown ()
@@ -456,9 +513,44 @@ function search_folder ()
 
 function search_folders ()
 {
-    for FOLDER in ${FOLDERS[@]}
+    ####    SUBJECTS    ####################################
+
+    for FOLDER in ${SUBJECTS_FOLDERS[@]}
     do
-        search_folder $FOLDER
+        for ENTRY in $FOLDER/*
+        do
+            [[ $ENTRY =~ $FILE_REGEX ]] && SUBJECTS+="${ENTRY} "
+        done
+    done
+
+    ####    OBJECTS    #####################################
+
+    for FOLDER in ${OBJECTS_FOLDERS[@]}
+    do
+        for ENTRY in $FOLDER/*
+        do
+            [[ $ENTRY =~ $FILE_REGEX ]] && OBJECTS+="${ENTRY} "
+        done
+    done
+
+    ####    HANDLERS    ####################################
+
+    for FOLDER in ${HANDLERS_FOLERS[@]}
+    do
+        for ENTRY in $FOLDER/*
+        do
+            [[ $ENTRY =~ $FILE_REGEX ]] && HANDLERS+="${ENTRY} "
+        done
+    done
+
+    ####    DATA STRUCTURES    #############################
+
+    for FOLDER in ${DATA_STRUCTURES_FOLDERS[@]}
+    do
+        for ENTRY in $FOLDER/*
+        do
+            [[ $ENTRY =~ $FILE_REGEX ]] && DATA_STRUCTURES+="${ENTRY} "
+        done
     done
 }
 

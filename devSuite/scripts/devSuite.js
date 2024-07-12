@@ -1107,9 +1107,14 @@ class Template
         object:
         {
             Line:       '{ x: 100, y: 50 }, { x: 200, y: 100 }',
+            Lines:      '{ x: 0, y: 0 }',
             Circle:     '{ x: 154, y: 77 }',
+            Circles:    '{ x: 50, y: 10 }',
             Rectangle:  '{ x: 154, y: 77 }',
-            Text:       '{ x: 154, y: 77 }, \'Text\''
+            Rectangles: '{ x: 50, y: 10 }',
+            Text:       '{ x: 154, y: 77 }, \'Text\'',
+            Texts:      '{ x: 50, y: 10 }',
+            Group:      '{ x: 20, y: 0 }',
         },
         subject:
         {
@@ -1226,15 +1231,37 @@ class Template
 
                     let _regex    = new RegExp ( _variable, 'g' );
 
-
                     let _init     = ( PAGE.handler ) ? this._initializer [ PAGE.handler ] [ _class ] : this._initializer [ PAGE.group ] [ _class ];
 
 
-                        _code     = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;
+                    if ( TOOL.isCanvasLabCollection ( _class ) )
+                    {
+                        switch ( _class )
+                        {
+                            case 'Lines':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Line ( { x:  60, y: 50 }, { x: 160, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 240, y: 100 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
 
-                        _code     = _code.replace ( _regex, `${_variable}_${count}` );
+                            case 'Circles':     _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                         break;
 
-                        _code     = this._getSpecialVariables ( _code, count );
+                            case 'Rectangles':  _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Rectangle ( { x:  60, y: 50 } ),\n        new Rectangle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                   break;
+
+                            case 'Texts':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Text ( { x:  60, y: 50 } ),\n        new Text ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n\n    ${_variable} [ 0 ].text = ${_variable} [ 1 ].text = 'Text';\n${_code}`;                                             break;
+
+                            case 'Group':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.lines.push (\n        new Line ( { x:  60, y: 50 }, { x: 120, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 200, y: 100 } )\n    );\n\n     ${_variable}.circles.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.rectangles.push (\n        new Rectangle ( { x:  120, y: 100 } ),\n        new Rectangle ( { x: 200, y: 100 } )\n    );\n\n    ${_variable}.texts.push (\n        new Text ( { x:  60, y: 120 } ),\n        new Text ( { x: 200, y: 50 } )\n    );\n\n    ${_variable}.texts [ 0 ].text = ${_variable}.texts [ 1 ].text = 'Text';\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
+                        }
+
+
+                        _code = _code.replace ( _regex, `${_variable}_${count}` );
+
+                        _code = this._getSpecialVariables ( _code, count );
+                    }
+                    else
+                    {
+                        _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;
+
+                        _code = _code.replace ( _regex, `${_variable}_${count}` );
+
+                        _code = this._getSpecialVariables ( _code, count );
+                    }
 
 
                     cardObject [ _entry ] = _code;
@@ -1562,6 +1589,11 @@ class Tool
             return [ 'Line', 'Lines', 'Circle', 'Circles', 'Rectangle', 'Rectangles', 'Text', 'Texts', 'Group' ].includes ( value );
         }
 
+        isCanvasLabCollection ( value )
+        {
+            return [ 'Lines', 'Circles', 'Rectangles', 'Texts', 'Group' ].includes ( value );
+        }
+
         /**
          * Determine whether the passed element is active
          * @public
@@ -1766,6 +1798,27 @@ class Ui
         },
 
         /**
+         * Toggles collapsible nav-menu menu items
+         * @private
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _collapsibles ( elements )
+        {
+            for ( let _i = 0; _i < elements.length; _i++ )
+
+                elements [ _i ].addEventListener ( 'click', ( element ) =>
+                    {
+                        let _element = element.srcElement;
+
+
+                        if ( UI._isButtonOpen ( _element ) )
+
+                            UI._collapseButtonsExcept ( elements, _i );
+                    } );
+        },
+
+        /**
          * Sets markdown content for the off canvas documentation element
          * @private
          * @function
@@ -1951,14 +2004,14 @@ class Ui
         },
 
         /**
-         * Toggles the card button associated with the passed 'event' param
+         * Toggles the card button associated with the passed 'element' param
          * @public
          * @function
-         * @param           {HTMLEvent} event                   HTML DOM event
+         * @param           {HTMLElement} element               HTML DOM Element
          */
-        cardButton ( event )
+        cardButton ( element )
         {
-            let _element  = event.srcElement;
+            let _element  = element.srcElement;
 
             let _cardPlus = _element.classList.contains ( 'plus' );
 
@@ -1998,7 +2051,7 @@ class Ui
                 }
 
 
-            event.stopPropagation ( );
+            element.stopPropagation ( );
         },
 
         /**
@@ -2401,12 +2454,14 @@ class Ui
          */
         getClass ( code )
         {
-            let _class  = code.match ( /_(\w+)/ ) [ 1 ];
+            let _class   = code.match ( /_(\w+)/ ) [ 1 ];
 
-            let _regex  = new RegExp ( '_(line|circle|rectangle|text)', 'g' );
+            let _regex   = new RegExp ( '_(line|lines|circle|circles|rectangle|rectangles|text|texts)', 'g' );
+
+            let _objects = [ 'line', 'lines', 'rectangle', 'rectangles', 'circle', 'circles', 'text', 'texts' ]
 
 
-            let _result = ( ! [ 'line', 'rectangle', 'circle', 'text' ].includes ( _class ) )
+            let _result = ( ! _objects.includes ( _class ) )
 
                               ? ( _regex.test ( code ) )
 
@@ -2510,13 +2565,13 @@ class Ui
          */
         _setCards ( element )
         {
-            let _link = element.srcElement;
+            let _element = element.srcElement;
 
 
             element.preventDefault ( );
 
 
-            PAGE = new Page ( _link );
+            PAGE = new Page ( _element );
 
 
             if ( PAGE.handler )
@@ -2583,6 +2638,13 @@ class Ui
                     for ( let _link of _links )
 
                         _link.addEventListener ( 'click', ( element ) => this._setCards ( element ) );
+
+                case 'navButtons-collapse':
+
+                    let _mainButtons = document.querySelectorAll ( '#nav-links > li > button, #doc-links > li > button' );
+
+
+                    this.toggle._collapsibles ( _mainButtons );
 
                 case 'copy':
 
@@ -2684,36 +2746,35 @@ class Ui
         }
 
         /**
-         * Checks whether ancillary sub animation buttons are collapsible
+         * Checks whether collapsible button is open
          * @private
          * @function
-         * @param           {number} index                      Index to check
+         * @param           {HTMLElement} button                Element to validate
          */
-        _checkCollapsible ( buttons, index )
+        _isButtonOpen ( button )
         {
-            if ( ! buttons [ index ].classList.contains ( 'collapsed' ) )
-
-                buttons [ index ].click ( );
+            return ( button.getAttribute ( 'data-button-open' ) === 'true' );
         }
 
         /**
-         * Collapses uncollapsed ancillary buttons, outside of the present button
+         * Collapses all passed buttons, outside of index passed
          * @private
          * @function
-         * @param           {string} present                    data-bs-target attribute
+         * @param           {Array}  buttons                    Array of collapsible buttons
+         * @param           {number} index                      Index of button to leave open
          */
-        _collapseButtons ( buttons, present )
+        _collapseButtonsExcept ( buttons, index )
         {
-            for ( let _button of buttons )
+            for ( let _i = 0; _i < buttons.length; _i++ )
             {
-                if ( _button.getAttribute ( 'data-bs-target' ) === present )
+                if ( _i === index )
 
                     continue;
 
 
-                if ( ! _button.classList.contains ( 'collapsed' ) )
+                if ( this._isButtonOpen ( buttons [ _i ] ) )
 
-                    _button.click ( );
+                    buttons [ _i ].click ( );
             }
         }
 
@@ -3210,7 +3271,91 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _line.draw ( );
+                        _lines.draw ( );
+                    }
+                },
+                // shadow
+                {
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.shadow = true;
+
+                        _lines.draw ( );
+                    }
+                },
+                // border
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.border = true;
+
+                        _lines.draw ( );
+                    }
+                },
+                // axis
+                {
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.axis = true;
+
+                        _lines.draw ( );
+                    }
+                },
+                // anchor
+                // {
+                //     title:   'anchor',
+                //     text:    'blah... blah... blah...',
+                //     children: undefined,
+                //     code: ( ) =>
+                //     {
+                //         _lines.options.anchor   = true;
+
+                //         _lines.draw ( );
+                //     }
+                // },
+                // points
+                {
+                    title:   'points',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.points = true;
+
+                        _lines.draw ( );
+                    }
+                },
+                // coordinates
+                {
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.coordinates = true;
+
+                        _lines.draw ( );
+                    }
+                },
+                // controlPoints
+                {
+                    title:   'controlPoints',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _lines.options.controlPoints = true;
+
+                        _lines.draw ( );
                     }
                 },
             ],
@@ -3546,7 +3691,67 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _circle.draw ( );
+                        _circles.draw ( );
+                    }
+                },
+                // shadow
+                {
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _circles.options.shadow = true;
+
+                        _circles.draw ( );
+                    }
+                },
+                // border
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _circles.options.border = true;
+
+                        _circles.draw ( );
+                    }
+                },
+                // axis
+                {
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _circles.options.axis = true;
+
+                        _circles.draw ( );
+                    }
+                },
+                // anchor
+                // {
+                //     title:   'anchor',
+                //     text:    'blah... blah... blah...',
+                //     children: undefined,
+                //     code: ( ) =>
+                //     {
+                //         _circles.options.anchor   = true;
+
+                //         _circles.draw ( );
+                //     }
+                // },
+                // coordinates
+                {
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _circles.options.coordinates = true;
+
+                        _circles.draw ( );
                     }
                 },
             ],
@@ -3794,6 +3999,18 @@ class Ui
                         _rectangle.rotate ( 45 );
                     }
                 },
+                // border
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.options.border = true;
+
+                        _rectangle.draw ( );
+                    }
+                },
                 // axis
                 {
                     title:   'axis',
@@ -3806,14 +4023,14 @@ class Ui
                         _rectangle.draw ( );
                     }
                 },
-                // border
+                // coordinates
                 {
-                    title:   'border',
+                    title:   'coordinates',
                     text:    'blah... blah... blah...',
                     children: [ 'options' ],
                     code: ( ) =>
                     {
-                        _rectangle.options.border = true;
+                        _rectangle.options.coordinates = true;
 
                         _rectangle.draw ( );
                     }
@@ -3828,7 +4045,67 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _rectangle.draw ( );
+                        _rectangles.draw ( );
+                    }
+                },
+                // shadow
+                {
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _rectangles.options.shadow = true;
+
+                        _rectangles.draw ( );
+                    }
+                },
+                // border
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _rectangles.options.border = true;
+
+                        _rectangles.draw ( );
+                    }
+                },
+                // axis
+                {
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _rectangles.options.axis = true;
+
+                        _rectangles.draw ( );
+                    }
+                },
+                // anchor
+                // {
+                //     title:   'anchor',
+                //     text:    'blah... blah... blah...',
+                //     children: undefined,
+                //     code: ( ) =>
+                //     {
+                //         _rectangles.options.anchor   = true;
+
+                //         _rectangles.draw ( );
+                //     }
+                // },
+                // coordinates
+                {
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _rectangles.options.coordinates = true;
+
+                        _rectangles.draw ( );
                     }
                 },
             ],
@@ -3973,19 +4250,21 @@ class Ui
                     }
                 },
                 // stroke width
-                // {
-                //     title:   'stroke width',
-                //     text:    'blah... blah... blah...',
-                //     children: [ 'stroke' ],
-                //     code: ( ) =>
-                //     {
-                //         _text.stroke.width = 5;
+                {
+                    title:   'stroke width',
+                    text:    'blah... blah... blah...',
+                    children: [ 'stroke' ],
+                    code: ( ) =>
+                    {
+                        _text.stroke.width     = 2;
 
-                //         _text.stroke.color = new Rgb ( 0,  150,  200 );     // [ Optional ]
+                        _text.stroke.color     = new Rgb ( 0,  150,  200 ); // [ Optional ]
 
-                //         _text.draw ( );
-                //     }
-                // },
+                        _text.fill.color.alpha = 0; // [ Optional ]
+
+                        _text.draw ( );
+                    }
+                },
                 // fill color
                 {
                     title:   'fill color',
@@ -4077,39 +4356,51 @@ class Ui
                     }
                 },
                 // rotate
-                // {
-                //     title:   'rotate',
-                //     text:    'blah... blah... blah...',
-                //     children: undefined,
-                //     code: ( ) =>
-                //     {
-                //         _text.rotate ( 45 );
-                //     }
-                // },
-                // axis
-                // {
-                //     title:   'axis',
-                //     text:    'blah... blah... blah...',
-                //     children: [ 'options' ],
-                //     code: ( ) =>
-                //     {
-                //         _text.options.axis = true;
-
-                //         _text.draw ( );
-                //     }
-                // },
+                {
+                    title:   'rotate',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _text.rotate ( 45 );
+                    }
+                },
                 // border
-                // {
-                //     title:   'border',
-                //     text:    'blah... blah... blah...',
-                //     children: [ 'options' ],
-                //     code: ( ) =>
-                //     {
-                //         _text.options.border = true;
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
+                    code: ( ) =>
+                    {
+                        _text.options.border = true;
 
-                //         _text.draw ( );
-                //     }
-                // },
+                        _text.draw ( );
+                    }
+                },
+                // axis
+                {
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
+                    code: ( ) =>
+                    {
+                        _text.options.axis = true;
+
+                        _text.draw ( );
+                    }
+                },
+                // coordinates
+                {
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options' ],
+                    code: ( ) =>
+                    {
+                        _text.options.coordinates = true;
+
+                        _text.draw ( );
+                    }
+                },
             ],
             texts:
             [
@@ -4120,10 +4411,83 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _text.draw ( );
+                        _texts.draw ( );
+                    }
+                },
+                // shadow
+                {
+                    title:   'shadow',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _texts.options.shadow = true;
+
+                        _texts.draw ( );
+                    }
+                },
+                // border
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _texts.options.border = true;
+
+                        _texts.draw ( );
+                    }
+                },
+                // axis
+                {
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _texts.options.axis = true;
+
+                        _texts.draw ( );
+                    }
+                },
+                // anchor
+                // {
+                //     title:   'anchor',
+                //     text:    'blah... blah... blah...',
+                //     children: undefined,
+                //     code: ( ) =>
+                //     {
+                //         _texts.options.anchor   = true;
+
+                //         _texts.draw ( );
+                //     }
+                // },
+                // coordinates
+                {
+                    title:   'coordinates',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _texts.options.coordinates = true;
+
+                        _texts.draw ( );
                     }
                 },
             ],
+            group:
+            [
+                // draw
+                {
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _group.draw ( );
+                    }
+                },
+            ]
         },
         subject:
         {
@@ -4755,6 +5119,19 @@ class Ui
                     }
                 },
             ],
+            // plans:
+            // [
+            //     // draw : plans
+            //     {
+            //         title:   'draw',
+            //         text:    'blah... blah... blah...',
+            //         children: [ 'plans', 'lines', 'circles', 'rectangles', 'texts' ],
+            //         code: ( ) =>
+            //         {
+            //             _group.draw ( );
+            //         }
+            //     },
+            // ],
             point:
             [
                 // draw : line
@@ -4809,8 +5186,6 @@ class Ui
                         _text.draw ( );
                     }
                 },
-
-
                 // shadow offset : line
                 {
                     title:   'shadow offset',
@@ -4875,7 +5250,6 @@ class Ui
                         _text.draw ( );
                     }
                 },
-
             ],
             radial:
             [
@@ -6071,34 +6445,34 @@ class Ui
                     title: 'Line',
                     group: 'Object'
                 },
-                // {
-                //     title: 'Lines',
-                //     group: 'Object'
-                // },
+                {
+                    title: 'Lines',
+                    group: 'Object'
+                },
                 {
                     title: 'Circle',
                     group: 'Object'
                 },
-                // {
-                //     title: 'Circles',
-                //     group: 'Object'
-                // },
+                {
+                    title: 'Circles',
+                    group: 'Object'
+                },
                 {
                     title: 'Rectangle',
                     group: 'Object'
                 },
-                // {
-                //     title: 'Rectangles',
-                //     group: 'Object'
-                // },
+                {
+                    title: 'Rectangles',
+                    group: 'Object'
+                },
                 {
                     title: 'Text',
                     group: 'Object'
                 },
-                // {
-                //     title: 'Texts',
-                //     group: 'Object'
-                // },
+                {
+                    title: 'Texts',
+                    group: 'Object'
+                },
                 {
                     title: 'Group',
                     group: 'Object'
@@ -6191,10 +6565,6 @@ class Ui
                             title: 'Point',
                             group: 'Subject'
                         },
-                        // {
-                        //     title: 'Stage',
-                        //     group: 'Subject'
-                        // }
                     ]
                 },
                 {
@@ -6292,7 +6662,7 @@ class Ui
 
             ////    POPULATION    //////////////////////////
 
-            let _group      = new Group ( _center );
+            let _group      = new Group;
 
                 _group.plan = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
 
@@ -6315,7 +6685,7 @@ class Ui
 
                     ? eval ( `window.${_class.toUpperCase ( )} = new ${_class};` )
 
-                    : console.log ( `[ ERROR ]: window.${_class.toUpperCase ( )} already exists !` );
+                    : console.error ( `[ ERROR ]: window.${_class.toUpperCase ( )} already exists !` );
         }
 
         /**

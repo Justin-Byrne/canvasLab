@@ -150,6 +150,8 @@ nav {
           animation: slidedown 300ms;
           display: block;
           opacity: 1; }
+        nav .nav-wrapper .nav-menu ul#objects-collapse li:nth-child(2n) {
+          padding-left: 1.25rem !important; }
       nav .nav-wrapper .nav-menu button {
         color: white;
         text-shadow: 0px 0px 1px black;

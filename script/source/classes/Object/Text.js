@@ -17,7 +17,7 @@ class Text extends Font
 
     _canvas = undefined;
 
-    #_options = new Options;
+    #options = new Options;
 
     /**
      * Create a Text object
@@ -52,9 +52,15 @@ class Text extends Font
             this._isPoint  = VALIDATION.isPoint;
 
             this._clearCanvas     = UTILITIES.misc.clearCanvas;
+            this._drawAnchor      = UTILITIES.draw.anchor;
             this._rotatePoint     = UTILITIES.misc.rotatePoint;
             this._setShadow       = UTILITIES.set.shadow;
+
             this.fillColorCycle   = UTILITIES.color.cycle.fill;
+            this.move             = UTILITIES.transition.move;
+            this.redraw           = UTILITIES.draw.redraw;
+            this.rotate           = UTILITIES.transition.rotate;
+            this.showCoordinates  = UTILITIES.misc.showCoordinates;
             this.strokeColorCycle = UTILITIES.color.cycle.stroke;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
@@ -80,7 +86,7 @@ class Text extends Font
 
         ////    OBJECT INITIALIZER(S)   ////////////////////
 
-            this._stroke = new Stroke ( stroke.color, stroke.type,  stroke.segments, stroke.width );
+            this._stroke = new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width );
 
             this._fill   = new Fill   ( fill.color,   fill.type );
 
@@ -90,7 +96,7 @@ class Text extends Font
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#_options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+            this.#options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
     }
 
     ////    [ POINT ]   ////////////////////////////////////
@@ -100,7 +106,7 @@ class Text extends Font
          * @public
          * @function
          * @param           {Point} value                               X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link Property_Blocks.discrete.point}
          */
         set point ( value ) { }
 
@@ -109,7 +115,7 @@ class Text extends Font
          * @public
          * @function
          * @return          {Point}                                     X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link Property_Blocks.discrete.point}
          */
         get point ( ) { }
 
@@ -119,7 +125,7 @@ class Text extends Font
          * @public
          * @function
          * @param           {number} value                              X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link Property_Blocks.discrete.pointX}
          */
         set x ( value ) { }
 
@@ -128,7 +134,7 @@ class Text extends Font
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link Property_Blocks.discrete.pointX}
          */
         get x ( ) { }
 
@@ -138,7 +144,7 @@ class Text extends Font
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link Property_Blocks.discrete.pointY}
          */
         set y ( value ) { }
 
@@ -147,7 +153,7 @@ class Text extends Font
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link Property_Blocks.discrete.pointY}
          */
         get y ( ) { }
 
@@ -221,7 +227,7 @@ class Text extends Font
          * @public
          * @function
          * @param           {string} value                              Canvas id
-         * @see             {@link discrete.canvas}
+         * @see             {@link Property_Blocks.discrete.canvas}
          */
         set canvas ( value ) { }
 
@@ -230,7 +236,7 @@ class Text extends Font
          * @readOnly
          * @function
          * @return          {string}                                    Canvas id
-         * @see             {@link discrete.canvas}
+         * @see             {@link Property_Blocks.discrete.canvas}
          */
         get canvas ( ) { }
 
@@ -244,7 +250,7 @@ class Text extends Font
          */
         get options ( )
         {
-            return this.#_options;
+            return this.#options;
         }
 
     ////    ( PRIVATE ) ////////////////////////////////////
@@ -254,16 +260,20 @@ class Text extends Font
          * @protected
          * @function
          */
-        #_drawOptions ( )
+        _drawOptions ( )
         {
-            if ( this.#_options.border ) this.drawBorder ( );
+            if ( this.#options.border      ) this._drawBorder      ( );
 
-            if ( this.#_options.axis   ) this.drawAxis   ( );
+            if ( this.#options.axis        ) this._drawAxis        ( );
+
+            if ( this.#options.anchor      ) this._drawAnchor      ( );
+
+            if ( this.#options.coordinates ) this.showCoordinates  ( );
         }
 
     ////    * SUPER *   ////////////////////////////////////
 
-        ////    [ type ]    ////////
+        ////    [ type ]    ////////////////////
 
             /**
              * Set font's type
@@ -281,7 +291,7 @@ class Text extends Font
              */
             get type ( )       { return super.type;  }
 
-        ////    [ size ]    ////////
+        ////    [ size ]    ////////////////////
 
             /**
              * Set font's size
@@ -299,7 +309,7 @@ class Text extends Font
              */
             get size ( )       { return super.size;  }
 
-        ////    [ weight ]  ////////
+        ////    [ weight ]    //////////////////
 
             /**
              * Set font's weight
@@ -317,7 +327,7 @@ class Text extends Font
              */
             get weight ( )       { return super.weight;  }
 
-        ////    [ maxWidth ]    ////
+        ////    [ maxWidth ]    ////////////////
 
             /**
              * Set font's max width
@@ -346,14 +356,14 @@ class Text extends Font
              */
             get maxWidth ( ) { return super.maxWidth; }
 
-        ////    [ offset ]  ////////
+        ////    [ offset ]    //////////////////
 
             /**
              * Set offset
              * @public
              * @function
              * @param           {Point} value                               Shadow offset
-             * @see             {@link discrete.offset}
+             * @see             {@link Property_Blocks.discrete.offset}
              */
             set offset ( value ) { }
 
@@ -362,11 +372,11 @@ class Text extends Font
              * @readOnly
              * @function
              * @return          {Point}                                     Shadow offset
-             * @see             {@link discrete.offset}
+             * @see             {@link Property_Blocks.discrete.offset}
              */
             get offset ( ) { }
 
-        ////    [ font ]    ////////
+        ////    [ font ]    ////////////////////
 
             /**
              * Get font
@@ -442,28 +452,12 @@ class Text extends Font
         _setShadow   ( ) { }
 
         /**
-         * Draws border around this object
-         * @public
+         * Draws anchor point
+         * @private
          * @function
-         * @param           {number} [offset=10]                        Offset of border's perimeter
+         * @see             {@link Utilities.draw.anchor}
          */
-        drawBorder ( offset = 10 )
-        {
-            let _red    = new Rgb ( 245, 80, 50, 1 );
-
-            let _aspect = new Aspect ( this._canvas.measureText ( this.text ).width, super.size );
-
-            let _point  = new Point  ( this.x - ( aspect.width / 2 ) - offset, this.y - ( aspect.height / 2 ) - ( offset * 2 ) );
-
-
-            let _border = new Rectangle ( _point, aspect.width + ( offset * 2 ), aspect.height + ( offset * 2 ),    /* Point, Aspect */
-                /* Stroke */            { color: _red,      type: 'solid', segments: undefined,  width: 1 },
-                /* Fill   */            { color: undefined, type: 'solid' },
-                /* Shadow */              undefined,
-                /* Canvas */              this.canvas );
-
-                _border.draw ( );
-        }
+        _drawAnchor ( ) { }
 
         /**
          * Draws axis through center of this object
@@ -471,26 +465,38 @@ class Text extends Font
          * @function
          * @param           {number} [offset=10]                        Offset of axis's edges
          */
-        drawAxis ( offset = 10 )
+        _drawAxis ( offset = 10 )
         {
             let _red        = new Rgb ( 245, 80, 50, 1 );
 
-            let _aspect     = new Aspect ( this._canvas.measureText ( this.text ).width, super.size );
-
-            let _xAxisStart = new Point  ( this.x - ( aspect.width / 2 ) - ( offset * 2 ), this.y - ( aspect.height / 4 ) );
-            let _xAxisEnd   = new Point  ( this.x + ( aspect.width / 2 ) + ( offset * 2 ), this.y - ( aspect.height / 4 ) );
-
-            let _yAxisStart = new Point  ( aspect.width, this.y - ( aspect.height     ) - offset );
-            let _yAxisEnd   = new Point  ( aspect.width, this.y + ( aspect.height / 2 ) + offset );
+            let _size       = super.size;
 
 
-            let _xAxis = new Line ( _xAxisStart, _xAxisEnd,     /* Point */
+            let _width      = this._canvas.measureText ( this.text ).width;
+
+            let _height     = _size - ( offset / 2 );
+
+
+            let _aspect     = new Aspect ( _width + offset, _height );
+
+
+            let _xAxisStart = new Point ( this.x - ( _aspect.width / 2 ) - ( offset * 2 ), this.y - ( _aspect.height / 2.5 ) );
+
+            let _xAxisEnd   = new Point ( this.x + ( _aspect.width / 2 ) + ( offset * 2 ), this.y - ( _aspect.height / 2.5 ) );
+
+
+            let _yAxisStart = new Point ( this.x, this.y - _aspect.height - offset );
+
+            let _yAxisEnd   = new Point ( this.x, this.y + _aspect.height - ( _size / 2 ) );
+
+
+            let _xAxis = new Line ( _xAxisStart, _xAxisEnd,     /* Point ( Start, End ) */
                 /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
                 /* Shadow     */      undefined,
                 /* LineCap    */      undefined,
                 /* Canvas     */      this.canvas );
 
-            let _yAxis = new Line ( _yAxisStart, _yAxisEnd,     /* Point */
+            let _yAxis = new Line ( _yAxisStart, _yAxisEnd,     /* Point ( Start, End ) */
                 /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
                 /* Shadow     */      undefined,
                 /* LineCap    */      undefined,
@@ -500,6 +506,48 @@ class Text extends Font
                 _xAxis.draw ( );
 
                 _yAxis.draw ( );
+        }
+
+        /**
+         * Draws border around this object
+         * @public
+         * @function
+         * @param           {number} [offset=10]                        Offset of border's perimeter
+         */
+        _drawBorder ( offset = 10 )
+        {
+            let _red    = new Rgb ( 245, 80, 50, 1 );
+
+            let _clear  = new Rgb ( 0, 0, 0, 0 );
+
+
+            let _size   = super.size;
+
+
+            let _width  = this._canvas.measureText ( this.text ).width;
+
+            let _height = _size - ( offset / 2 );
+
+
+            let _aspect = new Aspect ( _width + offset, _height );
+
+
+            let _scaler = ( _size > 60 ) ? 3 : ( _size > 30 ) ? 3.5 : 4.5;
+
+            let _y      = this.y  - ( _height / _scaler ) - ( offset / 2 );
+
+
+            let _point  = new Point  ( this.x, _y );
+
+
+            let _border = new Rectangle ( _point, _aspect,  /* Point, Aspect */
+                /* Stroke */            { color: _red,   type: 'solid', segments: undefined,  width: 1 },
+                /* Fill   */            { color: _clear, type: 'solid' },
+                /* Shadow */              undefined,
+                /* Canvas */              this.canvas );
+
+
+                _border.draw ( );
         }
 
         /**
@@ -522,22 +570,9 @@ class Text extends Font
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [draw=false]                      Draw post movement
          * @param           {boolean} [clear=false]                     Clear canvas during each movement
+         * @see             {@link Utilities.transition.move}
          */
-        move ( degree, distance, draw = false, clear = false )
-        {
-            let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
-
-
-                [ this.x, this.y ] = [ _point.x, _point.y ];
-
-
-            this._clearCanvas ( clear );
-
-
-            if ( draw )
-
-                this.draw ( );
-        }
+        move ( ) { }
 
         /**
          * Rotate this object
@@ -546,54 +581,19 @@ class Text extends Font
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
+         * @see             {@link Utilities.transition.rotate}
          */
-        rotate ( degree, anchor = 'center', clear = true )
-        {
-            if ( this._isDegree ( degree ) )
-            {
-                let _point = new Point;
+        rotate ( ) { }
 
-
-                let _width  = this._canvas.measureText ( this.text ).width / 2;
-
-                let _height = this.size / 2;
-
-
-                switch ( anchor )
-                {
-                    case 'topLeft':      [ _point.x, _point.y ] = [ _point.x - _width, _point.y - _height ];  break;
-
-                    case 'topRight':     [ _point.x, _point.y ] = [ _point.x + _width, _point.y - _height ];  break;
-
-                    case 'bottomRight':  [ _point.x, _point.y ] = [ _point.x + _width, _point.y + _height ];  break;
-
-                    case 'bottomLeft':   [ _point.x, _point.y ] = [ _point.x - _width, _point.y + _height ];  break;
-
-                    case 'center':       [ _point.x, _point.y ] = [ _point.x,          _point.y - _height ];  break;
-
-                    default:
-
-                        console.warn ( `"${anchor}" is not a valid 'anchor' variable !` );
-                }
-
-
-                this._canvas.save      ( );
-
-                this._canvas.translate (   _point.x,   _point.y );
-
-                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
-
-                this._canvas.translate ( - _point.x, - _point.y );
-
-
-                this._clearCanvas ( clear );
-
-                this.draw    ( );
-
-
-                this._canvas.restore ( );
-            }
-        }
+        /**
+         * Shows coordinates of this object
+         * @public
+         * @function
+         * @param           {number} [offset=10]                        Offset of coordinates y origin
+         * @param           {number} [fontSize=16]                      Coordinates font size
+         * @see             {@link Utilities.misc.showCoordinates}
+         */
+        showCoordinates ( ) { }
 
         /**
          * Cycle colors for stroke
@@ -622,7 +622,7 @@ class Text extends Font
 
             if ( this._canvas instanceof CanvasRenderingContext2D )
             {
-                if ( this.#_options.shadow ) this._setShadow ( );                                   // Set: shadow
+                if ( this.#options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
                 [ this.x, this.y ] = [  ( this.x + this.offset.x ), ( this.y + this.offset.y )  ];  // Incorporate offset from super class
@@ -639,19 +639,38 @@ class Text extends Font
 
                 if ( this.stroke.width > 0 )
                 {
+                    let _width = this._canvas.lineWidth;
+
+                    this._canvas.lineWidth = this.stroke.width;
+
+
                     this._canvas.strokeStyle = this.stroke.color.toCss ( );
 
                     this._canvas.strokeText ( this.text, this.x, this.y, this.maxWidth );
+
+
+                    this._canvas.lineWidth = _width;
                 }
 
 
-                if ( this.#_options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
+                if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
 
 
-                this.#_drawOptions ( );
+                this._drawOptions ( );
             }
             else
 
                 console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
         }
+
+        /**
+         * Redraw this object
+         * @public
+         * @function
+         * @param           {string}  canvas                            Canvas Id
+         * @param           {Point}   point                             Point of new location
+         * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link Utilities.draw.redraw}
+         */
+        redraw ( ) { }
 }
