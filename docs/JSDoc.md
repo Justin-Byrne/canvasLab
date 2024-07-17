@@ -3602,7 +3602,6 @@ Redraw this object
     * [.canvas(value)](#Text+canvas)
     * [.canvas()](#Text+canvas) ⇒ <code>string</code>
     * [.options()](#Text+options) ⇒ [<code>Options</code>](#Options)
-    * [._drawOptions()](#Text+_drawOptions)
     * [.type(value)](#Text+type)
     * [.type()](#Text+type) ⇒ <code>string</code>
     * [.size(value)](#Text+size)
@@ -3614,8 +3613,6 @@ Redraw this object
     * [.offset(value)](#Text+offset)
     * [.offset()](#Text+offset) ⇒ [<code>Point</code>](#Point)
     * [.font()](#Text+font) ⇒ <code>string</code>
-    * [._drawAxis([offset])](#Text+_drawAxis)
-    * [._drawBorder([offset])](#Text+_drawBorder)
     * [.fillColorCycle(progress, start, end, [max])](#Text+fillColorCycle)
     * [.move(degree, distance, [draw], [clear])](#Text+move)
     * [.rotate(degree, [anchor], [clear])](#Text+rotate)
@@ -3784,13 +3781,6 @@ Get options properties
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: [<code>Options</code>](#Options) - Options properties  
 **Access**: public  
-<a name="Text+_drawOptions"></a>
-
-### text.\_drawOptions()
-Draws associated options
-
-**Kind**: instance method of [<code>Text</code>](#Text)  
-**Access**: protected  
 <a name="Text+type"></a>
 
 ### text.type(value)
@@ -3901,30 +3891,6 @@ Get font
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: <code>string</code> - CSS style font property syntax  
 **Access**: public  
-<a name="Text+_drawAxis"></a>
-
-### text.\_drawAxis([offset])
-Draws axis through center of this object
-
-**Kind**: instance method of [<code>Text</code>](#Text)  
-**Access**: public  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [offset] | <code>number</code> | <code>10</code> | Offset of axis's edges |
-
-<a name="Text+_drawBorder"></a>
-
-### text.\_drawBorder([offset])
-Draws border around this object
-
-**Kind**: instance method of [<code>Text</code>](#Text)  
-**Access**: public  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [offset] | <code>number</code> | <code>10</code> | Offset of border's perimeter |
-
 <a name="Text+fillColorCycle"></a>
 
 ### text.fillColorCycle(progress, start, end, [max])
@@ -4061,7 +4027,6 @@ Redraw this object
     * [.height()](#Circles+height) ⇒ <code>number</code>
     * [.anchor(value)](#Circles+anchor)
     * [.anchor()](#Circles+anchor) ⇒ [<code>Anchor</code>](#Anchor)
-    * [._setPointOffset(Object)](#Circles+_setPointOffset)
     * [.area()](#Circles+area) ⇒ <code>number</code>
     * [.center()](#Circles+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Circles+endPoint) ⇒ [<code>Point</code>](#Point)
@@ -4236,19 +4201,6 @@ Get anchor
 **Returns**: [<code>Anchor</code>](#Anchor) - Anchor properties  
 **Access**: public  
 **See**: [PROPERTY_BLOCKS.combined.anchor](PROPERTY_BLOCKS.combined.anchor)  
-<a name="Circles+_setPointOffset"></a>
-
-### circles.\_setPointOffset(Object)
-Sets offset of child object against this constructor's point
-
-**Kind**: instance method of [<code>Circles</code>](#Circles)  
-**Access**: public  
-**See**: [UTILITIES.collection.setAnchorPoint;](UTILITIES.collection.setAnchorPoint;)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| Object | <code>Object</code> | CanvasLab Object |
-
 <a name="Circles+area"></a>
 
 ### circles.area() ⇒ <code>number</code>
@@ -4868,7 +4820,6 @@ Redraw this object
     * [.height()](#Rectangles+height) ⇒ <code>number</code>
     * [.anchor(value)](#Rectangles+anchor)
     * [.anchor()](#Rectangles+anchor) ⇒ [<code>Anchor</code>](#Anchor)
-    * [._setPointOffset(Object)](#Rectangles+_setPointOffset)
     * [.area()](#Rectangles+area) ⇒ <code>number</code>
     * [.center()](#Rectangles+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Rectangles+endPoint) ⇒ [<code>Point</code>](#Point)
@@ -5043,19 +4994,6 @@ Get anchor
 **Returns**: [<code>Anchor</code>](#Anchor) - Anchor properties  
 **Access**: public  
 **See**: [PROPERTY_BLOCKS.combined.anchor](PROPERTY_BLOCKS.combined.anchor)  
-<a name="Rectangles+_setPointOffset"></a>
-
-### rectangles.\_setPointOffset(Object)
-Sets offset of child object against this constructor's point
-
-**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
-**Access**: public  
-**See**: [UTILITIES.collection.setAnchorPoint;](UTILITIES.collection.setAnchorPoint;)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| Object | <code>Object</code> | CanvasLab Object |
-
 <a name="Rectangles+area"></a>
 
 ### rectangles.area() ⇒ <code>number</code>
@@ -5160,7 +5098,6 @@ Redraw this object
     * [.height()](#Texts+height) ⇒ <code>number</code>
     * [.anchor(value)](#Texts+anchor)
     * [.anchor()](#Texts+anchor) ⇒ [<code>Anchor</code>](#Anchor)
-    * [._setPointOffset(Object)](#Texts+_setPointOffset)
     * [.area()](#Texts+area) ⇒ <code>number</code>
     * [.center()](#Texts+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Texts+endPoint) ⇒ [<code>Point</code>](#Point)
@@ -5329,19 +5266,6 @@ Get anchor
 **Returns**: [<code>Anchor</code>](#Anchor) - Anchor properties  
 **Access**: public  
 **See**: [PROPERTY_BLOCKS.combined.anchor](PROPERTY_BLOCKS.combined.anchor)  
-<a name="Texts+_setPointOffset"></a>
-
-### texts.\_setPointOffset(Object)
-Sets offset of child object against this constructor's point
-
-**Kind**: instance method of [<code>Texts</code>](#Texts)  
-**Access**: public  
-**See**: [UTILITIES.collection.setAnchorPoint;](UTILITIES.collection.setAnchorPoint;)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| Object | <code>Object</code> | CanvasLab Object |
-
 <a name="Texts+area"></a>
 
 ### texts.area() ⇒ <code>number</code>
@@ -6194,7 +6118,6 @@ Shared validation functions
     * [.isStop(value)](#VALIDATION.isStop) ⇒ <code>boolean</code>
     * [.isStrokeType(value)](#VALIDATION.isStrokeType) ⇒ <code>boolean</code>
     * [.isWidth(value)](#VALIDATION.isWidth) ⇒ <code>boolean</code>
-    * [.Group#_isPlan(value)](#VALIDATION.Group+_isPlan) ⇒ <code>boolean</code>
 
 <a name="VALIDATION.is256"></a>
 
@@ -6507,20 +6430,6 @@ Returns whether the passed value is a width value
 | Param | Type | Description |
 | --- | --- | --- |
 | value | <code>number</code> | Width value |
-
-<a name="VALIDATION.Group+_isPlan"></a>
-
-### VALIDATION.Group#\_isPlan(value) ⇒ <code>boolean</code>
-Returns whether the passed value is a Plan
-
-**Kind**: static method of [<code>VALIDATION</code>](#VALIDATION)  
-**Returns**: <code>boolean</code> - True || False  
-**Access**: public  
-**See**: [Validation.isPlan](Validation.isPlan)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>Object</code> | Plan object |
 
 <a name="DEBUG"></a>
 

@@ -243,7 +243,7 @@ class Group extends Array
 
         /**
          * Returns whether the passed value is a Plan
-         * @public
+         * @private
          * @memberof VALIDATION
          * @function
          * @param           {Object} value                              Plan object

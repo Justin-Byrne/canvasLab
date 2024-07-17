@@ -375,7 +375,7 @@ class Rectangles extends Array
 
         /**
          * Sets offset of child object against this constructor's point
-         * @public
+         * @private
          * @function
          * @param           {Object} Object                             CanvasLab Object
          * @see             {@link UTILITIES.collection.setAnchorPoint;}

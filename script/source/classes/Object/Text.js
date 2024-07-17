@@ -253,24 +253,6 @@ class Text extends Font
             return this.#options;
         }
 
-    ////    ( PRIVATE ) ////////////////////////////////////
-
-        /**
-         * Draws associated options
-         * @protected
-         * @function
-         */
-        _drawOptions ( )
-        {
-            if ( this.#options.border      ) this._drawBorder      ( );
-
-            if ( this.#options.axis        ) this._drawAxis        ( );
-
-            if ( this.#options.anchor      ) this._drawAnchor      ( );
-
-            if ( this.#options.coordinates ) this.showCoordinates  ( );
-        }
-
     ////    * SUPER *   ////////////////////////////////////
 
         ////    [ type ]    ////////////////////
@@ -461,7 +443,7 @@ class Text extends Font
 
         /**
          * Draws axis through center of this object
-         * @public
+         * @private
          * @function
          * @param           {number} [offset=10]                        Offset of axis's edges
          */
@@ -510,7 +492,7 @@ class Text extends Font
 
         /**
          * Draws border around this object
-         * @public
+         * @private
          * @function
          * @param           {number} [offset=10]                        Offset of border's perimeter
          */
@@ -548,6 +530,22 @@ class Text extends Font
 
 
                 _border.draw ( );
+        }
+
+        /**
+         * Draws associated options
+         * @private
+         * @function
+         */
+        _drawOptions ( )
+        {
+            if ( this.#options.border      ) this._drawBorder      ( );
+
+            if ( this.#options.axis        ) this._drawAxis        ( );
+
+            if ( this.#options.anchor      ) this._drawAnchor      ( );
+
+            if ( this.#options.coordinates ) this.showCoordinates  ( );
         }
 
         /**

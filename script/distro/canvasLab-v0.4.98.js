@@ -7419,24 +7419,6 @@ class Text extends Font
             return this.#options;
         }
 
-    ////    ( PRIVATE ) ////////////////////////////////////
-
-        /**
-         * Draws associated options
-         * @protected
-         * @function
-         */
-        _drawOptions ( )
-        {
-            if ( this.#options.border      ) this._drawBorder      ( );
-
-            if ( this.#options.axis        ) this._drawAxis        ( );
-
-            if ( this.#options.anchor      ) this._drawAnchor      ( );
-
-            if ( this.#options.coordinates ) this.showCoordinates  ( );
-        }
-
     ////    * SUPER *   ////////////////////////////////////
 
         ////    [ type ]    ////////////////////
@@ -7627,7 +7609,7 @@ class Text extends Font
 
         /**
          * Draws axis through center of this object
-         * @public
+         * @private
          * @function
          * @param           {number} [offset=10]                        Offset of axis's edges
          */
@@ -7676,7 +7658,7 @@ class Text extends Font
 
         /**
          * Draws border around this object
-         * @public
+         * @private
          * @function
          * @param           {number} [offset=10]                        Offset of border's perimeter
          */
@@ -7714,6 +7696,22 @@ class Text extends Font
 
 
                 _border.draw ( );
+        }
+
+        /**
+         * Draws associated options
+         * @private
+         * @function
+         */
+        _drawOptions ( )
+        {
+            if ( this.#options.border      ) this._drawBorder      ( );
+
+            if ( this.#options.axis        ) this._drawAxis        ( );
+
+            if ( this.#options.anchor      ) this._drawAnchor      ( );
+
+            if ( this.#options.coordinates ) this.showCoordinates  ( );
         }
 
         /**
@@ -8218,7 +8216,7 @@ class Circles extends Array
 
         /**
          * Sets offset of child object against this constructor's point
-         * @public
+         * @private
          * @function
          * @param           {Object} Object                             CanvasLab Object
          * @see             {@link UTILITIES.collection.setAnchorPoint;}
@@ -8539,7 +8537,7 @@ class Group extends Array
 
         /**
          * Returns whether the passed value is a Plan
-         * @public
+         * @private
          * @memberof VALIDATION
          * @function
          * @param           {Object} value                              Plan object
@@ -9583,7 +9581,7 @@ class Rectangles extends Array
 
         /**
          * Sets offset of child object against this constructor's point
-         * @public
+         * @private
          * @function
          * @param           {Object} Object                             CanvasLab Object
          * @see             {@link UTILITIES.collection.setAnchorPoint;}
@@ -10035,7 +10033,7 @@ class Texts extends Array
 
         /**
          * Sets offset of child object against this constructor's point
-         * @public
+         * @private
          * @function
          * @param           {Object} Object                             CanvasLab Object
          * @see             {@link UTILITIES.collection.setAnchorPoint;}

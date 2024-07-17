@@ -42,13 +42,13 @@ _isDegree          <color:gray>{boolean}</color>
 _isInDom           <color:gray>{boolean}</color>
 _isPoint           <color:gray>{boolean}</color>
 __ Utility __
-_drawOptions
 _clearCanvas
 _rotatePoint
 _setShadow
 _drawAnchor
 _drawAxis
 _drawBorder
+_drawOptions
 fillColorCycle
 move
 rotate
