@@ -187,6 +187,9 @@ nav {
         nav .nav-wrapper .nav-menu a:hover, nav .nav-wrapper .nav-menu a:focus {
           color: white;
           box-shadow: none; }
+      nav .nav-wrapper .nav-menu li:nth-child(5) > button,
+      nav .nav-wrapper .nav-menu li:nth-child(7) > button {
+        padding-top: 10px; }
     nav .nav-wrapper .external-links {
       display: flex;
       position: absolute;

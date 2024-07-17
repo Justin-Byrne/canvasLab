@@ -147,6 +147,12 @@ class Group extends Array
 
     ////    [ PLAN ]  //////////////////////////////////////
 
+        /**
+         * Set's plan
+         * @public
+         * @function
+         * @param           {Object} value                              Plan object
+         */
         set plan ( value )
         {
             if ( this._isPlan ( value ) )
@@ -155,9 +161,17 @@ class Group extends Array
 
 
                 this._plan.init ( );
+
+                this._setAllCanvases ( );
             }
         }
 
+        /**
+         * Get's plan
+         * @readOnly
+         * @function
+         * @return          {Object}                                    Plan object
+         */
         get plan ( )
         {
             return this._plan;
@@ -165,6 +179,12 @@ class Group extends Array
 
     ////    [ LINES ]    ///////////////////////////////////
 
+        /**
+         * Get's lines
+         * @readOnly
+         * @function
+         * @return          {Lines}                                     Lines collection
+         */
         get lines ( )
         {
             return this._lines;
@@ -172,6 +192,12 @@ class Group extends Array
 
     ////    [ CIRCLES ]    /////////////////////////////////
 
+        /**
+         * Get's circles
+         * @readOnly
+         * @function
+         * @return          {Circles}                                   Circles collection
+         */
         get circles ( )
         {
             return this._circles;
@@ -179,6 +205,12 @@ class Group extends Array
 
     ////    [ RECTANGLES ]    //////////////////////////////
 
+        /**
+         * Get's rectangles
+         * @readOnly
+         * @function
+         * @return          {Rectangles}                                Rectangles collection
+         */
         get rectangles ( )
         {
             return this._rectangles;
@@ -186,6 +218,12 @@ class Group extends Array
 
     ////    [ TEXTS ]    ///////////////////////////////////
 
+        /**
+         * Get's texts
+         * @readOnly
+         * @function
+         * @return          {Texts}                                     Texts collection
+         */
         get texts ( )
         {
             return this._texts;
@@ -225,6 +263,22 @@ class Group extends Array
         _isPoint ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
+
+        /**
+         * Sets all canvases throughout each internal collection of objects
+         * @private
+         * @function
+         */
+        _setAllCanvases ( )
+        {
+            if ( this._canvas )
+
+                for ( let _type of this.#storage.types )
+
+                    if ( this [ _type ].length )
+
+                        this [ _type ].canvas = this.canvas;
+        }
 
         /**
          * Sets offset of child Rectangle against this constructor's point

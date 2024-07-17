@@ -105,7 +105,7 @@ class Page
 
             let _regex =
             {
-                group:   new RegExp ( /(Object|Subject)/ ),
+                group:   new RegExp ( /(Object|Subject|Plan)/ ),
 
                 handler: new RegExp ( /(Processing|Animation)/ )
             }
@@ -113,14 +113,14 @@ class Page
 
             if ( _match || typeof button === 'object' )
             {
-                let _button   = _match.replace ( '#', '' );
+                let _button  = _match.replace ( '#', '' );
 
 
-                this.handler  = ( _regex.handler.test ( _button ) ) ? _button.match ( _regex.handler ) [ 0 ].toLowerCase ( ) : this.handler;
+                this.handler = ( _regex.handler.test ( _button ) ) ? _button.match ( _regex.handler ) [ 0 ].toLowerCase ( ) : this.handler;
 
-                this.group    = _button.match ( _regex.group ) [ 0 ].toLowerCase ( );
+                this.group   = _button.match ( _regex.group ) [ 0 ].toLowerCase ( );
 
-                this.type     = ( this.handler ) ? _button.replace ( this.group.toTitleCase ( ), '' ).replace ( this.handler.toTitleCase ( ), '' ).toLowerCase ( ) : _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
+                this.type    = ( this.handler ) ? _button.replace ( this.group.toTitleCase ( ), '' ).replace ( this.handler.toTitleCase ( ), '' ).toLowerCase ( ) : _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
             }
         }
 }

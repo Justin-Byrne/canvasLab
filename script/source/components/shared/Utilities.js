@@ -198,7 +198,7 @@ const UTILITIES =
         push ( )
         {
             for ( let _i = 0; _i < arguments.length; _i++ )
-            {
+
                 if ( arguments [ _i ] instanceof this._storage.type )
 
                     Array.prototype.push.apply ( this, [ arguments [ _i ] ] );
@@ -208,7 +208,6 @@ const UTILITIES =
                     if ( ! this._isPoint ( arguments [ _i ] ) )
 
                         console.error ( `[ERROR] Argument ${ ( _i + 1 ) }, of type "${ arguments [ _i ].constructor.name }", is not a valid type !` );
-            }
         },
 
         /**

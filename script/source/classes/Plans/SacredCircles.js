@@ -266,7 +266,7 @@ class SacredCircles
 			return this.#tangents [ this.#tangents.length - 1 ];
 		}
 
-	////    INITIALIZER    /////////////////////////////////////////////////////////////////////////
+	////    INITIALIZER    /////////////////////////////////
 
 		/**
          * Sets this plan

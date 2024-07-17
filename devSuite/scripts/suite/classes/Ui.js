@@ -928,6 +928,11 @@ class Ui
                                 LAB.runCode ( );
 
                                 LAB.editor.selection.moveCursorTo ( 0, 0 );
+
+
+                                if ( PAGE.group === 'plan' )
+
+                                    this.toggle.navigation ( );
                             } );
 
                         _labOpen.addEventListener ( 'click', ( ) => UI.toggle.fullscreen ( ) );

@@ -2115,19 +2115,6 @@
                     }
                 },
             ],
-            // plans:
-            // [
-            //     // draw : plans
-            //     {
-            //         title:   'draw',
-            //         text:    'blah... blah... blah...',
-            //         children: [ 'plans', 'lines', 'circles', 'rectangles', 'texts' ],
-            //         code: ( ) =>
-            //         {
-            //             _group.draw ( );
-            //         }
-            //     },
-            // ],
             point:
             [
                 // draw : line
@@ -3083,6 +3070,250 @@
                 // },
             ]
         },
+        plan:
+        {
+            sacredcircles:
+            [
+                // draw everything
+                {
+                    title:   'Draw All',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'lines', 'circles', 'rectangles', 'texts', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        let _alpha      = 0.40;
+
+                        let _colors     =
+                        [
+                            new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                            new Rgb (   0,  0,  255, _alpha ),      // Blue
+                            new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                            new Rgb (   0, 255,   0, _alpha ),      // Green
+                            new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                            new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                            new Rgb ( 255,   0,   0, _alpha ),      // Red
+                            new Rgb (   0,   0,   0, _alpha ),      // Black
+                        ]
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+
+                            _group.draw ( );
+                    }
+                },
+                // draw circles
+                {
+                    title:   'Circles',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'circles', 'circle' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+
+                            _group.circles.draw ( );
+                    }
+                },
+                // draw circles & color
+                {
+                    title:   'Circles & Colors',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'circles', 'circle', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        let _alpha      = 0.40;
+
+                        let _colors     =
+                        [
+                            new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                            new Rgb (   0,  0,  255, _alpha ),      // Blue
+                            new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                            new Rgb (   0, 255,   0, _alpha ),      // Green
+                            new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                            new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                            new Rgb ( 255,   0,   0, _alpha ),      // Red
+                            new Rgb (   0,   0,   0, _alpha ),      // Black
+                        ]
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+
+                            _group.circles.draw ( );
+                    }
+                },
+                // draw rectangles
+                {
+                    title:   'Rectangles',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'rectangles', 'rectangle' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+
+                            _group.rectangles.draw ( );
+                    }
+                },
+                // draw rectangles & colors
+                {
+                    title:   'Rectangles & Colors',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'rectangles', 'rectangle', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        let _alpha      = 0.40;
+
+                        let _colors     =
+                        [
+                            new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                            new Rgb (   0,  0,  255, _alpha ),      // Blue
+                            new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                            new Rgb (   0, 255,   0, _alpha ),      // Green
+                            new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                            new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                            new Rgb ( 255,   0,   0, _alpha ),      // Red
+                            new Rgb (   0,   0,   0, _alpha ),      // Black
+                        ]
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+
+                            _group.rectangles.draw ( );
+                    }
+                },
+                // draw lines
+                {
+                    title:   'Lines',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'lines', 'line' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+
+                            _group.lines.draw ( );
+                    }
+                },
+                // draw texts
+                {
+                    title:   'Texts',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'texts', 'text' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+
+                            _group.texts.draw ( );
+                    }
+                },
+            ],
+        },
         animation:
         {
             object:
@@ -3523,16 +3754,16 @@
                         }
                     ]
                 },
-                {
-                    title: 'Plans',
-                    links:
-                    [
-                        {
-                            title: 'SacredCircles',
-                            group: 'Subject'
-                        },
-                    ]
-                },
+                // {
+                //     title: 'Plans',
+                //     links:
+                //     [
+                //         {
+                //             title: 'SacredCircles',
+                //             group: 'Subject'
+                //         },
+                //     ]
+                // },
                 {
                     title: 'Staging',
                     links:
@@ -3574,6 +3805,16 @@
                 {
                     title: 'Shadow',
                     group: 'Subject'
+                },
+            ]
+        },
+        {
+            title: 'Plans',
+            links:
+            [
+                {
+                    title: 'SacredCircles',
+                    group: 'Plan'
                 },
             ]
         },

@@ -78,11 +78,6 @@ class Tool
             return [ 'Line', 'Lines', 'Circle', 'Circles', 'Rectangle', 'Rectangles', 'Text', 'Texts', 'Group' ].includes ( value );
         }
 
-        isCanvasLabCollection ( value )
-        {
-            return [ 'Lines', 'Circles', 'Rectangles', 'Texts', 'Group' ].includes ( value );
-        }
-
         /**
          * Determine whether the passed element is active
          * @public

@@ -3,7 +3,7 @@
 ![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab?style=flat-square)
 <img src="https://img.shields.io/badge/Chrome-126.0.6478.127-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
 ![issues](https://img.shields.io/github/issues/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Version-0.4.88-green?style=flat-square" />
+<img src="https://img.shields.io/badge/Version-0.4.98-green?style=flat-square" />
 <img src="https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab?style=flat-square" />
 
 HTML5 canvas drawing framework
@@ -82,7 +82,7 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── JSDoc.md
 ├── script
 │   ├── distro
-│   │   ├── canvasLab-v0.4.88.js    [ 348 kb ]
+│   │   ├── canvasLab-v0.4.98.js    [ 388 kb ]
 │   │   ├── canvasLab.min.js        [ 72 kb ]
 │   │   └── canvasLab.min.js.map
 │   └── source
@@ -103,6 +103,8 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │       │   │   ├── Line.js
 │       │   │   ├── Rectangle.js
 │       │   │   └── Text.js
+│       │   ├── Plans
+│       │   │   └── SacredCircles.js
 │       │   ├── Subject
 │       │   │   ├── Collections
 │       │   │   │   ├── OptionsCollection.js
@@ -118,8 +120,6 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │       │   │   │   │   └── Radial.js
 │       │   │   │   └── Model
 │       │   │   │       └── Rgb.js
-│       │   │   ├── Plans
-│       │   │   │   └── SacredCircles.js
 │       │   │   ├── Staging
 │       │   │   │   ├── Properties
 │       │   │   │   │   └── Options.js

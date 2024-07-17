@@ -3,6 +3,16 @@
 
 # GLOBAL VARIABLES #############################################################
 
+## FLAGS #########################################################
+
+declare NO_ERRORS=true
+
+declare WITH_DOCUMENTS=false
+
+declare WITH_MD2JSON=false
+
+declare WITH_PLANTUML=false
+
 ## PROJECT SPECIFIC ################## ヽ(•‿•)ノ ##################
 
 declare VC_PACKAGE=canvasLab
@@ -38,7 +48,7 @@ declare PLANT_OUTPUT=~/Programs/HTML5/canvasLab/docs/PlantUml
 
 ### MD2JSON ########################################
 
-declare MD2JSON_BUILD=~/Programs/Python/Markdown-to-json/source/app
+declare MD2JSON_BUILD=~/Programs/Python/Md2Json/source/app
 
 declare MD2JSON_SOURCE=~/Programs/HTML5/canvasLab/devSuite/docs/archive
 
@@ -67,6 +77,8 @@ declare HANDLERS
 
 declare DATA_STRUCTURES
 
+declare PLANS
+
 # ------------------------------------------------------- #
 # Files to be inserted prior to SUBJECTS, OBJECTS, ETC... #
 # ------------------------------------------------------- #
@@ -89,7 +101,7 @@ declare SUBJECTS_FOLDERS=(
     "${INPUT_FOLDER}/classes/Subject/Staging"
     "${INPUT_FOLDER}/classes/Subject/Color/Gradient/Properties"
     "${INPUT_FOLDER}/classes/Subject/Color/Gradient"
-    "${INPUT_FOLDER}/classes/Subject/Plans"
+    # "${INPUT_FOLDER}/classes/Subject/Plans"
     "${INPUT_FOLDER}/classes/Subject"
     "${INPUT_FOLDER}/classes/Subject/Collections"
 )
@@ -108,6 +120,10 @@ declare DATA_STRUCTURES_FOLDERS=(
     "${INPUT_FOLDER}/classes/Data-Structures"
 )
 
+declare PLANS_FOLDER=(
+    "${INPUT_FOLDER}/classes/Plans"
+)
+
 # ------------------------------------ #
 # Root application file; if available  #
 # ------------------------------------ #
@@ -116,9 +132,6 @@ declare FILES_FOOT=(
 )
 
 ### GENERAL ########################################
-
-declare NO_ERRORS=true
-declare WITH_DOCUMENTS=false
 
 declare DATE=$(date +"%m-%d-%y")
 declare TIME=$(date +"%r")
@@ -172,10 +185,16 @@ main ()
         compile_jsdoc $OUTPUT $OUTPUT_JSDOC
 
         compile_jsdoc $DEVSUITE_INPUT $DEVSUITE_OUTPUT_JSDOC
+    fi
 
+    if $WITH_MD2JSON
+    then
         compile_md2json
+    fi
 
-        # compile_plantuml
+    if $WITH_PLANTUML
+    then
+        compile_plantuml
     fi
 
     compile_readme
@@ -286,6 +305,14 @@ function compile_output ()
     done
 
 
+    echo "\n////    PLANS    ///////////////////////////////////////////" >> $OUTPUT
+
+    for FILE in ${PLANS[@]}   # PLANS
+    do
+        insert_file $FILE
+    done
+
+
     echo "${PROMPT_A} ${TITLE_PACKAGE} Compiling Complete ${TITLE_BASH} \t\t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
 
 
@@ -364,6 +391,8 @@ function compile_md2json ()
     FILES+=(${HANDLERS[@]})
 
     FILES+=(${DATA_STRUCTURES[@]})
+
+    FILES+=(${PLANS[@]})
 
 
     function compile_markdown ()
@@ -550,6 +579,16 @@ function search_folders ()
         for ENTRY in $FOLDER/*
         do
             [[ $ENTRY =~ $FILE_REGEX ]] && DATA_STRUCTURES+="${ENTRY} "
+        done
+    done
+
+    ####    PLANS    #######################################
+
+    for FOLDER in ${PLANS_FOLDER[@]}
+    do
+        for ENTRY in $FOLDER/*
+        do
+            [[ $ENTRY =~ $FILE_REGEX ]] && PLANS+="${ENTRY} "
         done
     done
 }

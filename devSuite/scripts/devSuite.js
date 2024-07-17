@@ -1002,7 +1002,7 @@ class Page
 
             let _regex =
             {
-                group:   new RegExp ( /(Object|Subject)/ ),
+                group:   new RegExp ( /(Object|Subject|Plan)/ ),
 
                 handler: new RegExp ( /(Processing|Animation)/ )
             }
@@ -1010,14 +1010,14 @@ class Page
 
             if ( _match || typeof button === 'object' )
             {
-                let _button   = _match.replace ( '#', '' );
+                let _button  = _match.replace ( '#', '' );
 
 
-                this.handler  = ( _regex.handler.test ( _button ) ) ? _button.match ( _regex.handler ) [ 0 ].toLowerCase ( ) : this.handler;
+                this.handler = ( _regex.handler.test ( _button ) ) ? _button.match ( _regex.handler ) [ 0 ].toLowerCase ( ) : this.handler;
 
-                this.group    = _button.match ( _regex.group ) [ 0 ].toLowerCase ( );
+                this.group   = _button.match ( _regex.group ) [ 0 ].toLowerCase ( );
 
-                this.type     = ( this.handler ) ? _button.replace ( this.group.toTitleCase ( ), '' ).replace ( this.handler.toTitleCase ( ), '' ).toLowerCase ( ) : _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
+                this.type    = ( this.handler ) ? _button.replace ( this.group.toTitleCase ( ), '' ).replace ( this.handler.toTitleCase ( ), '' ).toLowerCase ( ) : _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
             }
         }
 }
@@ -1040,6 +1040,10 @@ class Template
                                <div class="card-header-buttons">
 
                                    <div class="icons">
+
+                                       <img src="images/svg/{{childGroup}}/{{childType}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{childType}}" onclick="devSuite.toggleCardButton ( event )">
+
+                                       <img src="images/svg/{{childGroup}}/{{childType}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{childType}}" onclick="devSuite.toggleCardButton ( event )">
 
                                        <img src="images/svg/{{childGroup}}/{{childType}}.svg" class="card-icons" suite-button-type="documentation" suite-data-type="{{childType}}" onclick="devSuite.toggleCardButton ( event )">
 
@@ -1221,51 +1225,10 @@ class Template
             for ( let _entry in cardObject )
             {
                 if ( _entry === 'code' )
-                {
-                    let _code     = UI.clean.code ( cardObject [ _entry ] );
 
+                    cardObject [ _entry ] = ( PAGE.group === 'plan' ) ? this._modifyPlanCode ( cardObject [ _entry ], count )
 
-                    let _class    = UI.getClass ( _code );
-
-                    let _variable = `_${_class.toLowerCase ( )}`;
-
-                    let _regex    = new RegExp ( _variable, 'g' );
-
-                    let _init     = ( PAGE.handler ) ? this._initializer [ PAGE.handler ] [ _class ] : this._initializer [ PAGE.group ] [ _class ];
-
-
-                    if ( TOOL.isCanvasLabCollection ( _class ) )
-                    {
-                        switch ( _class )
-                        {
-                            case 'Lines':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Line ( { x:  60, y: 50 }, { x: 160, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 240, y: 100 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
-
-                            case 'Circles':     _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                         break;
-
-                            case 'Rectangles':  _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Rectangle ( { x:  60, y: 50 } ),\n        new Rectangle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                   break;
-
-                            case 'Texts':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Text ( { x:  60, y: 50 } ),\n        new Text ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n\n    ${_variable} [ 0 ].text = ${_variable} [ 1 ].text = 'Text';\n${_code}`;                                             break;
-
-                            case 'Group':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.lines.push (\n        new Line ( { x:  60, y: 50 }, { x: 120, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 200, y: 100 } )\n    );\n\n     ${_variable}.circles.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.rectangles.push (\n        new Rectangle ( { x:  120, y: 100 } ),\n        new Rectangle ( { x: 200, y: 100 } )\n    );\n\n    ${_variable}.texts.push (\n        new Text ( { x:  60, y: 120 } ),\n        new Text ( { x: 200, y: 50 } )\n    );\n\n    ${_variable}.texts [ 0 ].text = ${_variable}.texts [ 1 ].text = 'Text';\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
-                        }
-
-
-                        _code = _code.replace ( _regex, `${_variable}_${count}` );
-
-                        _code = this._getSpecialVariables ( _code, count );
-                    }
-                    else
-                    {
-                        _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;
-
-                        _code = _code.replace ( _regex, `${_variable}_${count}` );
-
-                        _code = this._getSpecialVariables ( _code, count );
-                    }
-
-
-                    cardObject [ _entry ] = _code;
-                }
+                                                                      : this._modifyCode     ( cardObject [ _entry ], count );
 
 
                 let _regex = new RegExp ( `{{${_entry}}}`, 'g' );
@@ -1305,54 +1268,6 @@ class Template
         }
 
         /**
-         * Sets image paths for each card-object passed through the param
-         * @private
-         * @function
-         * @param           {Object} cardObject                 Card-object
-         */
-        _setImagePaths ( cardObject )
-        {
-            if ( ! cardObject.images )
-
-                cardObject.images = new Object;
-
-
-            // Type
-            cardObject.images.type = PAGE.type.toTitleCase ( );
-
-
-            // Handler
-            switch ( PAGE.handler )
-            {
-                case 'animation':
-
-                    let _timing = cardObject.code.toString ( ).match ( /timing: '([^']+)',/ ) [ 1 ];
-
-                    let _match  = _timing.match ( /(In|Out)/g );
-
-                    let _path   = ( _match.length < 2 ) ? _match [ 0 ] : _match [ 0 ] + _match [ 1 ];
-
-
-                    cardObject.images.easing  = `Handler/${PAGE.handler.toTitleCase ( )}/Ease/${_path}/${_timing}`;
-
-                    cardObject.images.handler = PAGE.handler.toTitleCase ( );
-
-                    break;
-            }
-
-            // Children
-            if ( cardObject.children )
-            {
-                cardObject.images.children = new Array;
-
-
-                for ( let _child of cardObject.children )
-
-                    cardObject.images.children.push ( _child.toTitleCase ( ) );
-            }
-        }
-
-        /**
          * Return a template with the appropriate canvasLab images embedded
          * @private
          * @param           {Object} cardObject                 Card-object
@@ -1364,7 +1279,7 @@ class Template
 
 
             if ( cardObject.images )
-            {
+
                 for ( let _entry in cardObject.images )
                 {
                     let _type = cardObject.images [ _entry ];
@@ -1372,9 +1287,9 @@ class Template
 
                     switch ( _entry )
                     {
-                        case 'easing':      template = template.replace ( /{{easing}}/, _type );        break;
+                        case 'easing':      template = template.replace ( /{{easing}}/, _type );                                            break;
 
-                        case 'handler':     template = template.replace ( /{{handler}}/, _type ).replace ( /{{handler}}/, _type );       break;
+                        case 'handler':     template = template.replace ( /{{handler}}/, _type ).replace ( /{{handler}}/, _type );          break;
 
                         case 'children':
 
@@ -1389,12 +1304,11 @@ class Template
 
                         default:
 
-                            let _group = TOOL.isCanvasLabObject ( _type ) ? 'Object' : 'Subject';
+                            let _group = ( PAGE.group === 'plan' ) ? 'Plan' : TOOL.isCanvasLabObject ( _type ) ? 'Object' : 'Subject';
 
-                            template = template.replace ( /{{group}}/, _group ).replace ( /{{type}}/, _type ).replace ( /{{type}}/, _type );
+                            template   = template.replace ( /{{group}}/, _group ).replace ( /{{type}}/, _type ).replace ( /{{type}}/, _type );
                     }
                 }
-            }
 
 
             // If no children, place slash-square symbol
@@ -1489,6 +1403,172 @@ class Template
 
 
             return code;
+        }
+
+        /**
+         * Modifies code to include instantiation expressions & unique variable identifiers
+         * @private
+         * @function
+         * @param           {function} code                     Card-object's function
+         * @param           {string}   count                    Number for unique variable identifiers
+         * @return          {string}                            Code string
+         */
+        _modifyCode ( code, count )
+        {
+            let _code     = UI.clean.code ( code );
+
+            let _class    = UI.getClass ( _code );
+
+            let _variable = `_${_class.toLowerCase ( )}`;
+
+            let _regex    = new RegExp ( _variable, 'g' );
+
+            let _init     = ( PAGE.handler ) ? this._initializer [ PAGE.handler ] [ _class ] : this._initializer [ PAGE.group ] [ _class ];
+
+
+            switch ( _class )
+            {
+                case 'Lines':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Line ( { x:  60, y: 50 }, { x: 160, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 240, y: 100 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
+
+                case 'Circles':     _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                         break;
+
+                case 'Rectangles':  _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Rectangle ( { x:  60, y: 50 } ),\n        new Rectangle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                   break;
+
+                case 'Texts':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Text ( { x:  60, y: 50 } ),\n        new Text ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n\n    ${_variable} [ 0 ].text = ${_variable} [ 1 ].text = 'Text';\n${_code}`;                                             break;
+
+                case 'Group':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.lines.push (\n        new Line ( { x:  60, y: 50 }, { x: 120, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 200, y: 100 } )\n    );\n\n     ${_variable}.circles.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.rectangles.push (\n        new Rectangle ( { x:  120, y: 100 } ),\n        new Rectangle ( { x: 200, y: 100 } )\n    );\n\n    ${_variable}.texts.push (\n        new Text ( { x:  60, y: 120 } ),\n        new Text ( { x: 200, y: 50 } )\n    );\n\n    ${_variable}.texts [ 0 ].text = ${_variable}.texts [ 1 ].text = 'Text';\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
+
+                default:            _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                     break
+            }
+
+
+            _code = _code.replace ( _regex, `${_variable}_${count}` );
+
+            _code = this._getSpecialVariables ( _code, count );
+
+
+            return _code;
+        }
+
+        /**
+         * Modifies code to include instantiation expressions & unique variable identifiers; for Plans only
+         * @private
+         * @function
+         * @param           {function} code                     Card-object's function
+         * @param           {string}   count                    Number for unique variable identifiers
+         * @return          {string}                            Code string
+         */
+        _modifyPlanCode ( code, count )
+        {
+            let _code  = UI.clean.code ( code );
+
+            let _lines = _code.split ( /\n/ );
+
+            let _regex = new RegExp ( /_group.plan\s*=\s*new\s*\w+\s\(\s*[^\)]+\)/g );
+
+
+            for ( let _index in _lines )
+            {
+                let _line = _lines [ _index ];
+
+
+                let _match = _line.match ( /_\w+/ );
+
+                    _match = ( _match ) ? _match [ 0 ] : undefined;
+
+
+                if ( _regex.test ( _line ) )
+                {
+                    let _matches = _line.match ( /_\w+/g );
+
+
+                    for ( let _match of _matches )
+
+                        _line = this._modifyVariables ( _line, _match, count );
+
+                }
+                else if ( _match )
+
+                    _line = this._modifyVariables ( _line, _match, count );
+
+
+
+                _lines [ _index ] = _line;
+            }
+
+
+                _lines = _lines.join ( '\n' );
+
+                _code  = _lines.replace ( /'canvas';/, `'canvas_${count}';` );
+
+
+            return _code;
+        }
+
+        /**
+         * Modifies existing variable name with uniquely identified variable name
+         * @private
+         * @function
+         * @param           {string} line                       Line of code to modify
+         * @param           {string} variable                   Variable name to modify
+         * @param           {string} count                      Number for unique variable identifier
+         */
+        _modifyVariables ( line, variable, count  )
+        {
+            let _variable = `${variable}`;
+
+            let _regex = new RegExp ( _variable, 'g' );
+
+
+            return line.replace ( _regex, `${_variable}_${count}` );
+        }
+
+        /**
+         * Sets image paths for each card-object passed through the param
+         * @private
+         * @function
+         * @param           {Object} cardObject                 Card-object
+         */
+        _setImagePaths ( cardObject )
+        {
+            if ( ! cardObject.images )
+
+                cardObject.images = new Object;
+
+
+            // Type
+            cardObject.images.type = PAGE.type.toTitleCase ( );
+
+
+            // Handler
+            switch ( PAGE.handler )
+            {
+                case 'animation':
+
+                    let _timing = cardObject.code.toString ( ).match ( /timing: '([^']+)',/ ) [ 1 ];
+
+                    let _match  = _timing.match ( /(In|Out)/g );
+
+                    let _path   = ( _match.length < 2 ) ? _match [ 0 ] : _match [ 0 ] + _match [ 1 ];
+
+
+                    cardObject.images.easing  = `Handler/${PAGE.handler.toTitleCase ( )}/Ease/${_path}/${_timing}`;
+
+                    cardObject.images.handler = PAGE.handler.toTitleCase ( );
+
+                    break;
+            }
+
+            // Children
+            if ( cardObject.children )
+            {
+                cardObject.images.children = new Array;
+
+
+                for ( let _child of cardObject.children )
+
+                    cardObject.images.children.push ( _child.toTitleCase ( ) );
+            }
         }
 
         /**
@@ -1587,11 +1667,6 @@ class Tool
         isCanvasLabObject ( value )
         {
             return [ 'Line', 'Lines', 'Circle', 'Circles', 'Rectangle', 'Rectangles', 'Text', 'Texts', 'Group' ].includes ( value );
-        }
-
-        isCanvasLabCollection ( value )
-        {
-            return [ 'Lines', 'Circles', 'Rectangles', 'Texts', 'Group' ].includes ( value );
         }
 
         /**
@@ -2674,6 +2749,11 @@ class Ui
                                 LAB.runCode ( );
 
                                 LAB.editor.selection.moveCursorTo ( 0, 0 );
+
+
+                                if ( PAGE.group === 'plan' )
+
+                                    this.toggle.navigation ( );
                             } );
 
                         _labOpen.addEventListener ( 'click', ( ) => UI.toggle.fullscreen ( ) );
@@ -5119,19 +5199,6 @@ class Ui
                     }
                 },
             ],
-            // plans:
-            // [
-            //     // draw : plans
-            //     {
-            //         title:   'draw',
-            //         text:    'blah... blah... blah...',
-            //         children: [ 'plans', 'lines', 'circles', 'rectangles', 'texts' ],
-            //         code: ( ) =>
-            //         {
-            //             _group.draw ( );
-            //         }
-            //     },
-            // ],
             point:
             [
                 // draw : line
@@ -6087,6 +6154,250 @@ class Ui
                 // },
             ]
         },
+        plan:
+        {
+            sacredcircles:
+            [
+                // draw everything
+                {
+                    title:   'Draw All',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'lines', 'circles', 'rectangles', 'texts', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        let _alpha      = 0.40;
+
+                        let _colors     =
+                        [
+                            new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                            new Rgb (   0,  0,  255, _alpha ),      // Blue
+                            new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                            new Rgb (   0, 255,   0, _alpha ),      // Green
+                            new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                            new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                            new Rgb ( 255,   0,   0, _alpha ),      // Red
+                            new Rgb (   0,   0,   0, _alpha ),      // Black
+                        ]
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+
+                            _group.draw ( );
+                    }
+                },
+                // draw circles
+                {
+                    title:   'Circles',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'circles', 'circle' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+
+                            _group.circles.draw ( );
+                    }
+                },
+                // draw circles & color
+                {
+                    title:   'Circles & Colors',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'circles', 'circle', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        let _alpha      = 0.40;
+
+                        let _colors     =
+                        [
+                            new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                            new Rgb (   0,  0,  255, _alpha ),      // Blue
+                            new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                            new Rgb (   0, 255,   0, _alpha ),      // Green
+                            new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                            new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                            new Rgb ( 255,   0,   0, _alpha ),      // Red
+                            new Rgb (   0,   0,   0, _alpha ),      // Black
+                        ]
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+
+                            _group.circles.draw ( );
+                    }
+                },
+                // draw rectangles
+                {
+                    title:   'Rectangles',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'rectangles', 'rectangle' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+
+                            _group.rectangles.draw ( );
+                    }
+                },
+                // draw rectangles & colors
+                {
+                    title:   'Rectangles & Colors',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'rectangles', 'rectangle', 'rgb' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        let _alpha      = 0.40;
+
+                        let _colors     =
+                        [
+                            new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                            new Rgb (   0,  0,  255, _alpha ),      // Blue
+                            new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                            new Rgb (   0, 255,   0, _alpha ),      // Green
+                            new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                            new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                            new Rgb ( 255,   0,   0, _alpha ),      // Red
+                            new Rgb (   0,   0,   0, _alpha ),      // Black
+                        ]
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+
+                            _group.rectangles.draw ( );
+                    }
+                },
+                // draw lines
+                {
+                    title:   'Lines',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'lines', 'line' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+
+                            _group.lines.draw ( );
+                    }
+                },
+                // draw texts
+                {
+                    title:   'Texts',
+                    text:    'blah... blah... blah...',
+                    children: [ 'group', 'texts', 'text' ],
+                    code: ( ) =>
+                    {
+                        ////    INPUTS    //////////////////////////////
+
+                        let _center     = canvaslab.center;
+
+                        let _radius     = 25;
+
+                        let _iterations = 15;
+
+                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+
+                        ////    POPULATION    //////////////////////////
+
+                        let _group = new Group;
+
+                            _group.canvas = 'canvas';
+
+                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+
+                            _group.texts.draw ( );
+                    }
+                },
+            ],
+        },
         animation:
         {
             object:
@@ -6527,16 +6838,16 @@ class Ui
                         }
                     ]
                 },
-                {
-                    title: 'Plans',
-                    links:
-                    [
-                        {
-                            title: 'SacredCircles',
-                            group: 'Subject'
-                        },
-                    ]
-                },
+                // {
+                //     title: 'Plans',
+                //     links:
+                //     [
+                //         {
+                //             title: 'SacredCircles',
+                //             group: 'Subject'
+                //         },
+                //     ]
+                // },
                 {
                     title: 'Staging',
                     links:
@@ -6578,6 +6889,16 @@ class Ui
                 {
                     title: 'Shadow',
                     group: 'Subject'
+                },
+            ]
+        },
+        {
+            title: 'Plans',
+            links:
+            [
+                {
+                    title: 'SacredCircles',
+                    group: 'Plan'
                 },
             ]
         },

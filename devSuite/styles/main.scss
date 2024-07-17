@@ -325,6 +325,9 @@ nav
                     box-shadow: none;
                 }
             }
+
+            li:nth-child(5) > button,
+            li:nth-child(7) > button { padding-top: 10px; }
         }
 
         .external-links

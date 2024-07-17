@@ -1,6 +1,28 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.98] - 2024-07-17
+### Added
+- **devSuite**
+  - `Template` class
+    - `_modifyCode ( )` to modify code to include instantiation expressions & unique variable identifiers
+    - `_modifyPlanCode ( )` to modify code to include instantiation expressions & unique variable identifiers; for Plans only
+    - `_modifyVariables ( )` to modify existing variable name with uniquely identified variable name
+- **canvasLab**
+  - `Group` class, `_setAllCanvases ( )` to set all canvases throughout each internal collection of objects
+
+### Refactored
+- **devSuite**
+  - `Page` class, to include `Plan` within group regex.
+  - `Template` class
+    - `_getCodeTemplate ( )` to be more streamlined and easier to parse
+    - `_getImages ( )` to include `Plan` as part of its algorithm
+  - `Ui` class, to include `Plan` to `lab` event listener, to toggle navigation when clicked; for Plans only
+
+### Removed
+- **devSuite**
+  - `Tool` class, `isCanvasLabCollection ( )`
+
 ## [0.4.88] - 2024-07-12
 ### Added
 - **devSuite**
@@ -508,7 +530,8 @@ All notable changes to this project will be documented in this file.
 
 | Version  | Date       | Commit                                                              | Comments                                                                                     |
 | :------: | :--------: | :-----------------------------------------------------------------: | :------------------------------------------------------------------------------------------- |
-| [0.4.88] | 2024-07-12 | CURRENT                                                             | Added collection classes, & major refactoring of PROPERTY_BLOCKS & UTILITIES.                |
+| [0.4.98] | 2024-07-17 | CURRENT                                                             | Modified devSuite to include Plans, with minor refactoring included.                         |
+| [0.4.88] | 2024-07-12 | [67fcf06](https://github.com/Justin-Byrne/canvasLab/commit/67fcf06) | Added collection classes, & major refactoring of PROPERTY_BLOCKS & UTILITIES.                |
 | [0.3.78] | 2024-07-01 | [62b10b3](https://github.com/Justin-Byrne/canvasLab/commit/62b10b3) | Fixed UTILITIES.draw.axis, and added boolean toggle & clear console feature(s) to lab.       |
 | [0.3.67] | 2024-06-11 | [2a1cc1b](https://github.com/Justin-Byrne/canvasLab/commit/2a1cc1b) | Implemented Queue class, general cleanup & refactoring.                                      |
 | [0.3.59] | 2024-06-03 | [5d1df4a](https://github.com/Justin-Byrne/canvasLab/commit/5d1df4a) | Implemented various lab-station features.                                                    |

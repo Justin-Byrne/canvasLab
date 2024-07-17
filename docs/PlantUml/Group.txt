@@ -15,22 +15,23 @@ point             {Point}
 x                 <color:gray>{number}</color>
 y                 <color:gray>{number}</color>
 canvas            <color:gray>{string}</color>
-plan
+plan              {Object}
 __ Getter __
 point             {Point}
 x                 <color:gray>{number}</color>
 y                 <color:gray>{number}</color>
 canvas            <color:gray>{string}</color>
-plan
-lines
-circles
-rectangles
-texts
+plan              {Object}
+lines             {Lines}
+circles           {Circles}
+rectangles        {Rectangles}
+texts             {Texts}
 __ Validation __
 _isInDom          <color:gray>{boolean}</color>
 _isPlan           <color:gray>{boolean}</color>
 _isPoint          <color:gray>{boolean}</color>
 __ Utility __
+_setAllCanvases
 _setPointOffset
 push
 pop
