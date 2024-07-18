@@ -2,7 +2,7 @@
 // @brief: 			HTML5 canvas drawing framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.4.98 
+// @version: 		0.4.104 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -10346,8 +10346,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Jul, 17 2024',
-            Version:   '0.4.98',
+            Updated:   'Jul, 18 2024',
+            Version:   '0.4.104',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }

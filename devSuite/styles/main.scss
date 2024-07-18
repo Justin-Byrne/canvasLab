@@ -327,7 +327,7 @@ nav
             }
 
             li:nth-child(5) > button,
-            li:nth-child(7) > button { padding-top: 10px; }
+            li:nth-child(7) > button { padding-top: 12px; }
         }
 
         .external-links
@@ -561,9 +561,26 @@ main
 
                         .icons
                         {
-                            float: right;
+                            float:      right;
 
                             margin-top: 2px;
+
+                            .lab-bottle
+                            {
+                                position: relative;
+                                opacity:  0.6;
+                                width:    23px;
+                                top:      1px;
+
+                                &:hover
+                                {
+                                    opacity:   1;
+
+                                    transform:  scale(1.1) rotate(10deg);
+
+                                    transition: opacity 0.75s, transform 0.75s;
+                                }
+                            }
 
                             .separator
                             {

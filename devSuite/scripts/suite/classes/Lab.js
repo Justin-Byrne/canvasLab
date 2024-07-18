@@ -450,39 +450,6 @@ class Lab
 
                                 _lines.innerHTML  = this.editor.session.getLength ( );
                         } );
-
-                case 'canvas':
-
-                    let _main          = document.getElementsByTagName ( 'main' ) [ 0 ];
-
-                    let _labStation    = document.querySelector  ( 'main > div.lab-station' );
-
-                    let _editorElement = document.getElementById ( this.editor.container.id  );
-
-                    let _button        = document.querySelector  ( 'button.lab-station'     );
-
-                        _button.addEventListener ( 'click', ( ) =>
-                            {
-                                UI.clearScreen  ( );
-
-
-                                _button.children [ 0 ].classList.add ( 'selected' )
-
-
-                                _labStation.style.display     = 'block';
-
-                                _main.style.overflowY         = 'hidden';
-
-                                _editorElement.style.fontSize = '12px';
-
-
-                                this.setCanvasSize ( );
-
-                                this.runCode ( );
-                            } );
-
-
-                    window.addEventListener ( 'resize', this.setCanvasSize );
             }
         }
 

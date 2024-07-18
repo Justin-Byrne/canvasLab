@@ -518,39 +518,6 @@ class Lab
 
                                 _lines.innerHTML  = this.editor.session.getLength ( );
                         } );
-
-                case 'canvas':
-
-                    let _main          = document.getElementsByTagName ( 'main' ) [ 0 ];
-
-                    let _labStation    = document.querySelector  ( 'main > div.lab-station' );
-
-                    let _editorElement = document.getElementById ( this.editor.container.id  );
-
-                    let _button        = document.querySelector  ( 'button.lab-station'     );
-
-                        _button.addEventListener ( 'click', ( ) =>
-                            {
-                                UI.clearScreen  ( );
-
-
-                                _button.children [ 0 ].classList.add ( 'selected' )
-
-
-                                _labStation.style.display     = 'block';
-
-                                _main.style.overflowY         = 'hidden';
-
-                                _editorElement.style.fontSize = '12px';
-
-
-                                this.setCanvasSize ( );
-
-                                this.runCode ( );
-                            } );
-
-
-                    window.addEventListener ( 'resize', this.setCanvasSize );
             }
         }
 
@@ -1076,6 +1043,8 @@ class Template
                                <div class="card-body-buttons">
 
                                    <span class="icons">
+
+                                       <img src="images/svg/General/lab-bottle.svg" class="lab-bottle" suite-data-index="{{index}}" onclick="devSuite.toggleLab ( event )">
 
                                        <img src="images/svg/{{easing}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devSuite.toggleCardButton ( event )">
 
@@ -2152,22 +2121,17 @@ class Ui
          */
         fullscreen ( )
         {
-            let _main        = document.querySelector ( 'main' );
-
-
             let _rightColumn = document.querySelector ( '#lab > div:nth-child(2)' );
 
             let _leftColumn  = document.querySelector ( '#lab > div:nth-child(1)' );
 
-
             let _styles      = window.getComputedStyle ( _rightColumn   );
 
-            let _icon        = document.querySelector  ( '.full-screen' );
+            let _fullscreen  = ( _styles.display === 'block' );
 
             let _open        = document.querySelector  ( '#lab-open'    );
 
-
-            let _fullscreen  = ( _styles.display === 'block' );
+                _open.addEventListener ( 'click', ( ) => this.fullscreen ( ) );
 
 
             ( _fullscreen ) ? _rightColumn.style.display = 'none'
@@ -2187,12 +2151,12 @@ class Ui
 
             if ( UI._isNavOpen ( ) )
 
-                this.toggle.navigation ( );
+                this.navigation ( );
 
 
             LAB.setCanvasSize ( );
 
-            LAB.runCode       ( );
+            LAB.runCode ( );
         },
 
         /**
@@ -2211,6 +2175,40 @@ class Ui
 
 
             _grid.style.opacity = ( TOOL.isActive ( _button ) ) ? 1 : 0;
+        },
+
+        /**
+         * Toggles lab from each card-object
+         * @public
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        lab ( element )
+        {
+            let _element = element.srcElement;
+
+            let _index   = _element.getAttribute ( 'suite-data-index' );
+
+            let _card    = document.querySelector ( `#view_${_index}` );
+
+            let _code    = _card.getAttribute ( 'suite-data-code' ).replaceAll ( /_\d{2}/g, '' );
+
+
+            UI.clearScreen  ( false, true );
+
+            LAB.editor.setValue ( _code );
+
+            LAB.setCanvasSize ( );
+
+            LAB.runCode ( );
+
+
+            if ( PAGE.group === 'plan')
+
+                this.navigation ( );
+
+
+            window.addEventListener ( 'resize', LAB.setCanvasSize );
         },
 
         /**
@@ -2726,37 +2724,6 @@ class Ui
                     let _copyButton = document.querySelector ( 'button.copy-code-link' );
 
                         _copyButton.addEventListener ( 'click', TOOL.copyCode );
-
-                case 'lab':
-
-                    let _labButton = document.querySelector ( 'button.lab-station' );
-
-                    let _labOpen   = document.querySelector ( '#lab-open' );
-
-                    let _labLink   = document.querySelector ( '.lab-station-link' );
-
-
-                        _labLink.addEventListener ( 'click', ( element ) =>
-                            {
-                                let _code = document.querySelector ( '#modal-code > div > div > div.modal-body > pre > code' ).innerHTML.replace ( /<[^>]+>/g, '' );
-
-
-                                _labButton.click ( );
-
-
-                                LAB.editor.setValue ( _code );
-
-                                LAB.runCode ( );
-
-                                LAB.editor.selection.moveCursorTo ( 0, 0 );
-
-
-                                if ( PAGE.group === 'plan' )
-
-                                    this.toggle.navigation ( );
-                            } );
-
-                        _labOpen.addEventListener ( 'click', ( ) => UI.toggle.fullscreen ( ) );
             }
         }
 
@@ -2996,40 +2963,39 @@ class Ui
          * @function
          * @param           {boolean} setCardAlbum              Sets card album display to block (true) || none (false)
          */
-        clearScreen ( setCardAlbum = false )
+        clearScreen ( setCardAlbum = false, setLab = false )
         {
-            let _markup =
-            {
-                main:   document.querySelector ( 'main' ),
+            let _main  = document.querySelector ( 'main' );
 
-                album:  document.querySelector ( '.album' ),
+            let _album = document.querySelector ( '.album' );
 
-                cards:  document.querySelector ( '#test-cards' ),
+            let _cards = document.querySelector ( '#test-cards' );
 
-                logo:   document.querySelector ( '#byrne-systems-logo' ),
+            let _logo  = document.querySelector ( '#byrne-systems-logo' );
 
-                lab:    document.querySelector ( 'main > div.lab-station' ),
-
-                button: document.querySelector ( 'button.lab-station' )
-            }
+            let _lab   = document.querySelector ( 'main > div.lab-station' );
 
 
             initCanvasLab ( );                              // @NOTE: canvasLab doesn't not initialize twice here, if there's already a preexisting 'window.canvasLab' object within the DOM
 
 
-            if ( _markup.logo ) _markup.logo.remove ( );
+            if ( _logo )
+
+                _logo.remove ( );
 
 
-            _markup.main.style.overflowY = 'auto';
+                _main.style.overflowY = 'auto';
 
-            _markup.album.style.display  = ( setCardAlbum ) ? 'block' : 'none';
+                _album.style.display  = ( setCardAlbum ) ? 'block' : 'none';
 
-            _markup.cards.innerHTML      = '';
+                _cards.innerHTML      = '';
 
-            _markup.lab.style.display    = 'none';
+                _lab.style.display    = 'none';
 
 
-            _markup.button.firstElementChild.classList.remove ( 'selected' );
+            if ( setLab )
+
+                [ _main.style.overflowY, _lab.style.display ] = [ 'hidden', 'block' ];
         }
 
     ////    INITIALIZER(S)    //////////////////////////////////////////////////////////////////////
@@ -7064,12 +7030,12 @@ class Ui
             ////    FUNCTIONS    ///////////////////////////////////////////////
 
                 /**
-                 * Toggles individual card buttons using their 'suite-data' attributes
+                 * Returns internal scripts object
                  * @public
                  * @function
-                 * @param           {HTMLEvent} event                   HTML DOM event
+                 * @return          {Object}                            Scripts object
                  */
-                _lib.toggleCardButton      = ( event )                 => UI.toggle.cardButton ( event );
+                _lib.getScripts            = ( )                       => _scripts;
 
                 /**
                  * Runs easing animation for an animation card
@@ -7088,12 +7054,20 @@ class Ui
                 _lib.runLabStationCode     = ( )                       => LAB.runCode ( );
 
                 /**
-                 * Returns internal scripts object
+                 * Toggles individual card buttons using their 'suite-data' attributes
                  * @public
                  * @function
-                 * @return          {Object}                            Scripts object
+                 * @param           {HTMLElement} element               HTML DOM Element
                  */
-                _lib.getScripts            = ( )                       => _scripts;
+                _lib.toggleCardButton      = ( element )                => UI.toggle.cardButton ( element );
+
+                /**
+                 * Toggles lab from each card-object
+                 * @public
+                 * @function
+                 * @param           {HTMLElement} element               HTML DOM Element
+                 */
+                _lib.toggleLab             = ( element )                => UI.toggle.lab ( element );
 
             return _lib;
         }

@@ -56,6 +56,9 @@
 <dt><a href="#grid">grid()</a></dt>
 <dd><p>Toggles grid in lab</p>
 </dd>
+<dt><a href="#lab">lab(element)</a></dt>
+<dd><p>Toggles lab from each card-object</p>
+</dd>
 <dt><a href="#labButton">labButton(element)</a></dt>
 <dd><p>Toggles lab buttons active state</p>
 </dd>
@@ -601,6 +604,18 @@ Toggles grid in lab
 
 **Kind**: global function  
 **Access**: public  
+<a name="lab"></a>
+
+## lab(element)
+Toggles lab from each card-object
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>HTMLElement</code> | HTML DOM Element |
+
 <a name="labButton"></a>
 
 ## labButton(element)

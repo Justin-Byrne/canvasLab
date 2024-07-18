@@ -189,7 +189,7 @@ nav {
           box-shadow: none; }
       nav .nav-wrapper .nav-menu li:nth-child(5) > button,
       nav .nav-wrapper .nav-menu li:nth-child(7) > button {
-        padding-top: 10px; }
+        padding-top: 12px; }
     nav .nav-wrapper .external-links {
       display: flex;
       position: absolute;
@@ -326,6 +326,15 @@ main {
         main .album .container #test-cards .col .card .icons {
           float: right;
           margin-top: 2px; }
+          main .album .container #test-cards .col .card .icons .lab-bottle {
+            position: relative;
+            opacity: 0.6;
+            width: 23px;
+            top: 1px; }
+            main .album .container #test-cards .col .card .icons .lab-bottle:hover {
+              opacity: 1;
+              transform: scale(1.1) rotate(10deg);
+              transition: opacity 0.75s, transform 0.75s; }
           main .album .container #test-cards .col .card .icons .separator {
             position: relative;
             top: 2.75px;

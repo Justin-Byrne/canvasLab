@@ -7,11 +7,11 @@
 
 declare NO_ERRORS=true
 
-declare WITH_DOCUMENTS=true
+declare WITH_DOCUMENTS=false
 
-declare WITH_MD2JSON=true
+declare WITH_MD2JSON=false
 
-declare WITH_PLANTUML=true
+declare WITH_PLANTUML=false
 
 ## PROJECT SPECIFIC ################## ヽ(•‿•)ノ ##################
 

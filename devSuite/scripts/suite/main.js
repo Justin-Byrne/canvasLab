@@ -3980,12 +3980,12 @@
             ////    FUNCTIONS    ///////////////////////////////////////////////
 
                 /**
-                 * Toggles individual card buttons using their 'suite-data' attributes
+                 * Returns internal scripts object
                  * @public
                  * @function
-                 * @param           {HTMLEvent} event                   HTML DOM event
+                 * @return          {Object}                            Scripts object
                  */
-                _lib.toggleCardButton      = ( event )                 => UI.toggle.cardButton ( event );
+                _lib.getScripts            = ( )                       => _scripts;
 
                 /**
                  * Runs easing animation for an animation card
@@ -4004,12 +4004,20 @@
                 _lib.runLabStationCode     = ( )                       => LAB.runCode ( );
 
                 /**
-                 * Returns internal scripts object
+                 * Toggles individual card buttons using their 'suite-data' attributes
                  * @public
                  * @function
-                 * @return          {Object}                            Scripts object
+                 * @param           {HTMLElement} element               HTML DOM Element
                  */
-                _lib.getScripts            = ( )                       => _scripts;
+                _lib.toggleCardButton      = ( element )                => UI.toggle.cardButton ( element );
+
+                /**
+                 * Toggles lab from each card-object
+                 * @public
+                 * @function
+                 * @param           {HTMLElement} element               HTML DOM Element
+                 */
+                _lib.toggleLab             = ( element )                => UI.toggle.lab ( element );
 
             return _lib;
         }

@@ -53,6 +53,8 @@ class Template
 
                                    <span class="icons">
 
+                                       <img src="images/svg/General/lab-bottle.svg" class="lab-bottle" suite-data-index="{{index}}" onclick="devSuite.toggleLab ( event )">
+
                                        <img src="images/svg/{{easing}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devSuite.toggleCardButton ( event )">
 
                                        <span class="wall">&nbsp;</span>
