@@ -23,8 +23,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Jul, 18 2024',
-            Version:   '0.4.104',
+            Updated:   'Jul, 29 2024',
+            Version:   '0.4.118',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -140,6 +140,12 @@ class Application
 
     ////    DOM    /////////////////////////////////////////
 
+        /**
+         * Get dom details
+         * @readOnly
+         * @function
+         * @return          {Object}                                    DOM details
+         */
         get dom ( )
         {
             return this.#dom;
@@ -180,16 +186,27 @@ class Application
 
         /**
          * Creates a new animation instance
-         * @param           {Object}   flow                             Contains timing, draw, & duration values & functions
-         * @param           {number}   flow.duration                    Duration of animation
-         * @param           {Function} flow.timing                      Timing function
-         * @param           {Function} flow.draw                        Draw function
+         * @param           {Queue|Object} sequence                     Contains timing, draw, & duration values & functions
+         * @param           {number}       sequence.duration            Duration of animation
+         * @param           {Function}     sequence.timing              Timing function
+         * @param           {Function}     sequence.draw                Draw function
          */
-        set animation ( flow = { duration, timing, draw } )
+        set animation ( sequence = { duration, timing, draw } )
         {
-            let _animation = new Animation ( flow.duration, flow.timing, flow.draw );
+            if ( sequence instanceof Queue )
+            {
+                let _animation       = new Animation;
 
-                _animation.animate ( );
+                    _animation.queue = sequence;
+
+                    _animation.animate ( );
+            }
+            else
+            {
+                let _animation = new Animation ( sequence.duration, sequence.timing, sequence.draw );
+
+                    _animation.animate ( );
+            }
         }
 }
 

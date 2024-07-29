@@ -37,11 +37,9 @@ class canvasLab
          */
         set canvas ( value )
         {
-            this._canvas = ( this._isInDom ( value ) )
+            this._canvas = ( this._isInDom ( value ) ) ? document.getElementById ( value ).getContext ( '2d' )
 
-                                ? document.getElementById ( value ).getContext ( '2d' )
-
-                                : this._canvas;
+                                                       : this._canvas;
         }
 
         /**
@@ -66,11 +64,9 @@ class canvasLab
          */
         set canvases ( canvasId )
         {
-            let _canvas = ( this._isInDom ( canvasId ) )
+            let _canvas = ( this._isInDom ( canvasId ) ) ? document.getElementById ( canvasId ).getContext ( '2d' )
 
-                              ? document.getElementById ( canvasId ).getContext ( '2d' )
-
-                              : undefined;
+                                                         : undefined;
 
 
             if ( this._canvases == undefined )
@@ -120,6 +116,12 @@ class canvasLab
 
     ////    DOM    /////////////////////////////////////////
 
+        /**
+         * Get dom details
+         * @readOnly
+         * @function
+         * @return          {Object}                                    DOM details
+         */
         get dom ( )
         {
             return this.#application.dom;
@@ -139,23 +141,34 @@ class canvasLab
 
     ////    UTILITIES   ////////////////////////////////////
 
+        /**
+         * Returns the center X & Y coordinates of the present canvas
+         * @public
+         * @function
+         * @return          {Point}                                     Center X & Y coordinates
+         */
         get center ( )
         {
-            return this.#application._center;
+            return new Point (
+
+                           this._canvas.canvas.clientWidth  / 2,                // X coordinate
+
+                           this._canvas.canvas.clientHeight / 2                 // Y coordinate
+                       );
         }
 
         /**
          * Animates onscreen objects in accordance with passed param values
-         * @param           {Object}   flow                     Contains timing, draw, & duration values & functions
-         * @param           {number}   flow.duration            Duration of animation
-         * @param           {Function} flow.timing              Timing function
-         * @param           {Function} flow.draw                Draw function
+         * @param           {Object}   sequence                         Contains timing, draw, & duration values & functions
+         * @param           {number}   sequence.duration                Duration of animation
+         * @param           {Function} sequence.timing                  Timing function
+         * @param           {Function} sequence.draw                    Draw function
          */
-        animate ( flow = { duration, timing, draw } )
+        animate ( sequence = { duration, timing, draw } )
         {
-            if ( flow )
+            if ( sequence )
 
-                this.#application.animation = flow;
+                this.#application.animation = sequence;
         }
 
     ////    INITIALIZE  ////////////////////////////////////

@@ -88,14 +88,14 @@
 <dt><a href="#Texts">Texts</a></dt>
 <dd><p>{Array} Texts                               Collection of Text objects</p>
 </dd>
+<dt><a href="#Queue">Queue</a></dt>
+<dd><p>{Object} Queue                              Queue object</p>
+</dd>
 <dt><a href="#Animation">Animation</a></dt>
 <dd><p>{Object}   Animation                        Animation handler</p>
 </dd>
 <dt><a href="#Application">Application</a></dt>
 <dd><p>{Object}   Application                      Application handler</p>
-</dd>
-<dt><a href="#Queue">Queue</a></dt>
-<dd><p>{Object} Queue                              Queue object</p>
 </dd>
 <dt><a href="#SacredCircles">SacredCircles</a></dt>
 <dd><p>{Object} SacredCircles                      SacredCircles plan</p>
@@ -113,9 +113,6 @@
 </dd>
 <dt><a href="#VALIDATION">VALIDATION</a> : <code>object</code></dt>
 <dd><p>Shared validation functions</p>
-</dd>
-<dt><a href="#DEBUG">DEBUG</a> : <code>object</code></dt>
-<dd><p>Shared utility functions</p>
 </dd>
 </dl>
 
@@ -150,7 +147,9 @@
     * [.canvases()](#canvasLab+canvases) ⇒ <code>Array</code>
     * [.font(font)](#canvasLab+font)
     * [.font()](#canvasLab+font) ⇒ <code>string</code>
-    * [.animate(flow)](#canvasLab+animate)
+    * [.dom()](#canvasLab+dom) ⇒ <code>Object</code>
+    * [.center()](#canvasLab+center) ⇒ [<code>Point</code>](#Point)
+    * [.animate(sequence)](#canvasLab+animate)
 
 <a name="new_canvasLab_new"></a>
 
@@ -218,19 +217,35 @@ Get main font type
 **Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
 **Returns**: <code>string</code> - font                               Main font type  
 **Read only**: true  
+<a name="canvasLab+dom"></a>
+
+### canvasLab.dom() ⇒ <code>Object</code>
+Get dom details
+
+**Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
+**Returns**: <code>Object</code> - DOM details  
+**Read only**: true  
+<a name="canvasLab+center"></a>
+
+### canvasLab.center() ⇒ [<code>Point</code>](#Point)
+Returns the center X & Y coordinates of the present canvas
+
+**Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
+**Returns**: [<code>Point</code>](#Point) - Center X & Y coordinates  
+**Access**: public  
 <a name="canvasLab+animate"></a>
 
-### canvasLab.animate(flow)
+### canvasLab.animate(sequence)
 Animates onscreen objects in accordance with passed param values
 
 **Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| flow | <code>Object</code> | Contains timing, draw, & duration values & functions |
-| flow.duration | <code>number</code> | Duration of animation |
-| flow.timing | <code>function</code> | Timing function |
-| flow.draw | <code>function</code> | Draw function |
+| sequence | <code>Object</code> | Contains timing, draw, & duration values & functions |
+| sequence.duration | <code>number</code> | Duration of animation |
+| sequence.timing | <code>function</code> | Timing function |
+| sequence.draw | <code>function</code> | Draw function |
 
 <a name="Rgb"></a>
 
@@ -5338,6 +5353,121 @@ Redraw this object
 | point | [<code>Point</code>](#Point) |  | Point of new location |
 | [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
 
+<a name="Queue"></a>
+
+## Queue
+{Object} Queue                              Queue object
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| entries | <code>Array</code> |  | Array of entries |
+| [index] | <code>number</code> | <code>0</code> | Current index |
+| entry | <code>Object</code> |  | Current entry |
+
+
+* [Queue](#Queue)
+    * [new Queue()](#new_Queue_new)
+    * [.entries(value)](#Queue+entries)
+    * [.entries()](#Queue+entries) ⇒ <code>Array</code>
+    * [.index()](#Queue+index) ⇒ <code>number</code>
+    * [.entry()](#Queue+entry)
+    * [.entry()](#Queue+entry) ⇒ <code>Object</code>
+    * [.isEnd()](#Queue+isEnd) ⇒ <code>boolean</code>
+    * [.isLast()](#Queue+isLast) ⇒ <code>boolean</code>
+    * [.isSet()](#Queue+isSet) ⇒ <code>boolean</code>
+    * [.next()](#Queue+next) ⇒ <code>Object</code>
+    * [.reset()](#Queue+reset)
+
+<a name="new_Queue_new"></a>
+
+### new Queue()
+Create a Queue object
+
+<a name="Queue+entries"></a>
+
+### queue.entries(value)
+Set entries
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array</code> | Array of entries |
+
+<a name="Queue+entries"></a>
+
+### queue.entries() ⇒ <code>Array</code>
+Get entries
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Returns**: <code>Array</code> - Array of entries  
+**Access**: public  
+<a name="Queue+index"></a>
+
+### queue.index() ⇒ <code>number</code>
+Get index
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Returns**: <code>number</code> - Current index value  
+**Read only**: true  
+<a name="Queue+entry"></a>
+
+### queue.entry()
+Pushes in an entry
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Access**: public  
+<a name="Queue+entry"></a>
+
+### queue.entry() ⇒ <code>Object</code>
+Get current entry
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Returns**: <code>Object</code> - Current entry  
+**Access**: public  
+<a name="Queue+isEnd"></a>
+
+### queue.isEnd() ⇒ <code>boolean</code>
+Returns whether this queue is at its end
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+<a name="Queue+isLast"></a>
+
+### queue.isLast() ⇒ <code>boolean</code>
+Returns whether this queue is on its last element
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+<a name="Queue+isSet"></a>
+
+### queue.isSet() ⇒ <code>boolean</code>
+Returns whether this queue is set, or populated
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+<a name="Queue+next"></a>
+
+### queue.next() ⇒ <code>Object</code>
+Returns next entry; begins with [ 0 ], or first entry
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Returns**: <code>Object</code> - Next entry  
+**Access**: public  
+<a name="Queue+reset"></a>
+
+### queue.reset()
+Resets index to 0
+
+**Kind**: instance method of [<code>Queue</code>](#Queue)  
+**Access**: public  
 <a name="Animation"></a>
 
 ## Animation
@@ -5361,6 +5491,8 @@ Redraw this object
     * [.draw()](#Animation+draw) ⇒ <code>function</code>
     * [.duration(value)](#Animation+duration)
     * [.duration()](#Animation+duration) ⇒ <code>number</code>
+    * [.queue(value)](#Animation+queue)
+    * [.queue()](#Animation+queue) ⇒ [<code>Queue</code>](#Queue)
     * [.animate()](#Animation+animate)
 
 <a name="new_Animation_new"></a>
@@ -5435,6 +5567,26 @@ Get duration
 **Kind**: instance method of [<code>Animation</code>](#Animation)  
 **Returns**: <code>number</code> - Duration  
 **Read only**: true  
+<a name="Animation+queue"></a>
+
+### animation.queue(value)
+Set queue
+
+**Kind**: instance method of [<code>Animation</code>](#Animation)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Queue</code>](#Queue) | Queue object |
+
+<a name="Animation+queue"></a>
+
+### animation.queue() ⇒ [<code>Queue</code>](#Queue)
+Get queue
+
+**Kind**: instance method of [<code>Animation</code>](#Animation)  
+**Returns**: [<code>Queue</code>](#Queue) - Queue object  
+**Read only**: true  
 <a name="Animation+animate"></a>
 
 ### animation.animate()
@@ -5455,6 +5607,7 @@ Initiates animation
     * [.canvas(value)](#Application+canvas)
     * [.canvas()](#Application+canvas) ⇒ <code>HTMLCanvasElement</code>
     * [.about()](#Application+about) ⇒ <code>Object</code>
+    * [.dom()](#Application+dom) ⇒ <code>Object</code>
 
 <a name="new_Application_new"></a>
 
@@ -5470,10 +5623,10 @@ Creates a new animation instance
 
 | Param | Type | Description |
 | --- | --- | --- |
-| flow | <code>Object</code> | Contains timing, draw, & duration values & functions |
-| flow.duration | <code>number</code> | Duration of animation |
-| flow.timing | <code>function</code> | Timing function |
-| flow.draw | <code>function</code> | Draw function |
+| sequence | [<code>Queue</code>](#Queue) \| <code>Object</code> | Contains timing, draw, & duration values & functions |
+| sequence.duration | <code>number</code> | Duration of animation |
+| sequence.timing | <code>function</code> | Timing function |
+| sequence.draw | <code>function</code> | Draw function |
 
 <a name="Application+canvas"></a>
 
@@ -5503,77 +5656,14 @@ Get application details
 **Kind**: instance method of [<code>Application</code>](#Application)  
 **Returns**: <code>Object</code> - Application details  
 **Read only**: true  
-<a name="Queue"></a>
+<a name="Application+dom"></a>
 
-## Queue
-{Object} Queue                              Queue object
+### application.dom() ⇒ <code>Object</code>
+Get dom details
 
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| entries | <code>Array</code> |  | Array of entries |
-| [index] | <code>number</code> | <code>0</code> | Current index |
-| entry | <code>Object</code> |  | Current entry |
-
-
-* [Queue](#Queue)
-    * [new Queue()](#new_Queue_new)
-    * [.entries(value)](#Queue+entries)
-    * [.entries()](#Queue+entries) ⇒ <code>Array</code>
-    * [.entry()](#Queue+entry) ⇒ <code>Object</code>
-    * [.next()](#Queue+next) ⇒ <code>Object</code>
-    * [.reset()](#Queue+reset)
-
-<a name="new_Queue_new"></a>
-
-### new Queue()
-Create a Queue object
-
-<a name="Queue+entries"></a>
-
-### queue.entries(value)
-Set entries
-
-**Kind**: instance method of [<code>Queue</code>](#Queue)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>Array</code> | Array of entries |
-
-<a name="Queue+entries"></a>
-
-### queue.entries() ⇒ <code>Array</code>
-Get entries
-
-**Kind**: instance method of [<code>Queue</code>](#Queue)  
-**Returns**: <code>Array</code> - Array of entries  
-**Access**: public  
-<a name="Queue+entry"></a>
-
-### queue.entry() ⇒ <code>Object</code>
-Get current entry
-
-**Kind**: instance method of [<code>Queue</code>](#Queue)  
-**Returns**: <code>Object</code> - Current entry  
-**Access**: public  
-<a name="Queue+next"></a>
-
-### queue.next() ⇒ <code>Object</code>
-Returns next entry; begins with [ 0 ], or first entry
-
-**Kind**: instance method of [<code>Queue</code>](#Queue)  
-**Returns**: <code>Object</code> - Next entry  
-**Access**: public  
-<a name="Queue+reset"></a>
-
-### queue.reset()
-Resets index to 0
-
-**Kind**: instance method of [<code>Queue</code>](#Queue)  
-**Access**: public  
+**Kind**: instance method of [<code>Application</code>](#Application)  
+**Returns**: <code>Object</code> - DOM details  
+**Read only**: true  
 <a name="SacredCircles"></a>
 
 ## SacredCircles
@@ -6118,6 +6208,7 @@ Shared validation functions
     * [.isStop(value)](#VALIDATION.isStop) ⇒ <code>boolean</code>
     * [.isStrokeType(value)](#VALIDATION.isStrokeType) ⇒ <code>boolean</code>
     * [.isWidth(value)](#VALIDATION.isWidth) ⇒ <code>boolean</code>
+    * [.Group#_isCanvasLabObject(value)](#VALIDATION.Group+_isCanvasLabObject) ⇒ <code>boolean</code>
 
 <a name="VALIDATION.is256"></a>
 
@@ -6431,53 +6522,19 @@ Returns whether the passed value is a width value
 | --- | --- | --- |
 | value | <code>number</code> | Width value |
 
-<a name="DEBUG"></a>
+<a name="VALIDATION.Group+_isCanvasLabObject"></a>
 
-## DEBUG : <code>object</code>
-Shared utility functions
+### VALIDATION.Group#\_isCanvasLabObject(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
 
-**Kind**: global namespace  
-
-* [DEBUG](#DEBUG) : <code>object</code>
-    * [.setCanvasStyleToHTML(canvasId)](#DEBUG.setCanvasStyleToHTML)
-    * [.setCanvasStyleToHTMLMAX(canvasId)](#DEBUG.setCanvasStyleToHTMLMAX)
-    * [.fixBlur(canvasId)](#DEBUG.fixBlur)
-
-<a name="DEBUG.setCanvasStyleToHTML"></a>
-
-### DEBUG.setCanvasStyleToHTML(canvasId)
-Sets canvas's aspect ratio
-
-**Kind**: static method of [<code>DEBUG</code>](#DEBUG)  
+**Kind**: static method of [<code>VALIDATION</code>](#VALIDATION)  
+**Returns**: <code>boolean</code> - True || False  
 **Access**: public  
+**See**: [Validation.isCanvasLabObject](Validation.isCanvasLabObject)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| canvasId | <code>string</code> | Canvas identifier |
-
-<a name="DEBUG.setCanvasStyleToHTMLMAX"></a>
-
-### DEBUG.setCanvasStyleToHTMLMAX(canvasId)
-Sets canvas's max aspect ratio
-
-**Kind**: static method of [<code>DEBUG</code>](#DEBUG)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| canvasId | <code>string</code> | Canvas identifier |
-
-<a name="DEBUG.fixBlur"></a>
-
-### DEBUG.fixBlur(canvasId)
-Fixes pixel blur
-
-**Kind**: static method of [<code>DEBUG</code>](#DEBUG)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| canvasId | <code>string</code> | Canvas identifier |
+| value | <code>Object</code> | CanvasLab object; Line, Circle, Rectangle, Text |
 
 <a name="initCanvasLab"></a>
 

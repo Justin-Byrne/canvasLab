@@ -49,6 +49,8 @@ class Animation
             'easeInOutBack':    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
     }
 
+    #queue = new Queue;
+
     /**
      * Creates an animation instance
      * @param           {number}   duration                         Duration of animation
@@ -155,6 +157,30 @@ class Animation
             return this._duration;
         }
 
+    ////    [ QUEUE ]    ///////////////////////////////////
+
+        /**
+         * Set queue
+         * @public
+         * @function
+         * @param           {Queue} value                               Queue object
+         */
+        set queue ( value )
+        {
+            this.#queue = ( value instanceof Queue ) ? value : this.#queue;
+        }
+
+        /**
+         * Get queue
+         * @readOnly
+         * @function
+         * @return          {Queue}                                     Queue object
+         */
+        get queue ( )
+        {
+            return this.#queue;
+        }
+
     ////    VALIDATION  ////////////////////////////////////
 
         /**
@@ -170,18 +196,60 @@ class Animation
     ////    UTILITIES   ////////////////////////////////////
 
         /**
+         * Checks whether queue property is set, and sets duration, timing, and draw properties respectively
+         * @private
+         * @function
+         */
+        _checkQueue ( )
+        {
+            if ( this.queue.isSet )
+            {
+                let _animate  = this.queue.next;
+
+
+                this.duration = _animate.duration;
+
+                this.timing   = _animate.timing;
+
+                this.draw     = _animate.draw;
+            }
+        }
+
+        /**
+         * Returns properties animation properties for execution
+         * @private
+         * @function
+         * @return          {Object}                                    Animation properties
+         */
+        _getAnimationProperties ( )
+        {
+            this._checkQueue ( );
+
+
+            let _results =
+            {
+                duration:   this._duration,                 // {number}
+                timing:     this._timing,                   // {function}
+                draw:       this._draw,                     // {function}
+                queue:      this.queue,                     // {Queue}
+                callback:   ( ) => this.animate ( )         // {function}
+            }
+
+
+            return _results;
+        }
+
+        /**
          * Initiates animation
          * @public
          * @function
          */
         animate ( )
         {
-            // @TODO: Check to make sure that _timing, _draw, and _duration are properly set, prior to 'animating' !
-            // could be set with a single internal variable, like #valid
-            let [ _duration, _timing, _draw ] = [ this._duration, this._timing, this._draw ]
+            let _props = this._getAnimationProperties ( );
 
 
-            if ( this._timing && this._draw )
+            if ( this._timing  &&  this._draw )
             {
                 let _start = performance.now ( );
 
@@ -190,17 +258,27 @@ class Animation
 
                     function animate ( time )
                     {
-                        let _timeFraction =  ( time - _start ) / _duration;     // timeFraction goes from 0 to 1
+                        let _timeFraction =  ( time - _start ) / _props.duration;                   // timeFraction goes from 0 to 1
 
-                        let _progress     = _timing ( _timeFraction );          // calculate the current animation state
+                        let _progress     = _props.timing ( _timeFraction );                        // calculate the current animation state
 
 
-                        _draw ( _progress );                                    // draw it
+                        _props.draw ( _progress );                                                  // draw it
 
 
                         if ( _timeFraction < 1 )
 
                             requestAnimationFrame ( animate );
+
+                        else
+
+                            if ( _props.queue.isSet  &&  ! _props.queue.isEnd )
+
+                                _props.callback ( );
+
+                            else
+
+                                console.log ( 'animation complete !' );
                     }
                 );
             }

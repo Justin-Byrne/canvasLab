@@ -77,7 +77,7 @@ nav
     {
         width:      $width;
         background: $background;
-        padding:    0.5rem !important;
+        padding:    0.5rem 0 0.5rem 0 !important;
 
         #nav-icon
         {
@@ -85,13 +85,21 @@ nav
             margin:      0 auto;
             height:      61px;
             width:       61px;
-            padding-top: 4px;
+            padding-top: 20px;
+
+            opacity:     0.25;
 
             &:hover
             {
                 cursor: pointer;
+                opacity: 1;
 
-                img#eye { animation: growOutIn 1s linear infinite; }
+                transition: opacity 1s;
+
+                img#eye
+                {
+                    animation: growOutIn 1s linear infinite;
+                }
             }
 
             img
@@ -114,8 +122,8 @@ nav
         {
             margin-top:     1.5rem !important;
             margin-bottom:  1.5rem !important;
-            margin-left:    6px;
-            margin-right:   6px;
+            margin-left:    12px;
+            margin-right:   12px;
             border-top:     2px solid $seperatorColor !important;
         }
 
@@ -220,7 +228,9 @@ nav
             list-style:     none;
 
             margin-bottom:  0;
-            padding-left:   0 !important;
+            padding-left:   32px;
+
+            transition:     padding 1s;
 
             ul
             {
@@ -330,12 +340,18 @@ nav
             li:nth-child(7) > button { padding-top: 12px; }
         }
 
+        #nav-lab
+        {
+            text-align: center;
+        }
+
         .external-links
         {
             display:        flex;
             position:       absolute;
             bottom:         41px;
             width:          83%;
+            margin-left:    20px;
 
             background:     rgb(28, 38, 47);
 
@@ -367,14 +383,15 @@ nav
 
         #version
         {
-            display:    flex;
-            position:   absolute;
-            bottom:     10px;
-            width:      83%;
+            display:        flex;
+            position:       absolute;
+            bottom:         10px;
+            width:          83%;
+            margin-left:    20px;
 
-            font-size:  15px;
+            font-size:      15px;
 
-            opacity:    0.9;
+            opacity:        0.9;
 
             span
             {
@@ -565,22 +582,7 @@ main
 
                             margin-top: 2px;
 
-                            .lab-bottle
-                            {
-                                position: relative;
-                                opacity:  0.6;
-                                width:    23px;
-                                top:      1px;
-
-                                &:hover
-                                {
-                                    opacity:   1;
-
-                                    transform:  scale(1.1) rotate(10deg);
-
-                                    transition: opacity 0.75s, transform 0.75s;
-                                }
-                            }
+                            .easing { margin-left: 0.5rem; }
 
                             .separator
                             {
@@ -1125,7 +1127,7 @@ main
             padding:    0;
             margin:     0;
 
-            max-width:  2000px;
+            max-width:  4000px;
 
             .col
             {
@@ -1145,8 +1147,8 @@ main
             #ruler
             {
                 position:   absolute;
-
                 height:     100vh;
+                z-index:    2;
 
                 opacity:    0;
 
@@ -1200,63 +1202,20 @@ main
             #grid
             {
                 position:   absolute;
-                height:     100vh;
-                top:        1px;
-                left:       200px;
+                z-index:    1;
 
+                background-color: transparent;
                 opacity:    0;
 
                 transition: opacity 1s ease;
-
-                .horizontal-lines
-                {
-                    position: absolute;
-
-                    .horizontal
-                    {
-                        position:       relative;
-                        width:          100vh;
-                        height:         0px;
-                        margin-top:     16px;
-
-                        border-bottom:  1px solid rgb(115, 240, 255);
-                        opacity:        0.5;
-                    }
-
-                    .horizontal-bold
-                    {
-                        @extend .horizontal;
-
-                        border-bottom:  1px solid rgb(0, 0, 0);
-                    }
-                }
-
-                .vertical-lines
-                {
-                    position: inline-flex;
-
-                    .vertical
-                    {
-                        display:        inline-block;
-                        position:       relative;
-                        width:          1px;
-                        height:         100vh;
-                        margin-left:    16px;
-
-                        border-right:   1px solid rgb(115, 240, 255);
-                        opacity:        0.5;
-                    }
-
-                    .vertical-bold
-                    {
-                        @extend .vertical;
-
-                        border-right:   1px solid rgb(0, 0, 0);
-                    }
-                }
             }
 
-            canvas { background: white; }
+            canvas
+            {
+                position:   absolute;
+
+                background: white;
+            }
 
             #editor
             {
@@ -1676,6 +1635,27 @@ $scrollbar-color-background: rgba(0,  31,  61, 0.36);
                 opacity:    0.5;
             }
         }
+    }
+}
+
+////    [ LAB ICON ]    ////////////////////////////////////
+
+.lab-bottle
+{
+    position: relative;
+    opacity:  0.6;
+    width:    23px;
+    top:      1px;
+
+    &:hover
+    {
+        opacity:    1;
+
+        cursor:     pointer;
+
+        transform:  scale(1.1) rotate(10deg);
+
+        transition: opacity 0.5s, transform 0.5s;
     }
 }
 

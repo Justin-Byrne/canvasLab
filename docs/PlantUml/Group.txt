@@ -4,32 +4,33 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Group {
-point             {Point}
-lines             {Array}
-circles           {Array}
-rectangles        {Array}
-text              {Array}
-canvas            {HTMLCanvasElement}
+point                {Point}
+lines                {Array}
+circles              {Array}
+rectangles           {Array}
+text                 {Array}
+canvas               {HTMLCanvasElement}
 __ Setter __
-point             {Point}
-x                 <color:gray>{number}</color>
-y                 <color:gray>{number}</color>
-canvas            <color:gray>{string}</color>
-plan              {Object}
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+canvas               <color:gray>{string}</color>
+plan                 {Object}
 __ Getter __
-point             {Point}
-x                 <color:gray>{number}</color>
-y                 <color:gray>{number}</color>
-canvas            <color:gray>{string}</color>
-plan              {Object}
-lines             {Lines}
-circles           {Circles}
-rectangles        {Rectangles}
-texts             {Texts}
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+canvas               <color:gray>{string}</color>
+plan                 {Object}
+lines                {Lines}
+circles              {Circles}
+rectangles           {Rectangles}
+texts                {Texts}
 __ Validation __
-_isInDom          <color:gray>{boolean}</color>
-_isPlan           <color:gray>{boolean}</color>
-_isPoint          <color:gray>{boolean}</color>
+_isCanvasLabObject   <color:gray>{boolean}</color>
+_isInDom             <color:gray>{boolean}</color>
+_isPlan              <color:gray>{boolean}</color>
+_isPoint             <color:gray>{boolean}</color>
 __ Utility __
 _setAllCanvases
 _setPointOffset

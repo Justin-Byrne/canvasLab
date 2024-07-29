@@ -6,17 +6,27 @@
  */
 class Queue
 {
-    _entries = undefined;
+    _entries = new Array;
     _index   = 0;
     _entry   = undefined;
     
+    #touched = false;
+
     /**
      * Create a Queue object
-     * @property        {Array}  entries                            Array of entries
+     * @property        {Array} entries                             Array of entries
      */
     constructor ( entries )
     {
-        this.entries = entries;
+        if ( Array.isArray ( entries ) )
+
+            this.entries = entries;
+
+        else
+
+            for ( let _value of arguments )
+
+                this.entry = _value;
     }
 
     ////    [ ENTRIES ]    /////////////////////////////////
@@ -40,10 +50,35 @@ class Queue
          */
         get entries ( )
         {
-            this._entries;
+            return this._entries;
         }
     
+    ////    [ INDEX ]    ///////////////////////////////////
+
+        /**
+         * Get index
+         * @readOnly
+         * @function
+         * @return          {number}                                    Current index value
+         */
+        get index ( )
+        {
+            return this._index;
+        }
+
     ////    [ ENTRY ]    ///////////////////////////////////
+
+        /**
+         * Pushes in an entry
+         * @public
+         * @function
+         */
+        set entry ( value )
+        {
+            if ( typeof value === 'object' || typeof value === 'function' )
+
+                this._entries.push ( value );
+        }
 
         /**
          * Get current entry
@@ -53,7 +88,42 @@ class Queue
          */
         get entry ( )
         {
-            this._entry;
+            return this._entry;
+        }
+
+    ////    VALIDATION    //////////////////////////////////
+
+        /**
+         * Returns whether this queue is at its end
+         * @public
+         * @function
+         * @return          {boolean}                                   True || False
+         */
+        get isEnd ( )
+        {
+            return ( this.#touched  &&  this._index === 0 );
+        }
+
+        /**
+         * Returns whether this queue is on its last element
+         * @public
+         * @function
+         * @return          {boolean}                                   True || False
+         */
+        get isLast ( )
+        {
+            return ( ( this._entries.length - 1 ) === this._index );
+        }
+
+        /**
+         * Returns whether this queue is set, or populated
+         * @public
+         * @function
+         * @return          {boolean}                                   True || False
+         */
+        get isSet ( )
+        {
+            return ( this._entries.length > 0 );
         }
 
     ////    UTILITIES    ///////////////////////////////////
@@ -66,6 +136,9 @@ class Queue
          */
         get next ( )
         {
+            this.#touched = true;
+
+
             let _entry = this._entries [ this._index ];
 
 
@@ -88,6 +161,6 @@ class Queue
          */
         get reset ( )
         {
-            this._index = 0;
+            [ this._index, this.#touched ] = [ 0, false ];
         }
 }

@@ -16,18 +16,6 @@ class Tool
     _get =
     {
         /**
-         * Returns CSS pixel value as number
-         * @private
-         * @function
-         * @param           {string} value                  CSS pixel value
-         * @return          {number}                        Number
-         */
-        numberFromPx ( value )
-        {
-            return Number ( value.replace ( 'px', '' ) );
-        },
-
-        /**
          * Returns CSS font size of HTML element
          * @private
          * @function
@@ -37,6 +25,18 @@ class Tool
         fontSize ( element )
         {
             return this.numberFromPx ( window.getComputedStyle ( element ).fontSize );
+        },
+
+        /**
+         * Returns CSS pixel value as number
+         * @private
+         * @function
+         * @param           {string} value                  CSS pixel value
+         * @return          {number}                        Number
+         */
+        numberFromPx ( value )
+        {
+            return Number ( value.replace ( 'px', '' ) );
         },
 
         /**
@@ -67,18 +67,6 @@ class Tool
     ////    VALIDATORS    //////////////////////////////////////////////////////////////////////////
 
         /**
-         * Determine whether the passed value is an 'Object' canvasLab category
-         * @public
-         * @function
-         * @param           {string} value                      Object, i.e.: 'Line', 'Circle', 'Rectangle', etc...
-         * @return          {boolean}                           True || False
-         */
-        isCanvasLabObject ( value )
-        {
-            return [ 'Line', 'Lines', 'Circle', 'Circles', 'Rectangle', 'Rectangles', 'Text', 'Texts', 'Group' ].includes ( value );
-        }
-
-        /**
          * Determine whether the passed element is active
          * @public
          * @function
@@ -88,6 +76,18 @@ class Tool
         isActive ( element )
         {
             return ( element.getAttribute ( 'data-bs-active' ) === 'true' );
+        }
+
+        /**
+         * Determine whether the passed value is an 'Object' canvasLab category
+         * @public
+         * @function
+         * @param           {string} value                      Object, i.e.: 'Line', 'Circle', 'Rectangle', etc...
+         * @return          {boolean}                           True || False
+         */
+        isCanvasLabObject ( value )
+        {
+            return [ 'Line', 'Lines', 'Circle', 'Circles', 'Rectangle', 'Rectangles', 'Text', 'Texts', 'Group' ].includes ( value );
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
@@ -110,15 +110,31 @@ class Tool
         }
 
         /**
-         * Simple programmatic delay
+         * Copy code to clipboard
          * @public
+         * @async
          * @function
-         * @param           {number} time                       Time to delay
-         * @return          {Promise}                           An async promise
          */
-        delay ( time )
+        async copyCode ( )
         {
-            return new Promise ( resolve => setTimeout ( resolve, time ) );
+            let _code = document.querySelector ( '#modal-code > div > div > div.modal-body > pre > code' ).innerHTML.replace ( /<[^>]+>/g, '' );
+
+
+            try
+            {
+                await navigator.clipboard.writeText ( _code );
+
+                console.info ( 'Content copied to clipboard' );
+            }
+            catch ( err )
+            {
+                console.error ( 'Failed to copy: ', err );
+            }
+
+
+            UI.alert ( 'Copied code !', 'success' );
+
+            TOOL.delay ( 1000 ).then ( ( ) => document.querySelector ( '#copiedAlert' ).children [ 0 ].remove ( ) );
         }
 
         /**
@@ -154,31 +170,15 @@ class Tool
         }
 
         /**
-         * Copy code to clipboard
+         * Simple programmatic delay
          * @public
-         * @async
          * @function
+         * @param           {number} time                       Time to delay
+         * @return          {Promise}                           An async promise
          */
-        async copyCode ( )
+        delay ( time )
         {
-            let _code = document.querySelector ( '#modal-code > div > div > div.modal-body > pre > code' ).innerHTML.replace ( /<[^>]+>/g, '' );
-
-
-            try
-            {
-                await navigator.clipboard.writeText ( _code );
-
-                console.info ( 'Content copied to clipboard' );
-            }
-            catch ( err )
-            {
-                console.error ( 'Failed to copy: ', err );
-            }
-
-
-            UI.alert ( 'Copied code !', 'success' );
-
-            TOOL.delay ( 1000 ).then ( ( ) => document.querySelector ( '#copiedAlert' ).children [ 0 ].remove ( ) );
+            return new Promise ( resolve => setTimeout ( resolve, time ) );
         }
 
         /**

@@ -476,17 +476,53 @@ const VALIDATION =
      */
     isPlan ( value )
     {
+        /**
+         * Returns classes functions
+         * @private
+         * @memberof VALIDATION
+         * @function
+         * @param           {Object} object                             Plan object
+         * @return          {Array}                                     Array of functions
+         */
+        function _getClassFunctions ( object )
+        {
+            let _results = new Array;
+
+            let _object  = object;
+
+            do
+            {
+                _results.push ( ... Object.getOwnPropertyNames ( _object ) );
+            }
+            while ( _object = Object.getPrototypeOf ( _object ) );
+
+
+                _results = _results.sort ( ).filter ( ( element, i, array ) =>
+                           {
+                               if ( element != array [ i + 1 ] && typeof object [ element ] == 'function' )
+
+                                    return true;
+                           } );
+
+
+            return _results;
+        }
+
         if ( value != undefined )
         {
-            let _instance = eval ( `new ${value.constructor.name};` );
+            let _instance  = eval ( `new ${value.constructor.name};` );
+
+            let _functions = _getClassFunctions ( value );
 
 
-            let _point    = ( Object.hasOwn ( _instance, '_point'  ) );
+            let _point     = ( Object.hasOwn ( _instance, '_point'  ) );
 
-            let _master   = ( Object.hasOwn ( _instance, '_master' ) );
+            let _master    = ( Object.hasOwn ( _instance, '_master' ) );
+
+            let _init      = _functions.includes ( 'init' );
 
 
-            return ( _point && _master );
+            return ( _point && _master && _init );
         }
         else
 

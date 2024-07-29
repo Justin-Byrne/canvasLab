@@ -3326,7 +3326,7 @@
                         text: 'easeInSine',
                         code: ( ) =>
                         {
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -3336,7 +3336,7 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
                         }
                     },
                 ],
@@ -3354,7 +3354,7 @@
                         {
                             _rectangle.options.anchor = true;
 
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -3364,7 +3364,7 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
                         }
                     },
                 ],
@@ -3379,7 +3379,7 @@
                         {
                             _circle.fill.color = new Rgb ( 0,  0,  0 );
 
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -3389,7 +3389,7 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
                         }
                     },
                     // fill color : rectangle
@@ -3401,7 +3401,7 @@
                         {
                             _rectangle.fill.color = new Rgb ( 0,  0,  0 );
 
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -3411,7 +3411,7 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
                         }
                     },
 
@@ -3430,7 +3430,7 @@
                                 { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
                             ];
 
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -3440,7 +3440,7 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
                         }
                     },
                     // fill linear : rectangle
@@ -3458,7 +3458,7 @@
                                 { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
                             ];
 
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -3468,7 +3468,7 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
                         }
                     },
 
@@ -3488,7 +3488,7 @@
                                 { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
                             ];
 
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -3500,7 +3500,7 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
                         }
                     },
                     // fill radial : rectangle
@@ -3519,7 +3519,7 @@
                                 { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
                             ];
 
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -3531,7 +3531,7 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
                         }
                     },
 
@@ -3553,7 +3553,7 @@
                                 { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
                             ];
 
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -3567,7 +3567,7 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
                         }
                     },
                     // fill conic : rectangle
@@ -3588,7 +3588,7 @@
                                 { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
                             ];
 
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -3602,7 +3602,7 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
                         }
                     },
                 ],
@@ -3617,7 +3617,7 @@
                         {
                             _line.stroke.color = new Rgb ( 0,  150,  200 );
 
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -3627,7 +3627,7 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
                         }
                     },
                     // text color
@@ -3639,7 +3639,7 @@
                         {
                             _text.fill.color = new Rgb ( 0,  150,  200 );
 
-                            let _flow =
+                            let _sequence =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -3649,7 +3649,132 @@
                                 }
                             }
 
-                            canvaslab.animate ( _flow );
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                ]
+            },
+            plan:
+            {
+                sacredcircles:
+                [
+                    // single animations
+                    {
+                        title:   'Single',
+                        text:    'blah... blah... blah...',
+                        children: [ 'group', 'circles', 'rgb' ],
+                        code: ( ) =>
+                        {
+                            ////    INPUTS    //////////////////////////////
+
+                            let _center     = canvaslab.center;
+
+                            let _iterations = 15;
+
+                            let _alpha      = 0.40;
+
+                            let _colors     =
+                            [
+                                new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                                new Rgb (   0,  0,  255, _alpha ),      // Blue
+                                new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                                new Rgb (   0, 255,   0, _alpha ),      // Green
+                                new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                                new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                                new Rgb ( 255,   0,   0, _alpha ),      // Red
+                                new Rgb (   0,   0,   0, _alpha ),      // Black
+                            ]
+
+                            ////    ANIMATE    /////////////////////////////
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeOutSine',
+                                draw ( progress )
+                                {
+                                    let _progress   = progress;
+
+                                    let _degrees    = [ 270 * _progress, 150, 90, 30, 330, 270, 210 ];
+
+                                    ////    GROUP    ///////////////////////
+
+                                    let _group        = new Group ( _center );
+
+                                        _group.canvas = 'canvas';   // [ Optional ]
+
+                                        _group.plan   = new SacredCircles ( _center, undefined, _iterations, _degrees, _colors );
+
+
+                                        _group.circles.redraw ( );
+                                }
+                            }
+
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // repeating animations
+                    {
+                        title:   'Repeating',
+                        text:    'blah... blah... blah...',
+                        children: [ 'queue', 'group', 'circles', 'rgb' ],
+                        code: ( ) =>
+                        {
+                            ////    INPUTS    //////////////////////////////
+
+                            let _center     = canvaslab.center;
+
+                            let _iterations = 15;
+
+                            let _alpha      = 0.40;
+
+                            let _colors     =
+                            [
+                                new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                                new Rgb (   0,  0,  255, _alpha ),      // Blue
+                                new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                                new Rgb (   0, 255,   0, _alpha ),      // Green
+                                new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                                new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                                new Rgb ( 255,   0,   0, _alpha ),      // Red
+                                new Rgb (   0,   0,   0, _alpha ),      // Black
+                            ]
+
+                            ////    ANIMATE    /////////////////////////////
+
+                            let _sequenceA =
+                            {
+                                duration: 3000,
+                                timing: 'easeOutSine',
+                                draw ( progress )
+                                {
+                                    let _progress   = progress;
+
+                                    let _degrees    = [ 270 * _progress, 150, 90, 30, 330, 270, 210 ];
+
+                                    ////    GROUP    ///////////////////////
+
+                                    let _group        = new Group ( _center );
+
+                                        _group.canvas = 'canvas';   // [ Optional ]
+
+                                        _group.plan   = new SacredCircles ( _center, undefined, _iterations, _degrees, _colors );
+
+
+                                        _group.circles.redraw ( );
+                                }
+                            }
+
+
+                            let _sequenceB = _sequenceA;
+
+                            let _sequenceC = _sequenceA;
+
+                            let _queue = new Queue ( _sequenceA, _sequenceB, _sequenceC );
+
+
+                            canvaslab.animate ( _queue );
                         }
                     },
                 ]
@@ -3858,6 +3983,27 @@
                                 // }
                             ]
                         },
+                        {
+                            title: 'Plans',
+                            links:
+                            [
+                                {
+                                    title:   'SacredCircles',
+                                    group:   'Plan',
+                                    handler: 'Animation'
+                                },
+                                // {
+                                //     title:   'Fill',
+                                //     group:   'Subject',
+                                //     handler: 'Animation'
+                                // },
+                                // {
+                                //     title:   'Stroke',
+                                //     group:   'Subject',
+                                //     handler: 'Animation'
+                                // }
+                            ]
+                        },
                     ]
                 },
             ]
@@ -3871,7 +4017,7 @@
      */
     let _scripts =
     {
-        circlesOfLife: ( ) =>
+        seedOfLife: ( ) =>
         {
             ////    INPUTS    //////////////////////////////
 
@@ -3879,29 +4025,15 @@
 
             let _radius     = 25;
 
-            let _iterations = 15;
+            let _iterations = 2;
 
             let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
-
-            let _alpha      = 0.40;
-
-            let _colors     =
-            [
-                new Rgb ( 255,  0,  255, _alpha ),      // Magenta
-                new Rgb (   0,  0,  255, _alpha ),      // Blue
-                new Rgb (   0, 255, 255, _alpha ),      // Cyan
-                new Rgb (   0, 255,   0, _alpha ),      // Green
-                new Rgb ( 255, 255,   0, _alpha ),      // Yellow
-                new Rgb ( 255, 125,   0, _alpha ),      // Orange
-                new Rgb ( 255,   0,   0, _alpha ),      // Red
-                new Rgb (   0,   0,   0, _alpha ),      // Black
-            ]
 
             ////    POPULATION    //////////////////////////
 
             let _group      = new Group;
 
-                _group.plan = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+                _group.plan = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
 
                 _group.circles.draw ( );
         },
@@ -3952,17 +4084,19 @@
          */
         function _setLabMode ( )
         {
-            let _labButton    = document.querySelector ( 'button.lab-station' );
-
             let _clearConsole = document.querySelector ( '#input-clear' );
 
 
-                _labButton.click    ( );
+            UI.clearScreen  ( false, true );
 
-                _clearConsole.click ( );
+            LAB.setCanvasSize ( );
+
+            _clearConsole.click ( );
+
+            UI.toggle.navigation ( );
 
 
-            UI._toggle.navigation ( );
+            window.addEventListener ( 'resize', LAB.setCanvasSize );
         }
 
     ////    LIBRARY WRAPPER    /////////////////////////////////////////////////////////////////////
@@ -4041,7 +4175,7 @@
             {
                 UI.init  ( );
 
-                LAB.init ( _scripts.circlesOfLife );
+                LAB.init ( _scripts.seedOfLife );
 
 
                 if ( _config.labMode )

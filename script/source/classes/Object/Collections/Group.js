@@ -31,9 +31,10 @@ class Group extends Array
 
         ////    COMPOSITION     ////////////////////////////
 
-            this._isInDom = VALIDATION.isInDom;
-            this._isPlan  = VALIDATION.isPlan;
-            this._isPoint = VALIDATION.isPoint;
+            this._isCanvasLabObject = VALIDATION.isCanvasLabObject;
+            this._isInDom           = VALIDATION.isInDom;
+            this._isPlan            = VALIDATION.isPlan;
+            this._isPoint           = VALIDATION.isPoint;
 
         this.point  = point;
         this.canvas = canvas;
@@ -230,6 +231,17 @@ class Group extends Array
         }
 
     ////    VALIDATION  ////////////////////////////////////
+
+        /**
+         * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
+         * @public
+         * @memberof VALIDATION
+         * @function
+         * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
+         * @return          {boolean}                                   True || False
+         * @see             {@link Validation.isCanvasLabObject}
+         */
+        _isCanvasLabObject ( ) { }
 
         /**
          * Returns whether the passed value is an element id within the DOM

@@ -86,7 +86,7 @@ declare COMPONENTS=(
     "${INPUT_FOLDER}/components/shared/PropertyBlocks.js"
     "${INPUT_FOLDER}/components/shared/Utilities.js"
     "${INPUT_FOLDER}/components/shared/Validation.js"
-    "${INPUT_FOLDER}/components/debug.js"
+    # "${INPUT_FOLDER}/components/debug.js"
 )
 
 declare CANVASLAB=(
@@ -101,7 +101,6 @@ declare SUBJECTS_FOLDERS=(
     "${INPUT_FOLDER}/classes/Subject/Staging"
     "${INPUT_FOLDER}/classes/Subject/Color/Gradient/Properties"
     "${INPUT_FOLDER}/classes/Subject/Color/Gradient"
-    # "${INPUT_FOLDER}/classes/Subject/Plans"
     "${INPUT_FOLDER}/classes/Subject"
     "${INPUT_FOLDER}/classes/Subject/Collections"
 )
@@ -111,13 +110,13 @@ declare OBJECTS_FOLDERS=(
     "${INPUT_FOLDER}/classes/Object/Collections"
 )
 
+declare DATA_STRUCTURES_FOLDERS=(
+    "${INPUT_FOLDER}/classes/Data-Structures"
+)
+
 declare HANDLERS_FOLERS=(
     "${INPUT_FOLDER}/classes/Handlers/Properties"
     "${INPUT_FOLDER}/classes/Handlers"
-)
-
-declare DATA_STRUCTURES_FOLDERS=(
-    "${INPUT_FOLDER}/classes/Data-Structures"
 )
 
 declare PLANS_FOLDER=(
@@ -289,17 +288,17 @@ function compile_output ()
     done
 
 
-    echo "\n////    HANDLERS    ////////////////////////////////////////" >> $OUTPUT
+    echo "\n////    DATA_STRUCTURES    /////////////////////////////////" >> $OUTPUT
 
-    for FILE in ${HANDLERS[@]}          # HANDLERS
+    for FILE in ${DATA_STRUCTURES[@]}   # DATA_STRUCTURES
     do
         insert_file $FILE
     done
 
 
-    echo "\n////    DATA_STRUCTURES    /////////////////////////////////" >> $OUTPUT
+    echo "\n////    HANDLERS    ////////////////////////////////////////" >> $OUTPUT
 
-    for FILE in ${DATA_STRUCTURES[@]}   # DATA_STRUCTURES
+    for FILE in ${HANDLERS[@]}          # HANDLERS
     do
         insert_file $FILE
     done
@@ -388,9 +387,9 @@ function compile_md2json ()
 
     FILES+=(${OBJECTS[@]})
 
-    FILES+=(${HANDLERS[@]})
-
     FILES+=(${DATA_STRUCTURES[@]})
+
+    FILES+=(${HANDLERS[@]})
 
     FILES+=(${PLANS[@]})
 
@@ -502,9 +501,7 @@ function update_lead_js_file ()
 function update_lead_html_file ()
 {
     sed -r -i '' -e 's/'${VC_PACKAGE}'-v.+/'${VC_PACKAGE}'-v'${VERSION}'-min.js"><\/script>/' ${1}
-    sed -r -i '' -e 's/<[^>]*>[0-9].[0-9].[0-9].<[^>]*>/<span>'${VERSION}'<\/span>/' ${1}
-
-    # -e 's/<[^>]*>[0-9].[0-9].[0-9].<[^>]*>/<span>${VERSION}<\/span>/g'
+    sed -r -i '' -e 's/<[^>]*>[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+<[^>]*>/<span>'${VERSION}'<\/span>/' ${1}
 }
 
 function update_minified_js_preamble ()

@@ -1,6 +1,45 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.118] - 2024-07-29
+### Added
+- **devSuite**
+  - Added library, mousetrap v1.6.5 for toggling lab features
+  - `Lab` class
+    - `keyboardCommands` event listener case, for toggling of lab features
+    - `setGrid ( )` to set grid overlay
+  - `Ui` class,
+    - `_navMove ( )` to move nav menu left or right
+    - `_navButtonReset ( )` to reset nav button position when closed
+    - `navButtonsReset` event listener case, to reset navigation buttons position
+    - `lab` event listener case, to trigger lab
+  - `Queue` class,
+    - `index ( )` getter, to get index
+    - `entry ( )` setter, to push in an entry
+    - `isEnd ( )` to return whether this queue is at its end
+    - `isLast ( )` to return whether this queue is on its last element
+    - `isSet ( )` to return whether this queue is set, or populated
+    - `#touched` attribute, to identify when the queue has been manipulated post instantiation and reset
+
+### Refactored
+- **devSuite**
+  - `Template` class, replaced animation keyword `flow`, with `sequence`
+  - `Queue` class, to take Arrays & single element instances as constructor arguments
+- **canvasLab**
+  - `Application` & `canvasLab` classes, replaced animation keyword `flow`, with `sequence`
+  - `Animation` class, `animate ( )` to incorporate multiple consecutive animations
+  - `SacredCircles` class, general optimization and refactoring
+  - `Validation` module, `isPlan ( )` to better identify `Group` plans
+
+### Removed
+- **devSuite**
+  - `Ui` class, `_adjustGridCenter ( )`
+
+### Fixed
+- **canvasLab**
+  - `Group` class, added `_isCanvasLabObject ( )` for validation
+  - `Utilities` module, fixed `_anchor.fill.color` to accept `Rgb` class instances rather than strings
+
 ## [0.4.104] - 2024-07-18
 ### Added
 - **devSuite**
@@ -548,7 +587,8 @@ All notable changes to this project will be documented in this file.
 
 | Version   | Date       | Commit                                                              | Comments                                                                                     |
 | :-------  | :--------: | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------- |
-| [0.4.104] | 2024-07-18 | CURRENT                                                             | Moved lab button to front of each card-object, with minor refactoring and cleanup.           |
+| [0.4.118] | 2024-07-29 | CURRENT                                                             | Added lab keyboard commands, modified core animation handling, and general refactoring.      |
+| [0.4.104] | 2024-07-18 | [f968611](https://github.com/Justin-Byrne/canvasLab/commit/f968611) | Moved lab button to front of each card-object, with minor refactoring and cleanup.           |
 | [0.4.98]  | 2024-07-17 | [6878c36](https://github.com/Justin-Byrne/canvasLab/commit/6878c36) | Modified devSuite to include Plans, with minor refactoring included.                         |
 | [0.4.88]  | 2024-07-12 | [67fcf06](https://github.com/Justin-Byrne/canvasLab/commit/67fcf06) | Added collection classes, & major refactoring of PROPERTY_BLOCKS & UTILITIES.                |
 | [0.3.78]  | 2024-07-01 | [62b10b3](https://github.com/Justin-Byrne/canvasLab/commit/62b10b3) | Fixed UTILITIES.draw.axis, and added boolean toggle & clear console feature(s) to lab.       |

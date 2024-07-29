@@ -162,7 +162,7 @@ const UTILITIES =
         {
             let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
 
-                _anchor.fill.color = '255, 0, 0';
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
 
                 _anchor.canvas     = this.canvas;
 

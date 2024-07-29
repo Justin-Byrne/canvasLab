@@ -9,9 +9,6 @@
 ## Classes
 
 <dl>
-<dt><a href="#Lab">Lab</a></dt>
-<dd><p>{Object} Lab                        Lab with ace-editor</p>
-</dd>
 <dt><a href="#Log">Log</a></dt>
 <dd><p>{Object} Log                        Log class</p>
 </dd>
@@ -46,9 +43,6 @@
 </dd>
 <dt><a href="#cardButton">cardButton(element)</a></dt>
 <dd><p>Toggles the card button associated with the passed &#39;element&#39; param</p>
-</dd>
-<dt><a href="#externalLinks">externalLinks(show)</a></dt>
-<dd><p>Toggles opacity from bottom links in navigation area</p>
 </dd>
 <dt><a href="#fullscreen">fullscreen()</a></dt>
 <dd><p>Toggles fullscreen mode                              @TODO: fix this crap</p>
@@ -91,85 +85,6 @@ Call main module
 | Param | Type | Description |
 | --- | --- | --- |
 | window | <code>Object</code> | Window containing a DOM document |
-
-<a name="Lab"></a>
-
-## Lab
-{Object} Lab                        Lab with ace-editor
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| editor | <code>Object</code> | Primary ace-editor object |
-
-
-* [Lab](#Lab)
-    * [.editor(editor)](#Lab+editor)
-    * [.editor()](#Lab+editor) ⇒ <code>Object</code>
-    * [.loadScript(script)](#Lab+loadScript)
-    * [.runCode()](#Lab+runCode)
-    * [.scripts()](#Lab+scripts)
-    * [.init(script)](#Lab+init)
-
-<a name="Lab+editor"></a>
-
-### lab.editor(editor)
-Sets editor
-
-**Kind**: instance method of [<code>Lab</code>](#Lab)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| editor | <code>Object</code> | Primary ace-editor object |
-
-<a name="Lab+editor"></a>
-
-### lab.editor() ⇒ <code>Object</code>
-Gets editor
-
-**Kind**: instance method of [<code>Lab</code>](#Lab)  
-**Returns**: <code>Object</code> - Primary ace-editor object  
-**Access**: public  
-<a name="Lab+loadScript"></a>
-
-### lab.loadScript(script)
-Loads a script within ace-editor
-
-**Kind**: instance method of [<code>Lab</code>](#Lab)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| script | <code>function</code> | Arrow function containing script |
-
-<a name="Lab+runCode"></a>
-
-### lab.runCode()
-Executes lab code from editor
-
-**Kind**: instance method of [<code>Lab</code>](#Lab)  
-**Access**: public  
-<a name="Lab+scripts"></a>
-
-### lab.scripts()
-Returns an object of lab-station specific scripts
-
-**Kind**: instance method of [<code>Lab</code>](#Lab)  
-**Access**: public  
-<a name="Lab+init"></a>
-
-### lab.init(script)
-Sets lab & ace-editor
-
-**Kind**: instance method of [<code>Lab</code>](#Lab)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| script | <code>function</code> | Arrow function containing script |
 
 <a name="Log"></a>
 
@@ -342,24 +257,11 @@ Returns an Array of standard & extra HTML templates for each card-object
 
 
 * [Tool](#Tool)
-    * [.isCanvasLabObject(value)](#Tool+isCanvasLabObject) ⇒ [<code>boolean</code>](#boolean)
     * [.isActive(element)](#Tool+isActive) ⇒ [<code>boolean</code>](#boolean)
-    * [.delay(time)](#Tool+delay) ⇒ <code>Promise</code>
-    * [.copyObjectWithKey(object)](#Tool+copyObjectWithKey) ⇒ <code>Object</code>
+    * [.isCanvasLabObject(value)](#Tool+isCanvasLabObject) ⇒ [<code>boolean</code>](#boolean)
     * [.copyCode()](#Tool+copyCode)
-
-<a name="Tool+isCanvasLabObject"></a>
-
-### tool.isCanvasLabObject(value) ⇒ [<code>boolean</code>](#boolean)
-Determine whether the passed value is an 'Object' canvasLab category
-
-**Kind**: instance method of [<code>Tool</code>](#Tool)  
-**Returns**: [<code>boolean</code>](#boolean) - True || False  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | Object, i.e.: 'Line', 'Circle', 'Rectangle', etc... |
+    * [.copyObjectWithKey(object)](#Tool+copyObjectWithKey) ⇒ <code>Object</code>
+    * [.delay(time)](#Tool+delay) ⇒ <code>Promise</code>
 
 <a name="Tool+isActive"></a>
 
@@ -374,19 +276,26 @@ Determine whether the passed element is active
 | --- | --- | --- |
 | element | <code>HTMLElement</code> | HTML DOM Element |
 
-<a name="Tool+delay"></a>
+<a name="Tool+isCanvasLabObject"></a>
 
-### tool.delay(time) ⇒ <code>Promise</code>
-Simple programmatic delay
+### tool.isCanvasLabObject(value) ⇒ [<code>boolean</code>](#boolean)
+Determine whether the passed value is an 'Object' canvasLab category
 
 **Kind**: instance method of [<code>Tool</code>](#Tool)  
-**Returns**: <code>Promise</code> - An async promise  
+**Returns**: [<code>boolean</code>](#boolean) - True || False  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| time | <code>number</code> | Time to delay |
+| value | <code>string</code> | Object, i.e.: 'Line', 'Circle', 'Rectangle', etc... |
 
+<a name="Tool+copyCode"></a>
+
+### tool.copyCode()
+Copy code to clipboard
+
+**Kind**: instance method of [<code>Tool</code>](#Tool)  
+**Access**: public  
 <a name="Tool+copyObjectWithKey"></a>
 
 ### tool.copyObjectWithKey(object) ⇒ <code>Object</code>
@@ -400,13 +309,19 @@ Returns a copied object
 | --- | --- | --- |
 | object | <code>Object</code> | Object to copy |
 
-<a name="Tool+copyCode"></a>
+<a name="Tool+delay"></a>
 
-### tool.copyCode()
-Copy code to clipboard
+### tool.delay(time) ⇒ <code>Promise</code>
+Simple programmatic delay
 
 **Kind**: instance method of [<code>Tool</code>](#Tool)  
+**Returns**: <code>Promise</code> - An async promise  
 **Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| time | <code>number</code> | Time to delay |
+
 <a name="Ui"></a>
 
 ## Ui
@@ -577,18 +492,6 @@ Toggles the card button associated with the passed 'element' param
 | Param | Type | Description |
 | --- | --- | --- |
 | element | <code>HTMLElement</code> | HTML DOM Element |
-
-<a name="externalLinks"></a>
-
-## externalLinks(show)
-Toggles opacity from bottom links in navigation area
-
-**Kind**: global function  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| show | [<code>boolean</code>](#boolean) | True || False |
 
 <a name="fullscreen"></a>
 

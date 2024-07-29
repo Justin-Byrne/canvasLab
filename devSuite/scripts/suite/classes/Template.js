@@ -341,7 +341,7 @@ class Template
          */
         _getSpecialVariables ( code, count )
         {
-            let _specials = [ '_flow' ];
+            let _specials = [ '_sequence' ];
 
 
             for ( let _special of _specials )
@@ -353,13 +353,13 @@ class Template
                 {
                     switch ( _special )
                     {
-                        case '_flow':
+                        case '_sequence':
 
-                            let _lineIndex = /let\s_flow[^=]+=/g.exec ( code ).index;
+                            let _lineIndex = /let\s_sequence[^=]+=/g.exec ( code ).index;
 
                             let _headCode  = code.substring ( 0, _lineIndex ).trim ( ) + '\n\n';
 
-                            let _temp      = code.match ( /let\s_flow[^,]+,[^,]+[^}]+}[^}]+}[^\w]+canvaslab[^;]+;/g ) [ 0 ].split ( '\n' );
+                            let _temp      = code.match ( /let\s_sequence[^,]+,[^,]+[^}]+}[^}]+}[^\w]+canvaslab[^;]+;/g ) [ 0 ].split ( '\n' );
 
 
                             for ( let _index in _temp )
@@ -442,8 +442,9 @@ class Template
 
             let _lines = _code.split ( /\n/ );
 
-            let _regex = new RegExp ( /_group.plan\s*=\s*new\s*\w+\s\(\s*[^\)]+\)/g );
+            let _regex = ( PAGE.handler === 'animation' ) ? new RegExp ( /_\w+/g )
 
+                                                          : new RegExp ( /_group.plan\s*=\s*new\s*\w+\s\(\s*[^\)]+\)/g );
 
             for ( let _index in _lines )
             {
@@ -475,9 +476,9 @@ class Template
             }
 
 
-                _lines = _lines.join ( '\n' );
+            _lines = _lines.join ( '\n' );
 
-                _code  = _lines.replace ( /'canvas';/, `'canvas_${count}';` );
+            _code  = _lines.replace ( /'canvas';/, `'canvas_${count}';` );
 
 
             return _code;

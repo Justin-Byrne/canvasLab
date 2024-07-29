@@ -15,8 +15,8 @@ __ Getter __
 canvas     <color:gray>{string}</color>
 canvases   {Array}
 font       <color:gray>{string}</color>
+dom        {Object}
 center     <color:gray>{boolean}</color>
-dom
 __ Validation __
 _isInDom   <color:gray>{boolean}</color>
 __ Utility __

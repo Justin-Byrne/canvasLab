@@ -9,9 +9,14 @@ entries     {Array}
 entry       {Object}
 __ Setter __
 entries     {Array}
+entry
 __ Getter __
 entries     {Array}
+index       <color:gray>{number}</color>
 entry       {Object}
+isEnd       <color:gray>{boolean}</color>
+isLast      <color:gray>{boolean}</color>
+isSet       <color:gray>{boolean}</color>
 next        {Object}
 reset
 }

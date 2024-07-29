@@ -160,6 +160,22 @@ class Ui
         },
 
         /**
+         * Toggles opacity from bottom links in navigation area
+         * @private
+         * @function
+         * @param           {boolean} show                      True || False
+         */
+        _externalLinks ( show = true )
+        {
+            let _links = document.querySelector ( '.external-links' );
+
+
+            ( show ) ? _links.classList.add    ( 'fade' )
+
+                     : _links.classList.remove ( 'fade' );
+        },
+
+        /**
          * Toggles modal code element
          * @private
          * @function
@@ -203,6 +219,34 @@ class Ui
         },
 
         /**
+         * Moves nav menu left or right
+         * @private
+         * @function
+         * @param           {Boolean} left                      True || False
+         */
+        _navMove ( left )
+        {
+            let _openButtons = document.querySelectorAll ( '[data-button-open=true]' ).length;
+
+            let _navLinks    = document.getElementById ( 'nav-links' );
+
+            let _paddingLeft = TOOL._get.numberFromPx ( window.getComputedStyle ( _navLinks ).paddingLeft );
+
+            let _menuDepth   = 3;
+
+
+            if ( left )
+
+                _navLinks.style.paddingLeft = `${_paddingLeft - 10}px`;
+
+            else
+
+                if ( _openButtons <= _menuDepth )
+
+                    _navLinks.style.paddingLeft = `${_paddingLeft + 10}px`;
+        },
+
+        /**
          * Toggles drop-down navigation menu
          * @private
          * @function
@@ -210,6 +254,8 @@ class Ui
          */
         _navDropdown ( element )
         {
+            let _button = element.innerHTML.trim ( );
+
             let _ul     = ( element.parentNode.nextSibling.data ) ? element.parentNode.nextSibling.nextSibling : element.parentNode.nextSibling;
 
             let _isOpen = ( element.getAttribute ( 'data-button-open' ) === 'false' );
@@ -222,10 +268,31 @@ class Ui
                         : _ul.classList.add    ( 'show' );
 
 
-            element.setAttribute ( 'data-button-open', _isOpen )
+            element.setAttribute ( 'data-button-open', _isOpen );
 
 
-            this.externalLinks ( _isOpen )
+            this._externalLinks ( _isOpen );
+
+
+            if ( _button != 'Documents' )
+
+                this._navMove ( _isOpen );
+        },
+
+        /**
+         * Reset nav button position when closed
+         * @private
+         * @function
+         * @param           {HTMLElement} element               HTML DOM Element
+         */
+        _navButtonReset ( element )
+        {
+            let _open = element.children [ 0 ].getAttribute ( 'data-button-open' );
+
+
+            if ( _open === 'false' )
+
+                document.getElementById ( 'nav-links' ).style.paddingLeft = '32px'
         },
 
         /**
@@ -308,20 +375,16 @@ class Ui
             element.stopPropagation ( );
         },
 
-        /**
-         * Toggles opacity from bottom links in navigation area
-         * @public
-         * @function
-         * @param           {boolean} show                      True || False
-         */
-        externalLinks ( show = true )
+        download ( )
         {
-            let _links = document.querySelector ( '.external-links' );
+            let _name    = 'canvasLab_file.js';
+
+            let _content = LAB.editor.getValue ( );
+
+            let _file    = new File ( [ _content ], _name, { type: 'text/javascript' } );
 
 
-            ( show ) ? _links.classList.add    ( 'fade' )
-
-                     : _links.classList.remove ( 'fade' );
+            LAB._download ( _file );
         },
 
         /**
@@ -376,6 +439,9 @@ class Ui
          */
         grid ( )
         {
+            LAB.setGrid ( );
+
+
             let _grid   = document.getElementById ( 'grid' );
 
             let _button = document.getElementById ( 'input-grid' );
@@ -440,9 +506,6 @@ class Ui
             ( _active ) ? element.setAttribute ( 'data-bs-active', false )
 
                         : element.setAttribute ( 'data-bs-active', true  );
-
-
-            UI._adjustGridCenter ( );
         },
 
         /**
@@ -480,19 +543,15 @@ class Ui
 
             let _open   = document.querySelector ( '#nav-open' );
 
-            let _grid   = document.querySelector ( '#grid' );
-
             let _button = document.querySelector ( '#input-sidebar' );
 
 
             this.labButton ( _button );
 
 
-            ( UI._isNavOpen ( ) )
+            ( UI._isNavOpen ( ) ) ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-200px',   '0px' ]
 
-                ? [ _nav.style.left, _main.style.paddingLeft, _grid.style.left ] = [ '-200px',  '-0px',   '-1px' ]
-
-                : [ _nav.style.left, _main.style.paddingLeft, _grid.style.left ] = [    '0px', '200px', '200px' ];
+                                  : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '200px' ];
 
 
             if ( _lab.style.display === 'block' )
@@ -913,6 +972,15 @@ class Ui
 
                         _button.addEventListener ( 'click', ( ) => this.toggle._navDropdown ( _button ) );
 
+                case 'navButtonsReset':
+
+                    let _primaries = document.querySelectorAll ( '#nav-links > li' );
+
+
+                    for ( let _primary of _primaries )
+
+                        _primary.addEventListener ( 'click', ( ) => this.toggle._navButtonReset ( _primary ) );
+
                 case 'navLinks':
 
                     let _links = document.querySelector ( '#nav-links' ).querySelectorAll ( 'a' );
@@ -934,6 +1002,32 @@ class Ui
                     let _copyButton = document.querySelector ( 'button.copy-code-link' );
 
                         _copyButton.addEventListener ( 'click', TOOL.copyCode );
+
+                case 'lab':
+
+                    let _main       = document.getElementsByTagName ( 'main' ) [ 0 ];
+
+                    let _labStation = document.querySelector  ( 'main > div.lab-station' );
+
+                    let _lab        = document.querySelector ( '#nav-lab > img' );
+
+                        _lab.addEventListener ( 'click', ( ) =>
+                            {
+                                this.clearScreen  ( );
+
+
+                                _labStation.style.display = 'block';
+
+                                _main.style.overflowY     = 'hidden';
+
+
+                                LAB.setCanvasSize ( );
+
+                                LAB.runCode ( );
+                            } );
+
+
+                    window.addEventListener ( 'resize', LAB.setCanvasSize );
             }
         }
 
@@ -976,31 +1070,7 @@ class Ui
                 }
         }
 
-    ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
-
-        /**
-         * Adjusts the center of the grid; temporary fix
-         * @private
-         * @function
-         */
-        _adjustGridCenter ( )
-        {
-            let _lab = document.querySelector ( 'div.lab-station' );
-
-
-            if ( _lab.style.display === 'block' )
-            {
-                let _lines = document.querySelectorAll ( '#grid > .vertical-lines div' );
-
-
-                if ( UI._isNavOpen ( ) )
-                {
-                    _lines [ 17 ].classList.replace ( 'vertical-bold', 'vertical' );
-
-                    _lines [ 20 ].classList.replace ( 'vertical', 'vertical-bold' );
-                }
-            }
-        }
+    ////    VALIDATION    //////////////////////////////////////////////////////////////////////////
 
         /**
          * Checks whether collapsible button is open
@@ -1012,6 +1082,19 @@ class Ui
         {
             return ( button.getAttribute ( 'data-button-open' ) === 'true' );
         }
+
+        /**
+         * Returns whether the navigation bar is open
+         * @private
+         * @function
+         * @return          {boolean}                           True | False
+         */
+        _isNavOpen ( )
+        {
+            return ( document.querySelector ( 'nav' ).style.left === '0px' );
+        }
+
+    ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
 
         /**
          * Collapses all passed buttons, outside of index passed
@@ -1136,17 +1219,6 @@ class Ui
 
                 _easings [ _i ].setAttribute ( 'onclick', `devSuite.toggleEasingFunctions ( ${_i} )` );
             }
-        }
-
-        /**
-         * Returns whether the navigation bar is open
-         * @private
-         * @function
-         * @return          {boolean}                           True | False
-         */
-        _isNavOpen ( )
-        {
-            return ( document.querySelector ( 'nav' ).style.left === '0px' );
         }
 
         /**
