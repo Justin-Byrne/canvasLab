@@ -554,6 +554,40 @@ const VALIDATION =
     },
 
     /**
+     * Returns whether the passed value is a Point & Aspect
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {Object} value                              Object
+     * @param           {Point}  value.point                        Point object
+     * @param           {Aspect} value.aspect                       Aspect object
+     * @return          {boolean}                                   True || False
+     */
+    isPointNAspect ( value )
+    {
+        let _point  = undefined;
+
+        let _aspect = undefined;
+
+
+        if ( typeof value === 'object' )
+
+            if ( ( Object.keys ( value ).length == 2 ) )
+            {
+                _point  = ( value.hasOwnProperty ( 'point'  ) ) ? this._isPoint ( value.point )
+
+                                                                : false;
+
+                _aspect = ( value.hasOwnProperty ( 'aspect' ) ) ? this._isAspect ( value.aspect )
+
+                                                                : false;
+            }
+
+
+        return ( _point  &&  _aspect );
+    },
+
+    /**
      * Returns whether the passed value is a radian; 0 - 6.28...
      * @public
      * @memberof VALIDATION
@@ -577,6 +611,19 @@ const VALIDATION =
     isRadius ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value > 0 ) );
+    },
+
+    /**
+     * Returns whether the passed value is a repetition value
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {string} value                              Repetition value
+     * @return          {boolean}                                   True || False
+     */
+    isRepetition ( value )
+    {
+        return [ 'repeat', 'repeat-x', 'repeat-y', 'no-repeat' ].includes ( value );
     },
 
     /**

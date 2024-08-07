@@ -1,7 +1,7 @@
 /**
  * @class           {Object} Circle                             Circle object
  * @property        {Point}  point                              X & Y axis coordinates
- * @property        {number} [radius=25]                        Radius of circle
+ * @property        {number|Point} [radius=25]                  Radius of circle
  * @property        {Angle}  angle                              Angle properties
  * @property        {Stroke} stroke                             Stroke properties
  * @property        {Fill}   fill                               Fill properties
@@ -19,13 +19,13 @@ class Circle
 
     _canvas = undefined;
 
-    #anchor  = new Anchor;
+    _anchor  = new Anchor;
     #options = new Options;
 
     /**
      * Create a Circle object
      * @property        {Point}  point                              X & Y axis coordinates
-     * @property        {number} radius                             Radius of circle
+     * @property        {number|Point} radius                       Radius of circle
      * @property        {Angle}  angle                              Angle properties
      * @property        {Stroke} stroke                             Stroke properties
      * @property        {Fill}   fill                               Fill properties
@@ -103,7 +103,7 @@ class Circle
          * @public
          * @function
          * @param           {Point} value                               X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         set point ( value ) { }
 
@@ -112,7 +112,7 @@ class Circle
          * @public
          * @function
          * @return          {Point}                                     X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         get point ( ) { }
 
@@ -122,7 +122,7 @@ class Circle
          * @public
          * @function
          * @param           {number} value                              X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         set x ( value ) { }
 
@@ -131,7 +131,7 @@ class Circle
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         get x ( ) { }
 
@@ -141,7 +141,7 @@ class Circle
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         set y ( value ) { }
 
@@ -150,7 +150,7 @@ class Circle
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         get y ( ) { }
 
@@ -160,18 +160,23 @@ class Circle
          * Set radius value
          * @public
          * @function
-         * @param           {number} value                              Radius of circle
+         * @param           {number|Point} value                        Radius of circle
          */
         set radius ( value )
         {
-            this._radius = ( this._isNumber ( value ) ) ? value : this._radius;
+            if ( value )
+            {
+                this._radius = ( this._isNumber ( value ) ) ? value : this._radius;
+
+                this._radius = ( this._isPoint  ( value ) ) ? value : this._radius;
+            }
         }
 
         /**
          * Get radius value
          * @readOnly
          * @function
-         * @return          {number}                                    Radius of circle
+         * @return          {number|Point}                              Radius of circle
          */
         get radius ( )
         {
@@ -260,7 +265,7 @@ class Circle
          */
         get anchor ( )
         {
-            return this.#anchor;
+            return this._anchor;
         }
 
     ////    [ OPTIONS ] ////////////////////////////////////
@@ -284,7 +289,7 @@ class Circle
          * @function
          * @param           {string} value                              Anchor alignment
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAnchor}
+         * @see             {@link VALIDATION.isAnchor}
          */
         _isAnchor ( ) { }
 
@@ -294,7 +299,7 @@ class Circle
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -304,7 +309,7 @@ class Circle
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDegree}
+         * @see             {@link VALIDATION.isDegree}
          */
         _isDegree ( ) { }
 
@@ -314,7 +319,7 @@ class Circle
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 
@@ -324,7 +329,7 @@ class Circle
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isNumber}
+         * @see             {@link VALIDATION.isNumber}
          */
         _isNumber ( ) { }
 
@@ -334,7 +339,7 @@ class Circle
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -370,7 +375,7 @@ class Circle
          * @private
          * @function
          * @param           {boolean} value                             Whether to redraw background
-         * @see             {@link Utilities.misc.clearCanvas}
+         * @see             {@link UTILITIES.misc.clearCanvas}
          */
         _clearCanvas ( ) { }
 
@@ -378,7 +383,7 @@ class Circle
          * Draws anchor point
          * @private
          * @function
-         * @see             {@link Utilities.draw.anchor}
+         * @see             {@link UTILITIES.draw.anchor}
          */
         _drawAnchor ( ) { }
 
@@ -389,9 +394,9 @@ class Circle
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
-        _drawAxis    ( ) { }
+        _drawAxis ( ) { }
 
         /**
          * Draws an axis for the associated object
@@ -399,9 +404,9 @@ class Circle
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
-        _drawBorder  ( ) { }
+        _drawBorder ( ) { }
 
         /**
          * Draws associated options
@@ -432,7 +437,7 @@ class Circle
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
          * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
+         * @see             {@link UTILITIES.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
 
@@ -443,10 +448,10 @@ class Circle
          */
         _setAnchorPoint ( )
         {
-            [ this.#anchor.x, this.#anchor.y ] = [ this.x, this.y ];
+            [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
 
 
-            switch ( this.anchor.type )
+            switch ( this.anchor.align )
             {
                 case 'center':      /*     ... do nothing      */   /*     ... do nothing      */   break;
 
@@ -472,7 +477,7 @@ class Circle
          * Sets fill type of the associated object
          * @private
          * @function
-         * @see             {@link Utilities.set.fillType}
+         * @see             {@link UTILITIES.set.fillType}
          */
         _setFillType ( ) { }
 
@@ -480,9 +485,9 @@ class Circle
          * Sets shadow properties
          * @private
          * @function
-         * @see             {@link Utilities.set.shadow}
+         * @see             {@link UTILITIES.set.shadow}
          */
-        _setShadow   ( ) { }
+        _setShadow ( ) { }
 
         /**
          * Get area of this object
@@ -544,9 +549,9 @@ class Circle
          * @param           {Rgb}    start                              Starting RGB value
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.fill}
+         * @see             {@link UTILITIES.color.cycle.fill}
          */
-        fillColorCycle     ( ) { }
+        fillColorCycle ( ) { }
 
         /**
          * Cycle colors for gradient
@@ -557,7 +562,7 @@ class Circle
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} stop                               Gradient color stop
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.gradient}
+         * @see             {@link UTILITIES.color.cycle.gradient}
          */
         gradientColorCycle ( ) { }
 
@@ -568,7 +573,7 @@ class Circle
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
-         * @see             {@link Utilities.transition.rotate}
+         * @see             {@link UTILITIES.transition.rotate}
          */
         rotate ( ) { }
 
@@ -578,7 +583,7 @@ class Circle
          * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
-         * @see             {@link Utilities.misc.showCoordinates}
+         * @see             {@link UTILITIES.misc.showCoordinates}
          */
         showCoordinates ( ) { }
 
@@ -590,7 +595,7 @@ class Circle
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} progress                           Progress time unit; 0.00 - 1.00
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.stroke}
+         * @see             {@link UTILITIES.color.cycle.stroke}
          */
         strokeColorCycle ( ) { }
 
@@ -627,11 +632,20 @@ class Circle
 
                 this._canvas.beginPath   ( );
 
-                this._canvas.arc         ( this.anchor.x, this.anchor.y, this.radius, this.angle.startInRadians, this.angle.endInRadians, ( this.angle.clockwise ) ? false : true );
 
-                this._canvas.stroke      ( );
+                ( this._isPoint ( this.radius ) )
 
-                this._canvas.fill        ( );
+                    ? this._canvas.ellipse ( this.anchor.x, this.anchor.y, this.radius.x, this.radius.y, 0, this.angle.startInRadians, this.angle.endInRadians, ( this.angle.clockwise ) ? false : true )
+
+                    : this._canvas.arc     ( this.anchor.x, this.anchor.y, this.radius, this.angle.startInRadians, this.angle.endInRadians, ( this.angle.clockwise ) ? false : true );
+
+
+                this._canvas.stroke ( );
+
+
+                if ( this.fill.type != 'pattern' )
+
+                    this._canvas.fill ( );
 
 
                 if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );         // Reset: shadow
@@ -651,7 +665,7 @@ class Circle
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
-         * @see             {@link Utilities.draw.redraw}
+         * @see             {@link UTILITIES.draw.redraw}
          */
         redraw ( ) { }
 }

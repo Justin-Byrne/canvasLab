@@ -142,7 +142,7 @@ class Stroke
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -152,7 +152,7 @@ class Stroke
          * @function
          * @param           {Array.<number>} value                      Array of segment values
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isSegments}
+         * @see             {@link VALIDATION.isSegments}
          */
         _isSegments   ( ) { }
 
@@ -162,7 +162,7 @@ class Stroke
          * @function
          * @param           {string} value                              Stroke type
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isStrokeType}
+         * @see             {@link VALIDATION.isStrokeType}
          */
         _isStrokeType ( ) { }
 
@@ -172,7 +172,7 @@ class Stroke
          * @function
          * @param           {number} value                              Width value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isWidth}
+         * @see             {@link VALIDATION.isWidth}
          */
         _isWidth      ( ) { }
 }

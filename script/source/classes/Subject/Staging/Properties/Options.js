@@ -1,97 +1,73 @@
 /**
  * @class           {Object}  Options                           Options for collections
- * @property        {boolean} [shadow=false]                    Show shadow
- * @property        {boolean} [border=false]                    Show border
- * @property        {boolean} [axis=false]                      Show axis
- * @property        {boolean} [points=false]                    Show points
  * @property        {boolean} [anchor=false]                    Show anchor
+ * @property        {boolean} [axis=false]                      Show axis
+ * @property        {boolean} [border=false]                    Show border
  * @property        {boolean} [coordinates=false]               Show coordinates
  * @property        {boolean} [controlPoints=false]             Show control points
+ * @property        {boolean} [points=false]                    Show points
+ * @property        {boolean} [shadow=false]                    Show shadow
  * @property        {Object}  master                            Master object to reference
  */
 class Options
 {
-    _shadow        = false;
-    _border        = false;
-    _axis          = false;
-    _points        = false;
     _anchor        = false;
+    _axis          = false;
+    _border        = false;
     _coordinates   = false;
     _controlPoints = false;
+    _points        = false;
+    _shadow        = false;
 
     _master = undefined;
 
     /**
      * Create an options object
-     * @param           {boolean} shadow                            Show shadow
-     * @param           {boolean} border                            Show border
-     * @param           {boolean} axis                              Show axis
-     * @param           {boolean} points                            Show points
      * @param           {boolean} anchor                            Show anchor
+     * @param           {boolean} axis                              Show axis
+     * @param           {boolean} border                            Show border
      * @param           {boolean} coordinates                       Show coordinates
      * @param           {boolean} controlPoints                     Show control points
+     * @param           {boolean} points                            Show points
+     * @param           {boolean} shadow                            Show shadow
      */
-    constructor ( shadow, border, axis, points, anchor, coordinates, controlPoints )
+    constructor ( anchor, axis, border, coordinates, controlPoints, points, shadow )
     {
         ////    COMPOSITION     ////////////////////////////
 
             this._isCanvasLabObject = VALIDATION.isCanvasLabObject;
 
-        this.shadow        = shadow;
-        this.border        = border;
         this.axis          = axis;
-        this.points        = points;
         this.anchor        = anchor;
+        this.border        = border;
         this.coordinates   = coordinates;
         this.controlPoints = controlPoints;
+        this.points        = points;
+        this.shadow        = shadow;
     }
 
-    ////    [ SHADOW ]  ////////////////////////////////////
+    ////    [ ANCHOR ]  ////////////////////////////////////
 
         /**
-         * Set shadow value
+         * Set anchor value
          * @public
          * @function
-         * @param           {boolean} value                             Shadow; true | false
+         * @param           {boolean} value                             Anchor; true | false
          */
-        set shadow ( value )
+        set anchor ( value )
         {
-            this._shadow = ( typeof value === 'boolean' ) ? value : this._shadow;
+            this._anchor = ( typeof value == 'boolean' ) ? value : this._anchor;
         }
 
         /**
-         * Get shadow value
-         * @public
-         * @function
-         * @return          {boolean}                                   Shadow; true | false
-         */
-        get shadow ( )
-        {
-            return this._shadow;
-        }
-
-    ////    [ BORDER ]  ////////////////////////////////////
-
-        /**
-         * Set border value
-         * @public
-         * @function
-         * @param           {boolean} value                             Border; true | false
-         */
-        set border ( value )
-        {
-            this._border = ( typeof value === 'boolean' ) ? value : this._border;
-        }
-
-        /**
-         * Get border value
+         * Get anchor value
          * @readOnly
          * @function
-         * @return          {boolean}                                   Border; true | false
+         * @return          {boolean}                                   Anchor; true | false
          */
-        get border ( )
+        get anchor ( )
         {
-            return this._border;
+            return this._anchor;
         }
 
     ////    [ AXIS ]    ////////////////////////////////////
@@ -118,28 +94,28 @@ class Options
             return this._axis;
         }
 
-    ////    [ ANCHOR ]  ////////////////////////////////////
+    ////    [ BORDER ]  ////////////////////////////////////
 
         /**
-         * Set anchor value
+         * Set border value
          * @public
          * @function
-         * @param           {boolean} value                             Anchor; true | false
+         * @param           {boolean} value                             Border; true | false
          */
-        set anchor ( value )
+        set border ( value )
         {
-            this._anchor = ( typeof value == 'boolean' ) ? value : this._anchor;
+            this._border = ( typeof value === 'boolean' ) ? value : this._border;
         }
 
         /**
-         * Get anchor value
+         * Get border value
          * @readOnly
          * @function
-         * @return          {boolean}                                   Anchor; true | false
+         * @return          {boolean}                                   Border; true | false
          */
-        get anchor ( )
+        get border ( )
         {
-            return this._anchor;
+            return this._border;
         }
 
     ////    [ COORDINATES ]     ////////////////////////////
@@ -190,6 +166,30 @@ class Options
             return this._controlPoints;
         }
 
+    ////    [ SHADOW ]  ////////////////////////////////////
+
+        /**
+         * Set shadow value
+         * @public
+         * @function
+         * @param           {boolean} value                             Shadow; true | false
+         */
+        set shadow ( value )
+        {
+            this._shadow = ( typeof value === 'boolean' ) ? value : this._shadow;
+        }
+
+        /**
+         * Get shadow value
+         * @public
+         * @function
+         * @return          {boolean}                                   Shadow; true | false
+         */
+        get shadow ( )
+        {
+            return this._shadow;
+        }
+
     ////    [ MASTER ]  ////////////////////////////////////
 
         /**
@@ -222,7 +222,7 @@ class Options
          * @function
          * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isCanvasLabObject}
+         * @see             {@link VALIDATION.isCanvasLabObject}
          */
         _isCanvasLabObject ( ) { }
 }

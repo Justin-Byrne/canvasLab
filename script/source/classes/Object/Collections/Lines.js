@@ -76,7 +76,7 @@ class Lines extends Array
          * @public
          * @function
          * @param           {Point} value                               X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         set point ( value ) { }
 
@@ -85,7 +85,7 @@ class Lines extends Array
          * @public
          * @function
          * @return          {Point}                                     X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         get point ( ) { }
 
@@ -95,7 +95,7 @@ class Lines extends Array
          * @public
          * @function
          * @param           {number} value                              X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         set x ( value ) { }
 
@@ -104,7 +104,7 @@ class Lines extends Array
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         get x ( ) { }
 
@@ -113,7 +113,7 @@ class Lines extends Array
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         set y ( value ) { }
 
@@ -122,7 +122,7 @@ class Lines extends Array
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         get y ( ) { }
 
@@ -266,7 +266,7 @@ class Lines extends Array
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -276,7 +276,7 @@ class Lines extends Array
          * @function
          * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isCanvasLabObject}
+         * @see             {@link VALIDATION.isCanvasLabObject}
          */
         _isCanvasLabObject ( value ) { }
 
@@ -286,7 +286,7 @@ class Lines extends Array
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom ( ) { }
 
@@ -296,7 +296,7 @@ class Lines extends Array
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint ( ) { }
 

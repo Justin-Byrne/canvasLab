@@ -290,7 +290,7 @@ function complete ()
     then
         afplay ../../build/audio/success.mp3
 
-        if [[ "$OSTYPE" == "darwin"* ]]; then
+        if [[ "$OSTYPE" == "darwin"*  ]]; then
             osascript focus.scpt
             osascript reload.scpt
         fi

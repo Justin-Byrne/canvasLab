@@ -88,7 +88,7 @@ class Shadow
          * @public
          * @function
          * @param           {Point} value                               Shadow offset
-         * @see             {@link discrete.offset}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offset}
          */
         set offset ( value ) { }
 
@@ -97,7 +97,7 @@ class Shadow
          * @public
          * @function
          * @return          {Point}                                     Shadow offset
-         * @see             {@link discrete.offset}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offset}
          */
         get offset ( ) { }
 
@@ -107,7 +107,7 @@ class Shadow
          * @public
          * @function
          * @param           {number} value                              X coordinate value
-         * @see             {@link discrete.offsetX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offsetX}
          */
         set x ( value ) { }
 
@@ -116,7 +116,7 @@ class Shadow
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
-         * @see             {@link discrete.offsetX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offsetX}
          */
         get x ( ) { }
 
@@ -126,7 +126,7 @@ class Shadow
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
-         * @see             {@link discrete.offsetY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offsetY}
          */
         set y ( value ) { }
 
@@ -135,7 +135,7 @@ class Shadow
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
-         * @see             {@link discrete.offsetY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offsetY}
          */
         get y ( ) { }
 
@@ -147,7 +147,7 @@ class Shadow
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -157,7 +157,7 @@ class Shadow
          * @function
          * @param           {number} value                              Blur value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isBlur}
+         * @see             {@link VALIDATION.isBlur}
          */
         _isBlur ( ) { }
 
@@ -167,7 +167,7 @@ class Shadow
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint ( ) { }
 }

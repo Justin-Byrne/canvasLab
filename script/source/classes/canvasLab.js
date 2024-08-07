@@ -135,7 +135,7 @@ class canvasLab
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 

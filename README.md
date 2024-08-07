@@ -1,9 +1,9 @@
 # canvasLab
 
 ![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Chrome-126.0.6478.183-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
+<img src="https://img.shields.io/badge/Chrome-127.0.6533.89-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
 ![issues](https://img.shields.io/github/issues/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Version-0.4.118-green?style=flat-square" />
+<img src="https://img.shields.io/badge/Version-0.5.129-darkred?style=flat-square" />
 <img src="https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab?style=flat-square" />
 
 HTML5 canvas drawing framework
@@ -54,9 +54,13 @@ initCanvasLab ( 'my-canvas-id' );
 
 :computer: [Developer Suite](https://byrne-systems.com/portal/canvasLab/devSuite/index.html)
 
-See our developer suite to view various functions & effects in real-time.
+See the developer suite to view various functions & effects in real-time.
+
+![devSuite](https://github.com/Justin-Byrne/canvasLab/blob/main/images/cube_sm.png)
 
 ## Documentation
+
+[]
 
 [:book: JSDocs](https://byrne-systems.com/portal/canvasLab/docs/JSDoc/index.html)
 
@@ -82,8 +86,8 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── JSDoc.md
 ├── script
 │   ├── distro
-│   │   ├── canvasLab-v0.4.118.js    [ 388 kb ]
-│   │   ├── canvasLab.min.js        [ 72 kb ]
+│   │   ├── canvasLab-v0.5.129.js    [ 392 kb ]
+│   │   ├── canvasLab.min.js         [  76 kb ]
 │   │   └── canvasLab.min.js.map
 │   └── source
 │       ├── classes
@@ -102,7 +106,8 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │       │   │   ├── Circle.js
 │       │   │   ├── Line.js
 │       │   │   ├── Rectangle.js
-│       │   │   └── Text.js
+│       │   │   ├── Text.js
+│       │   │   └── cImage.js
 │       │   ├── Plans
 │       │   │   └── SacredCircles.js
 │       │   ├── Subject
@@ -139,6 +144,8 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │           │   ├── Utilities.js
 │           │   └── Validation.js
 │           └── debug.js
+├── videos
+│   └── devSuite.mp4
 ├── LICENSE
 └── README.md
 ```

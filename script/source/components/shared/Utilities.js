@@ -270,11 +270,11 @@ const UTILITIES =
          * @public
          * @function
          */
-        anchor ( )
+        anchor ( color = new Rgb ( 255, 0, 0 ) )
         {
             let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
 
-                _anchor.fill.color = new Rgb ( 255, 0, 0 );
+                _anchor.fill.color = color;
 
                 _anchor.canvas     = this.canvas;
 
@@ -516,6 +516,39 @@ const UTILITIES =
         },
 
         /**
+         * Sets anchor's point against this object's point location
+         * @public
+         * @function
+         * @notes for Rectangle & cImage only
+         */
+        anchorPoint ( )
+        {
+            [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
+
+
+            switch ( this.anchor.align )
+            {
+                case 'center':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height / 2;  break;
+
+                case 'top':          this.anchor.x -= this.width / 2;   /*       ... do nothing        */  break;
+
+                case 'topRight':     this.anchor.x -= this.width;       /*       ... do nothing        */  break;
+
+                case 'right':        this.anchor.x -= this.width;       this.anchor.y -= this.height / 2;  break;
+
+                case 'bottomRight':  this.anchor.x -= this.width;       this.anchor.y -= this.height;      break;
+
+                case 'bottom':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height;      break;
+
+                case 'bottomLeft':   /*       ... do nothing       */   this.anchor.y -= this.height;      break;
+
+                case 'left':         /*       ... do nothing       */   this.anchor.y -= this.height / 2;  break;
+
+                case 'topLeft':      /*       ... do nothing       */   /*       ... do nothing        */  break;
+            }
+        },
+
+        /**
          * Sets shadow properties
          * @public
          * @function
@@ -557,19 +590,56 @@ const UTILITIES =
 
             switch ( this.fill.type )
             {
-                case 'solid':   this._canvas.fillStyle = this.fill.color.toCss ( );                             break;
+                case 'solid':
 
-                case 'linear':  let _linear = this._canvas.createLinearGradient ( this.fill.gradient.start.x, this.fill.gradient.start.y, this.fill.gradient.end.x, this.fill.gradient.end.y );
 
-                                this._canvas.fillStyle = _setStops ( _linear, this.fill.gradient.stops );       break;
+                    this._canvas.fillStyle = this.fill.color.toCss ( );
 
-                case 'radial':  let _radial = this._canvas.createRadialGradient ( this.fill.gradient.start.x, this.fill.gradient.start.y, this.fill.gradient.startRadius, this.fill.gradient.end.x, this.fill.gradient.end.y, this.fill.gradient.endRadius );
 
-                                this._canvas.fillStyle = _setStops ( _radial, this.fill.gradient.stops );       break;
+                    break;
 
-                case 'conic':   let _conic = this._canvas.createConicGradient ( this.fill.gradient.angle, this.fill.gradient.point.y, this.fill.gradient.point.x );
+                case 'linear':
 
-                                this._canvas.fillStyle = _setStops ( _conic, this.fill.gradient.stops );        break;
+
+                    let _linear = this._canvas.createLinearGradient ( this.fill.gradient.start.x, this.fill.gradient.start.y, this.fill.gradient.end.x, this.fill.gradient.end.y );
+
+                    this._canvas.fillStyle = _setStops ( _linear, this.fill.gradient.stops );
+
+
+                    break;
+
+                case 'radial':
+
+
+                    let _radial = this._canvas.createRadialGradient ( this.fill.gradient.start.x, this.fill.gradient.start.y, this.fill.gradient.startRadius, this.fill.gradient.end.x, this.fill.gradient.end.y, this.fill.gradient.endRadius );
+
+                    this._canvas.fillStyle = _setStops ( _radial, this.fill.gradient.stops );
+
+
+                    break;
+
+                case 'conic':
+
+
+                    let _conic = this._canvas.createConicGradient ( this.fill.gradient.angle, this.fill.gradient.point.y, this.fill.gradient.point.x );
+
+                    this._canvas.fillStyle = _setStops ( _conic, this.fill.gradient.stops );
+
+
+                    break;
+
+                case 'pattern':
+
+
+                    this.fill._pattern.onload = ( ) =>
+                        {
+                            this._canvas.fillStyle = this._canvas.createPattern ( this.fill.pattern, this.fill.repetition );
+
+                            this._canvas.fill ( );
+                        }
+
+
+                    break;
             }
         },
     },

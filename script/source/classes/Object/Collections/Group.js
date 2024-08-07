@@ -104,7 +104,7 @@ class Group extends Array
          * @public
          * @function
          * @param           {string} value                              Canvas id
-         * @see             {@link combined.canvas}
+         * @see             {@link PROPERTY_BLOCKS.combined.canvas}
          */
         set canvas ( value )
         {
@@ -139,7 +139,7 @@ class Group extends Array
          * @readOnly
          * @function
          * @return          {string}                                    Canvas id
-         * @see             {@link combined.canvas}
+         * @see             {@link PROPERTY_BLOCKS.combined.canvas}
          */
         get canvas ( )
         {
@@ -239,7 +239,7 @@ class Group extends Array
          * @function
          * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isCanvasLabObject}
+         * @see             {@link VALIDATION.isCanvasLabObject}
          */
         _isCanvasLabObject ( ) { }
 
@@ -249,7 +249,7 @@ class Group extends Array
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom ( ) { }
 
@@ -260,7 +260,7 @@ class Group extends Array
          * @function
          * @param           {Object} value                              Plan object
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPlan}
+         * @see             {@link VALIDATION.isPlan}
          */
         _isPlan   ( ) { }
 
@@ -270,7 +270,7 @@ class Group extends Array
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint ( ) { }
 

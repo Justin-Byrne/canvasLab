@@ -181,7 +181,7 @@ class Radial
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -191,7 +191,7 @@ class Radial
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -201,7 +201,7 @@ class Radial
          * @function
          * @param           {number} value                              Radius value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isRadius}
+         * @see             {@link VALIDATION.isRadius}
          */
         _isRadius ( ) { }
 
@@ -211,7 +211,7 @@ class Radial
          * @function
          * @param           {Object} value                              Stop or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isStop}
+         * @see             {@link VALIDATION.isStop}
          */
         _isStop   ( ) { }
 
@@ -228,7 +228,7 @@ class Radial
          * @param           {number}   max                              Maximum number of steps between interpolation
          * @param           {function} clear                            Clear callback from root object
          * @param           {function} draw                             Draw callback from root object
-         * @see             {@link Utilities.color.cycle.stop}
+         * @see             {@link UTILITIES.color.cycle.stop}
          */
         _stopColorCycle ( ) { }
 }

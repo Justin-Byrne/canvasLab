@@ -428,8 +428,6 @@ class Circles extends Array
 
     ////    DRAW    ////////////////////////////////////////
 
-        ////    DRAW    ////////////////////////////////////////
-
         /**
          * Draw function for collections
          * @public

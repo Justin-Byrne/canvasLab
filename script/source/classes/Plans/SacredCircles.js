@@ -205,7 +205,7 @@ class SacredCircles
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isNumber}
+         * @see             {@link VALIDATION.isNumber}
          */
         _isNumber ( ) { }
 
@@ -215,7 +215,7 @@ class SacredCircles
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -287,6 +287,7 @@ class SacredCircles
             let _rectangle = new Rectangle (
                                  point,                     /* Point  */
                                  undefined,                 /* Aspect */
+                                 undefined,                 /* Round  */
                                  undefined,                 /* Stroke */
                                  new Fill ( color ),        /* Fill   */
                                  undefined,                 /* Shadow */
@@ -341,6 +342,7 @@ class SacredCircles
             let _rectangle = new Rectangle (
                                  _point,                    /* Point  */
                                  undefined,                 /* Aspect */
+                                 undefined,                 /* Round  */
                                  undefined,                 /* Stroke */
                                  new Fill ( color ),        /* Fill   */
                                  undefined,                 /* Shadow */

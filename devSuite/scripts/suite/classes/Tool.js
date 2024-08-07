@@ -87,7 +87,7 @@ class Tool
          */
         isCanvasLabObject ( value )
         {
-            return [ 'Line', 'Lines', 'Circle', 'Circles', 'Rectangle', 'Rectangles', 'Text', 'Texts', 'Group' ].includes ( value );
+            return [ 'Line', 'Lines', 'Circle', 'Circles', 'Rectangle', 'Rectangles', 'Text', 'Texts', 'cImage', 'Group' ].includes ( value );
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////

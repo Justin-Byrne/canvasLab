@@ -138,7 +138,7 @@ class ShadowCollection
          * @function
          * @param           {number} value                              Blur value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isBlur}
+         * @see             {@link VALIDATION.isBlur}
          */
         _isBlur  ( ) { }
 
@@ -148,7 +148,7 @@ class ShadowCollection
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint ( ) { }
 
@@ -160,7 +160,7 @@ class ShadowCollection
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False
-         * @see             {@link Utilities.set.all}
+         * @see             {@link UTILITIES.set.all}
          */
         _setAll ( ) { }
 }

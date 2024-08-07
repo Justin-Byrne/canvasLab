@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>PointCollection - Documentation</title>
+    <title>cImage - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -35,7 +35,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">PointCollection</h1>
+    <h1 class="page-title">cImage</h1>
     
 
     
@@ -49,11 +49,11 @@
     
         <h2>
         
-            PointCollection
+            cImage
         
         </h2>
         
-            <div class="class-description usertext">{Object}  PointCollection                   X & Y coordinates for an object</div>
+            <div class="class-description usertext">{Object} cImage                             cImage object</div>
         
     
 </header>
@@ -68,7 +68,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="PointCollection"><span class="type-signature"></span>new PointCollection<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="cImage"><span class="type-signature"></span>new cImage<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -78,13 +78,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Create a point collection</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Create a cImage object</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line4750">line 4750</a>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8067">line 8067</a>
     </li></ul></dd>
     
 
@@ -135,11 +135,7 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -151,13 +147,13 @@
 
         <tr>
             
-                <td class="name"><code>x</code></td>
+                <td class="name"><code>source</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">string</span>
 
 
 
@@ -165,37 +161,23 @@
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                    <code>0</code>
-                
-                </td>
-            
 
-            <td class="description last">X - x-axis coordinate</td>
+            <td class="description last">Source path of image file</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>y</code></td>
+                <td class="name"><code>primary</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Object</span>
 
 
 
@@ -203,37 +185,23 @@
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                    <code>0</code>
-                
-                </td>
-            
 
-            <td class="description last">Y - y-axis coordinate</td>
+            <td class="description last">Primary set of coordinates</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>options</code></td>
+                <td class="name"><code>secondary</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="OptionsCollection.html">OptionsCollection</a></span>
+<span class="param-type">Object</span>
 
 
 
@@ -241,20 +209,34 @@
             </td>
 
             
-                <td class="attributes">
-                
 
+            
+
+            <td class="description last">[description]</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>canvas</code></td>
+            
+
+            <td class="type">
+            
                 
-                </td>
+<span class="param-type">HTMLCanvasElement</span>
+
+
+
+            
+            </td>
+
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last">Ancillary properties</td>
+            <td class="description last">2D canvas context</td>
         </tr>
 
     
@@ -317,7 +299,7 @@
 
     
 
-    <h4 class="name" id="invert"><span class="type-signature"></span>invert<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="anchor"><span class="type-signature"></span>anchor<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Anchor.html">Anchor</a>}</span></h4>
 
     
 
@@ -327,98 +309,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Invert x & y coordinate values</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Get anchor</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line4848">line 4848</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="options"><span class="type-signature"></span>options<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="OptionsCollection.html">OptionsCollection</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Get options</li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line4826">line 4826</a>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8366">line 8366</a>
     </li></ul></dd>
     
 
@@ -483,7 +380,7 @@
 
         
 <div class="param-desc">
-    Options collection object
+    Anchor properties
 </div>
 
 
@@ -494,7 +391,3231 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="OptionsCollection.html">OptionsCollection</a></span>
+<span class="param-type"><a href="Anchor.html">Anchor</a></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="area"><span class="type-signature"></span>area<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Get area of this object</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8516">line 8516</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="PROPERTY_BLOCKS.html#.discrete#.area">PROPERTY_BLOCKS.discrete.area</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Area of this object
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="aspect"><span class="type-signature"></span>aspect<span class="signature">(value)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Set aspect properties</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8247">line 8247</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Aspect.html">Aspect</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Aspect properties</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="aspect"><span class="type-signature"></span>aspect<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Aspect.html">Aspect</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Get aspect properties</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8258">line 8258</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Aspect properties
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Aspect.html">Aspect</a></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="canvas"><span class="type-signature"></span>canvas<span class="signature">(value)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Set canvas value</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8347">line 8347</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>discrete.canvas</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Canvas id</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="canvas"><span class="type-signature"></span>canvas<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Get canvas value</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8356">line 8356</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>discrete.canvas</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Canvas id
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="center"><span class="type-signature"></span>center<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Point.html">Point</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Get center of this object</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8525">line 8525</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="PROPERTY_BLOCKS.html#.discrete#.center">PROPERTY_BLOCKS.discrete.center</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Center point coordinates
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Point.html">Point</a></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="draw"><span class="type-signature"></span>draw<span class="signature">(canvas)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Draw this object</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8577">line 8577</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>canvas</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Canvas Id</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="height"><span class="type-signature"></span>height<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Get aspect height</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8281">line 8281</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Height value
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="move"><span class="type-signature"></span>move<span class="signature">(degree, distance, draw<span class="signature-attributes">opt</span>, clear<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Move this object</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8537">line 8537</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="UTILITIES.html#.transition#.move">UTILITIES.transition.move</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>degree</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Direction to move; in degrees</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>distance</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Distance to move</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>draw</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last">Draw post movement</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>clear</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last">Clear canvas during each movement</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="options"><span class="type-signature"></span>options<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Options.html">Options</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Get options properties</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8379">line 8379</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Options properties
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Options.html">Options</a></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="perimeter"><span class="type-signature"></span>perimeter<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Get perimeter of this object</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8546">line 8546</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="PROPERTY_BLOCKS.html#.discrete#.center">PROPERTY_BLOCKS.discrete.center</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Perimeter of rectangle
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="point"><span class="type-signature"></span>point<span class="signature">(value)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Set point</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8177">line 8177</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Point.html">Point</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">X & Y coordinates</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="point"><span class="type-signature"></span>point<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Point.html">Point</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Get point</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8188">line 8188</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    X & Y coordinates
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Point.html">Point</a></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="primary"><span class="type-signature"></span>primary<span class="signature">(value)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Sets primary property value</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8294">line 8294</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Path of image</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="primary"><span class="type-signature"></span>primary<span class="signature">()</span><span class="type-signature"> &rarr; {Image}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Gets primary property value</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8307">line 8307</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Image object
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Image</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="redraw"><span class="type-signature"></span>redraw<span class="signature">(canvas, point, clear<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Redraw this object</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8609">line 8609</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>UTILITIES.draw.redraw</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>canvas</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Canvas Id</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>point</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Point.html">Point</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Point of new location</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>clear</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>true</code>
+                
+                </td>
+            
+
+            <td class="description last">Clear canvas during each redraw</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="rotate"><span class="type-signature"></span>rotate<span class="signature">(degree, anchor<span class="signature-attributes">opt</span>, clear<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Rotate this object</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8557">line 8557</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="UTILITIES.html#.transition#.rotate">UTILITIES.transition.rotate</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>degree</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Distance to rotate; in degrees</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>anchor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'center'</code>
+                
+                </td>
+            
+
+            <td class="description last">Anchoring point during rotation</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>clear</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>true</code>
+                
+                </td>
+            
+
+            <td class="description last">Clear canvas during each rotation</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="secondary"><span class="type-signature"></span>secondary<span class="signature">(value)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Sets secondary property value</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8320">line 8320</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Path of image</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="secondary"><span class="type-signature"></span>secondary<span class="signature">()</span><span class="type-signature"> &rarr; {Image}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Gets secondary property value</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8333">line 8333</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Image object
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Image</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="showCoordinates"><span class="type-signature"></span>showCoordinates<span class="signature">(offset<span class="signature-attributes">opt</span>, fontSize<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Shows coordinates of this object</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8567">line 8567</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="UTILITIES.html#.misc#.showCoordinates">UTILITIES.misc.showCoordinates</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>10</code>
+                
+                </td>
+            
+
+            <td class="description last">Offset of coordinates y origin</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fontSize</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>16</code>
+                
+                </td>
+            
+
+            <td class="description last">Coordinates font size</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="source"><span class="type-signature"></span>source<span class="signature">(value)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Sets source property value</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8143">line 8143</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Path of image source</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="source"><span class="type-signature"></span>source<span class="signature">()</span><span class="type-signature"> &rarr; {Image}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Gets source property value</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8164">line 8164</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Image source
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Image</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="width"><span class="type-signature"></span>width<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Get aspect with</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8270">line 8270</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Width value
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
 
 
 
@@ -520,13 +3641,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Set x-axis value</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Set primary x-axis value</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line4778">line 4778</a>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8200">line 8200</a>
     </li></ul></dd>
     
 
@@ -655,13 +3776,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Get x-axis value</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Get primary x-axis value</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line4789">line 4789</a>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8211">line 8211</a>
     </li></ul></dd>
     
 
@@ -763,13 +3884,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Set the y-axis value</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Set primary y-axis value</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line4802">line 4802</a>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8223">line 8223</a>
     </li></ul></dd>
     
 
@@ -898,13 +4019,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Get y-axis value</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Get primary y-axis value</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line4813">line 4813</a>
+        <a href="canvasLab-v0.4.118.js.html">canvasLab-v0.4.118.js</a>, <a href="canvasLab-v0.4.118.js.html#line8234">line 8234</a>
     </li></ul></dd>
     
 

@@ -9,6 +9,9 @@
 ## Classes
 
 <dl>
+<dt><a href="#Lab">Lab</a></dt>
+<dd><p>{Object} Lab                        Lab with ace-editor</p>
+</dd>
 <dt><a href="#Log">Log</a></dt>
 <dd><p>{Object} Log                        Log class</p>
 </dd>
@@ -85,6 +88,93 @@ Call main module
 | Param | Type | Description |
 | --- | --- | --- |
 | window | <code>Object</code> | Window containing a DOM document |
+
+<a name="Lab"></a>
+
+## Lab
+{Object} Lab                        Lab with ace-editor
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| editor | <code>Object</code> | Primary ace-editor object |
+
+
+* [Lab](#Lab)
+    * [.editor(editor)](#Lab+editor)
+    * [.editor()](#Lab+editor) ⇒ <code>Object</code>
+    * [.setGrid()](#Lab+setGrid)
+    * [.loadScript(script)](#Lab+loadScript)
+    * [.runCode()](#Lab+runCode)
+    * [.scripts()](#Lab+scripts)
+    * [.init(script)](#Lab+init)
+
+<a name="Lab+editor"></a>
+
+### lab.editor(editor)
+Sets editor
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| editor | <code>Object</code> | Primary ace-editor object |
+
+<a name="Lab+editor"></a>
+
+### lab.editor() ⇒ <code>Object</code>
+Gets editor
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Returns**: <code>Object</code> - Primary ace-editor object  
+**Access**: public  
+<a name="Lab+setGrid"></a>
+
+### lab.setGrid()
+Sets grid overlay
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+<a name="Lab+loadScript"></a>
+
+### lab.loadScript(script)
+Loads a script within ace-editor
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| script | <code>function</code> | Arrow function containing script |
+
+<a name="Lab+runCode"></a>
+
+### lab.runCode()
+Executes lab code from editor
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+<a name="Lab+scripts"></a>
+
+### lab.scripts()
+Returns an object of lab-station specific scripts
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+<a name="Lab+init"></a>
+
+### lab.init(script)
+Sets lab & ace-editor
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| script | <code>function</code> | Arrow function containing script |
 
 <a name="Log"></a>
 

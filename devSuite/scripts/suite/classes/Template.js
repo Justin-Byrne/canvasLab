@@ -96,6 +96,7 @@ class Template
             Rectangles: '{ x: 50, y: 10 }',
             Text:       '{ x: 154, y: 77 }, \'Text\'',
             Texts:      '{ x: 50, y: 10 }',
+            Image:      '\'images/png/moon.png\', { point: new Point ( 154, 65 ), aspect: new Aspect }',
             Group:      '{ x: 20, y: 0 }',
         },
         subject:
@@ -262,6 +263,8 @@ class Template
                 {
                     let _type = cardObject.images [ _entry ];
 
+                        _type = ( _type === 'Cimage' ) ? 'cImage' : _type;
+
 
                     switch ( _entry )
                     {
@@ -415,6 +418,8 @@ class Template
                 case 'Texts':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Text ( { x:  60, y: 50 } ),\n        new Text ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n\n    ${_variable} [ 0 ].text = ${_variable} [ 1 ].text = 'Text';\n${_code}`;                                             break;
 
                 case 'Group':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.lines.push (\n        new Line ( { x:  60, y: 50 }, { x: 120, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 200, y: 100 } )\n    );\n\n     ${_variable}.circles.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.rectangles.push (\n        new Rectangle ( { x:  120, y: 100 } ),\n        new Rectangle ( { x: 200, y: 100 } )\n    );\n\n    ${_variable}.texts.push (\n        new Text ( { x:  60, y: 120 } ),\n        new Text ( { x: 200, y: 50 } )\n    );\n\n    ${_variable}.texts [ 0 ].text = ${_variable}.texts [ 1 ].text = 'Text';\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
+
+                case 'Image':       _code = `let ${_variable} = new cImage ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                     break
 
                 default:            _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                     break
             }

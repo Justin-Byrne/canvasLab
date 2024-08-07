@@ -2,7 +2,7 @@
 // @brief: 			HTML5 canvas drawing framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.4.118 
+// @version: 		0.5.129 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -17,11 +17,11 @@ const PROPERTY_BLOCKS =
 {
     /**
      * Discrete property accessors & mutators
-     * @function PROPERTY_BLOCKS.discrete
+     * @var             {Object} PROPERTY_BLOCKS.discrete
      */
     discrete:
     {
-        /** @var            {Object} discrete.alpha                                                 **/
+        /** @function PROPERTY_BLOCKS.discrete.alpha                                                **/
         alpha:
         {
             set ( value )
@@ -33,7 +33,16 @@ const PROPERTY_BLOCKS =
                 return this._alpha;
             }
         },
-        /** @var            {Object} discrete.canvas                                                **/
+        /** @function PROPERTY_BLOCKS.discrete.area                                                 **/
+        /** @notes for <Rectangle>, <cImage>                                                        **/
+        area:
+        {
+            get ( )
+            {
+                return ( this.width * this.height );
+            }
+        },
+        /** @function PROPERTY_BLOCKS.discrete.canvas                                               **/
         canvas:
         {
             set ( value )
@@ -55,7 +64,21 @@ const PROPERTY_BLOCKS =
                 return ( this._canvas != undefined ) ? this._canvas.canvas.id : undefined;
             }
         },
-        /** @var            {Object} discrete.offset                                                **/
+        /** @function PROPERTY_BLOCKS.discrete.center                                               **/
+        /** @notes for <Rectangle>, <cImage>                                                        **/
+        center:
+        {
+            get ( )
+            {
+                let _x = this.x - ( this.x - this.anchor.x ) + ( this.width  / 2 );
+
+                let _y = this.y - ( this.y - this.anchor.y ) + ( this.height / 2 );
+
+
+                return new Point ( _x, _y );
+            }
+        },
+        /** @function PROPERTY_BLOCKS.discrete.offset                                               **/
         offset:
         {
             set ( value )
@@ -67,7 +90,7 @@ const PROPERTY_BLOCKS =
                 return this._offset;
             }
         },
-        /** @var            {Object} discrete.offsetX                                               **/
+        /** @function PROPERTY_BLOCKS.discrete.offsetX                                              **/
         offsetX:
         {
             set ( value )
@@ -79,7 +102,7 @@ const PROPERTY_BLOCKS =
                 return this._offset.x;
             }
         },
-        /** @var            {Object} discrete.offsetY                                               **/
+        /** @function PROPERTY_BLOCKS.discrete.offsetY                                              **/
         offsetY:
         {
             set ( value )
@@ -91,7 +114,7 @@ const PROPERTY_BLOCKS =
                 return this._offset.y;
             }
         },
-        /** @var            {Object} discrete.point                                                 **/
+        /** @function PROPERTY_BLOCKS.discrete.point                                                **/
         point:
         {
             set ( value )
@@ -103,7 +126,7 @@ const PROPERTY_BLOCKS =
                 return this._point;
             }
         },
-        /** @var            {Object} discrete.pointX                                                **/
+        /** @function PROPERTY_BLOCKS.discrete.pointX                                               **/
         pointX:
         {
             set ( value )
@@ -115,7 +138,7 @@ const PROPERTY_BLOCKS =
                 return this._point.x;
             }
         },
-        /** @var            {Object} discrete.pointY                                                **/
+        /** @function PROPERTY_BLOCKS.discrete.pointY                                               **/
         pointY:
         {
             set ( value )
@@ -127,7 +150,15 @@ const PROPERTY_BLOCKS =
                 return this._point.y;
             }
         },
-        /** @var            {Object} discrete.radius                                                **/
+        /** @function PROPERTY_BLOCKS.discrete.perimeter                                            **/
+        perimeter:
+        {
+            get ( )
+            {
+                return ( this.area * 2 );
+            }
+        },
+        /** @function PROPERTY_BLOCKS.discrete.radius                                               **/
         radius:
         {
             set ( value )
@@ -143,11 +174,11 @@ const PROPERTY_BLOCKS =
 
     /**
      * Combined property accessors & mutators
-     * @function PROPERTY_BLOCKS.combined
+     * @var             {Object} PROPERTY_BLOCKS.combined
      */
     combined:
     {
-        /** @var            {Object} combined.anchor                                                **/
+        /** @function PROPERTY_BLOCKS.combined.anchor                                               **/
         anchor:
         {
             set ( value )
@@ -162,7 +193,7 @@ const PROPERTY_BLOCKS =
                 return this._anchor;
             }
         },
-        /** @var            {Object} combined.area                                                  **/
+        /** @function PROPERTY_BLOCKS.combined.area                                                 **/
         area:
         {
             get ( )
@@ -170,7 +201,7 @@ const PROPERTY_BLOCKS =
                 return ( this.width * this.height );
             }
         },
-        /** @var            {Object} combined.aspect                                                **/
+        /** @function PROPERTY_BLOCKS.combined.aspect                                               **/
         aspect:
         {
             get ( )
@@ -181,7 +212,7 @@ const PROPERTY_BLOCKS =
                 return this._aspect;
             }
         },
-        /** @var            {Object} combined.aspectWidth                                           **/
+        /** @function PROPERTY_BLOCKS.combined.aspectWidth                                          **/
         aspectWidth:
         {
             get ( )
@@ -189,7 +220,7 @@ const PROPERTY_BLOCKS =
                 return this._aspect.width;
             }
         },
-        /** @var            {Object} combined.aspectHeight                                          **/
+        /** @function PROPERTY_BLOCKS.combined.aspectHeight                                         **/
         aspectHeight:
         {
             get ( )
@@ -197,7 +228,7 @@ const PROPERTY_BLOCKS =
                 return this._aspect.height;
             }
         },
-        /** @var            {Object} combined.canvas                                                **/
+        /** @function PROPERTY_BLOCKS.combined.canvas                                               **/
         canvas:
         {
             set ( value )
@@ -230,7 +261,7 @@ const PROPERTY_BLOCKS =
                 return ( this._canvas != undefined ) ? this._canvas.canvas.id : undefined;
             }
         },
-        /** @var            {Object} combined.center                                                **/
+        /** @function PROPERTY_BLOCKS.combined.center                                               **/
         center:
         {
             get ( )
@@ -241,7 +272,7 @@ const PROPERTY_BLOCKS =
                 return new Point ( _x, _y );
             }
         },
-        /** @var            {Object} combined.endPoint                                              **/
+        /** @function PROPERTY_BLOCKS.combined.endPoint                                             **/
         endPoint:
         {
             get ( )
@@ -249,7 +280,7 @@ const PROPERTY_BLOCKS =
                 return this [ this.length - 1 ].point;
             }
         },
-        /** @var            {Object} combined.perimeter                                             **/
+        /** @function PROPERTY_BLOCKS.combined.perimeter                                            **/
         perimeter:
         {
             get ( )
@@ -257,7 +288,7 @@ const PROPERTY_BLOCKS =
                 return ( this.area * 2 );
             }
         },
-        /** @var            {Object} combined.start                                                 **/
+        /** @function PROPERTY_BLOCKS.combined.start                                                **/
         start:
         {
             set ( value )
@@ -269,7 +300,7 @@ const PROPERTY_BLOCKS =
                 return this._start;
             }
         },
-        /** @var            {Object} combined.end                                                   **/
+        /** @function PROPERTY_BLOCKS.combined.end                                                  **/
         end:
         {
             set ( value )
@@ -556,11 +587,11 @@ const UTILITIES =
          * @public
          * @function
          */
-        anchor ( )
+        anchor ( color = new Rgb ( 255, 0, 0 ) )
         {
             let _anchor = new Rectangle ( new Point ( this.x, this.y ), new Aspect ( 5, 5 ) );
 
-                _anchor.fill.color = new Rgb ( 255, 0, 0 );
+                _anchor.fill.color = color;
 
                 _anchor.canvas     = this.canvas;
 
@@ -802,6 +833,39 @@ const UTILITIES =
         },
 
         /**
+         * Sets anchor's point against this object's point location
+         * @public
+         * @function
+         * @notes for Rectangle & cImage only
+         */
+        anchorPoint ( )
+        {
+            [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
+
+
+            switch ( this.anchor.align )
+            {
+                case 'center':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height / 2;  break;
+
+                case 'top':          this.anchor.x -= this.width / 2;   /*       ... do nothing        */  break;
+
+                case 'topRight':     this.anchor.x -= this.width;       /*       ... do nothing        */  break;
+
+                case 'right':        this.anchor.x -= this.width;       this.anchor.y -= this.height / 2;  break;
+
+                case 'bottomRight':  this.anchor.x -= this.width;       this.anchor.y -= this.height;      break;
+
+                case 'bottom':       this.anchor.x -= this.width / 2;   this.anchor.y -= this.height;      break;
+
+                case 'bottomLeft':   /*       ... do nothing       */   this.anchor.y -= this.height;      break;
+
+                case 'left':         /*       ... do nothing       */   this.anchor.y -= this.height / 2;  break;
+
+                case 'topLeft':      /*       ... do nothing       */   /*       ... do nothing        */  break;
+            }
+        },
+
+        /**
          * Sets shadow properties
          * @public
          * @function
@@ -843,19 +907,56 @@ const UTILITIES =
 
             switch ( this.fill.type )
             {
-                case 'solid':   this._canvas.fillStyle = this.fill.color.toCss ( );                             break;
+                case 'solid':
 
-                case 'linear':  let _linear = this._canvas.createLinearGradient ( this.fill.gradient.start.x, this.fill.gradient.start.y, this.fill.gradient.end.x, this.fill.gradient.end.y );
 
-                                this._canvas.fillStyle = _setStops ( _linear, this.fill.gradient.stops );       break;
+                    this._canvas.fillStyle = this.fill.color.toCss ( );
 
-                case 'radial':  let _radial = this._canvas.createRadialGradient ( this.fill.gradient.start.x, this.fill.gradient.start.y, this.fill.gradient.startRadius, this.fill.gradient.end.x, this.fill.gradient.end.y, this.fill.gradient.endRadius );
 
-                                this._canvas.fillStyle = _setStops ( _radial, this.fill.gradient.stops );       break;
+                    break;
 
-                case 'conic':   let _conic = this._canvas.createConicGradient ( this.fill.gradient.angle, this.fill.gradient.point.y, this.fill.gradient.point.x );
+                case 'linear':
 
-                                this._canvas.fillStyle = _setStops ( _conic, this.fill.gradient.stops );        break;
+
+                    let _linear = this._canvas.createLinearGradient ( this.fill.gradient.start.x, this.fill.gradient.start.y, this.fill.gradient.end.x, this.fill.gradient.end.y );
+
+                    this._canvas.fillStyle = _setStops ( _linear, this.fill.gradient.stops );
+
+
+                    break;
+
+                case 'radial':
+
+
+                    let _radial = this._canvas.createRadialGradient ( this.fill.gradient.start.x, this.fill.gradient.start.y, this.fill.gradient.startRadius, this.fill.gradient.end.x, this.fill.gradient.end.y, this.fill.gradient.endRadius );
+
+                    this._canvas.fillStyle = _setStops ( _radial, this.fill.gradient.stops );
+
+
+                    break;
+
+                case 'conic':
+
+
+                    let _conic = this._canvas.createConicGradient ( this.fill.gradient.angle, this.fill.gradient.point.y, this.fill.gradient.point.x );
+
+                    this._canvas.fillStyle = _setStops ( _conic, this.fill.gradient.stops );
+
+
+                    break;
+
+                case 'pattern':
+
+
+                    this.fill._pattern.onload = ( ) =>
+                        {
+                            this._canvas.fillStyle = this._canvas.createPattern ( this.fill.pattern, this.fill.repetition );
+
+                            this._canvas.fill ( );
+                        }
+
+
+                    break;
             }
         },
     },
@@ -1481,6 +1582,40 @@ const VALIDATION =
     },
 
     /**
+     * Returns whether the passed value is a Point & Aspect
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {Object} value                              Object
+     * @param           {Point}  value.point                        Point object
+     * @param           {Aspect} value.aspect                       Aspect object
+     * @return          {boolean}                                   True || False
+     */
+    isPointNAspect ( value )
+    {
+        let _point  = undefined;
+
+        let _aspect = undefined;
+
+
+        if ( typeof value === 'object' )
+
+            if ( ( Object.keys ( value ).length == 2 ) )
+            {
+                _point  = ( value.hasOwnProperty ( 'point'  ) ) ? this._isPoint ( value.point )
+
+                                                                : false;
+
+                _aspect = ( value.hasOwnProperty ( 'aspect' ) ) ? this._isAspect ( value.aspect )
+
+                                                                : false;
+            }
+
+
+        return ( _point  &&  _aspect );
+    },
+
+    /**
      * Returns whether the passed value is a radian; 0 - 6.28...
      * @public
      * @memberof VALIDATION
@@ -1504,6 +1639,19 @@ const VALIDATION =
     isRadius ( value )
     {
         return ( ( typeof value === 'number' )  &&  ( value > 0 ) );
+    },
+
+    /**
+     * Returns whether the passed value is a repetition value
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {string} value                              Repetition value
+     * @return          {boolean}                                   True || False
+     */
+    isRepetition ( value )
+    {
+        return [ 'repeat', 'repeat-x', 'repeat-y', 'no-repeat' ].includes ( value );
     },
 
     /**
@@ -1727,7 +1875,7 @@ class canvasLab
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 
@@ -1906,7 +2054,7 @@ class Rgb
 	     * @function
 	     * @param           {number} value 								256 color value; 0 - 255
 	     * @return          {boolean} 									True || False
-	     * @see             {@link Validation.is256}
+	     * @see             {@link VALIDATION.is256}
 	     */
 		_is256 ( ) { }
 
@@ -1926,10 +2074,6 @@ class Rgb
 		_cycle ( start, end, progress, max, clear, draw )
 	    {
 	    	this._lerpRgb ( start, end, progress, max );
-
-	    	// clear ( );
-
-	    	// draw  ( );
 		}
 
 		/**
@@ -1985,98 +2129,74 @@ class Rgb
  
 /**
  * @class           {Object}  Options                           Options for collections
- * @property        {boolean} [shadow=false]                    Show shadow
- * @property        {boolean} [border=false]                    Show border
- * @property        {boolean} [axis=false]                      Show axis
- * @property        {boolean} [points=false]                    Show points
  * @property        {boolean} [anchor=false]                    Show anchor
+ * @property        {boolean} [axis=false]                      Show axis
+ * @property        {boolean} [border=false]                    Show border
  * @property        {boolean} [coordinates=false]               Show coordinates
  * @property        {boolean} [controlPoints=false]             Show control points
+ * @property        {boolean} [points=false]                    Show points
+ * @property        {boolean} [shadow=false]                    Show shadow
  * @property        {Object}  master                            Master object to reference
  */
 class Options
 {
-    _shadow        = false;
-    _border        = false;
-    _axis          = false;
-    _points        = false;
     _anchor        = false;
+    _axis          = false;
+    _border        = false;
     _coordinates   = false;
     _controlPoints = false;
+    _points        = false;
+    _shadow        = false;
 
     _master = undefined;
 
     /**
      * Create an options object
-     * @param           {boolean} shadow                            Show shadow
-     * @param           {boolean} border                            Show border
-     * @param           {boolean} axis                              Show axis
-     * @param           {boolean} points                            Show points
      * @param           {boolean} anchor                            Show anchor
+     * @param           {boolean} axis                              Show axis
+     * @param           {boolean} border                            Show border
      * @param           {boolean} coordinates                       Show coordinates
      * @param           {boolean} controlPoints                     Show control points
+     * @param           {boolean} points                            Show points
+     * @param           {boolean} shadow                            Show shadow
      */
-    constructor ( shadow, border, axis, points, anchor, coordinates, controlPoints )
+    constructor ( anchor, axis, border, coordinates, controlPoints, points, shadow )
     {
         ////    COMPOSITION     ////////////////////////////
 
             this._isCanvasLabObject = VALIDATION.isCanvasLabObject;
 
-        this.shadow        = shadow;
-        this.border        = border;
         this.axis          = axis;
-        this.points        = points;
         this.anchor        = anchor;
+        this.border        = border;
         this.coordinates   = coordinates;
         this.controlPoints = controlPoints;
+        this.points        = points;
+        this.shadow        = shadow;
     }
 
-    ////    [ SHADOW ]  ////////////////////////////////////
+    ////    [ ANCHOR ]  ////////////////////////////////////
 
         /**
-         * Set shadow value
+         * Set anchor value
          * @public
          * @function
-         * @param           {boolean} value                             Shadow; true | false
+         * @param           {boolean} value                             Anchor; true | false
          */
-        set shadow ( value )
+        set anchor ( value )
         {
-            this._shadow = ( typeof value === 'boolean' ) ? value : this._shadow;
+            this._anchor = ( typeof value == 'boolean' ) ? value : this._anchor;
         }
 
         /**
-         * Get shadow value
-         * @public
-         * @function
-         * @return          {boolean}                                   Shadow; true | false
-         */
-        get shadow ( )
-        {
-            return this._shadow;
-        }
-
-    ////    [ BORDER ]  ////////////////////////////////////
-
-        /**
-         * Set border value
-         * @public
-         * @function
-         * @param           {boolean} value                             Border; true | false
-         */
-        set border ( value )
-        {
-            this._border = ( typeof value === 'boolean' ) ? value : this._border;
-        }
-
-        /**
-         * Get border value
+         * Get anchor value
          * @readOnly
          * @function
-         * @return          {boolean}                                   Border; true | false
+         * @return          {boolean}                                   Anchor; true | false
          */
-        get border ( )
+        get anchor ( )
         {
-            return this._border;
+            return this._anchor;
         }
 
     ////    [ AXIS ]    ////////////////////////////////////
@@ -2103,28 +2223,28 @@ class Options
             return this._axis;
         }
 
-    ////    [ ANCHOR ]  ////////////////////////////////////
+    ////    [ BORDER ]  ////////////////////////////////////
 
         /**
-         * Set anchor value
+         * Set border value
          * @public
          * @function
-         * @param           {boolean} value                             Anchor; true | false
+         * @param           {boolean} value                             Border; true | false
          */
-        set anchor ( value )
+        set border ( value )
         {
-            this._anchor = ( typeof value == 'boolean' ) ? value : this._anchor;
+            this._border = ( typeof value === 'boolean' ) ? value : this._border;
         }
 
         /**
-         * Get anchor value
+         * Get border value
          * @readOnly
          * @function
-         * @return          {boolean}                                   Anchor; true | false
+         * @return          {boolean}                                   Border; true | false
          */
-        get anchor ( )
+        get border ( )
         {
-            return this._anchor;
+            return this._border;
         }
 
     ////    [ COORDINATES ]     ////////////////////////////
@@ -2175,6 +2295,30 @@ class Options
             return this._controlPoints;
         }
 
+    ////    [ SHADOW ]  ////////////////////////////////////
+
+        /**
+         * Set shadow value
+         * @public
+         * @function
+         * @param           {boolean} value                             Shadow; true | false
+         */
+        set shadow ( value )
+        {
+            this._shadow = ( typeof value === 'boolean' ) ? value : this._shadow;
+        }
+
+        /**
+         * Get shadow value
+         * @public
+         * @function
+         * @return          {boolean}                                   Shadow; true | false
+         */
+        get shadow ( )
+        {
+            return this._shadow;
+        }
+
     ////    [ MASTER ]  ////////////////////////////////////
 
         /**
@@ -2207,7 +2351,7 @@ class Options
          * @function
          * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isCanvasLabObject}
+         * @see             {@link VALIDATION.isCanvasLabObject}
          */
         _isCanvasLabObject ( ) { }
 }
@@ -2229,8 +2373,9 @@ class Anchor
 
 			this._isAlign = VALIDATION.isAlign;
 
-            Object.defineProperty ( this, 'x', PROPERTY_BLOCKS.discrete.pointX );
-            Object.defineProperty ( this, 'y', PROPERTY_BLOCKS.discrete.pointY );
+            Object.defineProperty ( this, 'point', PROPERTY_BLOCKS.discrete.point  );
+            Object.defineProperty ( this, 'x',     PROPERTY_BLOCKS.discrete.pointX );
+            Object.defineProperty ( this, 'y',     PROPERTY_BLOCKS.discrete.pointY );
 	}
 
 	////    [ POINT ]   ////////////////////////////////////
@@ -2240,6 +2385,7 @@ class Anchor
          * @public
          * @function
          * @param           {Point} point                               X & Y axis coordinates
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         set point ( value ) { }
 
@@ -2248,6 +2394,7 @@ class Anchor
          * @public
          * @function
          * @return          {Point}                                     X & Y axis coordinates
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         get point ( ) { }
 
@@ -2257,6 +2404,7 @@ class Anchor
          * @public
          * @function
          * @param           {number} value                              X coordinate value
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         set x ( value ) { }
 
@@ -2265,8 +2413,9 @@ class Anchor
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
-        get x ( ) {  }
+        get x ( ) { }
 
 
         /**
@@ -2274,6 +2423,7 @@ class Anchor
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         set y ( value ) { }
 
@@ -2282,6 +2432,7 @@ class Anchor
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         get y ( ) { }
 
@@ -2317,7 +2468,7 @@ class Anchor
          * @function
          * @param           {string} value                              Anchor alignment
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAnchor}
+         * @see             {@link VALIDATION.isAnchor}
          */
         _isAnchor ( ) { }
 }
@@ -2432,7 +2583,7 @@ class Angle
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDegree}
+         * @see             {@link VALIDATION.isDegree}
          */
         _isDegree ( ) { }
 
@@ -2442,7 +2593,7 @@ class Angle
          * @function
          * @param           {number} value                              Radian value; 0 - 6.28...
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isRadian}
+         * @see             {@link VALIDATION.isRadian}
          */
         _isRadian ( ) { }
 
@@ -2591,7 +2742,7 @@ class Aspect
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -2770,7 +2921,7 @@ class ControlPoints
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isNumber}
+         * @see             {@link VALIDATION.isNumber}
          */
         _isNumber ( ) { }
 }
@@ -3096,7 +3247,7 @@ class Point
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -3106,7 +3257,7 @@ class Point
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 
@@ -3119,7 +3270,7 @@ class Point
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
         _drawAxis   ( ) { }
 
@@ -3129,7 +3280,7 @@ class Point
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
         _drawBorder ( ) { }
 
@@ -3140,7 +3291,7 @@ class Point
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
          * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
+         * @see             {@link UTILITIES.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
 
@@ -3273,7 +3424,7 @@ class Stop
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -3283,7 +3434,7 @@ class Stop
          * @function
          * @param           {number} value                              Decimal value; 0.00 - 1
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDecimal}
+         * @see             {@link VALIDATION.isDecimal}
          */
         _isDecimal    ( ) { }
 }
@@ -3410,7 +3561,7 @@ class Conic
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -3420,7 +3571,7 @@ class Conic
          * @function
          * @param           {number} value                              Radian value; 0 - 6.28...
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isRadian}
+         * @see             {@link VALIDATION.isRadian}
          */
         _isRadian ( ) { }
 
@@ -3430,7 +3581,7 @@ class Conic
          * @function
          * @param           {Object} value                              Stop or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isStop}
+         * @see             {@link VALIDATION.isStop}
          */
         _isStop   ( ) { }
 
@@ -3447,7 +3598,7 @@ class Conic
          * @param           {number}   max                              Maximum number of steps between interpolation
          * @param           {function} clear                            Clear callback from root object
          * @param           {function} draw                             Draw callback from root object
-         * @see             {@link Utilities.color.cycle.stop}
+         * @see             {@link UTILITIES.color.cycle.stop}
          */
         _stopColorCycle ( ) { }
 }
@@ -3574,7 +3725,7 @@ class Linear
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -3584,7 +3735,7 @@ class Linear
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -3594,7 +3745,7 @@ class Linear
          * @function
          * @param           {Object} value                              Stop or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isStop}
+         * @see             {@link VALIDATION.isStop}
          */
         _isStop   ( ) { }
 
@@ -3611,7 +3762,7 @@ class Linear
          * @param           {number}   max                              Maximum number of steps between interpolation
          * @param           {function} clear                            Clear callback from root object
          * @param           {function} draw                             Draw callback from root object
-         * @see             {@link Utilities.color.cycle.stop}
+         * @see             {@link UTILITIES.color.cycle.stop}
          */
         _stopColorCycle ( ) { }
 }
@@ -3799,7 +3950,7 @@ class Radial
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -3809,7 +3960,7 @@ class Radial
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -3819,7 +3970,7 @@ class Radial
          * @function
          * @param           {number} value                              Radius value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isRadius}
+         * @see             {@link VALIDATION.isRadius}
          */
         _isRadius ( ) { }
 
@@ -3829,7 +3980,7 @@ class Radial
          * @function
          * @param           {Object} value                              Stop or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isStop}
+         * @see             {@link VALIDATION.isStop}
          */
         _isStop   ( ) { }
 
@@ -3846,7 +3997,7 @@ class Radial
          * @param           {number}   max                              Maximum number of steps between interpolation
          * @param           {function} clear                            Clear callback from root object
          * @param           {function} draw                             Draw callback from root object
-         * @see             {@link Utilities.color.cycle.stop}
+         * @see             {@link UTILITIES.color.cycle.stop}
          */
         _stopColorCycle ( ) { }
 }
@@ -3860,10 +4011,11 @@ class Radial
  */
 class Fill
 {
-    _color    = new Rgb ( 0, 0, 0, 0 );
-    _type     = 'solid';
-    _gradient = undefined;
-    _pattern  = undefined;
+    _color      = new Rgb ( 0, 0, 0, 0 );
+    _type       = 'solid';
+    _gradient   = undefined;
+    _pattern    = undefined;
+    _repetition = 'repeat';
 
     /**
      * Create a fill type
@@ -3878,6 +4030,7 @@ class Fill
             this._isColorModel = VALIDATION.isColorModel;
             this._isGradient   = VALIDATION.isGradient;
             this._isFillType   = VALIDATION.isFillType;
+            this._isRepetition = VALIDATION.isRepetition;
 
         this.color    = color;
         this.type     = type;
@@ -3961,14 +4114,59 @@ class Fill
     ////    [ PATTERN ]   //////////////////////////////////
 
         /**
-         * Get pattern fill object
+         * Sets pattern property value
          * @public
+         * @function
+         * @param           {string} value                              Path of image to pattern
+         */
+        set pattern ( value )
+        {
+            if ( typeof value === 'string' )
+            {
+                let _image = new Image;
+
+                    _image.src = value;
+
+
+                this._pattern = _image;
+
+                this.type     = 'pattern';
+            }
+        }
+
+        /**
+         * Gets pattern property value
+         * @readOnly
          * @function
          * @return          {Pattern}                                   Pattern fill object
          */
         get pattern ( )
         {
             return this._pattern;
+        }
+
+    ////    [ REPITION ]    ////////////////////////////////
+
+        /**
+         * Sets repetition property value
+         * @public
+         * @function
+         * @param           {string} value                              Repetition property value
+         */
+        set repetition ( value )
+        {
+            this._repetition = ( this._isRepetition ( value ) ) ? value : this._repetition;
+        }
+
+        /**
+         * Gets repetition property value
+         * @readOnly
+         * @function
+         * @return          {string}                                    Repetition property value
+         */
+        get repetition ( )
+        {
+            return this._repetition;
         }
 
     ////    VALIDATION    //////////////////////////////////
@@ -3979,7 +4177,7 @@ class Fill
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -3989,9 +4187,9 @@ class Fill
          * @function
          * @param           {Object} value                              Gradient object
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isGradient}
+         * @see             {@link VALIDATION.isGradient}
          */
-        _isGradient   ( ) { }
+        _isGradient ( ) { }
 
         /**
          * Returns whether the passed value is a fill type
@@ -3999,9 +4197,20 @@ class Fill
          * @function
          * @param           {string} value                              Fill type
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isFillType}
+         * @see             {@link VALIDATION.isFillType}
          */
-        _isFillType   ( ) { }
+        _isFillType ( ) { }
+
+        /**
+         * Returns whether the passed value is a repetition value
+         * @public
+         * @memberof VALIDATION
+         * @function
+         * @param           {string} value                              Repetition value
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isRepetition}
+         */
+        _isRepetition ( ) { }
 }
  
 /**
@@ -4094,7 +4303,7 @@ class Shadow
          * @public
          * @function
          * @param           {Point} value                               Shadow offset
-         * @see             {@link discrete.offset}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offset}
          */
         set offset ( value ) { }
 
@@ -4103,7 +4312,7 @@ class Shadow
          * @public
          * @function
          * @return          {Point}                                     Shadow offset
-         * @see             {@link discrete.offset}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offset}
          */
         get offset ( ) { }
 
@@ -4113,7 +4322,7 @@ class Shadow
          * @public
          * @function
          * @param           {number} value                              X coordinate value
-         * @see             {@link discrete.offsetX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offsetX}
          */
         set x ( value ) { }
 
@@ -4122,7 +4331,7 @@ class Shadow
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
-         * @see             {@link discrete.offsetX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offsetX}
          */
         get x ( ) { }
 
@@ -4132,7 +4341,7 @@ class Shadow
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
-         * @see             {@link discrete.offsetY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offsetY}
          */
         set y ( value ) { }
 
@@ -4141,7 +4350,7 @@ class Shadow
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
-         * @see             {@link discrete.offsetY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.offsetY}
          */
         get y ( ) { }
 
@@ -4153,7 +4362,7 @@ class Shadow
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -4163,7 +4372,7 @@ class Shadow
          * @function
          * @param           {number} value                              Blur value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isBlur}
+         * @see             {@link VALIDATION.isBlur}
          */
         _isBlur ( ) { }
 
@@ -4173,7 +4382,7 @@ class Shadow
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint ( ) { }
 }
@@ -4322,7 +4531,7 @@ class Stroke
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -4332,7 +4541,7 @@ class Stroke
          * @function
          * @param           {Array.<number>} value                      Array of segment values
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isSegments}
+         * @see             {@link VALIDATION.isSegments}
          */
         _isSegments   ( ) { }
 
@@ -4342,7 +4551,7 @@ class Stroke
          * @function
          * @param           {string} value                              Stroke type
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isStrokeType}
+         * @see             {@link VALIDATION.isStrokeType}
          */
         _isStrokeType ( ) { }
 
@@ -4352,7 +4561,7 @@ class Stroke
          * @function
          * @param           {number} value                              Width value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isWidth}
+         * @see             {@link VALIDATION.isWidth}
          */
         _isWidth      ( ) { }
 }
@@ -4527,7 +4736,7 @@ class OptionsCollection
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False
-         * @see             {@link Utilities.set.all}
+         * @see             {@link UTILITIES.set.all}
          */
         _setAll ( ) { }
 }
@@ -4627,7 +4836,7 @@ class PointCollection
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False
-         * @see             {@link Utilities.set.all}
+         * @see             {@link UTILITIES.set.all}
          */
         _setAll ( ) { }
 
@@ -4784,7 +4993,7 @@ class ShadowCollection
          * @function
          * @param           {number} value                              Blur value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isBlur}
+         * @see             {@link VALIDATION.isBlur}
          */
         _isBlur  ( ) { }
 
@@ -4794,7 +5003,7 @@ class ShadowCollection
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint ( ) { }
 
@@ -4806,7 +5015,7 @@ class ShadowCollection
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False
-         * @see             {@link Utilities.set.all}
+         * @see             {@link UTILITIES.set.all}
          */
         _setAll ( ) { }
 }
@@ -4962,7 +5171,7 @@ class StrokeCollection
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -4972,7 +5181,7 @@ class StrokeCollection
          * @function
          * @param           {Array.<number>} value                      Array of segment values
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isSegments}
+         * @see             {@link VALIDATION.isSegments}
          */
         _isSegments   ( ) { }
 
@@ -4982,7 +5191,7 @@ class StrokeCollection
          * @function
          * @param           {string} value                              Stroke type
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isStrokeType}
+         * @see             {@link VALIDATION.isStrokeType}
          */
         _isStrokeType ( ) { }
 
@@ -4992,7 +5201,7 @@ class StrokeCollection
          * @function
          * @param           {number} value                              Width value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isWidth}
+         * @see             {@link VALIDATION.isWidth}
          */
         _isWidth      ( ) { }
 
@@ -5004,7 +5213,7 @@ class StrokeCollection
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False
-         * @see             {@link Utilities.set.all}
+         * @see             {@link UTILITIES.set.all}
          */
         _setAll ( ) { }
 }
@@ -5014,7 +5223,7 @@ class StrokeCollection
 /**
  * @class           {Object} Circle                             Circle object
  * @property        {Point}  point                              X & Y axis coordinates
- * @property        {number} [radius=25]                        Radius of circle
+ * @property        {number|Point} [radius=25]                  Radius of circle
  * @property        {Angle}  angle                              Angle properties
  * @property        {Stroke} stroke                             Stroke properties
  * @property        {Fill}   fill                               Fill properties
@@ -5032,13 +5241,13 @@ class Circle
 
     _canvas = undefined;
 
-    #anchor  = new Anchor;
+    _anchor  = new Anchor;
     #options = new Options;
 
     /**
      * Create a Circle object
      * @property        {Point}  point                              X & Y axis coordinates
-     * @property        {number} radius                             Radius of circle
+     * @property        {number|Point} radius                       Radius of circle
      * @property        {Angle}  angle                              Angle properties
      * @property        {Stroke} stroke                             Stroke properties
      * @property        {Fill}   fill                               Fill properties
@@ -5116,7 +5325,7 @@ class Circle
          * @public
          * @function
          * @param           {Point} value                               X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         set point ( value ) { }
 
@@ -5125,7 +5334,7 @@ class Circle
          * @public
          * @function
          * @return          {Point}                                     X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         get point ( ) { }
 
@@ -5135,7 +5344,7 @@ class Circle
          * @public
          * @function
          * @param           {number} value                              X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         set x ( value ) { }
 
@@ -5144,7 +5353,7 @@ class Circle
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         get x ( ) { }
 
@@ -5154,7 +5363,7 @@ class Circle
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         set y ( value ) { }
 
@@ -5163,7 +5372,7 @@ class Circle
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         get y ( ) { }
 
@@ -5173,18 +5382,23 @@ class Circle
          * Set radius value
          * @public
          * @function
-         * @param           {number} value                              Radius of circle
+         * @param           {number|Point} value                        Radius of circle
          */
         set radius ( value )
         {
-            this._radius = ( this._isNumber ( value ) ) ? value : this._radius;
+            if ( value )
+            {
+                this._radius = ( this._isNumber ( value ) ) ? value : this._radius;
+
+                this._radius = ( this._isPoint  ( value ) ) ? value : this._radius;
+            }
         }
 
         /**
          * Get radius value
          * @readOnly
          * @function
-         * @return          {number}                                    Radius of circle
+         * @return          {number|Point}                              Radius of circle
          */
         get radius ( )
         {
@@ -5273,7 +5487,7 @@ class Circle
          */
         get anchor ( )
         {
-            return this.#anchor;
+            return this._anchor;
         }
 
     ////    [ OPTIONS ] ////////////////////////////////////
@@ -5297,7 +5511,7 @@ class Circle
          * @function
          * @param           {string} value                              Anchor alignment
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAnchor}
+         * @see             {@link VALIDATION.isAnchor}
          */
         _isAnchor ( ) { }
 
@@ -5307,7 +5521,7 @@ class Circle
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -5317,7 +5531,7 @@ class Circle
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDegree}
+         * @see             {@link VALIDATION.isDegree}
          */
         _isDegree ( ) { }
 
@@ -5327,7 +5541,7 @@ class Circle
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 
@@ -5337,7 +5551,7 @@ class Circle
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isNumber}
+         * @see             {@link VALIDATION.isNumber}
          */
         _isNumber ( ) { }
 
@@ -5347,7 +5561,7 @@ class Circle
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -5383,7 +5597,7 @@ class Circle
          * @private
          * @function
          * @param           {boolean} value                             Whether to redraw background
-         * @see             {@link Utilities.misc.clearCanvas}
+         * @see             {@link UTILITIES.misc.clearCanvas}
          */
         _clearCanvas ( ) { }
 
@@ -5391,7 +5605,7 @@ class Circle
          * Draws anchor point
          * @private
          * @function
-         * @see             {@link Utilities.draw.anchor}
+         * @see             {@link UTILITIES.draw.anchor}
          */
         _drawAnchor ( ) { }
 
@@ -5402,9 +5616,9 @@ class Circle
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
-        _drawAxis    ( ) { }
+        _drawAxis ( ) { }
 
         /**
          * Draws an axis for the associated object
@@ -5412,9 +5626,9 @@ class Circle
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
-        _drawBorder  ( ) { }
+        _drawBorder ( ) { }
 
         /**
          * Draws associated options
@@ -5445,7 +5659,7 @@ class Circle
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
          * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
+         * @see             {@link UTILITIES.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
 
@@ -5456,10 +5670,10 @@ class Circle
          */
         _setAnchorPoint ( )
         {
-            [ this.#anchor.x, this.#anchor.y ] = [ this.x, this.y ];
+            [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
 
 
-            switch ( this.anchor.type )
+            switch ( this.anchor.align )
             {
                 case 'center':      /*     ... do nothing      */   /*     ... do nothing      */   break;
 
@@ -5485,7 +5699,7 @@ class Circle
          * Sets fill type of the associated object
          * @private
          * @function
-         * @see             {@link Utilities.set.fillType}
+         * @see             {@link UTILITIES.set.fillType}
          */
         _setFillType ( ) { }
 
@@ -5493,9 +5707,9 @@ class Circle
          * Sets shadow properties
          * @private
          * @function
-         * @see             {@link Utilities.set.shadow}
+         * @see             {@link UTILITIES.set.shadow}
          */
-        _setShadow   ( ) { }
+        _setShadow ( ) { }
 
         /**
          * Get area of this object
@@ -5557,9 +5771,9 @@ class Circle
          * @param           {Rgb}    start                              Starting RGB value
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.fill}
+         * @see             {@link UTILITIES.color.cycle.fill}
          */
-        fillColorCycle     ( ) { }
+        fillColorCycle ( ) { }
 
         /**
          * Cycle colors for gradient
@@ -5570,7 +5784,7 @@ class Circle
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} stop                               Gradient color stop
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.gradient}
+         * @see             {@link UTILITIES.color.cycle.gradient}
          */
         gradientColorCycle ( ) { }
 
@@ -5581,7 +5795,7 @@ class Circle
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
-         * @see             {@link Utilities.transition.rotate}
+         * @see             {@link UTILITIES.transition.rotate}
          */
         rotate ( ) { }
 
@@ -5591,7 +5805,7 @@ class Circle
          * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
-         * @see             {@link Utilities.misc.showCoordinates}
+         * @see             {@link UTILITIES.misc.showCoordinates}
          */
         showCoordinates ( ) { }
 
@@ -5603,7 +5817,7 @@ class Circle
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} progress                           Progress time unit; 0.00 - 1.00
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.stroke}
+         * @see             {@link UTILITIES.color.cycle.stroke}
          */
         strokeColorCycle ( ) { }
 
@@ -5640,11 +5854,20 @@ class Circle
 
                 this._canvas.beginPath   ( );
 
-                this._canvas.arc         ( this.anchor.x, this.anchor.y, this.radius, this.angle.startInRadians, this.angle.endInRadians, ( this.angle.clockwise ) ? false : true );
 
-                this._canvas.stroke      ( );
+                ( this._isPoint ( this.radius ) )
 
-                this._canvas.fill        ( );
+                    ? this._canvas.ellipse ( this.anchor.x, this.anchor.y, this.radius.x, this.radius.y, 0, this.angle.startInRadians, this.angle.endInRadians, ( this.angle.clockwise ) ? false : true )
+
+                    : this._canvas.arc     ( this.anchor.x, this.anchor.y, this.radius, this.angle.startInRadians, this.angle.endInRadians, ( this.angle.clockwise ) ? false : true );
+
+
+                this._canvas.stroke ( );
+
+
+                if ( this.fill.type != 'pattern' )
+
+                    this._canvas.fill ( );
 
 
                 if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );         // Reset: shadow
@@ -5664,7 +5887,7 @@ class Circle
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
-         * @see             {@link Utilities.draw.redraw}
+         * @see             {@link UTILITIES.draw.redraw}
          */
         redraw ( ) { }
 }
@@ -5996,7 +6219,7 @@ class Line
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -6006,7 +6229,7 @@ class Line
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDegree}
+         * @see             {@link VALIDATION.isDegree}
          */
         _isDegree ( ) { }
 
@@ -6016,7 +6239,7 @@ class Line
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 
@@ -6026,7 +6249,7 @@ class Line
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isNumber}
+         * @see             {@link VALIDATION.isNumber}
          */
         _isNumber ( ) { }
 
@@ -6036,7 +6259,7 @@ class Line
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -6076,7 +6299,7 @@ class Line
          * @private
          * @function
          * @param           {boolean} value                             Whether to redraw background
-         * @see             {@link Utilities.misc.clearCanvas}
+         * @see             {@link UTILITIES.misc.clearCanvas}
          */
         _clearCanvas ( ) { }
 
@@ -6087,7 +6310,7 @@ class Line
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
         _drawAxis    ( ) { }
 
@@ -6097,7 +6320,7 @@ class Line
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
         _drawBorder  ( ) { }
 
@@ -6134,7 +6357,7 @@ class Line
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
          * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
+         * @see             {@link UTILITIES.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
 
@@ -6142,7 +6365,7 @@ class Line
          * Sets shadow properties
          * @private
          * @function
-         * @see             {@link Utilities.set.shadow}
+         * @see             {@link UTILITIES.set.shadow}
          */
         _setShadow   ( ) { }
 
@@ -6410,7 +6633,7 @@ class Line
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} progress                           Progress time unit; 0.00 - 1.00
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.stroke}
+         * @see             {@link UTILITIES.color.cycle.stroke}
          */
         strokeColorCycle ( ) { }
 
@@ -6493,6 +6716,7 @@ class Line
  * @class           {Object} Rectangle                          Rectangle object
  * @property        {Point}  point                              X & Y axis coordinates
  * @property        {Aspect} aspect                             Aspect properties
+ * @property        {Array}  round                              Rounding properties
  * @property        {Stroke} stroke                             Stroke properties
  * @property        {Fill}   fill                               Fill properties
  * @property        {Shadow} shadow                             Shadow properties
@@ -6502,19 +6726,21 @@ class Rectangle
 {
     _point  = new Point;
     _aspect = new Aspect;
+    _round  = new Array;
     _stroke = new Stroke;
     _fill   = new Fill;
     _shadow = new Shadow;
 
     _canvas = undefined;
 
-    #anchor  = new Anchor;
+    _anchor  = new Anchor;
     #options = new Options;
 
     /**
      * Create a Rectangle object
      * @property        {Point}  point                              X & Y axis coordinates
      * @property        {Aspect} aspect                             Aspect properties
+     * @property        {Array}  round                              Rounding properties
      * @property        {Stroke} stroke                             Stroke properties
      * @property        {Fill}   fill                               Fill properties
      * @property        {Shadow} shadow                             Shadow properties
@@ -6523,6 +6749,7 @@ class Rectangle
     constructor (
                     point  = { x:     undefined, y:      undefined },
                     aspect = { width: undefined, height: undefined },
+                    round  = [ 0, 0, 0, 0 ],
                     stroke = { color: undefined, type:   undefined, segments:    undefined, width: undefined },
                     fill   = { color: undefined, type:   undefined },
                     shadow = { color: undefined, blur:   undefined, offset: { x: undefined, y:     undefined } },
@@ -6536,13 +6763,14 @@ class Rectangle
             this._isInDom  = VALIDATION.isInDom;
             this._isPoint  = VALIDATION.isPoint;
 
-            this._clearCanvas       = UTILITIES.misc.clearCanvas;
-            this._drawAnchor        = UTILITIES.draw.anchor;
-            this._drawAxis          = UTILITIES.draw.axis;
-            this._drawBorder        = UTILITIES.draw.border;
-            this._rotatePoint       = UTILITIES.misc.rotatePoint;
-            this._setFillType       = UTILITIES.set.fillType;
-            this._setShadow         = UTILITIES.set.shadow;
+            this._clearCanvas    = UTILITIES.misc.clearCanvas;
+            this._drawAnchor     = UTILITIES.draw.anchor;
+            this._drawAxis       = UTILITIES.draw.axis;
+            this._drawBorder     = UTILITIES.draw.border;
+            this._rotatePoint    = UTILITIES.misc.rotatePoint;
+            this._setAnchorPoint = UTILITIES.set.anchorPoint;
+            this._setFillType    = UTILITIES.set.fillType;
+            this._setShadow      = UTILITIES.set.shadow;
 
             this.fillColorCycle     = UTILITIES.color.cycle.fill;
             this.gradientColorCycle = UTILITIES.color.cycle.gradient;
@@ -6552,10 +6780,13 @@ class Rectangle
             this.showCoordinates    = UTILITIES.misc.showCoordinates;
             this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
 
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
-            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
-            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
-            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
+            Object.defineProperty ( this, 'area',      PROPERTY_BLOCKS.discrete.area   );
+            Object.defineProperty ( this, 'canvas',    PROPERTY_BLOCKS.discrete.canvas );
+            Object.defineProperty ( this, 'center',    PROPERTY_BLOCKS.discrete.center );
+            Object.defineProperty ( this, 'perimeter', PROPERTY_BLOCKS.discrete.perimeter );
+            Object.defineProperty ( this, 'point',     PROPERTY_BLOCKS.discrete.point  );
+            Object.defineProperty ( this, 'x',         PROPERTY_BLOCKS.discrete.pointX );
+            Object.defineProperty ( this, 'y',         PROPERTY_BLOCKS.discrete.pointY );
 
             delete this.#options._controlPoints;
             delete this.#options._points;
@@ -6565,6 +6796,8 @@ class Rectangle
 
         this.width  = ( aspect.width  != undefined ) ? aspect.width  : 50;
         this.height = ( aspect.height != undefined ) ? aspect.height : 50;
+
+        this.round  = round;
 
         ////    OBJECT INITIALIZER(S)   ////////////////////
 
@@ -6709,6 +6942,30 @@ class Rectangle
             return this._aspect.height;
         }
 
+    ////    [ ROUND ]    ///////////////////////////////////
+
+        /**
+         * Set round properties
+         * @public
+         * @function
+         * @param           {Array} value                               Radii properties
+         */
+        set round ( value )
+        {
+            this._round = Array.isArray ( value ) ? value : this._round;
+        }
+
+        /**
+         * Get round properties
+         * @readOnly
+         * @function
+         * @return          {Array}                                     Radii properties
+         */
+        get round ( )
+        {
+            return this._round;
+        }
+
     ////    [ STROKE ]  ////////////////////////////////////
 
         /**
@@ -6778,7 +7035,7 @@ class Rectangle
          */
         get anchor ( )
         {
-            return this.#anchor;
+            return this._anchor;
         }
 
     ////    [ OPTIONS ] ////////////////////////////////////
@@ -6802,7 +7059,7 @@ class Rectangle
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -6812,7 +7069,7 @@ class Rectangle
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDegree}
+         * @see             {@link VALIDATION.isDegree}
          */
         _isDegree ( ) { }
 
@@ -6822,7 +7079,7 @@ class Rectangle
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 
@@ -6832,7 +7089,7 @@ class Rectangle
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -6869,7 +7126,7 @@ class Rectangle
          * @private
          * @function
          * @param           {boolean} value                             Whether to redraw background
-         * @see             {@link Utilities.misc.clearCanvas}
+         * @see             {@link UTILITIES.misc.clearCanvas}
          */
         _clearCanvas ( ) { }
 
@@ -6877,7 +7134,7 @@ class Rectangle
          * Draws anchor point
          * @private
          * @function
-         * @see             {@link Utilities.draw.anchor}
+         * @see             {@link UTILITIES.draw.anchor}
          */
         _drawAnchor ( ) { }
 
@@ -6888,7 +7145,7 @@ class Rectangle
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
         _drawAxis ( ) { }
 
@@ -6898,7 +7155,7 @@ class Rectangle
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
         _drawBorder ( ) { }
 
@@ -6931,7 +7188,7 @@ class Rectangle
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
          * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
+         * @see             {@link UTILITIES.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
 
@@ -6939,39 +7196,15 @@ class Rectangle
          * Sets anchor's point against this object's point location
          * @private
          * @function
+         * @see             {@link UTILITIES.set.anchorPoint}
          */
-        _setAnchorPoint ( )
-        {
-            [ this.#anchor.x, this.#anchor.y ] = [ this.x, this.y ];
-
-
-            switch ( this.anchor.align )
-            {
-                case 'center':       this.anchor.x -= this.width  / 2;   this.anchor.y -= this.height / 2;  break;
-
-                case 'top':          this.anchor.x -= this.width  / 2;   /*       ... do nothing        */  break;
-
-                case 'topRight':     this.anchor.x -= this.width;        /*       ... do nothing        */  break;
-
-                case 'right':        this.anchor.x -= this.width;        this.anchor.y -= this.height / 2;  break;
-
-                case 'bottomRight':  this.anchor.x -= this.width;        this.anchor.y -= this.height;      break;
-
-                case 'bottom':       this.anchor.x -= this.width  / 2;   this.anchor.y -= this.height;      break;
-
-                case 'bottomLeft':   /*       ... do nothing        */   this.anchor.y -= this.height;      break;
-
-                case 'left':         /*       ... do nothing        */   this.anchor.y -= this.height / 2;  break;
-
-                case 'topLeft':      /*       ... do nothing        */   /*       ... do nothing        */  break;
-            }
-        }
+        _setAnchorPoint ( ) { }
 
         /**
          * Sets fill type of the associated object
          * @private
          * @function
-         * @see             {@link Utilities.set.fillType}
+         * @see             {@link UTILITIES.set.fillType}
          */
         _setFillType ( ) { }
 
@@ -6979,7 +7212,7 @@ class Rectangle
          * Sets shadow properties
          * @private
          * @function
-         * @see             {@link Utilities.set.shadow}
+         * @see             {@link UTILITIES.set.shadow}
          */
         _setShadow ( ) { }
 
@@ -6988,27 +7221,18 @@ class Rectangle
          * @readOnly
          * @function
          * @return          {number}                                    Area of this object
+         * @see             {@link PROPERTY_BLOCKS.discrete.area}
          */
-        get area ( )
-        {
-            return ( this.width * this.height );
-        }
+        get area ( ) { }
 
         /**
          * Get center of this object
          * @readOnly
          * @function
          * @return          {Point}                                     Center point coordinates
+         * @see             {@link PROPERTY_BLOCKS.discrete.center}
          */
-        get center ( )
-        {
-            let _x = this.x - ( this.x - this.anchor.x ) + ( this.width  / 2 );
-
-            let _y = this.y - ( this.y - this.anchor.y ) + ( this.height / 2 );
-
-
-            return new Point ( _x, _y );
-        }
+        get center ( ) { }
 
         /**
          * Cycle colors for fill
@@ -7018,7 +7242,7 @@ class Rectangle
          * @param           {Rgb}    start                              Starting RGB value
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.fill}
+         * @see             {@link UTILITIES.color.cycle.fill}
          */
         fillColorCycle ( ) { }
 
@@ -7031,7 +7255,7 @@ class Rectangle
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} stop                               Gradient color stop
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.gradient}
+         * @see             {@link UTILITIES.color.cycle.gradient}
          */
         gradientColorCycle ( ) { }
 
@@ -7043,7 +7267,7 @@ class Rectangle
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [draw=false]                      Draw post movement
          * @param           {boolean} [clear=false]                     Clear canvas during each movement
-         * @see             {@link Utilities.transition.move}
+         * @see             {@link UTILITIES.transition.move}
          */
         move ( ) { }
 
@@ -7052,11 +7276,9 @@ class Rectangle
          * @readOnly
          * @function
          * @return          {number}                                    Perimeter of rectangle
+         * @see             {@link PROPERTY_BLOCKS.discrete.center}
          */
-        get perimeter ( )
-        {
-            return ( this.area * 2 );
-        }
+        get perimeter ( ) { }
 
         /**
          * Rotate this object
@@ -7065,7 +7287,7 @@ class Rectangle
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
-         * @see             {@link Utilities.transition.rotate}
+         * @see             {@link UTILITIES.transition.rotate}
          */
         rotate ( ) { }
 
@@ -7075,7 +7297,7 @@ class Rectangle
          * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
-         * @see             {@link Utilities.misc.showCoordinates}
+         * @see             {@link UTILITIES.misc.showCoordinates}
          */
         showCoordinates ( ) { }
 
@@ -7087,9 +7309,9 @@ class Rectangle
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} progress                           Progress time unit; 0.00 - 1.00
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.stroke}
+         * @see             {@link UTILITIES.color.cycle.stroke}
          */
-        strokeColorCycle   ( ) { }
+        strokeColorCycle ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
@@ -7124,11 +7346,14 @@ class Rectangle
 
                 this._canvas.beginPath   ( );
 
-                this._canvas.rect        ( this.anchor.x, this.anchor.y, this.width, this.height );
+                this._canvas.roundRect   ( this.anchor.x, this.anchor.y, this.width, this.height, this.round );
 
                 this._canvas.stroke      ( );
 
-                this._canvas.fill        ( );
+
+                if ( this.fill.type != 'pattern' )
+
+                    this._canvas.fill ( );
 
 
                 if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
@@ -7148,7 +7373,7 @@ class Rectangle
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
-         * @see             {@link Utilities.draw.redraw}
+         * @see             {@link UTILITIES.draw.redraw}
          */
         redraw ( ) { }
 }
@@ -7534,7 +7759,7 @@ class Text extends Font
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDegree}
+         * @see             {@link VALIDATION.isDegree}
          */
         _isDegree ( ) { }
 
@@ -7544,7 +7769,7 @@ class Text extends Font
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 
@@ -7554,7 +7779,7 @@ class Text extends Font
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -7565,7 +7790,7 @@ class Text extends Font
          * @private
          * @function
          * @param           {boolean} value                             Whether to redraw background
-         * @see             {@link Utilities.misc.clearCanvas}
+         * @see             {@link UTILITIES.misc.clearCanvas}
          */
         _clearCanvas ( ) { }
 
@@ -7576,7 +7801,7 @@ class Text extends Font
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
          * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
+         * @see             {@link UTILITIES.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
 
@@ -7584,7 +7809,7 @@ class Text extends Font
          * Sets shadow properties
          * @private
          * @function
-         * @see             {@link Utilities.set.shadow}
+         * @see             {@link UTILITIES.set.shadow}
          */
         _setShadow   ( ) { }
 
@@ -7592,7 +7817,7 @@ class Text extends Font
          * Draws anchor point
          * @private
          * @function
-         * @see             {@link Utilities.draw.anchor}
+         * @see             {@link UTILITIES.draw.anchor}
          */
         _drawAnchor ( ) { }
 
@@ -7677,11 +7902,15 @@ class Text extends Font
             let _point  = new Point  ( this.x, _y );
 
 
-            let _border = new Rectangle ( _point, _aspect,  /* Point, Aspect */
-                /* Stroke */            { color: _red,   type: 'solid', segments: undefined,  width: 1 },
-                /* Fill   */            { color: _clear, type: 'solid' },
-                /* Shadow */              undefined,
-                /* Canvas */              this.canvas );
+            let _border = new Rectangle (
+                /* Point  */  _point,
+                /* Aspect */  _aspect,
+                /* Round  */  undefined,
+                /* Stroke */  { color: _red,   type: 'solid', segments: undefined,  width: 1 },
+                /* Fill   */  { color: _clear, type: 'solid' },
+                /* Shadow */  undefined,
+                /* Canvas */  this.canvas
+                           );
 
 
                 _border.draw ( );
@@ -7711,7 +7940,7 @@ class Text extends Font
          * @param           {Rgb}    start                              Starting RGB value
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.fill}
+         * @see             {@link UTILITIES.color.cycle.fill}
          */
         fillColorCycle ( ) { }
 
@@ -7723,7 +7952,7 @@ class Text extends Font
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [draw=false]                      Draw post movement
          * @param           {boolean} [clear=false]                     Clear canvas during each movement
-         * @see             {@link Utilities.transition.move}
+         * @see             {@link UTILITIES.transition.move}
          */
         move ( ) { }
 
@@ -7734,7 +7963,7 @@ class Text extends Font
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
-         * @see             {@link Utilities.transition.rotate}
+         * @see             {@link UTILITIES.transition.rotate}
          */
         rotate ( ) { }
 
@@ -7744,7 +7973,7 @@ class Text extends Font
          * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
-         * @see             {@link Utilities.misc.showCoordinates}
+         * @see             {@link UTILITIES.misc.showCoordinates}
          */
         showCoordinates ( ) { }
 
@@ -7756,7 +7985,7 @@ class Text extends Font
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} progress                           Progress time unit; 0.00 - 1.00
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.stroke}
+         * @see             {@link UTILITIES.color.cycle.stroke}
          */
         strokeColorCycle ( ) { }
 
@@ -7823,7 +8052,559 @@ class Text extends Font
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
-         * @see             {@link Utilities.draw.redraw}
+         * @see             {@link UTILITIES.draw.redraw}
+         */
+        redraw ( ) { }
+}
+ 
+/**
+ * @class           {Object} cImage                             cImage object
+ * @property        {string} source 							Source path of image file
+ * @property        {Object} primary  							Primary set of coordinates
+ * @property        {Object} secondary 							[description]
+ * @property        {HTMLCanvasElement} canvas                  2D canvas context
+ */
+class cImage
+{
+	_source    = new Image;
+
+	_primary   =
+	{
+		point:  new Point,
+		aspect: new Aspect
+	}
+
+	_secondary =
+	{
+		point:  undefined,
+		aspect: undefined
+	}
+
+	_canvas  = undefined;
+
+    _anchor  = new Anchor;
+	#options = new Options;
+
+	/**
+     * Create a cImage object
+     * @class           {Object} cImage                             cImage object
+ 	 * @property        {Image}  source 							Source path of image file
+ 	 * @property        {Object} primary  							[description]
+ 	 * @property        {Object} secondary 							[description]
+     * @property        {HTMLCanvasElement} canvas                  Canvas Id
+     */
+	constructor (
+				    source,
+				    primary   = { point: { x: undefined, y: undefined }, aspect: { width: undefined, height: undefined } },
+				    secondary = { point: { x: undefined, y: undefined }, aspect: { width: undefined, height: undefined } },
+				    canvas
+				)
+	{
+		////    COMPOSITION     ////////////////////////////
+
+			this._isAspect       = VALIDATION.isAspect;
+            this._isDegree       = VALIDATION.isDegree;
+            this._isInDom        = VALIDATION.isInDom;
+            this._isPoint        = VALIDATION.isPoint;
+            this._isPointNAspect = VALIDATION.isPointNAspect;
+
+            this._clearCanvas    = UTILITIES.misc.clearCanvas;
+            this._drawAnchor     = UTILITIES.draw.anchor;
+            this._drawAxis       = UTILITIES.draw.axis;
+            this._drawBorder     = UTILITIES.draw.border;
+            this._setAnchorPoint = UTILITIES.set.anchorPoint;
+
+            this.move   = UTILITIES.transition.move;
+            this.rotate = UTILITIES.transition.rotate;
+
+            Object.defineProperty ( this, 'area',      PROPERTY_BLOCKS.discrete.area      );
+            Object.defineProperty ( this, 'canvas',    PROPERTY_BLOCKS.discrete.canvas    );
+            Object.defineProperty ( this, 'center',    PROPERTY_BLOCKS.discrete.center    );
+            Object.defineProperty ( this, 'perimeter', PROPERTY_BLOCKS.discrete.perimeter );
+
+            delete this.#options._controlPoints;
+            delete this.#options._points;
+            delete this.#options._master;
+
+        this.source    = source;
+	    this.primary   = primary;
+	    this.secondary = secondary;
+	    this.canvas    = canvas;
+	}
+
+	////    [ SOURCE ]    //////////////////////////////////
+
+		/**
+         * Sets source property value
+         * @public
+         * @function
+         * @param           {string} value                              Path of image source
+         */
+        set source ( value )
+        {
+            if ( typeof value === 'string' )
+            {
+                let _image = new Image;
+
+                    _image.src = value;
+
+
+                this._source = _image;
+
+                this.type     = 'source';
+            }
+        }
+
+        /**
+         * Gets source property value
+         * @readOnly
+         * @function
+         * @return          {Image}                                   	Image source
+         */
+        get source ( )
+        {
+            return this._source;
+        }
+
+    ////    [ POINT ]   ////////////////////////////////////
+
+        /**
+         * Set point
+         * @public
+         * @function
+         * @param           {Point} value                               X & Y coordinates
+         */
+        set point ( value )
+        {
+            this._primary.point = ( this._isPoint ( value ) ) ? value : this._primary.point;
+        }
+
+        /**
+         * Get point
+         * @public
+         * @function
+         * @return          {Point}                                     X & Y coordinates
+         */
+        get point ( )
+        {
+            return this._primary.point;
+        }
+
+
+        /**
+         * Set primary x-axis value
+         * @public
+         * @function
+         * @param           {number} value                              X coordinate value
+         */
+        set x ( value )
+        {
+            this._primary.point.x = value;
+        }
+
+        /**
+         * Get primary x-axis value
+         * @readOnly
+         * @function
+         * @return          {number}                                    X coordinate value
+         */
+        get x ( )
+        {
+            return this._primary.point.x;
+        }
+
+
+        /**
+         * Set primary y-axis value
+         * @public
+         * @function
+         * @param           {number} value                              Y coordinate value
+         */
+        set y ( value )
+        {
+            this._primary.point.y = value;
+        }
+
+        /**
+         * Get primary y-axis value
+         * @readOnly
+         * @function
+         * @return          {number}                                    Y coordinate value
+         */
+        get y ( )
+        {
+            return this._primary.point.y;
+        }
+
+    ////    [ ASPECT ]  ////////////////////////////////////
+
+        /**
+         * Set aspect properties
+         * @public
+         * @function
+         * @param           {Aspect} value                              Aspect properties
+         */
+        set aspect ( value )
+        {
+            this._primary.aspect = ( this._isAspect ( value ) ) ? value : this._primary.aspect;
+        }
+
+        /**
+         * Get aspect properties
+         * @readOnly
+         * @function
+         * @return          {Aspect}                                    Aspect properties
+         */
+        get aspect ( )
+        {
+            return this._primary.aspect;
+        }
+
+
+        /**
+         * Get aspect with
+         * @readOnly
+         * @function
+         * @return          {number}                                    Width value
+         */
+        get width ( )
+        {
+            return this.source.width;
+        }
+
+        /**
+         * Get aspect height
+         * @readOnly
+         * @function
+         * @return          {number}                                    Height value
+         */
+        get height ( )
+        {
+            return this.source.height;
+        }
+
+	////    [ PRIMARY ]    /////////////////////////////////
+
+		/**
+         * Sets primary property value
+         * @public
+         * @function
+         * @param           {string} value                              Path of image
+         */
+        set primary ( value )
+        {
+        	if ( this._isPointNAspect ( value ) )
+
+        		[ this._primary.point, this._primary.aspect ] = [ value.point, value.aspect ];
+        }
+
+        /**
+         * Gets primary property value
+         * @readOnly
+         * @function
+         * @return          {Image}										Image object
+         */
+        get primary ( )
+        {
+            return this._primary;
+        }
+
+    ////    [ SECONDARY ]    ///////////////////////////////
+
+		/**
+         * Sets secondary property value
+         * @public
+         * @function
+         * @param           {string} value                              Path of image
+         */
+        set secondary ( value )
+        {
+        	if ( this._isPointNAspect ( value ) )
+
+        		[ this._secondary.point, this._secondary.aspect ] = [ value.point, value.aspect ];
+        }
+
+        /**
+         * Gets secondary property value
+         * @readOnly
+         * @function
+         * @return          {Image}										Image object
+         */
+        get secondary ( )
+        {
+            return this._secondary;
+        }
+
+    ////    [ CANVAS ]  ////////////////////////////////////
+
+        /**
+         * Set canvas value
+         * @public
+         * @function
+         * @param           {string} value                              Canvas id
+         * @see             {@link discrete.canvas}
+         */
+        set canvas ( value ) { }
+
+        /**
+         * Get canvas value
+         * @readOnly
+         * @function
+         * @return          {string}                                    Canvas id
+         * @see             {@link discrete.canvas}
+         */
+        get canvas ( ) { }
+
+    ////    [ ANCHOR ]  ////////////////////////////////////
+
+        /**
+         * Get anchor
+         * @public
+         * @function
+         * @return          {Anchor}                                    Anchor properties
+         */
+        get anchor ( )
+        {
+            return this._anchor;
+        }
+
+    ////    [ OPTIONS ] ////////////////////////////////////
+
+        /**
+         * Get options properties
+         * @public
+         * @function
+         * @return          {Options}                                   Options properties
+         */
+        get options ( )
+        {
+            return this.#options;
+        }
+
+    ////    VALIDATION    //////////////////////////////////
+
+    	/**
+         * Returns whether the passed value is an Aspect
+         * @private
+         * @function
+         * @param           {Object} value                              Aspect or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isAspect}
+         */
+        _isAspect ( ) { }
+
+    	/**
+         * Returns whether the passed value is an element id within the DOM
+         * @private
+         * @function
+         * @param           {string} value                              Element id
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isInDom}
+         */
+        _isInDom ( ) { }
+
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isPoint}
+         */
+        _isPoint ( ) { }
+
+	    /**
+	     * Returns whether the passed value is a Point & Aspect
+	     * @private
+	     * @memberof VALIDATION
+	     * @function
+	     * @param           {Object} value                              Object of a Point & Aspect
+	     * @param           {Point}  value.point                        Point object
+	     * @param           {Aspect} value.aspect                       Aspect object
+	     * @return          {boolean}                                   True || False
+	     * @see             {@link VALIDATION.isPointNAspect}
+	     */
+	    _isPointNAspect ( ) { }
+
+	////    UTILITIES    ///////////////////////////////////
+
+	    /**
+         * Clears canvas
+         * @private
+         * @function
+         * @param           {boolean} value                             Whether to redraw background
+         * @see             {@link UTILITIES.misc.clearCanvas}
+         */
+        _clearCanvas ( ) { }
+
+        /**
+         * Draws anchor point
+         * @private
+         * @function
+         */
+        _drawAnchor ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {number} offset                             Offset of axis
+         * @param           {Object} color                              Color model
+         * @param           {number} stop                               Gradient color stop
+         * @see             {@link UTILITIES.draw.axis}
+         */
+        _drawAxis ( ) { }
+
+        /**
+         * Draws an axis for the associated object
+         * @private
+         * @function
+         * @param           {Aspect} aspect                             Aspect properties
+         * @param           {Object} color                              Color model
+         * @see             {@link UTILITIES.draw.border}
+         */
+        _drawBorder ( ) { }
+
+        /**
+         * Draws associated options
+         * @private
+         * @function
+         */
+        _drawOptions ( )
+        {
+            let _offset = 20;
+
+            let _aspect = new Aspect ( this.source.width + _offset, this.source.height + _offset );
+
+            ////////////////////////////////////////////////////////////////////
+
+            if ( this.#options.border      ) this._drawBorder     ( _aspect );
+
+            if ( this.#options.axis        ) this._drawAxis       ( );
+
+            if ( this.#options.anchor      ) this._drawAnchor     ( );
+
+            if ( this.#options.coordinates ) this.showCoordinates ( );
+        }
+
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @private
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         * @see             {@link UTILITIES.misc.rotatePoint}
+         */
+        _rotatePoint ( ) { }
+
+        /**
+         * Sets anchor's point against this object's point location
+         * @private
+         * @function
+         * @see             {@link UTILITIES.set.anchorPoint}
+         */
+        _setAnchorPoint ( ) { }
+
+        /**
+         * Get area of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Area of this object
+         * @see             {@link PROPERTY_BLOCKS.discrete.area}
+         */
+        get area ( ) { }
+
+        /**
+         * Get center of this object
+         * @readOnly
+         * @function
+         * @return          {Point}                                     Center point coordinates
+         * @see             {@link PROPERTY_BLOCKS.discrete.center}
+         */
+        get center ( ) { }
+
+        /**
+         * Move this object
+         * @public
+         * @function
+         * @param           {number}  degree                            Direction to move; in degrees
+         * @param           {number}  distance                          Distance to move
+         * @param           {boolean} [draw=false]                      Draw post movement
+         * @param           {boolean} [clear=false]                     Clear canvas during each movement
+         * @see             {@link UTILITIES.transition.move}
+         */
+        move ( ) { }
+
+        /**
+         * Get perimeter of this object
+         * @readOnly
+         * @function
+         * @return          {number}                                    Perimeter of rectangle
+         * @see             {@link PROPERTY_BLOCKS.discrete.center}
+         */
+        get perimeter ( ) { }
+
+        /**
+         * Rotate this object
+         * @public
+         * @function
+         * @param           {number} degree                             Distance to rotate; in degrees
+         * @param           {string} [anchor='center']                  Anchoring point during rotation
+         * @param           {number} [clear=true]                       Clear canvas during each rotation
+         * @see             {@link UTILITIES.transition.rotate}
+         */
+        rotate ( ) { }
+
+        /**
+         * Shows coordinates of this object
+         * @public
+         * @function
+         * @param           {number} [offset=10]                        Offset of coordinates y origin
+         * @param           {number} [fontSize=16]                      Coordinates font size
+         * @see             {@link UTILITIES.misc.showCoordinates}
+         */
+        showCoordinates ( ) { }
+
+	////    DRAW    ////////////////////////////////////////
+
+	    /**
+         * Draw this object
+         * @public
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         */
+	    draw ( canvas )
+	    {
+            if ( canvas != undefined ) this.canvas = canvas;
+
+
+            if ( this._canvas instanceof CanvasRenderingContext2D )
+            {
+                let _drawImage = ( this.secondary.point ) ? ( ) => this._canvas.drawImage ( this._source, this.secondary.point.x, this.secondary.point.y, this.secondary.aspect.width, this.secondary.aspect.height, this.anchor.x, this.anchor.y, this.primary.aspect.width, this.primary.aspect.height )
+
+                                                          : ( ) => this._canvas.drawImage ( this._source, this.anchor.x,          this.anchor.y,          this._source.width,          this._source.height );
+
+
+                this._source.onload = ( ) =>
+                    {
+                        this._setAnchorPoint ( );
+
+                        _drawImage ( );
+
+                        this._drawOptions ( );
+                    }
+            }
+	    }
+
+        /**
+         * Redraw this object
+         * @public
+         * @function
+         * @param           {string}  canvas                            Canvas Id
+         * @param           {Point}   point                             Point of new location
+         * @param           {boolean} [clear=true]                      Clear canvas during each redraw
+         * @see             {@link UTILITIES.draw.redraw}
          */
         redraw ( ) { }
 }
@@ -8258,8 +9039,6 @@ class Circles extends Array
 
     ////    DRAW    ////////////////////////////////////////
 
-        ////    DRAW    ////////////////////////////////////////
-
         /**
          * Draw function for collections
          * @public
@@ -8387,7 +9166,7 @@ class Group extends Array
          * @public
          * @function
          * @param           {string} value                              Canvas id
-         * @see             {@link combined.canvas}
+         * @see             {@link PROPERTY_BLOCKS.combined.canvas}
          */
         set canvas ( value )
         {
@@ -8422,7 +9201,7 @@ class Group extends Array
          * @readOnly
          * @function
          * @return          {string}                                    Canvas id
-         * @see             {@link combined.canvas}
+         * @see             {@link PROPERTY_BLOCKS.combined.canvas}
          */
         get canvas ( )
         {
@@ -8522,7 +9301,7 @@ class Group extends Array
          * @function
          * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isCanvasLabObject}
+         * @see             {@link VALIDATION.isCanvasLabObject}
          */
         _isCanvasLabObject ( ) { }
 
@@ -8532,7 +9311,7 @@ class Group extends Array
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom ( ) { }
 
@@ -8543,7 +9322,7 @@ class Group extends Array
          * @function
          * @param           {Object} value                              Plan object
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPlan}
+         * @see             {@link VALIDATION.isPlan}
          */
         _isPlan   ( ) { }
 
@@ -8553,7 +9332,7 @@ class Group extends Array
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint ( ) { }
 
@@ -8766,7 +9545,7 @@ class Lines extends Array
          * @public
          * @function
          * @param           {Point} value                               X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         set point ( value ) { }
 
@@ -8775,7 +9554,7 @@ class Lines extends Array
          * @public
          * @function
          * @return          {Point}                                     X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         get point ( ) { }
 
@@ -8785,7 +9564,7 @@ class Lines extends Array
          * @public
          * @function
          * @param           {number} value                              X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         set x ( value ) { }
 
@@ -8794,7 +9573,7 @@ class Lines extends Array
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         get x ( ) { }
 
@@ -8803,7 +9582,7 @@ class Lines extends Array
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         set y ( value ) { }
 
@@ -8812,7 +9591,7 @@ class Lines extends Array
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         get y ( ) { }
 
@@ -8956,7 +9735,7 @@ class Lines extends Array
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -8966,7 +9745,7 @@ class Lines extends Array
          * @function
          * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isCanvasLabObject}
+         * @see             {@link VALIDATION.isCanvasLabObject}
          */
         _isCanvasLabObject ( value ) { }
 
@@ -8976,7 +9755,7 @@ class Lines extends Array
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom ( ) { }
 
@@ -8986,7 +9765,7 @@ class Lines extends Array
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint ( ) { }
 
@@ -9276,7 +10055,7 @@ class Rectangles extends Array
          * @public
          * @function
          * @param           {Point} value                               X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         set point ( value ) { }
 
@@ -9285,7 +10064,7 @@ class Rectangles extends Array
          * @public
          * @function
          * @return          {Point}                                     X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         get point ( ) { }
 
@@ -9295,7 +10074,7 @@ class Rectangles extends Array
          * @public
          * @function
          * @param           {number} value                              X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         set x ( value ) { }
 
@@ -9304,7 +10083,7 @@ class Rectangles extends Array
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         get x ( ) { }
 
@@ -9314,7 +10093,7 @@ class Rectangles extends Array
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         set y ( value ) { }
 
@@ -9323,7 +10102,7 @@ class Rectangles extends Array
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         get y ( ) { }
 
@@ -9373,7 +10152,7 @@ class Rectangles extends Array
          * @public
          * @function
          * @param           {string} value                              Canvas id
-         * @see             {@link combined.canvas}
+         * @see             {@link PROPERTY_BLOCKS.combined.canvas}
          */
         set canvas ( value ) { }
 
@@ -9382,7 +10161,7 @@ class Rectangles extends Array
          * @readOnly
          * @function
          * @return          {string}                                    Canvas id
-         * @see             {@link combined.canvas}
+         * @see             {@link PROPERTY_BLOCKS.combined.canvas}
          */
         get canvas ( ) { }
 
@@ -9443,7 +10222,7 @@ class Rectangles extends Array
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -9453,7 +10232,7 @@ class Rectangles extends Array
          * @function
          * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isCanvasLabObject}
+         * @see             {@link VALIDATION.isCanvasLabObject}
          */
         _isCanvasLabObject ( ) { }
 
@@ -9463,7 +10242,7 @@ class Rectangles extends Array
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom ( ) { }
 
@@ -9473,7 +10252,7 @@ class Rectangles extends Array
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint ( ) { }
 
@@ -9494,7 +10273,7 @@ class Rectangles extends Array
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
         _drawAxis   ( ) { }
 
@@ -9504,7 +10283,7 @@ class Rectangles extends Array
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
         _drawBorder  ( ) { }
 
@@ -10470,7 +11249,7 @@ class Animation
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False
-         * @see             {Validation.isNumber}
+         * @see             {@link VALIDATION.isNumber}
          */
         _isNumber ( ) { }
 
@@ -10594,8 +11373,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Jul, 29 2024',
-            Version:   '0.4.118',
+            Updated:   'Aug, 07 2024',
+            Version:   '0.5.129',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -10730,7 +11509,7 @@ class Application
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom ( ) { }
 
@@ -11003,7 +11782,7 @@ class SacredCircles
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isNumber}
+         * @see             {@link VALIDATION.isNumber}
          */
         _isNumber ( ) { }
 
@@ -11013,7 +11792,7 @@ class SacredCircles
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -11085,6 +11864,7 @@ class SacredCircles
             let _rectangle = new Rectangle (
                                  point,                     /* Point  */
                                  undefined,                 /* Aspect */
+                                 undefined,                 /* Round  */
                                  undefined,                 /* Stroke */
                                  new Fill ( color ),        /* Fill   */
                                  undefined,                 /* Shadow */
@@ -11139,6 +11919,7 @@ class SacredCircles
             let _rectangle = new Rectangle (
                                  _point,                    /* Point  */
                                  undefined,                 /* Aspect */
+                                 undefined,                 /* Round  */
                                  undefined,                 /* Stroke */
                                  new Fill ( color ),        /* Fill   */
                                  undefined,                 /* Shadow */

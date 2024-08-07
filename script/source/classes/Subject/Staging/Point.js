@@ -138,7 +138,7 @@ class Point
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -148,7 +148,7 @@ class Point
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 
@@ -161,7 +161,7 @@ class Point
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
         _drawAxis   ( ) { }
 
@@ -171,7 +171,7 @@ class Point
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
         _drawBorder ( ) { }
 
@@ -182,7 +182,7 @@ class Point
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
          * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
+         * @see             {@link UTILITIES.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
 

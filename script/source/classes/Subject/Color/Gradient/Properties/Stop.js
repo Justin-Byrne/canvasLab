@@ -80,7 +80,7 @@ class Stop
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -90,7 +90,7 @@ class Stop
          * @function
          * @param           {number} value                              Decimal value; 0.00 - 1
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDecimal}
+         * @see             {@link VALIDATION.isDecimal}
          */
         _isDecimal    ( ) { }
 }

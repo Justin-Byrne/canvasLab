@@ -120,7 +120,7 @@ class Linear
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -130,7 +130,7 @@ class Linear
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -140,7 +140,7 @@ class Linear
          * @function
          * @param           {Object} value                              Stop or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isStop}
+         * @see             {@link VALIDATION.isStop}
          */
         _isStop   ( ) { }
 
@@ -157,7 +157,7 @@ class Linear
          * @param           {number}   max                              Maximum number of steps between interpolation
          * @param           {function} clear                            Clear callback from root object
          * @param           {function} draw                             Draw callback from root object
-         * @see             {@link Utilities.color.cycle.stop}
+         * @see             {@link UTILITIES.color.cycle.stop}
          */
         _stopColorCycle ( ) { }
 }

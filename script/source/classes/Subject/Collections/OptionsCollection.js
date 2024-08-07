@@ -168,7 +168,7 @@ class OptionsCollection
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False
-         * @see             {@link Utilities.set.all}
+         * @see             {@link UTILITIES.set.all}
          */
         _setAll ( ) { }
 }

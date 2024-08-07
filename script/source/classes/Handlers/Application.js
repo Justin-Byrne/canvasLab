@@ -23,8 +23,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Jul, 29 2024',
-            Version:   '0.4.118',
+            Updated:   'Aug, 07 2024',
+            Version:   '0.5.129',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -159,7 +159,7 @@ class Application
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom ( ) { }
 

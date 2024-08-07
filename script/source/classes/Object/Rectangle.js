@@ -2,6 +2,7 @@
  * @class           {Object} Rectangle                          Rectangle object
  * @property        {Point}  point                              X & Y axis coordinates
  * @property        {Aspect} aspect                             Aspect properties
+ * @property        {Array}  round                              Rounding properties
  * @property        {Stroke} stroke                             Stroke properties
  * @property        {Fill}   fill                               Fill properties
  * @property        {Shadow} shadow                             Shadow properties
@@ -11,19 +12,21 @@ class Rectangle
 {
     _point  = new Point;
     _aspect = new Aspect;
+    _round  = new Array;
     _stroke = new Stroke;
     _fill   = new Fill;
     _shadow = new Shadow;
 
     _canvas = undefined;
 
-    #anchor  = new Anchor;
+    _anchor  = new Anchor;
     #options = new Options;
 
     /**
      * Create a Rectangle object
      * @property        {Point}  point                              X & Y axis coordinates
      * @property        {Aspect} aspect                             Aspect properties
+     * @property        {Array}  round                              Rounding properties
      * @property        {Stroke} stroke                             Stroke properties
      * @property        {Fill}   fill                               Fill properties
      * @property        {Shadow} shadow                             Shadow properties
@@ -32,6 +35,7 @@ class Rectangle
     constructor (
                     point  = { x:     undefined, y:      undefined },
                     aspect = { width: undefined, height: undefined },
+                    round  = [ 0, 0, 0, 0 ],
                     stroke = { color: undefined, type:   undefined, segments:    undefined, width: undefined },
                     fill   = { color: undefined, type:   undefined },
                     shadow = { color: undefined, blur:   undefined, offset: { x: undefined, y:     undefined } },
@@ -45,13 +49,14 @@ class Rectangle
             this._isInDom  = VALIDATION.isInDom;
             this._isPoint  = VALIDATION.isPoint;
 
-            this._clearCanvas       = UTILITIES.misc.clearCanvas;
-            this._drawAnchor        = UTILITIES.draw.anchor;
-            this._drawAxis          = UTILITIES.draw.axis;
-            this._drawBorder        = UTILITIES.draw.border;
-            this._rotatePoint       = UTILITIES.misc.rotatePoint;
-            this._setFillType       = UTILITIES.set.fillType;
-            this._setShadow         = UTILITIES.set.shadow;
+            this._clearCanvas    = UTILITIES.misc.clearCanvas;
+            this._drawAnchor     = UTILITIES.draw.anchor;
+            this._drawAxis       = UTILITIES.draw.axis;
+            this._drawBorder     = UTILITIES.draw.border;
+            this._rotatePoint    = UTILITIES.misc.rotatePoint;
+            this._setAnchorPoint = UTILITIES.set.anchorPoint;
+            this._setFillType    = UTILITIES.set.fillType;
+            this._setShadow      = UTILITIES.set.shadow;
 
             this.fillColorCycle     = UTILITIES.color.cycle.fill;
             this.gradientColorCycle = UTILITIES.color.cycle.gradient;
@@ -61,10 +66,13 @@ class Rectangle
             this.showCoordinates    = UTILITIES.misc.showCoordinates;
             this.strokeColorCycle   = UTILITIES.color.cycle.stroke;
 
-            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.discrete.canvas );
-            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.discrete.point  );
-            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.discrete.pointX );
-            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.discrete.pointY );
+            Object.defineProperty ( this, 'area',      PROPERTY_BLOCKS.discrete.area   );
+            Object.defineProperty ( this, 'canvas',    PROPERTY_BLOCKS.discrete.canvas );
+            Object.defineProperty ( this, 'center',    PROPERTY_BLOCKS.discrete.center );
+            Object.defineProperty ( this, 'perimeter', PROPERTY_BLOCKS.discrete.perimeter );
+            Object.defineProperty ( this, 'point',     PROPERTY_BLOCKS.discrete.point  );
+            Object.defineProperty ( this, 'x',         PROPERTY_BLOCKS.discrete.pointX );
+            Object.defineProperty ( this, 'y',         PROPERTY_BLOCKS.discrete.pointY );
 
             delete this.#options._controlPoints;
             delete this.#options._points;
@@ -74,6 +82,8 @@ class Rectangle
 
         this.width  = ( aspect.width  != undefined ) ? aspect.width  : 50;
         this.height = ( aspect.height != undefined ) ? aspect.height : 50;
+
+        this.round  = round;
 
         ////    OBJECT INITIALIZER(S)   ////////////////////
 
@@ -218,6 +228,30 @@ class Rectangle
             return this._aspect.height;
         }
 
+    ////    [ ROUND ]    ///////////////////////////////////
+
+        /**
+         * Set round properties
+         * @public
+         * @function
+         * @param           {Array} value                               Radii properties
+         */
+        set round ( value )
+        {
+            this._round = Array.isArray ( value ) ? value : this._round;
+        }
+
+        /**
+         * Get round properties
+         * @readOnly
+         * @function
+         * @return          {Array}                                     Radii properties
+         */
+        get round ( )
+        {
+            return this._round;
+        }
+
     ////    [ STROKE ]  ////////////////////////////////////
 
         /**
@@ -287,7 +321,7 @@ class Rectangle
          */
         get anchor ( )
         {
-            return this.#anchor;
+            return this._anchor;
         }
 
     ////    [ OPTIONS ] ////////////////////////////////////
@@ -311,7 +345,7 @@ class Rectangle
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -321,7 +355,7 @@ class Rectangle
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDegree}
+         * @see             {@link VALIDATION.isDegree}
          */
         _isDegree ( ) { }
 
@@ -331,7 +365,7 @@ class Rectangle
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 
@@ -341,7 +375,7 @@ class Rectangle
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -378,7 +412,7 @@ class Rectangle
          * @private
          * @function
          * @param           {boolean} value                             Whether to redraw background
-         * @see             {@link Utilities.misc.clearCanvas}
+         * @see             {@link UTILITIES.misc.clearCanvas}
          */
         _clearCanvas ( ) { }
 
@@ -386,7 +420,7 @@ class Rectangle
          * Draws anchor point
          * @private
          * @function
-         * @see             {@link Utilities.draw.anchor}
+         * @see             {@link UTILITIES.draw.anchor}
          */
         _drawAnchor ( ) { }
 
@@ -397,7 +431,7 @@ class Rectangle
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
         _drawAxis ( ) { }
 
@@ -407,7 +441,7 @@ class Rectangle
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
         _drawBorder ( ) { }
 
@@ -440,7 +474,7 @@ class Rectangle
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
          * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
+         * @see             {@link UTILITIES.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
 
@@ -448,39 +482,15 @@ class Rectangle
          * Sets anchor's point against this object's point location
          * @private
          * @function
+         * @see             {@link UTILITIES.set.anchorPoint}
          */
-        _setAnchorPoint ( )
-        {
-            [ this.#anchor.x, this.#anchor.y ] = [ this.x, this.y ];
-
-
-            switch ( this.anchor.align )
-            {
-                case 'center':       this.anchor.x -= this.width  / 2;   this.anchor.y -= this.height / 2;  break;
-
-                case 'top':          this.anchor.x -= this.width  / 2;   /*       ... do nothing        */  break;
-
-                case 'topRight':     this.anchor.x -= this.width;        /*       ... do nothing        */  break;
-
-                case 'right':        this.anchor.x -= this.width;        this.anchor.y -= this.height / 2;  break;
-
-                case 'bottomRight':  this.anchor.x -= this.width;        this.anchor.y -= this.height;      break;
-
-                case 'bottom':       this.anchor.x -= this.width  / 2;   this.anchor.y -= this.height;      break;
-
-                case 'bottomLeft':   /*       ... do nothing        */   this.anchor.y -= this.height;      break;
-
-                case 'left':         /*       ... do nothing        */   this.anchor.y -= this.height / 2;  break;
-
-                case 'topLeft':      /*       ... do nothing        */   /*       ... do nothing        */  break;
-            }
-        }
+        _setAnchorPoint ( ) { }
 
         /**
          * Sets fill type of the associated object
          * @private
          * @function
-         * @see             {@link Utilities.set.fillType}
+         * @see             {@link UTILITIES.set.fillType}
          */
         _setFillType ( ) { }
 
@@ -488,7 +498,7 @@ class Rectangle
          * Sets shadow properties
          * @private
          * @function
-         * @see             {@link Utilities.set.shadow}
+         * @see             {@link UTILITIES.set.shadow}
          */
         _setShadow ( ) { }
 
@@ -497,27 +507,18 @@ class Rectangle
          * @readOnly
          * @function
          * @return          {number}                                    Area of this object
+         * @see             {@link PROPERTY_BLOCKS.discrete.area}
          */
-        get area ( )
-        {
-            return ( this.width * this.height );
-        }
+        get area ( ) { }
 
         /**
          * Get center of this object
          * @readOnly
          * @function
          * @return          {Point}                                     Center point coordinates
+         * @see             {@link PROPERTY_BLOCKS.discrete.center}
          */
-        get center ( )
-        {
-            let _x = this.x - ( this.x - this.anchor.x ) + ( this.width  / 2 );
-
-            let _y = this.y - ( this.y - this.anchor.y ) + ( this.height / 2 );
-
-
-            return new Point ( _x, _y );
-        }
+        get center ( ) { }
 
         /**
          * Cycle colors for fill
@@ -527,7 +528,7 @@ class Rectangle
          * @param           {Rgb}    start                              Starting RGB value
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.fill}
+         * @see             {@link UTILITIES.color.cycle.fill}
          */
         fillColorCycle ( ) { }
 
@@ -540,7 +541,7 @@ class Rectangle
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} stop                               Gradient color stop
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.gradient}
+         * @see             {@link UTILITIES.color.cycle.gradient}
          */
         gradientColorCycle ( ) { }
 
@@ -552,7 +553,7 @@ class Rectangle
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [draw=false]                      Draw post movement
          * @param           {boolean} [clear=false]                     Clear canvas during each movement
-         * @see             {@link Utilities.transition.move}
+         * @see             {@link UTILITIES.transition.move}
          */
         move ( ) { }
 
@@ -561,11 +562,9 @@ class Rectangle
          * @readOnly
          * @function
          * @return          {number}                                    Perimeter of rectangle
+         * @see             {@link PROPERTY_BLOCKS.discrete.center}
          */
-        get perimeter ( )
-        {
-            return ( this.area * 2 );
-        }
+        get perimeter ( ) { }
 
         /**
          * Rotate this object
@@ -574,7 +573,7 @@ class Rectangle
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
-         * @see             {@link Utilities.transition.rotate}
+         * @see             {@link UTILITIES.transition.rotate}
          */
         rotate ( ) { }
 
@@ -584,7 +583,7 @@ class Rectangle
          * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
-         * @see             {@link Utilities.misc.showCoordinates}
+         * @see             {@link UTILITIES.misc.showCoordinates}
          */
         showCoordinates ( ) { }
 
@@ -596,9 +595,9 @@ class Rectangle
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} progress                           Progress time unit; 0.00 - 1.00
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.stroke}
+         * @see             {@link UTILITIES.color.cycle.stroke}
          */
-        strokeColorCycle   ( ) { }
+        strokeColorCycle ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 
@@ -633,11 +632,14 @@ class Rectangle
 
                 this._canvas.beginPath   ( );
 
-                this._canvas.rect        ( this.anchor.x, this.anchor.y, this.width, this.height );
+                this._canvas.roundRect   ( this.anchor.x, this.anchor.y, this.width, this.height, this.round );
 
                 this._canvas.stroke      ( );
 
-                this._canvas.fill        ( );
+
+                if ( this.fill.type != 'pattern' )
+
+                    this._canvas.fill ( );
 
 
                 if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );   // Reset: shadow
@@ -657,7 +659,7 @@ class Rectangle
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
-         * @see             {@link Utilities.draw.redraw}
+         * @see             {@link UTILITIES.draw.redraw}
          */
         redraw ( ) { }
 }

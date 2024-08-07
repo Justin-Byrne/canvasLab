@@ -6,9 +6,9 @@
  */
 class Page
 {
-    _type     = undefined;
-    _group    = undefined;
-    _handler  = undefined;
+    _type    = undefined;
+    _group   = undefined;
+    _handler = undefined;
 
     /**
      * Creates a page
@@ -105,7 +105,7 @@ class Page
 
             let _regex =
             {
-                group:   new RegExp ( /(Object|Subject|Plan)/ ),
+                group:   new RegExp ( /(Object|Subject|Plan)/  ),
 
                 handler: new RegExp ( /(Processing|Animation)/ )
             }
@@ -121,6 +121,8 @@ class Page
                 this.group   = _button.match ( _regex.group ) [ 0 ].toLowerCase ( );
 
                 this.type    = ( this.handler ) ? _button.replace ( this.group.toTitleCase ( ), '' ).replace ( this.handler.toTitleCase ( ), '' ).toLowerCase ( ) : _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
+
+                this.type    = ( this.type === 'cimage' ) ? 'cImage' : this.type;
             }
         }
 }

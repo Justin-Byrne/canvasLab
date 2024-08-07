@@ -66,7 +66,7 @@ String.prototype.subStringRange = function ( start, end, substring )
     return this.substring ( 0, start ) + substring + this.substring ( end );
 };
  
- /**
+/**
  * @class           {Object} Lab                        Lab with ace-editor
  * @property        {Object} editor                     Primary ace-editor object
  */
@@ -932,9 +932,9 @@ class Log
  */
 class Page
 {
-    _type     = undefined;
-    _group    = undefined;
-    _handler  = undefined;
+    _type    = undefined;
+    _group   = undefined;
+    _handler = undefined;
 
     /**
      * Creates a page
@@ -1031,7 +1031,7 @@ class Page
 
             let _regex =
             {
-                group:   new RegExp ( /(Object|Subject|Plan)/ ),
+                group:   new RegExp ( /(Object|Subject|Plan)/  ),
 
                 handler: new RegExp ( /(Processing|Animation)/ )
             }
@@ -1047,6 +1047,8 @@ class Page
                 this.group   = _button.match ( _regex.group ) [ 0 ].toLowerCase ( );
 
                 this.type    = ( this.handler ) ? _button.replace ( this.group.toTitleCase ( ), '' ).replace ( this.handler.toTitleCase ( ), '' ).toLowerCase ( ) : _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
+
+                this.type    = ( this.type === 'cimage' ) ? 'cImage' : this.type;
             }
         }
 }
@@ -1149,6 +1151,7 @@ class Template
             Rectangles: '{ x: 50, y: 10 }',
             Text:       '{ x: 154, y: 77 }, \'Text\'',
             Texts:      '{ x: 50, y: 10 }',
+            Image:      '\'images/png/moon.png\', { point: new Point ( 154, 65 ), aspect: new Aspect }',
             Group:      '{ x: 20, y: 0 }',
         },
         subject:
@@ -1315,6 +1318,8 @@ class Template
                 {
                     let _type = cardObject.images [ _entry ];
 
+                        _type = ( _type === 'Cimage' ) ? 'cImage' : _type;
+
 
                     switch ( _entry )
                     {
@@ -1468,6 +1473,8 @@ class Template
                 case 'Texts':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Text ( { x:  60, y: 50 } ),\n        new Text ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n\n    ${_variable} [ 0 ].text = ${_variable} [ 1 ].text = 'Text';\n${_code}`;                                             break;
 
                 case 'Group':       _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.lines.push (\n        new Line ( { x:  60, y: 50 }, { x: 120, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 200, y: 100 } )\n    );\n\n     ${_variable}.circles.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.rectangles.push (\n        new Rectangle ( { x:  120, y: 100 } ),\n        new Rectangle ( { x: 200, y: 100 } )\n    );\n\n    ${_variable}.texts.push (\n        new Text ( { x:  60, y: 120 } ),\n        new Text ( { x: 200, y: 50 } )\n    );\n\n    ${_variable}.texts [ 0 ].text = ${_variable}.texts [ 1 ].text = 'Text';\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
+
+                case 'Image':       _code = `let ${_variable} = new cImage ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                     break
 
                 default:            _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                     break
             }
@@ -1710,7 +1717,7 @@ class Tool
          */
         isCanvasLabObject ( value )
         {
-            return [ 'Line', 'Lines', 'Circle', 'Circles', 'Rectangle', 'Rectangles', 'Text', 'Texts', 'Group' ].includes ( value );
+            return [ 'Line', 'Lines', 'Circle', 'Circles', 'Rectangle', 'Rectangles', 'Text', 'Texts', 'cImage', 'Group' ].includes ( value );
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
@@ -3564,6 +3571,18 @@ class Ui
                         _circle.draw ( );
                     }
                 },
+                // radius ellipse
+                {
+                    title:   'radius ellipse',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _circle.radius = { x: 25, y: 50 };
+
+                        _circle.draw ( );
+                    }
+                },
                 // angle start
                 {
                     title:   'angle start',
@@ -3750,6 +3769,36 @@ class Ui
                         _circle.draw ( );
                     }
                 },
+                // fill pattern
+                {
+                    title:   'fill pattern',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill' ],
+                    code: ( ) =>
+                    {
+                        _circle.radius = 50;    // [ Optional ]
+
+                        _circle.fill.pattern = 'images/png/sun.png';
+
+                        _circle.draw ( );
+                    }
+                },
+                // fill pattern no-repeat
+                {
+                    title:   'fill pattern no-repeat',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill' ],
+                    code: ( ) =>
+                    {
+                        _circle.radius = 50;    // [ Optional ]
+
+                        _circle.fill.pattern    = 'images/png/sun.png';
+
+                        _circle.fill.repetition = 'no-repeat';
+
+                        _circle.draw ( );
+                    }
+                },
                 // shadow
                 {
                     title:   'shadow',
@@ -3802,6 +3851,32 @@ class Ui
                         _circle.shadow.x = 5;
 
                         _circle.shadow.y = 5;
+
+                        _circle.draw ( );
+                    }
+                },
+                // anchor
+                {
+                    title:   'anchor',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'anchor' ],
+                    code: ( ) =>
+                    {
+                        _circle.options.anchor = true;
+
+                        _circle.draw ( );
+                    }
+                },
+                // anchor align
+                {
+                    title:   'anchor align',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'anchor' ],
+                    code: ( ) =>
+                    {
+                        _circle.options.anchor = true;
+
+                        _circle.anchor.align   = 'topLeft';
 
                         _circle.draw ( );
                     }
@@ -3960,6 +4035,30 @@ class Ui
                         _rectangle.draw ( );
                     }
                 },
+                // radii general
+                {
+                    title:   'rounded general',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _rectangle.round = [ 10 ];
+
+                        _rectangle.draw ( );
+                    }
+                },
+                // radii specific
+                {
+                    title:   'rounded specific',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _rectangle.round = [ 0, 10, 0, 20 ];
+
+                        _rectangle.draw ( );
+                    }
+                },
                 // stroke type
                 {
                     title:   'stroke type',
@@ -4104,6 +4203,51 @@ class Ui
                         _rectangle.draw ( );
                     }
                 },
+                // fill pattern
+                {
+                    title:   'fill pattern',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.aspect = { width: 200, height: 100 };    // [ Optional ]
+
+                        _rectangle.fill.pattern = 'images/png/sun.png';
+
+                        _rectangle.draw ( );
+                    }
+                },
+                // fill pattern no-repeat
+                {
+                    title:   'fill pattern no-repeat',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.aspect = { width: 200, height: 100 };    // [ Optional ]
+
+                        _rectangle.fill.pattern    = 'images/png/sun.png';
+
+                        _rectangle.fill.repetition = 'no-repeat';
+
+                        _rectangle.draw ( );
+                    }
+                },
+                // fill image
+                {
+                    title:   'fill image',
+                    text:    'blah... blah... blah...',
+                    children: [ 'fill' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.aspect = { width: 200, height: 100 };    // [ Optional ]
+
+                        _rectangle.fill.image = 'images/png/sun.png';
+
+                        _rectangle.draw ( );
+
+                    }
+                },
                 // shadow
                 {
                     title:   'shadow',
@@ -4156,6 +4300,32 @@ class Ui
                         _rectangle.shadow.x = 5;
 
                         _rectangle.shadow.y = 5;
+
+                        _rectangle.draw ( );
+                    }
+                },
+                // anchor
+                {
+                    title:   'anchor',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'anchor' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.options.anchor = true;
+
+                        _rectangle.draw ( );
+                    }
+                },
+                // anchor align
+                {
+                    title:   'anchor align',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'anchor' ],
+                    code: ( ) =>
+                    {
+                        _rectangle.options.anchor = true;
+
+                        _rectangle.anchor.align   = 'topLeft';
 
                         _rectangle.draw ( );
                     }
@@ -4526,6 +4696,18 @@ class Ui
                         _text.draw ( );
                     }
                 },
+                // anchor
+                {
+                    title:   'anchor',
+                    text:    'blah... blah... blah...',
+                    children: [ 'options', 'anchor' ],
+                    code: ( ) =>
+                    {
+                        _text.options.anchor = true;
+
+                        _text.draw ( );
+                    }
+                },
                 // move
                 {
                     title:   'move',
@@ -4653,6 +4835,123 @@ class Ui
                         _texts.options.coordinates = true;
 
                         _texts.draw ( );
+                    }
+                },
+            ],
+            cImage:
+            [
+                // draw
+                {
+                    title:   'draw',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _image.draw ( );
+                    }
+                },
+                // primary point
+                {
+                    title:   'primary point',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _image.primary.point  = new Point  ( 154,  85 );
+
+                        _image.primary.aspect = new Aspect (  91, 101 );     // [ Optional ]
+
+                        _image.draw ( );
+                    }
+                },
+                // secondary point
+                {
+                    title:   'secondary point',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _image.primary.point    = new Point  ( 154,  85 );  // [ Optional ]
+
+                        _image.primary.aspect   = new Aspect (  91, 101 );
+
+                        _image.secondary.point  = new Point  ( -10, -40 );
+
+                        _image.secondary.aspect = new Aspect (  91, 101 );
+
+                        _image.draw ( );
+                    }
+                },
+                // primary aspect
+                {
+                    title:   'primary aspect',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _image.primary.point    = new Point  ( 100,  60 );  // [ Optional ]
+
+                        _image.primary.aspect   = new Aspect ( 182, 202 );
+
+                        _image.secondary.point  = new Point  (   0,   0 );
+
+                        _image.secondary.aspect = new Aspect (  91, 101 );
+
+                        _image.draw ( );
+                    }
+                },
+                // secondary aspect
+                {
+                    title:   'secondary aspect',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _image.primary.point    = new Point  ( 100,  60 );  // [ Optional ]
+
+                        _image.primary.aspect   = new Aspect (  91, 101 );
+
+                        _image.secondary.point  = new Point  (   0,   0 );
+
+                        _image.secondary.aspect = new Aspect ( 182, 202 );
+
+                        _image.draw ( );
+                    }
+                },
+                // anchor
+                {
+                    title:   'anchor',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _image.options.anchor = true;
+
+                        _image.draw ( );
+                    }
+                },
+                // axis
+                {
+                    title:   'axis',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _image.options.axis = true;
+
+                        _image.draw ( );
+                    }
+                },
+                // border
+                {
+                    title:   'border',
+                    text:    'blah... blah... blah...',
+                    children: undefined,
+                    code: ( ) =>
+                    {
+                        _image.options.border = true;
+
+                        _image.draw ( );
                     }
                 },
             ],
@@ -6530,7 +6829,7 @@ class Ui
             {
                 anchor:
                 [
-                    // Align
+                    // rectangle align
                     {
                         title:   'Align',
                         text:    'blah... blah... blah...',
@@ -6546,6 +6845,412 @@ class Ui
                                 draw ( progress )
                                 {
                                     _rectangle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // circle align
+                    {
+                        title:   'Align',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _circle.options.anchor = true;
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // rectangle align top
+                    {
+                        title:   'Align top',
+                        text:    'blah... blah... blah...',
+                        children: [ 'rectangle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _rectangle.options.anchor = true;
+
+                            _rectangle.anchor.align   = 'top';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // circle align top
+                    {
+                        title:   'Align top',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _circle.options.anchor = true;
+
+                            _circle.anchor.align   = 'top';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // rectangle align top-right
+                    {
+                        title:   'Align top-right',
+                        text:    'blah... blah... blah...',
+                        children: [ 'rectangle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _rectangle.options.anchor = true;
+
+                            _rectangle.anchor.align   = 'topRight';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // circle align top-right
+                    {
+                        title:   'Align top-right',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _circle.options.anchor = true;
+
+                            _circle.anchor.align   = 'topRight';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // rectangle align right
+                    {
+                        title:   'Align right',
+                        text:    'blah... blah... blah...',
+                        children: [ 'rectangle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _rectangle.options.anchor = true;
+
+                            _rectangle.anchor.align   = 'right';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // circle align right
+                    {
+                        title:   'Align right',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _circle.options.anchor = true;
+
+                            _circle.anchor.align   = 'right';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // rectangle align bottom-right
+                    {
+                        title:   'Align bottom-right',
+                        text:    'blah... blah... blah...',
+                        children: [ 'rectangle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _rectangle.options.anchor = true;
+
+                            _rectangle.anchor.align   = 'bottomRight';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // circle align bottom-right
+                    {
+                        title:   'Align bottom-right',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _circle.options.anchor = true;
+
+                            _circle.anchor.align   = 'bottomRight';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // rectangle align bottom
+                    {
+                        title:   'Align bottom',
+                        text:    'blah... blah... blah...',
+                        children: [ 'rectangle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _rectangle.options.anchor = true;
+
+                            _rectangle.anchor.align   = 'bottom';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // circle align bottom
+                    {
+                        title:   'Align bottom',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _circle.options.anchor = true;
+
+                            _circle.anchor.align   = 'bottom';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // rectangle align bottom-left
+                    {
+                        title:   'Align bottom-left',
+                        text:    'blah... blah... blah...',
+                        children: [ 'rectangle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _rectangle.options.anchor = true;
+
+                            _rectangle.anchor.align   = 'bottomLeft';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // circle align bottom-left
+                    {
+                        title:   'Align bottom-left',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _circle.options.anchor = true;
+
+                            _circle.anchor.align   = 'bottomLeft';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // rectangle align left
+                    {
+                        title:   'Align left',
+                        text:    'blah... blah... blah...',
+                        children: [ 'rectangle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _rectangle.options.anchor = true;
+
+                            _rectangle.anchor.align   = 'left';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // circle align left
+                    {
+                        title:   'Align left',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _circle.options.anchor = true;
+
+                            _circle.anchor.align   = 'left';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // rectangle align top-left
+                    {
+                        title:   'Align top-left',
+                        text:    'blah... blah... blah...',
+                        children: [ 'rectangle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _rectangle.options.anchor = true;
+
+                            _rectangle.anchor.align   = 'topLeft';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _rectangle.rotate ( progress * 500 );
+                                }
+                            }
+
+                            canvaslab.animate ( _sequence );
+                        }
+                    },
+                    // circle align top-left
+                    {
+                        title:   'Align top-left',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'options' ],
+                        code: ( ) =>
+                        {
+                            _circle.options.anchor = true;
+
+                            _circle.anchor.align   = 'topLeft';
+
+                            let _sequence =
+                            {
+                                duration: 3000,
+                                timing: 'easeInSine',
+                                draw ( progress )
+                                {
+                                    _circle.rotate ( progress * 500 );
                                 }
                             }
 
@@ -7011,6 +7716,10 @@ class Ui
                     group: 'Object'
                 },
                 {
+                    title: 'cImage',
+                    group: 'Object'
+                },
+                {
                     title: 'Group',
                     group: 'Object'
                 },
@@ -7222,6 +7931,97 @@ class Ui
 
                 _group.circles.draw ( );
         },
+        circleAnchoring: ( ) =>
+        {
+            // let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft' ];
+
+            let _circle = new Circle ( { x: 154, y: 77 } );
+
+                _circle.canvas = 'canvas';
+
+                _circle.options.anchor = true;
+
+                    _circle.anchor.align   = 'center';
+                    _circle.anchor.align   = 'top';
+                    _circle.anchor.align   = 'topRight';
+                    _circle.anchor.align   = 'right';
+                    _circle.anchor.align   = 'bottomRight';
+                    _circle.anchor.align   = 'bottom';
+                    _circle.anchor.align   = 'bottomLeft';
+                    _circle.anchor.align   = 'left';
+                    _circle.anchor.align   = 'topLeft';
+
+                _circle.draw ( );
+        },
+        circleAnchoringAnimation: ( ) =>
+        {
+            let _circle = new Circle ( { x: 154, y: 77 } );
+
+                _circle.canvas = 'canvas';
+
+                _circle.options.anchor = true;
+
+                _circle.anchor.align   = 'center';
+                // _circle.anchor.align   = 'top';
+                // _circle.anchor.align   = 'topRight';
+                // _circle.anchor.align   = 'right';
+                // _circle.anchor.align   = 'bottomRight';
+                // _circle.anchor.align   = 'bottom';
+                // _circle.anchor.align   = 'bottomLeft';
+                // _circle.anchor.align   = 'left';
+                // _circle.anchor.align   = 'topLeft';
+
+            let _sequence =
+            {
+                duration: 3000,
+                timing: 'easeInSine',
+                draw ( progress )
+                {
+                    _circle.rotate ( progress * 500 );
+                }
+            }
+
+            canvaslab.animate ( _sequence );
+        },
+        imageAnchoring: ( ) =>
+        {
+            let _image = new cImage ( 'images/png/moon.png' );
+
+                _image.point  = new Point ( 154, 77 );
+
+                _image.canvas = 'canvas';
+
+                _image.options.anchor = true;
+
+                _image.anchor.align   = 'center';
+                // _image.anchor.align   = 'top';
+                // _image.anchor.align   = 'topRight';
+                // _image.anchor.align   = 'right';
+                // _image.anchor.align   = 'bottomRight';
+                // _image.anchor.align   = 'bottom';
+                // _image.anchor.align   = 'bottomLeft';
+                // _image.anchor.align   = 'left';
+                // _image.anchor.align   = 'topLeft';
+
+            console.log ( 'anchor.point:', _image.anchor.point    );
+            console.log ( 'primary:     ', _image.primary.point   );
+            console.log ( 'point:       ', _image.point           );
+            console.log ( 'secondary:   ', _image.secondary.point );
+
+                _image.draw ( );
+        },
+        imageAxis: ( ) =>
+        {
+            let _image = new cImage ( 'images/png/moon.png' );
+
+                _image.canvas = 'canvas';
+
+                _image.options.axis = true;
+
+            console.log ( '_image:', _image );
+
+                _image.draw ( );
+        }
     }
 
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
@@ -7272,7 +8072,7 @@ class Ui
             let _clearConsole = document.querySelector ( '#input-clear' );
 
 
-            UI.clearScreen  ( false, true );
+            UI.clearScreen ( false, true );
 
             LAB.setCanvasSize ( );
 
@@ -7360,7 +8160,7 @@ class Ui
             {
                 UI.init  ( );
 
-                LAB.init ( _scripts.seedOfLife );
+                LAB.init ( _scripts.imageAnchoring );
 
 
                 if ( _config.labMode )

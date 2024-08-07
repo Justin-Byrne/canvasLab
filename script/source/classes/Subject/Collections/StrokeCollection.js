@@ -149,7 +149,7 @@ class StrokeCollection
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -159,7 +159,7 @@ class StrokeCollection
          * @function
          * @param           {Array.<number>} value                      Array of segment values
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isSegments}
+         * @see             {@link VALIDATION.isSegments}
          */
         _isSegments   ( ) { }
 
@@ -169,7 +169,7 @@ class StrokeCollection
          * @function
          * @param           {string} value                              Stroke type
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isStrokeType}
+         * @see             {@link VALIDATION.isStrokeType}
          */
         _isStrokeType ( ) { }
 
@@ -179,7 +179,7 @@ class StrokeCollection
          * @function
          * @param           {number} value                              Width value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isWidth}
+         * @see             {@link VALIDATION.isWidth}
          */
         _isWidth      ( ) { }
 
@@ -191,7 +191,7 @@ class StrokeCollection
          * @function
          * @param           {string}  property                          Option property
          * @param           {boolean} value                             True || False
-         * @see             {@link Utilities.set.all}
+         * @see             {@link UTILITIES.set.all}
          */
         _setAll ( ) { }
 }

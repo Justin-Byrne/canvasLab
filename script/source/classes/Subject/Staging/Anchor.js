@@ -15,8 +15,9 @@ class Anchor
 
 			this._isAlign = VALIDATION.isAlign;
 
-            Object.defineProperty ( this, 'x', PROPERTY_BLOCKS.discrete.pointX );
-            Object.defineProperty ( this, 'y', PROPERTY_BLOCKS.discrete.pointY );
+            Object.defineProperty ( this, 'point', PROPERTY_BLOCKS.discrete.point  );
+            Object.defineProperty ( this, 'x',     PROPERTY_BLOCKS.discrete.pointX );
+            Object.defineProperty ( this, 'y',     PROPERTY_BLOCKS.discrete.pointY );
 	}
 
 	////    [ POINT ]   ////////////////////////////////////
@@ -26,6 +27,7 @@ class Anchor
          * @public
          * @function
          * @param           {Point} point                               X & Y axis coordinates
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         set point ( value ) { }
 
@@ -34,6 +36,7 @@ class Anchor
          * @public
          * @function
          * @return          {Point}                                     X & Y axis coordinates
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         get point ( ) { }
 
@@ -43,6 +46,7 @@ class Anchor
          * @public
          * @function
          * @param           {number} value                              X coordinate value
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         set x ( value ) { }
 
@@ -51,8 +55,9 @@ class Anchor
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
-        get x ( ) {  }
+        get x ( ) { }
 
 
         /**
@@ -60,6 +65,7 @@ class Anchor
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         set y ( value ) { }
 
@@ -68,6 +74,7 @@ class Anchor
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         get y ( ) { }
 
@@ -103,7 +110,7 @@ class Anchor
          * @function
          * @param           {string} value                              Anchor alignment
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAnchor}
+         * @see             {@link VALIDATION.isAnchor}
          */
         _isAnchor ( ) { }
 }

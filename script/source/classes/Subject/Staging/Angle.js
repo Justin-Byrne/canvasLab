@@ -108,7 +108,7 @@ class Angle
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDegree}
+         * @see             {@link VALIDATION.isDegree}
          */
         _isDegree ( ) { }
 
@@ -118,7 +118,7 @@ class Angle
          * @function
          * @param           {number} value                              Radian value; 0 - 6.28...
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isRadian}
+         * @see             {@link VALIDATION.isRadian}
          */
         _isRadian ( ) { }
 

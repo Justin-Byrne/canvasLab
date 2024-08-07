@@ -7,10 +7,11 @@
  */
 class Fill
 {
-    _color    = new Rgb ( 0, 0, 0, 0 );
-    _type     = 'solid';
-    _gradient = undefined;
-    _pattern  = undefined;
+    _color      = new Rgb ( 0, 0, 0, 0 );
+    _type       = 'solid';
+    _gradient   = undefined;
+    _pattern    = undefined;
+    _repetition = 'repeat';
 
     /**
      * Create a fill type
@@ -25,6 +26,7 @@ class Fill
             this._isColorModel = VALIDATION.isColorModel;
             this._isGradient   = VALIDATION.isGradient;
             this._isFillType   = VALIDATION.isFillType;
+            this._isRepetition = VALIDATION.isRepetition;
 
         this.color    = color;
         this.type     = type;
@@ -108,14 +110,59 @@ class Fill
     ////    [ PATTERN ]   //////////////////////////////////
 
         /**
-         * Get pattern fill object
+         * Sets pattern property value
          * @public
+         * @function
+         * @param           {string} value                              Path of image to pattern
+         */
+        set pattern ( value )
+        {
+            if ( typeof value === 'string' )
+            {
+                let _image = new Image;
+
+                    _image.src = value;
+
+
+                this._pattern = _image;
+
+                this.type     = 'pattern';
+            }
+        }
+
+        /**
+         * Gets pattern property value
+         * @readOnly
          * @function
          * @return          {Pattern}                                   Pattern fill object
          */
         get pattern ( )
         {
             return this._pattern;
+        }
+
+    ////    [ REPITION ]    ////////////////////////////////
+
+        /**
+         * Sets repetition property value
+         * @public
+         * @function
+         * @param           {string} value                              Repetition property value
+         */
+        set repetition ( value )
+        {
+            this._repetition = ( this._isRepetition ( value ) ) ? value : this._repetition;
+        }
+
+        /**
+         * Gets repetition property value
+         * @readOnly
+         * @function
+         * @return          {string}                                    Repetition property value
+         */
+        get repetition ( )
+        {
+            return this._repetition;
         }
 
     ////    VALIDATION    //////////////////////////////////
@@ -126,7 +173,7 @@ class Fill
          * @function
          * @param           {Object} value                              Color model or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isColorModel}
+         * @see             {@link VALIDATION.isColorModel}
          */
         _isColorModel ( ) { }
 
@@ -136,9 +183,9 @@ class Fill
          * @function
          * @param           {Object} value                              Gradient object
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isGradient}
+         * @see             {@link VALIDATION.isGradient}
          */
-        _isGradient   ( ) { }
+        _isGradient ( ) { }
 
         /**
          * Returns whether the passed value is a fill type
@@ -146,7 +193,18 @@ class Fill
          * @function
          * @param           {string} value                              Fill type
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isFillType}
+         * @see             {@link VALIDATION.isFillType}
          */
-        _isFillType   ( ) { }
+        _isFillType ( ) { }
+
+        /**
+         * Returns whether the passed value is a repetition value
+         * @public
+         * @memberof VALIDATION
+         * @function
+         * @param           {string} value                              Repetition value
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isRepetition}
+         */
+        _isRepetition ( ) { }
 }

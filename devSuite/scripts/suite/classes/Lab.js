@@ -1,4 +1,4 @@
- /**
+/**
  * @class           {Object} Lab                        Lab with ace-editor
  * @property        {Object} editor                     Primary ace-editor object
  */

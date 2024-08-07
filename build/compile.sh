@@ -7,6 +7,8 @@
 
 declare NO_ERRORS=true
 
+declare RELOAD_CHROME=true
+
 declare WITH_DOCUMENTS=false
 
 declare WITH_MD2JSON=false
@@ -133,7 +135,10 @@ declare FILES_FOOT=(
 ### GENERAL ########################################
 
 declare DATE=$(date +"%m-%d-%y")
+
 declare TIME=$(date +"%r")
+
+declare YEAR=$(date +"%y")
 
 declare FILE_REGEX="\.js"
 
@@ -223,7 +228,7 @@ function compile_preamble ()
 {
     PREAMBLE="\/** \\n"
     PREAMBLE+=" * ${VC_PACKAGE} - ${VC_BRIEF} \\n"
-    PREAMBLE+=" * Copyright (C) 2023  Justin D. Byrne \\n"
+    PREAMBLE+=" * Copyright (C) ${YEAR}  Justin D. Byrne \\n"
     PREAMBLE+=" * \\n"
     PREAMBLE+=" * This library is free software; you can redistribute it and\/or \\n"
     PREAMBLE+=" * modify it under the terms of the GNU Library General Public \\n"
@@ -622,6 +627,11 @@ function complete ()
     if $NO_ERRORS
     then
         afplay audio/success.mp3
+
+        if [[ "$OSTYPE" == "darwin"* && RELOAD_CHROME ]]; then
+            osascript ../devSuite/build/focus.scpt
+            osascript ../devSuite/build/reload.scpt
+        fi
     else
         afplay audio/failure.mp3
 

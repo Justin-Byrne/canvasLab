@@ -69,7 +69,7 @@ class Rectangles extends Array
          * @public
          * @function
          * @param           {Point} value                               X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         set point ( value ) { }
 
@@ -78,7 +78,7 @@ class Rectangles extends Array
          * @public
          * @function
          * @return          {Point}                                     X & Y coordinates
-         * @see             {@link discrete.point}
+         * @see             {@link PROPERTY_BLOCKS.discrete.point}
          */
         get point ( ) { }
 
@@ -88,7 +88,7 @@ class Rectangles extends Array
          * @public
          * @function
          * @param           {number} value                              X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         set x ( value ) { }
 
@@ -97,7 +97,7 @@ class Rectangles extends Array
          * @readOnly
          * @function
          * @return          {number}                                    X coordinate value
-         * @see             {@link discrete.pointX}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointX}
          */
         get x ( ) { }
 
@@ -107,7 +107,7 @@ class Rectangles extends Array
          * @public
          * @function
          * @param           {number} value                              Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         set y ( value ) { }
 
@@ -116,7 +116,7 @@ class Rectangles extends Array
          * @readOnly
          * @function
          * @return          {number}                                    Y coordinate value
-         * @see             {@link discrete.pointY}
+         * @see             {@link PROPERTY_BLOCKS.discrete.pointY}
          */
         get y ( ) { }
 
@@ -166,7 +166,7 @@ class Rectangles extends Array
          * @public
          * @function
          * @param           {string} value                              Canvas id
-         * @see             {@link combined.canvas}
+         * @see             {@link PROPERTY_BLOCKS.combined.canvas}
          */
         set canvas ( value ) { }
 
@@ -175,7 +175,7 @@ class Rectangles extends Array
          * @readOnly
          * @function
          * @return          {string}                                    Canvas id
-         * @see             {@link combined.canvas}
+         * @see             {@link PROPERTY_BLOCKS.combined.canvas}
          */
         get canvas ( ) { }
 
@@ -236,7 +236,7 @@ class Rectangles extends Array
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -246,7 +246,7 @@ class Rectangles extends Array
          * @function
          * @param           {Object} value                              CanvasLab object; Line, Circle, Rectangle, Text
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isCanvasLabObject}
+         * @see             {@link VALIDATION.isCanvasLabObject}
          */
         _isCanvasLabObject ( ) { }
 
@@ -256,7 +256,7 @@ class Rectangles extends Array
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom ( ) { }
 
@@ -266,7 +266,7 @@ class Rectangles extends Array
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint ( ) { }
 
@@ -287,7 +287,7 @@ class Rectangles extends Array
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
         _drawAxis   ( ) { }
 
@@ -297,7 +297,7 @@ class Rectangles extends Array
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
         _drawBorder  ( ) { }
 

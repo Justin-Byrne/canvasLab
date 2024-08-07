@@ -325,7 +325,7 @@ class Line
          * @function
          * @param           {Object} value                              Aspect or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isAspect}
+         * @see             {@link VALIDATION.isAspect}
          */
         _isAspect ( ) { }
 
@@ -335,7 +335,7 @@ class Line
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDegree}
+         * @see             {@link VALIDATION.isDegree}
          */
         _isDegree ( ) { }
 
@@ -345,7 +345,7 @@ class Line
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 
@@ -355,7 +355,7 @@ class Line
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isNumber}
+         * @see             {@link VALIDATION.isNumber}
          */
         _isNumber ( ) { }
 
@@ -365,7 +365,7 @@ class Line
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -405,7 +405,7 @@ class Line
          * @private
          * @function
          * @param           {boolean} value                             Whether to redraw background
-         * @see             {@link Utilities.misc.clearCanvas}
+         * @see             {@link UTILITIES.misc.clearCanvas}
          */
         _clearCanvas ( ) { }
 
@@ -416,7 +416,7 @@ class Line
          * @param           {number} offset                             Offset of axis
          * @param           {Object} color                              Color model
          * @param           {number} stop                               Gradient color stop
-         * @see             {@link Utilities.draw.axis}
+         * @see             {@link UTILITIES.draw.axis}
          */
         _drawAxis    ( ) { }
 
@@ -426,7 +426,7 @@ class Line
          * @function
          * @param           {Aspect} aspect                             Aspect properties
          * @param           {Object} color                              Color model
-         * @see             {@link Utilities.draw.border}
+         * @see             {@link UTILITIES.draw.border}
          */
         _drawBorder  ( ) { }
 
@@ -463,7 +463,7 @@ class Line
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
          * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
+         * @see             {@link UTILITIES.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
 
@@ -471,7 +471,7 @@ class Line
          * Sets shadow properties
          * @private
          * @function
-         * @see             {@link Utilities.set.shadow}
+         * @see             {@link UTILITIES.set.shadow}
          */
         _setShadow   ( ) { }
 
@@ -739,7 +739,7 @@ class Line
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} progress                           Progress time unit; 0.00 - 1.00
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.stroke}
+         * @see             {@link UTILITIES.color.cycle.stroke}
          */
         strokeColorCycle ( ) { }
 

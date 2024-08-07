@@ -6,11 +6,11 @@ const PROPERTY_BLOCKS =
 {
     /**
      * Discrete property accessors & mutators
-     * @function PROPERTY_BLOCKS.discrete
+     * @var             {Object} PROPERTY_BLOCKS.discrete
      */
     discrete:
     {
-        /** @var            {Object} discrete.alpha                                                 **/
+        /** @function PROPERTY_BLOCKS.discrete.alpha                                                **/
         alpha:
         {
             set ( value )
@@ -22,7 +22,16 @@ const PROPERTY_BLOCKS =
                 return this._alpha;
             }
         },
-        /** @var            {Object} discrete.canvas                                                **/
+        /** @function PROPERTY_BLOCKS.discrete.area                                                 **/
+        /** @notes for <Rectangle>, <cImage>                                                        **/
+        area:
+        {
+            get ( )
+            {
+                return ( this.width * this.height );
+            }
+        },
+        /** @function PROPERTY_BLOCKS.discrete.canvas                                               **/
         canvas:
         {
             set ( value )
@@ -44,7 +53,21 @@ const PROPERTY_BLOCKS =
                 return ( this._canvas != undefined ) ? this._canvas.canvas.id : undefined;
             }
         },
-        /** @var            {Object} discrete.offset                                                **/
+        /** @function PROPERTY_BLOCKS.discrete.center                                               **/
+        /** @notes for <Rectangle>, <cImage>                                                        **/
+        center:
+        {
+            get ( )
+            {
+                let _x = this.x - ( this.x - this.anchor.x ) + ( this.width  / 2 );
+
+                let _y = this.y - ( this.y - this.anchor.y ) + ( this.height / 2 );
+
+
+                return new Point ( _x, _y );
+            }
+        },
+        /** @function PROPERTY_BLOCKS.discrete.offset                                               **/
         offset:
         {
             set ( value )
@@ -56,7 +79,7 @@ const PROPERTY_BLOCKS =
                 return this._offset;
             }
         },
-        /** @var            {Object} discrete.offsetX                                               **/
+        /** @function PROPERTY_BLOCKS.discrete.offsetX                                              **/
         offsetX:
         {
             set ( value )
@@ -68,7 +91,7 @@ const PROPERTY_BLOCKS =
                 return this._offset.x;
             }
         },
-        /** @var            {Object} discrete.offsetY                                               **/
+        /** @function PROPERTY_BLOCKS.discrete.offsetY                                              **/
         offsetY:
         {
             set ( value )
@@ -80,7 +103,7 @@ const PROPERTY_BLOCKS =
                 return this._offset.y;
             }
         },
-        /** @var            {Object} discrete.point                                                 **/
+        /** @function PROPERTY_BLOCKS.discrete.point                                                **/
         point:
         {
             set ( value )
@@ -92,7 +115,7 @@ const PROPERTY_BLOCKS =
                 return this._point;
             }
         },
-        /** @var            {Object} discrete.pointX                                                **/
+        /** @function PROPERTY_BLOCKS.discrete.pointX                                               **/
         pointX:
         {
             set ( value )
@@ -104,7 +127,7 @@ const PROPERTY_BLOCKS =
                 return this._point.x;
             }
         },
-        /** @var            {Object} discrete.pointY                                                **/
+        /** @function PROPERTY_BLOCKS.discrete.pointY                                               **/
         pointY:
         {
             set ( value )
@@ -116,7 +139,15 @@ const PROPERTY_BLOCKS =
                 return this._point.y;
             }
         },
-        /** @var            {Object} discrete.radius                                                **/
+        /** @function PROPERTY_BLOCKS.discrete.perimeter                                            **/
+        perimeter:
+        {
+            get ( )
+            {
+                return ( this.area * 2 );
+            }
+        },
+        /** @function PROPERTY_BLOCKS.discrete.radius                                               **/
         radius:
         {
             set ( value )
@@ -132,11 +163,11 @@ const PROPERTY_BLOCKS =
 
     /**
      * Combined property accessors & mutators
-     * @function PROPERTY_BLOCKS.combined
+     * @var             {Object} PROPERTY_BLOCKS.combined
      */
     combined:
     {
-        /** @var            {Object} combined.anchor                                                **/
+        /** @function PROPERTY_BLOCKS.combined.anchor                                               **/
         anchor:
         {
             set ( value )
@@ -151,7 +182,7 @@ const PROPERTY_BLOCKS =
                 return this._anchor;
             }
         },
-        /** @var            {Object} combined.area                                                  **/
+        /** @function PROPERTY_BLOCKS.combined.area                                                 **/
         area:
         {
             get ( )
@@ -159,7 +190,7 @@ const PROPERTY_BLOCKS =
                 return ( this.width * this.height );
             }
         },
-        /** @var            {Object} combined.aspect                                                **/
+        /** @function PROPERTY_BLOCKS.combined.aspect                                               **/
         aspect:
         {
             get ( )
@@ -170,7 +201,7 @@ const PROPERTY_BLOCKS =
                 return this._aspect;
             }
         },
-        /** @var            {Object} combined.aspectWidth                                           **/
+        /** @function PROPERTY_BLOCKS.combined.aspectWidth                                          **/
         aspectWidth:
         {
             get ( )
@@ -178,7 +209,7 @@ const PROPERTY_BLOCKS =
                 return this._aspect.width;
             }
         },
-        /** @var            {Object} combined.aspectHeight                                          **/
+        /** @function PROPERTY_BLOCKS.combined.aspectHeight                                         **/
         aspectHeight:
         {
             get ( )
@@ -186,7 +217,7 @@ const PROPERTY_BLOCKS =
                 return this._aspect.height;
             }
         },
-        /** @var            {Object} combined.canvas                                                **/
+        /** @function PROPERTY_BLOCKS.combined.canvas                                               **/
         canvas:
         {
             set ( value )
@@ -219,7 +250,7 @@ const PROPERTY_BLOCKS =
                 return ( this._canvas != undefined ) ? this._canvas.canvas.id : undefined;
             }
         },
-        /** @var            {Object} combined.center                                                **/
+        /** @function PROPERTY_BLOCKS.combined.center                                               **/
         center:
         {
             get ( )
@@ -230,7 +261,7 @@ const PROPERTY_BLOCKS =
                 return new Point ( _x, _y );
             }
         },
-        /** @var            {Object} combined.endPoint                                              **/
+        /** @function PROPERTY_BLOCKS.combined.endPoint                                             **/
         endPoint:
         {
             get ( )
@@ -238,7 +269,7 @@ const PROPERTY_BLOCKS =
                 return this [ this.length - 1 ].point;
             }
         },
-        /** @var            {Object} combined.perimeter                                             **/
+        /** @function PROPERTY_BLOCKS.combined.perimeter                                            **/
         perimeter:
         {
             get ( )
@@ -246,7 +277,7 @@ const PROPERTY_BLOCKS =
                 return ( this.area * 2 );
             }
         },
-        /** @var            {Object} combined.start                                                 **/
+        /** @function PROPERTY_BLOCKS.combined.start                                                **/
         start:
         {
             set ( value )
@@ -258,7 +289,7 @@ const PROPERTY_BLOCKS =
                 return this._start;
             }
         },
-        /** @var            {Object} combined.end                                                   **/
+        /** @function PROPERTY_BLOCKS.combined.end                                                  **/
         end:
         {
             set ( value )

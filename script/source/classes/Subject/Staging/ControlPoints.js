@@ -135,7 +135,7 @@ class ControlPoints
          * @function
          * @param           {number} value                              Number value
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isNumber}
+         * @see             {@link VALIDATION.isNumber}
          */
         _isNumber ( ) { }
 }

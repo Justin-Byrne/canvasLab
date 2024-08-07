@@ -113,7 +113,7 @@ class Rgb
 	     * @function
 	     * @param           {number} value 								256 color value; 0 - 255
 	     * @return          {boolean} 									True || False
-	     * @see             {@link Validation.is256}
+	     * @see             {@link VALIDATION.is256}
 	     */
 		_is256 ( ) { }
 
@@ -133,10 +133,6 @@ class Rgb
 		_cycle ( start, end, progress, max, clear, draw )
 	    {
 	    	this._lerpRgb ( start, end, progress, max );
-
-	    	// clear ( );
-
-	    	// draw  ( );
 		}
 
 		/**

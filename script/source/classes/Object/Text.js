@@ -379,7 +379,7 @@ class Text extends Font
          * @function
          * @param           {number} value                              Degree
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isDegree}
+         * @see             {@link VALIDATION.isDegree}
          */
         _isDegree ( ) { }
 
@@ -389,7 +389,7 @@ class Text extends Font
          * @function
          * @param           {string} value                              Element id
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isInDom}
+         * @see             {@link VALIDATION.isInDom}
          */
         _isInDom  ( ) { }
 
@@ -399,7 +399,7 @@ class Text extends Font
          * @function
          * @param           {Object} value                              Point or object equivalent
          * @return          {boolean}                                   True || False
-         * @see             {@link Validation.isPoint}
+         * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
 
@@ -410,7 +410,7 @@ class Text extends Font
          * @private
          * @function
          * @param           {boolean} value                             Whether to redraw background
-         * @see             {@link Utilities.misc.clearCanvas}
+         * @see             {@link UTILITIES.misc.clearCanvas}
          */
         _clearCanvas ( ) { }
 
@@ -421,7 +421,7 @@ class Text extends Font
          * @param           {Point}  origin                             Origin point
          * @param           {number} degree                             Degree to rotate
          * @param           {number} distance                           Distance from origin
-         * @see             {@link Utilities.misc.rotatePoint}
+         * @see             {@link UTILITIES.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
 
@@ -429,7 +429,7 @@ class Text extends Font
          * Sets shadow properties
          * @private
          * @function
-         * @see             {@link Utilities.set.shadow}
+         * @see             {@link UTILITIES.set.shadow}
          */
         _setShadow   ( ) { }
 
@@ -437,7 +437,7 @@ class Text extends Font
          * Draws anchor point
          * @private
          * @function
-         * @see             {@link Utilities.draw.anchor}
+         * @see             {@link UTILITIES.draw.anchor}
          */
         _drawAnchor ( ) { }
 
@@ -522,11 +522,15 @@ class Text extends Font
             let _point  = new Point  ( this.x, _y );
 
 
-            let _border = new Rectangle ( _point, _aspect,  /* Point, Aspect */
-                /* Stroke */            { color: _red,   type: 'solid', segments: undefined,  width: 1 },
-                /* Fill   */            { color: _clear, type: 'solid' },
-                /* Shadow */              undefined,
-                /* Canvas */              this.canvas );
+            let _border = new Rectangle (
+                /* Point  */  _point,
+                /* Aspect */  _aspect,
+                /* Round  */  undefined,
+                /* Stroke */  { color: _red,   type: 'solid', segments: undefined,  width: 1 },
+                /* Fill   */  { color: _clear, type: 'solid' },
+                /* Shadow */  undefined,
+                /* Canvas */  this.canvas
+                           );
 
 
                 _border.draw ( );
@@ -556,7 +560,7 @@ class Text extends Font
          * @param           {Rgb}    start                              Starting RGB value
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.fill}
+         * @see             {@link UTILITIES.color.cycle.fill}
          */
         fillColorCycle ( ) { }
 
@@ -568,7 +572,7 @@ class Text extends Font
          * @param           {number}  distance                          Distance to move
          * @param           {boolean} [draw=false]                      Draw post movement
          * @param           {boolean} [clear=false]                     Clear canvas during each movement
-         * @see             {@link Utilities.transition.move}
+         * @see             {@link UTILITIES.transition.move}
          */
         move ( ) { }
 
@@ -579,7 +583,7 @@ class Text extends Font
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
          * @param           {number} [clear=true]                       Clear canvas during each rotation
-         * @see             {@link Utilities.transition.rotate}
+         * @see             {@link UTILITIES.transition.rotate}
          */
         rotate ( ) { }
 
@@ -589,7 +593,7 @@ class Text extends Font
          * @function
          * @param           {number} [offset=10]                        Offset of coordinates y origin
          * @param           {number} [fontSize=16]                      Coordinates font size
-         * @see             {@link Utilities.misc.showCoordinates}
+         * @see             {@link UTILITIES.misc.showCoordinates}
          */
         showCoordinates ( ) { }
 
@@ -601,7 +605,7 @@ class Text extends Font
          * @param           {Rgb}    end                                Ending RGB value
          * @param           {number} progress                           Progress time unit; 0.00 - 1.00
          * @param           {number} [max=1]                            Maximum increments
-         * @see             {@link Utilities.color.cycle.stroke}
+         * @see             {@link UTILITIES.color.cycle.stroke}
          */
         strokeColorCycle ( ) { }
 
@@ -668,7 +672,7 @@ class Text extends Font
          * @param           {string}  canvas                            Canvas Id
          * @param           {Point}   point                             Point of new location
          * @param           {boolean} [clear=true]                      Clear canvas during each redraw
-         * @see             {@link Utilities.draw.redraw}
+         * @see             {@link UTILITIES.draw.redraw}
          */
         redraw ( ) { }
 }
