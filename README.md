@@ -142,8 +142,6 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │           │   ├── Utilities.js
 │           │   └── Validation.js
 │           └── debug.js
-├── videos
-│   └── devSuite.mp4
 ├── LICENSE
 └── README.md
 ```
