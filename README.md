@@ -56,11 +56,9 @@ initCanvasLab ( 'my-canvas-id' );
 
 See the developer suite to view various functions & effects in real-time.
 
-![devSuite](https://github.com/Justin-Byrne/canvasLab/blob/main/images/cube_sm.png)
+[devSuite](https://github.com/user-attachments/assets/233f97d5-6df5-434b-bcb8-a01d26eda0c2)
 
 ## Documentation
-
-[]
 
 [:book: JSDocs](https://byrne-systems.com/portal/canvasLab/docs/JSDoc/index.html)
 

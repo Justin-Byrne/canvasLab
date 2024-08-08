@@ -410,7 +410,9 @@ nav
 
                 &:nth-child(2)
                 {
-                    background-color:           rgb(56, 159, 178);
+                    // background-color:           rgb(56, 159, 178);
+
+                    background-color:           rgb(178, 56, 1);
 
                     border-top-right-radius:    2px;
                     border-bottom-right-radius: 2px;
@@ -1649,6 +1651,27 @@ $scrollbar-color-background: rgba(0,  31,  61, 0.36);
     opacity:  0.6;
     width:    23px;
     top:      1px;
+
+    &:hover
+    {
+        opacity:    1;
+
+        cursor:     pointer;
+
+        transform:  scale(1.1) rotate(10deg);
+
+        transition: opacity 0.5s, transform 0.5s;
+    }
+}
+
+.card-stack
+{
+    position:       relative;
+    width:          23px;
+    top:            1px;
+    margin-right:   14px;
+
+    opacity:        0.6;
 
     &:hover
     {

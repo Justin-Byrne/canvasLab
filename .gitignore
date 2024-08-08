@@ -7,6 +7,9 @@
 ## Dump Folder
 _dump/
 
+## afdesign
+devSuite/images/afdesign/
+
 ## Special Files
 *.sublime-build
 

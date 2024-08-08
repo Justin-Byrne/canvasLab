@@ -237,7 +237,7 @@ nav {
           border-top-left-radius: 2px;
           border-bottom-left-radius: 2px; }
         nav .nav-wrapper #version span:nth-child(2) {
-          background-color: #389fb2;
+          background-color: #b23801;
           border-top-right-radius: 2px;
           border-bottom-right-radius: 2px; }
 
@@ -912,6 +912,18 @@ main {
   width: 23px;
   top: 1px; }
   .lab-bottle:hover {
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(1.1) rotate(10deg);
+    transition: opacity 0.5s, transform 0.5s; }
+
+.card-stack {
+  position: relative;
+  width: 23px;
+  top: 1px;
+  margin-right: 14px;
+  opacity: 0.6; }
+  .card-stack:hover {
     opacity: 1;
     cursor: pointer;
     transform: scale(1.1) rotate(10deg);

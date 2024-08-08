@@ -1009,7 +1009,7 @@ class Ui
 
                     let _labStation = document.querySelector  ( 'main > div.lab-station' );
 
-                    let _lab        = document.querySelector ( '#nav-lab > img' );
+                    let _lab        = document.querySelector ( '#nav-lab > img.lab-bottle' );
 
                         _lab.addEventListener ( 'click', ( ) =>
                             {
@@ -1028,6 +1028,21 @@ class Ui
 
 
                     window.addEventListener ( 'resize', LAB.setCanvasSize );
+
+                case 'cards':
+
+                    let _cards = document.querySelector ( '#nav-lab > img.card-stack' );
+
+                        _cards.addEventListener ( 'click', ( ) =>
+                            {
+                                this.clearScreen  ( );
+
+                                this._setByrneSystemsLogo ( );
+
+                                _labStation.style.display = 'none';
+
+                                _main.style.overflowY     = 'auto';
+                            } );
             }
         }
 
