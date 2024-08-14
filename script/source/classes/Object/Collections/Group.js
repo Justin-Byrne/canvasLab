@@ -3,22 +3,26 @@
  * @property        {Point} point                               X & Y axis coordinates
  * @property        {Array} lines                               Collection of Line objects
  * @property        {Array} circles                             Collection of Circle objects
+ * @property        {Array} ellipses                            Collection of Ellipse objects
  * @property        {Array} rectangles                          Collection of Rectangle objects
+ * @property        {Array} roundedRectangles                   Collection of Rounded Rectangle objects
  * @property        {Array} text                                Collection of Text objects
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  */
 class Group extends Array
 {
-    _point      = new Point;
-    _canvas     = undefined;
-    _plan       = undefined;
+    _point  = new Point;
+    _canvas = undefined;
+    _plan   = undefined;
 
-    _lines      = new Lines;
-    _circles    = new Circles;
-    _rectangles = new Rectangles;
-    _texts      = new Texts;
+    _lines             = new Lines;
+    _circles           = new Circles;
+    _ellipses          = new Ellipses;
+    _rectangles        = new Rectangles;
+    _roundedRectangles = new RoundedRectangles;
+    _texts             = new Texts;
 
-    #storage    = { types: [ 'lines', 'circles', 'rectangles', 'texts' ] }
+    #storage = { types: [ 'lines', 'circles', 'ellipses', 'rectangles', 'roundedRectangles', 'texts' ] }
 
     /**
      * Create Group object
@@ -65,6 +69,7 @@ class Group extends Array
             return this._point;
         }
 
+
         /**
          * Set x-axis value
          * @public
@@ -80,6 +85,7 @@ class Group extends Array
          * @return          {number}                                    X coordinate value
          */
         get x ( )       { return this._point.x;  }
+
 
         /**
          * Set the y-axis value
@@ -204,6 +210,19 @@ class Group extends Array
             return this._circles;
         }
 
+    ////    [ ELLIPSES ]    ////////////////////////////////
+
+        /**
+         * Get's ellipses
+         * @readOnly
+         * @function
+         * @return          {Ellipses}                                  Ellipses collection
+         */
+        get ellipses ( )
+        {
+            return this._ellipses;
+        }
+
     ////    [ RECTANGLES ]    //////////////////////////////
 
         /**
@@ -215,6 +234,19 @@ class Group extends Array
         get rectangles ( )
         {
             return this._rectangles;
+        }
+
+    ////    [ ROUNDED RECTANGLES ]    //////////////////////
+
+        /**
+         * Get's rounded rectangles
+         * @readOnly
+         * @function
+         * @return          {RoundedRectangles}                         Rectangles collection
+         */
+        get roundedRectangles ( )
+        {
+            return this._roundedRectangles;
         }
 
     ////    [ TEXTS ]    ///////////////////////////////////
@@ -319,19 +351,27 @@ class Group extends Array
                 {
                     ////    OBJECTS     ////////////////////
 
-                        case 'Line':        this._lines.push ( _value );       break;
+                        case 'Line':                this._lines.push ( _value );                break;
 
-                        case 'Circle':      this._circles.push ( _value );     break;
+                        case 'Circle':              this._circles.push ( _value );              break;
 
-                        case 'Rectangle':   this._rectangles.push ( _value );  break;
+                        case 'Ellipse':             this._ellipse.push ( _value );              break;
+
+                        case 'Rectangle':           this._rectangles.push ( _value );           break;
+
+                        case 'RoundedRectangle':    this._roundedRectangles.push ( _value );    break;
 
                     ////    COLLECTIONS     ////////////////
 
-                        case 'Lines':       for ( let _line of _value ) this._lines.push ( _line );                 break;
+                        case 'Lines':               for ( let _line of _value ) this._lines.push ( _line );                                         break;
 
-                        case 'Circles':     for ( let _circle of _value ) this._circles.push ( _circle );           break;
+                        case 'Circles':             for ( let _circle of _value ) this._circles.push ( _circle );                                   break;
 
-                        case 'Rectangles':  for ( let _rectangle of _value ) this._rectangles.push ( _rectangle );  break;
+                        case 'Ellipses':            for ( let _ellipse of _value ) this._ellipses.push ( _ellipse );                                break;
+
+                        case 'Rectangles':          for ( let _rectangle of _value ) this._rectangles.push ( _rectangle );                          break;
+
+                        case 'RoundedRectangles':   for ( let _roundedRectangle of _value ) this._roundedRectangles.push ( _roundedRectangle );     break;
 
                     default:
 
@@ -355,19 +395,27 @@ class Group extends Array
                 {
                     ////    OBJECTS     ////////////////////
 
-                        case 'Line':        this._lines.push ( _value );       break;
+                        case 'Line':                this._lines.pop ( _value );                break;
 
-                        case 'Circle':      this._circles.push ( _value );     break;
+                        case 'Circle':              this._circles.pop ( _value );              break;
 
-                        case 'Rectangle':   this._rectangles.push ( _value );  break;
+                        case 'Ellipse':             this._ellipse.pop ( _value );              break;
+
+                        case 'Rectangle':           this._rectangles.pop ( _value );           break;
+
+                        case 'RoundedRectangle':    this._roundedRectangles.pop ( _value );    break;
 
                     ////    COLLECTIONS     ////////////////
 
-                        case 'Lines':       for ( let _line of _value ) this._lines.push ( _line );                 break;
+                        case 'Lines':               for ( let _line of _value ) this._lines.pop ( _line );                                         break;
 
-                        case 'Circles':     for ( let _circle of _value ) this._circles.push ( _circle );           break;
+                        case 'Circles':             for ( let _circle of _value ) this._circles.pop ( _circle );                                   break;
 
-                        case 'Rectangles':  for ( let _rectangle of _value ) this._rectangles.push ( _rectangle );  break;
+                        case 'Ellipses':            for ( let _ellipse of _value ) this._ellipses.pop ( _ellipse );                                break;
+
+                        case 'Rectangles':          for ( let _rectangle of _value ) this._rectangles.pop ( _rectangle );                          break;
+
+                        case 'RoundedRectangles':   for ( let _roundedRectangle of _value ) this._roundedRectangles.pop ( _roundedRectangle );     break;
 
                     default:
 

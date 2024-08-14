@@ -234,16 +234,18 @@ class Ui
 
             let _menuDepth   = 3;
 
+            let _increment   = 15;
+
 
             if ( left )
 
-                _navLinks.style.paddingLeft = `${_paddingLeft - 10}px`;
+                _navLinks.style.paddingLeft = `${_paddingLeft - _increment}px`;
 
             else
 
                 if ( _openButtons <= _menuDepth )
 
-                    _navLinks.style.paddingLeft = `${_paddingLeft + 10}px`;
+                    _navLinks.style.paddingLeft = `${_paddingLeft + _increment}px`;
         },
 
         /**
@@ -292,7 +294,7 @@ class Ui
 
             if ( _open === 'false' )
 
-                document.getElementById ( 'nav-links' ).style.paddingLeft = '32px'
+                document.getElementById ( 'nav-links' ).style.paddingLeft = '3.5rem'
         },
 
         /**
@@ -549,9 +551,9 @@ class Ui
             this.labButton ( _button );
 
 
-            ( UI._isNavOpen ( ) ) ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-200px',   '0px' ]
+            ( UI._isNavOpen ( ) ) ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-225px',   '0px' ]
 
-                                  : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '200px' ];
+                                  : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '225px' ];
 
 
             if ( _lab.style.display === 'block' )

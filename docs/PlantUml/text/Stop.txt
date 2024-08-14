@@ -1,0 +1,19 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Stop {
+offset          <color:gray>{number}</color>
+__ Setter __
+offset          <color:gray>{number}</color>
+color           {Object}
+__ Getter __
+offset          <color:gray>{number}</color>
+color           {Object}
+__ Validation __
+_isColorModel   <color:gray>{boolean}</color>
+_isDecimal      <color:gray>{boolean}</color>
+}
+
+@enduml

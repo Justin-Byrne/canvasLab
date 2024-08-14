@@ -415,9 +415,11 @@ class Circle
          */
         _drawOptions ( )
         {
-            let _offset = this.radius + 20;
+            let _offset = 20;
 
-            let _aspect = new Aspect ( ( this.radius ) + ( _offset ), ( this.radius ) + ( _offset ) );
+            let _aspect = ( this._isPoint ( this.radius ) ) ? new Aspect ( ( this.radius.x * 2 ) + _offset, ( this.radius.y * 2 ) + _offset )
+
+                                                            : new Aspect ( ( this.radius   * 2 ) + _offset, ( this.radius   * 2 ) + _offset );
 
             ////////////////////////////////////////////////////////////////////
 
@@ -451,26 +453,51 @@ class Circle
             [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
 
 
-            switch ( this.anchor.align )
-            {
-                case 'center':      /*     ... do nothing      */   /*     ... do nothing      */   break;
+            if ( this._isPoint ( this.radius ) )
 
-                case 'top':         /*     ... do nothing      */   this.anchor.y += this.radius;   break;
+                switch ( this.anchor.align )
+                {
+                    case 'center':      /*     ... do nothing        */   /*     ... do nothing        */   break;
 
-                case 'topRight':    this.anchor.x -= this.radius;   this.anchor.y += this.radius;   break;
+                    case 'top':         /*     ... do nothing        */   this.anchor.y += this.radius.y;   break;
 
-                case 'right':       this.anchor.x -= this.radius;   /*     ... do nothing      */   break;
+                    case 'topRight':    this.anchor.x -= this.radius.x;   this.anchor.y += this.radius.y;   break;
 
-                case 'bottomRight': this.anchor.x -= this.radius;   this.anchor.y -= this.radius;   break;
+                    case 'right':       this.anchor.x -= this.radius.x;   /*     ... do nothing        */   break;
 
-                case 'bottom':      /*     ... do nothing      */   this.anchor.y -= this.radius;   break;
+                    case 'bottomRight': this.anchor.x -= this.radius.x;   this.anchor.y -= this.radius.y;   break;
 
-                case 'bottomLeft':  this.anchor.x += this.radius;   this.anchor.y -= this.radius;   break;
+                    case 'bottom':      /*     ... do nothing        */   this.anchor.y -= this.radius.y;   break;
 
-                case 'left':        this.anchor.x += this.radius;   /*     ... do nothing      */   break;
+                    case 'bottomLeft':  this.anchor.x += this.radius.x;   this.anchor.y -= this.radius.y;   break;
 
-                case 'topLeft':     this.anchor.x += this.radius;   this.anchor.y += this.radius;   break;
-            }
+                    case 'left':        this.anchor.x += this.radius.x;   /*     ... do nothing        */   break;
+
+                    case 'topLeft':     this.anchor.x += this.radius.x;   this.anchor.y += this.radius.y;   break;
+                }
+
+            else
+
+                switch ( this.anchor.align )
+                {
+                    case 'center':      /*     ... do nothing      */   /*     ... do nothing      */   break;
+
+                    case 'top':         /*     ... do nothing      */   this.anchor.y += this.radius;   break;
+
+                    case 'topRight':    this.anchor.x -= this.radius;   this.anchor.y += this.radius;   break;
+
+                    case 'right':       this.anchor.x -= this.radius;   /*     ... do nothing      */   break;
+
+                    case 'bottomRight': this.anchor.x -= this.radius;   this.anchor.y -= this.radius;   break;
+
+                    case 'bottom':      /*     ... do nothing      */   this.anchor.y -= this.radius;   break;
+
+                    case 'bottomLeft':  this.anchor.x += this.radius;   this.anchor.y -= this.radius;   break;
+
+                    case 'left':        this.anchor.x += this.radius;   /*     ... do nothing      */   break;
+
+                    case 'topLeft':     this.anchor.x += this.radius;   this.anchor.y += this.radius;   break;
+                }
         }
 
         /**
@@ -617,7 +644,7 @@ class Circle
                 this._setAnchorPoint ( );
 
 
-                if ( this.#options.shadow ) this._setShadow ( );                                   // Set: shadow
+                if ( this.#options.shadow ) this._setShadow ( );                                    // Set: shadow
 
 
                 this._canvas.strokeStyle = this.stroke.color.toCss ( );

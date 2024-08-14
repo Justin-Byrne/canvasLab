@@ -1,0 +1,263 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Rectangle {
+point                {Point}
+aspect               {Aspect}
+round                {Array}
+stroke               {Stroke}
+fill                 {Fill}
+shadow               {Shadow}
+canvas               {HTMLCanvasElement}
+__ Setter __
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+aspect               {Aspect}
+width                <color:gray>{number}</color>
+height               <color:gray>{number}</color>
+round                {Array}
+canvas               <color:gray>{string}</color>
+__ Getter __
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+aspect               {Aspect}
+width                <color:gray>{number}</color>
+height               <color:gray>{number}</color>
+round                {Array}
+stroke               {Stroke}
+fill                 {Fill}
+shadow               {Shadow}
+canvas               <color:gray>{string}</color>
+anchor               {Anchor}
+options              {Options}
+area                 <color:gray>{number}</color>
+center               {Point}
+perimeter            <color:gray>{number}</color>
+__ Validation __
+_isAspect            <color:gray>{boolean}</color>
+_isDegree            <color:gray>{boolean}</color>
+_isInDom             <color:gray>{boolean}</color>
+_isPoint             <color:gray>{boolean}</color>
+isThere
+__ Utility __
+_clearCanvas
+_drawAnchor
+_drawAxis
+_drawBorder
+_drawOptions
+_rotatePoint
+_setAnchorPoint
+_setFillType
+_setShadow
+fillColorCycle
+gradientColorCycle
+move
+rotate
+showCoordinates
+strokeColorCycle
+draw
+redraw
+}
+
+Rectangle o-- Point
+Rectangle o-- Aspect
+Rectangle o-- Array
+Rectangle o-- Stroke
+Rectangle o-- Fill
+Rectangle o-- Shadow
+Rectangle o-- HTMLCanvasElement
+Rectangle o-- Anchor
+Rectangle o-- Options
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Point {
+[x=0]          <color:gray>{number}</color>
+[y=0]          <color:gray>{number}</color>
+options        {Options}
+__ Setter __
+x              <color:gray>{number}</color>
+y              <color:gray>{number}</color>
+canvas         <color:gray>{string}</color>
+__ Getter __
+x              <color:gray>{number}</color>
+y              <color:gray>{number}</color>
+canvas         <color:gray>{string}</color>
+options        {Options}
+center         {Point}
+__ Validation __
+_isAspect      <color:gray>{boolean}</color>
+_isInDom       <color:gray>{boolean}</color>
+__ Utility __
+_drawAxis
+_drawBorder
+_rotatePoint
+drawOptions
+invert
+move
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Aspect {
+[width=0]      <color:gray>{number}</color>
+[height=0]     <color:gray>{number}</color>
+__ Setter __
+width          <color:gray>{number}</color>
+height         <color:gray>{number}</color>
+__ Getter __
+width          <color:gray>{number}</color>
+height         <color:gray>{number}</color>
+offset         {Point}
+center         <color:gray>{boolean}</color>
+heightCenter   <color:gray>{number}</color>
+widthCenter    <color:gray>{number}</color>
+__ Validation __
+_isPoint       <color:gray>{boolean}</color>
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Stroke {
+[width=2]       <color:gray>{number}</color>
+shadow          {Shadow}
+__ Setter __
+type            <color:gray>{number}</color>
+segments        {Array}
+color           {Object}
+width           <color:gray>{number}</color>
+__ Getter __
+type            <color:gray>{number}</color>
+segments        {Array}
+color           {Object}
+width           <color:gray>{number}</color>
+__ Validation __
+_isColorModel   <color:gray>{boolean}</color>
+_isSegments     <color:gray>{boolean}</color>
+_isStrokeType   <color:gray>{boolean}</color>
+_isWidth        <color:gray>{boolean}</color>
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Fill {
+gradient        {Object}
+pattern         {Pattern}
+__ Setter __
+color           {Object}
+type            <color:gray>{string}</color>
+gradient        {Object}
+pattern         <color:gray>{string}</color>
+repetition      <color:gray>{string}</color>
+__ Getter __
+color           {Object}
+type            <color:gray>{string}</color>
+gradient        {Object}
+pattern         {Pattern}
+repetition      <color:gray>{string}</color>
+__ Validation __
+_isColorModel   <color:gray>{boolean}</color>
+_isGradient     <color:gray>{boolean}</color>
+_isFillType     <color:gray>{boolean}</color>
+_isRepetition   <color:gray>{boolean}</color>
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Shadow {
+[blur=3]        <color:gray>{number}</color>
+offset          {Point}
+__ Setter __
+color           {Object}
+blur            <color:gray>{number}</color>
+offset          {Point}
+x               <color:gray>{number}</color>
+y               <color:gray>{number}</color>
+__ Getter __
+color           {Object}
+blur            <color:gray>{number}</color>
+offset          {Point}
+x               <color:gray>{number}</color>
+y               <color:gray>{number}</color>
+__ Validation __
+_isColorModel   <color:gray>{boolean}</color>
+_isBlur         <color:gray>{boolean}</color>
+_isPoint        <color:gray>{boolean}</color>
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Anchor {
+point       {Point}
+align       <color:gray>{string}</color>
+__ Setter __
+point       {Point}
+x           <color:gray>{number}</color>
+y           <color:gray>{number}</color>
+align       <color:gray>{string}</color>
+__ Getter __
+point       {Point}
+x           <color:gray>{number}</color>
+y           <color:gray>{number}</color>
+align       <color:gray>{string}</color>
+__ Validation __
+_isAnchor   <color:gray>{boolean}</color>
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Options {
+[anchor=false]          <color:gray>{boolean}</color>
+[axis=false]            <color:gray>{boolean}</color>
+[border=false]          <color:gray>{boolean}</color>
+[coordinates=false]     <color:gray>{boolean}</color>
+[controlPoints=false]   <color:gray>{boolean}</color>
+[points=false]          <color:gray>{boolean}</color>
+[shadow=false]          <color:gray>{boolean}</color>
+master                  {Object}
+__ Setter __
+anchor                  <color:gray>{boolean}</color>
+axis                    <color:gray>{boolean}</color>
+border                  <color:gray>{boolean}</color>
+coordinates             <color:gray>{boolean}</color>
+controlPoints           <color:gray>{boolean}</color>
+shadow                  <color:gray>{boolean}</color>
+master                  {Object}
+__ Getter __
+anchor                  <color:gray>{boolean}</color>
+axis                    <color:gray>{boolean}</color>
+border                  <color:gray>{boolean}</color>
+coordinates             <color:gray>{boolean}</color>
+controlPoints           <color:gray>{boolean}</color>
+shadow                  <color:gray>{boolean}</color>
+master                  {Object}
+__ Validation __
+_isCanvasLabObject      <color:gray>{boolean}</color>
+}
+
+@enduml

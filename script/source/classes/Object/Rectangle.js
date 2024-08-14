@@ -460,7 +460,7 @@ class Rectangle
 
             if ( this.#options.border      ) this._drawBorder     ( _aspect );
 
-            if ( this.#options.axis        ) this._drawAxis       ( );
+            if ( this.#options.axis        ) this._drawAxis       ( _offset );
 
             if ( this.#options.anchor      ) this._drawAnchor     ( );
 

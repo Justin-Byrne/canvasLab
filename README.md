@@ -1,9 +1,9 @@
 # canvasLab
 
 ![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Chrome-127.0.6533.89-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
+<img src="https://img.shields.io/badge/Chrome-127.0.6533.100-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
 ![issues](https://img.shields.io/github/issues/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Version-0.5.129-darkred?style=flat-square" />
+<img src="https://img.shields.io/badge/Version-0.6.137-red?style=flat-square" />
 <img src="https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab?style=flat-square" />
 
 HTML5 canvas drawing framework
@@ -84,7 +84,7 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── JSDoc.md
 ├── script
 │   ├── distro
-│   │   ├── canvasLab-v0.5.129.js    [ 392 kb ]
+│   │   ├── canvasLab-v0.6.137.js    [ 392 kb ]
 │   │   ├── canvasLab.min.js         [  76 kb ]
 │   │   └── canvasLab.min.js.map
 │   └── source
@@ -97,13 +97,17 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │       │   ├── Object
 │       │   │   ├── Collections
 │       │   │   │   ├── Circles.js
+│       │   │   │   ├── Ellipses.js
 │       │   │   │   ├── Group.js
 │       │   │   │   ├── Lines.js
 │       │   │   │   ├── Rectangles.js
+│       │   │   │   ├── RoundedRectangles.js
 │       │   │   │   └── Texts.js
 │       │   │   ├── Circle.js
+│       │   │   ├── Ellipse.js
 │       │   │   ├── Line.js
 │       │   │   ├── Rectangle.js
+│       │   │   ├── RoundedRectangle.js
 │       │   │   ├── Text.js
 │       │   │   └── cImage.js
 │       │   ├── Plans
@@ -142,8 +146,6 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │           │   ├── Utilities.js
 │           │   └── Validation.js
 │           └── debug.js
-├── videos
-│   └── devSuite.mp4
 ├── LICENSE
 └── README.md
 ```

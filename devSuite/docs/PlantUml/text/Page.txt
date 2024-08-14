@@ -1,0 +1,22 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Page {
+type               <color:gray>{string}</color>
+group              <color:gray>{string}</color>
+handler            <color:gray>{string}</color>
+__ Setter __
+type               <color:gray>{string}</color>
+group              <color:gray>{string}</color>
+handler            <color:gray>{string}</color>
+__ Getter __
+type               <color:gray>{string}</color>
+group              <color:gray>{string}</color>
+handler            <color:gray>{string}</color>
+__ Utility __
+_setPropertiesBy
+}
+
+@enduml

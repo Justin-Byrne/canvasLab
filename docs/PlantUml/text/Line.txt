@@ -1,0 +1,52 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Line {
+start               {Point}
+end                 {Point}
+stroke              {Stroke}
+shadow              {Shadow}
+canvas              {HTMLCanvasElement}
+__ Setter __
+start               {Point}
+end                 {Point}
+lineCap             <color:gray>{string}</color>
+canvas              <color:gray>{string}</color>
+__ Getter __
+start               {Point}
+end                 {Point}
+stroke              {Stroke}
+shadow              {Shadow}
+lineCap             <color:gray>{string}</color>
+canvas              <color:gray>{string}</color>
+options             {Options}
+controlPoints       {ControlPoints}
+center              {Point}
+__ Validation __
+_isAspect           <color:gray>{boolean}</color>
+_isDegree           <color:gray>{boolean}</color>
+_isInDom            <color:gray>{boolean}</color>
+_isNumber           <color:gray>{boolean}</color>
+_isPoint            <color:gray>{boolean}</color>
+isThere
+__ Utility __
+_clearCanvas
+_drawAxis
+_drawBorder
+_drawOptions
+_rotatePoint
+_setShadow
+curve
+drawPoints
+move
+rotate
+showControlPoints
+showCoordinates
+strokeColorCycle
+draw
+redraw
+}
+
+@enduml

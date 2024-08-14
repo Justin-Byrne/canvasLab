@@ -1,0 +1,56 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Animation {
+timing                    {function}
+draw                      {function}
+duration                  <color:gray>{number}</color>
+__ Setter __
+timing                    {function}
+draw                      {function}
+duration                  <color:gray>{number}</color>
+queue                     {Queue}
+__ Getter __
+timing                    {function}
+draw                      {function}
+duration                  <color:gray>{number}</color>
+queue                     {Queue}
+__ Validation __
+_isNumber                 <color:gray>{boolean}</color>
+__ Utility __
+_getAnimationProperties   {Object}
+_checkQueue
+animate
+requestAnimationFrame
+}
+
+Animation o-- function
+Animation o-- Queue
+Animation o-- Object
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Queue {
+entries     {Array}
+[index=0]   <color:gray>{number}</color>
+entry       {Object}
+__ Setter __
+entries     {Array}
+entry
+__ Getter __
+entries     {Array}
+index       <color:gray>{number}</color>
+entry       {Object}
+isEnd       <color:gray>{boolean}</color>
+isLast      <color:gray>{boolean}</color>
+isSet       <color:gray>{boolean}</color>
+next        {Object}
+reset
+}
+
+@enduml

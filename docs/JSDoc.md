@@ -64,11 +64,17 @@
 <dt><a href="#Circle">Circle</a></dt>
 <dd><p>{Object} Circle                             Circle object</p>
 </dd>
+<dt><a href="#Ellipse">Ellipse</a> ⇐ <code><a href="#Circle">Circle</a></code></dt>
+<dd><p>{Object} Ellipse                            Ellipse object</p>
+</dd>
 <dt><a href="#Line">Line</a></dt>
 <dd><p>{Object} Line                               Line object</p>
 </dd>
 <dt><a href="#Rectangle">Rectangle</a></dt>
 <dd><p>{Object} Rectangle                          Rectangle object</p>
+</dd>
+<dt><a href="#RoundedRectangle">RoundedRectangle</a> ⇐ <code><a href="#Rectangle">Rectangle</a></code></dt>
+<dd><p>{Object} RoundingRectangle 					RoundingRectangle object</p>
 </dd>
 <dt><a href="#Text">Text</a></dt>
 <dd><p>{Object} Text                               Text element to render within a canvas element</p>
@@ -79,6 +85,9 @@
 <dt><a href="#Circles">Circles</a></dt>
 <dd><p>{Array} Circles                             Collection of circle elements within an array</p>
 </dd>
+<dt><a href="#Ellipses">Ellipses</a> ⇐ <code><a href="#Circles">Circles</a></code></dt>
+<dd><p>{Array} Ellipses                            Collection of circle elements within an array</p>
+</dd>
 <dt><a href="#Group">Group</a></dt>
 <dd><p>{Array} Group                               Collection of Line, Circle, Rectangle &amp; Text objects</p>
 </dd>
@@ -87,6 +96,9 @@
 </dd>
 <dt><a href="#Rectangles">Rectangles</a></dt>
 <dd><p>{Array} Rectangles                          Collection of Rectangle objects</p>
+</dd>
+<dt><a href="#RoundedRectangles">RoundedRectangles</a> ⇐ <code><a href="#Rectangles">Rectangles</a></code></dt>
+<dd><p>{Array} RoundedRectangles 					Collection of Rounded Rectangle objects</p>
 </dd>
 <dt><a href="#Texts">Texts</a></dt>
 <dd><p>{Array} Texts                               Collection of Text objects</p>
@@ -2922,6 +2934,328 @@ Redraw this object
 | point | [<code>Point</code>](#Point) |  | Point of new location |
 | [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
 
+<a name="Ellipse"></a>
+
+## Ellipse ⇐ [<code>Circle</code>](#Circle)
+{Object} Ellipse                            Ellipse object
+
+**Kind**: global class  
+**Extends**: [<code>Circle</code>](#Circle)  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| point | [<code>Point</code>](#Point) |  | X & Y axis coordinates |
+| [radius] | [<code>Point</code>](#Point) | <code>&lt;Point&lt;20, 30&gt;</code> | Radius of ellipse |
+| angle | [<code>Angle</code>](#Angle) |  | Angle properties |
+| stroke | [<code>Stroke</code>](#Stroke) |  | Stroke properties |
+| fill | [<code>Fill</code>](#Fill) |  | Fill properties |
+| shadow | [<code>Shadow</code>](#Shadow) |  | Shadow properties |
+| canvas | <code>HTMLCanvasElement</code> |  | 2D canvas context |
+
+
+* [Ellipse](#Ellipse) ⇐ [<code>Circle</code>](#Circle)
+    * [.radius(value)](#Ellipse+radius)
+    * [.radius()](#Ellipse+radius) ⇒ [<code>Point</code>](#Point)
+    * [.point(value)](#Circle+point)
+    * [.x(value)](#Circle+x)
+    * [.y(value)](#Circle+y)
+    * [.angle()](#Circle+angle) ⇒ [<code>Angle</code>](#Angle)
+    * [.stroke()](#Circle+stroke) ⇒ [<code>Stroke</code>](#Stroke)
+    * [.fill()](#Circle+fill) ⇒ [<code>Fill</code>](#Fill)
+    * [.shadow()](#Circle+shadow) ⇒ [<code>Shadow</code>](#Shadow)
+    * [.canvas(value)](#Circle+canvas)
+    * [.anchor()](#Circle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
+    * [.options()](#Circle+options) ⇒ [<code>Options</code>](#Options)
+    * [.isThere(circle)](#Circle+isThere) ⇒ <code>boolean</code>
+    * [.area()](#Circle+area) ⇒ <code>number</code>
+    * [.diameter()](#Circle+diameter) ⇒ <code>number</code>
+    * [.center()](#Circle+center) ⇒ [<code>Point</code>](#Point)
+    * [.circumference()](#Circle+circumference) ⇒ <code>number</code>
+    * [.fillColorCycle(progress, start, end, [max])](#Circle+fillColorCycle)
+    * [.gradientColorCycle(progress, start, end, stop, [max])](#Circle+gradientColorCycle)
+    * [.rotate(degree, [anchor], [clear])](#Circle+rotate)
+    * [.showCoordinates([offset], [fontSize])](#Circle+showCoordinates)
+    * [.strokeColorCycle(start, end, progress, [max])](#Circle+strokeColorCycle)
+    * [.draw(canvas)](#Circle+draw)
+    * [.redraw(canvas, point, [clear])](#Circle+redraw)
+
+<a name="Ellipse+radius"></a>
+
+### ellipse.radius(value)
+Set radius value
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Overrides**: [<code>radius</code>](#Circle+radius)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | Radius of circle |
+
+<a name="Ellipse+radius"></a>
+
+### ellipse.radius() ⇒ [<code>Point</code>](#Point)
+Get radius value
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Overrides**: [<code>radius</code>](#Circle+radius)  
+**Returns**: [<code>Point</code>](#Point) - Radius of circle  
+**Read only**: true  
+<a name="Circle+point"></a>
+
+### ellipse.point(value)
+Set point
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Overrides**: [<code>point</code>](#Circle+point)  
+**Access**: public  
+**See**: [point](#PROPERTY_BLOCKS.discrete.point)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | X & Y coordinates |
+
+<a name="Circle+x"></a>
+
+### ellipse.x(value)
+Set x-axis value
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Overrides**: [<code>x</code>](#Circle+x)  
+**Access**: public  
+**See**: [pointX](#PROPERTY_BLOCKS.discrete.pointX)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | X coordinate value |
+
+<a name="Circle+y"></a>
+
+### ellipse.y(value)
+Set y-axis value
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Overrides**: [<code>y</code>](#Circle+y)  
+**Access**: public  
+**See**: [pointY](#PROPERTY_BLOCKS.discrete.pointY)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Y coordinate value |
+
+<a name="Circle+angle"></a>
+
+### ellipse.angle() ⇒ [<code>Angle</code>](#Angle)
+Get angle properties
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Returns**: [<code>Angle</code>](#Angle) - Angle properties  
+**Access**: public  
+<a name="Circle+stroke"></a>
+
+### ellipse.stroke() ⇒ [<code>Stroke</code>](#Stroke)
+Get stroke properties
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
+**Access**: public  
+<a name="Circle+fill"></a>
+
+### ellipse.fill() ⇒ [<code>Fill</code>](#Fill)
+Get fill properties
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Returns**: [<code>Fill</code>](#Fill) - Fill properties  
+**Access**: public  
+<a name="Circle+shadow"></a>
+
+### ellipse.shadow() ⇒ [<code>Shadow</code>](#Shadow)
+Get shadow properties
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Returns**: [<code>Shadow</code>](#Shadow) - Shadow properties  
+**Access**: public  
+<a name="Circle+canvas"></a>
+
+### ellipse.canvas(value)
+Set canvas value
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Overrides**: [<code>canvas</code>](#Circle+canvas)  
+**Access**: public  
+**See**: [discrete.canvas](discrete.canvas)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Canvas id |
+
+<a name="Circle+anchor"></a>
+
+### ellipse.anchor() ⇒ [<code>Anchor</code>](#Anchor)
+Get anchor
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Returns**: [<code>Anchor</code>](#Anchor) - Anchor properties  
+**Access**: public  
+<a name="Circle+options"></a>
+
+### ellipse.options() ⇒ [<code>Options</code>](#Options)
+Get options properties
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Returns**: [<code>Options</code>](#Options) - Options properties  
+**Access**: public  
+<a name="Circle+isThere"></a>
+
+### ellipse.isThere(circle) ⇒ <code>boolean</code>
+Check whether the passed object is already present
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| circle | [<code>Circle</code>](#Circle) | Object to validate |
+
+<a name="Circle+area"></a>
+
+### ellipse.area() ⇒ <code>number</code>
+Get area of this object
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Returns**: <code>number</code> - Area of this object  
+**Read only**: true  
+<a name="Circle+diameter"></a>
+
+### ellipse.diameter() ⇒ <code>number</code>
+Get diameter of circle
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Returns**: <code>number</code> - Diameter of circle  
+**Read only**: true  
+<a name="Circle+center"></a>
+
+### ellipse.center() ⇒ [<code>Point</code>](#Point)
+Get center of this object
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Returns**: [<code>Point</code>](#Point) - Point coordinates  
+**Read only**: true  
+<a name="Circle+circumference"></a>
+
+### ellipse.circumference() ⇒ <code>number</code>
+Get circumference of circle
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Returns**: <code>number</code> - Circumference of circle  
+**Read only**: true  
+<a name="Circle+fillColorCycle"></a>
+
+### ellipse.fillColorCycle(progress, start, end, [max])
+Cycle colors for fill
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Access**: public  
+**See**: [fill](#UTILITIES.color.cycle.fill)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
+<a name="Circle+gradientColorCycle"></a>
+
+### ellipse.gradientColorCycle(progress, start, end, stop, [max])
+Cycle colors for gradient
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Access**: public  
+**See**: [gradient](#UTILITIES.color.cycle.gradient)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| stop | <code>number</code> |  | Gradient color stop |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
+<a name="Circle+rotate"></a>
+
+### ellipse.rotate(degree, [anchor], [clear])
+Rotate this object
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Access**: public  
+**See**: [rotate](#UTILITIES.transition.rotate)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| degree | <code>number</code> |  | Distance to rotate; in degrees |
+| [anchor] | <code>string</code> | <code>&quot;&#x27;center&#x27;&quot;</code> | Anchoring point during rotation |
+| [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
+
+<a name="Circle+showCoordinates"></a>
+
+### ellipse.showCoordinates([offset], [fontSize])
+Shows coordinates of this object
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Access**: public  
+**See**: [showCoordinates](#UTILITIES.misc.showCoordinates)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
+| [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
+
+<a name="Circle+strokeColorCycle"></a>
+
+### ellipse.strokeColorCycle(start, end, progress, [max])
+Cycle colors for stroke
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Access**: public  
+**See**: [stroke](#UTILITIES.color.cycle.stroke)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| progress | <code>number</code> |  | Progress time unit; 0.00 - 1.00 |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
+<a name="Circle+draw"></a>
+
+### ellipse.draw(canvas)
+Draw this object
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| canvas | <code>string</code> | Canvas Id |
+
+<a name="Circle+redraw"></a>
+
+### ellipse.redraw(canvas, point, [clear])
+Redraw this object
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Access**: public  
+**See**: [UTILITIES.draw.redraw](UTILITIES.draw.redraw)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| canvas | <code>string</code> |  | Canvas Id |
+| point | [<code>Point</code>](#Point) |  | Point of new location |
+| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
+
 <a name="Line"></a>
 
 ## Line
@@ -3644,6 +3978,361 @@ Draw this object
 Redraw this object
 
 **Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
+**Access**: public  
+**See**: [UTILITIES.draw.redraw](UTILITIES.draw.redraw)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| canvas | <code>string</code> |  | Canvas Id |
+| point | [<code>Point</code>](#Point) |  | Point of new location |
+| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
+
+<a name="RoundedRectangle"></a>
+
+## RoundedRectangle ⇐ [<code>Rectangle</code>](#Rectangle)
+{Object} RoundingRectangle 					RoundingRectangle object
+
+**Kind**: global class  
+**Extends**: [<code>Rectangle</code>](#Rectangle)  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| point | [<code>Point</code>](#Point) |  | X & Y axis coordinates |
+| aspect | [<code>Aspect</code>](#Aspect) |  | Aspect properties |
+| [round] | <code>Array</code> | <code>[5, 5, 5, 5]</code> | Rounding properties |
+| stroke | [<code>Stroke</code>](#Stroke) |  | Stroke properties |
+| fill | [<code>Fill</code>](#Fill) |  | Fill properties |
+| shadow | [<code>Shadow</code>](#Shadow) |  | Shadow properties |
+| canvas | <code>HTMLCanvasElement</code> |  | 2D canvas context |
+
+
+* [RoundedRectangle](#RoundedRectangle) ⇐ [<code>Rectangle</code>](#Rectangle)
+    * [.point(value)](#Rectangle+point)
+    * [.x(value)](#Rectangle+x)
+    * [.y(value)](#Rectangle+y)
+    * [.aspect(value)](#Rectangle+aspect)
+    * [.width(value)](#Rectangle+width)
+    * [.height(value)](#Rectangle+height)
+    * [.round(value)](#Rectangle+round)
+    * [.stroke()](#Rectangle+stroke) ⇒ [<code>Stroke</code>](#Stroke)
+    * [.fill()](#Rectangle+fill) ⇒ [<code>Fill</code>](#Fill)
+    * [.shadow()](#Rectangle+shadow) ⇒ [<code>Shadow</code>](#Shadow)
+    * [.canvas(value)](#Rectangle+canvas)
+    * [.anchor()](#Rectangle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
+    * [.options()](#Rectangle+options) ⇒ [<code>Options</code>](#Options)
+    * [.isThere(rectangle)](#Rectangle+isThere)
+    * [.area()](#Rectangle+area) ⇒ <code>number</code>
+    * [.center()](#Rectangle+center) ⇒ [<code>Point</code>](#Point)
+    * [.fillColorCycle(progress, start, end, [max])](#Rectangle+fillColorCycle)
+    * [.gradientColorCycle(progress, start, end, stop, [max])](#Rectangle+gradientColorCycle)
+    * [.move(degree, distance, [draw], [clear])](#Rectangle+move)
+    * [.perimeter()](#Rectangle+perimeter) ⇒ <code>number</code>
+    * [.rotate(degree, [anchor], [clear])](#Rectangle+rotate)
+    * [.showCoordinates([offset], [fontSize])](#Rectangle+showCoordinates)
+    * [.strokeColorCycle(start, end, progress, [max])](#Rectangle+strokeColorCycle)
+    * [.draw(canvas)](#Rectangle+draw)
+    * [.redraw(canvas, point, [clear])](#Rectangle+redraw)
+
+<a name="Rectangle+point"></a>
+
+### roundedRectangle.point(value)
+Set point
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Overrides**: [<code>point</code>](#Rectangle+point)  
+**Access**: public  
+**See**: [discrete.point](discrete.point)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | X & Y coordinates |
+
+<a name="Rectangle+x"></a>
+
+### roundedRectangle.x(value)
+Set x-axis value
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Overrides**: [<code>x</code>](#Rectangle+x)  
+**Access**: public  
+**See**: [discrete.pointX](discrete.pointX)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | X coordinate value |
+
+<a name="Rectangle+y"></a>
+
+### roundedRectangle.y(value)
+Set y-axis value
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Overrides**: [<code>y</code>](#Rectangle+y)  
+**Access**: public  
+**See**: [discrete.pointY](discrete.pointY)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Y coordinate value |
+
+<a name="Rectangle+aspect"></a>
+
+### roundedRectangle.aspect(value)
+Set aspect properties
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Overrides**: [<code>aspect</code>](#Rectangle+aspect)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Aspect</code>](#Aspect) | Aspect properties |
+
+<a name="Rectangle+width"></a>
+
+### roundedRectangle.width(value)
+Set aspect width
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Overrides**: [<code>width</code>](#Rectangle+width)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Width value |
+
+<a name="Rectangle+height"></a>
+
+### roundedRectangle.height(value)
+Set aspect height
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Overrides**: [<code>height</code>](#Rectangle+height)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Height value |
+
+<a name="Rectangle+round"></a>
+
+### roundedRectangle.round(value)
+Set round properties
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Overrides**: [<code>round</code>](#Rectangle+round)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array</code> | Radii properties |
+
+<a name="Rectangle+stroke"></a>
+
+### roundedRectangle.stroke() ⇒ [<code>Stroke</code>](#Stroke)
+Get stroke properties
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
+**Access**: public  
+<a name="Rectangle+fill"></a>
+
+### roundedRectangle.fill() ⇒ [<code>Fill</code>](#Fill)
+Get fill properties
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Returns**: [<code>Fill</code>](#Fill) - Fill properties  
+**Access**: public  
+<a name="Rectangle+shadow"></a>
+
+### roundedRectangle.shadow() ⇒ [<code>Shadow</code>](#Shadow)
+Get shadow properties
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Returns**: [<code>Shadow</code>](#Shadow) - Shadow properties  
+**Access**: public  
+<a name="Rectangle+canvas"></a>
+
+### roundedRectangle.canvas(value)
+Set canvas value
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Overrides**: [<code>canvas</code>](#Rectangle+canvas)  
+**Access**: public  
+**See**: [discrete.canvas](discrete.canvas)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Canvas id |
+
+<a name="Rectangle+anchor"></a>
+
+### roundedRectangle.anchor() ⇒ [<code>Anchor</code>](#Anchor)
+Get anchor
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Returns**: [<code>Anchor</code>](#Anchor) - Anchor properties  
+**Access**: public  
+<a name="Rectangle+options"></a>
+
+### roundedRectangle.options() ⇒ [<code>Options</code>](#Options)
+Get options properties
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Returns**: [<code>Options</code>](#Options) - Options properties  
+**Access**: public  
+<a name="Rectangle+isThere"></a>
+
+### roundedRectangle.isThere(rectangle)
+Check whether the passed object is already present
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| rectangle | [<code>Rectangle</code>](#Rectangle) | Object to validate |
+
+<a name="Rectangle+area"></a>
+
+### roundedRectangle.area() ⇒ <code>number</code>
+Get area of this object
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Returns**: <code>number</code> - Area of this object  
+**Read only**: true  
+**See**: [area](#PROPERTY_BLOCKS.discrete.area)  
+<a name="Rectangle+center"></a>
+
+### roundedRectangle.center() ⇒ [<code>Point</code>](#Point)
+Get center of this object
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+**Read only**: true  
+**See**: [center](#PROPERTY_BLOCKS.discrete.center)  
+<a name="Rectangle+fillColorCycle"></a>
+
+### roundedRectangle.fillColorCycle(progress, start, end, [max])
+Cycle colors for fill
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Access**: public  
+**See**: [fill](#UTILITIES.color.cycle.fill)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
+<a name="Rectangle+gradientColorCycle"></a>
+
+### roundedRectangle.gradientColorCycle(progress, start, end, stop, [max])
+Cycle colors for gradient
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Access**: public  
+**See**: [gradient](#UTILITIES.color.cycle.gradient)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| progress | <code>number</code> |  | Progress time unit between; 0.00 - 1.00 |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| stop | <code>number</code> |  | Gradient color stop |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
+<a name="Rectangle+move"></a>
+
+### roundedRectangle.move(degree, distance, [draw], [clear])
+Move this object
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Access**: public  
+**See**: [move](#UTILITIES.transition.move)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| degree | <code>number</code> |  | Direction to move; in degrees |
+| distance | <code>number</code> |  | Distance to move |
+| [draw] | <code>boolean</code> | <code>false</code> | Draw post movement |
+| [clear] | <code>boolean</code> | <code>false</code> | Clear canvas during each movement |
+
+<a name="Rectangle+perimeter"></a>
+
+### roundedRectangle.perimeter() ⇒ <code>number</code>
+Get perimeter of this object
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Returns**: <code>number</code> - Perimeter of rectangle  
+**Read only**: true  
+**See**: [center](#PROPERTY_BLOCKS.discrete.center)  
+<a name="Rectangle+rotate"></a>
+
+### roundedRectangle.rotate(degree, [anchor], [clear])
+Rotate this object
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Access**: public  
+**See**: [rotate](#UTILITIES.transition.rotate)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| degree | <code>number</code> |  | Distance to rotate; in degrees |
+| [anchor] | <code>string</code> | <code>&quot;&#x27;center&#x27;&quot;</code> | Anchoring point during rotation |
+| [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
+
+<a name="Rectangle+showCoordinates"></a>
+
+### roundedRectangle.showCoordinates([offset], [fontSize])
+Shows coordinates of this object
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Access**: public  
+**See**: [showCoordinates](#UTILITIES.misc.showCoordinates)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
+| [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
+
+<a name="Rectangle+strokeColorCycle"></a>
+
+### roundedRectangle.strokeColorCycle(start, end, progress, [max])
+Cycle colors for stroke
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Access**: public  
+**See**: [stroke](#UTILITIES.color.cycle.stroke)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| start | [<code>Rgb</code>](#Rgb) |  | Starting RGB value |
+| end | [<code>Rgb</code>](#Rgb) |  | Ending RGB value |
+| progress | <code>number</code> |  | Progress time unit; 0.00 - 1.00 |
+| [max] | <code>number</code> | <code>1</code> | Maximum increments |
+
+<a name="Rectangle+draw"></a>
+
+### roundedRectangle.draw(canvas)
+Draw this object
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| canvas | <code>string</code> | Canvas Id |
+
+<a name="Rectangle+redraw"></a>
+
+### roundedRectangle.redraw(canvas, point, [clear])
+Redraw this object
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
 **Access**: public  
 **See**: [UTILITIES.draw.redraw](UTILITIES.draw.redraw)  
 
@@ -4703,6 +5392,235 @@ Redraw this object
 | point | [<code>Point</code>](#Point) |  | Point of new location |
 | [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
 
+<a name="Ellipses"></a>
+
+## Ellipses ⇐ [<code>Circles</code>](#Circles)
+{Array} Ellipses                            Collection of circle elements within an array
+
+**Kind**: global class  
+**Extends**: [<code>Circles</code>](#Circles)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| point | [<code>Point</code>](#Point) | X & Y axis coordinates |
+| canvas | <code>HTMLCanvasElement</code> | 2D canvas context |
+
+
+* [Ellipses](#Ellipses) ⇐ [<code>Circles</code>](#Circles)
+    * [.options()](#Ellipses+options) ⇒ <code>Object</code>
+    * [.point(value)](#Circles+point)
+    * [.x(value)](#Circles+x)
+    * [.y(value)](#Circles+y)
+    * [.stroke()](#Circles+stroke) ⇒ [<code>Stroke</code>](#Stroke)
+    * [.shadow()](#Circles+shadow) ⇒ [<code>Shadow</code>](#Shadow)
+    * [.canvas(value)](#Circles+canvas)
+    * [.aspect()](#Circles+aspect) ⇒ [<code>Aspect</code>](#Aspect)
+    * [.width()](#Circles+width) ⇒ <code>number</code>
+    * [.height()](#Circles+height) ⇒ <code>number</code>
+    * [.anchor(value)](#Circles+anchor)
+    * [.area()](#Circles+area) ⇒ <code>number</code>
+    * [.center()](#Circles+center) ⇒ [<code>Point</code>](#Point)
+    * [.endPoint()](#Circles+endPoint) ⇒ [<code>Point</code>](#Point)
+    * [.perimeter()](#Circles+perimeter) ⇒ <code>number</code>
+    * [.push()](#Circles+push)
+    * [.draw(canvas)](#Circles+draw)
+    * [.redraw(canvas, point, [clear])](#Circles+redraw)
+
+<a name="Ellipses+options"></a>
+
+### ellipses.options() ⇒ <code>Object</code>
+Get options
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Overrides**: [<code>options</code>](#Circles+options)  
+**Returns**: <code>Object</code> - Options object  
+**Access**: public  
+<a name="Circles+point"></a>
+
+### ellipses.point(value)
+Set point
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Overrides**: [<code>point</code>](#Circles+point)  
+**Access**: public  
+**See**: [discrete.point](discrete.point)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | X & Y coordinates |
+
+<a name="Circles+x"></a>
+
+### ellipses.x(value)
+Set x-axis value
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Overrides**: [<code>x</code>](#Circles+x)  
+**Access**: public  
+**See**: [discrete.pointX](discrete.pointX)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | X coordinate value |
+
+<a name="Circles+y"></a>
+
+### ellipses.y(value)
+Set the y-axis value
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Overrides**: [<code>y</code>](#Circles+y)  
+**Access**: public  
+**See**: [discrete.pointY](discrete.pointY)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Y coordinate value |
+
+<a name="Circles+stroke"></a>
+
+### ellipses.stroke() ⇒ [<code>Stroke</code>](#Stroke)
+Get stroke properties
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
+**Access**: public  
+<a name="Circles+shadow"></a>
+
+### ellipses.shadow() ⇒ [<code>Shadow</code>](#Shadow)
+Get shadow properties
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Returns**: [<code>Shadow</code>](#Shadow) - Shadow properties  
+**Access**: public  
+<a name="Circles+canvas"></a>
+
+### ellipses.canvas(value)
+Set canvas value
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Overrides**: [<code>canvas</code>](#Circles+canvas)  
+**Access**: public  
+**See**: [combined.canvas](combined.canvas)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Canvas id |
+
+<a name="Circles+aspect"></a>
+
+### ellipses.aspect() ⇒ [<code>Aspect</code>](#Aspect)
+Get aspect properties
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Returns**: [<code>Aspect</code>](#Aspect) - Aspect properties  
+**Access**: public  
+**See**: [aspect](#PROPERTY_BLOCKS.combined.aspect)  
+<a name="Circles+width"></a>
+
+### ellipses.width() ⇒ <code>number</code>
+Get aspect with
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Returns**: <code>number</code> - Width value  
+**Read only**: true  
+**See**: [aspectWidth](#PROPERTY_BLOCKS.combined.aspectWidth)  
+<a name="Circles+height"></a>
+
+### ellipses.height() ⇒ <code>number</code>
+Get aspect height
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Returns**: <code>number</code> - Height value  
+**Read only**: true  
+**See**: [aspectHeight](#PROPERTY_BLOCKS.combined.aspectHeight)  
+<a name="Circles+anchor"></a>
+
+### ellipses.anchor(value)
+Set anchor type
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Overrides**: [<code>anchor</code>](#Circles+anchor)  
+**Access**: public  
+**See**: [anchor](#PROPERTY_BLOCKS.combined.anchor)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Anchor type |
+
+<a name="Circles+area"></a>
+
+### ellipses.area() ⇒ <code>number</code>
+Get area of this object
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Returns**: <code>number</code> - Area of rectangle  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.area;](PROPERTY_BLOCKS.combined.area;)  
+<a name="Circles+center"></a>
+
+### ellipses.center() ⇒ [<code>Point</code>](#Point)
+Get center of this object
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.center;](PROPERTY_BLOCKS.combined.center;)  
+<a name="Circles+endPoint"></a>
+
+### ellipses.endPoint() ⇒ [<code>Point</code>](#Point)
+Returns the last Point within this Array
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Returns**: [<code>Point</code>](#Point) - Last Array element's X & Y Coordinates  
+**Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.endPoint;](PROPERTY_BLOCKS.combined.endPoint;)  
+<a name="Circles+perimeter"></a>
+
+### ellipses.perimeter() ⇒ <code>number</code>
+Get perimeter of this object
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Returns**: <code>number</code> - Perimeter of rectangle  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.perimeter;](PROPERTY_BLOCKS.combined.perimeter;)  
+<a name="Circles+push"></a>
+
+### ellipses.push()
+Pushes child object(s) into this collection
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Access**: public  
+**See**: [UTILITIES.collection.push;](UTILITIES.collection.push;)  
+<a name="Circles+draw"></a>
+
+### ellipses.draw(canvas)
+Draw function for collections
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Access**: public  
+**See**: [draw](#UTILITIES.collection.draw)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| canvas | <code>string</code> | Canvas Id |
+
+<a name="Circles+redraw"></a>
+
+### ellipses.redraw(canvas, point, [clear])
+Redraw this object
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Access**: public  
+**See**: [redraw](#UTILITIES.collection.redraw)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| canvas | <code>string</code> |  | Canvas Id |
+| point | [<code>Point</code>](#Point) |  | Point of new location |
+| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
+
 <a name="Group"></a>
 
 ## Group
@@ -4716,7 +5634,9 @@ Redraw this object
 | point | [<code>Point</code>](#Point) | X & Y axis coordinates |
 | lines | <code>Array</code> | Collection of Line objects |
 | circles | <code>Array</code> | Collection of Circle objects |
+| ellipses | <code>Array</code> | Collection of Ellipse objects |
 | rectangles | <code>Array</code> | Collection of Rectangle objects |
+| roundedRectangles | <code>Array</code> | Collection of Rounded Rectangle objects |
 | text | <code>Array</code> | Collection of Text objects |
 | canvas | <code>HTMLCanvasElement</code> | 2D canvas context |
 
@@ -4735,7 +5655,9 @@ Redraw this object
     * [.plan()](#Group+plan) ⇒ <code>Object</code>
     * [.lines()](#Group+lines) ⇒ [<code>Lines</code>](#Lines)
     * [.circles()](#Group+circles) ⇒ [<code>Circles</code>](#Circles)
+    * [.ellipses()](#Group+ellipses) ⇒ [<code>Ellipses</code>](#Ellipses)
     * [.rectangles()](#Group+rectangles) ⇒ [<code>Rectangles</code>](#Rectangles)
+    * [.roundedRectangles()](#Group+roundedRectangles) ⇒ [<code>RoundedRectangles</code>](#RoundedRectangles)
     * [.texts()](#Group+texts) ⇒ [<code>Texts</code>](#Texts)
     * [.push(object)](#Group+push)
     * [.pop(object)](#Group+pop)
@@ -4864,6 +5786,14 @@ Get's circles
 **Kind**: instance method of [<code>Group</code>](#Group)  
 **Returns**: [<code>Circles</code>](#Circles) - Circles collection  
 **Read only**: true  
+<a name="Group+ellipses"></a>
+
+### group.ellipses() ⇒ [<code>Ellipses</code>](#Ellipses)
+Get's ellipses
+
+**Kind**: instance method of [<code>Group</code>](#Group)  
+**Returns**: [<code>Ellipses</code>](#Ellipses) - Ellipses collection  
+**Read only**: true  
 <a name="Group+rectangles"></a>
 
 ### group.rectangles() ⇒ [<code>Rectangles</code>](#Rectangles)
@@ -4871,6 +5801,14 @@ Get's rectangles
 
 **Kind**: instance method of [<code>Group</code>](#Group)  
 **Returns**: [<code>Rectangles</code>](#Rectangles) - Rectangles collection  
+**Read only**: true  
+<a name="Group+roundedRectangles"></a>
+
+### group.roundedRectangles() ⇒ [<code>RoundedRectangles</code>](#RoundedRectangles)
+Get's rounded rectangles
+
+**Kind**: instance method of [<code>Group</code>](#Group)  
+**Returns**: [<code>RoundedRectangles</code>](#RoundedRectangles) - Rectangles collection  
 **Read only**: true  
 <a name="Group+texts"></a>
 
@@ -5487,6 +6425,235 @@ Draw function for collections
 Redraw this object
 
 **Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Access**: public  
+**See**: [redraw](#UTILITIES.collection.redraw)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| canvas | <code>string</code> |  | Canvas Id |
+| point | [<code>Point</code>](#Point) |  | Point of new location |
+| [clear] | <code>boolean</code> | <code>true</code> | Clear canvas during each redraw |
+
+<a name="RoundedRectangles"></a>
+
+## RoundedRectangles ⇐ [<code>Rectangles</code>](#Rectangles)
+{Array} RoundedRectangles 					Collection of Rounded Rectangle objects
+
+**Kind**: global class  
+**Extends**: [<code>Rectangles</code>](#Rectangles)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| point | [<code>Point</code>](#Point) | X & Y axis coordinates |
+| canvas | <code>HTMLCanvasElement</code> | 2D canvas context |
+
+
+* [RoundedRectangles](#RoundedRectangles) ⇐ [<code>Rectangles</code>](#Rectangles)
+    * [.options()](#RoundedRectangles+options) ⇒ <code>Object</code>
+    * [.point(value)](#Rectangles+point)
+    * [.x(value)](#Rectangles+x)
+    * [.y(value)](#Rectangles+y)
+    * [.stroke()](#Rectangles+stroke) ⇒ [<code>Stroke</code>](#Stroke)
+    * [.shadow()](#Rectangles+shadow) ⇒ [<code>Shadow</code>](#Shadow)
+    * [.canvas(value)](#Rectangles+canvas)
+    * [.aspect()](#Rectangles+aspect) ⇒ [<code>Aspect</code>](#Aspect)
+    * [.width()](#Rectangles+width) ⇒ <code>number</code>
+    * [.height()](#Rectangles+height) ⇒ <code>number</code>
+    * [.anchor(value)](#Rectangles+anchor)
+    * [.area()](#Rectangles+area) ⇒ <code>number</code>
+    * [.center()](#Rectangles+center) ⇒ [<code>Point</code>](#Point)
+    * [.endPoint()](#Rectangles+endPoint) ⇒ [<code>Point</code>](#Point)
+    * [.perimeter()](#Rectangles+perimeter) ⇒ <code>number</code>
+    * [.push()](#Rectangles+push)
+    * [.draw(canvas)](#Rectangles+draw)
+    * [.redraw(canvas, point, [clear])](#Rectangles+redraw)
+
+<a name="RoundedRectangles+options"></a>
+
+### roundedRectangles.options() ⇒ <code>Object</code>
+Get options
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Overrides**: [<code>options</code>](#Rectangles+options)  
+**Returns**: <code>Object</code> - Options object  
+**Access**: public  
+<a name="Rectangles+point"></a>
+
+### roundedRectangles.point(value)
+Set point
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Overrides**: [<code>point</code>](#Rectangles+point)  
+**Access**: public  
+**See**: [point](#PROPERTY_BLOCKS.discrete.point)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | X & Y coordinates |
+
+<a name="Rectangles+x"></a>
+
+### roundedRectangles.x(value)
+Set x-axis value
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Overrides**: [<code>x</code>](#Rectangles+x)  
+**Access**: public  
+**See**: [pointX](#PROPERTY_BLOCKS.discrete.pointX)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | X coordinate value |
+
+<a name="Rectangles+y"></a>
+
+### roundedRectangles.y(value)
+Set the y-axis value
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Overrides**: [<code>y</code>](#Rectangles+y)  
+**Access**: public  
+**See**: [pointY](#PROPERTY_BLOCKS.discrete.pointY)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Y coordinate value |
+
+<a name="Rectangles+stroke"></a>
+
+### roundedRectangles.stroke() ⇒ [<code>Stroke</code>](#Stroke)
+Get stroke properties
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
+**Access**: public  
+<a name="Rectangles+shadow"></a>
+
+### roundedRectangles.shadow() ⇒ [<code>Shadow</code>](#Shadow)
+Get shadow properties
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Returns**: [<code>Shadow</code>](#Shadow) - Shadow properties  
+**Access**: public  
+<a name="Rectangles+canvas"></a>
+
+### roundedRectangles.canvas(value)
+Set canvas value
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Overrides**: [<code>canvas</code>](#Rectangles+canvas)  
+**Access**: public  
+**See**: [canvas](#PROPERTY_BLOCKS.combined.canvas)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Canvas id |
+
+<a name="Rectangles+aspect"></a>
+
+### roundedRectangles.aspect() ⇒ [<code>Aspect</code>](#Aspect)
+Get aspect properties
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Returns**: [<code>Aspect</code>](#Aspect) - Aspect properties  
+**Access**: public  
+**See**: [aspect](#PROPERTY_BLOCKS.combined.aspect)  
+<a name="Rectangles+width"></a>
+
+### roundedRectangles.width() ⇒ <code>number</code>
+Get aspect with
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Returns**: <code>number</code> - Width value  
+**Read only**: true  
+**See**: [aspectWidth](#PROPERTY_BLOCKS.combined.aspectWidth)  
+<a name="Rectangles+height"></a>
+
+### roundedRectangles.height() ⇒ <code>number</code>
+Get aspect height
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Returns**: <code>number</code> - Height value  
+**Read only**: true  
+**See**: [aspectHeight](#PROPERTY_BLOCKS.combined.aspectHeight)  
+<a name="Rectangles+anchor"></a>
+
+### roundedRectangles.anchor(value)
+Set anchor type
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Overrides**: [<code>anchor</code>](#Rectangles+anchor)  
+**Access**: public  
+**See**: [anchor](#PROPERTY_BLOCKS.combined.anchor)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | Anchor type |
+
+<a name="Rectangles+area"></a>
+
+### roundedRectangles.area() ⇒ <code>number</code>
+Get area of this object
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Returns**: <code>number</code> - Area of rectangle  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.area;](PROPERTY_BLOCKS.combined.area;)  
+<a name="Rectangles+center"></a>
+
+### roundedRectangles.center() ⇒ [<code>Point</code>](#Point)
+Get center of this object
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.center;](PROPERTY_BLOCKS.combined.center;)  
+<a name="Rectangles+endPoint"></a>
+
+### roundedRectangles.endPoint() ⇒ [<code>Point</code>](#Point)
+Returns the last Point within this Array
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Returns**: [<code>Point</code>](#Point) - Last Array element's X & Y Coordinates  
+**Access**: public  
+**See**: [PROPERTY_BLOCKS.combined.endPoint;](PROPERTY_BLOCKS.combined.endPoint;)  
+<a name="Rectangles+perimeter"></a>
+
+### roundedRectangles.perimeter() ⇒ <code>number</code>
+Get perimeter of this object
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Returns**: <code>number</code> - Perimeter of rectangle  
+**Read only**: true  
+**See**: [PROPERTY_BLOCKS.combined.perimeter;](PROPERTY_BLOCKS.combined.perimeter;)  
+<a name="Rectangles+push"></a>
+
+### roundedRectangles.push()
+Pushes child object(s) into this collection
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Access**: public  
+**See**: [UTILITIES.collection.push;](UTILITIES.collection.push;)  
+<a name="Rectangles+draw"></a>
+
+### roundedRectangles.draw(canvas)
+Draw function for collections
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Access**: public  
+**See**: [draw](#UTILITIES.collection.draw)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| canvas | <code>string</code> | Canvas Id |
+
+<a name="Rectangles+redraw"></a>
+
+### roundedRectangles.redraw(canvas, point, [clear])
+Redraw this object
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
 **Access**: public  
 **See**: [redraw](#UTILITIES.collection.redraw)  
 

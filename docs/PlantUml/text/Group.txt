@@ -1,0 +1,46 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Group {
+point                {Point}
+lines                {Array}
+circles              {Array}
+ellipses             {Array}
+rectangles           {Array}
+roundedRectangles    {Array}
+text                 {Array}
+canvas               {HTMLCanvasElement}
+__ Setter __
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+canvas               <color:gray>{string}</color>
+plan                 {Object}
+__ Getter __
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+canvas               <color:gray>{string}</color>
+plan                 {Object}
+lines                {Lines}
+circles              {Circles}
+ellipses             {Ellipses}
+rectangles           {Rectangles}
+roundedRectangles    {RoundedRectangles}
+texts                {Texts}
+__ Validation __
+_isCanvasLabObject   <color:gray>{boolean}</color>
+_isInDom             <color:gray>{boolean}</color>
+_isPlan              <color:gray>{boolean}</color>
+_isPoint             <color:gray>{boolean}</color>
+__ Utility __
+_setAllCanvases
+_setPointOffset
+push
+pop
+draw
+}
+
+@enduml

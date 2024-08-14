@@ -41,9 +41,9 @@ class Circles extends Array
             this._setAnchorPoint  = UTILITIES.collection.setAnchorPoint;
             this._setPointOffset  = UTILITIES.collection.setPointOffset;
 
-            this.draw             = UTILITIES.collection.draw;
-            this.push             = UTILITIES.collection.push;
-            this.redraw           = UTILITIES.collection.redraw;
+            this.draw   = UTILITIES.collection.draw;
+            this.push   = UTILITIES.collection.push;
+            this.redraw = UTILITIES.collection.redraw;
 
             Object.defineProperty ( this, 'anchor',    PROPERTY_BLOCKS.combined.anchor       );
             Object.defineProperty ( this, 'area',      PROPERTY_BLOCKS.combined.area         );
@@ -190,6 +190,7 @@ class Circles extends Array
          */
         get aspect ( ) { }
 
+
         /**
          * Get aspect with
          * @readOnly
@@ -305,7 +306,7 @@ class Circles extends Array
          * Draws associated options
          * @private
          * @function
-         * @see             {@link UTILITIES.collection.drawOptionsPost;}
+         * @see             {@link UTILITIES.collection.drawOptionsPost}
          */
         _drawOptionsPost ( ) { }
 
@@ -352,16 +353,31 @@ class Circles extends Array
 
             if ( this.length > 0 )
 
-                for ( let _object of this )
-                {
-                    _left   = ( _object.x - _object.radius < _left   ) ? _object.x - _object.radius : _left;
+                if ( this.constructor.name === 'Ellipses' )
 
-                    _right  = ( _object.x + _object.radius > _right  ) ? _object.x + _object.radius : _right;
+                    for ( let _object of this )
+                    {
+                        _left   = ( _object.x - _object.radius.x < _left   ) ? _object.x - _object.radius.x : _left;
 
-                    _top    = ( _object.y - _object.radius < _top    ) ? _object.y - _object.radius : _top;
+                        _right  = ( _object.x + _object.radius.x > _right  ) ? _object.x + _object.radius.x : _right;
 
-                    _bottom = ( _object.y + _object.radius > _bottom ) ? _object.y + _object.radius : _bottom;
-                }
+                        _top    = ( _object.y - _object.radius.y < _top    ) ? _object.y - _object.radius.y : _top;
+
+                        _bottom = ( _object.y + _object.radius.y > _bottom ) ? _object.y + _object.radius.y : _bottom;
+                    }
+
+                else
+
+                    for ( let _object of this )
+                    {
+                        _left   = ( _object.x - _object.radius < _left   ) ? _object.x - _object.radius : _left;
+
+                        _right  = ( _object.x + _object.radius > _right  ) ? _object.x + _object.radius : _right;
+
+                        _top    = ( _object.y - _object.radius < _top    ) ? _object.y - _object.radius : _top;
+
+                        _bottom = ( _object.y + _object.radius > _bottom ) ? _object.y + _object.radius : _bottom;
+                    }
 
             else
 

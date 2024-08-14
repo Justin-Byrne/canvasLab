@@ -23,8 +23,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Aug, 07 2024',
-            Version:   '0.5.129',
+            Updated:   'Aug, 13 2024',
+            Version:   '0.6.137',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }

@@ -1,0 +1,63 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Circle {
+point                {Point}
+[radius=25]          {number|Point}
+angle                {Angle}
+stroke               {Stroke}
+fill                 {Fill}
+shadow               {Shadow}
+canvas               {HTMLCanvasElement}
+__ Setter __
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+radius               {number|Point}
+canvas               <color:gray>{string}</color>
+__ Getter __
+point                {Point}
+x                    <color:gray>{number}</color>
+y                    <color:gray>{number}</color>
+radius               {number|Point}
+angle                {Angle}
+stroke               {Stroke}
+fill                 {Fill}
+shadow               {Shadow}
+canvas               <color:gray>{string}</color>
+anchor               {Anchor}
+options              {Options}
+area                 <color:gray>{number}</color>
+diameter             <color:gray>{number}</color>
+center               {Point}
+circumference        <color:gray>{number}</color>
+__ Validation __
+_isAnchor            <color:gray>{boolean}</color>
+_isAspect            <color:gray>{boolean}</color>
+_isDegree            <color:gray>{boolean}</color>
+_isInDom             <color:gray>{boolean}</color>
+_isNumber            <color:gray>{boolean}</color>
+_isPoint             <color:gray>{boolean}</color>
+isThere              <color:gray>{boolean}</color>
+__ Utility __
+_clearCanvas
+_drawAnchor
+_drawAxis
+_drawBorder
+_drawOptions
+_rotatePoint
+_setAnchorPoint
+_setFillType
+_setShadow
+fillColorCycle
+gradientColorCycle
+rotate
+showCoordinates
+strokeColorCycle
+draw
+redraw
+}
+
+@enduml

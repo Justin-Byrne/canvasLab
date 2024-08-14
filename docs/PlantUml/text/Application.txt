@@ -1,0 +1,19 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Application {
+__ Setter __
+canvas      <color:gray>{string}</color>
+animation   {Queue|Object}
+__ Getter __
+canvas      {HTMLCanvasElement}
+about       {Object}
+dom         {Object}
+_center     <color:gray>{boolean}</color>
+__ Validation __
+_isInDom    <color:gray>{boolean}</color>
+}
+
+@enduml

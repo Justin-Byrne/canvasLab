@@ -27,20 +27,20 @@ body {
 nav {
   display: flex;
   position: absolute;
-  left: -200px;
+  left: -230px;
   z-index: 10;
   flex-wrap: nowrap;
   float: left;
   min-height: 100vh;
   background: url("../images/png/tile.png");
   background-size: 90%;
-  background-position-x: 101px;
-  background-position-y: 4px;
+  background-position-x: 113px;
+  background-position-y: -7px;
   border-right: 1px solid #6f6f6f;
   box-shadow: 1px 0px 5px 0px #3b4c5b;
   transition: left 0.45s ease; }
   nav .nav-wrapper {
-    width: 200px;
+    width: 225px;
     background: rgba(31, 51, 73, 0.85);
     padding: 0.5rem 0 0.5rem 0 !important; }
     nav .nav-wrapper #nav-icon {
@@ -48,7 +48,7 @@ nav {
       margin: 0 auto;
       height: 61px;
       width: 61px;
-      padding-top: 20px;
+      padding-top: 14px;
       opacity: 0.25; }
       nav .nav-wrapper #nav-icon:hover {
         cursor: pointer;
@@ -131,18 +131,20 @@ nav {
     nav .nav-wrapper .nav-menu {
       list-style: none;
       margin-bottom: 0;
-      padding-left: 32px;
+      padding-left: 3.5rem;
+      font-size: 14px;
       transition: padding 1s; }
       nav .nav-wrapper .nav-menu ul {
         list-style: none;
         padding-left: 0rem !important;
-        margin-left: 1rem !important;
+        margin-left: 0.75rem !important;
         transition: opacity 300ms, display 300ms; }
         nav .nav-wrapper .nav-menu ul li.nav-link {
-          display: block;
+          display: flex;
           padding: 0rem !important;
           padding-left: 0.5rem !important;
-          padding-bottom: 0.5rem !important;
+          padding-top: 0.3rem !important;
+          padding-bottom: 0.3rem !important;
           color: unset;
           transition: unset; }
           nav .nav-wrapper .nav-menu ul li.nav-link a {
@@ -154,11 +156,10 @@ nav {
           animation: slidedown 300ms;
           display: block;
           opacity: 1; }
-        nav .nav-wrapper .nav-menu ul#objects-collapse li:nth-child(2n) {
-          padding-left: 1.25rem !important; }
       nav .nav-wrapper .nav-menu button {
         color: white;
         text-shadow: 0px 0px 1px black;
+        font-size: 15px;
         transition: color 0.5s ease; }
         nav .nav-wrapper .nav-menu button:before {
           width: 1.25em;
@@ -199,7 +200,7 @@ nav {
     nav .nav-wrapper .external-links {
       display: flex;
       position: absolute;
-      bottom: 41px;
+      bottom: 47px;
       width: 83%;
       margin-left: 20px;
       background: #1c262f;
@@ -223,7 +224,7 @@ nav {
     nav .nav-wrapper #version {
       display: flex;
       position: absolute;
-      bottom: 10px;
+      bottom: 14px;
       width: 83%;
       margin-left: 20px;
       font-size: 15px;
@@ -237,7 +238,7 @@ nav {
           border-top-left-radius: 2px;
           border-bottom-left-radius: 2px; }
         nav .nav-wrapper #version span:nth-child(2) {
-          background-color: #b23801;
+          background-color: #d1654d;
           border-top-right-radius: 2px;
           border-bottom-right-radius: 2px; }
 
@@ -251,7 +252,7 @@ nav {
 
 main {
   position: relative;
-  padding-left: 200px;
+  padding-left: 225px;
   background: #686c6f;
   min-height: 100vh;
   overflow: auto; }
@@ -919,7 +920,7 @@ main {
 
 .card-stack {
   position: relative;
-  width: 23px;
+  width: 30px;
   top: 1px;
   margin-right: 14px;
   opacity: 0.6; }

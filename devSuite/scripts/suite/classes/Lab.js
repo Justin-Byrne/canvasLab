@@ -356,17 +356,17 @@ class Lab
 
                 case 'keyboardCommands':
 
-                    Mousetrap.bind ( 'space', ( ) => this.runCode ( ) );
+                    Mousetrap.bind ( 'space',     ( ) => this.runCode ( )          );
 
-                    Mousetrap.bind ( 'n',     ( ) => UI.toggle.navigation ( ) );
+                    Mousetrap.bind ( 'n',         ( ) => UI.toggle.navigation  ( ) );
 
-                    Mousetrap.bind ( 'f',     ( ) => UI.toggle.fullscreen ( ) );
+                    Mousetrap.bind ( 'f',         ( ) => UI.toggle.fullscreen  ( ) );
 
-                    Mousetrap.bind ( 'g',     ( ) => UI.toggle.grid       ( ) );
+                    Mousetrap.bind ( 'g',         ( ) => UI.toggle.grid        ( ) );
 
-                    Mousetrap.bind ( 'r',     ( ) => UI.toggle.ruler      ( ) );
+                    Mousetrap.bind ( 'r',         ( ) => UI.toggle.ruler       ( ) );
 
-                    Mousetrap.bind ( 'd',     ( ) => UI.toggle.download   ( ) );
+                    Mousetrap.bind ( 'd',         ( ) => UI.toggle.download    ( ) );
             }
         }
 
@@ -727,6 +727,8 @@ class Lab
                     autoScrollEditorIntoView:   true,
                     copyWithEmptySelection:     true,
                     mergeUndoDeltas:            'always',
+                    enableMultiselect:          true,
+                    fadeFoldWidgets:            true
                 } );
 
             this.editor.commands.addCommand (
@@ -734,6 +736,13 @@ class Lab
                     name:    'run_on_save',
                     bindKey: { win: 'Ctrl-S', mac: 'Command-S' },
                     exec:    ( ) => devSuite.runLabStationCode ( )
+                } );
+
+            this.editor.commands.addCommand (
+                {
+                    name:    'multi_select',
+                    bindKey: { win: 'Ctrl-D', mac: 'Command-D' },
+                    exec:    ( editor ) => editor.commands.byName.selectMoreAfter.exec ( editor )
                 } );
         }
 

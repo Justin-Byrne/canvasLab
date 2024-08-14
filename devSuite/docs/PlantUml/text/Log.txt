@@ -1,0 +1,16 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Log {
+entries      <color:gray>{string}</color>
+__ Getter __
+entries      <color:gray>{string}</color>
+__ Utility __
+entry
+view
+_timestamp
+}
+
+@enduml

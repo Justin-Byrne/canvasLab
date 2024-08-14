@@ -122,7 +122,11 @@ class Page
 
                 this.type    = ( this.handler ) ? _button.replace ( this.group.toTitleCase ( ), '' ).replace ( this.handler.toTitleCase ( ), '' ).toLowerCase ( ) : _button.replace ( this.group.toTitleCase ( ), '' ).toLowerCase ( );
 
-                this.type    = ( this.type === 'cimage' ) ? 'cImage' : this.type;
+                this.type    = ( this.type === 'cimage'            ) ? 'cImage'            : this.type;
+
+                this.type    = ( this.type === 'roundedrectangle'  ) ? 'roundedRectangle'  : this.type;
+
+                this.type    = ( this.type === 'roundedrectangles' ) ? 'roundedRectangles' : this.type;
             }
         }
 }

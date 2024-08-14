@@ -1,0 +1,23 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Tool {
+copy                 {Object}
+__ Validation __
+isActive             <color:gray>{boolean}</color>
+isCanvasLabObject    <color:gray>{boolean}</color>
+__ Utility __
+fontSize             <color:gray>{string}</color>
+numberFromPx         <color:gray>{number}</color>
+textMinHeight        <color:gray>{number}</color>
+copyObjectWithKey    {Object}
+delay                {Promise}
+_incrementFontSize
+catch
+scaleText
+while
+}
+
+@enduml

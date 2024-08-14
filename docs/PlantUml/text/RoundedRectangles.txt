@@ -1,0 +1,13 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class RoundedRectangles {
+point     {Point}
+canvas    {HTMLCanvasElement}
+__ Getter __
+options   {Object}
+}
+
+@enduml

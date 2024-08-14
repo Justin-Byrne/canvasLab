@@ -283,6 +283,19 @@ class SacredCircles
 
                 _circle.move ( degree, _distance );
 
+            let _ellipse   = new Ellipse (
+                                 point,                     /* Point  */
+                                 new Point ( this.radius, this.radius * 0.5 ),  /* Radius */
+                                 undefined,                 /* Angle  */
+                                 undefined,                 /* Stroke */
+                                 new Fill ( color ),        /* Fill   */
+                                 undefined,                 /* Shadow */
+                                 undefined                  /* Canvas */
+                             );
+
+
+                _ellipse.move ( degree, _distance );
+
 
             let _rectangle = new Rectangle (
                                  point,                     /* Point  */
@@ -296,6 +309,19 @@ class SacredCircles
 
 
                 _rectangle.move ( degree, _distance );
+
+
+            let _roundedRectangle = new RoundedRectangle (
+                                 point,                     /* Point  */
+                                 undefined,                 /* Aspect */
+                                 undefined,                 /* Round  */
+                                 undefined,                 /* Stroke */
+                                 new Fill ( color ),        /* Fill   */
+                                 undefined,                 /* Shadow */
+                                 undefined                  /* Canvas */
+                             );
+
+                _roundedRectangle.move ( degree, _distance );
 
 
             let _text      = new Text (
@@ -312,11 +338,15 @@ class SacredCircles
                              );
 
 
-            this.master.circles.push    ( _circle    );
+            this.master.circles.push           ( _circle    );
 
-            this.master.rectangles.push ( _rectangle );
+            this.master.ellipses.push          ( _ellipse   );
 
-            this.master.texts.push      ( _text      );
+            this.master.rectangles.push        ( _rectangle );
+
+            this.master.roundedRectangles.push ( _roundedRectangle );
+
+            this.master.texts.push             ( _text      );
         }
 
         _insertShapeB ( degree, color )
@@ -339,6 +369,20 @@ class SacredCircles
                 _circle.move ( degree, _distance );
 
 
+            let _ellipse   = new Ellipse (
+                                 _point,                    /* Point  */
+                                 new Point ( this.radius, this.radius * 0.5 ),  /* Radius */
+                                 undefined,                 /* Angle  */
+                                 undefined,                 /* Stroke */
+                                 new Fill ( color ),        /* Fill   */
+                                 undefined,                 /* Shadow */
+                                 undefined                  /* Canvas */
+                             );
+
+
+                _ellipse.move ( degree, _distance );
+
+
             let _rectangle = new Rectangle (
                                  _point,                    /* Point  */
                                  undefined,                 /* Aspect */
@@ -350,6 +394,20 @@ class SacredCircles
                              );
 
                 _rectangle.move ( degree, _distance );
+
+
+            let _roundedRectangle = new RoundedRectangle (
+                                 _point,                    /* Point  */
+                                 undefined,                 /* Aspect */
+                                 undefined,                 /* Round  */
+                                 undefined,                 /* Stroke */
+                                 new Fill ( color ),        /* Fill   */
+                                 undefined,                 /* Shadow */
+                                 undefined                  /* Canvas */
+                             );
+
+                _roundedRectangle.move ( degree, _distance );
+
 
             let _line      = new Line (
                                  _point,                    /* Start   */
@@ -374,13 +432,17 @@ class SacredCircles
                              );
 
 
-            this.master.circles.push    ( _circle    );
+            this.master.circles.push           ( _circle    );
 
-            this.master.rectangles.push ( _rectangle );
+            this.master.ellipses.push          ( _ellipse   );
 
-            this.master.lines.push      ( _line      );
+            this.master.rectangles.push        ( _rectangle );
 
-            this.master.texts.push      ( _text      );
+            this.master.roundedRectangles.push ( _roundedRectangle );
+
+            this.master.lines.push             ( _line      );
+
+            this.master.texts.push             ( _text      );
         }
 
         _insertCouplingLines ( )

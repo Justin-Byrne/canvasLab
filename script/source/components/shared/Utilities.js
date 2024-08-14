@@ -292,7 +292,7 @@ const UTILITIES =
          */
         axis ( edgeOffset = 20, color = new Rgb ( 245, 80, 50 ) )
         {
-            let _collections = [ 'Circles', 'Rectangles', 'Texts' ];
+            let _collections = [ 'Circles', 'Ellipses', 'Rectangles', 'RoundedRectangles', 'Texts' ];
 
 
             let _lines = new Lines;
@@ -334,7 +334,7 @@ const UTILITIES =
          */
         border ( aspect, color = new Rgb ( 245, 80, 50 ) )
         {
-            let _collections = [ 'Circles', 'Rectangles', 'Texts' ];
+            let _collections = [ 'Circles', 'Ellipses', 'Rectangles', 'RoundedRectangles', 'Texts' ];
 
 
             if ( this._isAspect ( aspect ) )

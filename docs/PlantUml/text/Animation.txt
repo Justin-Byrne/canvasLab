@@ -1,0 +1,29 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Animation {
+timing                    {function}
+draw                      {function}
+duration                  <color:gray>{number}</color>
+__ Setter __
+timing                    {function}
+draw                      {function}
+duration                  <color:gray>{number}</color>
+queue                     {Queue}
+__ Getter __
+timing                    {function}
+draw                      {function}
+duration                  <color:gray>{number}</color>
+queue                     {Queue}
+__ Validation __
+_isNumber                 <color:gray>{boolean}</color>
+__ Utility __
+_getAnimationProperties   {Object}
+_checkQueue
+animate
+requestAnimationFrame
+}
+
+@enduml

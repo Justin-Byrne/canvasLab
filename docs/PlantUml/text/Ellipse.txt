@@ -1,0 +1,19 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Ellipse {
+point    {Point}
+angle    {Angle}
+stroke   {Stroke}
+fill     {Fill}
+shadow   {Shadow}
+canvas   {HTMLCanvasElement}
+__ Setter __
+radius   {Point}
+__ Getter __
+radius   {Point}
+}
+
+@enduml

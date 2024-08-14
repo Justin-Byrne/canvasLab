@@ -22,6 +22,10 @@ String.prototype.toTitleCase = function ( )
         {
             case 'controlpoints':       return 'ControlPoints';
 
+            case 'roundedrectangle':    return 'RoundedRectangle';
+
+            case 'roundedrectangles':   return 'RoundedRectangles';
+
             default:                    return _titleCase ( _string );
         }
     }

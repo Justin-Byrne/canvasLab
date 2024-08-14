@@ -41,9 +41,9 @@ class Rectangles extends Array
             this._setAnchorPoint  = UTILITIES.collection.setAnchorPoint;
             this._setPointOffset  = UTILITIES.collection.setPointOffset;
 
-            this.draw             = UTILITIES.collection.draw;
-            this.push             = UTILITIES.collection.push;
-            this.redraw           = UTILITIES.collection.redraw;
+            this.draw   = UTILITIES.collection.draw;
+            this.push   = UTILITIES.collection.push;
+            this.redraw = UTILITIES.collection.redraw;
 
             Object.defineProperty ( this, 'anchor',    PROPERTY_BLOCKS.combined.anchor       );
             Object.defineProperty ( this, 'area',      PROPERTY_BLOCKS.combined.area         );
@@ -190,6 +190,7 @@ class Rectangles extends Array
          */
         get aspect ( ) { }
 
+
         /**
          * Get aspect with
          * @readOnly
@@ -289,7 +290,7 @@ class Rectangles extends Array
          * @param           {number} stop                               Gradient color stop
          * @see             {@link UTILITIES.draw.axis}
          */
-        _drawAxis   ( ) { }
+        _drawAxis ( ) { }
 
         /**
          * Draws an axis for the associated object
@@ -299,13 +300,13 @@ class Rectangles extends Array
          * @param           {Object} color                              Color model
          * @see             {@link UTILITIES.draw.border}
          */
-        _drawBorder  ( ) { }
+        _drawBorder ( ) { }
 
         /**
          * Draws associated options
          * @private
          * @function
-         * @see             {@link UTILITIES.collection.drawOptionsPost;}
+         * @see             {@link UTILITIES.collection.drawOptionsPost}
          */
         _drawOptionsPost ( ) { }
 
