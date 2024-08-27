@@ -112,10 +112,12 @@ class Template
         },
         animation:
         {
-            Line:       '{ x: 100, y: 50 }, { x: 200, y: 100 }',
-            Circle:     '{ x: 154, y: 77 }',
-            Rectangle:  '{ x: 154, y: 77 }',
-            Text:       '{ x: 154, y: 77 }, \'Text\''
+            Line:             '{ x: 100, y: 50 }, { x: 200, y: 100 }',
+            Circle:           '{ x: 154, y: 77 }',
+            Ellipse:          '{ x: 154, y: 77 }',
+            Rectangle:        '{ x: 154, y: 77 }',
+            RoundedRectangle: '{ x: 154, y: 77 }',
+            Text:             '{ x: 154, y: 77 }, \'Text\''
         }
     }
 
@@ -209,9 +211,9 @@ class Template
             {
                 if ( _entry === 'code' )
 
-                    cardObject [ _entry ] = ( PAGE.group === 'plan' ) ? this._modifyPlanCode ( cardObject [ _entry ], count )
+                    cardObject [ _entry ] = ( PAGE.group === 'template' ) ? this._modifyTemplateCode ( cardObject [ _entry ], count )
 
-                                                                      : this._modifyCode     ( cardObject [ _entry ], count );
+                                                                          : this._modifyCode     ( cardObject [ _entry ], count );
 
 
                 let _regex = new RegExp ( `{{${_entry}}}`, 'g' );
@@ -289,7 +291,7 @@ class Template
 
                         default:
 
-                            let _group = ( PAGE.group === 'plan' ) ? 'Plan' : TOOL.isCanvasLabObject ( _type ) ? 'Object' : 'Subject';
+                            let _group = ( PAGE.group === 'template' ) ? 'Template' : TOOL.isCanvasLabObject ( _type ) ? 'Object' : 'Subject';
 
                             template   = template.replace ( /{{group}}/, _group ).replace ( /{{type}}/, _type ).replace ( /{{type}}/, _type );
                     }
@@ -348,7 +350,7 @@ class Template
          */
         _getSpecialVariables ( code, count )
         {
-            let _specials = [ '_sequence' ];
+            let _specials = [ '_transition' ];
 
 
             for ( let _special of _specials )
@@ -360,13 +362,13 @@ class Template
                 {
                     switch ( _special )
                     {
-                        case '_sequence':
+                        case '_transition':
 
-                            let _lineIndex = /let\s_sequence[^=]+=/g.exec ( code ).index;
+                            let _lineIndex = /let\s_transition[^=]+=/g.exec ( code ).index;
 
                             let _headCode  = code.substring ( 0, _lineIndex ).trim ( ) + '\n\n';
 
-                            let _temp      = code.match ( /let\s_sequence[^,]+,[^,]+[^}]+}[^}]+}[^\w]+canvaslab[^;]+;/g ) [ 0 ].split ( '\n' );
+                            let _temp      = code.match ( /let\s_transition[^,]+,[^,]+[^}]+}[^}]+}[^\w]+canvaslab[^;]+;/g ) [ 0 ].split ( '\n' );
 
 
                             for ( let _index in _temp )
@@ -381,6 +383,7 @@ class Template
 
                             break;
                     }
+
 
                     code = code.replace ( _regex, `${_special}_${count}` );
                 }
@@ -444,14 +447,14 @@ class Template
         }
 
         /**
-         * Modifies code to include instantiation expressions & unique variable identifiers; for Plans only
+         * Modifies code to include instantiation expressions & unique variable identifiers; for Templates only
          * @private
          * @function
          * @param           {function} code                     Card-object's function
          * @param           {string}   count                    Number for unique variable identifiers
          * @return          {string}                            Code string
          */
-        _modifyPlanCode ( code, count )
+        _modifyTemplateCode ( code, count )
         {
             let _code  = UI.clean.code ( code );
 
@@ -459,7 +462,7 @@ class Template
 
             let _regex = ( PAGE.handler === 'animation' ) ? new RegExp ( /_\w+/g )
 
-                                                          : new RegExp ( /_group.plan\s*=\s*new\s*\w+\s\(\s*[^\)]+\)/g );
+                                                          : new RegExp ( /_group.(template)\s*=\s*new\s*\w+\s\(\s*[^\)]+\)/g );
 
             for ( let _index in _lines )
             {

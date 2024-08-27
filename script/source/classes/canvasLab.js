@@ -158,17 +158,14 @@ class canvasLab
         }
 
         /**
-         * Animates onscreen objects in accordance with passed param values
-         * @param           {Object}   sequence                         Contains timing, draw, & duration values & functions
-         * @param           {number}   sequence.duration                Duration of animation
-         * @param           {Function} sequence.timing                  Timing function
-         * @param           {Function} sequence.draw                    Draw function
+         * Animate the transition passed
+         * @property        {Transition} transition                     Transition animation
          */
-        animate ( sequence = { duration, timing, draw } )
+        animate ( transition = { object, timing, period, change } )
         {
-            if ( sequence )
+            if ( transition )
 
-                this.#application.animation = sequence;
+                this.#application.animation = transition;
         }
 
     ////    INITIALIZE  ////////////////////////////////////

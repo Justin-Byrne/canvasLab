@@ -9,6 +9,9 @@ end                 {Point}
 stroke              {Stroke}
 shadow              {Shadow}
 canvas              {HTMLCanvasElement}
+controlPoints       {ControlPoints}
+options             {Options}
+location            {Location}
 __ Setter __
 start               {Point}
 end                 {Point}
@@ -23,6 +26,7 @@ lineCap             <color:gray>{string}</color>
 canvas              <color:gray>{string}</color>
 options             {Options}
 controlPoints       {ControlPoints}
+location            {Location}
 center              {Point}
 __ Validation __
 _isAspect           <color:gray>{boolean}</color>
@@ -32,11 +36,11 @@ _isNumber           <color:gray>{boolean}</color>
 _isPoint            <color:gray>{boolean}</color>
 isThere
 __ Utility __
-_clearCanvas
 _drawAxis
 _drawBorder
 _drawOptions
 _rotatePoint
+_setPath
 _setShadow
 curve
 drawPoints
@@ -44,9 +48,7 @@ move
 rotate
 showControlPoints
 showCoordinates
-strokeColorCycle
 draw
-redraw
 }
 
 @enduml

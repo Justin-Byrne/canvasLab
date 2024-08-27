@@ -330,8 +330,8 @@ nav
                 }
             }
 
-            li:nth-child(5) > button,
-            li:nth-child(7) > button { padding-top: 12px; }
+            // li:nth-child(5) > button,
+            li button { padding-top: 6px; }
         }
 
         #nav-lab
@@ -404,7 +404,9 @@ nav
 
                 &:nth-child(2)
                 {
-                    background-color:           rgb(209, 101, 77);
+                    // background-color:           rgb(209, 101, 77);
+
+                    background-color: navy;
 
                     border-top-right-radius:    2px;
                     border-bottom-right-radius: 2px;

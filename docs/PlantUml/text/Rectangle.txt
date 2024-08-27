@@ -10,7 +10,10 @@ round                {Array}
 stroke               {Stroke}
 fill                 {Fill}
 shadow               {Shadow}
+anchor               {Anchor}
 canvas               {HTMLCanvasElement}
+options              {Options}
+location             {Location}
 __ Setter __
 point                {Point}
 x                    <color:gray>{number}</color>
@@ -37,6 +40,7 @@ options              {Options}
 area                 <color:gray>{number}</color>
 center               {Point}
 perimeter            <color:gray>{number}</color>
+location
 __ Validation __
 _isAspect            <color:gray>{boolean}</color>
 _isDegree            <color:gray>{boolean}</color>
@@ -44,7 +48,6 @@ _isInDom             <color:gray>{boolean}</color>
 _isPoint             <color:gray>{boolean}</color>
 isThere
 __ Utility __
-_clearCanvas
 _drawAnchor
 _drawAxis
 _drawBorder
@@ -58,9 +61,7 @@ gradientColorCycle
 move
 rotate
 showCoordinates
-strokeColorCycle
 draw
-redraw
 }
 
 @enduml

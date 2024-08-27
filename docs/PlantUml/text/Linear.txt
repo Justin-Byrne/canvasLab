@@ -4,23 +4,23 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Linear {
-start             {Point}
-end               {Point}
-stops             {Array.<Stop>}
+start            {Point}
+end              {Point}
+stops            {Array.<Stop>}
 __ Setter __
-start             {Point}
-end               {Point}
-stops             {Array.<Stop>}
+start            {Point}
+end              {Point}
+stops            {Array.<Stop>}
 __ Getter __
-start             {Point}
-end               {Point}
-stops             {Array.<Stop>}
+start            {Point}
+end              {Point}
+stops            {Array.<Stop>}
 __ Validation __
-_isColorModel     <color:gray>{boolean}</color>
-_isPoint          <color:gray>{boolean}</color>
-_isStop           <color:gray>{boolean}</color>
+_isColorModel    <color:gray>{boolean}</color>
+_isPoint         <color:gray>{boolean}</color>
+_isStop          <color:gray>{boolean}</color>
 __ Utility __
-_stopColorCycle
+stopColorCycle
 }
 
 @enduml

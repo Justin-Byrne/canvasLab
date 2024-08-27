@@ -1,6 +1,67 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.7.151] - 2024-08-27
+### Added
+- **canvasLab**
+  - :sunny: `PROPERTY_BLOCKS` module,
+    - `individual.master` mutator & accessor
+    - `collection.template` mutator & accessor
+  - :sunny: `Location` class, for storing location data for animations
+  - :blossom: `Animation` class,
+    - `_cacheObject` function, to cache object
+    - `_checkQueue` function, to check whether queue is set
+    - `_clearCanvas` function, to clear the canvas
+    - `_drawCache` function, to draw cached object(s)
+    - `_getPointByDegreeNDistance` function, to returns a point based off of the direction & distance passed
+    - `_setLocationData` function, to set `Location` data
+    - `_transition` function, to calculate an animation transition
+- **devSuite**
+  - :sunny: `Lab` class, added code folding, via hotkey <kbd>Ctrl</kbd> + <kbd>-</kbd> + <kbd>;</kbd>
+
+### Changed
+- **canvasLab**
+  - :full_moon: `PROPERTY_BLOCKS` module,
+      - `discrete` to `individual`
+      - `combined` to `collection`
+  - :full_moon: `UTILITIES` module,
+    - `push`, added storage type check prior to push, for constructor argument pushes
+    - `misc.pushPop`, added storage check, prior to push or pop
+    - moved `color`, `draw`, `misc`, & `set` function into an `individual` containing; for better organization
+
+### Refactored
+- **canvasLab**
+  - :last_quarter_moon: `VALIDATION` module,
+    - `isCanvasLabObject` to include collections
+  - :last_quarter_moon: `Rgb` class, supplemented `alpha` mutator & accessor with `PROPERTY_BLOCKS.alpha`
+  - :last_quarter_moon: `Stroke` class, refactored `segments` setter to not set the `type` property
+  - :last_quarter_moon: `Line` class, reorganized
+  - :last_quarter_moon: Supplemented the following mutators & accessors
+    - `Anchor` class,
+      - `point` with `PROPERTY_BLOCKS.individual.point`
+      - `x` with `PROPERTY_BLOCKS.individual.pointX`
+      - `y` with `PROPERTY_BLOCKS.individual.pointY`
+    - `Point` class,
+      - `canvas` with `PROPERTY_BLOCKS.individual.canvas`
+    - `Shadow` class,
+      - `offset` with `PROPERTY_BLOCKS.individual.offset`
+      - `x` with `PROPERTY_BLOCKS.individual.offsetX`
+      - `y` with `PROPERTY_BLOCKS.individual.offsetY`
+    - `canvasLab` class, refactored `animate` to include new properties; `object`, `timing`, `period`, & `change`
+    - `Animation` class,
+      - `animate` function, to process animation(s) using a new animation processing schema
+      - `_getAnimationProperties` function, to return animation properties using new animation processing schema
+
+### Removed
+- **canvasLab**
+  - :pick: `UTILITIES` module,
+    - `redraw`
+  - :pick: `PROPERTY_BLOCKS` module,
+    - `collection.start`
+    - `collection.end`
+  - :pick: `Rgb` class, removed `fade` function
+  - :pick: `Text` class, removed `fillColorCycle` function
+
 ## [0.6.137] - 2024-08-13
 ### Added
 - **canvasLab**
@@ -655,7 +716,8 @@ All notable changes to this project will be documented in this file.
 
 | Version     | Date         | Commit                                                                | Comments                                                                                                                     |
 | :---------  | :----------: | :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `[0.6.137]` | `2024-08-13` | `CURRENT`                                                             | <sup>Added Ellipse(s) & RoundedRectangle(s) classes, mutli-select functionality, with refactoring.</sup>                     |
+| `[0.7.151]` | `2024-08-27` | `CURRENT`                                                             | <sup>Added Location class, refactored many Animation processes, and re-organized programs schema.</sup>                     |
+| `[0.6.137]` | `2024-08-13` | [`d4865e2`](https://github.com/Justin-Byrne/canvasLab/commit/d4865e2) | <sup>Added Ellipse(s) & RoundedRectangle(s) classes, mutli-select functionality, with refactoring.</sup>                     |
 | `[0.5.129]` | `2024-08-07` | [`a0c7ae3`](https://github.com/Justin-Byrne/canvasLab/commit/a0c7ae3) | <sup>Added cImage class, ellipse to Circle, rounding to Rectangles, Pattern to Fill, with general fixes & refactoring.</sup> |
 | `[0.4.118]` | `2024-07-29` | [`07db323`](https://github.com/Justin-Byrne/canvasLab/commit/07db323) | <sup>Added lab keyboard commands, modified core animation handling, and general refactoring.</sup>                           |
 | `[0.4.104]` | `2024-07-18` | [`f968611`](https://github.com/Justin-Byrne/canvasLab/commit/f968611) | <sup>Moved lab button to front of each card-object, with minor refactoring and cleanup.</sup>                                |
@@ -688,7 +750,7 @@ All notable changes to this project will be documented in this file.
 
 ## Types of changes
 - `Added` added functions or properties.
-- `Changed` changed existing function call names, placement, or properties.
+- `Changed` changed existing function call names, placement, location, and/or properties.
 - `Deprecated` soon-to-be removed features.
 - `Fixed` fixed bug.
 - `Refactored` refactored existing functionality.

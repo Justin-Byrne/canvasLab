@@ -816,6 +816,13 @@ class Lab
                     bindKey: { win: 'Ctrl-D', mac: 'Command-D' },
                     exec:    ( editor ) => editor.commands.byName.selectMoreAfter.exec ( editor )
                 } );
+
+            this.editor.commands.addCommand (
+                {
+                    name:    'fold_code',
+                    bindKey: { win: 'Ctrl-;', mac: 'Command-;' },
+                    exec:    ( editor ) => editor.commands.byName.foldall.exec ( editor )
+                } );
         }
 
         /**
@@ -1044,7 +1051,7 @@ class Page
 
             let _regex =
             {
-                group:   new RegExp ( /(Object|Subject|Plan)/  ),
+                group:   new RegExp ( /(Object|Subject|Template)/  ),
 
                 handler: new RegExp ( /(Processing|Animation)/ )
             }
@@ -1184,10 +1191,12 @@ class Template
         },
         animation:
         {
-            Line:       '{ x: 100, y: 50 }, { x: 200, y: 100 }',
-            Circle:     '{ x: 154, y: 77 }',
-            Rectangle:  '{ x: 154, y: 77 }',
-            Text:       '{ x: 154, y: 77 }, \'Text\''
+            Line:             '{ x: 100, y: 50 }, { x: 200, y: 100 }',
+            Circle:           '{ x: 154, y: 77 }',
+            Ellipse:          '{ x: 154, y: 77 }',
+            Rectangle:        '{ x: 154, y: 77 }',
+            RoundedRectangle: '{ x: 154, y: 77 }',
+            Text:             '{ x: 154, y: 77 }, \'Text\''
         }
     }
 
@@ -1281,9 +1290,9 @@ class Template
             {
                 if ( _entry === 'code' )
 
-                    cardObject [ _entry ] = ( PAGE.group === 'plan' ) ? this._modifyPlanCode ( cardObject [ _entry ], count )
+                    cardObject [ _entry ] = ( PAGE.group === 'template' ) ? this._modifyTemplateCode ( cardObject [ _entry ], count )
 
-                                                                      : this._modifyCode     ( cardObject [ _entry ], count );
+                                                                          : this._modifyCode     ( cardObject [ _entry ], count );
 
 
                 let _regex = new RegExp ( `{{${_entry}}}`, 'g' );
@@ -1361,7 +1370,7 @@ class Template
 
                         default:
 
-                            let _group = ( PAGE.group === 'plan' ) ? 'Plan' : TOOL.isCanvasLabObject ( _type ) ? 'Object' : 'Subject';
+                            let _group = ( PAGE.group === 'template' ) ? 'Template' : TOOL.isCanvasLabObject ( _type ) ? 'Object' : 'Subject';
 
                             template   = template.replace ( /{{group}}/, _group ).replace ( /{{type}}/, _type ).replace ( /{{type}}/, _type );
                     }
@@ -1420,7 +1429,7 @@ class Template
          */
         _getSpecialVariables ( code, count )
         {
-            let _specials = [ '_sequence' ];
+            let _specials = [ '_transition' ];
 
 
             for ( let _special of _specials )
@@ -1432,13 +1441,13 @@ class Template
                 {
                     switch ( _special )
                     {
-                        case '_sequence':
+                        case '_transition':
 
-                            let _lineIndex = /let\s_sequence[^=]+=/g.exec ( code ).index;
+                            let _lineIndex = /let\s_transition[^=]+=/g.exec ( code ).index;
 
                             let _headCode  = code.substring ( 0, _lineIndex ).trim ( ) + '\n\n';
 
-                            let _temp      = code.match ( /let\s_sequence[^,]+,[^,]+[^}]+}[^}]+}[^\w]+canvaslab[^;]+;/g ) [ 0 ].split ( '\n' );
+                            let _temp      = code.match ( /let\s_transition[^,]+,[^,]+[^}]+}[^}]+}[^\w]+canvaslab[^;]+;/g ) [ 0 ].split ( '\n' );
 
 
                             for ( let _index in _temp )
@@ -1453,6 +1462,7 @@ class Template
 
                             break;
                     }
+
 
                     code = code.replace ( _regex, `${_special}_${count}` );
                 }
@@ -1516,14 +1526,14 @@ class Template
         }
 
         /**
-         * Modifies code to include instantiation expressions & unique variable identifiers; for Plans only
+         * Modifies code to include instantiation expressions & unique variable identifiers; for Templates only
          * @private
          * @function
          * @param           {function} code                     Card-object's function
          * @param           {string}   count                    Number for unique variable identifiers
          * @return          {string}                            Code string
          */
-        _modifyPlanCode ( code, count )
+        _modifyTemplateCode ( code, count )
         {
             let _code  = UI.clean.code ( code );
 
@@ -1531,7 +1541,7 @@ class Template
 
             let _regex = ( PAGE.handler === 'animation' ) ? new RegExp ( /_\w+/g )
 
-                                                          : new RegExp ( /_group.plan\s*=\s*new\s*\w+\s\(\s*[^\)]+\)/g );
+                                                          : new RegExp ( /_group.(template)\s*=\s*new\s*\w+\s\(\s*[^\)]+\)/g );
 
             for ( let _index in _lines )
             {
@@ -2368,7 +2378,7 @@ class Ui
             LAB.runCode ( );
 
 
-            if ( PAGE.group === 'plan')
+            if ( PAGE.group === 'template' )
 
                 this.navigation ( );
 
@@ -2687,9 +2697,9 @@ class Ui
         {
             let _class   = code.match ( /_(\w+)/ ) [ 1 ];
 
-            let _regex   = new RegExp ( '_(line|lines|circle|circles|rectangle|rectangles|text|texts)', 'g' );
+            let _regex   = new RegExp ( '_(line|lines|circle|circles|ellipse|ellipses|rectangle|rectangles|roundedRectangle|roundedRectangles|text|texts)', 'g' );
 
-            let _objects = [ 'line', 'lines', 'rectangle', 'rectangles', 'circle', 'circles', 'text', 'texts' ]
+            let _objects = [ 'line', 'lines', 'circle', 'circles', 'ellipse', 'ellipses', 'rectangle', 'rectangles', 'roundedRectangle', 'roundedRectangles', 'text', 'texts' ]
 
 
             let _result = ( ! _objects.includes ( _class ) )
@@ -3249,6 +3259,251 @@ class Ui
     let _classes = [ 'Template', 'Page', 'Tool', 'Ui', 'Lab' ];
 
     /**
+     * Array of navigation links
+     * @type {Array.<Object>}
+     * @example { title: 'Title', group: 'Icon folder', links: <Array.<Object>> | null }
+     */
+    let _navLinks =
+    [
+        // core
+        {
+            title: 'Core',
+            links:
+            [
+                // objects
+                {
+                    title: 'Objects',
+                    links:
+                    [
+                        {
+                            title: 'Collections',
+                            links:
+                            [
+                                {
+                                    title: 'Lines',
+                                    group: 'Object'
+                                },
+                                {
+                                    title: 'Circles',
+                                    group: 'Object'
+                                },
+                                {
+                                    title: 'Ellipses',
+                                    group: 'Object'
+                                },
+                                {
+                                    title: 'Rectangles',
+                                    group: 'Object'
+                                },
+                                {
+                                    title: 'RoundedRectangles',
+                                    group: 'Object'
+                                },
+                                {
+                                    title: 'Texts',
+                                    group: 'Object'
+                                },
+                                {
+                                    title: 'Group',
+                                    group: 'Object'
+                                },
+                            ]
+                        },
+                        {
+                            title: 'Line',
+                            group: 'Object'
+                        },
+                        {
+                            title: 'Circle',
+                            group: 'Object'
+                        },
+                        {
+                            title: 'Ellipse',
+                            group: 'Object'
+                        },
+                        {
+                            title: 'Rectangle',
+                            group: 'Object'
+                        },
+                        {
+                            title: 'RoundedRectangle',
+                            group: 'Object'
+                        },
+                        {
+                            title: 'Text',
+                            group: 'Object'
+                        },
+                        {
+                            title: 'cImage',
+                            group: 'Object'
+                        },
+                    ]
+                },
+                // subjects
+                {
+                    title: 'Subjects',
+                    links:
+                    [
+                        {
+                            title: 'Color',
+                            links:
+                            [
+                                {
+                                    title: 'Model',
+                                    links:
+                                    [
+                                        {
+                                            title: 'Rgb',
+                                            group: 'Subject'
+                                        },
+                                    ]
+                                },
+                                {
+                                    title: 'Gradient',
+                                    links:
+                                    [
+                                        {
+                                            title: 'Properties',
+                                            links:
+                                            [
+                                                {
+                                                    title: 'Stop',
+                                                    group: 'Subject'
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            title: 'Linear',
+                                            group: 'Subject'
+                                        },
+                                        {
+                                            title: 'Radial',
+                                            group: 'Subject'
+                                        },
+                                        {
+                                            title: 'Conic',
+                                            group: 'Subject'
+                                        },
+                                    ]
+                                }
+                            ]
+                        },
+                        // {
+                        //     title: 'Templates',
+                        //     links:
+                        //     [
+                        //         {
+                        //             title: 'SacredCircles',
+                        //             group: 'Subject'
+                        //         },
+                        //     ]
+                        // },
+                        {
+                            title: 'Staging',
+                            links:
+                            [
+                                {
+                                    title: 'Anchor',
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Angle',
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Aspect',
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'ControlPoints',
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Font',
+                                    group: 'Subject'
+                                },
+                                {
+                                    title: 'Point',
+                                    group: 'Subject'
+                                },
+                            ]
+                        },
+                        {
+                            title: 'Stroke',
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Fill',
+                            group: 'Subject'
+                        },
+                        {
+                            title: 'Shadow',
+                            group: 'Subject'
+                        },
+                    ]
+                },
+            ]
+        },
+        // templates
+        {
+            title: 'Templates',
+            links:
+            [
+                {
+                    title: 'SacredCircles',
+                    group: 'Template'
+                },
+            ]
+        },
+        // transitions
+        {
+            title: 'Transitions',
+            links:
+            [
+                // objects
+                {
+                    title: 'Objects',
+                    links:
+                    [
+                        {
+                            title:   'Circle',
+                            group:   'Object',
+                            handler: 'Animation'
+                        },
+                        {
+                            title:   'Ellipse',
+                            group:   'Object',
+                            handler: 'Animation'
+                        },
+                        {
+                            title:   'Rectangle',
+                            group:   'Object',
+                            handler: 'Animation'
+                        },
+                        {
+                            title:   'RoundedRectangle',
+                            group:   'Object',
+                            handler: 'Animation'
+                        }
+                    ]
+                },
+                // templates
+                // {
+                //     title: 'Templates',
+                //     links:
+                //     [
+                //         {
+                //             title:   'SacredCircles',
+                //             group:   'Template',
+                //             handler: 'Animation'
+                //         },
+                //     ]
+                // },
+            ]
+        },
+    ]
+
+    /**
      * Object of demo cards
      * @type {Object.<Object>}
      * @example { type: { subType: [ { title: 'title', text: 'text', code: function } ] } }
@@ -3418,7 +3673,9 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _line.move ( 180, 100, true );
+                        _line.move ( 270, 25 );
+
+                        _line.draw ( );
                     }
                 },
                 // rotate
@@ -3932,7 +4189,9 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _circle.move ( 180, 100, true );
+                        _circle.move ( 270, 25 );
+
+                        _circle.draw ( );
                     }
                 },
                 // rotate
@@ -3943,6 +4202,8 @@ class Ui
                     code: ( ) =>
                     {
                         _circle.rotate ( 45 );
+
+                        _circle.draw ( );
                     }
                 },
                 // border
@@ -4396,7 +4657,9 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _ellipse.move ( 180, 100, true );
+                        _ellipse.move ( 270, 25 );
+
+                        _ellipse.draw ( );
                     }
                 },
                 // rotate
@@ -4407,6 +4670,8 @@ class Ui
                     code: ( ) =>
                     {
                         _ellipse.rotate ( 45 );
+
+                        _ellipse.draw ( );
                     }
                 },
                 // border
@@ -4845,7 +5110,9 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _rectangle.move ( 180, 100, true );
+                        _rectangle.move ( 270, 25 );
+
+                        _rectangle.draw ( );
                     }
                 },
                 // rotate
@@ -4856,6 +5123,8 @@ class Ui
                     code: ( ) =>
                     {
                         _rectangle.rotate ( 45 );
+
+                        _rectangle.draw ( );
                     }
                 },
                 // border
@@ -5294,7 +5563,9 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _roundedRectangle.move ( 180, 100, true );
+                        _roundedRectangle.move ( 270, 25 );
+
+                        _roundedRectangle.draw ( );
                     }
                 },
                 // rotate
@@ -5305,6 +5576,8 @@ class Ui
                     code: ( ) =>
                     {
                         _roundedRectangle.rotate ( 45 );
+
+                        _roundedRectangle.draw ( );
                     }
                 },
                 // border
@@ -5672,7 +5945,9 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _text.move ( 180, 100, true );
+                        _text.move ( 270, 25 );
+
+                        _text.draw ( );
                     }
                 },
                 // rotate
@@ -5683,6 +5958,8 @@ class Ui
                     code: ( ) =>
                     {
                         _text.rotate ( 45 );
+
+                        _text.draw ( );
                     }
                 },
                 // border
@@ -7511,7 +7788,7 @@ class Ui
                 // },
             ]
         },
-        plan:
+        template:
         {
             sacredcircles:
             [
@@ -7552,7 +7829,7 @@ class Ui
 
                             _group.canvas = 'canvas';
 
-                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
 
                             _group.draw ( );
                     }
@@ -7580,7 +7857,7 @@ class Ui
 
                             _group.canvas = 'canvas';
 
-                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
 
                             _group.circles.draw ( );
                     }
@@ -7622,7 +7899,7 @@ class Ui
 
                             _group.canvas = 'canvas';
 
-                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
 
                             _group.circles.draw ( );
                     }
@@ -7650,7 +7927,7 @@ class Ui
 
                             _group.canvas = 'canvas';
 
-                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
 
                             _group.ellipses.draw ( );
                     }
@@ -7692,7 +7969,7 @@ class Ui
 
                             _group.canvas = 'canvas';
 
-                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
 
                             _group.ellipses.draw ( );
                     }
@@ -7720,7 +7997,7 @@ class Ui
 
                             _group.canvas = 'canvas';
 
-                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
 
                             _group.rectangles.draw ( );
                     }
@@ -7762,7 +8039,7 @@ class Ui
 
                             _group.canvas = 'canvas';
 
-                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
 
                             _group.rectangles.draw ( );
                     }
@@ -7790,7 +8067,7 @@ class Ui
 
                             _group.canvas = 'canvas';
 
-                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
 
                             _group.roundedRectangles.draw ( );
                     }
@@ -7832,39 +8109,39 @@ class Ui
 
                             _group.canvas = 'canvas';
 
-                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
 
                             _group.roundedRectangles.draw ( );
                     }
                 },
                 // draw lines
-                {
-                    title:   'Lines',
-                    text:    'blah... blah... blah...',
-                    children: [ 'group', 'lines', 'line' ],
-                    code: ( ) =>
-                    {
-                        ////    INPUTS    //////////////////////////////
+                // {
+                //     title:   'Lines',
+                //     text:    'blah... blah... blah...',
+                //     children: [ 'group', 'lines', 'line' ],
+                //     code: ( ) =>
+                //     {
+                //         ////    INPUTS    //////////////////////////////
 
-                        let _center     = canvaslab.center;
+                //         let _center     = canvaslab.center;
 
-                        let _radius     = 25;
+                //         let _radius     = 25;
 
-                        let _iterations = 15;
+                //         let _iterations = 15;
 
-                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                //         let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
 
-                        ////    POPULATION    //////////////////////////
+                //         ////    POPULATION    //////////////////////////
 
-                        let _group = new Group;
+                //         let _group = new Group;
 
-                            _group.canvas = 'canvas';
+                //             _group.canvas = 'canvas';
 
-                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                //             _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
 
-                            _group.lines.draw ( );
-                    }
-                },
+                //             _group.lines.draw ( );
+                //     }
+                // },
                 // draw texts
                 {
                     title:   'Texts',
@@ -7888,7 +8165,7 @@ class Ui
 
                             _group.canvas = 'canvas';
 
-                            _group.plan   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
 
                             _group.texts.draw ( );
                     }
@@ -7899,28 +8176,1646 @@ class Ui
         {
             object:
             {
-                line:
+                circle:
                 [
-                    // Line
+                    // point -y
                     {
-                        title: 'Line',
-                        text: 'easeInSine',
+                        title: 'Point -Y',
+                        text: 'easeInOutElastic',
                         code: ( ) =>
                         {
-                            let _sequence =
+                            let _transition =
                             {
-                                duration: 3000,
-                                timing: 'easeInSine',
-                                draw ( progress )
+                                object: _circle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
                                 {
-                                    _line.rotate ( progress * 500 );
+                                    point: new Point ( _circle.x, _circle.y - 25 )
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +x
+                    {
+                        title: 'Point +X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _circle.x + 25, _circle.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +y
+                    {
+                        title: 'Point +Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _circle.x, _circle.y + 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point -x
+                    {
+                        title: 'Point -X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _circle.x - 25, _circle.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 270°
+                    {
+                        title:   'Move 270°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 270, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 0°
+                    {
+                        title:   'Move 0°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 0, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 90°
+                    {
+                        title:   'Move 90°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 90, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 180°
+                    {
+                        title:   'Move 180°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 180, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // rotate
+                    {
+                        title: 'Rotate Anchor',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            _circle.options.anchor = true;  // [ Optional ]
+
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    rotate: 180,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // rotate anchor align
+                    {
+                        title: 'Rotate Anchor Align',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            _circle.options.anchor = true;  // [ Optional ]
+
+                            _circle.anchor.align   = 'top';
+
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    rotate: 180,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // radius
+                    {
+                        title: 'Radius',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    radius: 50
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // stroke color
+                    {
+                        title: 'Stroke Color',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _circle.stroke.color = new Rgb ( 0,  150,  200 );
+
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeColor: new Rgb ( 200,  25,  0 ),
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // stroke alpha
+                    {
+                        title: 'Stroke Alpha',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _circle.stroke.color.alpha = 0;
+
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeAlpha: 0.5,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // fill color
+                    {
+                        title: 'Fill Color',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _circle.fill.color = new Rgb ( 0,  150,  200 );
+
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillColor: new Rgb ( 200,  25,  0 ),
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // fill alpha
+                    {
+                        title: 'Fill Alpha',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _circle.fill.color.alpha = 0;
+
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillAlpha: 0.5,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient linear
+                    {
+                        title: 'Gradient Linear',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _circle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                            _circle.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb (   0, 150, 200, 1 ), 0.5 ),
+                                new Stop ( new Rgb ( 200,  25,   0, 1 ), 1   )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillLinear:
+                                    [
+                                        new Stop ( new Rgb ( 200,  25,   0, 1 ), 1   ),
+                                        new Stop ( new Rgb (   0, 150, 200, 1 ), 0.5 )
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient radial
+                    {
+                        title: 'Gradient Radial',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _circle.fill.gradient = new Radial ( { x: 180, y: 110 }, 0, { x: 180, y: 110 }, 50 );
+
+                            _circle.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb ( 0,   150, 200, 1 ), 0   ),
+                                new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5 ),
+                                new Stop ( new Rgb ( 200,  50, 100, 1 ), 1   )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillRadial:
+                                    [
+                                        new Stop ( new Rgb ( 200,  50, 100, 1 ), 1   ),
+                                        new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5 ),
+                                        new Stop ( new Rgb ( 0,   150, 200, 1 ), 0   )
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient conic
+                    {
+                        title: 'Gradient Conic',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _circle.fill.gradient = new Conic ( 0, { x: 77, y: 155 } );
+
+                            _circle.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb ( 0,   150, 200, 1 ), 0    ),
+                                new Stop ( new Rgb ( 50,  125, 175, 1 ), 0.25 ),
+                                new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5  ),
+                                new Stop ( new Rgb ( 150,  75, 125, 1 ), 0.75 ),
+                                new Stop ( new Rgb ( 200,  50, 100, 1 ), 1    )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillConic:
+                                    [
+                                        new Stop ( new Rgb ( 200,  50, 100, 1 ), 1    ),
+                                        new Stop ( new Rgb ( 150,  75, 125, 1 ), 0.75 ),
+                                        new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5  ),
+                                        new Stop ( new Rgb ( 50,  125, 175, 1 ), 0.25 ),
+                                        new Stop ( new Rgb ( 0,   150, 200, 1 ), 0    ),
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
                         }
                     },
                 ],
+                ellipse:
+                [
+                    // point -y
+                    {
+                        title: 'Point -Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _ellipse.x, _ellipse.y - 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +x
+                    {
+                        title: 'Point +X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _ellipse.x + 25, _ellipse.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +y
+                    {
+                        title: 'Point +Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _ellipse.x, _ellipse.y + 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point -x
+                    {
+                        title: 'Point -X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _ellipse.x - 25, _ellipse.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 270°
+                    {
+                        title:   'Move 270°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 270, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 0°
+                    {
+                        title:   'Move 0°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 0, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 90°
+                    {
+                        title:   'Move 90°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 90, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 180°
+                    {
+                        title:   'Move 180°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 180, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // anchor
+                    {
+                        title: 'Anchor',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            _ellipse.options.anchor = true;
+
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    rotate: 180,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // anchor align
+                    {
+                        title: 'Anchor Align',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            _ellipse.options.anchor = true;
+
+                            _ellipse.anchor.align   = 'top';
+
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    rotate: 180,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // stroke color
+                    {
+                        title: 'Stroke Color',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _ellipse.stroke.color = new Rgb ( 0,  150,  200 );
+
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeColor: new Rgb ( 200,  25,  0 ),
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // stroke alpha
+                    {
+                        title: 'Stroke Alpha',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _ellipse.stroke.color.alpha = 0;
+
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeAlpha: 0.5,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // fill color
+                    {
+                        title: 'Fill Color',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _ellipse.fill.color = new Rgb ( 0,  150,  200 );
+
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillColor: new Rgb ( 200,  25,  0 ),
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // fill alpha
+                    {
+                        title: 'Fill Alpha',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _ellipse.fill.color.alpha = 0;
+
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillAlpha: 0.5,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient linear
+                    {
+                        title: 'Gradient Linear',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _ellipse.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                            _ellipse.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb (   0, 150, 200, 1 ), 0.5 ),
+                                new Stop ( new Rgb ( 200,  25,   0, 1 ), 1   )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillLinear:
+                                    [
+                                        new Stop ( new Rgb ( 200,  25,   0, 1 ), 1   ),
+                                        new Stop ( new Rgb (   0, 150, 200, 1 ), 0.5 )
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient radial
+                    {
+                        title: 'Gradient Radial',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _ellipse.fill.gradient = new Radial ( { x: 180, y: 110 }, 0, { x: 180, y: 110 }, 50 );
+
+                            _ellipse.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb ( 0,   150, 200, 1 ), 0   ),
+                                new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5 ),
+                                new Stop ( new Rgb ( 200,  50, 100, 1 ), 1   )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillRadial:
+                                    [
+                                        new Stop ( new Rgb ( 200,  50, 100, 1 ), 1   ),
+                                        new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5 ),
+                                        new Stop ( new Rgb ( 0,   150, 200, 1 ), 0   )
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient conic
+                    {
+                        title: 'Gradient Conic',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _ellipse.fill.gradient = new Conic ( 0, { x: 77, y: 155 } );
+
+                            _ellipse.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb ( 0,   150, 200, 1 ), 0    ),
+                                new Stop ( new Rgb ( 50,  125, 175, 1 ), 0.25 ),
+                                new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5  ),
+                                new Stop ( new Rgb ( 150,  75, 125, 1 ), 0.75 ),
+                                new Stop ( new Rgb ( 200,  50, 100, 1 ), 1    )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillConic:
+                                    [
+                                        new Stop ( new Rgb ( 200,  50, 100, 1 ), 1    ),
+                                        new Stop ( new Rgb ( 150,  75, 125, 1 ), 0.75 ),
+                                        new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5  ),
+                                        new Stop ( new Rgb ( 50,  125, 175, 1 ), 0.25 ),
+                                        new Stop ( new Rgb ( 0,   150, 200, 1 ), 0    ),
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                ],
+                rectangle:
+                [
+                    // point -y
+                    {
+                        title: 'Point -Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _rectangle.x, _rectangle.y - 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +x
+                    {
+                        title: 'Point +X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _rectangle.x + 25, _rectangle.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +y
+                    {
+                        title: 'Point +Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _rectangle.x, _rectangle.y + 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point -x
+                    {
+                        title: 'Point -X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _rectangle.x - 25, _rectangle.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 270°
+                    {
+                        title:   'Move 270°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 270, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 0°
+                    {
+                        title:   'Move 0°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 0, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 90°
+                    {
+                        title:   'Move 90°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 90, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 180°
+                    {
+                        title:   'Move 180°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 180, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // anchor
+                    {
+                        title: 'Anchor',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            _rectangle.options.anchor = true;
+
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    rotate: 180,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // anchor align
+                    {
+                        title: 'Anchor Align',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            _rectangle.options.anchor = true;
+
+                            _rectangle.anchor.align   = 'top';
+
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    rotate: 180,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // stroke color
+                    {
+                        title: 'Stroke Color',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _rectangle.stroke.color = new Rgb ( 0,  150,  200 );
+
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeColor: new Rgb ( 200,  25,  0 ),
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // stroke alpha
+                    {
+                        title: 'Stroke Alpha',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _rectangle.stroke.color.alpha = 0;
+
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeAlpha: 0.5,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // fill color
+                    {
+                        title: 'Fill Color',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _rectangle.fill.color = new Rgb ( 0,  150,  200 );
+
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillColor: new Rgb ( 200,  25,  0 ),
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // fill alpha
+                    {
+                        title: 'Fill Alpha',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _rectangle.fill.color.alpha = 0;
+
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillAlpha: 0.5,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient linear
+                    {
+                        title: 'Gradient Linear',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _rectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                            _rectangle.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb (   0, 150, 200, 1 ), 0.5 ),
+                                new Stop ( new Rgb ( 200,  25,   0, 1 ), 1   )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillLinear:
+                                    [
+                                        new Stop ( new Rgb ( 200,  25,   0, 1 ), 1   ),
+                                        new Stop ( new Rgb (   0, 150, 200, 1 ), 0.5 )
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient radial
+                    {
+                        title: 'Gradient Radial',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _rectangle.fill.gradient = new Radial ( { x: 180, y: 110 }, 0, { x: 180, y: 110 }, 50 );
+
+                            _rectangle.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb ( 0,   150, 200, 1 ), 0   ),
+                                new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5 ),
+                                new Stop ( new Rgb ( 200,  50, 100, 1 ), 1   )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillRadial:
+                                    [
+                                        new Stop ( new Rgb ( 200,  50, 100, 1 ), 1   ),
+                                        new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5 ),
+                                        new Stop ( new Rgb ( 0,   150, 200, 1 ), 0   )
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient conic
+                    {
+                        title: 'Gradient Conic',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _rectangle.fill.gradient = new Conic ( 0, { x: 77, y: 155 } );
+
+                            _rectangle.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb ( 0,   150, 200, 1 ), 0    ),
+                                new Stop ( new Rgb ( 50,  125, 175, 1 ), 0.25 ),
+                                new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5  ),
+                                new Stop ( new Rgb ( 150,  75, 125, 1 ), 0.75 ),
+                                new Stop ( new Rgb ( 200,  50, 100, 1 ), 1    )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillConic:
+                                    [
+                                        new Stop ( new Rgb ( 200,  50, 100, 1 ), 1    ),
+                                        new Stop ( new Rgb ( 150,  75, 125, 1 ), 0.75 ),
+                                        new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5  ),
+                                        new Stop ( new Rgb ( 50,  125, 175, 1 ), 0.25 ),
+                                        new Stop ( new Rgb ( 0,   150, 200, 1 ), 0    ),
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                ],
+                roundedRectangle:
+                [
+                    // point -y
+                    {
+                        title: 'Point -Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _roundedRectangle.x, _roundedRectangle.y - 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +x
+                    {
+                        title: 'Point +X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _roundedRectangle.x + 25, _roundedRectangle.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +y
+                    {
+                        title: 'Point +Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _roundedRectangle.x, _roundedRectangle.y + 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point -x
+                    {
+                        title: 'Point -X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _roundedRectangle.x - 25, _roundedRectangle.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 270°
+                    {
+                        title:   'Move 270°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 270, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 0°
+                    {
+                        title:   'Move 0°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 0, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 90°
+                    {
+                        title:   'Move 90°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 90, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 180°
+                    {
+                        title:   'Move 180°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 180, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // anchor
+                    {
+                        title: 'Anchor',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            _roundedRectangle.options.anchor = true;
+
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    rotate: 180,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // anchor align
+                    {
+                        title: 'Anchor Align',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            _roundedRectangle.options.anchor = true;
+
+                            _roundedRectangle.anchor.align   = 'top';
+
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    rotate: 180,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // stroke color
+                    {
+                        title: 'Stroke Color',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _roundedRectangle.stroke.color = new Rgb ( 0,  150,  200 );
+
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeColor: new Rgb ( 200,  25,  0 ),
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // stroke alpha
+                    {
+                        title: 'Stroke Alpha',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _roundedRectangle.stroke.color.alpha = 0;
+
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeAlpha: 0.5,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // fill color
+                    {
+                        title: 'Fill Color',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _roundedRectangle.fill.color = new Rgb ( 0,  150,  200 );
+
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillColor: new Rgb ( 200,  25,  0 ),
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // fill alpha
+                    {
+                        title: 'Fill Alpha',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _roundedRectangle.fill.color.alpha = 0;
+
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillAlpha: 0.5,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient linear
+                    {
+                        title: 'Gradient Linear',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _roundedRectangle.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                            _roundedRectangle.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb (   0, 150, 200, 1 ), 0.5 ),
+                                new Stop ( new Rgb ( 200,  25,   0, 1 ), 1   )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillLinear:
+                                    [
+                                        new Stop ( new Rgb ( 200,  25,   0, 1 ), 1   ),
+                                        new Stop ( new Rgb (   0, 150, 200, 1 ), 0.5 )
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient radial
+                    {
+                        title: 'Gradient Radial',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _roundedRectangle.fill.gradient = new Radial ( { x: 180, y: 110 }, 0, { x: 180, y: 110 }, 50 );
+
+                            _roundedRectangle.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb ( 0,   150, 200, 1 ), 0   ),
+                                new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5 ),
+                                new Stop ( new Rgb ( 200,  50, 100, 1 ), 1   )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillRadial:
+                                    [
+                                        new Stop ( new Rgb ( 200,  50, 100, 1 ), 1   ),
+                                        new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5 ),
+                                        new Stop ( new Rgb ( 0,   150, 200, 1 ), 0   )
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient conic
+                    {
+                        title: 'Gradient Conic',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _roundedRectangle.fill.gradient = new Conic ( 0, { x: 77, y: 155 } );
+
+                            _roundedRectangle.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb ( 0,   150, 200, 1 ), 0    ),
+                                new Stop ( new Rgb ( 50,  125, 175, 1 ), 0.25 ),
+                                new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5  ),
+                                new Stop ( new Rgb ( 150,  75, 125, 1 ), 0.75 ),
+                                new Stop ( new Rgb ( 200,  50, 100, 1 ), 1    )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillConic:
+                                    [
+                                        new Stop ( new Rgb ( 200,  50, 100, 1 ), 1    ),
+                                        new Stop ( new Rgb ( 150,  75, 125, 1 ), 0.75 ),
+                                        new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5  ),
+                                        new Stop ( new Rgb ( 50,  125, 175, 1 ), 0.25 ),
+                                        new Stop ( new Rgb ( 0,   150, 200, 1 ), 0    ),
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                ]
             },
             subject:
             {
@@ -7935,7 +9830,7 @@ class Ui
                         {
                             _rectangle.options.anchor = true;
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -7945,7 +9840,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // circle align
@@ -7957,7 +9852,7 @@ class Ui
                         {
                             _circle.options.anchor = true;
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -7967,7 +9862,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // rectangle align top
@@ -7981,7 +9876,7 @@ class Ui
 
                             _rectangle.anchor.align   = 'top';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -7991,7 +9886,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // circle align top
@@ -8005,7 +9900,7 @@ class Ui
 
                             _circle.anchor.align   = 'top';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8015,7 +9910,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // rectangle align top-right
@@ -8029,7 +9924,7 @@ class Ui
 
                             _rectangle.anchor.align   = 'topRight';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8039,7 +9934,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // circle align top-right
@@ -8053,7 +9948,7 @@ class Ui
 
                             _circle.anchor.align   = 'topRight';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8063,7 +9958,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // rectangle align right
@@ -8077,7 +9972,7 @@ class Ui
 
                             _rectangle.anchor.align   = 'right';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8087,7 +9982,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // circle align right
@@ -8101,7 +9996,7 @@ class Ui
 
                             _circle.anchor.align   = 'right';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8111,7 +10006,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // rectangle align bottom-right
@@ -8125,7 +10020,7 @@ class Ui
 
                             _rectangle.anchor.align   = 'bottomRight';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8135,7 +10030,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // circle align bottom-right
@@ -8149,7 +10044,7 @@ class Ui
 
                             _circle.anchor.align   = 'bottomRight';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8159,7 +10054,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // rectangle align bottom
@@ -8173,7 +10068,7 @@ class Ui
 
                             _rectangle.anchor.align   = 'bottom';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8183,7 +10078,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // circle align bottom
@@ -8197,7 +10092,7 @@ class Ui
 
                             _circle.anchor.align   = 'bottom';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8207,7 +10102,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // rectangle align bottom-left
@@ -8221,7 +10116,7 @@ class Ui
 
                             _rectangle.anchor.align   = 'bottomLeft';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8231,7 +10126,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // circle align bottom-left
@@ -8245,7 +10140,7 @@ class Ui
 
                             _circle.anchor.align   = 'bottomLeft';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8255,7 +10150,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // rectangle align left
@@ -8269,7 +10164,7 @@ class Ui
 
                             _rectangle.anchor.align   = 'left';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8279,7 +10174,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // circle align left
@@ -8293,7 +10188,7 @@ class Ui
 
                             _circle.anchor.align   = 'left';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8303,7 +10198,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // rectangle align top-left
@@ -8317,7 +10212,7 @@ class Ui
 
                             _rectangle.anchor.align   = 'topLeft';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8327,7 +10222,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // circle align top-left
@@ -8341,7 +10236,7 @@ class Ui
 
                             _circle.anchor.align   = 'topLeft';
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 3000,
                                 timing: 'easeInSine',
@@ -8351,7 +10246,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                 ],
@@ -8366,7 +10261,7 @@ class Ui
                         {
                             _circle.fill.color = new Rgb ( 0,  0,  0 );
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -8376,7 +10271,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // fill color : rectangle
@@ -8388,7 +10283,7 @@ class Ui
                         {
                             _rectangle.fill.color = new Rgb ( 0,  0,  0 );
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -8398,7 +10293,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
 
@@ -8417,7 +10312,7 @@ class Ui
                                 { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
                             ];
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -8427,7 +10322,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // fill linear : rectangle
@@ -8445,7 +10340,7 @@ class Ui
                                 { offset: 1,   color: new Rgb ( 0,   0,   0, 1 ) }
                             ];
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -8455,7 +10350,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
 
@@ -8475,7 +10370,7 @@ class Ui
                                 { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
                             ];
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -8487,7 +10382,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // fill radial : rectangle
@@ -8506,7 +10401,7 @@ class Ui
                                 { offset: 1,   color: new Rgb ( 200,  50, 100, 1 ) }
                             ];
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -8518,7 +10413,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
 
@@ -8540,7 +10435,7 @@ class Ui
                                 { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
                             ];
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -8554,7 +10449,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // fill conic : rectangle
@@ -8575,7 +10470,7 @@ class Ui
                                 { offset: 1,    color: new Rgb ( 200,  50, 100, 1 ) }
                             ];
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -8589,7 +10484,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                 ],
@@ -8604,7 +10499,7 @@ class Ui
                         {
                             _line.stroke.color = new Rgb ( 0,  150,  200 );
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -8614,7 +10509,7 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                     // text color
@@ -8626,7 +10521,7 @@ class Ui
                         {
                             _text.fill.color = new Rgb ( 0,  150,  200 );
 
-                            let _sequence =
+                            let _transition =
                             {
                                 duration: 1000,
                                 timing: 'easeInSine',
@@ -8636,392 +10531,52 @@ class Ui
                                 }
                             }
 
-                            canvaslab.animate ( _sequence );
+                            canvaslab.animate ( _transition );
                         }
                     },
                 ]
             },
-            plan:
+            template:
             {
                 sacredcircles:
                 [
-                    // single animations
+                    // get transitions
                     {
-                        title:   'Single',
+                        title:   'Get Transitions',
                         text:    'blah... blah... blah...',
-                        children: [ 'group', 'circles', 'rgb' ],
+                        children: [ 'circle', 'template' ],
                         code: ( ) =>
                         {
-                            ////    INPUTS    //////////////////////////////
+                            ////    OBJECT    //////////////////////////////
 
-                            let _center     = canvaslab.center;
+                            let _center       = canvaslab.center;
 
-                            let _iterations = 15;
+                            let _object       = new Circle ( _center );
 
-                            let _alpha      = 0.40;
+                                _object.alpha = 0;
 
-                            let _colors     =
-                            [
-                                new Rgb ( 255,  0,  255, _alpha ),      // Magenta
-                                new Rgb (   0,  0,  255, _alpha ),      // Blue
-                                new Rgb (   0, 255, 255, _alpha ),      // Cyan
-                                new Rgb (   0, 255,   0, _alpha ),      // Green
-                                new Rgb ( 255, 255,   0, _alpha ),      // Yellow
-                                new Rgb ( 255, 125,   0, _alpha ),      // Orange
-                                new Rgb ( 255,   0,   0, _alpha ),      // Red
-                                new Rgb (   0,   0,   0, _alpha ),      // Black
-                            ]
+                            ////    PROPERTIES    //////////////////////////
 
-                            ////    ANIMATE    /////////////////////////////
+                            let _iterations   = 25;
 
-                            let _sequence =
-                            {
-                                duration: 3000,
-                                timing: 'easeOutSine',
-                                draw ( progress )
-                                {
-                                    let _progress   = progress;
+                            let _timing       = 'easeOutSine';
 
-                                    let _degrees    = [ 270 * _progress, 150, 90, 30, 330, 270, 210 ];
+                            let _period       = 300;
 
-                                    ////    GROUP    ///////////////////////
+                            let _radius       = 25;
 
-                                    let _group        = new Group ( _center );
+                            ////    ANIMATION    ///////////////////////////
 
-                                        _group.canvas = 'canvas';   // [ Optional ]
-
-                                        _group.plan   = new SacredCircles ( _center, undefined, _iterations, _degrees, _colors );
+                            let _transitions  = new SacredCircles ( ).getTransitions ( _object, _timing, _period, _radius, _iterations );
 
 
-                                        _group.circles.redraw ( );
-                                }
-                            }
-
-
-                            canvaslab.animate ( _sequence );
-                        }
-                    },
-                    // repeating animations
-                    {
-                        title:   'Repeating',
-                        text:    'blah... blah... blah...',
-                        children: [ 'queue', 'group', 'circles', 'rgb' ],
-                        code: ( ) =>
-                        {
-                            ////    INPUTS    //////////////////////////////
-
-                            let _center     = canvaslab.center;
-
-                            let _iterations = 15;
-
-                            let _alpha      = 0.40;
-
-                            let _colors     =
-                            [
-                                new Rgb ( 255,  0,  255, _alpha ),      // Magenta
-                                new Rgb (   0,  0,  255, _alpha ),      // Blue
-                                new Rgb (   0, 255, 255, _alpha ),      // Cyan
-                                new Rgb (   0, 255,   0, _alpha ),      // Green
-                                new Rgb ( 255, 255,   0, _alpha ),      // Yellow
-                                new Rgb ( 255, 125,   0, _alpha ),      // Orange
-                                new Rgb ( 255,   0,   0, _alpha ),      // Red
-                                new Rgb (   0,   0,   0, _alpha ),      // Black
-                            ]
-
-                            ////    ANIMATE    /////////////////////////////
-
-                            let _sequenceA =
-                            {
-                                duration: 3000,
-                                timing: 'easeOutSine',
-                                draw ( progress )
-                                {
-                                    let _progress   = progress;
-
-                                    let _degrees    = [ 270 * _progress, 150, 90, 30, 330, 270, 210 ];
-
-                                    ////    GROUP    ///////////////////////
-
-                                    let _group        = new Group ( _center );
-
-                                        _group.canvas = 'canvas';   // [ Optional ]
-
-                                        _group.plan   = new SacredCircles ( _center, undefined, _iterations, _degrees, _colors );
-
-
-                                        _group.circles.redraw ( );
-                                }
-                            }
-
-
-                            let _sequenceB = _sequenceA;
-
-                            let _sequenceC = _sequenceA;
-
-                            let _queue = new Queue ( _sequenceA, _sequenceB, _sequenceC );
-
-
-                            canvaslab.animate ( _queue );
+                            canvaslab.animate ( _transitions );
                         }
                     },
                 ]
             }
         }
     }
-
-    /**
-     * Array of navigation links
-     * @type {Array.<Object>}
-     * @example { title: 'Title', group: 'Icon folder', links: <Array.<Object>> | null }
-     */
-    let _navLinks =
-    [
-        {
-            title: 'Objects',
-            links:
-            [
-                {
-                    title: 'Collections',
-                    links:
-                    [
-                        {
-                            title: 'Lines',
-                            group: 'Object'
-                        },
-                        {
-                            title: 'Circles',
-                            group: 'Object'
-                        },
-                        {
-                            title: 'Ellipses',
-                            group: 'Object'
-                        },
-                        {
-                            title: 'Rectangles',
-                            group: 'Object'
-                        },
-                        {
-                            title: 'RoundedRectangles',
-                            group: 'Object'
-                        },
-                        {
-                            title: 'Texts',
-                            group: 'Object'
-                        },
-                        {
-                            title: 'Group',
-                            group: 'Object'
-                        },
-                    ]
-                },
-                {
-                    title: 'Line',
-                    group: 'Object'
-                },
-                {
-                    title: 'Circle',
-                    group: 'Object'
-                },
-                {
-                    title: 'Ellipse',
-                    group: 'Object'
-                },
-                {
-                    title: 'Rectangle',
-                    group: 'Object'
-                },
-                {
-                    title: 'RoundedRectangle',
-                    group: 'Object'
-                },
-                {
-                    title: 'Text',
-                    group: 'Object'
-                },
-                {
-                    title: 'cImage',
-                    group: 'Object'
-                },
-            ]
-        },
-        {
-            title: 'Subjects',
-            links:
-            [
-                {
-                    title: 'Color',
-                    links:
-                    [
-                        {
-                            title: 'Model',
-                            links:
-                            [
-                                {
-                                    title: 'Rgb',
-                                    group: 'Subject'
-                                },
-                            ]
-                        },
-                        {
-                            title: 'Gradient',
-                            links:
-                            [
-                                {
-                                    title: 'Properties',
-                                    links:
-                                    [
-                                        {
-                                            title: 'Stop',
-                                            group: 'Subject'
-                                        }
-                                    ]
-                                },
-                                {
-                                    title: 'Linear',
-                                    group: 'Subject'
-                                },
-                                {
-                                    title: 'Radial',
-                                    group: 'Subject'
-                                },
-                                {
-                                    title: 'Conic',
-                                    group: 'Subject'
-                                },
-                            ]
-                        }
-                    ]
-                },
-                // {
-                //     title: 'Plans',
-                //     links:
-                //     [
-                //         {
-                //             title: 'SacredCircles',
-                //             group: 'Subject'
-                //         },
-                //     ]
-                // },
-                {
-                    title: 'Staging',
-                    links:
-                    [
-                        {
-                            title: 'Anchor',
-                            group: 'Subject'
-                        },
-                        {
-                            title: 'Angle',
-                            group: 'Subject'
-                        },
-                        {
-                            title: 'Aspect',
-                            group: 'Subject'
-                        },
-                        {
-                            title: 'ControlPoints',
-                            group: 'Subject'
-                        },
-                        {
-                            title: 'Font',
-                            group: 'Subject'
-                        },
-                        {
-                            title: 'Point',
-                            group: 'Subject'
-                        },
-                    ]
-                },
-                {
-                    title: 'Stroke',
-                    group: 'Subject'
-                },
-                {
-                    title: 'Fill',
-                    group: 'Subject'
-                },
-                {
-                    title: 'Shadow',
-                    group: 'Subject'
-                },
-            ]
-        },
-        {
-            title: 'Plans',
-            links:
-            [
-                {
-                    title: 'SacredCircles',
-                    group: 'Plan'
-                },
-            ]
-        },
-        {
-            title: 'Handlers',
-            links:
-            [
-                {
-                    title: 'Animation',
-                    links:
-                    [
-                        {
-                            title: 'Objects',
-                            links:
-                            [
-                                {
-                                    title:   'Line',
-                                    group:   'Object',
-                                    handler: 'Animation'
-                                }
-                            ]
-                        },
-                        {
-                            title: 'Subjects',
-                            links:
-                            [
-                                {
-                                    title:   'Anchor',
-                                    group:   'Subject',
-                                    handler: 'Animation'
-                                },
-                                // {
-                                //     title:   'Fill',
-                                //     group:   'Subject',
-                                //     handler: 'Animation'
-                                // },
-                                // {
-                                //     title:   'Stroke',
-                                //     group:   'Subject',
-                                //     handler: 'Animation'
-                                // }
-                            ]
-                        },
-                        {
-                            title: 'Plans',
-                            links:
-                            [
-                                {
-                                    title:   'SacredCircles',
-                                    group:   'Plan',
-                                    handler: 'Animation'
-                                },
-                                // {
-                                //     title:   'Fill',
-                                //     group:   'Subject',
-                                //     handler: 'Animation'
-                                // },
-                                // {
-                                //     title:   'Stroke',
-                                //     group:   'Subject',
-                                //     handler: 'Animation'
-                                // }
-                            ]
-                        },
-                    ]
-                },
-            ]
-        }
-    ]
 
     /**
      * Object of lab scripts
@@ -9046,10 +10601,37 @@ class Ui
 
             let _group      = new Group;
 
-                _group.plan = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                _group.template = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
 
                 _group.circles.draw ( );
         },
+        seedOfLifeAnimation: ( ) =>
+        {
+            ////    OBJECT    //////////////////////////////
+
+            let _center       = canvaslab.center;
+
+            let _object       = new Circle ( _center );
+
+                _object.alpha = 0;
+
+            ////    PROPERTIES    //////////////////////////
+
+            let _iterations   = 25;
+
+            let _timing       = 'easeOutSine';
+
+            let _period       = 300;
+
+            let _radius       = 25;
+
+            ////    ANIMATION    ///////////////////////////
+
+            let _transitions  = new SacredCircles ( ).getTransitions ( _object, _timing, _period, _radius, _iterations );
+
+
+            canvaslab.animate ( _transitions );
+        }
     }
 
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
@@ -9099,14 +10681,20 @@ class Ui
         {
             let _clearConsole = document.querySelector ( '#input-clear' );
 
+            let _inputGrid    = document.querySelector ( '#input-grid'  );
+
 
             UI.clearScreen ( false, true );
 
+            UI.toggle.navigation ( );
+
+
             LAB.setCanvasSize ( );
+
 
             _clearConsole.click ( );
 
-            UI.toggle.navigation ( );
+            _inputGrid.click ( );
 
 
             window.addEventListener ( 'resize', LAB.setCanvasSize );

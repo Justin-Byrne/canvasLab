@@ -12,18 +12,19 @@ __ Setter __
 red         <color:gray>{number}</color>
 green       <color:gray>{number}</color>
 blue        <color:gray>{number}</color>
+alpha       <color:gray>{number}</color>
 __ Getter __
 red         <color:gray>{number}</color>
 green       <color:gray>{number}</color>
 blue        <color:gray>{number}</color>
+alpha       <color:gray>{number}</color>
 __ Validation __
 _is256      <color:gray>{boolean}</color>
 __ Utility __
 toCss       <color:gray>{string}</color>
-_cycle
 _lerp
 _lerpRgb
-fade
+cycle
 }
 
 @enduml

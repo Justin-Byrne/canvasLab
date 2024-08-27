@@ -4,23 +4,23 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Linear {
-start             {Point}
-end               {Point}
-stops             {Array.<Stop>}
+start            {Point}
+end              {Point}
+stops            {Array.<Stop>}
 __ Setter __
-start             {Point}
-end               {Point}
-stops             {Array.<Stop>}
+start            {Point}
+end              {Point}
+stops            {Array.<Stop>}
 __ Getter __
-start             {Point}
-end               {Point}
-stops             {Array.<Stop>}
+start            {Point}
+end              {Point}
+stops            {Array.<Stop>}
 __ Validation __
-_isColorModel     <color:gray>{boolean}</color>
-_isPoint          <color:gray>{boolean}</color>
-_isStop           <color:gray>{boolean}</color>
+_isColorModel    <color:gray>{boolean}</color>
+_isPoint         <color:gray>{boolean}</color>
+_isStop          <color:gray>{boolean}</color>
 __ Utility __
-_stopColorCycle
+stopColorCycle
 }
 
 Linear o-- Point
@@ -65,11 +65,11 @@ skinparam DefaultFontName Courier New
 class Stop {
 offset          <color:gray>{number}</color>
 __ Setter __
-offset          <color:gray>{number}</color>
 color           {Object}
+offset          <color:gray>{number}</color>
 __ Getter __
-offset          <color:gray>{number}</color>
 color           {Object}
+offset          <color:gray>{number}</color>
 __ Validation __
 _isColorModel   <color:gray>{boolean}</color>
 _isDecimal      <color:gray>{boolean}</color>

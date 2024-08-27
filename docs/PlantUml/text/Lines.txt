@@ -8,27 +8,33 @@ point                {Point}
 stroke               {StrokeCollection}
 shadow               {ShadowCollection}
 lineCap              <color:gray>{string}</color>
+aspect               {Aspect}
+anchor               {Anchor}
 canvas               {HTMLCanvasElement}
+template             {Template}
 __ Setter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 lineCap              <color:gray>{string}</color>
-canvas               <color:gray>{string}</color>
 anchor               <color:gray>{string}</color>
+canvas               <color:gray>{string}</color>
+template             {Template}
 __ Getter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 stroke               {Stroke}
 shadow               {Shadow}
-options              {Object}
 lineCap              <color:gray>{string}</color>
-canvas               <color:gray>{string}</color>
 aspect               {Aspect}
 width                <color:gray>{number}</color>
 height               <color:gray>{number}</color>
 anchor               {Anchor}
+canvas               <color:gray>{string}</color>
+template             {Template}
+options              {Object}
+storageType          {clObject}
 area                 <color:gray>{number}</color>
 center               {Point}
 endPoint             {Point}
@@ -38,6 +44,7 @@ _isAspect            <color:gray>{boolean}</color>
 _isCanvasLabObject   <color:gray>{boolean}</color>
 _isInDom             <color:gray>{boolean}</color>
 _isPoint             <color:gray>{boolean}</color>
+_isTemplate          <color:gray>{boolean}</color>
 __ Utility __
 _drawAnchor
 _drawAxis
@@ -49,7 +56,6 @@ _setAspect
 _setPointOffset
 push
 draw
-redraw
 }
 
 @enduml

@@ -4,12 +4,15 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class RoundedRectangle {
-point    {Point}
-aspect   {Aspect}
-stroke   {Stroke}
-fill     {Fill}
-shadow   {Shadow}
-canvas   {HTMLCanvasElement}
+point      {Point}
+aspect     {Aspect}
+stroke     {Stroke}
+fill       {Fill}
+shadow     {Shadow}
+anchor     {Anchor}
+canvas     {HTMLCanvasElement}
+options    {Options}
+location   {Location}
 }
 
 RoundedRectangle o-- Point
@@ -17,7 +20,10 @@ RoundedRectangle o-- Aspect
 RoundedRectangle o-- Stroke
 RoundedRectangle o-- Fill
 RoundedRectangle o-- Shadow
+RoundedRectangle o-- Anchor
 RoundedRectangle o-- HTMLCanvasElement
+RoundedRectangle o-- Options
+RoundedRectangle o-- Location
 
 
 
@@ -148,6 +154,91 @@ __ Validation __
 _isColorModel   <color:gray>{boolean}</color>
 _isBlur         <color:gray>{boolean}</color>
 _isPoint        <color:gray>{boolean}</color>
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Anchor {
+point       {Point}
+align       <color:gray>{string}</color>
+__ Setter __
+point       {Point}
+x           <color:gray>{number}</color>
+y           <color:gray>{number}</color>
+align       <color:gray>{string}</color>
+__ Getter __
+point       {Point}
+x           <color:gray>{number}</color>
+y           <color:gray>{number}</color>
+align       <color:gray>{string}</color>
+__ Validation __
+_isAnchor   <color:gray>{boolean}</color>
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Options {
+[anchor=false]          <color:gray>{boolean}</color>
+[axis=false]            <color:gray>{boolean}</color>
+[border=false]          <color:gray>{boolean}</color>
+[coordinates=false]     <color:gray>{boolean}</color>
+[controlPoints=false]   <color:gray>{boolean}</color>
+[points=false]          <color:gray>{boolean}</color>
+[shadow=false]          <color:gray>{boolean}</color>
+master                  {Object}
+__ Setter __
+anchor                  <color:gray>{boolean}</color>
+axis                    <color:gray>{boolean}</color>
+border                  <color:gray>{boolean}</color>
+coordinates             <color:gray>{boolean}</color>
+controlPoints           <color:gray>{boolean}</color>
+shadow                  <color:gray>{boolean}</color>
+master                  {clObject}
+__ Getter __
+anchor                  <color:gray>{boolean}</color>
+axis                    <color:gray>{boolean}</color>
+border                  <color:gray>{boolean}</color>
+coordinates             <color:gray>{boolean}</color>
+controlPoints           <color:gray>{boolean}</color>
+shadow                  <color:gray>{boolean}</color>
+master                  {clObject}
+__ Validation __
+_isCanvasLabObject      <color:gray>{boolean}</color>
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Location {
+point                {Point}
+distance             <color:gray>{number}</color>
+direction            <color:gray>{number}</color>
+stroke               {Stroke}
+fill                 {Fill}
+shadow               {Shadow}
+canvas               {HTMLCanvasElement}
+master               {clObject}
+__ Setter __
+origin               {Point}
+distance             <color:gray>{number}</color>
+direction            <color:gray>{number}</color>
+master               {clObject}
+__ Getter __
+origin               {Point}
+distance             <color:gray>{number}</color>
+direction            <color:gray>{number}</color>
+master               {clObject}
+__ Validation __
+_isCanvasLabObject   <color:gray>{boolean}</color>
+_isPoint             <color:gray>{boolean}</color>
 }
 
 @enduml

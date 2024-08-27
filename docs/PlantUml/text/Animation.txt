@@ -4,26 +4,40 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Animation {
-timing                    {function}
-draw                      {function}
-duration                  <color:gray>{number}</color>
+object                       {clObject}
+timing                       {Function}
+period                       <color:gray>{number}</color>
+change                       {Object}
+options                      {Object}
 __ Setter __
-timing                    {function}
-draw                      {function}
-duration                  <color:gray>{number}</color>
-queue                     {Queue}
+object                       {clObject}
+timing                       {string|Function}
+period                       <color:gray>{number}</color>
+change                       {clChange}
+cache                        <color:gray>{boolean}</color>
+queue                        {Queue}
 __ Getter __
-timing                    {function}
-draw                      {function}
-duration                  <color:gray>{number}</color>
-queue                     {Queue}
+object                       {clObject}
+timing                       {Function}
+period                       <color:gray>{number}</color>
+change                       {clChange}
+cache                        <color:gray>{boolean}</color>
+queue                        {Queue}
 __ Validation __
-_isNumber                 <color:gray>{boolean}</color>
+_isNumber                    <color:gray>{boolean}</color>
 __ Utility __
-_getAnimationProperties   {Object}
+_getAnimationProperties      {Object}
+_getPointByDegreeNDistance   {Point}
+_cacheObject
 _checkQueue
+_clearCanvas
+_drawCache
+_setLocationData
 animate
 requestAnimationFrame
+_transition
+_callback
+_animate
 }
 
 @enduml

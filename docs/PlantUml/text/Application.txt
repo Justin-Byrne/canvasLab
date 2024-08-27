@@ -6,7 +6,7 @@ skinparam DefaultFontName Courier New
 class Application {
 __ Setter __
 canvas      <color:gray>{string}</color>
-animation   {Queue|Object}
+animation   {Transition|Queue}
 __ Getter __
 canvas      {HTMLCanvasElement}
 about       {Object}

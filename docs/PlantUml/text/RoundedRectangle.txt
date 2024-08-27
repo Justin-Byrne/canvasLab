@@ -4,12 +4,15 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class RoundedRectangle {
-point    {Point}
-aspect   {Aspect}
-stroke   {Stroke}
-fill     {Fill}
-shadow   {Shadow}
-canvas   {HTMLCanvasElement}
+point      {Point}
+aspect     {Aspect}
+stroke     {Stroke}
+fill       {Fill}
+shadow     {Shadow}
+anchor     {Anchor}
+canvas     {HTMLCanvasElement}
+options    {Options}
+location   {Location}
 }
 
 @enduml

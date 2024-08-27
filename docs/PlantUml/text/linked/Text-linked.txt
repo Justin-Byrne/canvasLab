@@ -4,58 +4,57 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Text {
-point              {Point}
-text               <color:gray>{string}</color>
-stroke             {Stroke}
-fill               {Fill}
-shadow             {Shadow}
-canvas             {HTMLCanvasElement}
+point             {Point}
+text              <color:gray>{string}</color>
+stroke            {Stroke}
+fill              {Fill}
+shadow            {Shadow}
+canvas            {HTMLCanvasElement}
+options           {Options}
+location          {Location}
 __ Setter __
-point              {Point}
-x                  <color:gray>{number}</color>
-y                  <color:gray>{number}</color>
-text               <color:gray>{string}</color>
-canvas             <color:gray>{string}</color>
-type               <color:gray>{string}</color>
-size               <color:gray>{number}</color>
-weight             <color:gray>{string}</color>
-maxWidth           <color:gray>{number}</color>
-offset             {Point}
+point             {Point}
+x                 <color:gray>{number}</color>
+y                 <color:gray>{number}</color>
+text              <color:gray>{string}</color>
+canvas            <color:gray>{string}</color>
+type              <color:gray>{string}</color>
+size              <color:gray>{number}</color>
+weight            <color:gray>{string}</color>
+maxWidth          <color:gray>{number}</color>
+offset            {Point}
 __ Getter __
-point              {Point}
-x                  <color:gray>{number}</color>
-y                  <color:gray>{number}</color>
-text               <color:gray>{string}</color>
-stroke             {Stroke}
-fill               {Fill}
-shadow             {Shadow}
-canvas             <color:gray>{string}</color>
-options            {Options}
-type               <color:gray>{string}</color>
-size               <color:gray>{number}</color>
-weight             <color:gray>{string}</color>
-maxWidth           <color:gray>{number}</color>
-offset             {Point}
-font               <color:gray>{string}</color>
+point             {Point}
+x                 <color:gray>{number}</color>
+y                 <color:gray>{number}</color>
+text              <color:gray>{string}</color>
+stroke            {Stroke}
+fill              {Fill}
+shadow            {Shadow}
+canvas            <color:gray>{string}</color>
+options           {Options}
+location          {Location}
+type              <color:gray>{string}</color>
+size              <color:gray>{number}</color>
+weight            <color:gray>{string}</color>
+maxWidth          <color:gray>{number}</color>
+offset            {Point}
+font              <color:gray>{string}</color>
 __ Validation __
-_isDegree          <color:gray>{boolean}</color>
-_isInDom           <color:gray>{boolean}</color>
-_isPoint           <color:gray>{boolean}</color>
+_isDegree         <color:gray>{boolean}</color>
+_isInDom          <color:gray>{boolean}</color>
+_isPoint          <color:gray>{boolean}</color>
 __ Utility __
-_clearCanvas
 _rotatePoint
 _setShadow
 _drawAnchor
 _drawAxis
 _drawBorder
 _drawOptions
-fillColorCycle
 move
 rotate
 showCoordinates
-strokeColorCycle
 draw
-redraw
 }
 
 Text o-- Point
@@ -64,6 +63,7 @@ Text o-- Fill
 Text o-- Shadow
 Text o-- HTMLCanvasElement
 Text o-- Options
+Text o-- Location
 
 
 
@@ -195,7 +195,7 @@ border                  <color:gray>{boolean}</color>
 coordinates             <color:gray>{boolean}</color>
 controlPoints           <color:gray>{boolean}</color>
 shadow                  <color:gray>{boolean}</color>
-master                  {Object}
+master                  {clObject}
 __ Getter __
 anchor                  <color:gray>{boolean}</color>
 axis                    <color:gray>{boolean}</color>
@@ -203,9 +203,38 @@ border                  <color:gray>{boolean}</color>
 coordinates             <color:gray>{boolean}</color>
 controlPoints           <color:gray>{boolean}</color>
 shadow                  <color:gray>{boolean}</color>
-master                  {Object}
+master                  {clObject}
 __ Validation __
 _isCanvasLabObject      <color:gray>{boolean}</color>
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Location {
+point                {Point}
+distance             <color:gray>{number}</color>
+direction            <color:gray>{number}</color>
+stroke               {Stroke}
+fill                 {Fill}
+shadow               {Shadow}
+canvas               {HTMLCanvasElement}
+master               {clObject}
+__ Setter __
+origin               {Point}
+distance             <color:gray>{number}</color>
+direction            <color:gray>{number}</color>
+master               {clObject}
+__ Getter __
+origin               {Point}
+distance             <color:gray>{number}</color>
+direction            <color:gray>{number}</color>
+master               {clObject}
+__ Validation __
+_isCanvasLabObject   <color:gray>{boolean}</color>
+_isPoint             <color:gray>{boolean}</color>
 }
 
 @enduml

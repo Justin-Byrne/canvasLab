@@ -79,11 +79,15 @@ declare HANDLERS
 
 declare DATA_STRUCTURES
 
-declare PLANS
+declare TEMPLATES
 
 # ------------------------------------------------------- #
 # Files to be inserted prior to SUBJECTS, OBJECTS, ETC... #
 # ------------------------------------------------------- #
+declare TYPEDEFS=(
+    "docs/typedef.js"
+)
+
 declare COMPONENTS=(
     "${INPUT_FOLDER}/components/shared/PropertyBlocks.js"
     "${INPUT_FOLDER}/components/shared/Utilities.js"
@@ -98,18 +102,19 @@ declare CANVASLAB=(
 ### FOLDERS ########################################
 
 declare SUBJECTS_FOLDERS=(
-    "${INPUT_FOLDER}/classes/Subject/Color/Model"
-    "${INPUT_FOLDER}/classes/Subject/Staging/Properties"
-    "${INPUT_FOLDER}/classes/Subject/Staging"
-    "${INPUT_FOLDER}/classes/Subject/Color/Gradient/Properties"
-    "${INPUT_FOLDER}/classes/Subject/Color/Gradient"
-    "${INPUT_FOLDER}/classes/Subject"
-    "${INPUT_FOLDER}/classes/Subject/Collections"
+    "${INPUT_FOLDER}/classes/Core/Subject/Color/Model"
+    "${INPUT_FOLDER}/classes/Core/Subject/Staging/Properties"
+    "${INPUT_FOLDER}/classes/Core/Subject/Staging"
+    "${INPUT_FOLDER}/classes/Core/Subject/Color/Gradient/Properties"
+    "${INPUT_FOLDER}/classes/Core/Subject/Color/Gradient"
+    "${INPUT_FOLDER}/classes/Core/Subject"
+    "${INPUT_FOLDER}/classes/Core/Subject/Collections"
 )
 
 declare OBJECTS_FOLDERS=(
-    "${INPUT_FOLDER}/classes/Object"
-    "${INPUT_FOLDER}/classes/Object/Collections"
+    "${INPUT_FOLDER}/classes/Core/Object/Properties"
+    "${INPUT_FOLDER}/classes/Core/Object"
+    "${INPUT_FOLDER}/classes/Core/Object/Collections"
 )
 
 declare DATA_STRUCTURES_FOLDERS=(
@@ -121,9 +126,13 @@ declare HANDLERS_FOLERS=(
     "${INPUT_FOLDER}/classes/Handlers"
 )
 
-declare PLANS_FOLDER=(
-    "${INPUT_FOLDER}/classes/Plans"
+declare TEMPLATES_FOLDER=(
+    "${INPUT_FOLDER}/classes/Templates"
 )
+
+# declare SEQUENCES_FOLDER=(
+#     "${INPUT_FOLDER}/classes/Sequences"
+# )
 
 # ------------------------------------ #
 # Root application file; if available  #
@@ -261,6 +270,14 @@ function compile_output ()
     compile_header
 
 
+    echo "\n////    TYPEDEFS    ////////////////////////////////////////" >> $OUTPUT
+
+    for FILE in ${TYPEDEFS[@]}        # TYPEDEFS
+    do
+        insert_file $FILE
+    done
+
+
     echo "\n////    COMPONENTS    //////////////////////////////////////" >> $OUTPUT
 
     for FILE in ${COMPONENTS[@]}        # COMPONENTS
@@ -309,12 +326,20 @@ function compile_output ()
     done
 
 
-    echo "\n////    PLANS    ///////////////////////////////////////////" >> $OUTPUT
+    echo "\n////    TEMPLATES    ///////////////////////////////////////" >> $OUTPUT
 
-    for FILE in ${PLANS[@]}   # PLANS
+    for FILE in ${TEMPLATES[@]}         # TEMPLATES
     do
         insert_file $FILE
     done
+
+
+    # echo "\n////    SEQUENCES    ///////////////////////////////////////" >> $OUTPUT
+
+    # for FILE in ${SEQUENCES[@]}         # SEQUENCES
+    # do
+    #     insert_file $FILE
+    # done
 
 
     echo "${PROMPT_A} ${TITLE_PACKAGE} Compiling Complete ${TITLE_BASH} \t\t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
@@ -396,7 +421,9 @@ function compile_md2json ()
 
     FILES+=(${HANDLERS[@]})
 
-    FILES+=(${PLANS[@]})
+    FILES+=(${TEMPLATES[@]})
+
+    # FILES+=(${SEQUENCES[@]})
 
 
     function compile_markdown ()
@@ -584,15 +611,25 @@ function search_folders ()
         done
     done
 
-    ####    PLANS    #######################################
+    ####    TEMPLATES    ###################################
 
-    for FOLDER in ${PLANS_FOLDER[@]}
+    for FOLDER in ${TEMPLATES_FOLDER[@]}
     do
         for ENTRY in $FOLDER/*
         do
-            [[ $ENTRY =~ $FILE_REGEX ]] && PLANS+="${ENTRY} "
+            [[ $ENTRY =~ $FILE_REGEX ]] && TEMPLATES+="${ENTRY} "
         done
     done
+
+    ####    SEQUENCES    ###################################
+
+    # for FOLDER in ${SEQUENCES_FOLDER[@]}
+    # do
+    #     for ENTRY in $FOLDER/*
+    #     do
+    #         [[ $ENTRY =~ $FILE_REGEX ]] && SEQUENCES+="${ENTRY} "
+    #     done
+    # done
 }
 
 function insert_file ()

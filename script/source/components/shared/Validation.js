@@ -131,13 +131,14 @@ const VALIDATION =
      */
     isCanvasLabObject ( value )
     {
-        if ( value instanceof Line      ) return true;
+        let _clObjects = [ Group, Line, Lines, Circle, Circles, Ellipse, Ellipses, Rectangle, Rectangles, RoundedRectangle, Text, Texts ]
 
-        if ( value instanceof Circle    ) return true;
 
-        if ( value instanceof Rectangle ) return true;
+        for ( let _object of _clObjects )
 
-        if ( value instanceof Text      ) return true;
+            if ( value instanceof _object )
+
+                return true;
 
 
         return false;
@@ -467,69 +468,6 @@ const VALIDATION =
     },
 
     /**
-     * Returns whether the passed value is a Plan
-     * @public
-     * @memberof VALIDATION
-     * @function
-     * @param           {Object} value                              Plan object
-     * @return          {boolean}                                   True || False
-     */
-    isPlan ( value )
-    {
-        /**
-         * Returns classes functions
-         * @private
-         * @memberof VALIDATION
-         * @function
-         * @param           {Object} object                             Plan object
-         * @return          {Array}                                     Array of functions
-         */
-        function _getClassFunctions ( object )
-        {
-            let _results = new Array;
-
-            let _object  = object;
-
-            do
-            {
-                _results.push ( ... Object.getOwnPropertyNames ( _object ) );
-            }
-            while ( _object = Object.getPrototypeOf ( _object ) );
-
-
-                _results = _results.sort ( ).filter ( ( element, i, array ) =>
-                           {
-                               if ( element != array [ i + 1 ] && typeof object [ element ] == 'function' )
-
-                                    return true;
-                           } );
-
-
-            return _results;
-        }
-
-        if ( value != undefined )
-        {
-            let _instance  = eval ( `new ${value.constructor.name};` );
-
-            let _functions = _getClassFunctions ( value );
-
-
-            let _point     = ( Object.hasOwn ( _instance, '_point'  ) );
-
-            let _master    = ( Object.hasOwn ( _instance, '_master' ) );
-
-            let _init      = _functions.includes ( 'init' );
-
-
-            return ( _point && _master && _init );
-        }
-        else
-
-            return false;
-    },
-
-    /**
      * Returns whether the passed value is a Point
      * @public
      * @memberof VALIDATION
@@ -692,6 +630,70 @@ const VALIDATION =
     isStrokeType ( value )
     {
         return ( ( typeof value === 'string' )  &&  [ 'solid', 'dashed' ].includes ( value ) );
+    },
+
+    /**
+     * Returns whether the passed value is a Template
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {Template} value                            Template object
+     * @return          {boolean}                                   True || False
+     */
+    isTemplate ( value )
+    {
+        /**
+         * Returns classes functions
+         * @private
+         * @memberof VALIDATION
+         * @function
+         * @param           {Object} object                             Template object
+         * @return          {Array}                                     Array of functions
+         */
+        function _getClassFunctions ( object )
+        {
+            let _results = new Array;
+
+            let _object  = object;
+
+            do
+            {
+                _results.push ( ... Object.getOwnPropertyNames ( _object ) );
+            }
+            while ( _object = Object.getPrototypeOf ( _object ) );
+
+
+                _results = _results.sort ( ).filter ( ( element, i, array ) =>
+                           {
+                               if ( element != array [ i + 1 ] && typeof object [ element ] == 'function' )
+
+                                    return true;
+                           } );
+
+
+            return _results;
+        }
+
+
+        if ( value != undefined )
+        {
+            let _instance  = eval ( `new ${value.constructor.name};` );
+
+            let _functions = _getClassFunctions ( value );
+
+
+            let _point  = ( Object.hasOwn ( _instance, '_point'  ) );
+
+            let _master = ( Object.hasOwn ( _instance, '_master' ) );
+
+            let _init   = _functions.includes ( 'init' );
+
+
+            return ( _point && _master && _init );
+        }
+        else
+
+            return false;
     },
 
     /**

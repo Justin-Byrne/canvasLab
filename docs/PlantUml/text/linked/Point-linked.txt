@@ -53,7 +53,7 @@ border                  <color:gray>{boolean}</color>
 coordinates             <color:gray>{boolean}</color>
 controlPoints           <color:gray>{boolean}</color>
 shadow                  <color:gray>{boolean}</color>
-master                  {Object}
+master                  {clObject}
 __ Getter __
 anchor                  <color:gray>{boolean}</color>
 axis                    <color:gray>{boolean}</color>
@@ -61,7 +61,7 @@ border                  <color:gray>{boolean}</color>
 coordinates             <color:gray>{boolean}</color>
 controlPoints           <color:gray>{boolean}</color>
 shadow                  <color:gray>{boolean}</color>
-master                  {Object}
+master                  {clObject}
 __ Validation __
 _isCanvasLabObject      <color:gray>{boolean}</color>
 }

@@ -73,11 +73,11 @@ skinparam DefaultFontName Courier New
 class Stop {
 offset          <color:gray>{number}</color>
 __ Setter __
-offset          <color:gray>{number}</color>
 color           {Object}
+offset          <color:gray>{number}</color>
 __ Getter __
-offset          <color:gray>{number}</color>
 color           {Object}
+offset          <color:gray>{number}</color>
 __ Validation __
 _isColorModel   <color:gray>{boolean}</color>
 _isDecimal      <color:gray>{boolean}</color>

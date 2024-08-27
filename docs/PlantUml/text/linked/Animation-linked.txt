@@ -4,31 +4,49 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Animation {
-timing                    {function}
-draw                      {function}
-duration                  <color:gray>{number}</color>
+object                       {clObject}
+timing                       {Function}
+period                       <color:gray>{number}</color>
+change                       {Object}
+options                      {Object}
 __ Setter __
-timing                    {function}
-draw                      {function}
-duration                  <color:gray>{number}</color>
-queue                     {Queue}
+object                       {clObject}
+timing                       {string|Function}
+period                       <color:gray>{number}</color>
+change                       {clChange}
+cache                        <color:gray>{boolean}</color>
+queue                        {Queue}
 __ Getter __
-timing                    {function}
-draw                      {function}
-duration                  <color:gray>{number}</color>
-queue                     {Queue}
+object                       {clObject}
+timing                       {Function}
+period                       <color:gray>{number}</color>
+change                       {clChange}
+cache                        <color:gray>{boolean}</color>
+queue                        {Queue}
 __ Validation __
-_isNumber                 <color:gray>{boolean}</color>
+_isNumber                    <color:gray>{boolean}</color>
 __ Utility __
-_getAnimationProperties   {Object}
+_getAnimationProperties      {Object}
+_getPointByDegreeNDistance   {Point}
+_cacheObject
 _checkQueue
+_clearCanvas
+_drawCache
+_setLocationData
 animate
 requestAnimationFrame
+_transition
+_callback
+_animate
 }
 
-Animation o-- function
-Animation o-- Queue
+Animation o-- clObject
+Animation o-- Function
 Animation o-- Object
+Animation o-- string : Function
+Animation o-- clChange
+Animation o-- Queue
+Animation o-- Point
 
 
 
@@ -51,6 +69,37 @@ isLast      <color:gray>{boolean}</color>
 isSet       <color:gray>{boolean}</color>
 next        {Object}
 reset
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Point {
+[x=0]          <color:gray>{number}</color>
+[y=0]          <color:gray>{number}</color>
+options        {Options}
+__ Setter __
+x              <color:gray>{number}</color>
+y              <color:gray>{number}</color>
+canvas         <color:gray>{string}</color>
+__ Getter __
+x              <color:gray>{number}</color>
+y              <color:gray>{number}</color>
+canvas         <color:gray>{string}</color>
+options        {Options}
+center         {Point}
+__ Validation __
+_isAspect      <color:gray>{boolean}</color>
+_isInDom       <color:gray>{boolean}</color>
+__ Utility __
+_drawAxis
+_drawBorder
+_rotatePoint
+drawOptions
+invert
+move
 }
 
 @enduml

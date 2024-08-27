@@ -23,8 +23,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Aug, 13 2024',
-            Version:   '0.6.137',
+            Updated:   'Aug, 27 2024',
+            Version:   '0.7.151',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -186,24 +186,25 @@ class Application
 
         /**
          * Creates a new animation instance
-         * @param           {Queue|Object} sequence                     Contains timing, draw, & duration values & functions
-         * @param           {number}       sequence.duration            Duration of animation
-         * @param           {Function}     sequence.timing              Timing function
-         * @param           {Function}     sequence.draw                Draw function
+         * @param           {Transition|Queue} transition                   Contains timing, draw, & duration values & functions
+         * @param           {number}           transition.object            CanvasLab Object
+         * @param           {Function}         transition.timing            Timing function
+         * @param           {number}           transition.period            Period of time
+         * @param           {clChange}         transition.change            Changes to object
          */
-        set animation ( sequence = { duration, timing, draw } )
+        set animation ( transition = { object, timing, period, change } )
         {
-            if ( sequence instanceof Queue )
+            if ( Array.isArray ( transition ) )
             {
                 let _animation       = new Animation;
 
-                    _animation.queue = sequence;
+                    _animation.queue = new Queue ( transition );
 
                     _animation.animate ( );
             }
             else
             {
-                let _animation = new Animation ( sequence.duration, sequence.timing, sequence.draw );
+                let _animation = new Animation ( transition.object, transition.timing, transition.period, transition.change );
 
                     _animation.animate ( );
             }

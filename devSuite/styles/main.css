@@ -192,9 +192,8 @@ nav {
         nav .nav-wrapper .nav-menu a:hover, nav .nav-wrapper .nav-menu a:focus {
           color: white;
           box-shadow: none; }
-      nav .nav-wrapper .nav-menu li:nth-child(5) > button,
-      nav .nav-wrapper .nav-menu li:nth-child(7) > button {
-        padding-top: 12px; }
+      nav .nav-wrapper .nav-menu li button {
+        padding-top: 6px; }
     nav .nav-wrapper #nav-lab {
       text-align: center; }
     nav .nav-wrapper .external-links {
@@ -238,7 +237,7 @@ nav {
           border-top-left-radius: 2px;
           border-bottom-left-radius: 2px; }
         nav .nav-wrapper #version span:nth-child(2) {
-          background-color: #d1654d;
+          background-color: navy;
           border-top-right-radius: 2px;
           border-bottom-right-radius: 2px; }
 

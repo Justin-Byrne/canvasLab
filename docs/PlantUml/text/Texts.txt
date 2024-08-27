@@ -5,12 +5,19 @@ skinparam DefaultFontName Courier New
 
 class Texts {
 point                {Point}
+stroke               {StrokeCollection}
+shadow               {ShadowCollection}
+aspect               {Aspect}
 canvas               {HTMLCanvasElement}
+template             {Template}
+anchor               {Anchor}
+options              {Options}
 __ Setter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 canvas               <color:gray>{string}</color>
+template             {Template}
 anchor               <color:gray>{string}</color>
 __ Getter __
 point                {Point}
@@ -18,12 +25,14 @@ x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 stroke               {Stroke}
 shadow               {Shadow}
-options              {Object}
-canvas               <color:gray>{string}</color>
 aspect               {Aspect}
 width                <color:gray>{number}</color>
 height               <color:gray>{number}</color>
+canvas               <color:gray>{string}</color>
+template             {Template}
 anchor               {Anchor}
+options              {Object}
+storageType          {clObject}
 area                 <color:gray>{number}</color>
 center               {Point}
 endPoint             {Point}
@@ -44,7 +53,6 @@ _setAspect
 _setPointOffset
 push
 draw
-redraw
 }
 
 @enduml

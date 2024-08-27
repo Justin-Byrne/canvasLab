@@ -481,7 +481,7 @@ class Ui
             LAB.runCode ( );
 
 
-            if ( PAGE.group === 'plan')
+            if ( PAGE.group === 'template' )
 
                 this.navigation ( );
 
@@ -800,9 +800,9 @@ class Ui
         {
             let _class   = code.match ( /_(\w+)/ ) [ 1 ];
 
-            let _regex   = new RegExp ( '_(line|lines|circle|circles|rectangle|rectangles|text|texts)', 'g' );
+            let _regex   = new RegExp ( '_(line|lines|circle|circles|ellipse|ellipses|rectangle|rectangles|roundedRectangle|roundedRectangles|text|texts)', 'g' );
 
-            let _objects = [ 'line', 'lines', 'rectangle', 'rectangles', 'circle', 'circles', 'text', 'texts' ]
+            let _objects = [ 'line', 'lines', 'circle', 'circles', 'ellipse', 'ellipses', 'rectangle', 'rectangles', 'roundedRectangle', 'roundedRectangles', 'text', 'texts' ]
 
 
             let _result = ( ! _objects.includes ( _class ) )

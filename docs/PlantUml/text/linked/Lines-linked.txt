@@ -8,27 +8,33 @@ point                {Point}
 stroke               {StrokeCollection}
 shadow               {ShadowCollection}
 lineCap              <color:gray>{string}</color>
+aspect               {Aspect}
+anchor               {Anchor}
 canvas               {HTMLCanvasElement}
+template             {Template}
 __ Setter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 lineCap              <color:gray>{string}</color>
-canvas               <color:gray>{string}</color>
 anchor               <color:gray>{string}</color>
+canvas               <color:gray>{string}</color>
+template             {Template}
 __ Getter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 stroke               {Stroke}
 shadow               {Shadow}
-options              {Object}
 lineCap              <color:gray>{string}</color>
-canvas               <color:gray>{string}</color>
 aspect               {Aspect}
 width                <color:gray>{number}</color>
 height               <color:gray>{number}</color>
 anchor               {Anchor}
+canvas               <color:gray>{string}</color>
+template             {Template}
+options              {Object}
+storageType          {clObject}
 area                 <color:gray>{number}</color>
 center               {Point}
 endPoint             {Point}
@@ -38,6 +44,7 @@ _isAspect            <color:gray>{boolean}</color>
 _isCanvasLabObject   <color:gray>{boolean}</color>
 _isInDom             <color:gray>{boolean}</color>
 _isPoint             <color:gray>{boolean}</color>
+_isTemplate          <color:gray>{boolean}</color>
 __ Utility __
 _drawAnchor
 _drawAxis
@@ -49,18 +56,19 @@ _setAspect
 _setPointOffset
 push
 draw
-redraw
 }
 
 Lines o-- Point
 Lines o-- StrokeCollection
 Lines o-- ShadowCollection
+Lines o-- Aspect
+Lines o-- Anchor
 Lines o-- HTMLCanvasElement
+Lines o-- Template
 Lines o-- Stroke
 Lines o-- Shadow
 Lines o-- Object
-Lines o-- Aspect
-Lines o-- Anchor
+Lines o-- clObject
 
 
 
@@ -105,12 +113,13 @@ color           <color:gray>{string}</color>
 type            <color:gray>{number}</color>
 segments        {Array}
 width           <color:gray>{number}</color>
-master
+master          {clObject}
 __ Getter __
 color           <color:gray>{string}</color>
 type            <color:gray>{number}</color>
 segments        {Array}
 width           <color:gray>{number}</color>
+master          {clObject}
 __ Validation __
 _isColorModel   <color:gray>{boolean}</color>
 _isSegments     <color:gray>{boolean}</color>
@@ -146,6 +155,50 @@ _isBlur    <color:gray>{boolean}</color>
 _isPoint   <color:gray>{boolean}</color>
 __ Utility __
 _setAll
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Aspect {
+[width=0]      <color:gray>{number}</color>
+[height=0]     <color:gray>{number}</color>
+__ Setter __
+width          <color:gray>{number}</color>
+height         <color:gray>{number}</color>
+__ Getter __
+width          <color:gray>{number}</color>
+height         <color:gray>{number}</color>
+offset         {Point}
+center         <color:gray>{boolean}</color>
+heightCenter   <color:gray>{number}</color>
+widthCenter    <color:gray>{number}</color>
+__ Validation __
+_isPoint       <color:gray>{boolean}</color>
+}
+
+
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Anchor {
+point       {Point}
+align       <color:gray>{string}</color>
+__ Setter __
+point       {Point}
+x           <color:gray>{number}</color>
+y           <color:gray>{number}</color>
+align       <color:gray>{string}</color>
+__ Getter __
+point       {Point}
+x           <color:gray>{number}</color>
+y           <color:gray>{number}</color>
+align       <color:gray>{string}</color>
+__ Validation __
+_isAnchor   <color:gray>{boolean}</color>
 }
 
 
@@ -197,50 +250,6 @@ __ Validation __
 _isColorModel   <color:gray>{boolean}</color>
 _isBlur         <color:gray>{boolean}</color>
 _isPoint        <color:gray>{boolean}</color>
-}
-
-
-
-skinparam DefaultFontSize 16
-skinparam DefaultFontName Courier New
-
-class Aspect {
-[width=0]      <color:gray>{number}</color>
-[height=0]     <color:gray>{number}</color>
-__ Setter __
-width          <color:gray>{number}</color>
-height         <color:gray>{number}</color>
-__ Getter __
-width          <color:gray>{number}</color>
-height         <color:gray>{number}</color>
-offset         {Point}
-center         <color:gray>{boolean}</color>
-heightCenter   <color:gray>{number}</color>
-widthCenter    <color:gray>{number}</color>
-__ Validation __
-_isPoint       <color:gray>{boolean}</color>
-}
-
-
-
-skinparam DefaultFontSize 16
-skinparam DefaultFontName Courier New
-
-class Anchor {
-point       {Point}
-align       <color:gray>{string}</color>
-__ Setter __
-point       {Point}
-x           <color:gray>{number}</color>
-y           <color:gray>{number}</color>
-align       <color:gray>{string}</color>
-__ Getter __
-point       {Point}
-x           <color:gray>{number}</color>
-y           <color:gray>{number}</color>
-align       <color:gray>{string}</color>
-__ Validation __
-_isAnchor   <color:gray>{boolean}</color>
 }
 
 @enduml

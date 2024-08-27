@@ -12,29 +12,30 @@ rectangles           {Array}
 roundedRectangles    {Array}
 text                 {Array}
 canvas               {HTMLCanvasElement}
+template             {Template}
 __ Setter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 canvas               <color:gray>{string}</color>
-plan                 {Object}
+template             {Template}
 __ Getter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
-canvas               <color:gray>{string}</color>
-plan                 {Object}
 lines                {Lines}
 circles              {Circles}
 ellipses             {Ellipses}
 rectangles           {Rectangles}
 roundedRectangles    {RoundedRectangles}
 texts                {Texts}
+canvas               <color:gray>{string}</color>
+template             {Template}
 __ Validation __
 _isCanvasLabObject   <color:gray>{boolean}</color>
 _isInDom             <color:gray>{boolean}</color>
-_isPlan              <color:gray>{boolean}</color>
 _isPoint             <color:gray>{boolean}</color>
+_isTemplate          <color:gray>{boolean}</color>
 __ Utility __
 _setAllCanvases
 _setPointOffset
@@ -46,7 +47,7 @@ draw
 Group o-- Point
 Group o-- Array
 Group o-- HTMLCanvasElement
-Group o-- Object
+Group o-- Template
 Group o-- Lines
 Group o-- Circles
 Group o-- Ellipses
@@ -95,27 +96,33 @@ point                {Point}
 stroke               {StrokeCollection}
 shadow               {ShadowCollection}
 lineCap              <color:gray>{string}</color>
+aspect               {Aspect}
+anchor               {Anchor}
 canvas               {HTMLCanvasElement}
+template             {Template}
 __ Setter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 lineCap              <color:gray>{string}</color>
-canvas               <color:gray>{string}</color>
 anchor               <color:gray>{string}</color>
+canvas               <color:gray>{string}</color>
+template             {Template}
 __ Getter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 stroke               {Stroke}
 shadow               {Shadow}
-options              {Object}
 lineCap              <color:gray>{string}</color>
-canvas               <color:gray>{string}</color>
 aspect               {Aspect}
 width                <color:gray>{number}</color>
 height               <color:gray>{number}</color>
 anchor               {Anchor}
+canvas               <color:gray>{string}</color>
+template             {Template}
+options              {Object}
+storageType          {clObject}
 area                 <color:gray>{number}</color>
 center               {Point}
 endPoint             {Point}
@@ -125,6 +132,7 @@ _isAspect            <color:gray>{boolean}</color>
 _isCanvasLabObject   <color:gray>{boolean}</color>
 _isInDom             <color:gray>{boolean}</color>
 _isPoint             <color:gray>{boolean}</color>
+_isTemplate          <color:gray>{boolean}</color>
 __ Utility __
 _drawAnchor
 _drawAxis
@@ -136,7 +144,6 @@ _setAspect
 _setPointOffset
 push
 draw
-redraw
 }
 
 
@@ -146,12 +153,19 @@ skinparam DefaultFontName Courier New
 
 class Circles {
 point                {Point}
+stroke               {StrokeCollection}
+shadow               {ShadowCollection}
+aspect               {Aspect}
 canvas               {HTMLCanvasElement}
+template             {Template}
+anchor               {Anchor}
+options              {Options}
 __ Setter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 canvas               <color:gray>{string}</color>
+template             {Template}
 anchor               <color:gray>{string}</color>
 __ Getter __
 point                {Point}
@@ -159,12 +173,14 @@ x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 stroke               {Stroke}
 shadow               {Shadow}
-options              {Object}
-canvas               <color:gray>{string}</color>
 aspect               {Aspect}
 width                <color:gray>{number}</color>
 height               <color:gray>{number}</color>
+canvas               <color:gray>{string}</color>
+template             {Template}
 anchor               {Anchor}
+options              {Object}
+storageType          {clObject}
 area                 <color:gray>{number}</color>
 center               {Point}
 endPoint             {Point}
@@ -174,6 +190,7 @@ _isAspect            <color:gray>{boolean}</color>
 _isCanvasLabObject   <color:gray>{boolean}</color>
 _isInDom             <color:gray>{boolean}</color>
 _isPoint             <color:gray>{boolean}</color>
+_isTemplate          <color:gray>{boolean}</color>
 __ Utility __
 _drawAnchor
 _drawAxis
@@ -185,7 +202,6 @@ _setAspect
 _setPointOffset
 push
 draw
-redraw
 }
 
 
@@ -194,10 +210,16 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class Ellipses {
-point     {Point}
-canvas    {HTMLCanvasElement}
+point      {Point}
+stroke     {StrokeCollection}
+shadow     {ShadowCollection}
+aspect     {Aspect}
+canvas     {HTMLCanvasElement}
+template   {Template}
+anchor     {Anchor}
+options    {Options}
 __ Getter __
-options   {Object}
+options    {Object}
 }
 
 
@@ -207,12 +229,19 @@ skinparam DefaultFontName Courier New
 
 class Rectangles {
 point                {Point}
+stroke               {StrokeCollection}
+shadow               {ShadowCollection}
+aspect               {Aspect}
 canvas               {HTMLCanvasElement}
+template             {Template}
+anchor               {Anchor}
+options              {Options}
 __ Setter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 canvas               <color:gray>{string}</color>
+template             {Template}
 anchor               <color:gray>{string}</color>
 __ Getter __
 point                {Point}
@@ -220,12 +249,14 @@ x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 stroke               {Stroke}
 shadow               {Shadow}
-options              {Object}
-canvas               <color:gray>{string}</color>
 aspect               {Aspect}
 width                <color:gray>{number}</color>
 height               <color:gray>{number}</color>
+canvas               <color:gray>{string}</color>
+template             {Template}
 anchor               {Anchor}
+options              {Object}
+storageType          {clObject}
 area                 <color:gray>{number}</color>
 center               {Point}
 endPoint             {Point}
@@ -235,6 +266,7 @@ _isAspect            <color:gray>{boolean}</color>
 _isCanvasLabObject   <color:gray>{boolean}</color>
 _isInDom             <color:gray>{boolean}</color>
 _isPoint             <color:gray>{boolean}</color>
+_isTemplate          <color:gray>{boolean}</color>
 __ Utility __
 _drawAnchor
 _drawAxis
@@ -246,7 +278,6 @@ _setAspect
 _setPointOffset
 push
 draw
-redraw
 }
 
 
@@ -255,10 +286,16 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class RoundedRectangles {
-point     {Point}
-canvas    {HTMLCanvasElement}
+point      {Point}
+stroke     {StrokeCollection}
+shadow     {ShadowCollection}
+aspect     {Aspect}
+canvas     {HTMLCanvasElement}
+template   {Template}
+anchor     {Anchor}
+options    {Options}
 __ Getter __
-options   {Object}
+options    {Object}
 }
 
 
@@ -268,12 +305,19 @@ skinparam DefaultFontName Courier New
 
 class Texts {
 point                {Point}
+stroke               {StrokeCollection}
+shadow               {ShadowCollection}
+aspect               {Aspect}
 canvas               {HTMLCanvasElement}
+template             {Template}
+anchor               {Anchor}
+options              {Options}
 __ Setter __
 point                {Point}
 x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 canvas               <color:gray>{string}</color>
+template             {Template}
 anchor               <color:gray>{string}</color>
 __ Getter __
 point                {Point}
@@ -281,12 +325,14 @@ x                    <color:gray>{number}</color>
 y                    <color:gray>{number}</color>
 stroke               {Stroke}
 shadow               {Shadow}
-options              {Object}
-canvas               <color:gray>{string}</color>
 aspect               {Aspect}
 width                <color:gray>{number}</color>
 height               <color:gray>{number}</color>
+canvas               <color:gray>{string}</color>
+template             {Template}
 anchor               {Anchor}
+options              {Object}
+storageType          {clObject}
 area                 <color:gray>{number}</color>
 center               {Point}
 endPoint             {Point}
@@ -307,7 +353,6 @@ _setAspect
 _setPointOffset
 push
 draw
-redraw
 }
 
 @enduml

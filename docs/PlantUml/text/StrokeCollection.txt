@@ -10,12 +10,13 @@ color           <color:gray>{string}</color>
 type            <color:gray>{number}</color>
 segments        {Array}
 width           <color:gray>{number}</color>
-master
+master          {clObject}
 __ Getter __
 color           <color:gray>{string}</color>
 type            <color:gray>{number}</color>
 segments        {Array}
 width           <color:gray>{number}</color>
+master          {clObject}
 __ Validation __
 _isColorModel   <color:gray>{boolean}</color>
 _isSegments     <color:gray>{boolean}</color>

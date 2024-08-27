@@ -105,7 +105,7 @@ class Page
 
             let _regex =
             {
-                group:   new RegExp ( /(Object|Subject|Plan)/  ),
+                group:   new RegExp ( /(Object|Subject|Template)/  ),
 
                 handler: new RegExp ( /(Processing|Animation)/ )
             }

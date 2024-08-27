@@ -744,6 +744,13 @@ class Lab
                     bindKey: { win: 'Ctrl-D', mac: 'Command-D' },
                     exec:    ( editor ) => editor.commands.byName.selectMoreAfter.exec ( editor )
                 } );
+
+            this.editor.commands.addCommand (
+                {
+                    name:    'fold_code',
+                    bindKey: { win: 'Ctrl-;', mac: 'Command-;' },
+                    exec:    ( editor ) => editor.commands.byName.foldall.exec ( editor )
+                } );
         }
 
         /**

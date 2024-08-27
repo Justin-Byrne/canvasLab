@@ -8,6 +8,9 @@ source            <color:gray>{string}</color>
 primary           {Object}
 secondary         {Object}
 canvas            {HTMLCanvasElement}
+anchor            {Anchor}
+options           {Options}
+location          {Location}
 __ Setter __
 source            <color:gray>{string}</color>
 point             {Point}
@@ -30,6 +33,7 @@ secondary         {Image}
 canvas            <color:gray>{string}</color>
 anchor            {Anchor}
 options           {Options}
+location          {Location}
 area              <color:gray>{number}</color>
 center            {Point}
 perimeter         <color:gray>{number}</color>
@@ -39,7 +43,6 @@ _isInDom          <color:gray>{boolean}</color>
 _isPoint          <color:gray>{boolean}</color>
 _isPointNAspect   <color:gray>{boolean}</color>
 __ Utility __
-_clearCanvas
 _drawAnchor
 _drawAxis
 _drawBorder
@@ -51,7 +54,6 @@ rotate
 showCoordinates
 draw
 _drawImage
-redraw
 }
 
 @enduml

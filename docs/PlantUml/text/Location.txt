@@ -1,0 +1,30 @@
+@startuml
+
+skinparam DefaultFontSize 16
+skinparam DefaultFontName Courier New
+
+class Location {
+point                {Point}
+distance             <color:gray>{number}</color>
+direction            <color:gray>{number}</color>
+stroke               {Stroke}
+fill                 {Fill}
+shadow               {Shadow}
+canvas               {HTMLCanvasElement}
+master               {clObject}
+__ Setter __
+origin               {Point}
+distance             <color:gray>{number}</color>
+direction            <color:gray>{number}</color>
+master               {clObject}
+__ Getter __
+origin               {Point}
+distance             <color:gray>{number}</color>
+direction            <color:gray>{number}</color>
+master               {clObject}
+__ Validation __
+_isCanvasLabObject   <color:gray>{boolean}</color>
+_isPoint             <color:gray>{boolean}</color>
+}
+
+@enduml
