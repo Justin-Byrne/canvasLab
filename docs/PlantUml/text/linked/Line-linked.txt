@@ -11,7 +11,7 @@ shadow              {Shadow}
 canvas              {HTMLCanvasElement}
 controlPoints       {ControlPoints}
 options             {Options}
-location            {Location}
+position            {Position}
 __ Setter __
 start               {Point}
 end                 {Point}
@@ -26,7 +26,7 @@ lineCap             <color:gray>{string}</color>
 canvas              <color:gray>{string}</color>
 options             {Options}
 controlPoints       {ControlPoints}
-location            {Location}
+position            {Position}
 center              {Point}
 __ Validation __
 _isAspect           <color:gray>{boolean}</color>
@@ -57,7 +57,7 @@ Line o-- Shadow
 Line o-- HTMLCanvasElement
 Line o-- ControlPoints
 Line o-- Options
-Line o-- Location
+Line o-- Position
 
 
 
@@ -204,7 +204,7 @@ _isCanvasLabObject      <color:gray>{boolean}</color>
 skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
-class Location {
+class Position {
 point                {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>

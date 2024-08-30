@@ -9,7 +9,7 @@
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  * @property        {Anchor}            anchor                  Anchor properties
  * @property        {Options}           options                 Options for this object
- * @property        {Location}          location                Location properties
+ * @property        {Position}          position                Position properties
  * @extends 		{Circle}
  */
 class Ellipse extends Circle

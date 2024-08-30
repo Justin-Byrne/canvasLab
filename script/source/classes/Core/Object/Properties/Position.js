@@ -1,5 +1,5 @@
 /**
- * @class           {Object}            Location 				Location object
+ * @class           {Object}            Position 				Position object
  * @property        {Point}             point 					Original X & Y coordinates for an object's position
  * @property        {number}            distance 				Distance from origin to destination
  * @property        {number}            direction 				Direction to move towards destination; in degrees
@@ -9,7 +9,7 @@
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  * @property        {clObject} 			master 					Master object
  */
-class Location
+class Position
 {
 	_origin    = undefined;
 	_distance  = undefined;
@@ -20,7 +20,7 @@ class Location
 	_master    = undefined;
 
 	/**
-	 * Create a Location object
+	 * Create a Position object
 	 * @property        {Point}  point                              Original X & Y coordinates for an object's position
 	 * @property        {number} distance                  			Distance from origin to destination
 	 * @property        {number} direction 							Direction to move towards destination; in degrees

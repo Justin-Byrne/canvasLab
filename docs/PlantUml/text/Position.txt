@@ -3,7 +3,7 @@
 skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
-class Location {
+class Position {
 point                {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>

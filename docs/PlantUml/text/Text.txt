@@ -11,7 +11,7 @@ fill              {Fill}
 shadow            {Shadow}
 canvas            {HTMLCanvasElement}
 options           {Options}
-location          {Location}
+position          {Position}
 __ Setter __
 point             {Point}
 x                 <color:gray>{number}</color>
@@ -33,7 +33,7 @@ fill              {Fill}
 shadow            {Shadow}
 canvas            <color:gray>{string}</color>
 options           {Options}
-location          {Location}
+position          {Position}
 type              <color:gray>{string}</color>
 size              <color:gray>{number}</color>
 weight            <color:gray>{string}</color>

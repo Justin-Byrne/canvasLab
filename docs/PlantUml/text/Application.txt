@@ -8,6 +8,7 @@ __ Setter __
 canvas      <color:gray>{string}</color>
 animation   {Transition|Queue}
 __ Getter __
+animation   {Animation}
 canvas      {HTMLCanvasElement}
 about       {Object}
 dom         {Object}

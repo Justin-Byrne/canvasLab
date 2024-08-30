@@ -8,7 +8,7 @@
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  * @property        {ControlPoints}     controlPoints           Control point properties
  * @property        {Options}           options                 Options for this object
- * @property        {Location}          location                Location properties
+ * @property        {Position}          position                Position properties
  */
 class Line
 {
@@ -23,7 +23,7 @@ class Line
 
     #controlPoints = new ControlPoints;
     #options       = new Options;
-    #location      = new Location;
+    #position      = new Position;
 
     /**
      * Create a Line object
@@ -276,14 +276,14 @@ class Line
     ////    [ LOCATION ]    ////////////////////////////////
 
         /**
-         * Get location properties
+         * Get position properties
          * @public
          * @function
-         * @return          {Location}                                  Location properties
+         * @return          {Position}                                  Position properties
          */
-        get location ( )
+        get position ( )
         {
-            return this.#location;
+            return this.#position;
         }
 
     ////    & EXTEND &  ////////////////////////////////////

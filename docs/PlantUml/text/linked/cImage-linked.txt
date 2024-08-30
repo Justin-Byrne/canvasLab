@@ -10,7 +10,7 @@ secondary         {Object}
 canvas            {HTMLCanvasElement}
 anchor            {Anchor}
 options           {Options}
-location          {Location}
+position          {Position}
 __ Setter __
 source            <color:gray>{string}</color>
 point             {Point}
@@ -33,7 +33,7 @@ secondary         {Image}
 canvas            <color:gray>{string}</color>
 anchor            {Anchor}
 options           {Options}
-location          {Location}
+position          {Position}
 area              <color:gray>{number}</color>
 center            {Point}
 perimeter         <color:gray>{number}</color>
@@ -60,7 +60,7 @@ cImage o-- Object
 cImage o-- HTMLCanvasElement
 cImage o-- Anchor
 cImage o-- Options
-cImage o-- Location
+cImage o-- Position
 cImage o-- Point
 cImage o-- Aspect
 cImage o-- Image
@@ -126,7 +126,7 @@ _isCanvasLabObject      <color:gray>{boolean}</color>
 skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
-class Location {
+class Position {
 point                {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>

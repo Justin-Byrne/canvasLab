@@ -12,7 +12,7 @@ shadow     {Shadow}
 canvas     {HTMLCanvasElement}
 anchor     {Anchor}
 options    {Options}
-location   {Location}
+position   {Position}
 __ Setter __
 radius     {Point}
 __ Getter __

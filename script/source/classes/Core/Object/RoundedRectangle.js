@@ -9,7 +9,7 @@
  * @property        {Anchor}            anchor 					Anchor properties
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  * @property        {Options}  			options 				Options for this object
- * @property        {Location} 			location 				Location properties
+ * @property        {Position} 			position 				Position properties
  * @extends 		{Rectangle}
  */
 class RoundedRectangle extends Rectangle

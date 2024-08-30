@@ -3,6 +3,8 @@
  */
 class Application
 {
+    _animation = undefined;
+
     /**
      * Application configurations & details
      * @type            {Object}
@@ -23,8 +25,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Aug, 27 2024',
-            Version:   '0.7.151',
+            Updated:   'Aug, 30 2024',
+            Version:   '0.7.158',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -75,6 +77,19 @@ class Application
 
             this._isInDom = VALIDATION.isInDom;
     }
+
+    ////    [ ANIMATION ]    ///////////////////////////////
+
+        /**
+         * Get animation
+         * @readOnly
+         * @function
+         * @return          {Animation}                                 Animation object
+         */
+        get animation ( )
+        {
+            return this._animation;
+        }
 
     ////    [ CANVAS ]  ////////////////////////////////////
 
@@ -196,17 +211,17 @@ class Application
         {
             if ( Array.isArray ( transition ) )
             {
-                let _animation       = new Animation;
+                this._animation       = new Animation;
 
-                    _animation.queue = new Queue ( transition );
+                this._animation.queue = new Queue ( transition );
 
-                    _animation.animate ( );
+                this._animation.animate ( );
             }
             else
             {
-                let _animation = new Animation ( transition.object, transition.timing, transition.period, transition.change );
+                this._animation = new Animation ( transition.object, transition.timing, transition.period, transition.change );
 
-                    _animation.animate ( );
+                this._animation.animate ( );
             }
         }
 }

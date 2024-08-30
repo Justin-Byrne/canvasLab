@@ -12,7 +12,7 @@ shadow     {Shadow}
 anchor     {Anchor}
 canvas     {HTMLCanvasElement}
 options    {Options}
-location   {Location}
+position   {Position}
 }
 
 @enduml

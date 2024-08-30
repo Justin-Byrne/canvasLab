@@ -11,7 +11,7 @@ shadow              {Shadow}
 canvas              {HTMLCanvasElement}
 controlPoints       {ControlPoints}
 options             {Options}
-location            {Location}
+position            {Position}
 __ Setter __
 start               {Point}
 end                 {Point}
@@ -26,7 +26,7 @@ lineCap             <color:gray>{string}</color>
 canvas              <color:gray>{string}</color>
 options             {Options}
 controlPoints       {ControlPoints}
-location            {Location}
+position            {Position}
 center              {Point}
 __ Validation __
 _isAspect           <color:gray>{boolean}</color>

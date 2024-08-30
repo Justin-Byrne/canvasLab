@@ -23,20 +23,23 @@ period                       <color:gray>{number}</color>
 change                       {clChange}
 cache                        <color:gray>{boolean}</color>
 queue                        {Queue}
+cancel
 __ Validation __
 _isNumber                    <color:gray>{boolean}</color>
 __ Utility __
 _getAnimationProperties      {Object}
 _getPointByDegreeNDistance   {Point}
 _cacheObject
+_cache
 _checkQueue
 _clearCanvas
 _drawCache
-_setLocationData
+_end
+cancelAnimationFrame
+_setPositionData
 animate
 requestAnimationFrame
 _transition
-_callback
 _animate
 }
 

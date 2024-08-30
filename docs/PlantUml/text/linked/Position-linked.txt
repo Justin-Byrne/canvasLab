@@ -3,7 +3,7 @@
 skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
-class Location {
+class Position {
 point                {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>
@@ -27,12 +27,12 @@ _isCanvasLabObject   <color:gray>{boolean}</color>
 _isPoint             <color:gray>{boolean}</color>
 }
 
-Location o-- Point
-Location o-- Stroke
-Location o-- Fill
-Location o-- Shadow
-Location o-- HTMLCanvasElement
-Location o-- clObject
+Position o-- Point
+Position o-- Stroke
+Position o-- Fill
+Position o-- Shadow
+Position o-- HTMLCanvasElement
+Position o-- clObject
 
 
 

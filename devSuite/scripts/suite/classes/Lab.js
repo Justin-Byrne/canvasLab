@@ -536,6 +536,21 @@ class Lab
         }
 
         /**
+         * Clears existing animations
+         * @private
+         * @function
+         */
+        _clearExistingAnimations ( )
+        {
+            let _animation = canvaslab.application.animation;
+
+
+            if ( _animation )
+
+                _animation.cancel
+        }
+
+        /**
          * Generates a downloadable file & initiates that download
          * @private
          * @function
@@ -775,6 +790,8 @@ class Lab
 
                 console.clear ( );
 
+
+            this._clearExistingAnimations ( );
 
             eval ( _code );
         }

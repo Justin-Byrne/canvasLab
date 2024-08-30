@@ -6,7 +6,7 @@
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  * @property        {Anchor}            anchor                  Anchor properties
  * @property        {Options}           options                 Options for this object
- * @property        {Location}          location                Location properties
+ * @property        {Position}          position                Position properties
  */
 class cImage
 {
@@ -28,7 +28,7 @@ class cImage
 
     _anchor   = new Anchor;
 	#options  = new Options;
-    #location = new Location;
+    #position = new Position;
 
 	/**
      * Create a cImage object
@@ -328,14 +328,14 @@ class cImage
     ////    [ LOCATION ]    ////////////////////////////////
 
         /**
-         * Get location properties
+         * Get position properties
          * @public
          * @function
-         * @return          {Location}                                  Location properties
+         * @return          {Position}                                  Position properties
          */
-        get location ( )
+        get position ( )
         {
-            return this.#location;
+            return this.#position;
         }
 
     ////    VALIDATION    //////////////////////////////////
@@ -447,7 +447,7 @@ class cImage
         _rotatePoint ( ) { }
 
         /**
-         * Sets anchor's point against this object's point location
+         * Sets anchor's point against this object's point position
          * @private
          * @function
          * @see             {@link UTILITIES.individual.set.anchorPoint}

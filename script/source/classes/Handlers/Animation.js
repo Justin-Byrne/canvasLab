@@ -54,7 +54,8 @@ class Animation
 
     #options =
     {
-        cache: false
+        cache:  false,
+        active: false
     }
 
     #queue = new Queue;
@@ -77,6 +78,8 @@ class Animation
         this.timing = timing;
         this.period = period;
         this.change = change;
+
+        this.#options.active = true;
     }
 
     ////    [ OBJECT ]    //////////////////////////////////
@@ -194,7 +197,7 @@ class Animation
             return this._change;
         }
 
-    ////    [ CHANGE ]    //////////////////////////////////
+    ////    [ CACHE ]    ///////////////////////////////////
 
         /**
          * Set cache
@@ -262,25 +265,25 @@ class Animation
          * @function
          * @param           {clObject} object                           Canvas Lab object
          */
-        _cacheObject ( object )
+        _cacheObject ( )
         {
             let _object = undefined;
 
 
-            switch ( object.constructor.name )
+            switch ( this.object.constructor.name )
             {
                 case 'Circle':
 
-                    _object = new Circle ( object.point );
+                    _object = new Circle ( this.object.point );
 
                     // _object = new Circle (
-                    //               object.point,
-                    //               object.radius,
-                    //               object.angle,
-                    //               object.stroke,
-                    //               object.fill,
-                    //               object.shadow,
-                    //               object.canvas
+                    //               this.object.point,
+                    //               this.object.radius,
+                    //               this.object.angle,
+                    //               this.object.stroke,
+                    //               this.object.fill,
+                    //               this.object.shadow,
+                    //               this.object.canvas
                     //           );
 
                     break;
@@ -288,13 +291,13 @@ class Animation
                 case 'Ellipse':
 
                     _object = new Ellipse (
-                                  object.point,
-                                  object.radius,
-                                  object.angle,
-                                  object.stroke,
-                                  object.fill,
-                                  object.shadow,
-                                  object.canvas
+                                  this.object.point,
+                                  this.object.radius,
+                                  this.object.angle,
+                                  this.object.stroke,
+                                  this.object.fill,
+                                  this.object.shadow,
+                                  this.object.canvas
                               );
 
                     break;
@@ -302,13 +305,13 @@ class Animation
                 case 'Rectangle':
 
                     _object = new Rectangle (
-                                  object.point,
-                                  object.aspect,
-                                  object.round,
-                                  object.stroke,
-                                  object.fill,
-                                  object.shadow,
-                                  object.canvas
+                                  this.object.point,
+                                  this.object.aspect,
+                                  this.object.round,
+                                  this.object.stroke,
+                                  this.object.fill,
+                                  this.object.shadow,
+                                  this.object.canvas
                               );
 
                     break;
@@ -316,13 +319,13 @@ class Animation
                 case 'RoundedRectangle':
 
                     _object = new RoundedRectangle (
-                                  object.point,
-                                  object.aspect,
-                                  object.round,
-                                  object.stroke,
-                                  object.fill,
-                                  object.shadow,
-                                  object.canvas
+                                  this.object.point,
+                                  this.object.aspect,
+                                  this.object.round,
+                                  this.object.stroke,
+                                  this.object.fill,
+                                  this.object.shadow,
+                                  this.object.canvas
                               );
 
                     break;
@@ -330,17 +333,17 @@ class Animation
                 case 'Text':
 
                     _object = new Text (
-                                  object.point,
-                                  object.text,
-                                  object.type,
-                                  object.size,
-                                  object.weight,
-                                  object.maxWidth,
-                                  object.offset,
-                                  object.stroke,
-                                  object.fill,
-                                  object.shadow,
-                                  object.canvas
+                                  this.object.point,
+                                  this.object.text,
+                                  this.object.type,
+                                  this.object.size,
+                                  this.object.weight,
+                                  this.object.maxWidth,
+                                  this.object.offset,
+                                  this.object.stroke,
+                                  this.object.fill,
+                                  this.object.shadow,
+                                  this.object.canvas
                               );
 
                     break;
@@ -348,6 +351,27 @@ class Animation
 
 
             this.#cache.push ( _object );
+        }
+
+        /**
+         * Caches current object
+         * @private
+         * @function
+         */
+        _cache ( )
+        {
+            if ( this.queue.isSet  &&  ! this.queue.isEnd )
+            {
+                if ( this._change.cache )
+
+                    this._cacheObject ( );
+
+
+                this.animate ( );
+            }
+            else
+
+                console.info ( 'animation complete !' );
         }
 
         /**
@@ -403,6 +427,24 @@ class Animation
         }
 
         /**
+         * End animation
+         * @private
+         * @function
+         */
+        _end ( )
+        {
+            let _frame = requestAnimationFrame ( this.animate );
+
+
+            cancelAnimationFrame ( _frame );
+
+            this._clearCanvas ( this.object );
+
+
+            return;
+        }
+
+        /**
          * Returns properties animation properties for execution
          * @private
          * @function
@@ -442,20 +484,20 @@ class Animation
             let _angle = ( direction % 360 );
 
 
-                _point.x = this.object.location.origin.x + Math.cos ( _angle * Math.PI / 180 ) * distance;
+                _point.x = this.object.position.origin.x + Math.cos ( _angle * Math.PI / 180 ) * distance;
 
-                _point.y = this.object.location.origin.y + Math.sin ( _angle * Math.PI / 180 ) * distance;
+                _point.y = this.object.position.origin.y + Math.sin ( _angle * Math.PI / 180 ) * distance;
 
 
             return _point;
         }
 
         /**
-         * Set Location data
+         * Set Position data
          * @private
          * @function
          */
-        _setLocationData ( )
+        _setPositionData ( )
         {
             for ( let _type in this.change )
             {
@@ -466,17 +508,17 @@ class Animation
                 {
                     case 'point':
 
-                        this.object.location.origin    = this.object.point;
+                        this.object.position.origin    = this.object.point;
 
-                        this.object.location.distance  = _difference;
+                        this.object.position.distance  = _difference;
 
-                        this.object.location.direction = _difference;
+                        this.object.position.direction = _difference;
 
                         break;
 
                     case 'move':
 
-                        this.object.location.origin = this.object.point;
+                        this.object.position.origin = this.object.point;
 
 
                         _difference.degree          = ( this.change.rotatePoint )
@@ -489,9 +531,9 @@ class Animation
                         let _point = this._getPointByDegreeNDistance ( _difference.degree, _difference.distance );
 
 
-                        this.object.location.distance  = _point;
+                        this.object.position.distance  = _point;
 
-                        this.object.location.direction = _point;
+                        this.object.position.direction = _point;
 
                         break;
 
@@ -570,9 +612,9 @@ class Animation
 
                         object.point =
                         {
-                            x: object.location.origin.x + ( object.location.distance * progress ) * Math.cos ( object.location.direction ),
+                            x: object.position.origin.x + ( object.position.distance * progress ) * Math.cos ( object.position.direction ),
 
-                            y: object.location.origin.y + ( object.location.distance * progress ) * Math.sin ( object.location.direction )
+                            y: object.position.origin.y + ( object.position.distance * progress ) * Math.sin ( object.position.direction )
                         }
 
                         break;
@@ -640,6 +682,16 @@ class Animation
             }
         }
 
+        /**
+         * Cancels animation
+         * @readOnly
+         * @function
+         */
+        get cancel ( )
+        {
+            this.#options.active = false;
+        }
+
     ////    ANIMATE    /////////////////////////////////////
 
         /**
@@ -653,7 +705,7 @@ class Animation
 
                 this._checkQueue ( );
 
-                this._setLocationData ( );
+                this._setPositionData ( );
 
             ////    PROPERTIES    //////////////////////////
 
@@ -663,23 +715,21 @@ class Animation
 
                 let _period = this._period;
 
-                let _change = this._change;
-
-                let _queue  = this.queue;
-
-                let _cache  = this.#cache;
+                let _active = this.#options.active;
 
             ////    FUNCTIONS    ///////////////////////////
 
-                let _callback    = ( )                  => this.animate ( );
+                let _transition   = ( object, progress ) => this._transition ( object, progress );
 
-                let _transition  = ( object, progress ) => this._transition ( object, progress );
+                let _clearCanvas  = ( object )           => this._clearCanvas ( object );
 
-                let _clearCanvas = ( object )           => this._clearCanvas ( object );
+                let _drawCache    = ( )                  => this._drawCache ( );
 
-                let _drawCache   = ( )                  => this._drawCache ( );
+                let _cacheObject  = ( )                  => this._cacheObject ( );
 
-                let _cacheObject = ( object )           => this._cacheObject ( object );
+                let _cache        = ( )                  => this._cache ( );
+
+                let _end          = ( )                  => this._end ( );
 
             ////////////////////////////////////////////////
             ////    ANIMATE    /////////////////////////////
@@ -700,10 +750,9 @@ class Animation
                 /* normalize */ _progress     = ( true && _progress < 0 ) ? 0 : _progress;
 
 
-                            _transition ( _object, _progress );
-
-
                             _clearCanvas ( _object );
+
+                            _transition ( _object, _progress );
 
 
                             _drawCache ( );
@@ -711,24 +760,13 @@ class Animation
                             _object.draw ( );
 
 
-                            if ( _timeFraction < 1 )
+                            ( _active ) ? ( _timeFraction < 1 )                 // Resolve
 
-                                requestAnimationFrame ( animate );
+                                              ? requestAnimationFrame ( animate )
 
-                            else
+                                              : _cache ( )
 
-                                if ( _queue.isSet  &&  ! _queue.isEnd )
-                                {
-                                    if ( _change.cache )
-
-                                        _cacheObject ( _object );
-
-
-                                    _callback ( );
-                                }
-                                else
-
-                                    console.info ( 'animation complete !' );
+                                        : _end ( );
                         }
                     );
                 }

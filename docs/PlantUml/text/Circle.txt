@@ -13,7 +13,7 @@ shadow            {Shadow}
 canvas            {HTMLCanvasElement}
 anchor            {Anchor}
 options           {Options}
-location          {Location}
+position          {Position}
 __ Setter __
 point             {Point}
 x                 <color:gray>{number}</color>
@@ -32,7 +32,7 @@ shadow            {Shadow}
 canvas            <color:gray>{string}</color>
 anchor            {Anchor}
 options           {Options}
-location          {Location}
+position          {Position}
 area              <color:gray>{number}</color>
 diameter          <color:gray>{number}</color>
 center            {Point}

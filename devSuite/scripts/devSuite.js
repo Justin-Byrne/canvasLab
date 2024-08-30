@@ -608,6 +608,21 @@ class Lab
         }
 
         /**
+         * Clears existing animations
+         * @private
+         * @function
+         */
+        _clearExistingAnimations ( )
+        {
+            let _animation = canvaslab.application.animation;
+
+
+            if ( _animation )
+
+                _animation.cancel
+        }
+
+        /**
          * Generates a downloadable file & initiates that download
          * @private
          * @function
@@ -847,6 +862,8 @@ class Lab
 
                 console.clear ( );
 
+
+            this._clearExistingAnimations ( );
 
             eval ( _code );
         }
@@ -10617,7 +10634,7 @@ class Ui
 
             ////    PROPERTIES    //////////////////////////
 
-            let _iterations   = 25;
+            let _iterations   = 2;
 
             let _timing       = 'easeOutSine';
 

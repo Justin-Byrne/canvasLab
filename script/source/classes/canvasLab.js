@@ -27,7 +27,7 @@ class canvasLab
         this.canvas = canvas;
     }
 
-        ////    [ CANVAS ]  ////////////////////////////////////
+    ////    [ CANVAS ]  ////////////////////////////////////
 
         /**
          * Set canvas value
@@ -114,6 +114,19 @@ class canvasLab
             return this._canvas.font;
         }
 
+    ////    [ APPLICATION ]    /////////////////////////////
+
+        /**
+         * Returns this application
+         * @readOnly
+         * @function
+         * @return          {Application}                               Canvas Lab application
+         */
+        get application ( )
+        {
+            return this.#application;
+        }
+
     ////    DOM    /////////////////////////////////////////
 
         /**
@@ -155,6 +168,21 @@ class canvasLab
 
                            this._canvas.canvas.clientHeight / 2                 // Y coordinate
                        );
+        }
+
+        /**
+         * Clears canvas
+         * @private
+         * @function
+         */
+        clearCanvas ( )
+        {
+            let _canvas = document.getElementById ( this.canvas );
+
+
+            if ( _canvas )  // @TODO: identify why this check has to take place periodically !
+
+                this._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
         }
 
         /**

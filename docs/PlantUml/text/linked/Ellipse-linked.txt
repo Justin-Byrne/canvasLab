@@ -12,7 +12,7 @@ shadow     {Shadow}
 canvas     {HTMLCanvasElement}
 anchor     {Anchor}
 options    {Options}
-location   {Location}
+position   {Position}
 __ Setter __
 radius     {Point}
 __ Getter __
@@ -27,7 +27,7 @@ Ellipse o-- Shadow
 Ellipse o-- HTMLCanvasElement
 Ellipse o-- Anchor
 Ellipse o-- Options
-Ellipse o-- Location
+Ellipse o-- Position
 
 
 
@@ -226,7 +226,7 @@ _isCanvasLabObject      <color:gray>{boolean}</color>
 skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
-class Location {
+class Position {
 point                {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>

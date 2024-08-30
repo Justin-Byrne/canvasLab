@@ -13,7 +13,7 @@ shadow               {Shadow}
 anchor               {Anchor}
 canvas               {HTMLCanvasElement}
 options              {Options}
-location             {Location}
+position             {Position}
 __ Setter __
 point                {Point}
 x                    <color:gray>{number}</color>
@@ -40,7 +40,7 @@ options              {Options}
 area                 <color:gray>{number}</color>
 center               {Point}
 perimeter            <color:gray>{number}</color>
-location
+position
 __ Validation __
 _isAspect            <color:gray>{boolean}</color>
 _isDegree            <color:gray>{boolean}</color>
@@ -73,7 +73,7 @@ Rectangle o-- Shadow
 Rectangle o-- Anchor
 Rectangle o-- HTMLCanvasElement
 Rectangle o-- Options
-Rectangle o-- Location
+Rectangle o-- Position
 
 
 
@@ -267,7 +267,7 @@ _isCanvasLabObject      <color:gray>{boolean}</color>
 skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
-class Location {
+class Position {
 point                {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>

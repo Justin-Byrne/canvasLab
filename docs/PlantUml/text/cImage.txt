@@ -10,7 +10,7 @@ secondary         {Object}
 canvas            {HTMLCanvasElement}
 anchor            {Anchor}
 options           {Options}
-location          {Location}
+position          {Position}
 __ Setter __
 source            <color:gray>{string}</color>
 point             {Point}
@@ -33,7 +33,7 @@ secondary         {Image}
 canvas            <color:gray>{string}</color>
 anchor            {Anchor}
 options           {Options}
-location          {Location}
+position          {Position}
 area              <color:gray>{number}</color>
 center            {Point}
 perimeter         <color:gray>{number}</color>

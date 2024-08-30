@@ -9,7 +9,7 @@
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  * @property        {Anchor}            anchor                  Anchor properties
  * @property        {Options}           options                 Options for this object
- * @property        {Location}          location                Location properties
+ * @property        {Position}          position                Position properties
  */
 class Circle
 {
@@ -24,7 +24,7 @@ class Circle
 
     _anchor   = new Anchor;
     #options  = new Options;
-    #location = new Location;
+    #position = new Position;
 
     /**
      * Create a Circle object
@@ -94,7 +94,7 @@ class Circle
 
             this.#options.shadow  = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
 
-            this.#location.master = this;
+            this.#position.master = this;
     }
 
     ////    [ POINT ]   ////////////////////////////////////
@@ -285,14 +285,14 @@ class Circle
     ////    [ LOCATION ]    ////////////////////////////////
 
         /**
-         * Get location properties
+         * Get position properties
          * @public
          * @function
-         * @return          {Location}                                  Location properties
+         * @return          {Position}                                  Position properties
          */
-        get location ( )
+        get position ( )
         {
-            return this.#location;
+            return this.#position;
         }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -449,7 +449,7 @@ class Circle
         _rotatePoint ( ) { }
 
         /**
-         * Sets anchor's point against this object's point location
+         * Sets anchor's point against this object's point position
          * @private
          * @function
          */

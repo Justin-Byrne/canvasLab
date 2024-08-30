@@ -1,6 +1,33 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.7.158] - 2024-08-30
+### Added
+- **canvasLab**
+  - :sunny: `Animation` class,
+    - `_cache` function, to cache current object
+    - `_end` function, to end animation
+    - `cancel` function, to cancel animation
+    - `active` property, to identify animations active state
+  - :sunny: `Application` class, added `animation` property
+- **devSuite**
+  - :sunny: `Lab` class, `_clearExistingAnimations` function, to clear existing animations
+
+### Changed
+- **canvasLab**
+  - :full_moon: Changed `Location` class, to `Position` class; with the same properties
+
+### Refactored
+- **canvasLab**
+  - :last_quarter_moon: `Animation` class,
+    - `_cacheObject` function, substituted param for internal property
+    - `animate` function, organized inline logic unto functions their respective functions
+  - :last_quarter_moon: `CanvasLab` class, exposed `application` property
+
+### Fixed
+- **canvasLab**
+  - :dragon: `Animation` class, exposed a `cancel` function to cancel current animations
+
 ## [0.7.151] - 2024-08-27
 ### Added
 - **canvasLab**
@@ -716,7 +743,8 @@ All notable changes to this project will be documented in this file.
 
 | Version     | Date         | Commit                                                                | Comments                                                                                                                     |
 | :---------  | :----------: | :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `[0.7.151]` | `2024-08-27` | `CURRENT`                                                             | <sup>Added Location class, refactored many Animation processes, and re-organized programs schema.</sup>                     |
+| `[0.7.158]` | `2024-08-30` | `CURRENT`                                                             | <sup>Added features to cancel current animations, and changed the Location class as Position; class.</sup>                   |
+| `[0.7.151]` | `2024-08-27` | [`0d9f971`](https://github.com/Justin-Byrne/canvasLab/commit/0d9f971) | <sup>Added Location class, refactored many Animation processes, and re-organized programs schema.</sup>                      |
 | `[0.6.137]` | `2024-08-13` | [`d4865e2`](https://github.com/Justin-Byrne/canvasLab/commit/d4865e2) | <sup>Added Ellipse(s) & RoundedRectangle(s) classes, mutli-select functionality, with refactoring.</sup>                     |
 | `[0.5.129]` | `2024-08-07` | [`a0c7ae3`](https://github.com/Justin-Byrne/canvasLab/commit/a0c7ae3) | <sup>Added cImage class, ellipse to Circle, rounding to Rectangles, Pattern to Fill, with general fixes & refactoring.</sup> |
 | `[0.4.118]` | `2024-07-29` | [`07db323`](https://github.com/Justin-Byrne/canvasLab/commit/07db323) | <sup>Added lab keyboard commands, modified core animation handling, and general refactoring.</sup>                           |

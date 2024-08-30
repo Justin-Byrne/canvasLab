@@ -12,7 +12,7 @@ shadow     {Shadow}
 anchor     {Anchor}
 canvas     {HTMLCanvasElement}
 options    {Options}
-location   {Location}
+position   {Position}
 }
 
 RoundedRectangle o-- Point
@@ -23,7 +23,7 @@ RoundedRectangle o-- Shadow
 RoundedRectangle o-- Anchor
 RoundedRectangle o-- HTMLCanvasElement
 RoundedRectangle o-- Options
-RoundedRectangle o-- Location
+RoundedRectangle o-- Position
 
 
 
@@ -217,7 +217,7 @@ _isCanvasLabObject      <color:gray>{boolean}</color>
 skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
-class Location {
+class Position {
 point                {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>

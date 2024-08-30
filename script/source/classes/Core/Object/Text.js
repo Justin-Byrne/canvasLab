@@ -7,7 +7,7 @@
  * @property        {Shadow}            shadow                  Shadow properties
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  * @property        {Options}           options                 Options for this object
- * @property        {Location}          location                Location properties
+ * @property        {Position}          position                Position properties
  */
 class Text extends Font
 {
@@ -20,7 +20,7 @@ class Text extends Font
     _canvas = undefined;
 
     #options  = new Options;
-    #location = new Location;
+    #position = new Position;
 
     /**
      * Create a Text object
@@ -255,14 +255,14 @@ class Text extends Font
     ////    [ LOCATION ]    ////////////////////////////////
 
         /**
-         * Get location properties
+         * Get position properties
          * @public
          * @function
-         * @return          {Location}                                  Location properties
+         * @return          {Position}                                  Position properties
          */
-        get location ( )
+        get position ( )
         {
-            return this.#location;
+            return this.#position;
         }
 
     ////    * SUPER *   ////////////////////////////////////

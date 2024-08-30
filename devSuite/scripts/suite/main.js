@@ -7371,7 +7371,7 @@
 
             ////    PROPERTIES    //////////////////////////
 
-            let _iterations   = 25;
+            let _iterations   = 2;
 
             let _timing       = 'easeOutSine';
 

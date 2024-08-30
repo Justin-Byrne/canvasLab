@@ -9,7 +9,7 @@
  * @property        {Anchor}            anchor                  Anchor properties
  * @property        {HTMLCanvasElement} canvas                  2D canvas context
  * @property        {Options}           options                 Options for this object
- * @property        {Location}          location                Location properties
+ * @property        {Position}          position                Position properties
  */
 class Rectangle
 {
@@ -24,7 +24,7 @@ class Rectangle
     _canvas = undefined;
 
     #options  = new Options;
-    #location = new Location;
+    #position = new Position;
 
     /**
      * Create a Rectangle object
@@ -98,7 +98,7 @@ class Rectangle
 
             this.#options.shadow  = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
 
-            this.#location.master = this;
+            this.#position.master = this;
     }
 
     ////    [ POINT ]   ////////////////////////////////////
@@ -340,9 +340,9 @@ class Rectangle
 
     ////    [ LOCATION ]    ////////////////////////////////
 
-        get location ( )
+        get position ( )
         {
-            return this.#location;
+            return this.#position;
         }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -478,7 +478,7 @@ class Rectangle
         _rotatePoint ( ) { }
 
         /**
-         * Sets anchor's point against this object's point location
+         * Sets anchor's point against this object's point position
          * @private
          * @function
          * @see             {@link UTILITIES.individual.set.anchorPoint}

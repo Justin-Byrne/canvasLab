@@ -61,8 +61,8 @@
 <dt><a href="#StrokeCollection">StrokeCollection</a></dt>
 <dd><p>{Object}   StrokeCollection                 Stroke properties of associated object</p>
 </dd>
-<dt><a href="#Location">Location</a></dt>
-<dd><p>{Object}            Location 				Location object</p>
+<dt><a href="#Position">Position</a></dt>
+<dd><p>{Object}            Position 				Position object</p>
 </dd>
 <dt><a href="#Circle">Circle</a></dt>
 <dd><p>{Object}            Circle                  Circle object</p>
@@ -182,6 +182,7 @@
     * [.canvases()](#canvasLab+canvases) ⇒ <code>Array</code>
     * [.font(font)](#canvasLab+font)
     * [.font()](#canvasLab+font) ⇒ <code>string</code>
+    * [.application()](#canvasLab+application) ⇒ [<code>Application</code>](#Application)
     * [.dom()](#canvasLab+dom) ⇒ <code>Object</code>
     * [.center()](#canvasLab+center) ⇒ [<code>Point</code>](#Point)
     * [.animate()](#canvasLab+animate)
@@ -251,6 +252,14 @@ Get main font type
 
 **Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
 **Returns**: <code>string</code> - font                               Main font type  
+**Read only**: true  
+<a name="canvasLab+application"></a>
+
+### canvasLab.application() ⇒ [<code>Application</code>](#Application)
+Returns this application
+
+**Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
+**Returns**: [<code>Application</code>](#Application) - Canvas Lab application  
 **Read only**: true  
 <a name="canvasLab+dom"></a>
 
@@ -2671,10 +2680,10 @@ Get master object
 **Returns**: [<code>clObject</code>](#clObject) - Master Canvas Lab object  
 **Access**: public  
 **See**: [master](#PROPERTY_BLOCKS.individual.master)  
-<a name="Location"></a>
+<a name="Position"></a>
 
-## Location
-{Object}            Location 				Location object
+## Position
+{Object}            Position 				Position object
 
 **Kind**: global class  
 **Properties**
@@ -2691,88 +2700,88 @@ Get master object
 | master | [<code>clObject</code>](#clObject) | Master object |
 
 
-* [Location](#Location)
-    * [new Location()](#new_Location_new)
-    * [.origin(value)](#Location+origin)
-    * [.origin()](#Location+origin) ⇒ [<code>Point</code>](#Point)
-    * [.distance(value)](#Location+distance)
-    * [.distance()](#Location+distance) ⇒ <code>number</code>
-    * [.direction(value)](#Location+direction)
-    * [.direction()](#Location+direction) ⇒ <code>number</code>
-    * [.master(value)](#Location+master)
-    * [.master()](#Location+master) ⇒ [<code>clObject</code>](#clObject)
+* [Position](#Position)
+    * [new Position()](#new_Position_new)
+    * [.origin(value)](#Position+origin)
+    * [.origin()](#Position+origin) ⇒ [<code>Point</code>](#Point)
+    * [.distance(value)](#Position+distance)
+    * [.distance()](#Position+distance) ⇒ <code>number</code>
+    * [.direction(value)](#Position+direction)
+    * [.direction()](#Position+direction) ⇒ <code>number</code>
+    * [.master(value)](#Position+master)
+    * [.master()](#Position+master) ⇒ [<code>clObject</code>](#clObject)
 
-<a name="new_Location_new"></a>
+<a name="new_Position_new"></a>
 
-### new Location()
-Create a Location object
+### new Position()
+Create a Position object
 
-<a name="Location+origin"></a>
+<a name="Position+origin"></a>
 
-### location.origin(value)
+### position.origin(value)
 Set origin
 
-**Kind**: instance method of [<code>Location</code>](#Location)  
+**Kind**: instance method of [<code>Position</code>](#Position)  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | value | [<code>Point</code>](#Point) | X & Y coordinates |
 
-<a name="Location+origin"></a>
+<a name="Position+origin"></a>
 
-### location.origin() ⇒ [<code>Point</code>](#Point)
+### position.origin() ⇒ [<code>Point</code>](#Point)
 Get origin
 
-**Kind**: instance method of [<code>Location</code>](#Location)  
+**Kind**: instance method of [<code>Position</code>](#Position)  
 **Returns**: [<code>Point</code>](#Point) - X & Y coordinates  
 **Access**: public  
-<a name="Location+distance"></a>
+<a name="Position+distance"></a>
 
-### location.distance(value)
+### position.distance(value)
 Set distance
 
-**Kind**: instance method of [<code>Location</code>](#Location)  
+**Kind**: instance method of [<code>Position</code>](#Position)  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | value | <code>number</code> | Distance from origin to destination |
 
-<a name="Location+distance"></a>
+<a name="Position+distance"></a>
 
-### location.distance() ⇒ <code>number</code>
+### position.distance() ⇒ <code>number</code>
 Get distance
 
-**Kind**: instance method of [<code>Location</code>](#Location)  
+**Kind**: instance method of [<code>Position</code>](#Position)  
 **Returns**: <code>number</code> - Distance from origin to destination  
 **Access**: public  
-<a name="Location+direction"></a>
+<a name="Position+direction"></a>
 
-### location.direction(value)
+### position.direction(value)
 Set direction
 
-**Kind**: instance method of [<code>Location</code>](#Location)  
+**Kind**: instance method of [<code>Position</code>](#Position)  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | value | <code>number</code> | Direction in degrees |
 
-<a name="Location+direction"></a>
+<a name="Position+direction"></a>
 
-### location.direction() ⇒ <code>number</code>
+### position.direction() ⇒ <code>number</code>
 Get direction
 
-**Kind**: instance method of [<code>Location</code>](#Location)  
+**Kind**: instance method of [<code>Position</code>](#Position)  
 **Returns**: <code>number</code> - Direction in degrees  
 **Access**: public  
-<a name="Location+master"></a>
+<a name="Position+master"></a>
 
-### location.master(value)
+### position.master(value)
 Set master object
 
-**Kind**: instance method of [<code>Location</code>](#Location)  
+**Kind**: instance method of [<code>Position</code>](#Position)  
 **Access**: public  
 **See**: [master](#PROPERTY_BLOCKS.individual.master)  
 
@@ -2780,12 +2789,12 @@ Set master object
 | --- | --- | --- |
 | value | [<code>clObject</code>](#clObject) | Canvas Lab object |
 
-<a name="Location+master"></a>
+<a name="Position+master"></a>
 
-### location.master() ⇒ [<code>clObject</code>](#clObject)
+### position.master() ⇒ [<code>clObject</code>](#clObject)
 Get master object
 
-**Kind**: instance method of [<code>Location</code>](#Location)  
+**Kind**: instance method of [<code>Position</code>](#Position)  
 **Returns**: [<code>clObject</code>](#clObject) - Master Canvas Lab object  
 **Access**: public  
 **See**: [master](#PROPERTY_BLOCKS.individual.master)  
@@ -2808,7 +2817,7 @@ Get master object
 | canvas | <code>HTMLCanvasElement</code> |  | 2D canvas context |
 | anchor | [<code>Anchor</code>](#Anchor) |  | Anchor properties |
 | options | [<code>Options</code>](#Options) |  | Options for this object |
-| location | [<code>Location</code>](#Location) |  | Location properties |
+| position | [<code>Position</code>](#Position) |  | Position properties |
 
 
 * [Circle](#Circle)
@@ -2829,7 +2838,7 @@ Get master object
     * [.canvas()](#Circle+canvas) ⇒ <code>string</code>
     * [.anchor()](#Circle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.options()](#Circle+options) ⇒ [<code>Options</code>](#Options)
-    * [.location()](#Circle+location) ⇒ [<code>Location</code>](#Location)
+    * [.position()](#Circle+position) ⇒ [<code>Position</code>](#Position)
     * [.isThere(circle)](#Circle+isThere) ⇒ <code>boolean</code>
     * [.area()](#Circle+area) ⇒ <code>number</code>
     * [.diameter()](#Circle+diameter) ⇒ <code>number</code>
@@ -3000,13 +3009,13 @@ Get options properties
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
 **Returns**: [<code>Options</code>](#Options) - Options properties  
 **Access**: public  
-<a name="Circle+location"></a>
+<a name="Circle+position"></a>
 
-### circle.location() ⇒ [<code>Location</code>](#Location)
-Get location properties
+### circle.position() ⇒ [<code>Position</code>](#Position)
+Get position properties
 
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
-**Returns**: [<code>Location</code>](#Location) - Location properties  
+**Returns**: [<code>Position</code>](#Position) - Position properties  
 **Access**: public  
 <a name="Circle+isThere"></a>
 
@@ -3114,7 +3123,7 @@ Draw this object
 | canvas | <code>HTMLCanvasElement</code> |  | 2D canvas context |
 | anchor | [<code>Anchor</code>](#Anchor) |  | Anchor properties |
 | options | [<code>Options</code>](#Options) |  | Options for this object |
-| location | [<code>Location</code>](#Location) |  | Location properties |
+| position | [<code>Position</code>](#Position) |  | Position properties |
 
 
 * [Ellipse](#Ellipse) ⇐ [<code>Circle</code>](#Circle)
@@ -3130,7 +3139,7 @@ Draw this object
     * [.canvas(value)](#Circle+canvas)
     * [.anchor()](#Circle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.options()](#Circle+options) ⇒ [<code>Options</code>](#Options)
-    * [.location()](#Circle+location) ⇒ [<code>Location</code>](#Location)
+    * [.position()](#Circle+position) ⇒ [<code>Position</code>](#Position)
     * [.isThere(circle)](#Circle+isThere) ⇒ <code>boolean</code>
     * [.area()](#Circle+area) ⇒ <code>number</code>
     * [.diameter()](#Circle+diameter) ⇒ <code>number</code>
@@ -3266,13 +3275,13 @@ Get options properties
 **Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
 **Returns**: [<code>Options</code>](#Options) - Options properties  
 **Access**: public  
-<a name="Circle+location"></a>
+<a name="Circle+position"></a>
 
-### ellipse.location() ⇒ [<code>Location</code>](#Location)
-Get location properties
+### ellipse.position() ⇒ [<code>Position</code>](#Position)
+Get position properties
 
 **Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
-**Returns**: [<code>Location</code>](#Location) - Location properties  
+**Returns**: [<code>Position</code>](#Position) - Position properties  
 **Access**: public  
 <a name="Circle+isThere"></a>
 
@@ -3378,7 +3387,7 @@ Draw this object
 | canvas | <code>HTMLCanvasElement</code> |  | 2D canvas context |
 | controlPoints | [<code>ControlPoints</code>](#ControlPoints) |  | Control point properties |
 | options | [<code>Options</code>](#Options) |  | Options for this object |
-| location | [<code>Location</code>](#Location) |  | Location properties |
+| position | [<code>Position</code>](#Position) |  | Position properties |
 
 
 * [Line](#Line)
@@ -3395,7 +3404,7 @@ Draw this object
     * [.canvas()](#Line+canvas) ⇒ <code>string</code>
     * [.options()](#Line+options) ⇒ [<code>Options</code>](#Options)
     * [.controlPoints()](#Line+controlPoints) ⇒ [<code>ControlPoints</code>](#ControlPoints)
-    * [.location()](#Line+location) ⇒ [<code>Location</code>](#Location)
+    * [.position()](#Line+position) ⇒ [<code>Position</code>](#Position)
     * [.center()](#Line+center) ⇒ [<code>Point</code>](#Point)
     * [.isThere(line)](#Line+isThere)
     * [.curve(p0, p1, p2, p3)](#Line+curve)
@@ -3525,13 +3534,13 @@ Get control point properties
 **Kind**: instance method of [<code>Line</code>](#Line)  
 **Returns**: [<code>ControlPoints</code>](#ControlPoints) - Control points properties  
 **Access**: public  
-<a name="Line+location"></a>
+<a name="Line+position"></a>
 
-### line.location() ⇒ [<code>Location</code>](#Location)
-Get location properties
+### line.position() ⇒ [<code>Position</code>](#Position)
+Get position properties
 
 **Kind**: instance method of [<code>Line</code>](#Line)  
-**Returns**: [<code>Location</code>](#Location) - Location properties  
+**Returns**: [<code>Position</code>](#Position) - Position properties  
 **Access**: public  
 <a name="Line+center"></a>
 
@@ -3658,7 +3667,7 @@ Draw this object
 | anchor | [<code>Anchor</code>](#Anchor) | Anchor properties |
 | canvas | <code>HTMLCanvasElement</code> | 2D canvas context |
 | options | [<code>Options</code>](#Options) | Options for this object |
-| location | [<code>Location</code>](#Location) | Location properties |
+| position | [<code>Position</code>](#Position) | Position properties |
 
 
 * [Rectangle](#Rectangle)
@@ -4057,7 +4066,7 @@ Draw this object
 | anchor | [<code>Anchor</code>](#Anchor) |  | Anchor properties |
 | canvas | <code>HTMLCanvasElement</code> |  | 2D canvas context |
 | options | [<code>Options</code>](#Options) |  | Options for this object |
-| location | [<code>Location</code>](#Location) |  | Location properties |
+| position | [<code>Position</code>](#Position) |  | Position properties |
 
 
 * [RoundedRectangle](#RoundedRectangle) ⇐ [<code>Rectangle</code>](#Rectangle)
@@ -4379,7 +4388,7 @@ Draw this object
 | shadow | [<code>Shadow</code>](#Shadow) | Shadow properties |
 | canvas | <code>HTMLCanvasElement</code> | 2D canvas context |
 | options | [<code>Options</code>](#Options) | Options for this object |
-| location | [<code>Location</code>](#Location) | Location properties |
+| position | [<code>Position</code>](#Position) | Position properties |
 
 
 * [Text](#Text)
@@ -4398,7 +4407,7 @@ Draw this object
     * [.canvas(value)](#Text+canvas)
     * [.canvas()](#Text+canvas) ⇒ <code>string</code>
     * [.options()](#Text+options) ⇒ [<code>Options</code>](#Options)
-    * [.location()](#Text+location) ⇒ [<code>Location</code>](#Location)
+    * [.position()](#Text+position) ⇒ [<code>Position</code>](#Position)
     * [.type(value)](#Text+type)
     * [.type()](#Text+type) ⇒ <code>string</code>
     * [.size(value)](#Text+size)
@@ -4575,13 +4584,13 @@ Get options properties
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: [<code>Options</code>](#Options) - Options properties  
 **Access**: public  
-<a name="Text+location"></a>
+<a name="Text+position"></a>
 
-### text.location() ⇒ [<code>Location</code>](#Location)
-Get location properties
+### text.position() ⇒ [<code>Position</code>](#Position)
+Get position properties
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
-**Returns**: [<code>Location</code>](#Location) - Location properties  
+**Returns**: [<code>Position</code>](#Position) - Position properties  
 **Access**: public  
 <a name="Text+type"></a>
 
@@ -4766,7 +4775,7 @@ Draw this object
 | canvas | <code>HTMLCanvasElement</code> | 2D canvas context |
 | anchor | [<code>Anchor</code>](#Anchor) | Anchor properties |
 | options | [<code>Options</code>](#Options) | Options for this object |
-| location | [<code>Location</code>](#Location) | Location properties |
+| position | [<code>Position</code>](#Position) | Position properties |
 
 
 * [cImage](#cImage)
@@ -4791,7 +4800,7 @@ Draw this object
     * [.canvas()](#cImage+canvas) ⇒ <code>string</code>
     * [.anchor()](#cImage+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.options()](#cImage+options) ⇒ [<code>Options</code>](#Options)
-    * [.location()](#cImage+location) ⇒ [<code>Location</code>](#Location)
+    * [.position()](#cImage+position) ⇒ [<code>Position</code>](#Position)
     * [.area()](#cImage+area) ⇒ <code>number</code>
     * [.center()](#cImage+center) ⇒ [<code>Point</code>](#Point)
     * [.perimeter()](#cImage+perimeter) ⇒ <code>number</code>
@@ -4999,13 +5008,13 @@ Get options properties
 **Kind**: instance method of [<code>cImage</code>](#cImage)  
 **Returns**: [<code>Options</code>](#Options) - Options properties  
 **Access**: public  
-<a name="cImage+location"></a>
+<a name="cImage+position"></a>
 
-### cImage.location() ⇒ [<code>Location</code>](#Location)
-Get location properties
+### cImage.position() ⇒ [<code>Position</code>](#Position)
+Get position properties
 
 **Kind**: instance method of [<code>cImage</code>](#cImage)  
-**Returns**: [<code>Location</code>](#Location) - Location properties  
+**Returns**: [<code>Position</code>](#Position) - Position properties  
 **Access**: public  
 <a name="cImage+area"></a>
 
@@ -7188,6 +7197,7 @@ Resets index to 0
     * [.cache()](#Animation+cache) ⇒ <code>boolean</code>
     * [.queue(value)](#Animation+queue)
     * [.queue()](#Animation+queue) ⇒ [<code>Queue</code>](#Queue)
+    * [.cancel()](#Animation+cancel)
     * [.animate()](#Animation+animate)
 
 <a name="new_Animation_new"></a>
@@ -7323,6 +7333,13 @@ Get queue
 **Kind**: instance method of [<code>Animation</code>](#Animation)  
 **Returns**: [<code>Queue</code>](#Queue) - Queue object  
 **Read only**: true  
+<a name="Animation+cancel"></a>
+
+### animation.cancel()
+Cancels animation
+
+**Kind**: instance method of [<code>Animation</code>](#Animation)  
+**Read only**: true  
 <a name="Animation+animate"></a>
 
 ### animation.animate()
@@ -7340,6 +7357,7 @@ Initiates animation
 * [Application](#Application)
     * [new Application()](#new_Application_new)
     * [.animation](#Application+animation)
+    * [.animation()](#Application+animation) ⇒ [<code>Animation</code>](#Animation)
     * [.canvas(value)](#Application+canvas)
     * [.canvas()](#Application+canvas) ⇒ <code>HTMLCanvasElement</code>
     * [.about()](#Application+about) ⇒ <code>Object</code>
@@ -7365,6 +7383,14 @@ Creates a new animation instance
 | transition.period | <code>number</code> | Period of time |
 | transition.change | [<code>clChange</code>](#clChange) | Changes to object |
 
+<a name="Application+animation"></a>
+
+### application.animation() ⇒ [<code>Animation</code>](#Animation)
+Get animation
+
+**Kind**: instance method of [<code>Application</code>](#Application)  
+**Returns**: [<code>Animation</code>](#Animation) - Animation object  
+**Read only**: true  
 <a name="Application+canvas"></a>
 
 ### application.canvas(value)
