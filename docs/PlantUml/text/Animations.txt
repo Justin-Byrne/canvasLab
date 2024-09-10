@@ -3,24 +3,24 @@
 skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
-class Animation {
-object                       {clObject}
-timing                       {string|Function}
-period                       <color:gray>{number}</color>
-change                       {Object}
+class Animations {
+objects                      {Array.<clObject>}
+timings                      {Array.<string|Function>}
+periods                      <color:gray>{number}</color>
+changes                      {Array.<Object>}
 options                      {Object}
 __ Setter __
-object                       {clObject}
-timing                       {string|Function}
+objects                      {clObject}
+timings                      {string|Function}
 period                       <color:gray>{number}</color>
-change                       {clChange}
+changes                      {clChange}
 cache                        <color:gray>{boolean}</color>
 queue                        {Queue}
 __ Getter __
-object                       {clObject}
-timing                       {Function}
+objects                      {clObject}
+timings                      {Function}
 period                       <color:gray>{number}</color>
-change                       {clChange}
+changes                      {clChange}
 cache                        <color:gray>{boolean}</color>
 queue                        {Queue}
 cancel
@@ -28,8 +28,10 @@ __ Validation __
 _isNumber                    <color:gray>{boolean}</color>
 __ Utility __
 _getInvertedAngle            <color:gray>{number}</color>
+_getObjects                  {Array}
+_getTimings                  {Array}
 _getPointByDegreeNDistance   {Point}
-_cacheObject
+_cacheObjects
 _checkQueue
 _clearCanvas
 _drawCache

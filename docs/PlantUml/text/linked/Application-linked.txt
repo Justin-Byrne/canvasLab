@@ -29,7 +29,7 @@ skinparam DefaultFontName Courier New
 
 class Animation {
 object                       {clObject}
-timing                       {Function}
+timing                       {string|Function}
 period                       <color:gray>{number}</color>
 change                       {Object}
 options                      {Object}
@@ -51,15 +51,14 @@ cancel
 __ Validation __
 _isNumber                    <color:gray>{boolean}</color>
 __ Utility __
-_getAnimationProperties      {Object}
+_getInvertedAngle            <color:gray>{number}</color>
 _getPointByDegreeNDistance   {Point}
 _cacheObject
-_cache
 _checkQueue
 _clearCanvas
 _drawCache
 _end
-cancelAnimationFrame
+_setCache
 _setPositionData
 animate
 requestAnimationFrame

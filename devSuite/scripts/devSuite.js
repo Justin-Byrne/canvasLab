@@ -3690,7 +3690,7 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _line.move ( 270, 25 );
+                        _line.move ( 90, 25 );
 
                         _line.draw ( );
                     }
@@ -4206,7 +4206,7 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _circle.move ( 270, 25 );
+                        _circle.move ( 90, 25 );
 
                         _circle.draw ( );
                     }
@@ -4674,7 +4674,7 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _ellipse.move ( 270, 25 );
+                        _ellipse.move ( 90, 25 );
 
                         _ellipse.draw ( );
                     }
@@ -5127,7 +5127,7 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _rectangle.move ( 270, 25 );
+                        _rectangle.move ( 90, 25 );
 
                         _rectangle.draw ( );
                     }
@@ -5580,7 +5580,7 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _roundedRectangle.move ( 270, 25 );
+                        _roundedRectangle.move ( 90, 25 );
 
                         _roundedRectangle.draw ( );
                     }
@@ -5962,7 +5962,7 @@ class Ui
                     children: undefined,
                     code: ( ) =>
                     {
-                        _text.move ( 270, 25 );
+                        _text.move ( 90, 25 );
 
                         _text.draw ( );
                     }
@@ -7824,7 +7824,7 @@ class Ui
 
                         let _iterations = 15;
 
-                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
                         let _alpha      = 0.40;
 
@@ -7866,7 +7866,7 @@ class Ui
 
                         let _iterations = 15;
 
-                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
                         ////    POPULATION    //////////////////////////
 
@@ -7894,7 +7894,7 @@ class Ui
 
                         let _iterations = 15;
 
-                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
                         let _alpha      = 0.40;
 
@@ -7936,7 +7936,7 @@ class Ui
 
                         let _iterations = 15;
 
-                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
                         ////    POPULATION    //////////////////////////
 
@@ -7964,7 +7964,7 @@ class Ui
 
                         let _iterations = 15;
 
-                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
                         let _alpha      = 0.40;
 
@@ -8006,7 +8006,7 @@ class Ui
 
                         let _iterations = 15;
 
-                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
                         ////    POPULATION    //////////////////////////
 
@@ -8034,7 +8034,7 @@ class Ui
 
                         let _iterations = 15;
 
-                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
                         let _alpha      = 0.40;
 
@@ -8076,7 +8076,7 @@ class Ui
 
                         let _iterations = 15;
 
-                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
                         ////    POPULATION    //////////////////////////
 
@@ -8104,7 +8104,7 @@ class Ui
 
                         let _iterations = 15;
 
-                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
                         let _alpha      = 0.40;
 
@@ -8146,7 +8146,7 @@ class Ui
 
                 //         let _iterations = 15;
 
-                //         let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                //         let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
                 //         ////    POPULATION    //////////////////////////
 
@@ -8174,7 +8174,7 @@ class Ui
 
                         let _iterations = 15;
 
-                        let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
                         ////    POPULATION    //////////////////////////
 
@@ -8359,52 +8359,52 @@ class Ui
                             canvaslab.animate ( _transition );
                         }
                     },
-                    // rotate
-                    {
-                        title: 'Rotate Anchor',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            _circle.options.anchor = true;  // [ Optional ]
+                    // // rotate anchor
+                    // {
+                    //     title: 'Rotate Anchor',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _circle.options.anchor = true;  // [ Optional ]
 
-                            let _transition =
-                            {
-                                object: _circle,
-                                timing: 'easeInSine',
-                                period: 2000,
-                                change:
-                                {
-                                    rotate: 180,
-                                }
-                            }
+                    //         let _transition =
+                    //         {
+                    //             object: _circle,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
 
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // rotate anchor align
-                    {
-                        title: 'Rotate Anchor Align',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            _circle.options.anchor = true;  // [ Optional ]
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
+                    // // rotate anchor align
+                    // {
+                    //     title: 'Rotate Anchor Align',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _circle.options.anchor = true;  // [ Optional ]
 
-                            _circle.anchor.align   = 'top';
+                    //         _circle.anchor.align   = 'top';
 
-                            let _transition =
-                            {
-                                object: _circle,
-                                timing: 'easeInSine',
-                                period: 2000,
-                                change:
-                                {
-                                    rotate: 180,
-                                }
-                            }
+                    //         let _transition =
+                    //         {
+                    //             object: _circle,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
 
-                            canvaslab.animate ( _transition );
-                        }
-                    },
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
                     // radius
                     {
                         title: 'Radius',
@@ -8784,52 +8784,52 @@ class Ui
                             canvaslab.animate ( _transition );
                         }
                     },
-                    // anchor
-                    {
-                        title: 'Anchor',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            _ellipse.options.anchor = true;
+                    // // rotate anchor
+                    // {
+                    //     title: 'Rotate Anchor',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _ellipse.options.anchor = true;
 
-                            let _transition =
-                            {
-                                object: _ellipse,
-                                timing: 'easeInSine',
-                                period: 2000,
-                                change:
-                                {
-                                    rotate: 180,
-                                }
-                            }
+                    //         let _transition =
+                    //         {
+                    //             object: _ellipse,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
 
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // anchor align
-                    {
-                        title: 'Anchor Align',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            _ellipse.options.anchor = true;
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
+                    // // rotate anchor align
+                    // {
+                    //     title: 'Rotate Anchor Align',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _ellipse.options.anchor = true;
 
-                            _ellipse.anchor.align   = 'top';
+                    //         _ellipse.anchor.align   = 'top';
 
-                            let _transition =
-                            {
-                                object: _ellipse,
-                                timing: 'easeInSine',
-                                period: 2000,
-                                change:
-                                {
-                                    rotate: 180,
-                                }
-                            }
+                    //         let _transition =
+                    //         {
+                    //             object: _ellipse,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
 
-                            canvaslab.animate ( _transition );
-                        }
-                    },
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
                     // stroke color
                     {
                         title: 'Stroke Color',
@@ -9189,52 +9189,52 @@ class Ui
                             canvaslab.animate ( _transition );
                         }
                     },
-                    // anchor
-                    {
-                        title: 'Anchor',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            _rectangle.options.anchor = true;
+                    // // rotate anchor
+                    // {
+                    //     title: 'Rotate Anchor',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _rectangle.options.anchor = true;
 
-                            let _transition =
-                            {
-                                object: _rectangle,
-                                timing: 'easeInSine',
-                                period: 2000,
-                                change:
-                                {
-                                    rotate: 180,
-                                }
-                            }
+                    //         let _transition =
+                    //         {
+                    //             object: _rectangle,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
 
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // anchor align
-                    {
-                        title: 'Anchor Align',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            _rectangle.options.anchor = true;
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
+                    // // rotate anchor align
+                    // {
+                    //     title: 'Rotate Anchor Align',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _rectangle.options.anchor = true;
 
-                            _rectangle.anchor.align   = 'top';
+                    //         _rectangle.anchor.align   = 'top';
 
-                            let _transition =
-                            {
-                                object: _rectangle,
-                                timing: 'easeInSine',
-                                period: 2000,
-                                change:
-                                {
-                                    rotate: 180,
-                                }
-                            }
+                    //         let _transition =
+                    //         {
+                    //             object: _rectangle,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
 
-                            canvaslab.animate ( _transition );
-                        }
-                    },
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
                     // stroke color
                     {
                         title: 'Stroke Color',
@@ -9594,52 +9594,52 @@ class Ui
                             canvaslab.animate ( _transition );
                         }
                     },
-                    // anchor
-                    {
-                        title: 'Anchor',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            _roundedRectangle.options.anchor = true;
+                    // // rotate anchor
+                    // {
+                    //     title: 'Rotate Anchor',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _roundedRectangle.options.anchor = true;
 
-                            let _transition =
-                            {
-                                object: _roundedRectangle,
-                                timing: 'easeInSine',
-                                period: 2000,
-                                change:
-                                {
-                                    rotate: 180,
-                                }
-                            }
+                    //         let _transition =
+                    //         {
+                    //             object: _roundedRectangle,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
 
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // anchor align
-                    {
-                        title: 'Anchor Align',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            _roundedRectangle.options.anchor = true;
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
+                    // // rotate anchor align
+                    // {
+                    //     title: 'Rotate Anchor Align',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _roundedRectangle.options.anchor = true;
 
-                            _roundedRectangle.anchor.align   = 'top';
+                    //         _roundedRectangle.anchor.align   = 'top';
 
-                            let _transition =
-                            {
-                                object: _roundedRectangle,
-                                timing: 'easeInSine',
-                                period: 2000,
-                                change:
-                                {
-                                    rotate: 180,
-                                }
-                            }
+                    //         let _transition =
+                    //         {
+                    //             object: _roundedRectangle,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
 
-                            canvaslab.animate ( _transition );
-                        }
-                    },
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
                     // stroke color
                     {
                         title: 'Stroke Color',
@@ -10612,7 +10612,7 @@ class Ui
 
             let _iterations = 2;
 
-            let _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+            let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
             ////    POPULATION    //////////////////////////
 
@@ -10622,6 +10622,37 @@ class Ui
 
                 _group.circles.draw ( );
         },
+        // seedOfLife2: ( ) =>
+        // {
+        //     ////    INPUTS    //////////////////////////////
+
+        //     let _center     = canvaslab.center;
+
+        //     let _radius     = 25;
+
+        //     let _iterations = 10;
+
+        //     let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
+
+        //     ////    POPULATION    //////////////////////////
+
+        //     let _group      = new Group;
+
+        //         _group.template = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+
+
+
+        //     let _items = [ 37, 39, 59, 9, 0, 17, 11, 15, 13, 49 ]
+
+        //     for ( let _item of _items )
+        //     {
+        //         _group.circles [ _item ].fill.color = new Rgb ( 0, 0, 0, 1 );
+
+        //         console.log ( 'x:', _group.circles [ _item ].point.x, 'y:', _group.circles [ _item ].point.y );
+        //     }
+
+        //     _group.circles.draw ( );
+        // },
         seedOfLifeAnimation: ( ) =>
         {
             ////    OBJECT    //////////////////////////////
@@ -10634,7 +10665,7 @@ class Ui
 
             ////    PROPERTIES    //////////////////////////
 
-            let _iterations   = 2;
+            let _iterations   = 25;
 
             let _timing       = 'easeOutSine';
 
@@ -10648,7 +10679,574 @@ class Ui
 
 
             canvaslab.animate ( _transitions );
-        }
+        },
+        multipleAnimations: ( ) =>
+        {
+            let _center = canvaslab.center;
+
+            let _objectA = new Circle ( new Point ( _center.x - 50, _center.y ) );
+
+            let _objectB = new Rectangle ( new Point ( _center.x + 50, _center.y ) );
+
+            let _objectC = new Circle ( new Point ( _center.x, _center.y  - 50 ) );
+
+            let _objectD = new Rectangle ( new Point ( _center.x, _center.y + 50 ) );
+
+            let _transition =
+            {
+                object: [ _objectA, _objectB, _objectC, _objectD ],
+                timing: [ 'easeOutElastic', 'easeOutExpo', 'easeOutElastic', 'easeOutExpo' ],
+                period: 1750,
+                change:
+                [
+                    {
+                        move: { degree: 270, distance: 100 }
+                    },
+                    {
+                        move: { degree: 90, distance: 100 }
+                    },
+                    {
+                        move: { degree: 0, distance: 100 }
+                    },
+                    {
+                        move: { degree: 180, distance: 100 }
+                    }
+                ]
+            }
+
+            canvaslab.animate ( _transition );
+        },
+        multipleAnimationsQueue: ( ) =>
+        {
+            let _center = canvaslab.center;
+
+            ////    OBJECTS    //////////////////////////////////////////////////////////////
+
+            let _objectA = new Circle ( new Point ( _center.x - 50, _center.y ) );
+
+            let _objectB = new Rectangle ( new Point ( _center.x + 50, _center.y ) );
+
+            let _objectC = new Circle ( new Point ( _center.x, _center.y  - 50 ) );
+
+            let _objectD = new Rectangle ( new Point ( _center.x, _center.y + 50 ) );
+
+            ////    ANIMATION    ///////////////////////////////////////////////////////////
+
+            let _transitions =
+            [
+                {
+                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    timing: [ 'easeOutElastic', 'easeOutExpo', 'easeOutElastic', 'easeOutExpo' ],
+                    period: 1750,
+                    change:
+                    [
+                        {
+                            move: { degree: 270, distance: 100 }
+                        },
+                        {
+                            move: { degree:  90, distance: 100 }
+                        },
+                        {
+                            move: { degree:   0, distance: 100 }
+                        },
+                        {
+                            move: { degree: 180, distance: 100 }
+                        }
+                    ]
+                },
+                {
+                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    timing: [ 'easeOutExpo', 'easeOutElastic', 'easeOutExpo', 'easeOutElastic' ],
+                    period: 1750,
+                    change:
+                    [
+                        {
+                            move: { degree:  90, distance: 100 }
+                        },
+                        {
+                            move: { degree: 270, distance: 100 }
+                        },
+                        {
+                            move: { degree: 180, distance: 100 }
+                        },
+                        {
+                            move: { degree:   0, distance: 100 }
+                        }
+                    ]
+                }
+            ]
+
+
+            canvaslab.animate ( _transitions );
+        },
+        multipleAnimationsQueue2: ( ) =>
+        {
+            let _center = canvaslab.center;
+
+            ////    OBJECTS    //////////////////////////////////////////////////////////////
+
+            let _objectA = new Circle ( new Point ( _center.x - 50, _center.y ) );
+
+            let _objectB = new Rectangle ( new Point ( _center.x + 50, _center.y ) );
+
+            let _objectC = new Circle ( new Point ( _center.x, _center.y  - 50 ) );
+
+            let _objectD = new Rectangle ( new Point ( _center.x, _center.y + 50 ) );
+
+            ////    ANIMATION    ///////////////////////////////////////////////////////////
+
+            let _transitions =
+            [
+                {
+                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    timing: [ 'easeOutElastic', 'easeOutExpo', 'easeOutElastic', 'easeOutExpo' ],
+                    period: 350,
+                    change:
+                    [
+                        {
+                            move: { degree: 270, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree:  90, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree:   0, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree: 180, distance: 100 },
+                            cache: true
+                        }
+                    ]
+                },
+                {
+                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    timing: [ 'easeOutSine', 'easeOutSine', 'easeOutSine', 'easeOutSine' ],
+                    period: 700,
+                    change:
+                    [
+                        {
+                            move: { degree:   0, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree: 180, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree:   0, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree: 180, distance: 100 },
+                            cache: true
+                        }
+                    ]
+                },
+                {
+                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    timing: [ 'easeOutElastic', 'easeOutExpo', 'easeOutElastic', 'easeOutExpo' ],
+                    period: 950,
+                    change:
+                    [
+                        {
+                            move: { degree:  90, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree: 270, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree:  90, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree: 270, distance: 100 },
+                            cache: true
+                        }
+                    ]
+                },
+                {
+                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    timing: [ 'easeOutSine', 'easeOutSine', 'easeOutSine', 'easeOutSine' ],
+                    period: 1400,
+                    change:
+                    [
+                        {
+                            move: { degree: 180, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree:   0, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree: 180, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree:   0, distance: 100 },
+                            cache: true
+                        }
+                    ]
+                },
+                {
+                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    timing: [ 'easeOutExpo', 'easeOutElastic', 'easeOutExpo', 'easeOutElastic' ],
+                    period: 1750,
+                    change:
+                    [
+                        {
+                            move: { degree: 270, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree:  90, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree: 270, distance: 100 },
+                            cache: true
+                        },
+                        {
+                            move: { degree:  90, distance: 100 },
+                            cache: true
+                        }
+                    ]
+                }
+            ]
+
+
+            canvaslab.animate ( _transitions );
+        },
+        multipleAnimationsShape: ( ) =>
+        {
+            ////    OBJECTS    //////////////////////////////////////////////////////////////
+
+            let _center  = canvaslab.center;
+
+            let _amount  = 10;
+
+            let _objects = new Circles;
+
+            for ( let _i = 0; _i < _amount; _i++ )
+
+                _objects.push ( new Circle ( _center ) );
+
+            ////    ANIMATION    ///////////////////////////////////////////////////////////
+
+            let _transitions =
+            [
+                {
+                    object: _objects,
+                    timing: 'easeOutElastic',
+                    period: 1750,
+                    change:
+                    [
+                        { move: { degree:  90, distance: 100 }, cache: true },  //  1
+                        { move: { degree:  60, distance:  87 }, cache: true },  //  2
+                        { move: { degree: 120, distance:  87 }, cache: true },  //  3
+                        { move: { degree:  30, distance:  50 }, cache: true },  //  4
+                        { move: { degree: 150, distance:  50 }, cache: true },  //  5
+                        { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
+                        { move: { degree: 330, distance:  50 }, cache: true },  //  7
+                        { move: { degree: 210, distance:  50 }, cache: true },  //  8
+                        { move: { degree: 270, distance:  50 }, cache: true },  //  9
+                        { move: { degree: 270, distance: 100 }, cache: true },  // 10
+                    ]
+                }
+            ]
+
+
+            canvaslab.animate ( _transitions );
+        },
+        multipleAnimationsShape2: ( ) =>
+        {
+            ////    FUNCTIONS    ////////////////////////////////////////////////////////////
+
+            let _getInvertedAngle = ( angle ) => ( angle + 180 ) % 360;
+
+            ////    OBJECTS    //////////////////////////////////////////////////////////////
+
+            let _center  = canvaslab.center;
+
+            let _amount  = 10;
+
+            let _multiA  = 0.5;
+
+            let _multiB  = 0.1;
+
+            let _radius  = 10;
+
+            let _objects = new Circles;
+
+            for ( let _i = 0; _i < _amount; _i++ )
+
+                _objects.push ( new Circle ( _center, _radius ) );
+
+            ////    ANIMATION    ///////////////////////////////////////////////////////////
+
+            let _transitions =
+            [
+                {
+                    object: _objects,
+                    timing: 'easeOutSine',
+                    period: 300,
+                    change:
+                    [
+                        { move: { degree:  90, distance: 100 }, cache: true },  //  1
+                        { move: { degree:  60, distance:  87 }, cache: true },  //  2
+                        { move: { degree: 120, distance:  87 }, cache: true },  //  3
+                        { move: { degree:  30, distance:  50 }, cache: true },  //  4
+                        { move: { degree: 150, distance:  50 }, cache: true },  //  5
+                        { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
+                        { move: { degree: 330, distance:  50 }, cache: true },  //  7
+                        { move: { degree: 210, distance:  50 }, cache: true },  //  8
+                        { move: { degree: 270, distance:  50 }, cache: true },  //  9
+                        { move: { degree: 270, distance: 100 }, cache: true },  // 10
+                    ]
+                },  // Out - Normal
+                {
+                    object: _objects,
+                    timing: 'easeOutSine',
+                    period: 1750,
+                    change:
+                    [
+                        { move: { degree:  90, distance: 100 }, cache: true },  //  1
+                        { move: { degree:  60, distance:  87 }, cache: true },  //  2
+                        { move: { degree: 120, distance:  87 }, cache: true },  //  3
+                        { move: { degree:  30, distance:  50 }, cache: true },  //  4
+                        { move: { degree: 150, distance:  50 }, cache: true },  //  5
+                        { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
+                        { move: { degree: 330, distance:  50 }, cache: true },  //  7
+                        { move: { degree: 210, distance:  50 }, cache: true },  //  8
+                        { move: { degree: 270, distance:  50 }, cache: true },  //  9
+                        { move: { degree: 270, distance: 100 }, cache: true },  // 10
+                    ]
+                },  // Out - Fast
+                {
+                    object: _objects,
+                    timing: 'easeOutSine',
+                    period: 300,
+                    change:
+                    [
+                        { move: { degree:  90, invert: true, distance: 100 * _multiA }, cache: true },  //  1
+                        { move: { degree:  60, invert: true, distance:  87 * _multiA }, cache: true },  //  2
+                        { move: { degree: 120, invert: true, distance:  87 * _multiA }, cache: true },  //  3
+                        { move: { degree:  30, invert: true, distance:  50 * _multiA }, cache: true },  //  4
+                        { move: { degree: 150, invert: true, distance:  50 * _multiA }, cache: true },  //  5
+                        { move: { degree: 180, invert: true, distance:   0 * _multiA }, cache: true },  //  6 - 0
+                        { move: { degree: 330, invert: true, distance:  50 * _multiA }, cache: true },  //  7
+                        { move: { degree: 210, invert: true, distance:  50 * _multiA }, cache: true },  //  8
+                        { move: { degree: 270, invert: true, distance:  50 * _multiA }, cache: true },  //  9
+                        { move: { degree: 270, invert: true, distance: 100 * _multiA }, cache: true },  // 10
+                    ]
+                },  // Out - Normal
+                {
+                    object: _objects,
+                    timing: 'easeInSine',
+                    period: 1000,
+                    change:
+                    [
+                        { move: { degree:  90, distance: 100 }, cache: true },  //  1
+                        { move: { degree:  60, distance:  87 }, cache: true },  //  2
+                        { move: { degree: 120, distance:  87 }, cache: true },  //  3
+                        { move: { degree:  30, distance:  50 }, cache: true },  //  4
+                        { move: { degree: 150, distance:  50 }, cache: true },  //  5
+                        { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
+                        { move: { degree: 330, distance:  50 }, cache: true },  //  7
+                        { move: { degree: 210, distance:  50 }, cache: true },  //  8
+                        { move: { degree: 270, distance:  50 }, cache: true },  //  9
+                        { move: { degree: 270, distance: 100 }, cache: true },  // 10
+                    ]
+                },  // Out - Normal
+                {
+                    object: _objects,
+                    timing: 'easeInOutQuart',
+                    period: 60,
+                    change:
+                    [
+                        { move: { degree:  90, distance: 100 }, cache: true },  //  1
+                        { move: { degree:  60, distance:  87 }, cache: true },  //  2
+                        { move: { degree: 120, distance:  87 }, cache: true },  //  3
+                        { move: { degree:  30, distance:  50 }, cache: true },  //  4
+                        { move: { degree: 150, distance:  50 }, cache: true },  //  5
+                        { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
+                        { move: { degree: 330, distance:  50 }, cache: true },  //  7
+                        { move: { degree: 210, distance:  50 }, cache: true },  //  8
+                        { move: { degree: 270, distance:  50 }, cache: true },  //  9
+                        { move: { degree: 270, distance: 100 }, cache: true },  // 10
+                    ]
+                },  // Out Trail - Fast
+            ]
+
+            ////    TRAIL    ///////////////////////////////////////////////////////////////
+
+            let _location = 5;
+
+            let _repeat   = 10;
+
+            for ( let _i = _location; _i < _location + _repeat; _i++ )
+
+                _transitions [ _i ] = _transitions [ _location - 1 ];
+
+
+            canvaslab.animate ( _transitions );
+        },
+        multipleAnimationsShape3: ( ) =>
+        {
+            ////    OBJECTS    //////////////////////////////////////////////////////////////
+
+            let _center  = canvaslab.center;
+
+            let _amount  = 10;
+
+            let _multiA  = 0.5;
+
+            let _multiB  = 0.1;
+
+            let _radius  = 10;
+
+            let _objects = new Circles;
+
+            for ( let _i = 0; _i < _amount; _i++ )
+
+                _objects.push ( new Circle ( _center, _radius, undefined, undefined, new Fill ( new Rgb ( 255, 255, 255, 1 ) ) ) );
+
+            ////    ANIMATION    ///////////////////////////////////////////////////////////
+
+            let _transitions =
+            [
+                {
+                    object: _objects,
+                    timing: 'easeOutSine',
+                    period: 1750,
+                    change:
+                    [
+                        { move: { degree:  90, distance: 100 }, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
+                        { move: { degree:  60, distance:  87 }, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
+                        { move: { degree: 120, distance:  87 }, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
+                        { move: { degree:  30, distance:  50 }, lineTo: _objects [ 4 ], },  //  4
+                        { move: { degree: 150, distance:  50 }, lineTo: _objects [ 7 ] },  //  5
+                        { move: { degree: 180, distance:   0 }, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
+                        { move: { degree: 330, distance:  50 }, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
+                        { move: { degree: 210, distance:  50 }, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
+                        { move: { degree: 270, distance:  50 }, lineTo: _objects [ 5 ] },  //  9
+                        { move: { degree: 270, distance: 100 }, lineTo: _objects [ 5 ] },  // 10
+                    ]
+                },  // Out
+                {
+                    object: _objects,
+                    timing: 'easeOutElastic',
+                    period: 1750,
+                    change:
+                    [
+                        { move: { degree:  90, distance: 100 }, radius: 25, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
+                        { move: { degree:  60, distance:  87 }, radius: 25, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
+                        { move: { degree: 120, distance:  87 }, radius: 25, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
+                        { move: { degree:  30, distance:  50 }, radius: 25, lineTo: _objects [ 4 ], },  //  4
+                        { move: { degree: 150, distance:  50 }, radius: 25, lineTo: _objects [ 7 ] },  //  5
+                        { move: { degree: 180, distance:   0 }, radius: 25, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
+                        { move: { degree: 330, distance:  50 }, radius: 25, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
+                        { move: { degree: 210, distance:  50 }, radius: 25, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
+                        { move: { degree: 270, distance:  50 }, radius: 25, lineTo: _objects [ 5 ] },  //  9
+                        { move: { degree: 270, distance: 100 }, radius: 25, lineTo: _objects [ 5 ] },  // 10
+                    ]
+                },  // Out
+                {
+                    object: _objects,
+                    timing: 'easeOutExpo',
+                    period: 1750,
+                    change:
+                    [
+                        { move: { degree:  90, distance: 100 }, radius: 75, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
+                        { move: { degree:  60, distance:  87 }, radius: 75, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
+                        { move: { degree: 120, distance:  87 }, radius: 75, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
+                        { move: { degree:  30, distance:  50 }, radius: 75, lineTo: _objects [ 4 ], },  //  4
+                        { move: { degree: 150, distance:  50 }, radius: 75, lineTo: _objects [ 7 ] },  //  5
+                        { move: { degree: 180, distance:   0 }, radius: 75, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
+                        { move: { degree: 330, distance:  50 }, radius: 75, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
+                        { move: { degree: 210, distance:  50 }, radius: 75, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
+                        { move: { degree: 270, distance:  50 }, radius: 75, lineTo: _objects [ 5 ] },  //  9
+                        { move: { degree: 270, distance: 100 }, radius: 75, lineTo: _objects [ 5 ] },  // 10
+                    ]
+                },  // Out
+                {
+                    object: _objects,
+                    timing: 'easeInSine',
+                    period: 1750,
+                    change:
+                    [
+                        { move: { degree:  90, invert: true, distance: 100 }, radius: 25, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
+                        { move: { degree:  60, invert: true, distance:  87 }, radius: 25, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
+                        { move: { degree: 120, invert: true, distance:  87 }, radius: 25, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
+                        { move: { degree:  30, invert: true, distance:  50 }, radius: 25, lineTo: _objects [ 4 ], },  //  4
+                        { move: { degree: 150, invert: true, distance:  50 }, radius: 25, lineTo: _objects [ 7 ] },  //  5
+                        { move: { degree: 180, invert: true, distance:   0 }, radius: 25, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
+                        { move: { degree: 330, invert: true, distance:  50 }, radius: 25, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
+                        { move: { degree: 210, invert: true, distance:  50 }, radius: 25, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
+                        { move: { degree: 270, invert: true, distance:  50 }, radius: 25, lineTo: _objects [ 5 ] },  //  9
+                        { move: { degree: 270, invert: true, distance: 100 }, radius: 25, lineTo: _objects [ 5 ] },  // 10
+                    ]
+                },  // In
+                {
+                    object: _objects,
+                    timing: 'easeOutElastic',
+                    period: 1750,
+                    change:
+                    [
+                        { move: { degree:  90, invert: true, distance: 100 }, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
+                        { move: { degree:  60, invert: true, distance:  87 }, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
+                        { move: { degree: 120, invert: true, distance:  87 }, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
+                        { move: { degree:  30, invert: true, distance:  50 }, lineTo: _objects [ 4 ], },  //  4
+                        { move: { degree: 150, invert: true, distance:  50 }, lineTo: _objects [ 7 ] },  //  5
+                        { move: { degree: 180, invert: true, distance:   0 }, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
+                        { move: { degree: 330, invert: true, distance:  50 }, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
+                        { move: { degree: 210, invert: true, distance:  50 }, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
+                        { move: { degree: 270, invert: true, distance:  50 }, lineTo: _objects [ 5 ] },  //  9
+                        { move: { degree: 270, invert: true, distance: 100 }, lineTo: _objects [ 5 ] },  // 10
+                    ]
+                },  // In
+                {
+                    object: _objects,
+                    timing: 'easeInExpo',
+                    period: 1750,
+                    change:
+                    [
+                        { move: { degree:  90, invert: true, distance: 100 }, radius: 10, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
+                        { move: { degree:  60, invert: true, distance:  87 }, radius: 10, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
+                        { move: { degree: 120, invert: true, distance:  87 }, radius: 10, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
+                        { move: { degree:  30, invert: true, distance:  50 }, radius: 10, lineTo: _objects [ 4 ], },  //  4
+                        { move: { degree: 150, invert: true, distance:  50 }, radius: 10, lineTo: _objects [ 7 ] },  //  5
+                        { move: { degree: 180, invert: true, distance:   0 }, radius: 10, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
+                        { move: { degree: 330, invert: true, distance:  50 }, radius: 10, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
+                        { move: { degree: 210, invert: true, distance:  50 }, radius: 10, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
+                        { move: { degree: 270, invert: true, distance:  50 }, radius: 10, lineTo: _objects [ 5 ] },  //  9
+                        { move: { degree: 270, invert: true, distance: 100 }, radius: 10, lineTo: _objects [ 5 ] },  // 10
+                    ]
+                },  // In
+            ]
+
+            ////    REPEAT    //////////////////////////////////////////////////////////////
+
+            let _repeat = 4;
+
+            let _items  = [ 0, 1, 2, 3, 4, 5 ]
+
+            let _start  = 6;
+
+            for ( let _i = 0; _i < _repeat; _i++ )
+
+                for ( let _item of _items )
+
+                    [ _transitions [ _start ], _start ] = [ _transitions [ _item ], _start + 1 ];
+
+
+            canvaslab.animate ( _transitions );
+        },
     }
 
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
@@ -10795,7 +11393,6 @@ class Ui
                 UI.init  ( );
 
                 LAB.init ( _scripts.seedOfLife );
-
 
                 if ( _config.labMode )
 

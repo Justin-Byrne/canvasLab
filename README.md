@@ -1,9 +1,9 @@
 # canvasLab
 
 ![license](https://img.shields.io/github/license/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Chrome-128.0.6613.113-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
+<img src="https://img.shields.io/badge/Chrome-128.0.6613.120-yellow?style=flat-square&logo=googlechrome&logoColor=white" />
 ![issues](https://img.shields.io/github/issues/Justin-Byrne/canvasLab?style=flat-square)
-<img src="https://img.shields.io/badge/Version-0.7.158-navy?style=flat-square" />
+<img src="https://img.shields.io/badge/Version-0.7.163-navy?style=flat-square" />
 <img src="https://img.shields.io/github/languages/code-size/Justin-Byrne/canvasLab?style=flat-square" />
 
 HTML5 canvas drawing framework
@@ -86,8 +86,8 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── JSDoc.md
 ├── script
 │   ├── distro
-│   │   ├── canvasLab-v0.7.158.js    [ 452 kb ]
-│   │   ├── canvasLab.min.js         [  84 kb ]
+│   │   ├── canvasLab-v0.7.163.js    [ 460 kb ]
+│   │   ├── canvasLab.min.js         [  92 kb ]
 │   │   └── canvasLab.min.js.map
 │   └── source
 │       ├── classes
@@ -141,6 +141,7 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │       │   │   └── Queue.js
 │       │   ├── Handlers
 │       │   │   ├── Animation.js
+│       │   │   ├── Animations.js
 │       │   │   └── Application.js
 │       │   ├── Templates
 │       │   │   └── SacredCircles.js

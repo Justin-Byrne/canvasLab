@@ -1,11 +1,11 @@
 /**
- * Base object for shared accessors & mutators
+ * Base module for shared accessors & mutators
  * @namespace       PROPERTY_BLOCKS
  */
 const PROPERTY_BLOCKS =
 {
     /**
-     * Discrete property accessors & mutators
+     * Individual property accessors & mutators
      * @var             {Object} PROPERTY_BLOCKS.individual
      */
     individual:
@@ -322,7 +322,7 @@ const PROPERTY_BLOCKS =
     },
 
     /**
-     * Combined property accessors & mutators
+     * Collection property accessors & mutators
      * @var             {Object} PROPERTY_BLOCKS.collection
      */
     collection:
@@ -541,5 +541,101 @@ const PROPERTY_BLOCKS =
                 return this._template;
             }
         },
+    },
+
+    /**
+     * Animation property accessors & mutators
+     * @var             {Object} PROPERTY_BLOCKS.animation
+     */
+    animation:
+    {
+        /** @function PROPERTY_BLOCKS.animation.cache                                            **/
+        cache:
+        {
+            /**
+             * Set cache
+             * @public
+             * @function
+             * @param           {boolean} value                             True || False
+             */
+            set ( value )
+            {
+                this._options.cache = ( typeof value == 'boolean' ) ? value : this._options.cache;
+            },
+
+            /**
+             * Get cache
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   True || False
+             */
+            get ( )
+            {
+                return this._options.cache;
+            }
+        },
+        /** @function PROPERTY_BLOCKS.animation.cancel                                           **/
+        cancel:
+        {
+            /**
+             * Cancels animation
+             * @readOnly
+             * @function
+             */
+            get ( )
+            {
+                this._options.active = false;
+            }
+        },
+        /** @function PROPERTY_BLOCKS.animation.period                                           **/
+        period:
+        {
+            /**
+             * Set period of animation
+             * @public
+             * @function
+             * @param           {number} value                              Period of animation-time
+             */
+            set ( value )
+            {
+                this._period = ( this._isNumber ( value ) ) ? value : this._period;
+            },
+
+            /**
+             * Get period of animation
+             * @readOnly
+             * @function
+             * @return          {number}                                    Period of animation-time
+             */
+            get ( )
+            {
+                return this._period;
+            }
+        },
+        /** @function PROPERTY_BLOCKS.animation.queue                                            **/
+        queue:
+        {
+            /**
+             * Set queue
+             * @public
+             * @function
+             * @param           {Queue} value                               Queue object
+             */
+            set ( value )
+            {
+                this._queue = ( value instanceof Queue ) ? value : this._queue;
+            },
+
+            /**
+             * Get queue
+             * @readOnly
+             * @function
+             * @return          {Queue}                                     Queue object
+             */
+            get ( )
+            {
+                return this._queue;
+            }
+        }
     }
 }

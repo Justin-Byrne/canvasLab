@@ -1,17 +1,17 @@
 /**
- * @class           {Object}          Animation                 Animation handler; for drawing a single object in one instance
- * @property        {clObject}        object                    CanvasLab object
- * @property        {string|Function} timing                    Timing function
- * @property        {number}          period                    Period of time
- * @property        {Object}          change                    Change to object
- * @property        {Object}          options                   Options for this object
+ * @class           {Object}                  Animations        Animations handler; for drawing multiple objects in one instance
+ * @property        {Array.<clObject>}        objects           CanvasLab objects
+ * @property        {Array.<string|Function>} timings           Timing functions
+ * @property        {number}                  periods           Period of time
+ * @property        {Array.<Object>}          changes           Changes an object
+ * @property        {Object}                  options           Options for this object
  */
-class Animation
+class Animations
 {
-    _object = undefined;
-    _timing = undefined;
-    _period = undefined;
-    _change = undefined;
+    _objects = undefined;
+    _timings = undefined;
+    _periods = undefined;
+    _changes = undefined;
 
     #timings =
     {
@@ -63,12 +63,12 @@ class Animation
 
     /**
      * Creates an animation instance
-     * @param           {clObject}        object                    Canvas Lab object
-     * @param           {string|Function} timing                    Timing function
-     * @param           {number}          period                    Period of time
-     * @param           {Object}          change                    Change to object
+     * @property        {Array.<clObject>}        objects           CanvasLab objects
+     * @property        {Array.<string|Function>} timings           Timing functions
+     * @property        {number}                  period            Period of time
+     * @property        {Array.<Object>}          changes           Changes an objects
      */
-    constructor ( object, timing, period, change )
+    constructor ( objects, timings, period, changes )
     {
         ////    COMPOSITION     ////////////////////////////
 
@@ -82,10 +82,10 @@ class Animation
             Object.defineProperty ( this, 'period', PROPERTY_BLOCKS.animation.period );
             Object.defineProperty ( this, 'queue',  PROPERTY_BLOCKS.animation.queue  );
 
-        this.object = object;
-        this.timing = timing;
-        this.period = period;
-        this.change = change;
+        this.objects = objects;
+        this.timings = timings;
+        this.period  = period;
+        this.changes = changes;
 
         this._options.active = true;
     }
@@ -93,57 +93,64 @@ class Animation
     ////    [ OBJECT ]    //////////////////////////////////
 
         /**
-         * Set object to animate
+         * Set objects to animate
          * @public
          * @function
-         * @param           {clObject} value                            Canvas Lab object
+         * @param           {clObject} value                            Canvas Lab objects
          */
-        set object ( value )
+        set objects ( value )
         {
-            this._object = value;
+            this._objects = value;
         }
 
         /**
-         * Get object
+         * Get objects
          * @readOnly
          * @function
-         * @return          {clObject}                                  Canvas Lab object
+         * @return          {clObject}                                  Canvas Lab objects
          */
-        get object ( )
+        get objects ( )
         {
-            return this._object;
+            return this._objects;
         }
 
     ////    [ TIMING ]    //////////////////////////////////
 
         /**
-         * Set timing
+         * Set timings
          * @public
          * @function
          * @param           {string|Function} value                     Timing function
          */
-        set timing ( value )
+        set timings ( value )
         {
-            if ( value != undefined )
+            if ( Array.isArray ( value ) )
+            {
+                let _results = new Array;
 
-                switch ( typeof value )
-                {
-                    case 'string':
 
-                        this._timing = this.#timings [ value ];
+                for ( let _entry of value )
 
-                        break;
+                    ( typeof _entry === 'string' )
 
-                    case 'function':
+                        ? _results.push ( this.#timings [ _entry ] )
 
-                        this._timing = value;
+                        : _results.push ( _entry );
 
-                        break;
 
-                    default:
+                this._timings = _results;
+            }
+            else
 
-                        console.warn ( `"${value}" is not a valid timing type !` );
-                }
+                this._timings = ( value != undefined )
+
+                                    ? ( typeof value === 'string' )
+
+                                          ? this.#timings [ value ]
+
+                                          : value
+
+                                    : this._timings;
         }
 
         /**
@@ -152,9 +159,9 @@ class Animation
          * @function
          * @return          {Function}                                  Timing function
          */
-        get timing ( )
+        get timings ( )
         {
-            return this._timing;
+            return this._timings;
         }
 
     ////    [ PERIOD ]    //////////////////////////////////
@@ -180,25 +187,25 @@ class Animation
     ////    [ CHANGE ]    //////////////////////////////////
 
         /**
-         * Set change
+         * Set changes
          * @public
          * @function
-         * @param           {clChange} value                            Canvas Lab change object
+         * @param           {clChange} value                            Canvas Lab changes object
          */
-        set change ( value )
+        set changes ( value )
         {
-            this._change = value;
+            this._changes = value;
         }
 
         /**
-         * Get change
+         * Get changes
          * @readOnly
          * @function
-         * @return          {clChange}                                  Canvas Lab change object
+         * @return          {clChange}                                  Canvas Lab changes object
          */
-        get change ( )
+        get changes ( )
         {
-            return this._change;
+            return this._changes;
         }
 
     ////    [ CACHE ]    ///////////////////////////////////
@@ -261,85 +268,51 @@ class Animation
          * @function
          * @param           {clObject} object                           Canvas Lab object
          */
-        _cacheObject ( )
+        _cacheObjects ( id )
         {
-            let _object = undefined;
+            let _object = this.objects [ id ];
 
 
-            switch ( this.object.constructor.name )
+            switch ( _object.constructor.name )
             {
                 case 'Circle':
 
-                    _object = new Circle ( this.object.point );
-
-                    // _object = new Circle (
-                    //               this.object.point,
-                    //               this.object.radius,
-                    //               this.object.angle,
-                    //               this.object.stroke,
-                    //               this.object.fill,
-                    //               this.object.shadow,
-                    //               this.object.canvas
-                    //           );
+                    _object = new Circle ( _object.point, _object.radius, undefined, _object.stroke );
 
                     break;
 
                 case 'Ellipse':
 
-                    _object = new Ellipse (
-                                  this.object.point,
-                                  this.object.radius,
-                                  this.object.angle,
-                                  this.object.stroke,
-                                  this.object.fill,
-                                  this.object.shadow,
-                                  this.object.canvas
-                              );
+                    _object = new Ellipse ( _object.point, undefined, undefined, _object.stroke );
 
                     break;
 
                 case 'Rectangle':
 
-                    _object = new Rectangle (
-                                  this.object.point,
-                                  this.object.aspect,
-                                  this.object.round,
-                                  this.object.stroke,
-                                  this.object.fill,
-                                  this.object.shadow,
-                                  this.object.canvas
-                              );
+                    _object = new Rectangle ( _object.point, undefined, undefined, _object.stroke );
 
                     break;
 
                 case 'RoundedRectangle':
 
-                    _object = new RoundedRectangle (
-                                  this.object.point,
-                                  this.object.aspect,
-                                  this.object.round,
-                                  this.object.stroke,
-                                  this.object.fill,
-                                  this.object.shadow,
-                                  this.object.canvas
-                              );
+                    _object = new RoundedRectangle ( _object.point, undefined, undefined, _object.stroke );
 
                     break;
 
                 case 'Text':
 
                     _object = new Text (
-                                  this.object.point,
-                                  this.object.text,
-                                  this.object.type,
-                                  this.object.size,
-                                  this.object.weight,
-                                  this.object.maxWidth,
-                                  this.object.offset,
-                                  this.object.stroke,
-                                  this.object.fill,
-                                  this.object.shadow,
-                                  this.object.canvas
+                                  _object.point,
+                                  _object.text,
+                                  _object.type,
+                                  _object.size,
+                                  _object.weight,
+                                  _object.maxWidth,
+                                  _object.offset,
+                                  _object.stroke,
+                                  _object.fill,
+                                  _object.shadow,
+                                  _object.canvas
                               );
 
                     break;
@@ -358,16 +331,16 @@ class Animation
         {
             if ( this.queue.isSet )
             {
-                let _animate = this.queue.next;             // Get initial ( and subsequent ) queue entries
+                let _transition = this.queue.next;          // Get initial ( and subsequent ) queue entries
 
 
-                this.object = _animate.object;
+                this.objects = this._getObjects ( _transition );
 
-                this.timing = _animate.timing;
+                this.timings = this._getTimings ( _transition );
 
-                this.period = _animate.period;
+                this.period  = _transition.period;
 
-                this.change = _animate.change;
+                this.changes = _transition.change;
             }
         }
 
@@ -377,14 +350,16 @@ class Animation
          * @function
          * @param           {clObject} object                           Canvas Lab object
          */
-        _clearCanvas ( object )
+        _clearCanvas ( )
         {
-            let _canvas = document.getElementById ( object.canvas );
+            let _object = this.objects [ 0 ];
+
+            let _canvas = document.getElementById ( _object.canvas );
 
 
             if ( _canvas )  // @TODO: identify why this check has to take place periodically !
 
-                object._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
+                _object._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
         }
 
         /**
@@ -397,8 +372,13 @@ class Animation
             if ( this.#cache.length > 0 )
 
                 for ( let _entry of this.#cache )
+                {
+                    _entry.stroke.color.alpha = 0.35;
 
                     _entry.draw ( );
+
+                    _entry.stroke.color.alpha = 1;
+                }
         }
 
         /**
@@ -420,6 +400,59 @@ class Animation
         _getInvertedAngle ( angle ) { }
 
         /**
+         * Returns an array of objects based on the transitions object type
+         * @private
+         * @function
+         * @param           {Transition} transition                     Animation transition instance
+         * @return          {Array}                                     Array of objects
+         */
+        _getObjects ( transition )
+        {
+            let _collections = [ 'Circles', 'Ellipses', 'Rectangles', 'RoundedRectangles', 'Texts' ]
+
+            let _array       = new Array;
+
+            let _type        = transition.object.constructor.name;
+
+
+            return ( _collections.includes ( _type ) ) ? _array.concat ( transition.object )
+
+                                                       : transition.object;
+        }
+
+        /**
+         * Returns an array of timings based on the transition timing type
+         * @private
+         * @function
+         * @param           {Transition} transition                     Animation transition instance
+         * @return          {Array}                                     Array of timings
+         */
+        _getTimings ( transition )
+        {
+            let _results = undefined;
+
+
+            if ( Array.isArray ( transition.timing ) )
+
+                _results = transition.timing;
+
+            else
+            {
+                let _length  = this.objects.length;
+
+                    _results = new Array;
+
+
+                for ( let _i = 0; _i < _length; _i++ )
+
+                    _results.push ( transition.timing );
+            }
+
+
+            return _results;
+        }
+
+        /**
          * Returns a point based off of the direction & distance passed
          * @private
          * @function
@@ -427,23 +460,23 @@ class Animation
          * @param           {number} distance                           Distance to point
          * @return          {Point}                                     X & Y coordinates
          */
-        _getPointByDegreeNDistance ( direction, distance )
+        _getPointByDegreeNDistance ( id, direction, distance )
         {
             let _point = new Point;
 
             let _angle = ( direction % 360 );
 
 
-                _point.x = this.object.position.origin.x - Math.cos ( _angle * Math.PI / 180 ) * distance;
+                _point.x = this.objects [ id ].position.origin.x - Math.cos ( _angle * Math.PI / 180 ) * distance;
 
-                _point.y = this.object.position.origin.y - Math.sin ( _angle * Math.PI / 180 ) * distance;
+                _point.y = this.objects [ id ].position.origin.y - Math.sin ( _angle * Math.PI / 180 ) * distance;
 
 
             return _point;
         }
 
         /**
-         * Caches current object
+         * Caches current objects
          * @private
          * @function
          */
@@ -451,16 +484,18 @@ class Animation
         {
             if ( this.queue.isSet  &&  ! this.queue.isEnd )
             {
-                if ( this.change.cache )
+                for ( let _id in this.changes )
 
-                    this._cacheObject ( );
+                    if ( this.changes [ _id ].cache )
+
+                        this._cacheObjects ( _id );
 
 
                 this.animate ( );
             }
             else
 
-                console.info ( 'animation complete !' );
+                console.info ( 'animations complete !' );
         }
 
         /**
@@ -470,93 +505,97 @@ class Animation
          */
         _setPositionData ( )
         {
-            for ( let _type in this.change )
+            for ( let _id in this.objects )
             {
-                let _difference = this.change [ _type ];
+                let _object = this.objects [ _id ];
+
+                let _change = this.changes [ _id ];
 
 
-                switch ( _type )
+                for ( let _type in _change )
                 {
-                    case 'point':
-
-                        this.object.position.origin    = this.object.point;
-
-                        this.object.position.distance  = _difference;
-
-                        this.object.position.direction = _difference;
-
-                        break;
-
-                    case 'move':
-
-                        this.object.position.origin = this.object.point;
+                    let _difference = _change [ _type ];
 
 
-                        _difference.degree          = ( this.change.rotatePoint )
+                    switch ( _type )
+                    {
+                        case 'point':
 
-                                                          ? _difference.degree + this.change.rotatePoint
+                            _object.position.origin    = _object.point;
 
-                                                          : _difference.degree;
+                            _object.position.distance  = _difference;
+
+                            _object.position.direction = _difference;
+
+                            break;
+
+                        case 'move':
+
+                            _object.position.origin = _object.point;
 
 
-                        let _point = this._getPointByDegreeNDistance ( _difference.degree, _difference.distance );
+                            // Whether to invert degree
+                            let _point = ( _difference.invert ) ? this._getPointByDegreeNDistance ( _id, this._getInvertedAngle ( _difference.degree ), _difference.distance )
+
+                                                                : this._getPointByDegreeNDistance ( _id, _difference.degree, _difference.distance );
 
 
-                        this.object.position.distance  = _point;
+                            _object.position.distance  = _point;
 
-                        this.object.position.direction = _point;
+                            _object.position.direction = _point;
 
-                        break;
+                            break;
 
-                    case 'radius':
+                        case 'radius':
 
-                        // code . . .
+                            // _object.position.radius = _object.radius;
 
-                        break;
+                            break;
 
-                    case 'rotate':
+                        case 'rotate':
 
-                        // code . . .
+                            // code . . .
 
-                        break;
+                            break;
 
-                    case 'strokeColor':
+                        case 'strokeColor':
 
-                        // code . . .
+                            // code . . .
 
-                        break;
+                            break;
 
-                    case 'strokeAlpha':
+                        case 'strokeAlpha':
 
-                        // code . . .
+                            // code . . .
 
-                        break;
+                            break;
 
-                    case 'fillColor':
+                        case 'fillColor':
 
-                        // code . . .
+                            // code . . .
 
-                        break;
+                            break;
 
-                    case 'fillAlpha':
+                        case 'fillAlpha':
 
-                        // code . . .
+                            // code . . .
 
-                        break;
+                            break;
 
-                    case 'fillLinear':
-                    case 'fillRadial':
-                    case 'fillConic':
+                        case 'fillLinear':
+                        case 'fillRadial':
+                        case 'fillConic':
 
-                        // code . . .
+                            // code . . .
 
-                        break;
+                            break;
 
-                    case 'cache':
+                        case 'cache':
 
-                        this.cache = _difference;
+                            this.cache = _difference;
 
-                        break;
+                            break;
+                    }
                 }
             }
         }
@@ -569,11 +608,16 @@ class Animation
          * @param           {clObject} object                           Canvas Lab object
          * @param           {number}   progress                         Progress of transition; 0 - 1
          */
-        async _transition ( object, progress )
+        async _transition ( id, progress )
         {
-            for ( let _type in this.change )
+            let _object = this._objects [ id ];
+
+            let _change = this._changes [ id ];
+
+
+            for ( let _type in _change )
             {
-                let _amount = this.change [ _type ];
+                let _amount = _change [ _type ];
 
 
                 switch ( _type )
@@ -581,48 +625,48 @@ class Animation
                     case 'point':
                     case 'move':
 
-                        object.point =
+                        _object.point =
                         {
-                            x: object.position.origin.x + ( object.position.distance * progress ) * Math.cos ( object.position.direction ),
+                            x: _object.position.origin.x + ( _object.position.distance * progress ) * Math.cos ( _object.position.direction ),
 
-                            y: object.position.origin.y + ( object.position.distance * progress ) * Math.sin ( object.position.direction )
+                            y: _object.position.origin.y + ( _object.position.distance * progress ) * Math.sin ( _object.position.direction )
                         }
 
                         break;
 
                     case 'radius':
 
-                        object.radius = _amount * progress;
+                        _object.radius = _amount * progress;
 
                         break;
 
                     case 'rotate':
 
-                        object.rotate ( _amount );
+                        _object.rotate ( _amount );
 
                         break;
 
                     case 'strokeColor':
 
-                        object.stroke.color.cycle ( object.stroke.color, _amount, progress, 1 );
+                        _object.stroke.color.cycle ( _object.stroke.color, _amount, progress, 1 );
 
                         break;
 
                     case 'strokeAlpha':
 
-                        object.stroke.color.alpha = _amount * progress;
+                        _object.stroke.color.alpha = _amount * progress;
 
                         break;
 
                     case 'fillColor':
 
-                        object.fill.color.cycle ( object.fill.color, _amount, progress, 1 );
+                        _object.fill.color.cycle ( _object.fill.color, _amount, progress, 1 );
 
                         break;
 
                     case 'fillAlpha':
 
-                        object.fill.color.alpha = _amount * progress;
+                        _object.fill.color.alpha = _amount * progress;
 
                         break;
 
@@ -632,12 +676,12 @@ class Animation
 
                         for ( let _entry in _amount )
                         {
-                            let _start = object.fill.gradient.stops [ _entry ];
+                            let _start = _object.fill.gradient.stops [ _entry ];
 
                             let _end   = _amount [ _entry ];
 
 
-                            object.fill.gradient.stops [ _entry ].color.cycle ( _start.color, _end.color, progress, 1 );
+                            _object.fill.gradient.stops [ _entry ].color.cycle ( _start.color, _end.color, progress, 1 );
                         }
 
                         break;
@@ -645,6 +689,26 @@ class Animation
                     case 'rotate':
 
                         console.log ( '_amount:', _amount );
+
+                        break;
+
+                    case 'lineTo':
+
+                        if ( Array.isArray ( _amount ) )
+                        {
+                            for ( let _entry of _amount )
+                            {
+                                let _line = new Line ( _object.point, _entry.point );
+
+                                _line.draw ( );
+                            }
+                        }
+                        else
+                        {
+                            let _line = new Line ( _object.point, _amount.point );
+
+                            _line.draw ( );
+                        }
 
                         break;
                 }
@@ -676,28 +740,35 @@ class Animation
 
             ////    PROPERTIES    //////////////////////////
 
-                let _object = this._object;
+                let _objects = this._objects;
 
-                let _timing = this._timing;
+                let _timings = this._timings;
 
-                let _period = this._period;
+                let _period  = this._period;
 
-                let _active = this._options.active;
+                let _changes = this._changes;
+
+                let _active  = this._options.active;
 
             ////    FUNCTIONS    ///////////////////////////
 
-                let _transition   = ( object, progress ) => this._transition ( object, progress );
+                let _transition   = ( id, progress ) => this._transition ( id, progress );
 
-                let _clearCanvas  = ( object )           => this._clearCanvas ( object );
+                let _clearCanvas  = ( )              => this._clearCanvas ( );
 
-                let _drawCache    = ( )                  => this._drawCache ( );
+                let _drawCache    = ( )              => this._drawCache ( );
 
-                let _setCache     = ( )                  => this._setCache ( );
+                let _setCache     = ( )              => this._setCache ( );
 
-                let _end          = ( )                  => this._end ( );
+                let _end          = ( )              => this._end ( );
 
             ////////////////////////////////////////////////
             ////    ANIMATE    /////////////////////////////
+
+                let _timeFraction = undefined;
+
+                let _progress     = undefined;
+
 
                 function _animate ( )
                 {
@@ -708,21 +779,31 @@ class Animation
 
                         function animate ( time )
                         {
-                            _clearCanvas ( _object );
+                            _clearCanvas ( );
 
 
-                            let _timeFraction =  ( time - _start ) / _period;   // timeFraction goes from 0 to 1
+                            for ( let _id in _objects )
+                            {
+                                let _object = _objects [ _id ];
 
-                            let _progress     = _timing ( _timeFraction );      // calculate the current animation state
+                                let _timing = _timings [ _id ];
+
+                                let _change = _changes [ _id ];
+
+
+                                _timeFraction =  ( time - _start ) / _period;   // timeFraction goes from 0 to 1
+
+                                _progress     = _timing ( _timeFraction );      // calculate the current animation state
 
                 /* normalize */ _progress     = ( true && _progress < 0 ) ? 0 : _progress;
 
 
-                            _transition ( _object, _progress );
+                                _transition ( _id, _progress );
 
-                            _object.draw ( );
+                                _object.draw ( );
 
-                            _drawCache ( );
+                                _drawCache ( );
+                            }
 
 
                             ( _active ) ? ( _timeFraction < 1 )                 // Resolve
@@ -739,12 +820,12 @@ class Animation
             ////////////////////////////////////////////////
             ////    INITIALIZE    //////////////////////////
 
-                if ( this._object  &&  this._period )
+                if ( this._objects  &&  this._period )
 
                     _animate ( );
 
                 else
 
-                    console.warn ( '[ Animation ] :: The "object" and/or "period" properties are invalid !' );
+                    console.warn ( '[ Animations ] :: The "objects" and/or "period" properties are invalid !' );
         }
 }

@@ -21,6 +21,7 @@ center        <color:gray>{boolean}</color>
 __ Validation __
 _isInDom      <color:gray>{boolean}</color>
 __ Utility __
+clearCanvas
 animate
 _init
 }

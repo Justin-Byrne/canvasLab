@@ -12,7 +12,7 @@ class SacredCircles
     _point      = new Point;
     _radius     = 25;
     _iterations = undefined;
-    _degrees    = [ 270, 150, 90, 30, 330, 270, 210 ];
+    _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
     _colors     = new Queue ( [ new Rgb ( 255, 255, 255, 0 ) ] );
 
     _master     = undefined;
@@ -658,7 +658,7 @@ class SacredCircles
 
             ////    REVERSE COLLECTIONS    /////////////////
 
-            this.master.circles.reverse ( );
+            // this.master.circles.reverse ( );
 
             this.master.ellipses.reverse ( );
 

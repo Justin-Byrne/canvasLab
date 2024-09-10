@@ -110,7 +110,10 @@
 <dd><p>{Object} Queue                              Queue object</p>
 </dd>
 <dt><a href="#Animation">Animation</a></dt>
-<dd><p>{Object}   Animation                        Animation handler</p>
+<dd><p>{Object}          Animation                 Animation handler; for drawing a single object in one instance</p>
+</dd>
+<dt><a href="#Animations">Animations</a></dt>
+<dd><p>{Object}                  Animations        Animations handler; for drawing multiple objects in one instance</p>
 </dd>
 <dt><a href="#Application">Application</a></dt>
 <dd><p>{Object}   Application                      Application handler</p>
@@ -124,7 +127,7 @@
 
 <dl>
 <dt><a href="#PROPERTY_BLOCKS">PROPERTY_BLOCKS</a> : <code>object</code></dt>
-<dd><p>Base object for shared accessors &amp; mutators</p>
+<dd><p>Base module for shared accessors &amp; mutators</p>
 </dd>
 <dt><a href="#UTILITIES">UTILITIES</a> : <code>object</code></dt>
 <dd><p>Shared utility functions</p>
@@ -7169,7 +7172,7 @@ Resets index to 0
 <a name="Animation"></a>
 
 ## Animation
-{Object}   Animation                        Animation handler
+{Object}          Animation                 Animation handler; for drawing a single object in one instance
 
 **Kind**: global class  
 **Properties**
@@ -7177,7 +7180,7 @@ Resets index to 0
 | Name | Type | Description |
 | --- | --- | --- |
 | object | [<code>clObject</code>](#clObject) | CanvasLab object |
-| timing | <code>function</code> | Timing function |
+| timing | <code>string</code> \| <code>function</code> | Timing function |
 | period | <code>number</code> | Period of time |
 | change | <code>Object</code> | Change to object |
 | options | <code>Object</code> | Options for this object |
@@ -7209,7 +7212,7 @@ Creates an animation instance
 | Param | Type | Description |
 | --- | --- | --- |
 | object | [<code>clObject</code>](#clObject) | Canvas Lab object |
-| timing | <code>function</code> | Timing function |
+| timing | <code>string</code> \| <code>function</code> | Timing function |
 | period | <code>number</code> | Period of time |
 | change | <code>Object</code> | Change to object |
 
@@ -7260,6 +7263,7 @@ Set period of animation
 
 **Kind**: instance method of [<code>Animation</code>](#Animation)  
 **Access**: public  
+**See**: [period](#PROPERTY_BLOCKS.animation.period)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -7273,6 +7277,7 @@ Get period of animation
 **Kind**: instance method of [<code>Animation</code>](#Animation)  
 **Returns**: <code>number</code> - Period of animation-time  
 **Read only**: true  
+**See**: [period](#PROPERTY_BLOCKS.animation.period)  
 <a name="Animation+change"></a>
 
 ### animation.change(value)
@@ -7300,6 +7305,7 @@ Set cache
 
 **Kind**: instance method of [<code>Animation</code>](#Animation)  
 **Access**: public  
+**See**: [cache](#PROPERTY_BLOCKS.animation.cache)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -7313,6 +7319,7 @@ Get cache
 **Kind**: instance method of [<code>Animation</code>](#Animation)  
 **Returns**: <code>boolean</code> - True || False  
 **Read only**: true  
+**See**: [cache](#PROPERTY_BLOCKS.animation.cache)  
 <a name="Animation+queue"></a>
 
 ### animation.queue(value)
@@ -7320,6 +7327,7 @@ Set queue
 
 **Kind**: instance method of [<code>Animation</code>](#Animation)  
 **Access**: public  
+**See**: [queue](#PROPERTY_BLOCKS.animation.queue)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -7333,6 +7341,7 @@ Get queue
 **Kind**: instance method of [<code>Animation</code>](#Animation)  
 **Returns**: [<code>Queue</code>](#Queue) - Queue object  
 **Read only**: true  
+**See**: [queue](#PROPERTY_BLOCKS.animation.queue)  
 <a name="Animation+cancel"></a>
 
 ### animation.cancel()
@@ -7340,12 +7349,193 @@ Cancels animation
 
 **Kind**: instance method of [<code>Animation</code>](#Animation)  
 **Read only**: true  
+**See**: [cancel](#PROPERTY_BLOCKS.animation.cancel)  
 <a name="Animation+animate"></a>
 
 ### animation.animate()
 Initiates animation
 
 **Kind**: instance method of [<code>Animation</code>](#Animation)  
+**Access**: public  
+<a name="Animations"></a>
+
+## Animations
+{Object}                  Animations        Animations handler; for drawing multiple objects in one instance
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| objects | [<code>Array.&lt;clObject&gt;</code>](#clObject) | CanvasLab objects |
+| timings | <code>Array.&lt;(string\|function())&gt;</code> | Timing functions |
+| periods | <code>number</code> | Period of time |
+| changes | <code>Array.&lt;Object&gt;</code> | Changes an object |
+| options | <code>Object</code> | Options for this object |
+
+
+* [Animations](#Animations)
+    * [new Animations()](#new_Animations_new)
+    * [.objects(value)](#Animations+objects)
+    * [.objects()](#Animations+objects) ⇒ [<code>clObject</code>](#clObject)
+    * [.timings(value)](#Animations+timings)
+    * [.timings()](#Animations+timings) ⇒ <code>function</code>
+    * [.period(value)](#Animations+period)
+    * [.period()](#Animations+period) ⇒ <code>number</code>
+    * [.changes(value)](#Animations+changes)
+    * [.changes()](#Animations+changes) ⇒ [<code>clChange</code>](#clChange)
+    * [.cache(value)](#Animations+cache)
+    * [.cache()](#Animations+cache) ⇒ <code>boolean</code>
+    * [.queue(value)](#Animations+queue)
+    * [.queue()](#Animations+queue) ⇒ [<code>Queue</code>](#Queue)
+    * [.cancel()](#Animations+cancel)
+    * [.animate()](#Animations+animate)
+
+<a name="new_Animations_new"></a>
+
+### new Animations()
+Creates an animation instance
+
+<a name="Animations+objects"></a>
+
+### animations.objects(value)
+Set objects to animate
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>clObject</code>](#clObject) | Canvas Lab objects |
+
+<a name="Animations+objects"></a>
+
+### animations.objects() ⇒ [<code>clObject</code>](#clObject)
+Get objects
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Returns**: [<code>clObject</code>](#clObject) - Canvas Lab objects  
+**Read only**: true  
+<a name="Animations+timings"></a>
+
+### animations.timings(value)
+Set timings
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> \| <code>function</code> | Timing function |
+
+<a name="Animations+timings"></a>
+
+### animations.timings() ⇒ <code>function</code>
+Get timing
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Returns**: <code>function</code> - Timing function  
+**Read only**: true  
+<a name="Animations+period"></a>
+
+### animations.period(value)
+Set period of animation
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Access**: public  
+**See**: [period](#PROPERTY_BLOCKS.animation.period)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Period of animation-time |
+
+<a name="Animations+period"></a>
+
+### animations.period() ⇒ <code>number</code>
+Get period of animation
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Returns**: <code>number</code> - Period of animation-time  
+**Read only**: true  
+**See**: [period](#PROPERTY_BLOCKS.animation.period)  
+<a name="Animations+changes"></a>
+
+### animations.changes(value)
+Set changes
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>clChange</code>](#clChange) | Canvas Lab changes object |
+
+<a name="Animations+changes"></a>
+
+### animations.changes() ⇒ [<code>clChange</code>](#clChange)
+Get changes
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Returns**: [<code>clChange</code>](#clChange) - Canvas Lab changes object  
+**Read only**: true  
+<a name="Animations+cache"></a>
+
+### animations.cache(value)
+Set cache
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Access**: public  
+**See**: [cache](#PROPERTY_BLOCKS.animation.cache)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>boolean</code> | True || False |
+
+<a name="Animations+cache"></a>
+
+### animations.cache() ⇒ <code>boolean</code>
+Get cache
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Returns**: <code>boolean</code> - True || False  
+**Read only**: true  
+**See**: [cache](#PROPERTY_BLOCKS.animation.cache)  
+<a name="Animations+queue"></a>
+
+### animations.queue(value)
+Set queue
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Access**: public  
+**See**: [queue](#PROPERTY_BLOCKS.animation.queue)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Queue</code>](#Queue) | Queue object |
+
+<a name="Animations+queue"></a>
+
+### animations.queue() ⇒ [<code>Queue</code>](#Queue)
+Get queue
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Returns**: [<code>Queue</code>](#Queue) - Queue object  
+**Read only**: true  
+**See**: [queue](#PROPERTY_BLOCKS.animation.queue)  
+<a name="Animations+cancel"></a>
+
+### animations.cancel()
+Cancels animation
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
+**Read only**: true  
+**See**: [cancel](#PROPERTY_BLOCKS.animation.cancel)  
+<a name="Animations+animate"></a>
+
+### animations.animate()
+Initiates animation
+
+**Kind**: instance method of [<code>Animations</code>](#Animations)  
 **Access**: public  
 <a name="Application"></a>
 
@@ -7628,7 +7818,7 @@ Sets this template
 <a name="PROPERTY_BLOCKS"></a>
 
 ## PROPERTY\_BLOCKS : <code>object</code>
-Base object for shared accessors & mutators
+Base module for shared accessors & mutators
 
 **Kind**: global namespace  
 
@@ -7698,11 +7888,23 @@ Base object for shared accessors & mutators
         * [.template()](#PROPERTY_BLOCKS.collection.template)
             * [.set(value)](#PROPERTY_BLOCKS.collection.template.set)
             * [.get()](#PROPERTY_BLOCKS.collection.template.get) ⇒ <code>Object</code>
+    * [.animation](#PROPERTY_BLOCKS.animation) : <code>Object</code>
+        * [.cache()](#PROPERTY_BLOCKS.animation.cache)
+            * [.set(value)](#PROPERTY_BLOCKS.animation.cache.set)
+            * [.get()](#PROPERTY_BLOCKS.animation.cache.get) ⇒ <code>boolean</code>
+        * [.cancel()](#PROPERTY_BLOCKS.animation.cancel)
+            * [.get()](#PROPERTY_BLOCKS.animation.cancel.get)
+        * [.period()](#PROPERTY_BLOCKS.animation.period)
+            * [.set(value)](#PROPERTY_BLOCKS.animation.period.set)
+            * [.get()](#PROPERTY_BLOCKS.animation.period.get) ⇒ <code>number</code>
+        * [.queue()](#PROPERTY_BLOCKS.animation.queue)
+            * [.set(value)](#PROPERTY_BLOCKS.animation.queue.set)
+            * [.get()](#PROPERTY_BLOCKS.animation.queue.get) ⇒ [<code>Queue</code>](#Queue)
 
 <a name="PROPERTY_BLOCKS.individual"></a>
 
 ### PROPERTY_BLOCKS.individual : <code>Object</code>
-Discrete property accessors & mutators
+Individual property accessors & mutators
 
 **Kind**: static property of [<code>PROPERTY\_BLOCKS</code>](#PROPERTY_BLOCKS)  
 
@@ -8103,7 +8305,7 @@ Get radius
 <a name="PROPERTY_BLOCKS.collection"></a>
 
 ### PROPERTY_BLOCKS.collection : <code>Object</code>
-Combined property accessors & mutators
+Collection property accessors & mutators
 
 **Kind**: static property of [<code>PROPERTY\_BLOCKS</code>](#PROPERTY_BLOCKS)  
 
@@ -8304,6 +8506,124 @@ Get template
 **Kind**: static method of [<code>template</code>](#PROPERTY_BLOCKS.collection.template)  
 **Returns**: <code>Object</code> - Template object  
 **Read only**: true  
+<a name="PROPERTY_BLOCKS.animation"></a>
+
+### PROPERTY_BLOCKS.animation : <code>Object</code>
+Animation property accessors & mutators
+
+**Kind**: static property of [<code>PROPERTY\_BLOCKS</code>](#PROPERTY_BLOCKS)  
+
+* [.animation](#PROPERTY_BLOCKS.animation) : <code>Object</code>
+    * [.cache()](#PROPERTY_BLOCKS.animation.cache)
+        * [.set(value)](#PROPERTY_BLOCKS.animation.cache.set)
+        * [.get()](#PROPERTY_BLOCKS.animation.cache.get) ⇒ <code>boolean</code>
+    * [.cancel()](#PROPERTY_BLOCKS.animation.cancel)
+        * [.get()](#PROPERTY_BLOCKS.animation.cancel.get)
+    * [.period()](#PROPERTY_BLOCKS.animation.period)
+        * [.set(value)](#PROPERTY_BLOCKS.animation.period.set)
+        * [.get()](#PROPERTY_BLOCKS.animation.period.get) ⇒ <code>number</code>
+    * [.queue()](#PROPERTY_BLOCKS.animation.queue)
+        * [.set(value)](#PROPERTY_BLOCKS.animation.queue.set)
+        * [.get()](#PROPERTY_BLOCKS.animation.queue.get) ⇒ [<code>Queue</code>](#Queue)
+
+<a name="PROPERTY_BLOCKS.animation.cache"></a>
+
+#### animation.cache()
+**Kind**: static method of [<code>animation</code>](#PROPERTY_BLOCKS.animation)  
+
+* [.cache()](#PROPERTY_BLOCKS.animation.cache)
+    * [.set(value)](#PROPERTY_BLOCKS.animation.cache.set)
+    * [.get()](#PROPERTY_BLOCKS.animation.cache.get) ⇒ <code>boolean</code>
+
+<a name="PROPERTY_BLOCKS.animation.cache.set"></a>
+
+##### cache.set(value)
+Set cache
+
+**Kind**: static method of [<code>cache</code>](#PROPERTY_BLOCKS.animation.cache)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>boolean</code> | True || False |
+
+<a name="PROPERTY_BLOCKS.animation.cache.get"></a>
+
+##### cache.get() ⇒ <code>boolean</code>
+Get cache
+
+**Kind**: static method of [<code>cache</code>](#PROPERTY_BLOCKS.animation.cache)  
+**Returns**: <code>boolean</code> - True || False  
+**Read only**: true  
+<a name="PROPERTY_BLOCKS.animation.cancel"></a>
+
+#### animation.cancel()
+**Kind**: static method of [<code>animation</code>](#PROPERTY_BLOCKS.animation)  
+<a name="PROPERTY_BLOCKS.animation.cancel.get"></a>
+
+##### cancel.get()
+Cancels animation
+
+**Kind**: static method of [<code>cancel</code>](#PROPERTY_BLOCKS.animation.cancel)  
+**Read only**: true  
+<a name="PROPERTY_BLOCKS.animation.period"></a>
+
+#### animation.period()
+**Kind**: static method of [<code>animation</code>](#PROPERTY_BLOCKS.animation)  
+
+* [.period()](#PROPERTY_BLOCKS.animation.period)
+    * [.set(value)](#PROPERTY_BLOCKS.animation.period.set)
+    * [.get()](#PROPERTY_BLOCKS.animation.period.get) ⇒ <code>number</code>
+
+<a name="PROPERTY_BLOCKS.animation.period.set"></a>
+
+##### period.set(value)
+Set period of animation
+
+**Kind**: static method of [<code>period</code>](#PROPERTY_BLOCKS.animation.period)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Period of animation-time |
+
+<a name="PROPERTY_BLOCKS.animation.period.get"></a>
+
+##### period.get() ⇒ <code>number</code>
+Get period of animation
+
+**Kind**: static method of [<code>period</code>](#PROPERTY_BLOCKS.animation.period)  
+**Returns**: <code>number</code> - Period of animation-time  
+**Read only**: true  
+<a name="PROPERTY_BLOCKS.animation.queue"></a>
+
+#### animation.queue()
+**Kind**: static method of [<code>animation</code>](#PROPERTY_BLOCKS.animation)  
+
+* [.queue()](#PROPERTY_BLOCKS.animation.queue)
+    * [.set(value)](#PROPERTY_BLOCKS.animation.queue.set)
+    * [.get()](#PROPERTY_BLOCKS.animation.queue.get) ⇒ [<code>Queue</code>](#Queue)
+
+<a name="PROPERTY_BLOCKS.animation.queue.set"></a>
+
+##### queue.set(value)
+Set queue
+
+**Kind**: static method of [<code>queue</code>](#PROPERTY_BLOCKS.animation.queue)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Queue</code>](#Queue) | Queue object |
+
+<a name="PROPERTY_BLOCKS.animation.queue.get"></a>
+
+##### queue.get() ⇒ [<code>Queue</code>](#Queue)
+Get queue
+
+**Kind**: static method of [<code>queue</code>](#PROPERTY_BLOCKS.animation.queue)  
+**Returns**: [<code>Queue</code>](#Queue) - Queue object  
+**Read only**: true  
 <a name="UTILITIES"></a>
 
 ## UTILITIES : <code>object</code>
@@ -8342,11 +8662,12 @@ Shared utility functions
             * [.shadow()](#UTILITIES.individual.set.shadow)
             * [.fillType()](#UTILITIES.individual.set.fillType)
                 * [~_setStops(gradient, stops)](#UTILITIES.individual.set.fillType.._setStops)
+    * [.animation()](#UTILITIES.animation)
 
 <a name="UTILITIES.collection"></a>
 
 ### UTILITIES.collection()
-Utility collection functions
+Utilities for collection functions
 
 **Kind**: static method of [<code>UTILITIES</code>](#UTILITIES)  
 
@@ -8413,7 +8734,7 @@ Sets offset of child object against this constructor's point
 <a name="UTILITIES.individual"></a>
 
 ### UTILITIES.individual()
-Utility individual functions
+Utilities for individual functions
 
 **Kind**: static method of [<code>UTILITIES</code>](#UTILITIES)  
 
@@ -8716,6 +9037,12 @@ Sets stops for gradient fill types
 | gradient | <code>Object</code> | [description] |
 | stops | <code>Array.&lt;Stops&gt;</code> | [description] |
 
+<a name="UTILITIES.animation"></a>
+
+### UTILITIES.animation()
+Utilities for animation functions
+
+**Kind**: static method of [<code>UTILITIES</code>](#UTILITIES)  
 <a name="VALIDATION"></a>
 
 ## VALIDATION : <code>object</code>

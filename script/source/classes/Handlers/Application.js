@@ -3,7 +3,7 @@
  */
 class Application
 {
-    _animation = undefined;
+    _animation  = undefined;
 
     /**
      * Application configurations & details
@@ -25,8 +25,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Aug, 30 2024',
-            Version:   '0.7.158',
+            Updated:   'Sep, 10 2024',
+            Version:   '0.7.163',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -209,20 +209,39 @@ class Application
          */
         set animation ( transition = { object, timing, period, change } )
         {
-            if ( Array.isArray ( transition ) )
-            {
-                this._animation       = new Animation;
+            if ( Array.isArray ( transition ) )             // Transition(s)
 
-                this._animation.queue = new Queue ( transition );
+                if ( Array.isArray ( transition [ 0 ].object ) )                // Animation(s) #3
+                {
+                    this._animation       = new Animations;
 
-                this._animation.animate ( );
-            }
-            else
-            {
-                this._animation = new Animation ( transition.object, transition.timing, transition.period, transition.change );
+                    this._animation.queue = new Queue ( transition );
 
-                this._animation.animate ( );
-            }
+                    this._animation.animate ( );
+                }
+                else                                                            // Animation    #1
+                {
+                    this._animation       = new Animation;
+
+                    this._animation.queue = new Queue ( transition );
+
+                    this._animation.animate ( );
+                }
+
+            else                                            // Transition
+
+                if ( Array.isArray ( transition.object ) )                      // Animation(s) #2
+                {
+                    this._animation = new Animations ( transition.object, transition.timing, transition.period, transition.change );
+
+                    this._animation.animate ( );
+                }
+                else                                                            // Animation        # One-Shot
+                {
+                    this._animation = new Animation ( transition.object, transition.timing, transition.period, transition.change );
+
+                    this._animation.animate ( );
+                }
         }
 }
 

@@ -1,6 +1,34 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.7.163] - 2024-09-10
+### Added
+- **canvasLab**
+  - :sunny: `Animations` class, to handling the drawing of multiple objects in one instance
+
+### Refactored
+- **canvasLab**
+  - :last_quarter_moon: `Application` class, `animation` setter, to include new `Animations` class
+  - :last_quarter_moon: `Animation` & `Animations` classes,
+    - supplemented `cache` mutator & accessor with `PROPERTY_BLOCKS.animation.cache`
+    - supplemented `cancel` mutator & accessor with `PROPERTY_BLOCKS.animation.cancel`
+    - supplemented `period` mutator & accessor with `PROPERTY_BLOCKS.animation.period`
+    - supplemented `queue` mutator & accessor with `PROPERTY_BLOCKS.animation.queue`
+    - supplemented `_end` function, with `UTILITIES.animation.end`
+    - supplemented `_getInvertedAngle` function, with `UTILITIES.animation.getInvertedAngle`
+
+### Removed
+- **canvasLab**
+  - :pick: `Animation` class, `_getAnimationProperties` function
+
+### Fixed
+- **canvasLab**
+  - :dragon: Inverted 360 degree rotation results; resulting in 90 degrees depicting up rather than down
+    - `Animation` class, `_getPointByDegreeNDistance` function
+    - `Animations` class, `_getPointByDegreeNDistance` function
+    - `Utilities` module, `misc.rotatePoint` function
+    - `SacredCircles` class, `degrees` property
+
 ## [0.7.158] - 2024-08-30
 ### Added
 - **canvasLab**
@@ -743,7 +771,8 @@ All notable changes to this project will be documented in this file.
 
 | Version     | Date         | Commit                                                                | Comments                                                                                                                     |
 | :---------  | :----------: | :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `[0.7.158]` | `2024-08-30` | `CURRENT`                                                             | <sup>Added features to cancel current animations, and changed the Location class as Position; class.</sup>                   |
+| `[0.7.163]` | `2024-09-10` | `CURRENT`                                                             | <sup>Added Animations class, fixed angle orientation(s) for 360 degree rotation(s), and general refactoring.</sup>           |
+| `[0.7.158]` | `2024-08-30` | [`94c76a2`](https://github.com/Justin-Byrne/canvasLab/commit/94c76a2) | <sup>Added features to cancel current animations, and changed the Location class as Position; class.</sup>                   |
 | `[0.7.151]` | `2024-08-27` | [`0d9f971`](https://github.com/Justin-Byrne/canvasLab/commit/0d9f971) | <sup>Added Location class, refactored many Animation processes, and re-organized programs schema.</sup>                      |
 | `[0.6.137]` | `2024-08-13` | [`d4865e2`](https://github.com/Justin-Byrne/canvasLab/commit/d4865e2) | <sup>Added Ellipse(s) & RoundedRectangle(s) classes, mutli-select functionality, with refactoring.</sup>                     |
 | `[0.5.129]` | `2024-08-07` | [`a0c7ae3`](https://github.com/Justin-Byrne/canvasLab/commit/a0c7ae3) | <sup>Added cImage class, ellipse to Circle, rounding to Rectangles, Pattern to Fill, with general fixes & refactoring.</sup> |

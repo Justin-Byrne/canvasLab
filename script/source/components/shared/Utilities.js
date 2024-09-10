@@ -5,7 +5,7 @@
 const UTILITIES =
 {
     /**
-     * Utility collection functions
+     * Utilities for collection functions
      * @function UTILITIES.collection
      */
     collection:
@@ -157,7 +157,7 @@ const UTILITIES =
     },
 
     /**
-     * Utility individual functions
+     * Utilities for individual functions
      * @function UTILITIES.individual
      */
     individual:
@@ -445,9 +445,9 @@ const UTILITIES =
                 let _angle = ( degree % 360 );
 
 
-                    _point.x = origin.x + Math.cos ( _angle * Math.PI / 180 ) * distance;
+                    _point.x = origin.x - Math.cos ( _angle * Math.PI / 180 ) * distance;
 
-                    _point.y = origin.y + Math.sin ( _angle * Math.PI / 180 ) * distance;
+                    _point.y = origin.y - Math.sin ( _angle * Math.PI / 180 ) * distance;
 
 
                 return _point;
@@ -645,4 +645,39 @@ const UTILITIES =
         },
 
     },
+
+    /**
+     * Utilities for animation functions
+     * @function UTILITIES.animation
+     */
+    animation:
+    {
+        /**
+         * End animation
+         * @private
+         * @function
+         */
+        end ( )
+        {
+            let _frame = requestAnimationFrame ( this.animate );
+
+
+            cancelAnimationFrame ( _frame );
+
+
+            return;
+        },
+
+        /**
+         * Returns an inverted angle; of 360 degrees
+         * @private
+         * @function
+         * @param           {number} angle                              Angle to convert
+         * @return          {number}                                    Inverted angle
+         */
+        getInvertedAngle ( angle )
+        {
+            return ( angle + 180 ) % 360;
+        }
+    }
 }
