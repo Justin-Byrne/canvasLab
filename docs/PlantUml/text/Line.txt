@@ -17,6 +17,9 @@ start               {Point}
 end                 {Point}
 lineCap             <color:gray>{string}</color>
 canvas              <color:gray>{string}</color>
+point               {Point}
+x                   <color:gray>{number}</color>
+y                   <color:gray>{number}</color>
 __ Getter __
 start               {Point}
 end                 {Point}
@@ -25,8 +28,11 @@ shadow              {Shadow}
 lineCap             <color:gray>{string}</color>
 canvas              <color:gray>{string}</color>
 options             {Options}
-controlPoints       {ControlPoints}
 position            {Position}
+controlPoints       {ControlPoints}
+point               {Point}
+x                   <color:gray>{number}</color>
+y                   <color:gray>{number}</color>
 center              {Point}
 __ Validation __
 _isAspect           <color:gray>{boolean}</color>

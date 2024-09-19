@@ -211,7 +211,7 @@
         },
         // transitions
         {
-            title: 'Transitions',
+            title: 'Animations',
             links:
             [
                 // objects
@@ -219,6 +219,11 @@
                     title: 'Objects',
                     links:
                     [
+                        {
+                            title:   'Line',
+                            group:   'Object',
+                            handler: 'Animation'
+                        },
                         {
                             title:   'Circle',
                             group:   'Object',
@@ -236,6 +241,16 @@
                         },
                         {
                             title:   'RoundedRectangle',
+                            group:   'Object',
+                            handler: 'Animation'
+                        },
+                        {
+                            title:   'Text',
+                            group:   'Object',
+                            handler: 'Animation'
+                        },
+                        {
+                            title:   'cImage',
                             group:   'Object',
                             handler: 'Animation'
                         }
@@ -2561,7 +2576,7 @@
                     children: [ 'stroke', 'rgb' ],
                     code: ( ) =>
                     {
-                        _text.stroke.width = 1;
+                        _text.stroke.width = 2;
 
                         _text.stroke.color = new Rgb ( 0,  150,  200 );
 
@@ -4930,8 +4945,325 @@
         {
             object:
             {
+                line:
+                [
+                    // point -x
+                    {
+                        title: 'Point -X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _line.x - 25, _line.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point -y
+                    {
+                        title: 'Point -Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _line.x, _line.y - 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +x
+                    {
+                        title: 'Point +X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _line.x + 25, _line.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +y
+                    {
+                        title: 'Point +Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _line.x, _line.y + 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 0°
+                    {
+                        title:   'Move 0°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 0, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 90°
+                    {
+                        title:   'Move 90°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 90, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 180°
+                    {
+                        title:   'Move 180°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 180, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 270°
+                    {
+                        title:   'Move 270°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 270, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // startPoint
+                    {
+                        title: 'Start Point',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    startPoint: new Point ( 100, 50 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // endPoint
+                    {
+                        title: 'End Point',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    endPoint: new Point ( 100, 50 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // // rotate anchor
+                    // {
+                    //     title: 'Rotate Anchor',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _line.options.anchor = true;  // [ Optional ]
+
+                    //         let _transition =
+                    //         {
+                    //             object: _line,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
+
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
+                    // // rotate anchor align
+                    // {
+                    //     title: 'Rotate Anchor Align',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _line.options.anchor = true;  // [ Optional ]
+
+                    //         _line.anchor.align   = 'top';
+
+                    //         let _transition =
+                    //         {
+                    //             object: _line,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
+
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
+                    // stroke color
+                    {
+                        title: 'Stroke Color',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _line.stroke.color = new Rgb ( 0,  150,  200 );
+
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeColor: new Rgb ( 200,  25,  0 ),
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // stroke alpha
+                    {
+                        title: 'Stroke Alpha',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _line.stroke.color.alpha = 0;
+
+                            let _transition =
+                            {
+                                object: _line,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeAlpha: 0.5,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                ],
                 circle:
                 [
+                    // point -x
+                    {
+                        title: 'Point -X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _circle.x - 25, _circle.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
                     // point -y
                     {
                         title: 'Point -Y',
@@ -4986,47 +5318,6 @@
                                 change:
                                 {
                                     point: new Point ( _circle.x, _circle.y + 25 )
-                                }
-                            }
-
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // point -x
-                    {
-                        title: 'Point -X',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            let _transition =
-                            {
-                                object: _circle,
-                                timing: 'easeInOutElastic',
-                                period: 1750,
-                                change:
-                                {
-                                    point: new Point ( _circle.x - 25, _circle.y )
-                                }
-                            }
-
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // move 270°
-                    {
-                        title:   'Move 270°',
-                        text:    'blah... blah... blah...',
-                        children: undefined,
-                        code: ( ) =>
-                        {
-                            let _transition =
-                            {
-                                object: _circle,
-                                timing: 'easeInOutElastic',
-                                period: 1750,
-                                change:
-                                {
-                                    move: { degree: 270, distance: 25 }
                                 }
                             }
 
@@ -5090,6 +5381,27 @@
                                 change:
                                 {
                                     move: { degree: 180, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 270°
+                    {
+                        title:   'Move 270°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _circle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 270, distance: 25 }
                                 }
                             }
 
@@ -5357,6 +5669,26 @@
                 ],
                 ellipse:
                 [
+                    // point -x
+                    {
+                        title: 'Point -X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _ellipse.x - 25, _ellipse.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
                     // point -y
                     {
                         title: 'Point -Y',
@@ -5411,47 +5743,6 @@
                                 change:
                                 {
                                     point: new Point ( _ellipse.x, _ellipse.y + 25 )
-                                }
-                            }
-
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // point -x
-                    {
-                        title: 'Point -X',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            let _transition =
-                            {
-                                object: _ellipse,
-                                timing: 'easeInOutElastic',
-                                period: 1750,
-                                change:
-                                {
-                                    point: new Point ( _ellipse.x - 25, _ellipse.y )
-                                }
-                            }
-
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // move 270°
-                    {
-                        title:   'Move 270°',
-                        text:    'blah... blah... blah...',
-                        children: undefined,
-                        code: ( ) =>
-                        {
-                            let _transition =
-                            {
-                                object: _ellipse,
-                                timing: 'easeInOutElastic',
-                                period: 1750,
-                                change:
-                                {
-                                    move: { degree: 270, distance: 25 }
                                 }
                             }
 
@@ -5515,6 +5806,27 @@
                                 change:
                                 {
                                     move: { degree: 180, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 270°
+                    {
+                        title:   'Move 270°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _ellipse,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 270, distance: 25 }
                                 }
                             }
 
@@ -5762,6 +6074,26 @@
                 ],
                 rectangle:
                 [
+                    // point -x
+                    {
+                        title: 'Point -X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _rectangle.x - 25, _rectangle.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
                     // point -y
                     {
                         title: 'Point -Y',
@@ -5816,47 +6148,6 @@
                                 change:
                                 {
                                     point: new Point ( _rectangle.x, _rectangle.y + 25 )
-                                }
-                            }
-
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // point -x
-                    {
-                        title: 'Point -X',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            let _transition =
-                            {
-                                object: _rectangle,
-                                timing: 'easeInOutElastic',
-                                period: 1750,
-                                change:
-                                {
-                                    point: new Point ( _rectangle.x - 25, _rectangle.y )
-                                }
-                            }
-
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // move 270°
-                    {
-                        title:   'Move 270°',
-                        text:    'blah... blah... blah...',
-                        children: undefined,
-                        code: ( ) =>
-                        {
-                            let _transition =
-                            {
-                                object: _rectangle,
-                                timing: 'easeInOutElastic',
-                                period: 1750,
-                                change:
-                                {
-                                    move: { degree: 270, distance: 25 }
                                 }
                             }
 
@@ -5920,6 +6211,27 @@
                                 change:
                                 {
                                     move: { degree: 180, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 270°
+                    {
+                        title:   'Move 270°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _rectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 270, distance: 25 }
                                 }
                             }
 
@@ -6167,6 +6479,26 @@
                 ],
                 roundedRectangle:
                 [
+                    // point -x
+                    {
+                        title: 'Point -X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _roundedRectangle.x - 25, _roundedRectangle.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
                     // point -y
                     {
                         title: 'Point -Y',
@@ -6221,47 +6553,6 @@
                                 change:
                                 {
                                     point: new Point ( _roundedRectangle.x, _roundedRectangle.y + 25 )
-                                }
-                            }
-
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // point -x
-                    {
-                        title: 'Point -X',
-                        text: 'easeInOutElastic',
-                        code: ( ) =>
-                        {
-                            let _transition =
-                            {
-                                object: _roundedRectangle,
-                                timing: 'easeInOutElastic',
-                                period: 1750,
-                                change:
-                                {
-                                    point: new Point ( _roundedRectangle.x - 25, _roundedRectangle.y )
-                                }
-                            }
-
-                            canvaslab.animate ( _transition );
-                        }
-                    },
-                    // move 270°
-                    {
-                        title:   'Move 270°',
-                        text:    'blah... blah... blah...',
-                        children: undefined,
-                        code: ( ) =>
-                        {
-                            let _transition =
-                            {
-                                object: _roundedRectangle,
-                                timing: 'easeInOutElastic',
-                                period: 1750,
-                                change:
-                                {
-                                    move: { degree: 270, distance: 25 }
                                 }
                             }
 
@@ -6325,6 +6616,27 @@
                                 change:
                                 {
                                     move: { degree: 180, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 270°
+                    {
+                        title:   'Move 270°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _roundedRectangle,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 270, distance: 25 }
                                 }
                             }
 
@@ -6569,6 +6881,630 @@
                             canvaslab.animate ( _transition );
                         }
                     },
+                ],
+                text:
+                [
+                    // point -x
+                    {
+                        title: 'Point -X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _text.x - 25, _text.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point -y
+                    {
+                        title: 'Point -Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _text.x, _text.y - 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +x
+                    {
+                        title: 'Point +X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _text.x + 25, _text.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +y
+                    {
+                        title: 'Point +Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _text.x, _text.y + 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 0°
+                    {
+                        title:   'Move 0°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 0, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 90°
+                    {
+                        title:   'Move 90°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 90, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 180°
+                    {
+                        title:   'Move 180°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 180, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 270°
+                    {
+                        title:   'Move 270°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 270, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // // rotate anchor
+                    // {
+                    //     title: 'Rotate Anchor',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _text.options.anchor = true;
+
+                    //         let _transition =
+                    //         {
+                    //             object: _text,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
+
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
+                    // // rotate anchor align
+                    // {
+                    //     title: 'Rotate Anchor Align',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _text.options.anchor = true;
+
+                    //         _text.anchor.align   = 'top';
+
+                    //         let _transition =
+                    //         {
+                    //             object: _text,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
+
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
+                    // stroke color
+                    {
+                        title: 'Stroke Color',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _text.stroke.width = 2;
+
+                            _text.stroke.color = new Rgb ( 0,  150,  200 );
+
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeColor: new Rgb ( 200,  25,  0 ),
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // stroke alpha
+                    {
+                        title: 'Stroke Alpha',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _text.stroke.width = 2;
+
+                            _text.stroke.color.alpha = 0;
+
+                            _text.fill.color.alpha   = 0;   // [ Optional ]
+
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    strokeAlpha: 0.5,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // fill color
+                    {
+                        title: 'Fill Color',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _text.fill.color = new Rgb ( 0,  150,  200 );
+
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillColor: new Rgb ( 200,  25,  0 ),
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // fill alpha
+                    {
+                        title: 'Fill Alpha',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _text.fill.color.alpha = 0;
+
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillAlpha: 0.5,
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient linear
+                    {
+                        title: 'Gradient Linear',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _text.fill.gradient = new Linear ( { x: 20, y: 0 }, { x: 220, y: 0 } );
+
+                            _text.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb (   0, 150, 200, 1 ), 0.5 ),
+                                new Stop ( new Rgb ( 200,  25,   0, 1 ), 1   )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillLinear:
+                                    [
+                                        new Stop ( new Rgb ( 200,  25,   0, 1 ), 1   ),
+                                        new Stop ( new Rgb (   0, 150, 200, 1 ), 0.5 )
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient radial
+                    {
+                        title: 'Gradient Radial',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _text.fill.gradient = new Radial ( { x: 180, y: 110 }, 0, { x: 180, y: 110 }, 50 );
+
+                            _text.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb ( 0,   150, 200, 1 ), 0   ),
+                                new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5 ),
+                                new Stop ( new Rgb ( 200,  50, 100, 1 ), 1   )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillRadial:
+                                    [
+                                        new Stop ( new Rgb ( 200,  50, 100, 1 ), 1   ),
+                                        new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5 ),
+                                        new Stop ( new Rgb ( 0,   150, 200, 1 ), 0   )
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // gradient conic
+                    {
+                        title: 'Gradient Conic',
+                        text: 'easeInSine',
+                        code: ( ) =>
+                        {
+                            _text.fill.gradient = new Conic ( 0, { x: 77, y: 155 } );
+
+                            _text.fill.gradient.stops =
+                            [
+                                new Stop ( new Rgb ( 0,   150, 200, 1 ), 0    ),
+                                new Stop ( new Rgb ( 50,  125, 175, 1 ), 0.25 ),
+                                new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5  ),
+                                new Stop ( new Rgb ( 150,  75, 125, 1 ), 0.75 ),
+                                new Stop ( new Rgb ( 200,  50, 100, 1 ), 1    )
+                            ];
+
+                            let _transition =
+                            {
+                                object: _text,
+                                timing: 'easeInSine',
+                                period: 2000,
+                                change:
+                                {
+                                    fillConic:
+                                    [
+                                        new Stop ( new Rgb ( 200,  50, 100, 1 ), 1    ),
+                                        new Stop ( new Rgb ( 150,  75, 125, 1 ), 0.75 ),
+                                        new Stop ( new Rgb ( 100, 100, 150, 1 ), 0.5  ),
+                                        new Stop ( new Rgb ( 50,  125, 175, 1 ), 0.25 ),
+                                        new Stop ( new Rgb ( 0,   150, 200, 1 ), 0    ),
+                                    ],
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                ],
+                cImage:
+                [
+                    // point -x
+                    {
+                        title: 'Point -X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _image,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _image.x - 25, _image.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point -y
+                    {
+                        title: 'Point -Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _image,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _image.x, _image.y - 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +x
+                    {
+                        title: 'Point +X',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _image,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _image.x + 25, _image.y )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // point +y
+                    {
+                        title: 'Point +Y',
+                        text: 'easeInOutElastic',
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _image,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    point: new Point ( _image.x, _image.y + 25 )
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 0°
+                    {
+                        title:   'Move 0°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _image,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 0, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 90°
+                    {
+                        title:   'Move 90°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _image,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 90, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 180°
+                    {
+                        title:   'Move 180°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _image,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 180, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // move 270°
+                    {
+                        title:   'Move 270°',
+                        text:    'blah... blah... blah...',
+                        children: undefined,
+                        code: ( ) =>
+                        {
+                            let _transition =
+                            {
+                                object: _image,
+                                timing: 'easeInOutElastic',
+                                period: 1750,
+                                change:
+                                {
+                                    move: { degree: 270, distance: 25 }
+                                }
+                            }
+
+                            canvaslab.animate ( _transition );
+                        }
+                    },
+                    // // rotate anchor
+                    // {
+                    //     title: 'Rotate Anchor',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _image.options.anchor = true;
+
+                    //         let _transition =
+                    //         {
+                    //             object: _image,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
+
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
+                    // // rotate anchor align
+                    // {
+                    //     title: 'Rotate Anchor Align',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         _image.options.anchor = true;
+
+                    //         _image.anchor.align   = 'top';
+
+                    //         let _transition =
+                    //         {
+                    //             object: _image,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
+
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
                 ]
             },
             subject:
@@ -8033,7 +8969,11 @@
         {
             let _clearConsole = document.querySelector ( '#input-clear' );
 
-            let _inputGrid    = document.querySelector ( '#input-grid'  );
+            let _inputGrid    = document.querySelector ( '#input-grid' );
+
+            let _coordinates  = document.querySelector ( '#input-coordinates' );
+
+            let _angle        = document.querySelector ( '#input-angle' );
 
 
             UI.clearScreen ( false, true );
@@ -8047,6 +8987,10 @@
             _clearConsole.click ( );
 
             _inputGrid.click ( );
+
+            _coordinates.click ( );
+
+            _angle.click ( );
 
 
             window.addEventListener ( 'resize', LAB.setCanvasSize );
@@ -8130,6 +9074,7 @@
                 UI.init  ( );
 
                 LAB.init ( _scripts.seedOfLife );
+
 
                 if ( _config.labMode )
 

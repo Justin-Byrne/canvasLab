@@ -19,7 +19,7 @@ declare WITH_PLANTUML=false
 
 declare VC_PACKAGE=canvasLab
 
-declare VC_BRIEF="HTML5 canvas drawing framework"
+declare VC_BRIEF="HTML5 canvas illustrating framework"
 
 ## INPUT #########################################################
 
@@ -186,6 +186,8 @@ main ()
     compile_output
 
     compile_minified
+
+    # create_gist
 
     remove_legacy_distros
 
@@ -366,6 +368,15 @@ function compile_minified ()
     update_minified_js_preamble $FILE_MIN
 
     afplay audio/shrink.mp3
+}
+
+function create_gist()
+{
+    FILE_MIN=${OUTPUT_DIRECTORY}/${VC_PACKAGE}.min.js
+
+    echo $FILE_MIN
+
+    gh gist create --filename ${FILE_MIN} --desc $VC_BRIEF --public
 }
 
 function compile_readme ()

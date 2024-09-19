@@ -622,6 +622,8 @@ main {
         padding-left: 0;
         padding-right: 0;
         height: 100vh; }
+        main .lab-station .container .col:nth-child(2) {
+          z-index: 100; }
     main .lab-station #lab {
       background-color: #1d1f21;
       margin-left: 0;
@@ -658,11 +660,63 @@ main {
           width: 1px;
           height: 99vh;
           border-right: 1px solid #73f0ff; }
+      main .lab-station #lab #mouse-coordinates {
+        position: absolute;
+        bottom: 0px;
+        z-index: 30;
+        width: 42%;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 1s ease; }
+        main .lab-station #lab #mouse-coordinates .display, main .lab-station #lab #mouse-coordinates .cartesian, main .lab-station #lab #mouse-coordinates .center {
+          font-family: 'Roboto';
+          position: relative;
+          display: inline-block;
+          z-index: 30;
+          margin: 15px;
+          padding: 5px 10px;
+          border-radius: 2px;
+          outline: 1px solid rgba(0, 0, 0, 0.35);
+          background-color: white; }
+        main .lab-station #lab #mouse-coordinates .cartesian {
+          margin-top: 5px; }
+        main .lab-station #lab #mouse-coordinates .display {
+          float: left; }
+        main .lab-station #lab #mouse-coordinates .center {
+          float: right; }
+      main .lab-station #lab #mouse-angle {
+        position: absolute;
+        bottom: 60px;
+        z-index: 30;
+        width: 42%;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 1s ease; }
+        main .lab-station #lab #mouse-angle .cartesian {
+          font-family: 'Roboto';
+          position: relative;
+          display: inline-block;
+          z-index: 30;
+          margin: 15px;
+          padding: 5px 10px;
+          border-radius: 2px;
+          outline: 1px solid rgba(0, 0, 0, 0.35);
+          background-color: white; }
       main .lab-station #lab #grid {
+        position: absolute;
+        z-index: 2;
+        background-color: transparent;
+        opacity: 0;
+        transition: opacity 1s ease; }
+      main .lab-station #lab #coordinates {
         position: absolute;
         z-index: 1;
         background-color: transparent;
-        opacity: 0;
+        transition: opacity 1s ease; }
+      main .lab-station #lab #angle {
+        position: absolute;
+        z-index: 1;
+        background-color: transparent;
         transition: opacity 1s ease; }
       main .lab-station #lab canvas {
         position: absolute;
@@ -729,10 +783,14 @@ main {
             content: url("../images/svg/General/caret-up.svg"); }
           main .lab-station #lab #control-panel .button .sidebar {
             content: url("../images/svg/General/layout-sidebar.svg"); }
+          main .lab-station #lab #control-panel .button .angle {
+            content: url("../images/svg/General/angle.svg"); }
           main .lab-station #lab #control-panel .button .ruler {
             content: url("../images/svg/General/ruler.svg"); }
           main .lab-station #lab #control-panel .button .grid {
             content: url("../images/svg/General/grid.svg"); }
+          main .lab-station #lab #control-panel .button .coordinates {
+            content: url("../images/svg/General/coordinates.svg"); }
           main .lab-station #lab #control-panel .button .full-screen {
             content: url("../images/svg/General/aspect-ratio.svg"); }
           main .lab-station #lab #control-panel .button .clear {

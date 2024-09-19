@@ -46,6 +46,7 @@ _isInDom          <color:gray>{boolean}</color>
 _isPoint          <color:gray>{boolean}</color>
 __ Utility __
 _rotatePoint
+_setFillType
 _setShadow
 _drawAnchor
 _drawAxis

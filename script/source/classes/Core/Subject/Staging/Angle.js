@@ -133,7 +133,7 @@ class Angle
          */
         _convert2Degree ( value )
         {
-            return ( this._isRadian ) ? ( value / ( Math.PI / 180 ) ) : console.warn ( `${value} is not a radian value !` );
+            return ( this._isRadian ) ? ( value * ( Math.PI / 180 ) ) : console.warn ( `${value} is not a radian value !` );
         }
 
         /**

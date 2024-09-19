@@ -1133,6 +1133,8 @@ main
                 padding-left:   0;
                 padding-right:  0;
                 height:         100vh;
+
+                &:nth-child(2) { z-index: 100; }
             }
         }
 
@@ -1198,13 +1200,100 @@ main
                 }
             }
 
+            #mouse-coordinates
+            {
+                position:   absolute;
+                bottom:     0px;
+                z-index:    30;
+                width:      42%;
+
+                text-align: center;
+
+                opacity:    0;
+
+                transition: opacity 1s ease;
+
+                .display, .cartesian, .center
+                {
+                    font-family:        'Roboto';
+
+                    position:           relative;
+                    display:            inline-block;
+                    z-index:            30;
+
+                    margin:             15px;
+                    padding:            5px 10px;
+
+                    border-radius:      2px;
+                    outline:            1px solid rgba(0, 0, 0, 0.35);
+
+                    background-color:   rgb(255, 255, 255);
+                }
+
+                .cartesian { margin-top: 5px; }
+
+                .display   { float: left;     }
+                .center    { float: right;    }
+            }
+
+            #mouse-angle
+            {
+                position:   absolute;
+                bottom:     60px;
+                z-index:    30;
+                width:      42%;
+
+                text-align: center;
+
+                opacity:    0;
+
+                transition: opacity 1s ease;
+
+                .cartesian
+                {
+                    font-family:        'Roboto';
+
+                    position:           relative;
+                    display:            inline-block;
+                    z-index:            30;
+
+                    margin:             15px;
+                    padding:            5px 10px;
+
+                    border-radius:      2px;
+                    outline:            1px solid rgba(0, 0, 0, 0.35);
+
+                    background-color:   rgb(255, 255, 255);
+                }
+            }
+
             #grid
+            {
+                position:   absolute;
+                z-index:    2;
+
+                background-color: transparent;
+                opacity:    0;
+
+                transition: opacity 1s ease;
+            }
+
+            #coordinates
             {
                 position:   absolute;
                 z-index:    1;
 
                 background-color: transparent;
-                opacity:    0;
+
+                transition: opacity 1s ease;
+            }
+
+            #angle
+            {
+                position:   absolute;
+                z-index:    1;
+
+                background-color: transparent;
 
                 transition: opacity 1s ease;
             }
@@ -1316,9 +1405,13 @@ main
 
                     .sidebar      { content: url('../images/svg/General/layout-sidebar.svg');     }
 
+                    .angle        { content: url('../images/svg/General/angle.svg');              }
+
                     .ruler        { content: url('../images/svg/General/ruler.svg');              }
 
                     .grid         { content: url('../images/svg/General/grid.svg');               }
+
+                    .coordinates  { content: url('../images/svg/General/coordinates.svg');        }
 
                     .full-screen  { content: url('../images/svg/General/aspect-ratio.svg');       }
 

@@ -487,16 +487,38 @@ class Animation
 
                         break;
 
+                    case 'startPoint':
+
+                        this.object.position.origin    = this.object.start;
+
+                        this.object.position.distance  = _difference;
+
+                        this.object.position.direction = _difference;
+
+                        // code . . .
+
+                        break;
+
+                    case 'endPoint':
+
+                        this.object.position.origin    = this.object.end;
+
+                        this.object.position.distance  = _difference;
+
+                        this.object.position.direction = _difference;
+
+                        // code . . .
+
+                        break;
+
                     case 'move':
 
                         this.object.position.origin = this.object.point;
 
 
-                        _difference.degree          = ( this.change.rotatePoint )
+                        _difference.degree = ( this.change.rotatePoint ) ? _difference.degree + this.change.rotatePoint
 
-                                                          ? _difference.degree + this.change.rotatePoint
-
-                                                          : _difference.degree;
+                                                                         : _difference.degree;
 
 
                         let _point = this._getPointByDegreeNDistance ( _difference.degree, _difference.distance );
@@ -582,6 +604,28 @@ class Animation
                     case 'move':
 
                         object.point =
+                        {
+                            x: object.position.origin.x + ( object.position.distance * progress ) * Math.cos ( object.position.direction ),
+
+                            y: object.position.origin.y + ( object.position.distance * progress ) * Math.sin ( object.position.direction )
+                        }
+
+                        break;
+
+                    case 'startPoint':
+
+                        object.start =
+                        {
+                            x: ( object.position.origin.x ) + ( object.position.distance * progress ) * Math.cos ( object.position.direction ),
+
+                            y: ( object.position.origin.y ) + ( object.position.distance * progress ) * Math.sin ( object.position.direction )
+                        }
+
+                        break;
+
+                    case 'endPoint':
+
+                        object.end =
                         {
                             x: object.position.origin.x + ( object.position.distance * progress ) * Math.cos ( object.position.direction ),
 

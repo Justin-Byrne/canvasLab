@@ -1,7 +1,7 @@
 /**
  * @class           {Object}  Fill                              Fill container for various fill types
- * @property        {Object}  [color=<Rgb>]                     Color model & value
- * @property        {string}  [type='solid']                    Fill type; solid | linear | radial | conic | pattern
+ * @property        {Object} [color=<Rgb>]                      Color model & value
+ * @property        {string} [type='solid']                     Fill type; solid | linear | radial | conic | pattern
  * @property        {Object}  gradient                          Gradient object; Linear | Radial | Conic
  * @property        {Pattern} pattern                           Pattern fill object
  */
@@ -17,7 +17,7 @@ class Fill
      * Create a fill type
      * @param           {Object} [color=<Rgb>]                      Color model & value
      * @param           {string} [type='solid']                     Fill type
-     * @param           {Object} gradient                           Gradient object
+     * @param           {Object}  gradient                          Gradient object
      */
     constructor ( color, type, gradient )
     {

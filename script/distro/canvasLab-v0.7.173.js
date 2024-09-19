@@ -1,8 +1,8 @@
 // @program: 		canvasLab 
-// @brief: 			HTML5 canvas drawing framework 
+// @brief: 			HTML5 canvas illustrating framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.7.163 
+// @version: 		0.7.173 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -1104,9 +1104,7 @@ const UTILITIES =
 
                     this._canvas.translate ( _x, _y );
 
-                    this._canvas.rotate    ( ( value * Math.PI / 180 ) / 45 );
-
-                    // this._canvas.rotate    ( ( ( value % 360 ) * Math.PI / 180 ) / 22.5 );
+                    this._canvas.rotate    ( value * Math.PI / 180 );
 
                     this._canvas.translate ( -_x, -_y );
                 }
@@ -1497,7 +1495,7 @@ const VALIDATION =
      */
     isCanvasLabObject ( value )
     {
-        let _clObjects = [ Group, Line, Lines, Circle, Circles, Ellipse, Ellipses, Rectangle, Rectangles, RoundedRectangle, Text, Texts ]
+        let _clObjects = [ Group, Line, Lines, Circle, Circles, Ellipse, Ellipses, Rectangle, Rectangles, RoundedRectangle, Text, Texts, cImage ]
 
 
         for ( let _object of _clObjects )
@@ -2982,7 +2980,7 @@ class Angle
          */
         _convert2Degree ( value )
         {
-            return ( this._isRadian ) ? ( value / ( Math.PI / 180 ) ) : console.warn ( `${value} is not a radian value !` );
+            return ( this._isRadian ) ? ( value * ( Math.PI / 180 ) ) : console.warn ( `${value} is not a radian value !` );
         }
 
         /**
@@ -4378,8 +4376,8 @@ class Radial
  
 /**
  * @class           {Object}  Fill                              Fill container for various fill types
- * @property        {Object}  [color=<Rgb>]                     Color model & value
- * @property        {string}  [type='solid']                    Fill type; solid | linear | radial | conic | pattern
+ * @property        {Object} [color=<Rgb>]                      Color model & value
+ * @property        {string} [type='solid']                     Fill type; solid | linear | radial | conic | pattern
  * @property        {Object}  gradient                          Gradient object; Linear | Radial | Conic
  * @property        {Pattern} pattern                           Pattern fill object
  */
@@ -4395,7 +4393,7 @@ class Fill
      * Create a fill type
      * @param           {Object} [color=<Rgb>]                      Color model & value
      * @param           {string} [type='solid']                     Fill type
-     * @param           {Object} gradient                           Gradient object
+     * @param           {Object}  gradient                          Gradient object
      */
     constructor ( color, type, gradient )
     {
@@ -4764,7 +4762,7 @@ class Shadow
 /**
  * @class           {Object}   Stroke                           Stroke properties of associated object
  * @property        {Object}   [color=<Rgb>]                    Color model & value
- * @property        {string}   [type='solid']                   Stroke type; solid | dashed
+ * @property        {string}   [type='solid']                   Stroke type; 'solid' || 'dashed'
  * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s)
  * @property        {number}   [width=2]                        Thickness of stroke
  * @property        {Shadow}   shadow                           Shadow properties
@@ -4779,7 +4777,7 @@ class Stroke
     /**
      * Create a stroke
      * @param           {Object}   color                            RGB color value
-     * @param           {number}   type                             Stroke type
+     * @param           {string}   type                             Stroke type
      * @param           {number[]} segments                         Dashed line segment distance(s)
      * @param           {number}   alpha                            Alpha value; number/decimal
      * @param           {number}   width                            Thickness of stroke
@@ -4805,7 +4803,7 @@ class Stroke
          * Set type
          * @public
          * @function
-         * @param           {number} value                              Type: (0) Solid or (1) Dashed
+         * @param           {string} value                              Stroke type: 'solid' || 'dashed'
          */
         set type ( value )
         {
@@ -4816,7 +4814,7 @@ class Stroke
          * Get type
          * @readOnly
          * @function
-         * @return          {number}                                    Type: (0) Solid or (1) Dashed
+         * @return          {string}                                    Stroke type: 'solid' || 'dashed'
          */
         get type ( )
         {
@@ -4829,7 +4827,7 @@ class Stroke
          * Set segment value
          * @public
          * @function
-         * @param           {Array} value                               Dashed line segment distance(s)
+         * @param           {Array.<number>} value                      Dashed line segment distance(s)
          */
         set segments ( value )
         {
@@ -4840,7 +4838,7 @@ class Stroke
          * Get segment value
          * @readOnly
          * @function
-         * @return          {Array}                                     Dashed line segment distance(s)
+         * @return          {Array.<number>}                            Dashed line segment distance(s)
          */
         get segments ( )
         {
@@ -4853,7 +4851,7 @@ class Stroke
          * Set color value
          * @public
          * @function
-         * @param           {Object} value                              Color model; Rgb
+         * @param           {Rgb} value                                 Color model
          */
         set color ( value )
         {
@@ -4864,7 +4862,7 @@ class Stroke
          * Get color value
          * @public
          * @function
-         * @return          {Object}                                    Color model; Rgb
+         * @return          {Rgb}                                       Color model
          */
         get color ( )
         {
@@ -5639,10 +5637,14 @@ class StrokeCollection
 class Position
 {
 	_origin    = undefined;
+
+	_start     = undefined;
+	_end       = undefined;
+
 	_distance  = undefined;
 	_direction = undefined;
 
-	// _radius    = undefined;
+	_rotation  = 0;
 
 	_master    = undefined;
 
@@ -5746,17 +5748,29 @@ class Position
 			return this._direction;
 		}
 
-	////    [ RADIUS ]    //////////////////////////////////
+	////    [ ROTATION ]    ////////////////////////////////
 
-		// set radius ( value )
-		// {
-		// 	this._radius = value;
-		// }
+		/**
+		 * Set rotation
+		 * @public
+		 * @function
+		 * @param 			{number} value 								Direction in degrees
+		 */
+		set rotation ( value )
+		{
+			this._rotation = value;
+		}
 
-		// get radius ( )
-		// {
-		// 	return this._radius;
-		// }
+		/**
+		 * Get rotation
+		 * @public
+		 * @function
+		 * @return 			{number}									Direction in degrees
+		 */
+		get rotation ( )
+		{
+			return this._rotation;
+		}
 
 	////    [ MASTER ]    //////////////////////////////////
 
@@ -6085,7 +6099,7 @@ class Circle
             return this.#options;
         }
 
-    ////    [ LOCATION ]    ////////////////////////////////
+    ////    [ POSITION ]    ////////////////////////////////
 
         /**
          * Get position properties
@@ -6525,9 +6539,9 @@ class Line
 
     _canvas  = undefined;
 
-    #controlPoints = new ControlPoints;
     #options       = new Options;
     #position      = new Position;
+    #controlPoints = new ControlPoints;
 
     /**
      * Create a Line object
@@ -6631,6 +6645,8 @@ class Line
                     return this._points;
                 }
             } );
+
+            this.#position.master = this;
     }
 
     ////    [ START ]   ////////////////////////////////////
@@ -6764,6 +6780,19 @@ class Line
             return this.#options;
         }
 
+    ////    [ POSITION ]    ////////////////////////////////
+
+        /**
+         * Get position properties
+         * @public
+         * @function
+         * @return          {Position}                                  Position properties
+         */
+        get position ( )
+        {
+            return this.#position;
+        }
+
     ////    [ CONTROL POINTS ]  ////////////////////////////
 
         /**
@@ -6777,43 +6806,106 @@ class Line
             return this.#controlPoints;
         }
 
-    ////    [ LOCATION ]    ////////////////////////////////
+    ////    [ POINT ]   ////////////////////////////////////            [ VIRTUAL ]
 
         /**
-         * Get position properties
+         * Set point
          * @public
          * @function
-         * @return          {Position}                                  Position properties
+         * @param           {Point} value                               X & Y coordinates
          */
-        get position ( )
+        set point ( value )
         {
-            return this.#position;
+            let _xCheck = ( this.center.x > value.x );
+
+            let _yCheck = ( this.center.y > value.y );
+
+
+            let _x      = ( _xCheck ) ? this.center.x - value.x : value.x - this.center.x;
+
+            let _y      = ( _yCheck ) ? this.center.y - value.y : value.y - this.center.y;
+
+
+            ( _xCheck ) ? [ this.start.x, this.end.x ] = [ this.start.x - _x, this.end.x - _x ]
+
+                        : [ this.start.x, this.end.x ] = [ this.start.x + _x, this.end.x + _x ];
+
+
+
+            ( _yCheck ) ? [ this.start.y, this.end.y ] = [ this.start.y - _y, this.end.y - _y ]
+
+                        : [ this.start.y, this.end.y ] = [ this.start.y + _y, this.end.y + _y ];
         }
 
-    ////    & EXTEND &  ////////////////////////////////////
+        /**
+         * Get point
+         * @public
+         * @function
+         * @return          {Point}                                     X & Y coordinates
+         */
+        get point ( )
+        {
+            return this.center;
+        }
+
 
         /**
-         * Get center of this object
+         * Set x-axis value
+         * @public
+         * @function
+         * @param           {number} value                              X coordinate value
+         */
+        set x ( value )
+        {
+            let _xCheck = ( this.center.x > value );
+
+            let _x      = ( _xCheck ) ? this.center.x - value : value - this.center.x;
+
+
+            ( _xCheck ) ? [ this.start.x, this.end.x ] = [ this.start.x - _x, this.end.x - _x ]
+
+                        : [ this.start.x, this.end.x ] = [ this.start.x + _x, this.end.x + _x ];
+        }
+
+        /**
+         * Get x-axis value
          * @readOnly
          * @function
-         * @return          {Point}                                     Center point coordinates
+         * @return          {number}                                    X coordinate value
          */
-        get center ( )
+        get x ( )
         {
-            let _x = ( this.start.x > this.end.x )
-
-                         ? this.end.x   + (  ( this.start.x - this.end.x   ) / 2  )
-
-                         : this.start.x + (  ( this.end.x   - this.start.x ) / 2  );
-
-            let _y = ( this.start.y > this.end.y )
-
-                         ? this.end.y   + (  ( this.start.y - this.end.y   ) / 2  )
-
-                         : this.start.y + (  ( this.end.y   - this.start.y ) / 2  );
+            return this.center.x;
+        }
 
 
-            return new Point ( _x, _y );
+        /**
+         * Set y-axis value
+         * @public
+         * @function
+         * @param           {number} value                              Y coordinate value
+         */
+        set y ( value )
+        {
+            let _yCheck = ( this.center.y > value );
+
+            let _y      = ( _yCheck ) ? this.center.y - value : value - this.center.y;
+
+
+            ( _yCheck ) ? [ this.start.y, this.end.y ] = [ this.start.y - _y, this.end.y - _y ]
+
+                        : [ this.start.y, this.end.y ] = [ this.start.y + _y, this.end.y + _y ];
+        }
+
+        /**
+         * Get y-axis value
+         * @readOnly
+         * @function
+         * @return          {number}                                    Y coordinate value
+         */
+        get y ( )
+        {
+            return this.center.y;
         }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -6984,6 +7076,26 @@ class Line
         _setShadow ( ) { }
 
         /**
+         * Get center of this object
+         * @readOnly
+         * @function
+         * @return          {Point}                                     Center point coordinates
+         */
+        get center ( )
+        {
+            let _x = ( this.start.x > this.end.x ) ? this.end.x   + (  ( this.start.x - this.end.x   ) / 2  )
+
+                                                   : this.start.x + (  ( this.end.x   - this.start.x ) / 2  );
+
+            let _y = ( this.start.y > this.end.y ) ? this.end.y   + (  ( this.start.y - this.end.y   ) / 2  )
+
+                                                   : this.start.y + (  ( this.end.y   - this.start.y ) / 2  );
+
+
+            return new Point ( _x, _y );
+        }
+
+        /**
          * Set control points for bezier curve
          * @public
          * @function
@@ -7015,7 +7127,7 @@ class Line
               this._end.drawOptions ( );
         }
 
-         /**
+        /**
          * Move this object
          * @public
          * @function
@@ -7618,7 +7730,7 @@ class Rectangle
             return this.#options;
         }
 
-    ////    [ LOCATION ]    ////////////////////////////////
+    ////    [ POSITION ]    ////////////////////////////////
 
         get position ( )
         {
@@ -7997,6 +8109,7 @@ class Text extends Font
 
             this._drawAnchor  = UTILITIES.individual.draw.anchor;
             this._rotatePoint = UTILITIES.individual.misc.rotatePoint;
+            this._setFillType = UTILITIES.individual.set.fillType;
             this._setShadow   = UTILITIES.individual.set.shadow;
 
             this.move            = UTILITIES.individual.misc.move;
@@ -8036,7 +8149,9 @@ class Text extends Font
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+            this.#options.shadow  = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+
+            this.#position.master = this;
     }
 
     ////    [ POINT ]   ////////////////////////////////////
@@ -8193,7 +8308,7 @@ class Text extends Font
             return this.#options;
         }
 
-    ////    [ LOCATION ]    ////////////////////////////////
+    ////    [ POSITION ]    ////////////////////////////////
 
         /**
          * Get position properties
@@ -8368,6 +8483,14 @@ class Text extends Font
          * @see             {@link UTILITIES.individual.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
+
+        /**
+         * Sets fill type of the associated object
+         * @private
+         * @function
+         * @see             {@link UTILITIES.individual.set.fillType}
+         */
+        _setFillType ( ) { }
 
         /**
          * Sets shadow properties
@@ -8554,7 +8677,7 @@ class Text extends Font
 
                 this._canvas.textAlign = 'center';
 
-                this._canvas.fillStyle = this.fill.color.toCss ( );
+                this._setFillType ( );
 
                 this._canvas.fillText ( this.text, this.x, this.y, this.maxWidth );                 // TODO: maxWidth is showing NaN !
 
@@ -8662,6 +8785,10 @@ class cImage
 	    this.primary   = primary;
 	    this.secondary = secondary;
 	    this.canvas    = canvas;
+
+        ////    ANCILLARY   ////////////////////////////////
+
+            this.#position.master = this;
 	}
 
 	////    [ SOURCE ]    //////////////////////////////////
@@ -8683,7 +8810,7 @@ class cImage
 
                 this._source = _image;
 
-                this.type     = 'source';
+                this.type    = 'source';
             }
         }
 
@@ -8913,7 +9040,7 @@ class cImage
             return this.#options;
         }
 
-    ////    [ LOCATION ]    ////////////////////////////////
+    ////    [ POSITION ]    ////////////////////////////////
 
         /**
          * Get position properties
@@ -9104,6 +9231,22 @@ class cImage
 
 	////    DRAW    ////////////////////////////////////////
 
+        /**
+         * Draws image depending on primary & secondary property settings
+         * @private
+         * @function
+         */
+        _drawImage ( )
+        {
+            if ( this.secondary.point )
+
+                this._canvas.drawImage ( this._source, this.secondary.point.x, this.secondary.point.y, this.secondary.aspect.width, this.secondary.aspect.height, this.anchor.x, this.anchor.y, this.primary.aspect.width, this.primary.aspect.height );
+
+            else
+
+                this._canvas.drawImage ( this._source, this.anchor.x,          this.anchor.y,          this._source.width,          this._source.height );
+        }
+
 	    /**
          * Draw this object
          * @public
@@ -9115,20 +9258,24 @@ class cImage
             if ( canvas != undefined ) this.canvas = canvas;
 
 
-            if ( this._canvas instanceof CanvasRenderingContext2D )
-            {
-                let _drawImage = ( this.secondary.point ) ? ( ) => this._canvas.drawImage ( this._source, this.secondary.point.x, this.secondary.point.y, this.secondary.aspect.width, this.secondary.aspect.height, this.anchor.x, this.anchor.y, this.primary.aspect.width, this.primary.aspect.height )
+            if ( this.source.onload === null  &&  this._canvas instanceof CanvasRenderingContext2D )
 
-                                                          : ( ) => this._canvas.drawImage ( this._source, this.anchor.x,          this.anchor.y,          this._source.width,          this._source.height );
-
-                this._source.onload = ( ) =>
+                this.source.onload = ( ) =>
                 {
                     this._setAnchorPoint ( );
 
-                    _drawImage ( );
+                    this._drawImage ( );
 
                     this._drawOptions ( );
                 }
+
+            else
+            {
+                this._setAnchorPoint ( );
+
+                this._drawImage ( );
+
+                this._drawOptions ( );
             }
 	    }
 }
@@ -12353,16 +12500,38 @@ class Animation
 
                         break;
 
+                    case 'startPoint':
+
+                        this.object.position.origin    = this.object.start;
+
+                        this.object.position.distance  = _difference;
+
+                        this.object.position.direction = _difference;
+
+                        // code . . .
+
+                        break;
+
+                    case 'endPoint':
+
+                        this.object.position.origin    = this.object.end;
+
+                        this.object.position.distance  = _difference;
+
+                        this.object.position.direction = _difference;
+
+                        // code . . .
+
+                        break;
+
                     case 'move':
 
                         this.object.position.origin = this.object.point;
 
 
-                        _difference.degree          = ( this.change.rotatePoint )
+                        _difference.degree = ( this.change.rotatePoint ) ? _difference.degree + this.change.rotatePoint
 
-                                                          ? _difference.degree + this.change.rotatePoint
-
-                                                          : _difference.degree;
+                                                                         : _difference.degree;
 
 
                         let _point = this._getPointByDegreeNDistance ( _difference.degree, _difference.distance );
@@ -12448,6 +12617,28 @@ class Animation
                     case 'move':
 
                         object.point =
+                        {
+                            x: object.position.origin.x + ( object.position.distance * progress ) * Math.cos ( object.position.direction ),
+
+                            y: object.position.origin.y + ( object.position.distance * progress ) * Math.sin ( object.position.direction )
+                        }
+
+                        break;
+
+                    case 'startPoint':
+
+                        object.start =
+                        {
+                            x: ( object.position.origin.x ) + ( object.position.distance * progress ) * Math.cos ( object.position.direction ),
+
+                            y: ( object.position.origin.y ) + ( object.position.distance * progress ) * Math.sin ( object.position.direction )
+                        }
+
+                        break;
+
+                    case 'endPoint':
+
+                        object.end =
                         {
                             x: object.position.origin.x + ( object.position.distance * progress ) * Math.cos ( object.position.direction ),
 
@@ -13474,8 +13665,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Sep, 10 2024',
-            Version:   '0.7.163',
+            Updated:   'Sep, 18 2024',
+            Version:   '0.7.173',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }

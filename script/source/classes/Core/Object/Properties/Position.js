@@ -12,10 +12,14 @@
 class Position
 {
 	_origin    = undefined;
+
+	_start     = undefined;
+	_end       = undefined;
+
 	_distance  = undefined;
 	_direction = undefined;
 
-	// _radius    = undefined;
+	_rotation  = 0;
 
 	_master    = undefined;
 
@@ -119,17 +123,29 @@ class Position
 			return this._direction;
 		}
 
-	////    [ RADIUS ]    //////////////////////////////////
+	////    [ ROTATION ]    ////////////////////////////////
 
-		// set radius ( value )
-		// {
-		// 	this._radius = value;
-		// }
+		/**
+		 * Set rotation
+		 * @public
+		 * @function
+		 * @param 			{number} value 								Direction in degrees
+		 */
+		set rotation ( value )
+		{
+			this._rotation = value;
+		}
 
-		// get radius ( )
-		// {
-		// 	return this._radius;
-		// }
+		/**
+		 * Get rotation
+		 * @public
+		 * @function
+		 * @return 			{number}									Direction in degrees
+		 */
+		get rotation ( )
+		{
+			return this._rotation;
+		}
 
 	////    [ MASTER ]    //////////////////////////////////
 

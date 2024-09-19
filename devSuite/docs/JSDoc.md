@@ -41,11 +41,17 @@
 <dt><a href="#subStringRange">subStringRange(start, end, substring)</a> ⇒ <code>string</code></dt>
 <dd><p>Substitute a string within a range</p>
 </dd>
+<dt><a href="#angle">angle()</a></dt>
+<dd><p>Toggles angle in lab</p>
+</dd>
 <dt><a href="#boolean">boolean()</a></dt>
 <dd><p>Toggles boolean value in lab</p>
 </dd>
 <dt><a href="#cardButton">cardButton(element)</a></dt>
 <dd><p>Toggles the card button associated with the passed &#39;element&#39; param</p>
+</dd>
+<dt><a href="#coordinates">coordinates()</a></dt>
+<dd><p>Toggles coordinates in lab</p>
 </dd>
 <dt><a href="#fullscreen">fullscreen()</a></dt>
 <dd><p>Toggles fullscreen mode                              @TODO: fix this crap</p>
@@ -68,14 +74,14 @@
 <dt><a href="#ruler">ruler()</a></dt>
 <dd><p>Toggles ruler in lab</p>
 </dd>
-<dt><a href="#script">script(script)</a> ⇒ <code>string</code></dt>
-<dd><p>Cleans script of it&#39;s function wrapper</p>
+<dt><a href="#blankCards">blankCards()</a></dt>
+<dd><p>Cleans the remaining &#39;.blank&#39; cards while converting the first to a &#39;.plus&#39; card; @see Ui.toggle._cardPlus ( )</p>
 </dd>
 <dt><a href="#code">code(script)</a> ⇒ <code>string</code></dt>
 <dd><p>Cleans code of enumerators for card-objects</p>
 </dd>
-<dt><a href="#blankCards">blankCards()</a></dt>
-<dd><p>Cleans the remaining &#39;.blank&#39; cards while converting the first to a &#39;.plus&#39; card; @see Ui.toggle._cardPlus ( )</p>
+<dt><a href="#script">script(script)</a> ⇒ <code>string</code></dt>
+<dd><p>Cleans script of it&#39;s function wrapper</p>
 </dd>
 </dl>
 
@@ -105,7 +111,12 @@ Call main module
 * [Lab](#Lab)
     * [.editor(editor)](#Lab+editor)
     * [.editor()](#Lab+editor) ⇒ <code>Object</code>
+    * [.setAngle()](#Lab+setAngle)
+    * [.setCoordinates()](#Lab+setCoordinates)
     * [.setGrid()](#Lab+setGrid)
+    * [.setLabDefaults()](#Lab+setLabDefaults)
+    * [._copyToClipboard(contents)](#Lab+_copyToClipboard)
+    * [._rotatePoint(origin, degree, distance)](#Lab+_rotatePoint)
     * [.loadScript(script)](#Lab+loadScript)
     * [.runCode()](#Lab+runCode)
     * [.scripts()](#Lab+scripts)
@@ -131,6 +142,20 @@ Gets editor
 **Kind**: instance method of [<code>Lab</code>](#Lab)  
 **Returns**: <code>Object</code> - Primary ace-editor object  
 **Access**: public  
+<a name="Lab+setAngle"></a>
+
+### lab.setAngle()
+Sets angle overlay
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+<a name="Lab+setCoordinates"></a>
+
+### lab.setCoordinates()
+Sets coordinates overlay
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
 <a name="Lab+setGrid"></a>
 
 ### lab.setGrid()
@@ -138,6 +163,39 @@ Sets grid overlay
 
 **Kind**: instance method of [<code>Lab</code>](#Lab)  
 **Access**: public  
+<a name="Lab+setLabDefaults"></a>
+
+### lab.setLabDefaults()
+Sets lab default options
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+<a name="Lab+_copyToClipboard"></a>
+
+### lab.\_copyToClipboard(contents)
+Copy passed contents to clipboard
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| contents | <code>string</code> | Contents to copy to clipboard |
+
+<a name="Lab+_rotatePoint"></a>
+
+### lab.\_rotatePoint(origin, degree, distance)
+Rotates the origin point by the degree & distance passed
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| origin | <code>Point</code> | Origin point |
+| degree | <code>number</code> | Degree to rotate |
+| distance | <code>number</code> | Distance from origin |
+
 <a name="Lab+loadScript"></a>
 
 ### lab.loadScript(script)
@@ -564,6 +622,13 @@ Substitute a string within a range
 | end | <code>number</code> | Substitution's ending point |
 | substring | <code>string</code> | Substitution |
 
+<a name="angle"></a>
+
+## angle()
+Toggles angle in lab
+
+**Kind**: global function  
+**Access**: public  
 <a name="boolean"></a>
 
 ## boolean()
@@ -583,6 +648,13 @@ Toggles the card button associated with the passed 'element' param
 | --- | --- | --- |
 | element | <code>HTMLElement</code> | HTML DOM Element |
 
+<a name="coordinates"></a>
+
+## coordinates()
+Toggles coordinates in lab
+
+**Kind**: global function  
+**Access**: public  
 <a name="fullscreen"></a>
 
 ## fullscreen()
@@ -642,19 +714,13 @@ Toggles ruler in lab
 
 **Kind**: global function  
 **Access**: public  
-<a name="script"></a>
+<a name="blankCards"></a>
 
-## script(script) ⇒ <code>string</code>
-Cleans script of it's function wrapper
+## blankCards()
+Cleans the remaining '.blank' cards while converting the first to a '.plus' card; @see Ui.toggle._cardPlus ( )
 
 **Kind**: global function  
-**Returns**: <code>string</code> - Function as a string  
 **Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| script | <code>function</code> | JavaScript function |
-
 <a name="code"></a>
 
 ## code(script) ⇒ <code>string</code>
@@ -668,10 +734,16 @@ Cleans code of enumerators for card-objects
 | --- | --- | --- |
 | script | <code>function</code> | JavaScript function; for card-objects only |
 
-<a name="blankCards"></a>
+<a name="script"></a>
 
-## blankCards()
-Cleans the remaining '.blank' cards while converting the first to a '.plus' card; @see Ui.toggle._cardPlus ( )
+## script(script) ⇒ <code>string</code>
+Cleans script of it's function wrapper
 
 **Kind**: global function  
+**Returns**: <code>string</code> - Function as a string  
 **Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| script | <code>function</code> | JavaScript function |
+

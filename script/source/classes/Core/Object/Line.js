@@ -21,9 +21,9 @@ class Line
 
     _canvas  = undefined;
 
-    #controlPoints = new ControlPoints;
     #options       = new Options;
     #position      = new Position;
+    #controlPoints = new ControlPoints;
 
     /**
      * Create a Line object
@@ -127,6 +127,8 @@ class Line
                     return this._points;
                 }
             } );
+
+            this.#position.master = this;
     }
 
     ////    [ START ]   ////////////////////////////////////
@@ -260,6 +262,19 @@ class Line
             return this.#options;
         }
 
+    ////    [ POSITION ]    ////////////////////////////////
+
+        /**
+         * Get position properties
+         * @public
+         * @function
+         * @return          {Position}                                  Position properties
+         */
+        get position ( )
+        {
+            return this.#position;
+        }
+
     ////    [ CONTROL POINTS ]  ////////////////////////////
 
         /**
@@ -273,43 +288,106 @@ class Line
             return this.#controlPoints;
         }
 
-    ////    [ LOCATION ]    ////////////////////////////////
+    ////    [ POINT ]   ////////////////////////////////////            [ VIRTUAL ]
 
         /**
-         * Get position properties
+         * Set point
          * @public
          * @function
-         * @return          {Position}                                  Position properties
+         * @param           {Point} value                               X & Y coordinates
          */
-        get position ( )
+        set point ( value )
         {
-            return this.#position;
+            let _xCheck = ( this.center.x > value.x );
+
+            let _yCheck = ( this.center.y > value.y );
+
+
+            let _x      = ( _xCheck ) ? this.center.x - value.x : value.x - this.center.x;
+
+            let _y      = ( _yCheck ) ? this.center.y - value.y : value.y - this.center.y;
+
+
+            ( _xCheck ) ? [ this.start.x, this.end.x ] = [ this.start.x - _x, this.end.x - _x ]
+
+                        : [ this.start.x, this.end.x ] = [ this.start.x + _x, this.end.x + _x ];
+
+
+
+            ( _yCheck ) ? [ this.start.y, this.end.y ] = [ this.start.y - _y, this.end.y - _y ]
+
+                        : [ this.start.y, this.end.y ] = [ this.start.y + _y, this.end.y + _y ];
         }
 
-    ////    & EXTEND &  ////////////////////////////////////
+        /**
+         * Get point
+         * @public
+         * @function
+         * @return          {Point}                                     X & Y coordinates
+         */
+        get point ( )
+        {
+            return this.center;
+        }
+
 
         /**
-         * Get center of this object
+         * Set x-axis value
+         * @public
+         * @function
+         * @param           {number} value                              X coordinate value
+         */
+        set x ( value )
+        {
+            let _xCheck = ( this.center.x > value );
+
+            let _x      = ( _xCheck ) ? this.center.x - value : value - this.center.x;
+
+
+            ( _xCheck ) ? [ this.start.x, this.end.x ] = [ this.start.x - _x, this.end.x - _x ]
+
+                        : [ this.start.x, this.end.x ] = [ this.start.x + _x, this.end.x + _x ];
+        }
+
+        /**
+         * Get x-axis value
          * @readOnly
          * @function
-         * @return          {Point}                                     Center point coordinates
+         * @return          {number}                                    X coordinate value
          */
-        get center ( )
+        get x ( )
         {
-            let _x = ( this.start.x > this.end.x )
-
-                         ? this.end.x   + (  ( this.start.x - this.end.x   ) / 2  )
-
-                         : this.start.x + (  ( this.end.x   - this.start.x ) / 2  );
-
-            let _y = ( this.start.y > this.end.y )
-
-                         ? this.end.y   + (  ( this.start.y - this.end.y   ) / 2  )
-
-                         : this.start.y + (  ( this.end.y   - this.start.y ) / 2  );
+            return this.center.x;
+        }
 
 
-            return new Point ( _x, _y );
+        /**
+         * Set y-axis value
+         * @public
+         * @function
+         * @param           {number} value                              Y coordinate value
+         */
+        set y ( value )
+        {
+            let _yCheck = ( this.center.y > value );
+
+            let _y      = ( _yCheck ) ? this.center.y - value : value - this.center.y;
+
+
+            ( _yCheck ) ? [ this.start.y, this.end.y ] = [ this.start.y - _y, this.end.y - _y ]
+
+                        : [ this.start.y, this.end.y ] = [ this.start.y + _y, this.end.y + _y ];
+        }
+
+        /**
+         * Get y-axis value
+         * @readOnly
+         * @function
+         * @return          {number}                                    Y coordinate value
+         */
+        get y ( )
+        {
+            return this.center.y;
         }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -480,6 +558,26 @@ class Line
         _setShadow ( ) { }
 
         /**
+         * Get center of this object
+         * @readOnly
+         * @function
+         * @return          {Point}                                     Center point coordinates
+         */
+        get center ( )
+        {
+            let _x = ( this.start.x > this.end.x ) ? this.end.x   + (  ( this.start.x - this.end.x   ) / 2  )
+
+                                                   : this.start.x + (  ( this.end.x   - this.start.x ) / 2  );
+
+            let _y = ( this.start.y > this.end.y ) ? this.end.y   + (  ( this.start.y - this.end.y   ) / 2  )
+
+                                                   : this.start.y + (  ( this.end.y   - this.start.y ) / 2  );
+
+
+            return new Point ( _x, _y );
+        }
+
+        /**
          * Set control points for bezier curve
          * @public
          * @function
@@ -511,7 +609,7 @@ class Line
               this._end.drawOptions ( );
         }
 
-         /**
+        /**
          * Move this object
          * @public
          * @function

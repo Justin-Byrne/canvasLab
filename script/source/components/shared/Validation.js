@@ -131,7 +131,7 @@ const VALIDATION =
      */
     isCanvasLabObject ( value )
     {
-        let _clObjects = [ Group, Line, Lines, Circle, Circles, Ellipse, Ellipses, Rectangle, Rectangles, RoundedRectangle, Text, Texts ]
+        let _clObjects = [ Group, Line, Lines, Circle, Circles, Ellipse, Ellipses, Rectangle, Rectangles, RoundedRectangle, Text, Texts, cImage ]
 
 
         for ( let _object of _clObjects )

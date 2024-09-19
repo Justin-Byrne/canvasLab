@@ -282,7 +282,7 @@ class Circle
             return this.#options;
         }
 
-    ////    [ LOCATION ]    ////////////////////////////////
+    ////    [ POSITION ]    ////////////////////////////////
 
         /**
          * Get position properties

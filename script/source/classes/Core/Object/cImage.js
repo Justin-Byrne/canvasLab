@@ -74,6 +74,10 @@ class cImage
 	    this.primary   = primary;
 	    this.secondary = secondary;
 	    this.canvas    = canvas;
+
+        ////    ANCILLARY   ////////////////////////////////
+
+            this.#position.master = this;
 	}
 
 	////    [ SOURCE ]    //////////////////////////////////
@@ -95,7 +99,7 @@ class cImage
 
                 this._source = _image;
 
-                this.type     = 'source';
+                this.type    = 'source';
             }
         }
 
@@ -325,7 +329,7 @@ class cImage
             return this.#options;
         }
 
-    ////    [ LOCATION ]    ////////////////////////////////
+    ////    [ POSITION ]    ////////////////////////////////
 
         /**
          * Get position properties
@@ -516,6 +520,22 @@ class cImage
 
 	////    DRAW    ////////////////////////////////////////
 
+        /**
+         * Draws image depending on primary & secondary property settings
+         * @private
+         * @function
+         */
+        _drawImage ( )
+        {
+            if ( this.secondary.point )
+
+                this._canvas.drawImage ( this._source, this.secondary.point.x, this.secondary.point.y, this.secondary.aspect.width, this.secondary.aspect.height, this.anchor.x, this.anchor.y, this.primary.aspect.width, this.primary.aspect.height );
+
+            else
+
+                this._canvas.drawImage ( this._source, this.anchor.x,          this.anchor.y,          this._source.width,          this._source.height );
+        }
+
 	    /**
          * Draw this object
          * @public
@@ -527,20 +547,24 @@ class cImage
             if ( canvas != undefined ) this.canvas = canvas;
 
 
-            if ( this._canvas instanceof CanvasRenderingContext2D )
-            {
-                let _drawImage = ( this.secondary.point ) ? ( ) => this._canvas.drawImage ( this._source, this.secondary.point.x, this.secondary.point.y, this.secondary.aspect.width, this.secondary.aspect.height, this.anchor.x, this.anchor.y, this.primary.aspect.width, this.primary.aspect.height )
+            if ( this.source.onload === null  &&  this._canvas instanceof CanvasRenderingContext2D )
 
-                                                          : ( ) => this._canvas.drawImage ( this._source, this.anchor.x,          this.anchor.y,          this._source.width,          this._source.height );
-
-                this._source.onload = ( ) =>
+                this.source.onload = ( ) =>
                 {
                     this._setAnchorPoint ( );
 
-                    _drawImage ( );
+                    this._drawImage ( );
 
                     this._drawOptions ( );
                 }
+
+            else
+            {
+                this._setAnchorPoint ( );
+
+                this._drawImage ( );
+
+                this._drawOptions ( );
             }
 	    }
 }

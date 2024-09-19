@@ -2071,7 +2071,7 @@ Get y-axis offset value
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | [color] | <code>Object</code> | <code>&lt;Rgb&gt;</code> | Color model & value |
-| [type] | <code>string</code> | <code>&quot;&#x27;solid&#x27;&quot;</code> | Stroke type; solid | dashed |
+| [type] | <code>string</code> | <code>&quot;&#x27;solid&#x27;&quot;</code> | Stroke type; 'solid' || 'dashed' |
 | [segments] | <code>Array.&lt;number&gt;</code> | <code>[5, 5]</code> | Dashed line segment distance(s) |
 | [width] | <code>number</code> | <code>2</code> | Thickness of stroke |
 | shadow | [<code>Shadow</code>](#Shadow) |  | Shadow properties |
@@ -2080,11 +2080,11 @@ Get y-axis offset value
 * [Stroke](#Stroke)
     * [new Stroke(color, type, segments, alpha, width)](#new_Stroke_new)
     * [.type(value)](#Stroke+type)
-    * [.type()](#Stroke+type) ⇒ <code>number</code>
+    * [.type()](#Stroke+type) ⇒ <code>string</code>
     * [.segments(value)](#Stroke+segments)
-    * [.segments()](#Stroke+segments) ⇒ <code>Array</code>
+    * [.segments()](#Stroke+segments) ⇒ <code>Array.&lt;number&gt;</code>
     * [.color(value)](#Stroke+color)
-    * [.color()](#Stroke+color) ⇒ <code>Object</code>
+    * [.color()](#Stroke+color) ⇒ [<code>Rgb</code>](#Rgb)
     * [.width(value)](#Stroke+width)
     * [.width()](#Stroke+width) ⇒ <code>number</code>
 
@@ -2097,7 +2097,7 @@ Create a stroke
 | Param | Type | Description |
 | --- | --- | --- |
 | color | <code>Object</code> | RGB color value |
-| type | <code>number</code> | Stroke type |
+| type | <code>string</code> | Stroke type |
 | segments | <code>Array.&lt;number&gt;</code> | Dashed line segment distance(s) |
 | alpha | <code>number</code> | Alpha value; number/decimal |
 | width | <code>number</code> | Thickness of stroke |
@@ -2112,15 +2112,15 @@ Set type
 
 | Param | Type | Description |
 | --- | --- | --- |
-| value | <code>number</code> | Type: (0) Solid or (1) Dashed |
+| value | <code>string</code> | Stroke type: 'solid' || 'dashed' |
 
 <a name="Stroke+type"></a>
 
-### stroke.type() ⇒ <code>number</code>
+### stroke.type() ⇒ <code>string</code>
 Get type
 
 **Kind**: instance method of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>number</code> - Type: (0) Solid or (1) Dashed  
+**Returns**: <code>string</code> - Stroke type: 'solid' || 'dashed'  
 **Read only**: true  
 <a name="Stroke+segments"></a>
 
@@ -2132,15 +2132,15 @@ Set segment value
 
 | Param | Type | Description |
 | --- | --- | --- |
-| value | <code>Array</code> | Dashed line segment distance(s) |
+| value | <code>Array.&lt;number&gt;</code> | Dashed line segment distance(s) |
 
 <a name="Stroke+segments"></a>
 
-### stroke.segments() ⇒ <code>Array</code>
+### stroke.segments() ⇒ <code>Array.&lt;number&gt;</code>
 Get segment value
 
 **Kind**: instance method of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>Array</code> - Dashed line segment distance(s)  
+**Returns**: <code>Array.&lt;number&gt;</code> - Dashed line segment distance(s)  
 **Read only**: true  
 <a name="Stroke+color"></a>
 
@@ -2152,15 +2152,15 @@ Set color value
 
 | Param | Type | Description |
 | --- | --- | --- |
-| value | <code>Object</code> | Color model; Rgb |
+| value | [<code>Rgb</code>](#Rgb) | Color model |
 
 <a name="Stroke+color"></a>
 
-### stroke.color() ⇒ <code>Object</code>
+### stroke.color() ⇒ [<code>Rgb</code>](#Rgb)
 Get color value
 
 **Kind**: instance method of [<code>Stroke</code>](#Stroke)  
-**Returns**: <code>Object</code> - Color model; Rgb  
+**Returns**: [<code>Rgb</code>](#Rgb) - Color model  
 **Access**: public  
 <a name="Stroke+width"></a>
 
@@ -2711,6 +2711,8 @@ Get master object
     * [.distance()](#Position+distance) ⇒ <code>number</code>
     * [.direction(value)](#Position+direction)
     * [.direction()](#Position+direction) ⇒ <code>number</code>
+    * [.rotation(value)](#Position+rotation)
+    * [.rotation()](#Position+rotation) ⇒ <code>number</code>
     * [.master(value)](#Position+master)
     * [.master()](#Position+master) ⇒ [<code>clObject</code>](#clObject)
 
@@ -2775,6 +2777,26 @@ Set direction
 
 ### position.direction() ⇒ <code>number</code>
 Get direction
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - Direction in degrees  
+**Access**: public  
+<a name="Position+rotation"></a>
+
+### position.rotation(value)
+Set rotation
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Direction in degrees |
+
+<a name="Position+rotation"></a>
+
+### position.rotation() ⇒ <code>number</code>
+Get rotation
 
 **Kind**: instance method of [<code>Position</code>](#Position)  
 **Returns**: <code>number</code> - Direction in degrees  
@@ -3406,10 +3428,16 @@ Draw this object
     * [.canvas(value)](#Line+canvas)
     * [.canvas()](#Line+canvas) ⇒ <code>string</code>
     * [.options()](#Line+options) ⇒ [<code>Options</code>](#Options)
-    * [.controlPoints()](#Line+controlPoints) ⇒ [<code>ControlPoints</code>](#ControlPoints)
     * [.position()](#Line+position) ⇒ [<code>Position</code>](#Position)
-    * [.center()](#Line+center) ⇒ [<code>Point</code>](#Point)
+    * [.controlPoints()](#Line+controlPoints) ⇒ [<code>ControlPoints</code>](#ControlPoints)
+    * [.point(value)](#Line+point)
+    * [.point()](#Line+point) ⇒ [<code>Point</code>](#Point)
+    * [.x(value)](#Line+x)
+    * [.x()](#Line+x) ⇒ <code>number</code>
+    * [.y(value)](#Line+y)
+    * [.y()](#Line+y) ⇒ <code>number</code>
     * [.isThere(line)](#Line+isThere)
+    * [.center()](#Line+center) ⇒ [<code>Point</code>](#Point)
     * [.curve(p0, p1, p2, p3)](#Line+curve)
     * [.drawPoints()](#Line+drawPoints)
     * [.move(degree, distance)](#Line+move)
@@ -3529,14 +3557,6 @@ Get options properties
 **Kind**: instance method of [<code>Line</code>](#Line)  
 **Returns**: [<code>Options</code>](#Options) - Options properties  
 **Access**: public  
-<a name="Line+controlPoints"></a>
-
-### line.controlPoints() ⇒ [<code>ControlPoints</code>](#ControlPoints)
-Get control point properties
-
-**Kind**: instance method of [<code>Line</code>](#Line)  
-**Returns**: [<code>ControlPoints</code>](#ControlPoints) - Control points properties  
-**Access**: public  
 <a name="Line+position"></a>
 
 ### line.position() ⇒ [<code>Position</code>](#Position)
@@ -3545,13 +3565,73 @@ Get position properties
 **Kind**: instance method of [<code>Line</code>](#Line)  
 **Returns**: [<code>Position</code>](#Position) - Position properties  
 **Access**: public  
-<a name="Line+center"></a>
+<a name="Line+controlPoints"></a>
 
-### line.center() ⇒ [<code>Point</code>](#Point)
-Get center of this object
+### line.controlPoints() ⇒ [<code>ControlPoints</code>](#ControlPoints)
+Get control point properties
 
 **Kind**: instance method of [<code>Line</code>](#Line)  
-**Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+**Returns**: [<code>ControlPoints</code>](#ControlPoints) - Control points properties  
+**Access**: public  
+<a name="Line+point"></a>
+
+### line.point(value)
+Set point
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Point</code>](#Point) | X & Y coordinates |
+
+<a name="Line+point"></a>
+
+### line.point() ⇒ [<code>Point</code>](#Point)
+Get point
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+**Returns**: [<code>Point</code>](#Point) - X & Y coordinates  
+**Access**: public  
+<a name="Line+x"></a>
+
+### line.x(value)
+Set x-axis value
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | X coordinate value |
+
+<a name="Line+x"></a>
+
+### line.x() ⇒ <code>number</code>
+Get x-axis value
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+**Returns**: <code>number</code> - X coordinate value  
+**Read only**: true  
+<a name="Line+y"></a>
+
+### line.y(value)
+Set y-axis value
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Y coordinate value |
+
+<a name="Line+y"></a>
+
+### line.y() ⇒ <code>number</code>
+Get y-axis value
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+**Returns**: <code>number</code> - Y coordinate value  
 **Read only**: true  
 <a name="Line+isThere"></a>
 
@@ -3565,6 +3645,14 @@ Check whether the passed object is already present
 | --- | --- | --- |
 | line | [<code>Line</code>](#Line) | Object to validate |
 
+<a name="Line+center"></a>
+
+### line.center() ⇒ [<code>Point</code>](#Point)
+Get center of this object
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+**Returns**: [<code>Point</code>](#Point) - Center point coordinates  
+**Read only**: true  
 <a name="Line+curve"></a>
 
 ### line.curve(p0, p1, p2, p3)

@@ -298,6 +298,31 @@ class Ui
         },
 
         /**
+         * Toggles angle in lab
+         * @public
+         * @function
+         */
+        angle ( )
+        {
+            LAB.setAngle ( );
+
+
+            let _angle      = document.getElementById ( 'angle' );
+
+            let _mouseAngle = document.getElementById ( 'mouse-angle' );
+
+            let _button     = document.getElementById ( 'input-angle' );
+
+
+            this.labButton ( _button );
+
+
+            ( TOOL.isActive ( _button ) ) ? [ _angle.style.opacity, _mouseAngle.style.opacity, document.body.style.cursor ] = [ 1, 1, 'crosshair' ]
+
+                                          : [ _angle.style.opacity, _mouseAngle.style.opacity, document.body.style.cursor ] = [ 0, 0, 'default'   ];
+        },
+
+        /**
          * Toggles boolean value in lab
          * @public
          * @function
@@ -377,6 +402,31 @@ class Ui
             element.stopPropagation ( );
         },
 
+        /**
+         * Toggles coordinates in lab
+         * @public
+         * @function
+         */
+        coordinates ( )
+        {
+            LAB.setCoordinates ( );
+
+
+            let _coordinates = document.getElementById ( 'coordinates' );
+
+            let _mouseCoordinates = document.getElementById ( 'mouse-coordinates' );
+
+            let _button      = document.getElementById ( 'input-coordinates' );
+
+
+            this.labButton ( _button );
+
+
+            ( TOOL.isActive ( _button ) ) ? [ _coordinates.style.opacity, _mouseCoordinates.style.opacity, document.body.style.cursor ] = [ 1, 1, 'crosshair' ]
+
+                                          : [ _coordinates.style.opacity, _mouseCoordinates.style.opacity, document.body.style.cursor ] = [ 0, 0, 'default'   ];
+        },
+
         download ( )
         {
             let _name    = 'canvasLab_file.js';
@@ -396,18 +446,33 @@ class Ui
          */
         fullscreen ( )
         {
-            let _rightColumn = document.querySelector ( '#lab > div:nth-child(2)' );
+            let _rightColumn      = document.querySelector ( '#lab > div:nth-child(2)' );
 
-            let _leftColumn  = document.querySelector ( '#lab > div:nth-child(1)' );
+            let _leftColumn       = document.querySelector ( '#lab > div:nth-child(1)' );
 
-            let _styles      = window.getComputedStyle ( _rightColumn   );
+            let _open             = document.querySelector ( '#lab-open' );
 
-            let _fullscreen  = ( _styles.display === 'block' );
+            let _grid             = document.querySelector ( '#input-grid' );
 
-            let _open        = document.querySelector  ( '#lab-open'    );
+            let _mouseAngle       = document.querySelector ( '#input-angle' );
 
-                _open.addEventListener ( 'click', ( ) => this.fullscreen ( ) );
+            let _mouseCoordinates = document.querySelector ( '#input-coordinates' );
 
+            let _angle            = document.querySelector ( '#mouse-angle');
+
+            let _coordinates      = document.querySelector ( '#mouse-coordinates' );
+
+            let _styles           = window.getComputedStyle ( _rightColumn );
+
+            let _fullscreen       = ( _styles.display === 'block' );
+
+            ////    TOGGLE NAVIGATION    ///////////////////////////////////////
+
+            if ( UI._isNavOpen ( ) )
+
+                this.navigation ( );
+
+            ////    RESET STYLES    ////////////////////////////////////////////
 
             ( _fullscreen ) ? _rightColumn.style.display = 'none'
 
@@ -424,14 +489,41 @@ class Ui
                             : _open.style.display = 'none';
 
 
-            if ( UI._isNavOpen ( ) )
+            ( _fullscreen ) ? _angle.style.width = _coordinates.style.width = '100%'
 
-                this.navigation ( );
+                            : _angle.style.width = _coordinates.style.width = '50%';
 
+            ////    RESET CANVAS & LAB OPTIONS    //////////////////////////////
 
             LAB.setCanvasSize ( );
 
+
+            if ( TOOL.isActive ( _grid ) )
+
+                for ( let _i = 0; _i < 2; _i++ )
+
+                    this.grid ( );
+
+
+            if ( TOOL.isActive ( _mouseCoordinates ) )
+
+                for ( let _i = 0; _i < 2; _i++ )
+
+                    this.coordinates ( );
+
+
+            if ( TOOL.isActive ( _mouseAngle ) )
+
+                for ( let _i = 0; _i < 2; _i++ )
+
+                    this.angle ( );
+
+
             LAB.runCode ( );
+
+            ////    EVENT LISTENER    //////////////////////////////////////////
+
+            _open.addEventListener ( 'click', ( ) => this.fullscreen ( ) );
         },
 
         /**
@@ -477,6 +569,8 @@ class Ui
             LAB.editor.setValue ( _code );
 
             LAB.setCanvasSize ( );
+
+            LAB.setLabDefaults ( );
 
             LAB.runCode ( );
 
@@ -537,23 +631,39 @@ class Ui
          */
         navigation ( )
         {
-            let _lab    = document.querySelector ( 'div.lab-station' );
+            let _lab         = document.querySelector ( 'div.lab-station' );
 
-            let _nav    = document.querySelector ( 'nav' );
+            let _nav         = document.querySelector ( 'nav' );
 
-            let _main   = document.querySelector ( 'main' );
+            let _main        = document.querySelector ( 'main' );
 
-            let _open   = document.querySelector ( '#nav-open' );
+            let _open        = document.querySelector ( '#nav-open' );
 
-            let _button = document.querySelector ( '#input-sidebar' );
+            let _button      = document.querySelector ( '#input-sidebar' );
+
+            let _angle       = document.querySelector ( '#mouse-angle');
+
+            let _coordinates = document.querySelector ( '#mouse-coordinates' );
+
+            let _grid        = document.querySelector ( '#input-grid' );
+
+            let _navIcons    = _nav.querySelector ( '#nav-icon' ).children;
+
+            let _navOpen     = UI._isNavOpen ( );
 
 
             this.labButton ( _button );
 
+            ////    RESET STYLES   /////////////////////////////////////////////
 
-            ( UI._isNavOpen ( ) ) ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-225px',   '0px' ]
+            ( _navOpen ) ? [ _nav.style.left, _main.style.paddingLeft ] = [ '-225px',   '0px' ]
 
-                                  : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '225px' ];
+                         : [ _nav.style.left, _main.style.paddingLeft ] = [    '0px', '225px' ];
+
+
+            ( _navOpen ) ? _angle.style.width = _coordinates.style.width = '50%'
+
+                         : _angle.style.width = _coordinates.style.width = '42%';
 
 
             if ( _lab.style.display === 'block' )
@@ -564,15 +674,20 @@ class Ui
             }
 
 
-            let _navIcons = _nav.querySelector ( '#nav-icon' ).children;
-
-
             for ( let _navIcon of _navIcons )               // Blink eye
 
                 _navIcon.style.display = ( _navIcon.style.display === 'none' ) ? 'block' : 'none';
 
 
             _open.style.display = ( _open.style.display === 'none' ) ? 'block' : 'none';
+
+            ////    RESET GRID    //////////////////////////////////////////////
+
+            if ( TOOL.isActive ( _grid ) )
+
+                for ( let _i = 0; _i < 2; _i++ )
+
+                    this.grid ( );
         },
 
         /**
@@ -596,42 +711,6 @@ class Ui
 
     _clean =
     {
-        /**
-         * Cleans script of it's function wrapper
-         * @public
-         * @function
-         * @param           {Function} script                   JavaScript function
-         * @return          {string}                            Function as a string
-         */
-        script ( script )
-        {
-            script = script.toString ( ).replace ( /\([^{]+{/, '' );
-
-            return   script.substring ( 0, script.length - 1 );
-        },
-
-        /**
-         * Cleans code of enumerators for card-objects
-         * @public
-         * @function
-         * @param           {Function} script                   JavaScript function; for card-objects only
-         * @return          {string}                            Function as a string
-         */
-        code ( script )
-        {
-            let _code   = this.script ( script ).split ( /\n/g );
-
-            let _length = _code.at ( -1 ).match ( /^\s+/ ) [ 0 ].length;
-
-
-            for ( let _line in _code )
-
-                _code [ _line ] = _code [ _line ].slice ( _length );
-
-
-            return _code.join ( '\n' );
-        },
-
         /**
          * Cleans the remaining '.blank' cards while converting the first to a '.plus' card; @see Ui.toggle._cardPlus ( )
          * @public
@@ -668,7 +747,43 @@ class Ui
 
                     _count++;
                 }
-        }
+        },
+
+        /**
+         * Cleans code of enumerators for card-objects
+         * @public
+         * @function
+         * @param           {Function} script                   JavaScript function; for card-objects only
+         * @return          {string}                            Function as a string
+         */
+        code ( script )
+        {
+            let _code   = this.script ( script ).split ( /\n/g );
+
+            let _length = _code.at ( -1 ).match ( /^\s+/ ) [ 0 ].length;
+
+
+            for ( let _line in _code )
+
+                _code [ _line ] = _code [ _line ].slice ( _length );
+
+
+            return _code.join ( '\n' );
+        },
+
+        /**
+         * Cleans script of it's function wrapper
+         * @public
+         * @function
+         * @param           {Function} script                   JavaScript function
+         * @return          {string}                            Function as a string
+         */
+        script ( script )
+        {
+            script = script.toString ( ).replace ( /\([^{]+{/, '' );
+
+            return   script.substring ( 0, script.length - 1 );
+        },
     }
 
     constructor ( ) { }
@@ -800,9 +915,9 @@ class Ui
         {
             let _class   = code.match ( /_(\w+)/ ) [ 1 ];
 
-            let _regex   = new RegExp ( '_(line|lines|circle|circles|ellipse|ellipses|rectangle|rectangles|roundedRectangle|roundedRectangles|text|texts)', 'g' );
+            let _regex   = new RegExp ( '_(line|lines|circle|circles|ellipse|ellipses|rectangle|rectangles|roundedRectangle|roundedRectangles|text|texts|image)', 'g' );
 
-            let _objects = [ 'line', 'lines', 'circle', 'circles', 'ellipse', 'ellipses', 'rectangle', 'rectangles', 'roundedRectangle', 'roundedRectangles', 'text', 'texts' ]
+            let _objects = [ 'line', 'lines', 'circle', 'circles', 'ellipse', 'ellipses', 'rectangle', 'rectangles', 'roundedRectangle', 'roundedRectangles', 'text', 'texts', 'image' ]
 
 
             let _result = ( ! _objects.includes ( _class ) )
@@ -946,9 +1061,9 @@ class Ui
             {
                 case 'nav':
 
-                    let _icon = document.querySelector ( '#nav-icon' );
+                    let _icon    = document.querySelector ( '#nav-icon' );
 
-                    let _open = document.querySelector ( '#nav-open' );
+                    let _open    = document.querySelector ( '#nav-open' );
 
 
                     if ( _icon )
@@ -957,6 +1072,9 @@ class Ui
 
                         _open.addEventListener ( 'click', ( ) => UI.toggle.navigation ( ) );
                     }
+
+
+                    _open.addEventListener ( 'click', ( ) => document.body.style.cursor = 'default' );
 
                 case 'navButtons':
 
@@ -1024,6 +1142,8 @@ class Ui
 
 
                                 LAB.setCanvasSize ( );
+
+                                LAB.setLabDefaults ( );
 
                                 LAB.runCode ( );
                             } );
@@ -1199,17 +1319,6 @@ class Ui
         }
 
         /**
-         * Runs code from within the passed 'cardObjects' param
-         * @private
-         * @function
-         * @param           {Array.<Object>} cardObjects        Array of card-objects
-         */
-        _evalCardObjects ( cardObjects )
-        {
-            eval ( this._getCode ( cardObjects ) );
-        }
-
-        /**
          * Embeds easing buttons for each animation card
          * @private
          * @function
@@ -1236,6 +1345,17 @@ class Ui
 
                 _easings [ _i ].setAttribute ( 'onclick', `devSuite.toggleEasingFunctions ( ${_i} )` );
             }
+        }
+
+        /**
+         * Runs code from within the passed 'cardObjects' param
+         * @private
+         * @function
+         * @param           {Array.<Object>} cardObjects        Array of card-objects
+         */
+        _evalCardObjects ( cardObjects )
+        {
+            eval ( this._getCode ( cardObjects ) );
         }
 
         /**

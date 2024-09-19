@@ -6,6 +6,28 @@ class Lab
 {
     _editor = undefined;
 
+    _clipboard =
+    {
+        coordinates:
+        {
+            display:   undefined,
+            cartesian: undefined,
+            center:    undefined
+        },
+        angle:
+        {
+            degree:   undefined,
+            distance: undefined
+        }
+    }
+
+    _mouse =
+    {
+        click: false,
+        hold:  false,
+        point: new Point
+    }
+
     constructor ( ) { }
 
     ////    [ EDITOR ]    //////////////////////////////////////////////////////////////////////////
@@ -33,6 +55,34 @@ class Lab
         }
 
     ////    GETTERS    /////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Get angle from two points
+         * @private
+         * @function
+         * @param           {Point} start                       Starting point
+         * @param           {Point} end                         Ending point
+         * @return          {number}                            Degree of angle; 360°
+         */
+        _getAngle ( start, end )
+        {
+            let _x = end.x - start.x;
+
+            let _y = end.y - start.y;
+
+
+            let _radian = - ( Math.atan2 ( _y, _x ) );
+
+            let _degree = _radian * ( 180 / Math.PI );
+
+
+            if ( _degree < 0 )
+
+                _degree = _degree + 360;
+
+
+            return _degree;
+        }
 
         /**
          * Returns positions of bounding characters within the ace-editor
@@ -78,6 +128,19 @@ class Lab
 
 
             return new Picker ( _options );
+        }
+
+        /**
+         * Get distance between two points
+         * @private
+         * @function
+         * @param           {Point} start                       Starting point
+         * @param           {Point} end                         Ending point
+         * @return          {number}                            Distance in pixels
+         */
+        _getDistance ( start, end )
+        {
+            return Math.sqrt ( ( Math.pow ( start.x - end.x, 2 ) ) + ( Math.pow ( start.y - end.y, 2 ) ) );
         }
 
         /**
@@ -219,17 +282,29 @@ class Lab
 
                         _popup.addEventListener ( 'click', ( element ) => this._getMenuPopup ( element ) );
 
+                case 'grid':
+
+                    let _grid = document.getElementById ( 'input-grid' );
+
+                        _grid.addEventListener ( 'click', ( ) => UI.toggle.grid ( ) );
+
+                case 'coordinates':
+
+                    let _coordinates = document.getElementById ( 'input-coordinates' );
+
+                        _coordinates.addEventListener ( 'click', ( ) => UI.toggle.coordinates ( ) );
+
+                case 'angle':
+
+                    let _angle = document.getElementById ( 'input-angle' );
+
+                        _angle.addEventListener ( 'click', ( ) => UI.toggle.angle ( ) );
+
                 case 'ruler':
 
                     let _ruler = document.getElementById ( 'input-ruler' );
 
                         _ruler.addEventListener ( 'click', ( ) => UI.toggle.ruler ( ) );
-
-                case 'grid':
-
-                    let _grid  = document.getElementById ( 'input-grid' );
-
-                        _grid.addEventListener ( 'click', ( ) => UI.toggle.grid ( ) );
 
                 case 'sidebar':
 
@@ -354,6 +429,76 @@ class Lab
                                 _lines.innerHTML  = this.editor.session.getLength ( );
                         } );
 
+                case 'click':
+
+                    let _mouseAngle       = document.querySelector ( '#input-angle' );
+
+                    let _mouseCoordinates = document.querySelector ( '#input-coordinates' );
+
+
+                    window.addEventListener ( 'mousedown', ( event ) =>
+                    {
+                        let _labColLeft = document.querySelector ( '#lab > div:nth-child(1)' );
+
+                        let _navWidth   = ( UI._isNavOpen ( ) ) ? 225 : 0;
+
+
+                        if ( _labColLeft.clientWidth + _navWidth > event.clientX  &&  _labColLeft.clientHeight > event.clientY )
+                        {
+                            if ( ! this._mouse.click )
+                            {
+                                this._mouse.point = new Point ( event.clientX, event.clientY );
+
+                                this._mouse.click = true;
+
+
+                                TOOL.delay ( 1000 ).then ( ( ) => this._mouse.hold = true );
+                            }
+                        }
+                    } );
+
+                    window.addEventListener ( 'mouseup', ( event ) =>
+                    {
+                        let _labColLeft = document.querySelector ( '#lab > div:nth-child(1)' );
+
+                        let _content    = '';
+
+
+                        if ( _labColLeft.clientWidth + 225 > event.clientX  &&  _labColLeft.clientHeight > event.clientY )
+                        {
+                            if ( TOOL.isActive ( _mouseAngle ) )
+
+                                _content += JSON.stringify ( this._clipboard.angle );
+
+
+                            if ( TOOL.isActive ( _mouseCoordinates ) )
+
+                                _content += '\n' + JSON.stringify ( this._clipboard.coordinates );
+
+
+                            if ( this._mouse.hold )
+                            {
+                                let _degree   = this._getAngle ( this._mouse.point, new Point ( event.clientX, event.clientY ) );
+
+                                let _distance = this._getDistance ( this._mouse.point, new Point ( event.clientX, event.clientY ) );
+
+
+                                _content += '\n' + JSON.stringify ( this._mouse.point );
+
+                                _content += '\n' + JSON.stringify ( { degree: _degree, distance: _distance } );
+
+
+                                this._mouse.hold = false;
+                            }
+
+
+                            this._copyToClipboard ( _content );
+
+
+                            this._mouse.click = false;
+                        }
+                    } );
+
                 case 'keyboardCommands':
 
                     Mousetrap.bind ( 'space',     ( ) => this.runCode ( )          );
@@ -367,7 +512,164 @@ class Lab
                     Mousetrap.bind ( 'r',         ( ) => UI.toggle.ruler       ( ) );
 
                     Mousetrap.bind ( 'd',         ( ) => UI.toggle.download    ( ) );
+
+                    Mousetrap.bind ( 'c',         ( ) => UI.toggle.coordinates ( ) );
+
+                    Mousetrap.bind ( 'a',         ( ) => UI.toggle.angle       ( ) );
             }
+        }
+
+        /**
+         * Sets angle overlay
+         * @public
+         * @function
+         */
+        setAngle ( )
+        {
+            let _existing = document.getElementById ( 'angle' );
+
+
+            if ( _existing )
+
+                _existing.remove ( );
+
+            ////    INSERT ANGLE    ////////////////////////////////////////////
+
+                let _parent  = document.querySelector ( '#lab > div:nth-child(1)' );
+
+                let _canvas  = document.querySelector ( '#canvas' );
+
+                let _angle   = document.createElement ( 'canvas' );
+
+                let _context = _angle.getContext ( '2d' );
+
+
+                [ _angle.id, _angle.width, _angle.height ] = [ 'angle', _canvas.clientWidth, _canvas.clientHeight ];
+
+
+                    _parent.insertBefore ( _angle, _canvas );
+
+            ////    OUTPUT    //////////////////////////////////////////////////
+
+                let _mouseAngle    = document.querySelector ( '#mouse-angle > .cartesian > .angle' );
+
+                let _mouseDistance = document.querySelector ( '#mouse-angle > .cartesian > .distance' );
+
+            ////    DISPLAY    /////////////////////////////////////////////////
+
+                let _id       = 'angle';
+
+                let _navWidth = 225;
+
+                let _color    = new Rgb ( 150, 50, 200, 1 );
+
+
+                let _line = new Line;
+
+                let _circle = new Circle;
+
+                let _dotCircle = new Circle;
+
+                let _centerCircle = new Circle;
+
+
+                    _line.stroke.color = _circle.fill.color = _dotCircle.fill.color = _centerCircle.stroke.color = _color;
+
+
+                    [ _line.stroke.type, _line.stroke.segments, _line.stroke.width ] = [ 'dashed', [ 3, 3 ], 1 ];
+
+
+                    _circle.stroke.color.alpha = _dotCircle.stroke.color.alpha = 0;
+
+            ////    EVENT LISTENER    //////////////////////////////////////////
+
+                window.addEventListener ( 'mousemove', ( event ) =>
+                {
+                    let _x = ( UI._isNavOpen ( ) ) ? event.clientX - _navWidth : event.clientX;
+
+                    let _y = event.clientY;
+
+
+                    let _degree         = this._getAngle    ( canvaslab.center, new Point ( _x, _y ) );
+
+                    let _distance       = this._getDistance ( canvaslab.center, new Point ( _x, _y ) );
+
+
+                    let _circleDistance = this._getDistance ( canvaslab.center, new Point ( _x, _y ) ) / 3.3;
+
+                    let _endPoint       = this._rotatePoint ( canvaslab.center, _degree, _circleDistance );
+
+
+                    let _dotDistance    = this._getDistance ( canvaslab.center, new Point ( _x, _y ) ) / 3.05;
+
+                    let _dotPoint       = this._rotatePoint ( canvaslab.center, _degree, _dotDistance );
+
+                    ////    SET    /////////////////////////////////////////////
+
+                    [ _line.start,         _line.end            ] = [ canvaslab.center, _endPoint            ];
+
+
+                    [ _circle.point,       _circle.radius       ] = [ _endPoint,        _circleDistance / 30 ];
+
+
+                    [ _dotCircle.point,    _dotCircle.radius    ] = [ _dotPoint,        _dotDistance / 50    ];
+
+
+                    [ _centerCircle.point, _centerCircle.radius ] = [ canvaslab.center, _circleDistance / 2  ];
+
+                    ////    DRAW    ////////////////////////////////////////////
+
+                    _context.clearRect ( 0, 0, _canvas.width, _canvas.height );
+
+
+                    _line.draw ( _id );
+
+                    _circle.draw ( _id );
+
+                    _dotCircle.draw ( _id );
+
+                    _centerCircle.draw ( _id );
+
+                    ////    MEASURING LINE    //////////////////////////////////
+
+                    if ( this._mouse.click )
+                    {
+                        let _point = ( UI._isNavOpen ( ) ) ? new Point ( this._mouse.point.x - _navWidth, this._mouse.point.y )
+
+                                                           : this._mouse.point;
+
+
+                        let _lineDegree   = this._getAngle ( _point, new Point ( _x, _y ) );
+
+                        let _lineDistance = this._getDistance ( _point, new Point ( _x, _y ) );
+
+
+                        let _circle = new Circle ( _point, 7 );
+
+                        let _line   = new Line ( _point, new Point ( _x, _y ) );
+
+
+                            _line.stroke.type = 'dashed';
+
+
+                            _line.draw ( _id );
+
+                            _circle.draw ( _id );
+
+
+                        [ _mouseAngle.innerHTML, _mouseDistance.innerHTML ] = [ Math.round ( _lineDegree ) + '°', Math.round ( _lineDistance ) + ' <i>d</i>' ];
+                    }
+                    else
+
+                        [ _mouseAngle.innerHTML, _mouseDistance.innerHTML ] = [ Math.round ( _degree ) + '°', Math.round ( _distance ) + ' <i>d</i>' ];
+
+
+                    ////    CLIPBOARD    ///////////////////////////////////////
+
+                    this._clipboard.angle.degree   = `${_degree}°`;
+
+                    this._clipboard.angle.distance = `${_distance} d`;
+                } );
         }
 
         /**
@@ -400,6 +702,130 @@ class Lab
 
 
             TOOL.delay ( 1000 ).then ( ( ) => document.querySelector ( '#ruler' ).style.opacity = 0 );
+        }
+
+        /**
+         * Sets coordinates overlay
+         * @public
+         * @function
+         */
+        setCoordinates ( )
+        {
+            let _existing = document.getElementById ( 'coordinates' );
+
+
+            if ( _existing )
+
+                _existing.remove ( );
+
+            ////    INSERT COORDINATES    //////////////////////////////////////
+
+                let _parent      = document.querySelector ( '#lab > div:nth-child(1)' );
+
+                let _canvas      = document.querySelector ( '#canvas' );
+
+                let _coordinates = document.createElement ( 'canvas' );
+
+                let _context     = _coordinates.getContext ( '2d' );
+
+
+                [ _coordinates.id, _coordinates.width, _coordinates.height ] = [ 'coordinates', _canvas.clientWidth, _canvas.clientHeight ];
+
+
+                    _parent.insertBefore ( _coordinates, _canvas );
+
+            ////    OUTPUT    //////////////////////////////////////////////////
+
+                let _displayX   = document.querySelector ( '#mouse-coordinates > .display > .x' );
+
+                let _displayY   = document.querySelector ( '#mouse-coordinates > .display > .y' );
+
+                let _cartesianX = document.querySelector ( '#mouse-coordinates > .cartesian > .x' );
+
+                let _cartesianY = document.querySelector ( '#mouse-coordinates > .cartesian > .y' );
+
+                let _centerX    = document.querySelector ( '#mouse-coordinates > .center > .x' );
+
+                let _centerY    = document.querySelector ( '#mouse-coordinates > .center > .y' );
+
+            ////    DISPLAY    /////////////////////////////////////////////////
+
+                let _id       = 'coordinates';
+
+                let _color    = new Rgb ( 255, 0, 0 );
+
+                let _navWidth = 225;
+
+                let _gap      = 15;
+
+
+                let _lineXOne = new Line;
+
+                let _lineYOne = new Line;
+
+                let _lineXTwo = new Line;
+
+                let _lineYTwo = new Line;
+
+
+                    _lineXOne.stroke.color = _lineYOne.stroke.color = _lineXTwo.stroke.color = _lineYTwo.stroke.color = _color;
+
+            ////    EVENT LISTENER    //////////////////////////////////////////
+
+                window.addEventListener ( 'mousemove', ( event ) =>
+                {
+                    let _x = ( UI._isNavOpen ( ) ) ? event.clientX - _navWidth : event.clientX;
+
+                    let _y = event.clientY;
+
+
+                    let _display   = new Point ( _x, _y );
+
+                    let _cartesian = new Point ( _x - canvaslab.center.x, canvaslab.center.y - _y );
+
+                    let _center    = new Point ( canvaslab.center.x, canvaslab.center.y );
+
+                    ////    SET    /////////////////////////////////////////////
+
+                    [ _lineXOne.start, _lineXOne.end ] = [ new Point ( 0, _y ),         new Point ( _x - _gap, _y  )          ];
+
+                    [ _lineXTwo.start, _lineXTwo.end ] = [ new Point ( _x + _gap, _y ), new Point ( _coordinates.width, _y  ) ];
+
+
+                    [ _lineYOne.start, _lineYOne.end ] = [ new Point ( _x, 0 ),         new Point ( _x, _y - _gap )           ];
+
+                    [ _lineYTwo.start, _lineYTwo.end ] = [ new Point ( _x, _y + _gap ), new Point ( _x, _coordinates.height ) ];
+
+                    ////    DRAW    ////////////////////////////////////////////
+
+                    _context.clearRect ( 0, 0, _canvas.width, _canvas.height );
+
+
+                    _lineXOne.draw ( _id );
+
+                    _lineYOne.draw ( _id );
+
+                    _lineXTwo.draw ( _id );
+
+                    _lineYTwo.draw ( _id );
+
+                    ////    DISPLAY    /////////////////////////////////////////
+
+                    [ _displayX.innerHTML,   _displayY.innerHTML   ] = [ _x,                 _y                 ];
+
+                    [ _cartesianX.innerHTML, _cartesianY.innerHTML ] = [ _cartesian.x,       _cartesian.y       ];
+
+                    [ _centerX.innerHTML,    _centerY.innerHTML    ] = [ canvaslab.center.x, canvaslab.center.y ];
+
+                    ////    CLIPBOARD    ///////////////////////////////////////
+
+                    this._clipboard.coordinates =
+                    {
+                        display:   _display,
+                        cartesian: _cartesian,
+                        center:    _center
+                    }
+                } );
         }
 
         /**
@@ -509,7 +935,43 @@ class Lab
                 _verticalLines.draw ( 'grid' );
         }
 
+        /**
+         * Sets lab default options
+         * @public
+         * @function
+         */
+        setLabDefaults ( )
+        {
+            let _defaults = [ 'sidebar', 'clear', 'grid', 'coordinates', 'angle' ]
+
+
+            for ( let _type of _defaults )
+
+                document.getElementById ( `input-${_type}` ).click ( );
+        }
+
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Copy passed contents to clipboard
+         * @public
+         * @async
+         * @function
+         * @param           {string} contents                   Contents to copy to clipboard
+         */
+        async _copyToClipboard ( contents )
+        {
+            try
+            {
+                await navigator.clipboard.writeText ( contents );
+
+                console.info ( 'Copied to clipboard' );
+            }
+            catch ( err )
+            {
+                console.error ( 'Failed to copy: ', err );
+            }
+        }
 
         /**
          * Cleans code of enumerators for ace-editor
@@ -651,6 +1113,29 @@ class Lab
         _padZeros ( value, amount )
         {
             return String ( value ).padStart ( amount, '0' );
+        }
+
+        /**
+         * Rotates the origin point by the degree & distance passed
+         * @public
+         * @function
+         * @param           {Point}  origin                             Origin point
+         * @param           {number} degree                             Degree to rotate
+         * @param           {number} distance                           Distance from origin
+         */
+        _rotatePoint ( origin = { x, y }, degree, distance )
+        {
+            let _point = new Point;
+
+            let _angle = ( degree % 360 );
+
+
+                _point.x = origin.x + Math.cos ( _angle * Math.PI / 180 ) * distance;
+
+                _point.y = origin.y - Math.sin ( _angle * Math.PI / 180 ) * distance;
+
+
+            return _point;
         }
 
         /**

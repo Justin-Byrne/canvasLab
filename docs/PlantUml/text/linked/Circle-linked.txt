@@ -137,14 +137,14 @@ class Stroke {
 [width=2]       <color:gray>{number}</color>
 shadow          {Shadow}
 __ Setter __
-type            <color:gray>{number}</color>
-segments        {Array}
-color           {Object}
+type            <color:gray>{string}</color>
+segments        {Array.<number>}
+color           {Rgb}
 width           <color:gray>{number}</color>
 __ Getter __
-type            <color:gray>{number}</color>
-segments        {Array}
-color           {Object}
+type            <color:gray>{string}</color>
+segments        {Array.<number>}
+color           {Rgb}
 width           <color:gray>{number}</color>
 __ Validation __
 _isColorModel   <color:gray>{boolean}</color>
@@ -280,11 +280,13 @@ __ Setter __
 origin               {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>
+rotation             <color:gray>{number}</color>
 master               {clObject}
 __ Getter __
 origin               {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>
+rotation             <color:gray>{number}</color>
 master               {clObject}
 __ Validation __
 _isCanvasLabObject   <color:gray>{boolean}</color>

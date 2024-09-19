@@ -422,9 +422,7 @@ const UTILITIES =
 
                     this._canvas.translate ( _x, _y );
 
-                    this._canvas.rotate    ( ( value * Math.PI / 180 ) / 45 );
-
-                    // this._canvas.rotate    ( ( ( value % 360 ) * Math.PI / 180 ) / 22.5 );
+                    this._canvas.rotate    ( value * Math.PI / 180 );
 
                     this._canvas.translate ( -_x, -_y );
                 }

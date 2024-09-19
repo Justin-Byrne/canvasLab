@@ -52,8 +52,8 @@ _setAnchorPoint
 move
 rotate
 showCoordinates
-draw
 _drawImage
+draw
 }
 
 cImage o-- Object
@@ -139,11 +139,13 @@ __ Setter __
 origin               {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>
+rotation             <color:gray>{number}</color>
 master               {clObject}
 __ Getter __
 origin               {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>
+rotation             <color:gray>{number}</color>
 master               {clObject}
 __ Validation __
 _isCanvasLabObject   <color:gray>{boolean}</color>

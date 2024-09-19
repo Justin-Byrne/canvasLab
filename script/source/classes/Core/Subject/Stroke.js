@@ -1,7 +1,7 @@
 /**
  * @class           {Object}   Stroke                           Stroke properties of associated object
  * @property        {Object}   [color=<Rgb>]                    Color model & value
- * @property        {string}   [type='solid']                   Stroke type; solid | dashed
+ * @property        {string}   [type='solid']                   Stroke type; 'solid' || 'dashed'
  * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s)
  * @property        {number}   [width=2]                        Thickness of stroke
  * @property        {Shadow}   shadow                           Shadow properties
@@ -16,7 +16,7 @@ class Stroke
     /**
      * Create a stroke
      * @param           {Object}   color                            RGB color value
-     * @param           {number}   type                             Stroke type
+     * @param           {string}   type                             Stroke type
      * @param           {number[]} segments                         Dashed line segment distance(s)
      * @param           {number}   alpha                            Alpha value; number/decimal
      * @param           {number}   width                            Thickness of stroke
@@ -42,7 +42,7 @@ class Stroke
          * Set type
          * @public
          * @function
-         * @param           {number} value                              Type: (0) Solid or (1) Dashed
+         * @param           {string} value                              Stroke type: 'solid' || 'dashed'
          */
         set type ( value )
         {
@@ -53,7 +53,7 @@ class Stroke
          * Get type
          * @readOnly
          * @function
-         * @return          {number}                                    Type: (0) Solid or (1) Dashed
+         * @return          {string}                                    Stroke type: 'solid' || 'dashed'
          */
         get type ( )
         {
@@ -66,7 +66,7 @@ class Stroke
          * Set segment value
          * @public
          * @function
-         * @param           {Array} value                               Dashed line segment distance(s)
+         * @param           {Array.<number>} value                      Dashed line segment distance(s)
          */
         set segments ( value )
         {
@@ -77,7 +77,7 @@ class Stroke
          * Get segment value
          * @readOnly
          * @function
-         * @return          {Array}                                     Dashed line segment distance(s)
+         * @return          {Array.<number>}                            Dashed line segment distance(s)
          */
         get segments ( )
         {
@@ -90,7 +90,7 @@ class Stroke
          * Set color value
          * @public
          * @function
-         * @param           {Object} value                              Color model; Rgb
+         * @param           {Rgb} value                                 Color model
          */
         set color ( value )
         {
@@ -101,7 +101,7 @@ class Stroke
          * Get color value
          * @public
          * @function
-         * @return          {Object}                                    Color model; Rgb
+         * @return          {Rgb}                                       Color model
          */
         get color ( )
         {

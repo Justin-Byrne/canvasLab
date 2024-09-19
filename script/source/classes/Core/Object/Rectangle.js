@@ -338,7 +338,7 @@ class Rectangle
             return this.#options;
         }
 
-    ////    [ LOCATION ]    ////////////////////////////////
+    ////    [ POSITION ]    ////////////////////////////////
 
         get position ( )
         {

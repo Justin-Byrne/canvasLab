@@ -1,6 +1,35 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.7.173] - 2024-09-18
+### Added
+- **canvasLab**
+  - :sunny: `Line` class, added `point` property, accessor(s) & mutators(s)
+  - :sunny: `Position` class, added `rotation` property, accessor(s) & mutators(s)
+  - :sunny: `Text` class, added `_setFillType` function from `Utilities` module
+  - :sunny: `cImage` class, `_drawImage` function, to draw image depending on primary & secondary property settings
+  - :sunny: `Animation` class, `startPoint` & `endPoint` cases to `_setPositionData` & `_transition` functions
+- **devSuite**
+  - :sunny: `Lab` class,
+    - `_getAngle` function, to get angle from two points
+    - `_getDistance` function, to get distance between two points
+    - `_copyToClipboard` function, to copy passed contents to clipboard
+    - `_rotatePoint` function, to rotate the origin point by the degree & distance passed
+    - `setLabDefaults` function, to set lab default options
+    - `setAngle` function, to set angle overlay
+    - `setCoordinates` function, to set coordinates overlay
+    - `click` case for `_setEventListeners`, to handle angle & coordinates event handling
+  - :sunny: `Ui` class,
+    - `angle` function, toggles angle in lab
+    - `coordinates` function, toggles coordinates in lab
+
+### Refactored
+- **canvasLab**
+  - :last_quarter_moon: `cImage` class, `draw` function to adapt to regular calls & `Animation` class calls
+  - :last_quarter_moon: `Angle` class, `_convert2Degree` modified formula to provide more accurate result
+- **devSuite**
+  - :last_quarter_moon: `Ui` class, `fullscreen` & `navigation` function(s), to handle **angle** & **coordinates** features while toggling
+
 ## [0.7.163] - 2024-09-10
 ### Added
 - **canvasLab**
@@ -771,7 +800,8 @@ All notable changes to this project will be documented in this file.
 
 | Version     | Date         | Commit                                                                | Comments                                                                                                                     |
 | :---------  | :----------: | :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `[0.7.163]` | `2024-09-10` | `CURRENT`                                                             | <sup>Added Animations class, fixed angle orientation(s) for 360 degree rotation(s), and general refactoring.</sup>           |
+| `[0.7.173]` | `2024-09-18` | `CURRENT`                                                             | <sup>Added angle & coordinate system to Lab, small additions to several Object classes, and general refactoring.</sup>       |
+| `[0.7.163]` | `2024-09-10` | [`377e925`](https://github.com/Justin-Byrne/canvasLab/commit/377e925) | <sup>Added Animations class, fixed angle orientation(s) for 360 degree rotation(s), and general refactoring.</sup>           |
 | `[0.7.158]` | `2024-08-30` | [`94c76a2`](https://github.com/Justin-Byrne/canvasLab/commit/94c76a2) | <sup>Added features to cancel current animations, and changed the Location class as Position; class.</sup>                   |
 | `[0.7.151]` | `2024-08-27` | [`0d9f971`](https://github.com/Justin-Byrne/canvasLab/commit/0d9f971) | <sup>Added Location class, refactored many Animation processes, and re-organized programs schema.</sup>                      |
 | `[0.6.137]` | `2024-08-13` | [`d4865e2`](https://github.com/Justin-Byrne/canvasLab/commit/d4865e2) | <sup>Added Ellipse(s) & RoundedRectangle(s) classes, mutli-select functionality, with refactoring.</sup>                     |

@@ -52,8 +52,8 @@ _setAnchorPoint
 move
 rotate
 showCoordinates
-draw
 _drawImage
+draw
 }
 
 @enduml

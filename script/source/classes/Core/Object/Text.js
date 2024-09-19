@@ -56,6 +56,7 @@ class Text extends Font
 
             this._drawAnchor  = UTILITIES.individual.draw.anchor;
             this._rotatePoint = UTILITIES.individual.misc.rotatePoint;
+            this._setFillType = UTILITIES.individual.set.fillType;
             this._setShadow   = UTILITIES.individual.set.shadow;
 
             this.move            = UTILITIES.individual.misc.move;
@@ -95,7 +96,9 @@ class Text extends Font
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+            this.#options.shadow  = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+
+            this.#position.master = this;
     }
 
     ////    [ POINT ]   ////////////////////////////////////
@@ -252,7 +255,7 @@ class Text extends Font
             return this.#options;
         }
 
-    ////    [ LOCATION ]    ////////////////////////////////
+    ////    [ POSITION ]    ////////////////////////////////
 
         /**
          * Get position properties
@@ -427,6 +430,14 @@ class Text extends Font
          * @see             {@link UTILITIES.individual.misc.rotatePoint}
          */
         _rotatePoint ( ) { }
+
+        /**
+         * Sets fill type of the associated object
+         * @private
+         * @function
+         * @see             {@link UTILITIES.individual.set.fillType}
+         */
+        _setFillType ( ) { }
 
         /**
          * Sets shadow properties
@@ -613,7 +624,7 @@ class Text extends Font
 
                 this._canvas.textAlign = 'center';
 
-                this._canvas.fillStyle = this.fill.color.toCss ( );
+                this._setFillType ( );
 
                 this._canvas.fillText ( this.text, this.x, this.y, this.maxWidth );                 // TODO: maxWidth is showing NaN !
 

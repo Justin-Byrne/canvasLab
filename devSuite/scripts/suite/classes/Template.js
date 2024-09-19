@@ -117,7 +117,8 @@ class Template
             Ellipse:          '{ x: 154, y: 77 }',
             Rectangle:        '{ x: 154, y: 77 }',
             RoundedRectangle: '{ x: 154, y: 77 }',
-            Text:             '{ x: 154, y: 77 }, \'Text\''
+            Text:             '{ x: 154, y: 77 }, \'Text\'',
+            Image:            '\'images/png/moon.png\', { point: new Point ( 154, 65 ), aspect: new Aspect }',
         }
     }
 
@@ -414,7 +415,6 @@ class Template
             let _regex    = new RegExp ( _variable, 'g' );
 
             let _init     = ( PAGE.handler ) ? this._initializer [ PAGE.handler ] [ _class ] : this._initializer [ PAGE.group ] [ _class ];
-
 
             switch ( _class )
             {
