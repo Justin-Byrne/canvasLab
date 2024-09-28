@@ -316,6 +316,12 @@ main {
                 content: url("../images/svg/General/x-lg-black.svg");
                 transition: opacity 0.5s;
                 cursor: pointer; }
+          main .album .container #test-cards .col .card .card-body-lab > .lab-bottle {
+            position: absolute;
+            display: block;
+            top: unset !important;
+            bottom: 56px;
+            right: 12px; }
           main .album .container #test-cards .col .card .card-body {
             padding: 0.5rem 0.5rem; }
             main .album .container #test-cards .col .card .card-body .title {
@@ -633,7 +639,7 @@ main {
         height: 100vh;
         z-index: 2;
         opacity: 0;
-        transition: opacity 1s ease; }
+        transition: opacity 2s ease; }
         main .lab-station #lab #ruler .dimensions {
           font-family: 'Roboto';
           position: relative;
@@ -667,7 +673,7 @@ main {
         width: 42%;
         text-align: center;
         opacity: 0;
-        transition: opacity 1s ease; }
+        transition: opacity 2s ease; }
         main .lab-station #lab #mouse-coordinates .display, main .lab-station #lab #mouse-coordinates .cartesian, main .lab-station #lab #mouse-coordinates .center {
           font-family: 'Roboto';
           position: relative;
@@ -691,7 +697,7 @@ main {
         width: 42%;
         text-align: center;
         opacity: 0;
-        transition: opacity 1s ease; }
+        transition: opacity 2s ease; }
         main .lab-station #lab #mouse-angle .cartesian {
           font-family: 'Roboto';
           position: relative;
@@ -707,17 +713,17 @@ main {
         z-index: 2;
         background-color: transparent;
         opacity: 0;
-        transition: opacity 1s ease; }
+        transition: opacity 2s ease; }
       main .lab-station #lab #coordinates {
         position: absolute;
         z-index: 1;
         background-color: transparent;
-        transition: opacity 1s ease; }
+        transition: opacity 2s ease; }
       main .lab-station #lab #angle {
         position: absolute;
         z-index: 1;
         background-color: transparent;
-        transition: opacity 1s ease; }
+        transition: opacity 2s ease; }
       main .lab-station #lab canvas {
         position: absolute;
         background: white; }

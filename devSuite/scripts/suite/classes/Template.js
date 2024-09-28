@@ -43,7 +43,16 @@ class Template
 
                            </div> <!-- .card-header -->
 
+
+                           <div class="card-body-lab">
+
+                               <img src="images/svg/General/lab-bottle-black.svg" suite-data-code="{{code}}" class="lab-bottle" onclick="devSuite.toggleLab ( event )">
+
+                           </div> <!-- .card-body-lab -->
+
+
                            <canvas id="canvas_{{index}}"></canvas>
+
 
                            <div class="card-body">
 
@@ -52,8 +61,6 @@ class Template
                                <div class="card-body-buttons">
 
                                    <span class="icons">
-
-                                       <img src="images/svg/General/lab-bottle.svg" class="lab-bottle" suite-data-index="{{index}}" onclick="devSuite.toggleLab ( event )">
 
                                        <img src="images/svg/{{easing}}.svg" class="card-icons easing" suite-button-type="easing" suite-data-index="{{index}}" onclick="devSuite.toggleCardButton ( event )">
 
@@ -105,10 +112,13 @@ class Template
         },
         subject:
         {
-            Line:       '{ x: 100, y: 50 }, { x: 200, y: 100 }',
-            Circle:     '{ x: 154, y: 77 }',
-            Rectangle:  '{ x: 154, y: 77 }',
-            Text:       '{ x: 154, y: 77 }, \'Text\''
+            Line:             '{ x: 100, y: 50 }, { x: 200, y: 100 }',
+            Circle:           '{ x: 154, y: 77 }',
+            Ellipse:          '{ x: 154, y: 77 }',
+            Rectangle:        '{ x: 154, y: 77 }',
+            RoundedRectangle: '{ x: 154, y: 77 }',
+            Text:             '{ x: 154, y: 77 }, \'Text\'',
+            Image:            '\'images/png/moon.png\', { point: new Point ( 154, 65 ), aspect: new Aspect }',
         },
         animation:
         {
@@ -283,6 +293,8 @@ class Template
 
                             for ( let _childType of _type )
                             {
+                                    _childType  = ( _childType === 'Cimage' ) ? 'cImage' : _childType;
+
                                 let _childGroup = TOOL.isCanvasLabObject ( _childType ) ? 'Object' : 'Subject';
 
                                 template        = template.replace ( /{{childGroup}}/, _childGroup ).replace ( /{{childType}}/, _childType ).replace ( /{{childType}}/, _childType );

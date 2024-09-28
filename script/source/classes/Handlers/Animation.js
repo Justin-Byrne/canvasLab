@@ -443,6 +443,21 @@ class Animation
         }
 
         /**
+         * Resets the canvas transform; from rotational transforms
+         * @private
+         * @function
+         */
+        _resetCanvasTransform ( )
+        {
+            if ( canvaslab.rotation > 0 )
+            {
+                this.object.rotate ( - ( canvaslab.rotation ) );
+
+                canvaslab.rotation = 0;
+            }
+        }
+
+        /**
          * Caches current object
          * @private
          * @function
@@ -460,7 +475,10 @@ class Animation
             }
             else
 
-                console.info ( 'animation complete !' );
+                this._resetCanvasTransform ( );
+
+
+            console.info ( '. animation complete !' );
         }
 
         /**
@@ -472,7 +490,7 @@ class Animation
         {
             for ( let _type in this.change )
             {
-                let _difference = this.change [ _type ];
+                let _amount = this.change [ _type ];
 
 
                 switch ( _type )
@@ -481,9 +499,9 @@ class Animation
 
                         this.object.position.origin    = this.object.point;
 
-                        this.object.position.distance  = _difference;
+                        this.object.position.distance  = _amount;
 
-                        this.object.position.direction = _difference;
+                        this.object.position.direction = _amount;
 
                         break;
 
@@ -491,11 +509,9 @@ class Animation
 
                         this.object.position.origin    = this.object.start;
 
-                        this.object.position.distance  = _difference;
+                        this.object.position.distance  = _amount;
 
-                        this.object.position.direction = _difference;
-
-                        // code . . .
+                        this.object.position.direction = _amount;
 
                         break;
 
@@ -503,11 +519,9 @@ class Animation
 
                         this.object.position.origin    = this.object.end;
 
-                        this.object.position.distance  = _difference;
+                        this.object.position.distance  = _amount;
 
-                        this.object.position.direction = _difference;
-
-                        // code . . .
+                        this.object.position.direction = _amount;
 
                         break;
 
@@ -516,12 +530,12 @@ class Animation
                         this.object.position.origin = this.object.point;
 
 
-                        _difference.degree = ( this.change.rotatePoint ) ? _difference.degree + this.change.rotatePoint
+                        _amount.degree = ( this.change.rotatePoint ) ? _amount.degree + this.change.rotatePoint
 
-                                                                         : _difference.degree;
+                                                                         : _amount.degree;
 
 
-                        let _point = this._getPointByDegreeNDistance ( _difference.degree, _difference.distance );
+                        let _point = this._getPointByDegreeNDistance ( _amount.degree, _amount.distance );
 
 
                         this.object.position.distance  = _point;
@@ -533,6 +547,24 @@ class Animation
                     case 'radius':
 
                         // code . . .
+
+                        break;
+
+                    case 'aspect':
+
+                        this.object.position.aspect = this.object.aspect;
+
+                        break;
+
+                    case 'width':
+
+                        this.object.position.aspect.width = this.object.width;
+
+                        break;
+
+                    case 'height':
+
+                        this.object.position.aspect.height = this.object.height;
 
                         break;
 
@@ -574,9 +606,46 @@ class Animation
 
                         break;
 
+                    case 'curve':
+                    case 'controlPoints':
+
+                        this.object.position.controlPoints = this.object.controlPoints.points;
+
+                        break;
+
+                    case 'p0':
+
+                        this.object.position.controlPoints.p0 = this.object.controlPoints.p0;
+
+                        break;
+
+                    case 'p1':
+
+                        this.object.position.controlPoints.p1 = this.object.controlPoints.p1;
+
+                        break;
+
+                    case 'p2':
+
+                        this.object.position.controlPoints.p2 = this.object.controlPoints.p2;
+
+                        break;
+
+                    case 'p3':
+
+                        this.object.position.controlPoints.p3 = this.object.controlPoints.p3;
+
+                        break;
+
+                    case 'fontSize':
+
+                        this.object.position.fontSize = this.object.size;
+
+                        break;
+
                     case 'cache':
 
-                        this.cache = _difference;
+                        this.cache = _amount;
 
                         break;
                 }
@@ -640,9 +709,58 @@ class Animation
 
                         break;
 
+                    case 'angleStart':
+
+                        object.angle.start = _amount * progress;
+
+                        break;
+
+                    case 'angleEnd':
+
+                        object.angle.end = _amount * progress;
+
+                        break
+
+                    case 'aspect':
+
+                        object.position.aspect.width  += ( _amount.width - object.position.aspect.width ) * progress;
+
+                        object.aspect.width            = object.position.aspect.width;
+
+
+                        object.position.aspect.height += ( _amount.height - object.position.aspect.height ) * progress;
+
+                        object.aspect.height           = object.position.aspect.height;
+
+                        break;
+
+                    case 'width':
+
+                        object.position.aspect.width  += ( _amount - object.position.aspect.width ) * progress;
+
+                        object.aspect.width            = object.position.aspect.width;
+
+                        break;
+
+                    case 'height':
+
+                        object.position.aspect.height += ( _amount - object.position.aspect.height ) * progress;
+
+                        object.aspect.height           = object.position.aspect.height;
+
+                        break;
+
                     case 'rotate':
 
-                        object.rotate ( _amount );
+                        let _rotate   = progress * ( _amount - object.position.rotation );
+
+
+                        object.rotate ( _rotate );
+
+
+                        object.position.rotation += _rotate;
+
+                        canvaslab.rotation       += _rotate;
 
                         break;
 
@@ -686,9 +804,87 @@ class Animation
 
                         break;
 
-                    case 'rotate':
+                    case 'shadowColor':
 
-                        console.log ( '_amount:', _amount );
+                        object.shadow.color.cycle ( object.shadow.color, _amount, progress, 1 );
+
+                        break;
+
+                    case 'shadowAlpha':
+
+                        object.shadow.color.alpha = _amount * progress;
+
+                        break;
+
+                    case 'shadowBlur':
+
+                        object.shadow.blur = _amount * progress;
+
+                        break;
+
+                    case 'shadowOffset':
+
+                        object.shadow.offset = new Point ( _amount.x * progress, _amount.y * progress );
+
+                        break;
+
+                    case 'curve':
+                    case 'controlPoints':
+
+                        for ( let _id in _amount )
+                        {
+                            let _oldControlPoint = object.position.controlPoints [ _id ];
+
+                            let _newControlPoint = _amount [ _id ];
+
+
+                            if ( _oldControlPoint != _newControlPoint )
+                            {
+                                let _change = ( _newControlPoint - _oldControlPoint ) * progress;
+
+
+                                switch ( _id )
+                                {
+                                    case '0':       object.controlPoints.p0 = _change;         break;
+
+                                    case '1':       object.controlPoints.p1 = _change;         break;
+
+                                    case '2':       object.controlPoints.p2 = _change;         break;
+
+                                    case '3':       object.controlPoints.p3 = _change;         break;
+                                }
+                            }
+                        }
+
+                        break;
+
+                    case 'p0':
+
+                        object.controlPoints.p0 = ( _amount - object.position.controlPoints.p0 ) * progress;
+
+                        break;
+
+                    case 'p1':
+
+                        object.controlPoints.p1 = ( _amount - object.position.controlPoints.p1 ) * progress;
+
+                        break;
+
+                    case 'p2':
+
+                        object.controlPoints.p2 = ( _amount - object.position.controlPoints.p2 ) * progress;
+
+                        break;
+
+                    case 'p3':
+
+                        object.controlPoints.p3 = ( _amount - object.position.controlPoints.p3 ) * progress;
+
+                        break;
+
+                    case 'fontSize':
+
+                        object.size = ( ( _amount - object.position.fontSize ) * progress ) + object.position.fontSize;
 
                         break;
                 }
@@ -715,6 +911,8 @@ class Animation
             ////    PREPARATORY    /////////////////////////
 
                 this._checkQueue ( );
+
+                this._resetCanvasTransform ( );
 
                 this._setPositionData ( );
 

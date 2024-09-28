@@ -1,6 +1,29 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.7.179] - 2024-09-27
+### Added
+- **canvasLab**
+  - :sunny: `Line` class
+    - `anchor` property, accessor(s) & mutators(s)
+    - `_drawAnchor` function, to draw anchor points
+    - `_setAnchorPoint` function, to set anchor's point
+    - `rotate` function, to rotate this object
+  - :sunny: `Position` class,
+    - `start`, `end`, `rotation`, `aspect`, `controlPoints`, & `fontSize`  properties; accessor(s) & mutators(s)
+    - `_isAspect`, `_isBlur`, `_isControlPoint`, `_isNumber`, `_isWidth`, & `_isHeight` validation functions
+  - :sunny: `ControlPoints` class, `points` property, accessor(s) & mutators(s)
+  - :sunny: `Animation` class,
+    - `_resetCanvasTransform` function, to reset the canvas transform; from rotational transforms
+    - `rotate`, `aspect`, `controlPoints`, `fontSize`, `angleStart`, `angleEnd` cases to `_setPositionData` & `_transition` functions
+  - :sunny: `Validation` module, `isControlPoint` function, to return whether the passed value is an array of Control Point values
+
+- **devSuite**
+  - :sunny: `Ui` class,
+    - `lab-links` case, to `_setEventListeners` for modal lab link
+    - `navButtons-toggle` case, to toggle object & subject navigation buttons
+    - `_twoButtons` function, to toggle between two buttons in the navigation tree
+
 ## [0.7.173] - 2024-09-18
 ### Added
 - **canvasLab**
@@ -800,7 +823,8 @@ All notable changes to this project will be documented in this file.
 
 | Version     | Date         | Commit                                                                | Comments                                                                                                                     |
 | :---------  | :----------: | :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `[0.7.173]` | `2024-09-18` | `CURRENT`                                                             | <sup>Added angle & coordinate system to Lab, small additions to several Object classes, and general refactoring.</sup>       |
+| `[0.7.179]` | `2024-09-27` | `CURRENT`                                                             | <sup>Added numerous animation functions to the Animation & Position classes, and general refactoring.</sup>                  |
+| `[0.7.173]` | `2024-09-18` | [`d47997c`](https://github.com/Justin-Byrne/canvasLab/commit/d47997c) | <sup>Added angle & coordinate system to Lab, small additions to several Object classes, and general refactoring.</sup>       |
 | `[0.7.163]` | `2024-09-10` | [`377e925`](https://github.com/Justin-Byrne/canvasLab/commit/377e925) | <sup>Added Animations class, fixed angle orientation(s) for 360 degree rotation(s), and general refactoring.</sup>           |
 | `[0.7.158]` | `2024-08-30` | [`94c76a2`](https://github.com/Justin-Byrne/canvasLab/commit/94c76a2) | <sup>Added features to cancel current animations, and changed the Location class as Position; class.</sup>                   |
 | `[0.7.151]` | `2024-08-27` | [`0d9f971`](https://github.com/Justin-Byrne/canvasLab/commit/0d9f971) | <sup>Added Location class, refactored many Animation processes, and re-organized programs schema.</sup>                      |

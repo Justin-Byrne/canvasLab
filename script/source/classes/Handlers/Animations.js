@@ -548,7 +548,7 @@ class Animations
 
                         case 'radius':
 
-                            // _object.position.radius = _object.radius;
+                            // code . . .
 
                             break;
 
@@ -688,7 +688,7 @@ class Animations
 
                     case 'rotate':
 
-                        console.log ( '_amount:', _amount );
+                        // code . . .
 
                         break;
 
@@ -700,15 +700,16 @@ class Animations
                             {
                                 let _line = new Line ( _object.point, _entry.point );
 
-                                _line.draw ( );
+                                    _line.draw ( );
                             }
                         }
                         else
                         {
                             let _line = new Line ( _object.point, _amount.point );
 
-                            _line.draw ( );
+                                _line.draw ( );
                         }
+
 
                         break;
                 }

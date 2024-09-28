@@ -62,7 +62,7 @@ const VALIDATION =
      */
     isAlign ( value )
     {
-        let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft' ];
+        let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft', 'start', 'end' ];
 
 
         for ( let _option of _options ) if ( value === _option )  return true;
@@ -380,6 +380,35 @@ const VALIDATION =
     isColorModel ( value )
     {
         return ( value instanceof Rgb ) ? true : false;
+    },
+
+    /**
+     * Returns whether the passed value is an array of Control Point values
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {Array.<number>} value                      Array of Control Points
+     * @return          {boolean}                                   True || False
+     */
+    isControlPoint ( value )
+    {
+        let _result = false;
+
+
+        if ( Array.isArray ( value ) )
+
+            if ( value.length === 4 )
+            {
+                for ( let _entry of value )
+
+                    if ( typeof _entry != 'number' ) return _result;
+
+
+                _result = true;
+            }
+
+
+        return _result;
     },
 
     /**

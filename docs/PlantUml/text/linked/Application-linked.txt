@@ -58,6 +58,7 @@ _checkQueue
 _clearCanvas
 _drawCache
 _end
+_resetCanvasTransform
 _setCache
 _setPositionData
 animate

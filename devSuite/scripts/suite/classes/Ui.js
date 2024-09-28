@@ -298,6 +298,26 @@ class Ui
         },
 
         /**
+         * Toggles between two buttons in the navigation tree
+         * @private
+         * @function
+         * @param           {HTMLElement} buttonOne             HTML DOM Element for button one
+         * @param           {HTMLElement} buttonTwo             HTML DOM Element for button two
+         * @param           {boolean}     closeOne              Whether to close button one
+         */
+        _twoButtons ( buttonOne, buttonTwo, closeOne )
+        {
+            if ( UI._isButtonOpen ( buttonOne )  &&  UI._isButtonOpen ( buttonTwo ) )
+
+                ( closeOne ) ? buttonOne.click ( )
+
+                             : buttonTwo.click ( );
+
+
+                this._navMove ( true );
+        },
+
+        /**
          * Toggles angle in lab
          * @public
          * @function
@@ -557,11 +577,7 @@ class Ui
         {
             let _element = element.srcElement;
 
-            let _index   = _element.getAttribute ( 'suite-data-index' );
-
-            let _card    = document.querySelector ( `#view_${_index}` );
-
-            let _code    = _card.getAttribute ( 'suite-data-code' ).replaceAll ( /_\d{2}/g, '' );
+            let _code    = _element.getAttribute ( 'suite-data-code' ).replaceAll ( /_\d{2}/g, '' );
 
 
             UI.clearScreen  ( false, true );
@@ -1061,9 +1077,9 @@ class Ui
             {
                 case 'nav':
 
-                    let _icon    = document.querySelector ( '#nav-icon' );
+                    let _icon = document.querySelector ( '#nav-icon' );
 
-                    let _open    = document.querySelector ( '#nav-open' );
+                    let _open = document.querySelector ( '#nav-open' );
 
 
                     if ( _icon )
@@ -1117,6 +1133,27 @@ class Ui
 
                     this.toggle._collapsibles ( _mainButtons );
 
+                case 'navButtons-toggle':
+
+                    let _coreObjectButton  = document.querySelector ( '#core-collapse > li:nth-child(1) > button' );
+
+                    let _coreSubjectButton = document.querySelector ( '#core-collapse > li:nth-child(3) > button' );
+
+
+                        _coreObjectButton.addEventListener  ( 'click', ( ) => this.toggle._twoButtons ( _coreObjectButton, _coreSubjectButton, false ) );
+
+                        _coreSubjectButton.addEventListener ( 'click', ( ) => this.toggle._twoButtons ( _coreObjectButton, _coreSubjectButton, true  ) );
+
+
+                    let _animationObjectButton  = document.querySelector ( '#animations-collapse > li:nth-child(1) > button' );
+
+                    let _animationSubjectButton = document.querySelector ( '#animations-collapse > li:nth-child(3) > button' );
+
+
+                        _animationObjectButton.addEventListener  ( 'click', ( ) => this.toggle._twoButtons ( _animationObjectButton, _animationSubjectButton, false ) );
+
+                        _animationSubjectButton.addEventListener ( 'click', ( ) => this.toggle._twoButtons ( _animationObjectButton, _animationSubjectButton, true  ) );
+
                 case 'copy':
 
                     let _copyButton = document.querySelector ( 'button.copy-code-link' );
@@ -1127,29 +1164,48 @@ class Ui
 
                     let _main       = document.getElementsByTagName ( 'main' ) [ 0 ];
 
-                    let _labStation = document.querySelector  ( 'main > div.lab-station' );
+                    let _labStation = document.querySelector ( 'main > div.lab-station' );
 
                     let _lab        = document.querySelector ( '#nav-lab > img.lab-bottle' );
 
+
                         _lab.addEventListener ( 'click', ( ) =>
-                            {
-                                this.clearScreen  ( );
+                        {
+                            this.clearScreen  ( );
 
 
-                                _labStation.style.display = 'block';
+                            _labStation.style.display = 'block';
 
-                                _main.style.overflowY     = 'hidden';
+                            _main.style.overflowY     = 'hidden';
 
 
-                                LAB.setCanvasSize ( );
+                            LAB.setCanvasSize ( );
 
-                                LAB.setLabDefaults ( );
+                            LAB.setLabDefaults ( );
 
-                                LAB.runCode ( );
-                            } );
+                            LAB.runCode ( );
+                        } );
 
 
                     window.addEventListener ( 'resize', LAB.setCanvasSize );
+
+                case 'lab-links':
+
+                    let _labLink = document.querySelector ( '.lab-station-link'  );
+
+                        _labLink.addEventListener ( 'click', ( element ) =>
+                            {
+                                let _code  = document.querySelector ( '#modal-code > div > div > div.modal-body > pre > code' ).innerHTML.replace ( /<[^>]+>/g, '' );
+
+
+                                _lab.click ( );
+
+                                LAB.editor.setValue ( _code );
+
+                                LAB.runCode ( );
+
+                                LAB.editor.selection.moveCursorTo ( 0, 0 );
+                            } );
 
                 case 'cards':
 

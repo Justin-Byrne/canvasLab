@@ -56,6 +56,7 @@ class cImage
             this._drawAnchor     = UTILITIES.individual.draw.anchor;
             this._drawAxis       = UTILITIES.individual.draw.axis;
             this._drawBorder     = UTILITIES.individual.draw.border;
+            this._rotatePoint    = UTILITIES.individual.misc.rotatePoint
             this._setAnchorPoint = UTILITIES.individual.set.anchorPoint;
 
             this.move   = UTILITIES.individual.misc.move;

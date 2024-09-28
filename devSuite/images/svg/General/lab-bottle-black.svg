@@ -1,0 +1,14 @@
+<svg width="100%" height="100%" viewBox="0 0 100 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g>
+        <g id="Layer1">
+            <g>
+                <path d="M31.5,69L38.1,52.5" style="fill:none;stroke:black;stroke-width:3px;"/>
+                <path d="M41,45.25L42.5,41.5" style="fill:none;stroke:black;stroke-width:3px;"/>
+            </g>
+            <path d="M9,124.5C5.592,124.213 1.066,120.29 2,117C1.997,116.925 35,41 35,41L35,18C35,18 28.037,17.985 28,10.5C27.966,3.623 35,3.5 35,3.5L65,3.5C65,3.5 71.907,3.483 72,10.5C72.099,17.98 65,18 65,18L65,40C65,40 98.096,116.931 98,117C98.934,120.29 94.408,124.213 91,124.5C90.709,124.48 9.103,124.649 9,124.5Z" style="fill:none;stroke:black;stroke-width:3px;"/>
+            <path d="M26,77C26,77 13.533,106.333 10.7,113C8.938,116.942 12,117 12,117L87.5,117C87.5,117 90.994,116.987 89.3,113C86.467,106.333 74,77 74,77L26,77ZM51.5,94C56.191,94 60,97.809 60,102.5C60,107.191 56.191,111 51.5,111C46.809,111 43,107.191 43,102.5C43,97.809 46.809,94 51.5,94ZM66,85C68.484,85 70.5,87.016 70.5,89.5C70.5,91.984 68.484,94 66,94C63.516,94 61.5,91.984 61.5,89.5C61.5,87.016 63.516,85 66,85Z" style="fill:black;stroke:black;stroke-width:1.5px;"/>
+            <path d="M35,18L40,18" style="fill:none;stroke:black;stroke-width:3px;"/>
+            <path d="M47,18L65,18" style="fill:none;stroke:black;stroke-width:3px;"/>
+        </g>
+    </g>
+</svg>

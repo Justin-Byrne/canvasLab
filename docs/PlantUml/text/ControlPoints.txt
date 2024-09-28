@@ -4,22 +4,25 @@ skinparam DefaultFontSize 16
 skinparam DefaultFontName Courier New
 
 class ControlPoints {
-p0          <color:gray>{number}</color>
-p1          <color:gray>{number}</color>
-p2          <color:gray>{number}</color>
-p3          <color:gray>{number}</color>
+p0                <color:gray>{number}</color>
+p1                <color:gray>{number}</color>
+p2                <color:gray>{number}</color>
+p3                <color:gray>{number}</color>
 __ Setter __
-p0          <color:gray>{number}</color>
-p1          <color:gray>{number}</color>
-p2          <color:gray>{number}</color>
-p3          <color:gray>{number}</color>
+p0                <color:gray>{number}</color>
+p1                <color:gray>{number}</color>
+p2                <color:gray>{number}</color>
+p3                <color:gray>{number}</color>
+points            <color:gray>{number}</color>
 __ Getter __
-p0          <color:gray>{number}</color>
-p1          <color:gray>{number}</color>
-p2          <color:gray>{number}</color>
-p3          <color:gray>{number}</color>
+p0                <color:gray>{number}</color>
+p1                <color:gray>{number}</color>
+p2                <color:gray>{number}</color>
+p3                <color:gray>{number}</color>
+points            <color:gray>{number}</color>
 __ Validation __
-_isNumber   <color:gray>{boolean}</color>
+_isControlPoint   <color:gray>{boolean}</color>
+_isNumber         <color:gray>{boolean}</color>
 }
 
 @enduml

@@ -992,6 +992,8 @@ Get center of width
     * [.p2()](#ControlPoints+p2) ⇒ <code>number</code>
     * [.p3(value)](#ControlPoints+p3)
     * [.p3()](#ControlPoints+p3) ⇒ <code>number</code>
+    * [.points(value)](#ControlPoints+points)
+    * [.points()](#ControlPoints+points) ⇒ <code>number</code>
 
 <a name="new_ControlPoints_new"></a>
 
@@ -1086,6 +1088,26 @@ Get control point one
 **Kind**: instance method of [<code>ControlPoints</code>](#ControlPoints)  
 **Returns**: <code>number</code> - Control point four  
 **Read only**: true  
+<a name="ControlPoints+points"></a>
+
+### controlPoints.points(value)
+Set points
+
+**Kind**: instance method of [<code>ControlPoints</code>](#ControlPoints)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Points of object |
+
+<a name="ControlPoints+points"></a>
+
+### controlPoints.points() ⇒ <code>number</code>
+Get points
+
+**Kind**: instance method of [<code>ControlPoints</code>](#ControlPoints)  
+**Returns**: <code>number</code> - Points of object  
+**Access**: public  
 <a name="Font"></a>
 
 ## Font
@@ -2713,6 +2735,16 @@ Get master object
     * [.direction()](#Position+direction) ⇒ <code>number</code>
     * [.rotation(value)](#Position+rotation)
     * [.rotation()](#Position+rotation) ⇒ <code>number</code>
+    * [.aspect(value)](#Position+aspect)
+    * [.aspect()](#Position+aspect) ⇒ <code>number</code>
+    * [.width(value)](#Position+width)
+    * [.width()](#Position+width) ⇒ <code>number</code>
+    * [.height(value)](#Position+height)
+    * [.height()](#Position+height) ⇒ <code>number</code>
+    * [.controlPoints(value)](#Position+controlPoints)
+    * [.controlPoints()](#Position+controlPoints) ⇒ <code>Array.&lt;number&gt;</code>
+    * [.fontSize(value)](#Position+fontSize)
+    * [.fontSize()](#Position+fontSize) ⇒ <code>number</code>
     * [.master(value)](#Position+master)
     * [.master()](#Position+master) ⇒ [<code>clObject</code>](#clObject)
 
@@ -2800,6 +2832,106 @@ Get rotation
 
 **Kind**: instance method of [<code>Position</code>](#Position)  
 **Returns**: <code>number</code> - Direction in degrees  
+**Access**: public  
+<a name="Position+aspect"></a>
+
+### position.aspect(value)
+Set aspect
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Aspect of object |
+
+<a name="Position+aspect"></a>
+
+### position.aspect() ⇒ <code>number</code>
+Get aspect
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - Aspect of object  
+**Access**: public  
+<a name="Position+width"></a>
+
+### position.width(value)
+Set width
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Width of object |
+
+<a name="Position+width"></a>
+
+### position.width() ⇒ <code>number</code>
+Get width
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - Width of object  
+**Access**: public  
+<a name="Position+height"></a>
+
+### position.height(value)
+Set height
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Height of object |
+
+<a name="Position+height"></a>
+
+### position.height() ⇒ <code>number</code>
+Get height
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - Height of object  
+**Access**: public  
+<a name="Position+controlPoints"></a>
+
+### position.controlPoints(value)
+Set controlPoints
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array.&lt;number&gt;</code> | ControlPoints of object |
+
+<a name="Position+controlPoints"></a>
+
+### position.controlPoints() ⇒ <code>Array.&lt;number&gt;</code>
+Get controlPoints
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>Array.&lt;number&gt;</code> - ControlPoints of object  
+**Access**: public  
+<a name="Position+fontSize"></a>
+
+### position.fontSize(value)
+Set fontSize
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | FontSize of object |
+
+<a name="Position+fontSize"></a>
+
+### position.fontSize() ⇒ <code>number</code>
+Get fontSize
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - FontSize of object  
 **Access**: public  
 <a name="Position+master"></a>
 
@@ -3427,6 +3559,7 @@ Draw this object
     * [.lineCap()](#Line+lineCap) ⇒ <code>string</code>
     * [.canvas(value)](#Line+canvas)
     * [.canvas()](#Line+canvas) ⇒ <code>string</code>
+    * [.anchor()](#Line+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.options()](#Line+options) ⇒ [<code>Options</code>](#Options)
     * [.position()](#Line+position) ⇒ [<code>Position</code>](#Position)
     * [.controlPoints()](#Line+controlPoints) ⇒ [<code>ControlPoints</code>](#ControlPoints)
@@ -3441,7 +3574,7 @@ Draw this object
     * [.curve(p0, p1, p2, p3)](#Line+curve)
     * [.drawPoints()](#Line+drawPoints)
     * [.move(degree, distance)](#Line+move)
-    * [.rotate(degree, [anchor])](#Line+rotate)
+    * [.rotate(degree, [anchor], [clear])](#Line+rotate)
     * [.showControlPoints([offset], [fontSize])](#Line+showControlPoints)
     * [.showCoordinates([offset], [fontSize])](#Line+showCoordinates)
     * [.draw(canvas)](#Line+draw)
@@ -3549,6 +3682,14 @@ Get canvas value
 **Returns**: <code>string</code> - Canvas id  
 **Read only**: true  
 **See**: [canvas](#PROPERTY_BLOCKS.individual.canvas)  
+<a name="Line+anchor"></a>
+
+### line.anchor() ⇒ [<code>Anchor</code>](#Anchor)
+Get anchor
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+**Returns**: [<code>Anchor</code>](#Anchor) - Anchor properties  
+**Access**: public  
 <a name="Line+options"></a>
 
 ### line.options() ⇒ [<code>Options</code>](#Options)
@@ -3690,16 +3831,18 @@ Move this object
 
 <a name="Line+rotate"></a>
 
-### line.rotate(degree, [anchor])
+### line.rotate(degree, [anchor], [clear])
 Rotate this object
 
 **Kind**: instance method of [<code>Line</code>](#Line)  
 **Access**: public  
+**See**: [rotate](#UTILITIES.individual.misc.rotate)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | degree | <code>number</code> |  | Distance to rotate; in degrees |
 | [anchor] | <code>string</code> | <code>&quot;&#x27;center&#x27;&quot;</code> | Anchoring point during rotation |
+| [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
 
 <a name="Line+showControlPoints"></a>
 
@@ -9149,6 +9292,7 @@ Shared validation functions
     * [.isCanvasLabObject(value)](#VALIDATION.isCanvasLabObject) ⇒ <code>boolean</code>
     * [.isColorName(value)](#VALIDATION.isColorName) ⇒ <code>boolean</code>
     * [.isColorModel(value)](#VALIDATION.isColorModel) ⇒ <code>boolean</code>
+    * [.isControlPoint(value)](#VALIDATION.isControlPoint) ⇒ <code>boolean</code>
     * [.isDecimal(value)](#VALIDATION.isDecimal) ⇒ <code>boolean</code>
     * [.isDegree(value)](#VALIDATION.isDegree) ⇒ <code>boolean</code>
     * [.isFillType(value)](#VALIDATION.isFillType) ⇒ <code>boolean</code>
@@ -9166,6 +9310,7 @@ Shared validation functions
     * [.isTemplate(value)](#VALIDATION.isTemplate) ⇒ <code>boolean</code>
     * [.isWidth(value)](#VALIDATION.isWidth) ⇒ <code>boolean</code>
     * [.Fill#_isRepetition(value)](#VALIDATION.Fill+_isRepetition) ⇒ <code>boolean</code>
+    * [.Position#_isNumber(value)](#VALIDATION.Position+_isNumber) ⇒ <code>boolean</code>
     * [.Group#_isCanvasLabObject(value)](#VALIDATION.Group+_isCanvasLabObject) ⇒ <code>boolean</code>
 
 <a name="VALIDATION.is256"></a>
@@ -9297,6 +9442,19 @@ Returns whether the passed value is a color model
 | Param | Type | Description |
 | --- | --- | --- |
 | value | <code>Object</code> | Color model or object equivalent |
+
+<a name="VALIDATION.isControlPoint"></a>
+
+### VALIDATION.isControlPoint(value) ⇒ <code>boolean</code>
+Returns whether the passed value is an array of Control Point values
+
+**Kind**: static method of [<code>VALIDATION</code>](#VALIDATION)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array.&lt;number&gt;</code> | Array of Control Points |
 
 <a name="VALIDATION.isDecimal"></a>
 
@@ -9521,6 +9679,20 @@ Returns whether the passed value is a repetition value
 | Param | Type | Description |
 | --- | --- | --- |
 | value | <code>string</code> | Repetition value |
+
+<a name="VALIDATION.Position+_isNumber"></a>
+
+### VALIDATION.Position#\_isNumber(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a Number value
+
+**Kind**: static method of [<code>VALIDATION</code>](#VALIDATION)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+**See**: [isNumber](#VALIDATION.isNumber)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Number value |
 
 <a name="VALIDATION.Group+_isCanvasLabObject"></a>
 

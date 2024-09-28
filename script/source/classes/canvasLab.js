@@ -10,6 +10,8 @@ class canvasLab
     _canvases = undefined;
     _font     = undefined;
 
+    _rotation = 0;
+
     #application = new Application;
 
     /**
@@ -112,6 +114,18 @@ class canvasLab
         get font ( )
         {
             return this._canvas.font;
+        }
+
+    ////    [ ROTATION ]    ////////////////////////////////
+
+        set rotation ( value )
+        {
+            this._rotation = value;
+        }
+
+        get rotation ( )
+        {
+            return this._rotation;
         }
 
     ////    [ APPLICATION ]    /////////////////////////////

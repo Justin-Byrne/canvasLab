@@ -21,6 +21,7 @@ class Line
 
     _canvas  = undefined;
 
+    _anchor        = new Anchor;
     #options       = new Options;
     #position      = new Position;
     #controlPoints = new ControlPoints;
@@ -55,6 +56,8 @@ class Line
             this._drawBorder  = UTILITIES.individual.draw.border;
             this._rotatePoint = UTILITIES.individual.misc.rotatePoint;
             this._setShadow   = UTILITIES.individual.set.shadow;
+
+            this.rotate       = UTILITIES.individual.misc.rotate;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.individual.canvas );
 
@@ -248,6 +251,19 @@ class Line
          * @see             {@link PROPERTY_BLOCKS.individual.canvas}
          */
         get canvas ( ) { }
+
+    ////    [ ANCHOR ]  ////////////////////////////////////
+
+        /**
+         * Get anchor
+         * @public
+         * @function
+         * @return          {Anchor}                                    Anchor properties
+         */
+        get anchor ( )
+        {
+            return this._anchor;
+        }
 
     ////    [ OPTIONS ] ////////////////////////////////////
 
@@ -474,6 +490,38 @@ class Line
     ////    UTILITIES   ////////////////////////////////////
 
         /**
+         * Draws anchor point
+         * @private
+         * @function
+         */
+        _drawAnchor ( )
+        {
+            let _point  = undefined;
+
+            let _aspect = new Aspect ( 5, 5 );
+
+
+            switch ( this.anchor.align )
+            {
+                case 'center':       _point = new Point ( this.x,       this.y       );      break;
+
+                case 'start':        _point = new Point ( this.start.x, this.start.y );      break;
+
+                case 'end':          _point = new Point ( this.end.x,   this.end.y   );      break;
+            }
+
+
+            let _anchor = new Rectangle ( _point, _aspect );
+
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
+
+                _anchor.canvas     = this.canvas;
+
+
+                _anchor.draw ( );
+        }
+
+        /**
          * Draws an axis for the associated object
          * @private
          * @function
@@ -512,6 +560,8 @@ class Line
             if ( this.#options.border        ) this._drawBorder       ( _aspect );
 
             if ( this.#options.axis          ) this._drawAxis         ( );
+
+            if ( this.#options.anchor        ) this._drawAnchor       ( );
 
             if ( this.#options.points        ) this.drawPoints        ( );
 
@@ -629,52 +679,43 @@ class Line
         }
 
         /**
+         * Sets anchor's point
+         * @private
+         * @function
+         */
+        _setAnchorPoint ( )
+        {
+            let _point = new Point ( );
+
+
+            switch ( this.anchor.align )
+            {
+                case 'start':   [ _point.x, _point.y ] = [ this.start.x, this.start.y ];  break;
+
+                case 'end':     [ _point.x, _point.y ] = [ this.end.x,   this.end.y   ];  break;
+
+                case 'center':
+
+                    [ _point.x, _point.y ] = [ ( ( this.start.x + this.end.x ) * 0.5 ), ( ( this.start.y + this.end.y ) * 0.5 ) ];
+
+                    break;
+
+                default:
+
+                    console.warn ( `"${anchor}" is not a valid 'anchor' variable !` );
+            }
+        }
+
+        /**
          * Rotate this object
          * @public
          * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
+         * @param           {number} [clear=true]                       Clear canvas during each rotation
+         * @see             {@link UTILITIES.individual.misc.rotate}
          */
-        rotate ( degree, anchor = 'center' )
-        {
-            if ( this._isDegree ( degree ) )
-            {
-                let _point = new Point ( );
-
-
-                switch ( anchor )
-                {
-                    case 'start':   [ _point.x, _point.y ] = [ this.start.x, this.start.y ];  break;
-
-                    case 'end':     [ _point.x, _point.y ] = [ this.end.x,   this.end.y   ];  break;
-
-                    case 'center':
-
-                        [ _point.x, _point.y ] = [ ( ( this.start.x + this.end.x ) * 0.5 ), ( ( this.start.y + this.end.y ) * 0.5 ) ];
-
-                        break;
-
-                    default:
-
-                        console.warn ( `"${anchor}" is not a valid 'anchor' variable !` );
-                }
-
-
-                this._canvas.save      ( );
-
-                this._canvas.translate (   _point.x,   _point.y );
-
-                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
-
-                this._canvas.translate ( - _point.x, - _point.y );
-
-
-                this.draw ( );
-
-
-                this._canvas.restore   ( );
-            }
-        }
+        rotate ( ) { }
 
         /**
          * Show control points for this object

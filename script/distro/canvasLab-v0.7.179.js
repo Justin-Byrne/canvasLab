@@ -1,8 +1,8 @@
 // @program: 		canvasLab 
-// @brief: 			HTML5 canvas illustrating framework 
+// @brief: 			HTML5 canvas illustration & animation framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.7.173 
+// @version: 		0.7.179 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -1426,7 +1426,7 @@ const VALIDATION =
      */
     isAlign ( value )
     {
-        let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft' ];
+        let _options = [ 'center', 'top', 'topRight', 'right', 'bottomRight', 'bottom', 'bottomLeft', 'left', 'topLeft', 'start', 'end' ];
 
 
         for ( let _option of _options ) if ( value === _option )  return true;
@@ -1744,6 +1744,35 @@ const VALIDATION =
     isColorModel ( value )
     {
         return ( value instanceof Rgb ) ? true : false;
+    },
+
+    /**
+     * Returns whether the passed value is an array of Control Point values
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {Array.<number>} value                      Array of Control Points
+     * @return          {boolean}                                   True || False
+     */
+    isControlPoint ( value )
+    {
+        let _result = false;
+
+
+        if ( Array.isArray ( value ) )
+
+            if ( value.length === 4 )
+            {
+                for ( let _entry of value )
+
+                    if ( typeof _entry != 'number' ) return _result;
+
+
+                _result = true;
+            }
+
+
+        return _result;
     },
 
     /**
@@ -2088,6 +2117,8 @@ class canvasLab
     _canvases = undefined;
     _font     = undefined;
 
+    _rotation = 0;
+
     #application = new Application;
 
     /**
@@ -2190,6 +2221,18 @@ class canvasLab
         get font ( )
         {
             return this._canvas.font;
+        }
+
+    ////    [ ROTATION ]    ////////////////////////////////
+
+        set rotation ( value )
+        {
+            this._rotation = value;
+        }
+
+        get rotation ( )
+        {
+            return this._rotation;
         }
 
     ////    [ APPLICATION ]    /////////////////////////////
@@ -3181,7 +3224,8 @@ class ControlPoints
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isNumber = VALIDATION.isNumber;
+            this._isNumber       = VALIDATION.isNumber;
+            this._isControlPoint = VALIDATION.isControlPoint;
 
         this.p0 = p0;
         this.p1 = p1;
@@ -3189,7 +3233,7 @@ class ControlPoints
         this.p3 = p3;
     }
 
-    ////    [ ONE ]     ////////////////////////////////////////
+    ////    [ ONE ]     ////////////////////////////////////
 
         /**
          * Set control point one
@@ -3213,7 +3257,7 @@ class ControlPoints
             return this._p0;
         }
 
-    ////    [ TWO ]     ////////////////////////////////////////
+    ////    [ TWO ]     ////////////////////////////////////
 
         /**
          * Set control point one
@@ -3237,7 +3281,7 @@ class ControlPoints
             return this._p1;
         }
 
-    ////    [ THREE ]     //////////////////////////////////////
+    ////    [ THREE ]     //////////////////////////////////
 
         /**
          * Set control point one
@@ -3261,7 +3305,7 @@ class ControlPoints
             return this._p2;
         }
 
-    ////    [ FOUR ]     ////////////////////////////////////////
+    ////    [ FOUR ]     ///////////////////////////////////
 
         /**
          * Set control point one
@@ -3285,7 +3329,44 @@ class ControlPoints
             return this._p3;
         }
 
-    ////    VALIDATION  ////////////////////////////////////////
+    ////    [ POINTS ]    ///////////////////////////////////
+
+        /**
+         * Set points
+         * @public
+         * @function
+         * @param             {number} value                            Points of object
+         */
+        set points ( value )
+        {
+            if ( this._isControlPoint ( value ) )
+
+                [ this.p0, this.p1, this.p2, this.p3 ] = [ value [ 0 ], value [ 1 ], value [ 2 ], value [ 3 ] ];
+        }
+
+        /**
+         * Get points
+         * @public
+         * @function
+         * @return             {number}                                 Points of object
+         */
+        get points ( )
+        {
+            return [ this.p0, this.p1, this.p2, this.p3 ];
+        }
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        /**
+         * Returns whether the passed value is an array of Control Point values
+         * @private
+         * @memberof VALIDATION
+         * @function
+         * @param           {Array.<number>} value                      Array of Control Points
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isControlPoint}
+         */
+        _isControlPoint ( ) { }
 
         /**
          * Returns whether the passed value is a Number value
@@ -5636,17 +5717,23 @@ class StrokeCollection
  */
 class Position
 {
-	_origin    = undefined;
+	_origin          = undefined;
 
-	_start     = undefined;
-	_end       = undefined;
+	_start           = undefined;
+	_end             = undefined;
 
-	_distance  = undefined;
-	_direction = undefined;
+	_distance        = undefined;
+	_direction       = undefined;
 
-	_rotation  = 0;
+	_rotation        = 0;
 
-	_master    = undefined;
+	_aspect          = new Aspect;
+
+	_controlPoints   = new ControlPoints;
+
+	_fontSize        = 0;
+
+	_master          = undefined;
 
 	/**
 	 * Create a Position object
@@ -5658,10 +5745,16 @@ class Position
 	{
 		////    COMPOSITION    /////////////////////////////
 
+			this._isAspect  		= VALIDATION.isAspect;
+			this._isBlur            = VALIDATION.isBlur;
 			this._isCanvasLabObject = VALIDATION.isCanvasLabObject;
+			this._isControlPoint    = VALIDATION.isControlPoint;
+			this._isNumber 			= VALIDATION.isNumber;
 			this._isPoint 			= VALIDATION.isPoint;
+			this._isWidth 			= VALIDATION.isWidth
+			this._isHeight 			= VALIDATION.isHeight
 
-			Object.defineProperty ( this, 'master', PROPERTY_BLOCKS.individual.master );
+			Object.defineProperty ( this, 'master', PROPERTY_BLOCKS.individual.master  );
 
 		this.origin    = origin;
 		this.distance  = distance;
@@ -5772,6 +5865,126 @@ class Position
 			return this._rotation;
 		}
 
+	////    [ ASPECT ]    //////////////////////////////////
+
+	    /**
+	     * Set aspect
+	     * @public
+	     * @function
+	     * @param 			{number} value 								Aspect of object
+	     */
+	    set aspect ( value )
+	    {
+	        this._aspect = ( this._isAspect ( value ) ) ? value : this._aspect;
+	    }
+
+	    /**
+	     * Get aspect
+	     * @public
+	     * @function
+	     * @return 			{number} 									Aspect of object
+	     */
+	    get aspect ( )
+	    {
+	        return this._aspect;
+	    }
+
+	////    [ WIDTH ]    ///////////////////////////////////
+
+		/**
+		 * Set width
+		 * @public
+		 * @function
+		 * @param 			{number} value 								Width of object
+		 */
+		set width ( value )
+		{
+			this._aspect.width = value;
+		}
+
+		/**
+		 * Get width
+		 * @public
+		 * @function
+		 * @return 			{number}									Width of object
+		 */
+		get width ( )
+		{
+			return this._aspect.width;
+		}
+
+	////    [ HEIGHT ]    //////////////////////////////////
+
+	    /**
+	     * Set height
+	     * @public
+	     * @function
+	     * @param 			{number} value 								Height of object
+	     */
+	    set height ( value )
+	    {
+	        this._aspect.height = value;
+	    }
+
+	    /**
+	     * Get height
+	     * @public
+	     * @function
+	     * @return 			{number}									Height of object
+	     */
+	    get height ( )
+	    {
+	        return this._aspect.height;
+	    }
+
+	////    [ CONTROLPOINTS ]    ///////////////////////////
+
+	    /**
+	     * Set controlPoints
+	     * @public
+	     * @function
+	     * @param 			{Array.<number>} value 						ControlPoints of object
+	     */
+	    set controlPoints ( value )
+	    {
+	        this._controlPoints = ( this._isControlPoint ( value ) ) ? value : this._controlPoints;
+	    }
+
+	    /**
+	     * Get controlPoints
+	     * @public
+	     * @function
+	     * @return 			{Array.<number>} 							ControlPoints of object
+	     */
+	    get controlPoints ( )
+	    {
+	        return this._controlPoints;
+	    }
+
+	////    [ FONTSIZE ]    ////////////////////////////////
+
+	    /**
+	     * Set fontSize
+	     * @public
+	     * @function
+	     * @param 			{number} value 								FontSize of object
+	     */
+	    set fontSize ( value )
+	    {
+	        this._fontSize = this._isNumber ( value ) ? value : this._fontSize;
+	    }
+
+	    /**
+	     * Get fontSize
+	     * @public
+	     * @function
+	     * @return 			{number}									FontSize of object
+	     */
+	    get fontSize ( )
+	    {
+	        return this._fontSize;
+	    }
+
 	////    [ MASTER ]    //////////////////////////////////
 
 		/**
@@ -5795,6 +6008,27 @@ class Position
 	////    VALIDATION    //////////////////////////////////
 
 		/**
+	     * Returns whether the passed value is an Aspect
+	     * @private
+	     * @memberof VALIDATION
+	     * @function
+	     * @param           {Object} value                              Aspect or object equivalent
+	     * @return          {boolean}                                   True || False
+	     * @see             {@link VALIDATION.isAspect}
+	     */
+	    _isAspect ( ) { }
+
+	    /**
+         * Returns whether the passed value is a blur value
+         * @private
+         * @function
+         * @param           {number} value                              Blur value
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isBlur}
+         */
+        _isBlur ( ) { }
+
+		/**
          * Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle, Text
          * @private
          * @function
@@ -5803,6 +6037,28 @@ class Position
          * @see             {@link VALIDATION.isCanvasLabObject}
          */
         _isCanvasLabObject ( ) { }
+
+        /**
+	     * Returns whether the passed value is an array of Control Point values
+	     * @private
+	     * @memberof VALIDATION
+	     * @function
+	     * @param           {Array.<number>} value                      Array of Control Points
+	     * @return          {boolean}                                   True || False
+	     * @see             {@link VALIDATION.isControlPoint}
+	     */
+	    _isControlPoint ( ) { }
+
+	    /**
+	     * Returns whether the passed value is a Number value
+	     * @public
+	     * @memberof VALIDATION
+	     * @function
+	     * @param           {number} value                              Number value
+	     * @return          {boolean}                                   True || False
+	     * @see             {@link VALIDATION.isNumber}
+	     */
+	    _isNumber ( ) { }
 
 		/**
          * Returns whether the passed value is a Point
@@ -5813,6 +6069,28 @@ class Position
          * @see             {@link VALIDATION.isPoint}
          */
         _isPoint ( ) { }
+
+        /**
+	     * Returns whether the passed value is a width value
+	     * @private
+	     * @memberof VALIDATION
+	     * @function
+	     * @param           {number} value                              Width value
+	     * @return          {boolean}                                   True || False
+	     * @see             {@link VALIDATION.isWidth}
+	     */
+	    _isWidth ( ) { }
+
+	    /**
+	     * Returns whether the passed value is a height value
+	     * @private
+	     * @memberof VALIDATION
+	     * @function
+	     * @param           {number} value                              Height value
+	     * @return          {boolean}                                   True || False
+	     * @see             {@link VALIDATION.isHeight}
+	     */
+	    _isHeight ( ) { }
 }
  
 /**
@@ -6539,6 +6817,7 @@ class Line
 
     _canvas  = undefined;
 
+    _anchor        = new Anchor;
     #options       = new Options;
     #position      = new Position;
     #controlPoints = new ControlPoints;
@@ -6573,6 +6852,8 @@ class Line
             this._drawBorder  = UTILITIES.individual.draw.border;
             this._rotatePoint = UTILITIES.individual.misc.rotatePoint;
             this._setShadow   = UTILITIES.individual.set.shadow;
+
+            this.rotate       = UTILITIES.individual.misc.rotate;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.individual.canvas );
 
@@ -6766,6 +7047,19 @@ class Line
          * @see             {@link PROPERTY_BLOCKS.individual.canvas}
          */
         get canvas ( ) { }
+
+    ////    [ ANCHOR ]  ////////////////////////////////////
+
+        /**
+         * Get anchor
+         * @public
+         * @function
+         * @return          {Anchor}                                    Anchor properties
+         */
+        get anchor ( )
+        {
+            return this._anchor;
+        }
 
     ////    [ OPTIONS ] ////////////////////////////////////
 
@@ -6992,6 +7286,38 @@ class Line
     ////    UTILITIES   ////////////////////////////////////
 
         /**
+         * Draws anchor point
+         * @private
+         * @function
+         */
+        _drawAnchor ( )
+        {
+            let _point  = undefined;
+
+            let _aspect = new Aspect ( 5, 5 );
+
+
+            switch ( this.anchor.align )
+            {
+                case 'center':       _point = new Point ( this.x,       this.y       );      break;
+
+                case 'start':        _point = new Point ( this.start.x, this.start.y );      break;
+
+                case 'end':          _point = new Point ( this.end.x,   this.end.y   );      break;
+            }
+
+
+            let _anchor = new Rectangle ( _point, _aspect );
+
+                _anchor.fill.color = new Rgb ( 255, 0, 0 );
+
+                _anchor.canvas     = this.canvas;
+
+
+                _anchor.draw ( );
+        }
+
+        /**
          * Draws an axis for the associated object
          * @private
          * @function
@@ -7030,6 +7356,8 @@ class Line
             if ( this.#options.border        ) this._drawBorder       ( _aspect );
 
             if ( this.#options.axis          ) this._drawAxis         ( );
+
+            if ( this.#options.anchor        ) this._drawAnchor       ( );
 
             if ( this.#options.points        ) this.drawPoints        ( );
 
@@ -7147,52 +7475,43 @@ class Line
         }
 
         /**
+         * Sets anchor's point
+         * @private
+         * @function
+         */
+        _setAnchorPoint ( )
+        {
+            let _point = new Point ( );
+
+
+            switch ( this.anchor.align )
+            {
+                case 'start':   [ _point.x, _point.y ] = [ this.start.x, this.start.y ];  break;
+
+                case 'end':     [ _point.x, _point.y ] = [ this.end.x,   this.end.y   ];  break;
+
+                case 'center':
+
+                    [ _point.x, _point.y ] = [ ( ( this.start.x + this.end.x ) * 0.5 ), ( ( this.start.y + this.end.y ) * 0.5 ) ];
+
+                    break;
+
+                default:
+
+                    console.warn ( `"${anchor}" is not a valid 'anchor' variable !` );
+            }
+        }
+
+        /**
          * Rotate this object
          * @public
          * @function
          * @param           {number} degree                             Distance to rotate; in degrees
          * @param           {string} [anchor='center']                  Anchoring point during rotation
+         * @param           {number} [clear=true]                       Clear canvas during each rotation
+         * @see             {@link UTILITIES.individual.misc.rotate}
          */
-        rotate ( degree, anchor = 'center' )
-        {
-            if ( this._isDegree ( degree ) )
-            {
-                let _point = new Point ( );
-
-
-                switch ( anchor )
-                {
-                    case 'start':   [ _point.x, _point.y ] = [ this.start.x, this.start.y ];  break;
-
-                    case 'end':     [ _point.x, _point.y ] = [ this.end.x,   this.end.y   ];  break;
-
-                    case 'center':
-
-                        [ _point.x, _point.y ] = [ ( ( this.start.x + this.end.x ) * 0.5 ), ( ( this.start.y + this.end.y ) * 0.5 ) ];
-
-                        break;
-
-                    default:
-
-                        console.warn ( `"${anchor}" is not a valid 'anchor' variable !` );
-                }
-
-
-                this._canvas.save      ( );
-
-                this._canvas.translate (   _point.x,   _point.y );
-
-                this._canvas.rotate    ( ( degree % 360 ) * Math.PI / 180 );
-
-                this._canvas.translate ( - _point.x, - _point.y );
-
-
-                this.draw ( );
-
-
-                this._canvas.restore   ( );
-            }
-        }
+        rotate ( ) { }
 
         /**
          * Show control points for this object
@@ -8767,6 +9086,7 @@ class cImage
             this._drawAnchor     = UTILITIES.individual.draw.anchor;
             this._drawAxis       = UTILITIES.individual.draw.axis;
             this._drawBorder     = UTILITIES.individual.draw.border;
+            this._rotatePoint    = UTILITIES.individual.misc.rotatePoint
             this._setAnchorPoint = UTILITIES.individual.set.anchorPoint;
 
             this.move   = UTILITIES.individual.misc.move;
@@ -12456,6 +12776,21 @@ class Animation
         }
 
         /**
+         * Resets the canvas transform; from rotational transforms
+         * @private
+         * @function
+         */
+        _resetCanvasTransform ( )
+        {
+            if ( canvaslab.rotation > 0 )
+            {
+                this.object.rotate ( - ( canvaslab.rotation ) );
+
+                canvaslab.rotation = 0;
+            }
+        }
+
+        /**
          * Caches current object
          * @private
          * @function
@@ -12473,7 +12808,10 @@ class Animation
             }
             else
 
-                console.info ( 'animation complete !' );
+                this._resetCanvasTransform ( );
+
+
+            console.info ( '. animation complete !' );
         }
 
         /**
@@ -12485,7 +12823,7 @@ class Animation
         {
             for ( let _type in this.change )
             {
-                let _difference = this.change [ _type ];
+                let _amount = this.change [ _type ];
 
 
                 switch ( _type )
@@ -12494,9 +12832,9 @@ class Animation
 
                         this.object.position.origin    = this.object.point;
 
-                        this.object.position.distance  = _difference;
+                        this.object.position.distance  = _amount;
 
-                        this.object.position.direction = _difference;
+                        this.object.position.direction = _amount;
 
                         break;
 
@@ -12504,11 +12842,9 @@ class Animation
 
                         this.object.position.origin    = this.object.start;
 
-                        this.object.position.distance  = _difference;
+                        this.object.position.distance  = _amount;
 
-                        this.object.position.direction = _difference;
-
-                        // code . . .
+                        this.object.position.direction = _amount;
 
                         break;
 
@@ -12516,11 +12852,9 @@ class Animation
 
                         this.object.position.origin    = this.object.end;
 
-                        this.object.position.distance  = _difference;
+                        this.object.position.distance  = _amount;
 
-                        this.object.position.direction = _difference;
-
-                        // code . . .
+                        this.object.position.direction = _amount;
 
                         break;
 
@@ -12529,12 +12863,12 @@ class Animation
                         this.object.position.origin = this.object.point;
 
 
-                        _difference.degree = ( this.change.rotatePoint ) ? _difference.degree + this.change.rotatePoint
+                        _amount.degree = ( this.change.rotatePoint ) ? _amount.degree + this.change.rotatePoint
 
-                                                                         : _difference.degree;
+                                                                         : _amount.degree;
 
 
-                        let _point = this._getPointByDegreeNDistance ( _difference.degree, _difference.distance );
+                        let _point = this._getPointByDegreeNDistance ( _amount.degree, _amount.distance );
 
 
                         this.object.position.distance  = _point;
@@ -12546,6 +12880,24 @@ class Animation
                     case 'radius':
 
                         // code . . .
+
+                        break;
+
+                    case 'aspect':
+
+                        this.object.position.aspect = this.object.aspect;
+
+                        break;
+
+                    case 'width':
+
+                        this.object.position.aspect.width = this.object.width;
+
+                        break;
+
+                    case 'height':
+
+                        this.object.position.aspect.height = this.object.height;
 
                         break;
 
@@ -12587,9 +12939,46 @@ class Animation
 
                         break;
 
+                    case 'curve':
+                    case 'controlPoints':
+
+                        this.object.position.controlPoints = this.object.controlPoints.points;
+
+                        break;
+
+                    case 'p0':
+
+                        this.object.position.controlPoints.p0 = this.object.controlPoints.p0;
+
+                        break;
+
+                    case 'p1':
+
+                        this.object.position.controlPoints.p1 = this.object.controlPoints.p1;
+
+                        break;
+
+                    case 'p2':
+
+                        this.object.position.controlPoints.p2 = this.object.controlPoints.p2;
+
+                        break;
+
+                    case 'p3':
+
+                        this.object.position.controlPoints.p3 = this.object.controlPoints.p3;
+
+                        break;
+
+                    case 'fontSize':
+
+                        this.object.position.fontSize = this.object.size;
+
+                        break;
+
                     case 'cache':
 
-                        this.cache = _difference;
+                        this.cache = _amount;
 
                         break;
                 }
@@ -12653,9 +13042,58 @@ class Animation
 
                         break;
 
+                    case 'angleStart':
+
+                        object.angle.start = _amount * progress;
+
+                        break;
+
+                    case 'angleEnd':
+
+                        object.angle.end = _amount * progress;
+
+                        break
+
+                    case 'aspect':
+
+                        object.position.aspect.width  += ( _amount.width - object.position.aspect.width ) * progress;
+
+                        object.aspect.width            = object.position.aspect.width;
+
+
+                        object.position.aspect.height += ( _amount.height - object.position.aspect.height ) * progress;
+
+                        object.aspect.height           = object.position.aspect.height;
+
+                        break;
+
+                    case 'width':
+
+                        object.position.aspect.width  += ( _amount - object.position.aspect.width ) * progress;
+
+                        object.aspect.width            = object.position.aspect.width;
+
+                        break;
+
+                    case 'height':
+
+                        object.position.aspect.height += ( _amount - object.position.aspect.height ) * progress;
+
+                        object.aspect.height           = object.position.aspect.height;
+
+                        break;
+
                     case 'rotate':
 
-                        object.rotate ( _amount );
+                        let _rotate   = progress * ( _amount - object.position.rotation );
+
+
+                        object.rotate ( _rotate );
+
+
+                        object.position.rotation += _rotate;
+
+                        canvaslab.rotation       += _rotate;
 
                         break;
 
@@ -12699,9 +13137,87 @@ class Animation
 
                         break;
 
-                    case 'rotate':
+                    case 'shadowColor':
 
-                        console.log ( '_amount:', _amount );
+                        object.shadow.color.cycle ( object.shadow.color, _amount, progress, 1 );
+
+                        break;
+
+                    case 'shadowAlpha':
+
+                        object.shadow.color.alpha = _amount * progress;
+
+                        break;
+
+                    case 'shadowBlur':
+
+                        object.shadow.blur = _amount * progress;
+
+                        break;
+
+                    case 'shadowOffset':
+
+                        object.shadow.offset = new Point ( _amount.x * progress, _amount.y * progress );
+
+                        break;
+
+                    case 'curve':
+                    case 'controlPoints':
+
+                        for ( let _id in _amount )
+                        {
+                            let _oldControlPoint = object.position.controlPoints [ _id ];
+
+                            let _newControlPoint = _amount [ _id ];
+
+
+                            if ( _oldControlPoint != _newControlPoint )
+                            {
+                                let _change = ( _newControlPoint - _oldControlPoint ) * progress;
+
+
+                                switch ( _id )
+                                {
+                                    case '0':       object.controlPoints.p0 = _change;         break;
+
+                                    case '1':       object.controlPoints.p1 = _change;         break;
+
+                                    case '2':       object.controlPoints.p2 = _change;         break;
+
+                                    case '3':       object.controlPoints.p3 = _change;         break;
+                                }
+                            }
+                        }
+
+                        break;
+
+                    case 'p0':
+
+                        object.controlPoints.p0 = ( _amount - object.position.controlPoints.p0 ) * progress;
+
+                        break;
+
+                    case 'p1':
+
+                        object.controlPoints.p1 = ( _amount - object.position.controlPoints.p1 ) * progress;
+
+                        break;
+
+                    case 'p2':
+
+                        object.controlPoints.p2 = ( _amount - object.position.controlPoints.p2 ) * progress;
+
+                        break;
+
+                    case 'p3':
+
+                        object.controlPoints.p3 = ( _amount - object.position.controlPoints.p3 ) * progress;
+
+                        break;
+
+                    case 'fontSize':
+
+                        object.size = ( ( _amount - object.position.fontSize ) * progress ) + object.position.fontSize;
 
                         break;
                 }
@@ -12728,6 +13244,8 @@ class Animation
             ////    PREPARATORY    /////////////////////////
 
                 this._checkQueue ( );
+
+                this._resetCanvasTransform ( );
 
                 this._setPositionData ( );
 
@@ -13356,7 +13874,7 @@ class Animations
 
                         case 'radius':
 
-                            // _object.position.radius = _object.radius;
+                            // code . . .
 
                             break;
 
@@ -13496,7 +14014,7 @@ class Animations
 
                     case 'rotate':
 
-                        console.log ( '_amount:', _amount );
+                        // code . . .
 
                         break;
 
@@ -13508,15 +14026,16 @@ class Animations
                             {
                                 let _line = new Line ( _object.point, _entry.point );
 
-                                _line.draw ( );
+                                    _line.draw ( );
                             }
                         }
                         else
                         {
                             let _line = new Line ( _object.point, _amount.point );
 
-                            _line.draw ( );
+                                _line.draw ( );
                         }
+
 
                         break;
                 }
@@ -13665,8 +14184,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Sep, 18 2024',
-            Version:   '0.7.173',
+            Updated:   'Sep, 27 2024',
+            Version:   '0.7.179',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }

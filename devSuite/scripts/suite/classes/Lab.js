@@ -181,82 +181,6 @@ class Lab
         }
 
         /**
-         * Sets the font size within ace-editor up (+) or down (-)
-         * @private
-         * @function
-         * @param           {boolean} up                        True (+) || false (-)
-         */
-        _setFontSize ( up = true )
-        {
-            let _size = document.getElementById ( this.editor.container.id ).style.fontSize;
-
-                _size = ( up ) ? Number ( _size.replace ( 'px', '' ) ) + 1
-
-                               : Number ( _size.replace ( 'px', '' ) ) - 1;
-
-
-            document.getElementById ( this.editor.container.id ).style.fontSize = `${_size}px`;
-        }
-
-        /**
-         * Sets numeric value within ace-editor up (+) or down (-)
-         * @private
-         * @function
-         * @param           {boolean} up                        True (+) || false (-)
-         */
-        _setNumbericValue ( up = true )
-        {
-            let _cursor = this.editor.selection.getCursor ( );
-
-            let _range  = this.editor.selection.getRange  ( );
-
-            let _value  = this.editor.getSelectedText     ( );
-
-            let _regex  = new RegExp ( /^\d+$/ );
-
-
-            if ( _regex.test ( _value ) )
-            {
-                _value = this._incrementValue ( _value, up );
-
-
-                this.editor.session.replace    ( _range, `${_value}` );
-
-                this.editor.selection.setRange ( _range );
-
-
-                this.runCode ( );
-            }
-        }
-
-        /**
-         * Sets the lab's menu items in relation to internal scripts
-         * @private
-         * @function
-         */
-        _setMenuPopups (  )
-        {
-            let _menu    = document.querySelector ( '.menu_popup' );
-
-            let _scripts = devSuite.getScripts ( );
-
-            let _show    = ( _menu.style.display === 'none' );
-
-
-            if ( _show )
-
-                for ( let _script in _scripts )
-                {
-                    let _li = document.createElement ( 'li' );
-
-                        _li.innerHTML = _script;
-
-
-                        _menu.appendChild ( _li );
-                }
-        }
-
-        /**
          * Sets all event listeners for this object
          * @private
          * @function
@@ -517,6 +441,82 @@ class Lab
 
                     Mousetrap.bind ( 'a',         ( ) => UI.toggle.angle       ( ) );
             }
+        }
+
+        /**
+         * Sets the font size within ace-editor up (+) or down (-)
+         * @private
+         * @function
+         * @param           {boolean} up                        True (+) || false (-)
+         */
+        _setFontSize ( up = true )
+        {
+            let _size = document.getElementById ( this.editor.container.id ).style.fontSize;
+
+                _size = ( up ) ? Number ( _size.replace ( 'px', '' ) ) + 1
+
+                               : Number ( _size.replace ( 'px', '' ) ) - 1;
+
+
+            document.getElementById ( this.editor.container.id ).style.fontSize = `${_size}px`;
+        }
+
+        /**
+         * Sets numeric value within ace-editor up (+) or down (-)
+         * @private
+         * @function
+         * @param           {boolean} up                        True (+) || false (-)
+         */
+        _setNumbericValue ( up = true )
+        {
+            let _cursor = this.editor.selection.getCursor ( );
+
+            let _range  = this.editor.selection.getRange  ( );
+
+            let _value  = this.editor.getSelectedText     ( );
+
+            let _regex  = new RegExp ( /^\d+$/ );
+
+
+            if ( _regex.test ( _value ) )
+            {
+                _value = this._incrementValue ( _value, up );
+
+
+                this.editor.session.replace    ( _range, `${_value}` );
+
+                this.editor.selection.setRange ( _range );
+
+
+                this.runCode ( );
+            }
+        }
+
+        /**
+         * Sets the lab's menu items in relation to internal scripts
+         * @private
+         * @function
+         */
+        _setMenuPopups (  )
+        {
+            let _menu    = document.querySelector ( '.menu_popup' );
+
+            let _scripts = devSuite.getScripts ( );
+
+            let _show    = ( _menu.style.display === 'none' );
+
+
+            if ( _show )
+
+                for ( let _script in _scripts )
+                {
+                    let _li = document.createElement ( 'li' );
+
+                        _li.innerHTML = _script;
+
+
+                        _menu.appendChild ( _li );
+                }
         }
 
         /**
@@ -939,39 +939,32 @@ class Lab
          * Sets lab default options
          * @public
          * @function
+         * @param           {Array.<string>} defaults           Array of default options
          */
-        setLabDefaults ( )
+        setLabDefaults ( defaults )
         {
-            let _defaults = [ 'sidebar', 'clear', 'grid', 'coordinates', 'angle' ]
+            let _defaults = ( defaults === undefined ) ? [ 'sidebar', 'grid', /* 'clear', 'coordinates', 'angle' */ ]
+
+                                                       : defaults;
 
 
             for ( let _type of _defaults )
+            {
+                let _input = document.getElementById ( `input-${_type}` );
 
-                document.getElementById ( `input-${_type}` ).click ( );
+
+                if ( ! TOOL.isActive ( _input ) )
+
+                    _input.click ( );
+
+                else
+
+                    continue;
+
+            }
         }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
-
-        /**
-         * Copy passed contents to clipboard
-         * @public
-         * @async
-         * @function
-         * @param           {string} contents                   Contents to copy to clipboard
-         */
-        async _copyToClipboard ( contents )
-        {
-            try
-            {
-                await navigator.clipboard.writeText ( contents );
-
-                console.info ( 'Copied to clipboard' );
-            }
-            catch ( err )
-            {
-                console.error ( 'Failed to copy: ', err );
-            }
-        }
 
         /**
          * Cleans code of enumerators for ace-editor
@@ -1010,6 +1003,27 @@ class Lab
             if ( _animation )
 
                 _animation.cancel
+        }
+
+        /**
+         * Copy passed contents to clipboard
+         * @public
+         * @async
+         * @function
+         * @param           {string} contents                   Contents to copy to clipboard
+         */
+        async _copyToClipboard ( contents )
+        {
+            try
+            {
+                await navigator.clipboard.writeText ( contents );
+
+                console.info ( 'Copied to clipboard' );
+            }
+            catch ( err )
+            {
+                console.error ( 'Failed to copy: ', err );
+            }
         }
 
         /**

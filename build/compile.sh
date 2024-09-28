@@ -19,7 +19,7 @@ declare WITH_PLANTUML=false
 
 declare VC_PACKAGE=canvasLab
 
-declare VC_BRIEF="HTML5 canvas illustrating framework"
+declare VC_BRIEF="HTML5 canvas illustration & animation framework"
 
 ## INPUT #########################################################
 
@@ -205,6 +205,8 @@ main ()
     if $WITH_MD2JSON
     then
         compile_md2json
+
+        source ../devSuite/build/compile.sh
     fi
 
     if $WITH_PLANTUML

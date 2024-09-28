@@ -23,7 +23,8 @@ class ControlPoints
     {
         ////    COMPOSITION     ////////////////////////////
 
-            this._isNumber = VALIDATION.isNumber;
+            this._isNumber       = VALIDATION.isNumber;
+            this._isControlPoint = VALIDATION.isControlPoint;
 
         this.p0 = p0;
         this.p1 = p1;
@@ -31,7 +32,7 @@ class ControlPoints
         this.p3 = p3;
     }
 
-    ////    [ ONE ]     ////////////////////////////////////////
+    ////    [ ONE ]     ////////////////////////////////////
 
         /**
          * Set control point one
@@ -55,7 +56,7 @@ class ControlPoints
             return this._p0;
         }
 
-    ////    [ TWO ]     ////////////////////////////////////////
+    ////    [ TWO ]     ////////////////////////////////////
 
         /**
          * Set control point one
@@ -79,7 +80,7 @@ class ControlPoints
             return this._p1;
         }
 
-    ////    [ THREE ]     //////////////////////////////////////
+    ////    [ THREE ]     //////////////////////////////////
 
         /**
          * Set control point one
@@ -103,7 +104,7 @@ class ControlPoints
             return this._p2;
         }
 
-    ////    [ FOUR ]     ////////////////////////////////////////
+    ////    [ FOUR ]     ///////////////////////////////////
 
         /**
          * Set control point one
@@ -127,7 +128,44 @@ class ControlPoints
             return this._p3;
         }
 
-    ////    VALIDATION  ////////////////////////////////////////
+    ////    [ POINTS ]    ///////////////////////////////////
+
+        /**
+         * Set points
+         * @public
+         * @function
+         * @param             {number} value                            Points of object
+         */
+        set points ( value )
+        {
+            if ( this._isControlPoint ( value ) )
+
+                [ this.p0, this.p1, this.p2, this.p3 ] = [ value [ 0 ], value [ 1 ], value [ 2 ], value [ 3 ] ];
+        }
+
+        /**
+         * Get points
+         * @public
+         * @function
+         * @return             {number}                                 Points of object
+         */
+        get points ( )
+        {
+            return [ this.p0, this.p1, this.p2, this.p3 ];
+        }
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        /**
+         * Returns whether the passed value is an array of Control Point values
+         * @private
+         * @memberof VALIDATION
+         * @function
+         * @param           {Array.<number>} value                      Array of Control Points
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isControlPoint}
+         */
+        _isControlPoint ( ) { }
 
         /**
          * Returns whether the passed value is a Number value

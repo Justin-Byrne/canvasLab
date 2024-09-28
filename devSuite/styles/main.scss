@@ -545,6 +545,16 @@ main
                             }
                         }
 
+                        .card-body-lab > .lab-bottle
+                        {
+                            position: absolute;
+                            display:  block;
+
+                            top:    unset !important;
+                            bottom: 56px;
+                            right:  12px;
+                        }
+
                         .card-body
                         {
                             padding: 0.5rem 0.5rem;
@@ -1153,7 +1163,7 @@ main
 
                 opacity:    0;
 
-                transition: opacity 1s ease;
+                transition: opacity 2s ease;
 
                 .dimensions
                 {
@@ -1211,7 +1221,7 @@ main
 
                 opacity:    0;
 
-                transition: opacity 1s ease;
+                transition: opacity 2s ease;
 
                 .display, .cartesian, .center
                 {
@@ -1247,7 +1257,7 @@ main
 
                 opacity:    0;
 
-                transition: opacity 1s ease;
+                transition: opacity 2s ease;
 
                 .cartesian
                 {
@@ -1275,7 +1285,7 @@ main
                 background-color: transparent;
                 opacity:    0;
 
-                transition: opacity 1s ease;
+                transition: opacity 2s ease;
             }
 
             #coordinates
@@ -1285,7 +1295,7 @@ main
 
                 background-color: transparent;
 
-                transition: opacity 1s ease;
+                transition: opacity 2s ease;
             }
 
             #angle
@@ -1295,7 +1305,7 @@ main
 
                 background-color: transparent;
 
-                transition: opacity 1s ease;
+                transition: opacity 2s ease;
             }
 
             canvas

@@ -140,16 +140,32 @@ origin               {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>
 rotation             <color:gray>{number}</color>
+aspect               <color:gray>{number}</color>
+width                <color:gray>{number}</color>
+height               <color:gray>{number}</color>
+controlPoints        {Array.<number>}
+fontSize             <color:gray>{number}</color>
 master               {clObject}
 __ Getter __
 origin               {Point}
 distance             <color:gray>{number}</color>
 direction            <color:gray>{number}</color>
 rotation             <color:gray>{number}</color>
+aspect               <color:gray>{number}</color>
+width                <color:gray>{number}</color>
+height               <color:gray>{number}</color>
+controlPoints        {Array.<number>}
+fontSize             <color:gray>{number}</color>
 master               {clObject}
 __ Validation __
+_isAspect            <color:gray>{boolean}</color>
+_isBlur              <color:gray>{boolean}</color>
 _isCanvasLabObject   <color:gray>{boolean}</color>
+_isControlPoint      <color:gray>{boolean}</color>
+_isNumber            <color:gray>{boolean}</color>
 _isPoint             <color:gray>{boolean}</color>
+_isWidth             <color:gray>{boolean}</color>
+_isHeight            <color:gray>{boolean}</color>
 }
 
 
