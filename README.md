@@ -18,7 +18,11 @@ HTML5 canvas illustration & animation framework
 
 ## Installation
 
-https://codepen.io/justinbyrne/pen/GRbVdaG
+<iframe height="300" style="width: 100%;" scrolling="no" title="Canvas Rotation Example" src="https://codepen.io/justinbyrne/embed/GRbVdaG?default-tab=js%2Cresult&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/justinbyrne/pen/GRbVdaG">
+  Canvas Rotation Example</a> by Justin D Byrne (<a href="https://codepen.io/justinbyrne">@justinbyrne</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 Migrate to your desired download location, and download this repository to your system using git clone:
 
