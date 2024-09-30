@@ -18,6 +18,8 @@ HTML5 canvas illustration & animation framework
 
 ## Installation
 
+https://codepen.io/justinbyrne/pen/GRbVdaG
+
 Migrate to your desired download location, and download this repository to your system using git clone:
 
 ```sh
