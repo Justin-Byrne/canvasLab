@@ -18,11 +18,12 @@ HTML5 canvas illustration & animation framework
 
 ## Installation
 
-<iframe height="300" style="width: 100%;" scrolling="no" title="Canvas Rotation Example" src="https://codepen.io/justinbyrne/embed/GRbVdaG?default-tab=js%2Cresult&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/justinbyrne/pen/GRbVdaG">
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="GRbVdaG" data-pen-title="Canvas Rotation Example" data-user="justinbyrne" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/justinbyrne/pen/GRbVdaG">
   Canvas Rotation Example</a> by Justin D Byrne (<a href="https://codepen.io/justinbyrne">@justinbyrne</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
 Migrate to your desired download location, and download this repository to your system using git clone:
 
