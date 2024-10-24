@@ -24,129 +24,131 @@ class ShadowCollection
             this._setAll = UTILITIES.individual.set.all;
     }
 
-    ////    [ COLOR ]   ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set color value
-         * @public
-         * @function
-         * @param           {string} value                              RGB color value
-         */
-        set color ( value )
-        {
-            if ( this._isColorModel ( value ) )
+        ////    [ COLOR ]   //////////////////////////
 
-                this._setAll ( 'color', value );
-        }
+            /**
+             * Set color value
+             * @public
+             * @function
+             * @param           {string} value                              RGB color value
+             */
+            set color ( value )
+            {
+                if ( this._isColorModel ( value ) )
 
-        /**
-         * Get color value
-         * @public
-         * @function
-         * @return          {string}                                    RGB color value
-         */
-        get color ( )
-        {
-            return this._color;
-        }
+                    this._setAll ( 'color', value );
+            }
 
-    ////    [ BLUR ]    ////////////////////////////////////
+            /**
+             * Get color value
+             * @public
+             * @function
+             * @return          {string}                                    RGB color value
+             */
+            get color ( )
+            {
+                return this._color;
+            }
 
-        /**
-         * Set blur value
-         * @public
-         * @function
-         * @param           {number} blur                               Blur value
-         */
-        set blur ( value )
-        {
-            if ( this._isBlur ( value ) )
+        ////    [ BLUR ]    //////////////////////////
 
-                this._setAll ( 'blur', value );
-        }
+            /**
+             * Set blur value
+             * @public
+             * @function
+             * @param           {number} blur                               Blur value
+             */
+            set blur ( value )
+            {
+                if ( this._isBlur ( value ) )
 
-        /**
-         * Get blur value
-         * @readOnly
-         * @function
-         * @return          {number}                                    Blur value
-         */
-        get blur ( )
-        {
-            return this._blur;
-        }
+                    this._setAll ( 'blur', value );
+            }
 
-    ////    [ OFFSET.(X)(Y) ]   ////////////////////////////
+            /**
+             * Get blur value
+             * @readOnly
+             * @function
+             * @return          {number}                                    Blur value
+             */
+            get blur ( )
+            {
+                return this._blur;
+            }
 
-        /**
-         * Set offset
-         * @public
-         * @function
-         * @param           {Point} value                               Shadow offset
-         */
-        set offset ( value )
-        {
-            if ( this._isPoint ( value ) )
+        ////    [ OFFSET.(X)(Y) ]    /////////////////
 
-                this._setAll ( 'offset', value );
-        }
+            /**
+             * Set offset
+             * @public
+             * @function
+             * @param           {Point} value                               Shadow offset
+             */
+            set offset ( value )
+            {
+                if ( this._isPoint ( value ) )
 
-        /**
-         * Get offset
-         * @public
-         * @function
-         * @return          {Point}                                     Shadow offset
-         */
-        get offset ( )
-        {
-            return this._offset;
-        }
+                    this._setAll ( 'offset', value );
+            }
 
-
-        /**
-         * Set x-axis offset value
-         * @public
-         * @function
-         * @param           {number} value                              X coordinate value
-         */
-        set x ( value )
-        {
-            this._offset.x = value;
-        }
-
-        /**
-         * Get x-axis offset value
-         * @readOnly
-         * @function
-         * @return          {number}                                    X coordinate value
-         */
-        get x ( )
-        {
-            return this._offset.x;
-        }
+            /**
+             * Get offset
+             * @public
+             * @function
+             * @return          {Point}                                     Shadow offset
+             */
+            get offset ( )
+            {
+                return this._offset;
+            }
 
 
-        /**
-         * Set the y-axis offset value
-         * @public
-         * @function
-         * @param           {number} value                              Y coordinate value
-         */
-        set y ( value )
-        {
-            this._offset.y = value;
-        }
+            /**
+             * Set x-axis offset value
+             * @public
+             * @function
+             * @param           {number} value                              X coordinate value
+             */
+            set x ( value )
+            {
+                this._offset.x = value;
+            }
 
-        /**
-         * Get y-axis offset value
-         * @readOnly
-         * @function
-         * @return          {number}                                    Y coordinate value
-         */
-        get y ( )
-        {
-            return this._offset.y;
-        }
+            /**
+             * Get x-axis offset value
+             * @readOnly
+             * @function
+             * @return          {number}                                    X coordinate value
+             */
+            get x ( )
+            {
+                return this._offset.x;
+            }
+
+
+            /**
+             * Set the y-axis offset value
+             * @public
+             * @function
+             * @param           {number} value                              Y coordinate value
+             */
+            set y ( value )
+            {
+                this._offset.y = value;
+            }
+
+            /**
+             * Get y-axis offset value
+             * @readOnly
+             * @function
+             * @return          {number}                                    Y coordinate value
+             */
+            get y ( )
+            {
+                return this._offset.y;
+            }
 
     ////    VALIDATION  ////////////////////////////////////
 

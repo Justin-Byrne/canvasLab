@@ -1,18 +1,60 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.7.196] - 2024-10-24
+### Added
+- **canvasLab**
+  - :sunny: `Animations` class, `_setPositionData` function, `pointFrom` case to animation from a specified point
+  - :sunny: `myTransitions` class, for developer defined animation transitions
+  - :sunny: `Circles`, `Lines`, `Rectangles`, & `Texts` classes, supplemented `getPoints` function, with `UTILITIES.collection.getPoints`
+  - :sunny: `Circles` class, supplemented `_isDegree` function, with `Validation.isDegree`
+  - :sunny: `Position` class, `stroke` & `fill` properties, accessors & mutators
+  - :sunny: `Utilities` module, `collection.getPoints` function, to get all or specific points throughout this collection
+  - :sunny: `Validation` module,`isTransition` function, to return whether the passed value is a Transition
+  - :sunny: `PROPERTY_BLOCKS` module,
+    - `individual.template` mutator & accessor
+    - `individual.transitions` mutator & accessor
+
+- **devSuite**
+  - :sunny: `Lab` class,
+    - `_setMenuScriptTitle` function, to set the title of the current script being used within the lab environment
+    - `_setTimingPopup` function, to set the timing's menu items
+    - `_swapValue` function, to swap rgb values between color-picker and ace-editor
+    - `_resetLabControl` function, to reset lab control by toggling off & on that control
+  - :sunny: `Template` class,
+    - `_cleanCountDuplicates` function, to clean count duplicates (i.e. `_00_00...` to `_00`)
+    - `_matchVariables` function, to match variables via the passed lines & regex params
+
+### Refactored
+- **canvasLab**
+  - :last_quarter_moon: `Animation` & `Animations` classes, `_cacheObject` function, cached objects are more specifically declared
+
+- **devSuite**
+  - :last_quarter_moon: `Lab` class, `_getBoundingCharactersPositions` function, optimized to obtain a more exact bounding character reference
+  - :last_quarter_moon: `Ui` class, `_toggle.labButton` function, optimized to toggle element buttons more specifically
+  - :last_quarter_moon: `Template` class, `_modifyTemplateCode` function, optimized by encapsulating variable matching logic within the `_matchVariables` function
+
+### Removed
+- **devSuite**
+  - :pick: `Lab` class, `_swapRgbValue` & `_setColorPickerPosition` functions
+
+### Fixed
+- **canvasLab**
+  - :dragon: `Group` class, `canvas` setter, fixed `object.canvas` assignment from accepting improper `value` parameter to proper `this.canvas` property
+  - :dragon: `Animation` & `Animations` class, `_transition` function, `radius` case, normalized progress to negate negative values
+
 ## [0.7.179] - 2024-09-27
 ### Added
 - **canvasLab**
   - :sunny: `Line` class
-    - `anchor` property, accessor(s) & mutators(s)
+    - `anchor` property, accessor(s) & mutator(s)
     - `_drawAnchor` function, to draw anchor points
     - `_setAnchorPoint` function, to set anchor's point
     - `rotate` function, to rotate this object
   - :sunny: `Position` class,
-    - `start`, `end`, `rotation`, `aspect`, `controlPoints`, & `fontSize`  properties; accessor(s) & mutators(s)
+    - `start`, `end`, `rotation`, `aspect`, `controlPoints`, & `fontSize`  properties; accessor(s) & mutator(s)
     - `_isAspect`, `_isBlur`, `_isControlPoint`, `_isNumber`, `_isWidth`, & `_isHeight` validation functions
-  - :sunny: `ControlPoints` class, `points` property, accessor(s) & mutators(s)
+  - :sunny: `ControlPoints` class, `points` property, accessor(s) & mutator(s)
   - :sunny: `Animation` class,
     - `_resetCanvasTransform` function, to reset the canvas transform; from rotational transforms
     - `rotate`, `aspect`, `controlPoints`, `fontSize`, `angleStart`, `angleEnd` cases to `_setPositionData` & `_transition` functions
@@ -27,11 +69,12 @@ All notable changes to this project will be documented in this file.
 ## [0.7.173] - 2024-09-18
 ### Added
 - **canvasLab**
-  - :sunny: `Line` class, added `point` property, accessor(s) & mutators(s)
-  - :sunny: `Position` class, added `rotation` property, accessor(s) & mutators(s)
+  - :sunny: `Line` class, added `point` property, accessor(s) & mutator(s)
+  - :sunny: `Position` class, added `rotation` property, accessor(s) & mutator(s)
   - :sunny: `Text` class, added `_setFillType` function from `Utilities` module
   - :sunny: `cImage` class, `_drawImage` function, to draw image depending on primary & secondary property settings
   - :sunny: `Animation` class, `startPoint` & `endPoint` cases to `_setPositionData` & `_transition` functions
+
 - **devSuite**
   - :sunny: `Lab` class,
     - `_getAngle` function, to get angle from two points
@@ -50,6 +93,7 @@ All notable changes to this project will be documented in this file.
 - **canvasLab**
   - :last_quarter_moon: `cImage` class, `draw` function to adapt to regular calls & `Animation` class calls
   - :last_quarter_moon: `Angle` class, `_convert2Degree` modified formula to provide more accurate result
+
 - **devSuite**
   - :last_quarter_moon: `Ui` class, `fullscreen` & `navigation` function(s), to handle **angle** & **coordinates** features while toggling
 
@@ -90,6 +134,7 @@ All notable changes to this project will be documented in this file.
     - `cancel` function, to cancel animation
     - `active` property, to identify animations active state
   - :sunny: `Application` class, added `animation` property
+
 - **devSuite**
   - :sunny: `Lab` class, `_clearExistingAnimations` function, to clear existing animations
 
@@ -123,6 +168,7 @@ All notable changes to this project will be documented in this file.
     - `_getPointByDegreeNDistance` function, to returns a point based off of the direction & distance passed
     - `_setLocationData` function, to set `Location` data
     - `_transition` function, to calculate an animation transition
+
 - **devSuite**
   - :sunny: `Lab` class, added code folding, via hotkey <kbd>Ctrl</kbd> + <kbd>-</kbd> + <kbd>;</kbd>
 
@@ -179,6 +225,7 @@ All notable changes to this project will be documented in this file.
     - `RoundedRectangle` class
     - `RoundedRectangles` class
   - :sunny: `SacredCircles` class, added `Ellipses` & `RoundedRectangles` to `_insertShapeA ( )` & `_insertShapeB ( )` functions
+
 - **devSuite**
   - :sunny: `Lab` class, added multi-selectability feature to `keyboard` case to `loadScript ( )`
   - :sunny: `Main` entry point, added `Ellipse`, `Ellipses`, `RoundedRectangle`, & `RoundedRectangles` to `_cardObjects` object literal
@@ -187,6 +234,7 @@ All notable changes to this project will be documented in this file.
 - **canvasLab**
   - :last_quarter_moon: `Circle` class, expanded `_setAnchorPoint ( )` to include setting of either a `{number}` or `{Point}` for the internal `radius` property
   - :last_quarter_moon: `Utilities` module, expanded `draw.axis ( )` & `draw.border ( )` to include `Ellipses` & `RoundedRectangles` classes
+
 - **devSuite**
   - :last_quarter_moon: Included `Ellipse`, `Ellipses`, `RoundedRectangle`, & `RoundedRectangles` types within:
     - `Page._setPropertiesBy ( )`
@@ -220,18 +268,18 @@ All notable changes to this project will be documented in this file.
 - :full_moon: `Anchor` class, supplant `point` property with `PROPERTY_BLOCKS.discrete.point ( )`
 
 ### Refactored
+- **canvasLab**
+  - :last_quarter_moon: `Rectangle` class,
+    - Modified `draw ( )` to include rounding property value(s)
+    - Modified `_drawBorder ( )` to include rounding property value(s)
+  - :last_quarter_moon: `Options` class, `anchor` & `axis` properties
+
 - **devSuite**
   - :last_quarter_moon: **To include `CImage` type**
     - `Page._setPropertiesBy ( )`
     - `Template._getImages ( )`
     - `Template._modifyCode ( )`
     - `Tool.isCanvasLabObject ( )`
-
-- **canvasLab**
-  - :last_quarter_moon: `Rectangle` class,
-    - Modified `draw ( )` to include rounding property value(s)
-    - Modified `_drawBorder ( )` to include rounding property value(s)
-  - :last_quarter_moon: `Options` class, `anchor` & `axis` properties
 
 ### Fixed
 - :dragon: `Circle` class, fixed `_setAnchorPoint ( )` where `this.anchor.type` was used in switch instead of `this.anchor.align`
@@ -257,14 +305,15 @@ All notable changes to this project will be documented in this file.
     - `#touched` attribute, to identify when the queue has been manipulated post instantiation and reset
 
 ### Refactored
-- **devSuite**
-  - `Template` class, replaced animation keyword `flow`, with `sequence`
-  - `Queue` class, to take Arrays & single element instances as constructor arguments
 - **canvasLab**
   - `Application` & `canvasLab` classes, replaced animation keyword `flow`, with `sequence`
   - `Animation` class, `animate ( )` to incorporate multiple consecutive animations
   - `SacredCircles` class, general optimization and refactoring
   - `Validation` module, `isPlan ( )` to better identify `Group` plans
+
+- **devSuite**
+  - `Template` class, replaced animation keyword `flow`, with `sequence`
+  - `Queue` class, to take Arrays & single element instances as constructor arguments
 
 ### Removed
 - **devSuite**
@@ -295,13 +344,14 @@ All notable changes to this project will be documented in this file.
 
 ## [0.4.98] - 2024-07-17
 ### Added
+- **canvasLab**
+  - `Group` class, `_setAllCanvases ( )` to set all canvases throughout each internal collection of objects
+
 - **devSuite**
   - `Template` class
     - `_modifyCode ( )` to modify code to include instantiation expressions & unique variable identifiers
     - `_modifyPlanCode ( )` to modify code to include instantiation expressions & unique variable identifiers; for Plans only
     - `_modifyVariables ( )` to modify existing variable name with uniquely identified variable name
-- **canvasLab**
-  - `Group` class, `_setAllCanvases ( )` to set all canvases throughout each internal collection of objects
 
 ### Refactored
 - **devSuite**
@@ -317,12 +367,6 @@ All notable changes to this project will be documented in this file.
 
 ## [0.4.88] - 2024-07-12
 ### Added
-- **devSuite**
-  - `Tool` class, `isCanvasLabCollection ( )` to determine whether the passed value is an 'Object' canvasLab category
-  - `Ui` class
-    - `toggle._collapsibles ( )` to toggle collapsible nav-menu menu items
-    - `_collapseButtonsExcept ( )` to collapse all passed buttons, outside of index passed
-
 - **canvasLab**
   - `PROPERTY_BLOCKS` module
     - `combined` ↴
@@ -348,16 +392,17 @@ All notable changes to this project will be documented in this file.
       - `rotate ( )` to rotate this object
   - `Aspect` class, `#offset` property and accessor
 
+- **devSuite**
+  - `Tool` class, `isCanvasLabCollection ( )` to determine whether the passed value is an 'Object' canvasLab category
+  - `Ui` class
+    - `toggle._collapsibles ( )` to toggle collapsible nav-menu menu items
+    - `_collapseButtonsExcept ( )` to collapse all passed buttons, outside of index passed
+
 ### Changed
 - **canvasLab**
   - `ancillary` folder to `components`
 
 ### Removed
-- **devSuite**
-  - `Ui` class
-    - `_checkCollapsible ( )`
-    - `_collapseButtons ( )`
-
 - **canvasLab**
   - `PROPERTY_BLOCKS` module
   - `UTILITITES` module
@@ -365,13 +410,12 @@ All notable changes to this project will be documented in this file.
     - `draw.collection.oneDimensional ( )`
   - `Processing` class
 
-### Refactored
 - **devSuite**
-  - `Template` class
-    - `_initializer.object` to include collections; `Lines`, `Circles`, `Rectangles`, `Texts`, and `Group`
-    - `_getCodeTemplate ( )`, to include collections: `Lines`, `Circles`, `Rectangles`, `Texts`, and `Group`
-  - `Ui` class, `getClass ( )` to include collections: `Lines`, `Circles`, `Rectangles`, `Texts`, and `Group`
+  - `Ui` class
+    - `_checkCollapsible ( )`
+    - `_collapseButtons ( )`
 
+### Refactored
 - **canvasLab**
   - `Circle` class
   - `Circles` class
@@ -383,13 +427,14 @@ All notable changes to this project will be documented in this file.
   - `Rectangles` class
   - `Group` class
 
+- **devSuite**
+  - `Template` class
+    - `_initializer.object` to include collections; `Lines`, `Circles`, `Rectangles`, `Texts`, and `Group`
+    - `_getCodeTemplate ( )`, to include collections: `Lines`, `Circles`, `Rectangles`, `Texts`, and `Group`
+  - `Ui` class, `getClass ( )` to include collections: `Lines`, `Circles`, `Rectangles`, `Texts`, and `Group`
+
 ## [0.3.78] - 2024-07-01
 ### Added
-- **devSuite**
-  - `Lab` class, `clearConsole` case to `_setEventListeners ( )`, to toggle lab *clear console* feature
-  - `Tool` class, added Collection objects to `isCanvasLabObject ( )`
-  - `Ui` class, `toggle.boolean ( )`, to toggle boolean value in lab
-
 - **canvasLab**
   - `PROPERTY_BLOCKS` module, `discrete.alpha ( )` mutators
   - `VALIDATION` module, `isPlan ( )`, to returns whether the passed value is a Plan
@@ -398,6 +443,11 @@ All notable changes to this project will be documented in this file.
     - `redraw ( )` to redraw this object
   - `Group` class, an array class to group any and all object type
   - `SacredCircles` class, Group Plan
+
+- **devSuite**
+  - `Lab` class, `clearConsole` case to `_setEventListeners ( )`, to toggle lab *clear console* feature
+  - `Tool` class, added Collection objects to `isCanvasLabObject ( )`
+  - `Ui` class, `toggle.boolean ( )`, to toggle boolean value in lab
 
 ### Removed
 - **canvasLab**
@@ -413,15 +463,16 @@ All notable changes to this project will be documented in this file.
 
 ## [0.3.67] - 2024-06-10
 ### Added
+- **canvasLab**
+  - `Application` class, `_center ( )` to return center ( x & y coordinates ) for the present window
+  - `Queue` class
+
 - **devSuite**
   - `main`, added `_scripts` object; to contain various loadable lab scripts
   - `Lab` class
     - `_setMenuPopups ( )` to set the lab's menu items in relation to internal scripts
     - `_getMenuPopup ( )` to get menu popup item with the passed 'element' param
   - `Ui` class, `_adjustGridCenter ( )` to adjust the center of the grid; temporary fix.
-- **canvasLab**
-  - `Application` class, `_center ( )` to return center ( x & y coordinates ) for the present window
-  - `Queue` class
 
 ### Removed
 - **devSuite**
@@ -508,6 +559,7 @@ All notable changes to this project will be documented in this file.
   - `Circle` class, added `strokeColorCycle ( )`, `fillColorCycle ( )`, & `gradientColorCycle ( )`
   - `Rectangle` class, added `strokeColorCycle ( )`, `fillColorCycle ( )`, & `gradientColorCycle ( )`
   - `Text` class, added `strokeColorCycle ( )` & `fillColorCycle ( )`
+
 - **devSuite**
   - `Tool` class, added `isCanvasLabObject` returns whether the passed value is an 'Object' canvasLab category
 
@@ -542,6 +594,7 @@ All notable changes to this project will be documented in this file.
     - `isColorStop ( )` to return whether the passed value is a color stop
     - `isDecimal ( )` to return whether the passed value is a decimal
     - `isStrokeType ( )` to return whether the passed value is a stroke type
+
 - **devSuite**
   - **`Ui`**
     - `toggle._cardPlus ( )` to add an additional card to cardObjects; mirroring the last card present
@@ -558,6 +611,7 @@ All notable changes to this project will be documented in this file.
     - `isAspect ( )` function
     - `isCanvasLabObject ( )` function
   - `Stroke`, `Fill`, `Circle`, `Line`, `Rectangle`, `Text`, `ShadowCollection`, & `ShadowCollection` to incorporate new color model classes
+
 - **devSuite**
   - `Lab` class
     - `_getBoundingCharactersPositions ( )` utility function
@@ -580,6 +634,7 @@ All notable changes to this project will be documented in this file.
   - `VALIDATION` module
     - `isRgb ( )`
     - `isType ( )`
+
 - **devSuite**
   - `cardPlus` & `cardPlus` cases removed from `Ui._setEventListeners ( )`
 
@@ -823,7 +878,8 @@ All notable changes to this project will be documented in this file.
 
 | Version     | Date         | Commit                                                                | Comments                                                                                                                     |
 | :---------  | :----------: | :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `[0.7.179]` | `2024-09-27` | `CURRENT`                                                             | <sup>Added numerous animation functions to the Animation & Position classes, and general refactoring.</sup>                  |
+| `[0.7.196]` | `2024-10-24` | `CURRENT`                                                             | <sup>Added myTransitions class, fixed minor errors in Group & Animation(s) classes, and general refactoring.</sup>           |
+| `[0.7.179]` | `2024-09-27` | [`647b2b8`](https://github.com/Justin-Byrne/canvasLab/commit/647b2b8) | <sup>Added numerous animation functions to the Animation & Position classes, and general refactoring.</sup>                  |
 | `[0.7.173]` | `2024-09-18` | [`d47997c`](https://github.com/Justin-Byrne/canvasLab/commit/d47997c) | <sup>Added angle & coordinate system to Lab, small additions to several Object classes, and general refactoring.</sup>       |
 | `[0.7.163]` | `2024-09-10` | [`377e925`](https://github.com/Justin-Byrne/canvasLab/commit/377e925) | <sup>Added Animations class, fixed angle orientation(s) for 360 degree rotation(s), and general refactoring.</sup>           |
 | `[0.7.158]` | `2024-08-30` | [`94c76a2`](https://github.com/Justin-Byrne/canvasLab/commit/94c76a2) | <sup>Added features to cancel current animations, and changed the Location class as Position; class.</sup>                   |

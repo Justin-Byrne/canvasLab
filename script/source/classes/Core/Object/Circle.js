@@ -97,502 +97,522 @@ class Circle
             this.#position.master = this;
     }
 
-    ////    [ POINT ]   ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set point
-         * @public
-         * @function
-         * @param           {Point} value                               X & Y coordinates
-         * @see             {@link PROPERTY_BLOCKS.individual.point}
-         */
-        set point ( value ) { }
+        ////    [ POINT ]   //////////////////////////
 
-        /**
-         * Get point
-         * @public
-         * @function
-         * @return          {Point}                                     X & Y coordinates
-         * @see             {@link PROPERTY_BLOCKS.individual.point}
-         */
-        get point ( ) { }
+            /**
+             * Set point
+             * @public
+             * @function
+             * @param           {Point} value                               X & Y coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
+             */
+            set point ( value ) { }
 
-
-        /**
-         * Set x-axis value
-         * @public
-         * @function
-         * @param           {number} value                              X coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointX}
-         */
-        set x ( value ) { }
-
-        /**
-         * Get x-axis value
-         * @readOnly
-         * @function
-         * @return          {number}                                    X coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointX}
-         */
-        get x ( ) { }
+            /**
+             * Get point
+             * @public
+             * @function
+             * @return          {Point}                                     X & Y coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
+             */
+            get point ( ) { }
 
 
-        /**
-         * Set y-axis value
-         * @public
-         * @function
-         * @param           {number} value                              Y coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointY}
-         */
-        set y ( value ) { }
+            /**
+             * Set x-axis value
+             * @public
+             * @function
+             * @param           {number} value                              X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
+             */
+            set x ( value ) { }
 
-        /**
-         * Get y-axis value
-         * @readOnly
-         * @function
-         * @return          {number}                                    Y coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointY}
-         */
-        get y ( ) { }
+            /**
+             * Get x-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
+             */
+            get x ( ) { }
 
-    ////    [ RADIUS ]  ////////////////////////////////////
 
-        /**
-         * Set radius value
-         * @public
-         * @function
-         * @param           {number|Point} value                        Radius of circle
-         */
-        set radius ( value )
-        {
-            if ( value )
+            /**
+             * Set y-axis value
+             * @public
+             * @function
+             * @param           {number} value                              Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
+             */
+            set y ( value ) { }
+
+            /**
+             * Get y-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
+             */
+            get y ( ) { }
+
+        ////    [ RADIUS ]    ////////////////////////
+
+            /**
+             * Set radius value
+             * @public
+             * @function
+             * @param           {number|Point} value                        Radius of circle
+             */
+            set radius ( value )
             {
-                this._radius = ( this._isNumber ( value ) ) ? value : this._radius;
+                if ( value )
+                {
+                    this._radius = ( this._isNumber ( value ) ) ? value : this._radius;
 
-                this._radius = ( this._isPoint  ( value ) ) ? value : this._radius;
+                    this._radius = ( this._isPoint  ( value ) ) ? value : this._radius;
+                }
             }
-        }
 
-        /**
-         * Get radius value
-         * @readOnly
-         * @function
-         * @return          {number|Point}                              Radius of circle
-         */
-        get radius ( )
-        {
-            return this._radius;
-        }
+            /**
+             * Get radius value
+             * @readOnly
+             * @function
+             * @return          {number|Point}                              Radius of circle
+             */
+            get radius ( )
+            {
+                return this._radius;
+            }
 
-    ////    [ ANGLE ]   ////////////////////////////////////
+        ////    [ ANGLE ]    /////////////////////////
 
-        /**
-         * Get angle properties
-         * @public
-         * @function
-         * @return          {Angle}                                     Angle properties
-         */
-        get angle ( )
-        {
-            return this._angle;
-        }
+            /**
+             * Get angle properties
+             * @public
+             * @function
+             * @return          {Angle}                                     Angle properties
+             */
+            get angle ( )
+            {
+                return this._angle;
+            }
 
-    ////    [ STROKE ]  ////////////////////////////////////
+        ////    [ STROKE ]    ////////////////////////
 
-        /**
-         * Get stroke properties
-         * @public
-         * @function
-         * @return          {Stroke}                                    Stroke properties
-         */
-        get stroke ( )
-        {
-            return this._stroke;
-        }
+            /**
+             * Get stroke properties
+             * @public
+             * @function
+             * @return          {Stroke}                                    Stroke properties
+             */
+            get stroke ( )
+            {
+                return this._stroke;
+            }
 
-    ////    [ FILL ]    ////////////////////////////////////
+        ////    [ FILL ]    //////////////////////////
 
-        /**
-         * Get fill properties
-         * @public
-         * @function
-         * @return          {Fill}                                      Fill properties
-         */
-        get fill ( )
-        {
-            return this._fill;
-        }
+            /**
+             * Get fill properties
+             * @public
+             * @function
+             * @return          {Fill}                                      Fill properties
+             */
+            get fill ( )
+            {
+                return this._fill;
+            }
 
-    ////    [ SHADOW ]  ////////////////////////////////////
+        ////    [ SHADOW ]    ////////////////////////
 
-        /**
-         * Get shadow properties
-         * @public
-         * @function
-         * @return          {Shadow}                                    Shadow properties
-         */
-        get shadow ( )
-        {
-            return this._shadow;
-        }
+            /**
+             * Get shadow properties
+             * @public
+             * @function
+             * @return          {Shadow}                                    Shadow properties
+             */
+            get shadow ( )
+            {
+                return this._shadow;
+            }
 
-    ////    [ CANVAS ]  ////////////////////////////////////
+        ////    [ CANVAS ]    ////////////////////////
 
-        /**
-         * Set canvas value
-         * @public
-         * @function
-         * @param           {string} value                              Canvas id
-         * @see             {@link individual.canvas}
-         */
-        set canvas ( value ) { }
+            /**
+             * Set canvas value
+             * @public
+             * @function
+             * @param           {string} value                              Canvas id
+             * @see             {@link individual.canvas}
+             */
+            set canvas ( value ) { }
 
-        /**
-         * Get canvas value
-         * @readOnly
-         * @function
-         * @return          {string}                                    Canvas id
-         * @see             {@link individual.canvas}
-         */
-        get canvas ( ) { }
+            /**
+             * Get canvas value
+             * @readOnly
+             * @function
+             * @return          {string}                                    Canvas id
+             * @see             {@link individual.canvas}
+             */
+            get canvas ( ) { }
 
-    ////    [ ANCHOR ]  ////////////////////////////////////
+        ////    [ ANCHOR ]    ////////////////////////
 
-        /**
-         * Get anchor
-         * @public
-         * @function
-         * @return          {Anchor}                                    Anchor properties
-         */
-        get anchor ( )
-        {
-            return this._anchor;
-        }
+            /**
+             * Get anchor
+             * @public
+             * @function
+             * @return          {Anchor}                                    Anchor properties
+             */
+            get anchor ( )
+            {
+                return this._anchor;
+            }
 
-    ////    [ OPTIONS ] ////////////////////////////////////
+        ////    [ OPTIONS ]    ///////////////////////
 
-        /**
-         * Get options properties
-         * @public
-         * @function
-         * @return          {Options}                                   Options properties
-         */
-        get options ( )
-        {
-            return this.#options;
-        }
+            /**
+             * Get options properties
+             * @public
+             * @function
+             * @return          {Options}                                   Options properties
+             */
+            get options ( )
+            {
+                return this.#options;
+            }
 
-    ////    [ POSITION ]    ////////////////////////////////
+        ////    [ POSITION ]    //////////////////////
 
-        /**
-         * Get position properties
-         * @public
-         * @function
-         * @return          {Position}                                  Position properties
-         */
-        get position ( )
-        {
-            return this.#position;
-        }
+            /**
+             * Get position properties
+             * @public
+             * @function
+             * @return          {Position}                                  Position properties
+             */
+            get position ( )
+            {
+                return this.#position;
+            }
 
     ////    VALIDATION  ////////////////////////////////////
 
-        /**
-         * Returns whether the passed value is an Anchor alignment
-         * @private
-         * @function
-         * @param           {string} value                              Anchor alignment
-         * @return          {boolean}                                   True || False
-         * @see             {@link VALIDATION.isAnchor}
-         */
-        _isAnchor ( ) { }
+        ////    - PRIVATE    /////////////////////
 
-        /**
-         * Returns whether the passed value is an Aspect
-         * @private
-         * @function
-         * @param           {Object} value                              Aspect or object equivalent
-         * @return          {boolean}                                   True || False
-         * @see             {@link VALIDATION.isAspect}
-         */
-        _isAspect ( ) { }
+            /**
+             * Returns whether the passed value is an Anchor alignment
+             * @private
+             * @function
+             * @param           {string} value                              Anchor alignment
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isAnchor}
+             */
+            _isAnchor ( ) { }
 
-        /**
-         * Returns whether the passed value is a degree
-         * @private
-         * @function
-         * @param           {number} value                              Degree
-         * @return          {boolean}                                   True || False
-         * @see             {@link VALIDATION.isDegree}
-         */
-        _isDegree ( ) { }
+            /**
+             * Returns whether the passed value is an Aspect
+             * @private
+             * @function
+             * @param           {Object} value                              Aspect or object equivalent
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isAspect}
+             */
+            _isAspect ( ) { }
 
-        /**
-         * Returns whether the passed value is an element id within the DOM
-         * @private
-         * @function
-         * @param           {string} value                              Element id
-         * @return          {boolean}                                   True || False
-         * @see             {@link VALIDATION.isInDom}
-         */
-        _isInDom  ( ) { }
+            /**
+             * Returns whether the passed value is a degree
+             * @private
+             * @function
+             * @param           {number} value                              Degree
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isDegree}
+             */
+            _isDegree ( ) { }
 
-        /**
-         * Returns whether the passed value is a Number value
-         * @private
-         * @function
-         * @param           {number} value                              Number value
-         * @return          {boolean}                                   True || False
-         * @see             {@link VALIDATION.isNumber}
-         */
-        _isNumber ( ) { }
+            /**
+             * Returns whether the passed value is an element id within the DOM
+             * @private
+             * @function
+             * @param           {string} value                              Element id
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isInDom}
+             */
+            _isInDom  ( ) { }
 
-        /**
-         * Returns whether the passed value is a Point
-         * @private
-         * @function
-         * @param           {Object} value                              Point or object equivalent
-         * @return          {boolean}                                   True || False
-         * @see             {@link VALIDATION.isPoint}
-         */
-        _isPoint  ( ) { }
+            /**
+             * Returns whether the passed value is a Number value
+             * @private
+             * @function
+             * @param           {number} value                              Number value
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isNumber}
+             */
+            _isNumber ( ) { }
 
-        /**
-         * Check whether the passed object is already present
-         * @public
-         * @function
-         * @param           {Circle} circle                             Object to validate
-         * @return          {boolean}                                   True || False
-         */
-        isThere ( circle )
-        {
-            if ( circle instanceof this.constructor )
+            /**
+             * Returns whether the passed value is a Point
+             * @private
+             * @function
+             * @param           {Object} value                              Point or object equivalent
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isPoint}
+             */
+            _isPoint  ( ) { }
 
-                return (
-                           ( this.point.x == circle.point.x ) &&                // Point X
+        ////    + PUBLIC    //////////////////////
 
-                           ( this.point.y == circle.point.y ) &&                // Point Y
+            /**
+             * Check whether the passed object is already present
+             * @public
+             * @function
+             * @param           {Circle} circle                             Object to validate
+             * @return          {boolean}                                   True || False
+             */
+            isThere ( circle )
+            {
+                if ( circle instanceof this.constructor )
 
-                           ( this.radius  == circle.radius  )                   // Radius
+                    return (
+                               ( this.point.x == circle.point.x ) &&                // Point X
 
-                       ) ? true : false;
+                               ( this.point.y == circle.point.y ) &&                // Point Y
 
-            else
+                               ( this.radius  == circle.radius  )                   // Radius
 
-                console.warn ( `"${circle.constructor.name}" is not of type ${this.constructor.name}` );
-        }
+                           ) ? true : false;
+
+                else
+
+                    console.warn ( `"${circle.constructor.name}" is not of type ${this.constructor.name}` );
+            }
 
     ////    UTILITIES   ////////////////////////////////////
 
-        /**
-         * Draws anchor point
-         * @private
-         * @function
-         * @see             {@link UTILITIES.individual.draw.anchor}
-         */
-        _drawAnchor ( ) { }
+        ////    - PRIVATE    /////////////////////
 
-        /**
-         * Draws an axis for the associated object
-         * @private
-         * @function
-         * @param           {number} offset                             Offset of axis
-         * @param           {Object} color                              Color model
-         * @param           {number} stop                               Gradient color stop
-         * @see             {@link UTILITIES.individual.draw.axis}
-         */
-        _drawAxis ( ) { }
+            /**
+             * Draws anchor point
+             * @private
+             * @function
+             * @see             {@link UTILITIES.individual.draw.anchor}
+             */
+            _drawAnchor ( ) { }
 
-        /**
-         * Draws an axis for the associated object
-         * @private
-         * @function
-         * @param           {Aspect} aspect                             Aspect properties
-         * @param           {Object} color                              Color model
-         * @see             {@link UTILITIES.individual.draw.border}
-         */
-        _drawBorder ( ) { }
+            /**
+             * Draws an axis for the associated object
+             * @private
+             * @function
+             * @param           {number} offset                             Offset of axis
+             * @param           {Object} color                              Color model
+             * @param           {number} stop                               Gradient color stop
+             * @see             {@link UTILITIES.individual.draw.axis}
+             */
+            _drawAxis ( ) { }
 
-        /**
-         * Draws associated options
-         * @private
-         * @function
-         */
-        _drawOptions ( )
-        {
-            let _offset = 20;
+            /**
+             * Draws an axis for the associated object
+             * @private
+             * @function
+             * @param           {Aspect} aspect                             Aspect properties
+             * @param           {Object} color                              Color model
+             * @see             {@link UTILITIES.individual.draw.border}
+             */
+            _drawBorder ( ) { }
 
-            let _aspect = ( this._isPoint ( this.radius ) ) ? new Aspect ( ( this.radius.x * 2 ) + _offset, ( this.radius.y * 2 ) + _offset )
+            /**
+             * Draws associated options
+             * @private
+             * @function
+             */
+            _drawOptions ( )
+            {
+                let _offset = 20;
 
-                                                            : new Aspect ( ( this.radius   * 2 ) + _offset, ( this.radius   * 2 ) + _offset );
+                let _aspect = ( this._isPoint ( this.radius ) ) ? new Aspect ( ( this.radius.x * 2 ) + _offset, ( this.radius.y * 2 ) + _offset )
 
-            ////////////////////////////////////////////////////////////////////
+                                                                : new Aspect ( ( this.radius   * 2 ) + _offset, ( this.radius   * 2 ) + _offset );
 
-            if ( this.#options.border      ) this._drawBorder     ( _aspect );
+                ////////////////////////////////////////////////////////////////////
 
-            if ( this.#options.axis        ) this._drawAxis       ( _offset );
+                if ( this.#options.border      ) this._drawBorder     ( _aspect );
 
-            if ( this.#options.anchor      ) this._drawAnchor     ( );
+                if ( this.#options.axis        ) this._drawAxis       ( _offset );
 
-            if ( this.#options.coordinates ) this.showCoordinates ( );
-        }
+                if ( this.#options.anchor      ) this._drawAnchor     ( );
 
-        /**
-         * Rotates the origin point by the degree & distance passed
-         * @private
-         * @function
-         * @param           {Point}  origin                             Origin point
-         * @param           {number} degree                             Degree to rotate
-         * @param           {number} distance                           Distance from origin
-         * @see             {@link UTILITIES.individual.misc.rotatePoint}
-         */
-        _rotatePoint ( ) { }
+                if ( this.#options.coordinates ) this.showCoordinates ( );
+            }
 
-        /**
-         * Sets anchor's point against this object's point position
-         * @private
-         * @function
-         */
-        _setAnchorPoint ( )
-        {
-            [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
+            /**
+             * Rotates the origin point by the degree & distance passed
+             * @private
+             * @function
+             * @param           {Point}  origin                             Origin point
+             * @param           {number} degree                             Degree to rotate
+             * @param           {number} distance                           Distance from origin
+             * @see             {@link UTILITIES.individual.misc.rotatePoint}
+             */
+            _rotatePoint ( ) { }
 
-
-            if ( this._isPoint ( this.radius ) )
-
-                switch ( this.anchor.align )
-                {
-                    case 'center':      /*     ... do nothing        */   /*     ... do nothing        */   break;
-
-                    case 'top':         /*     ... do nothing        */   this.anchor.y += this.radius.y;   break;
-
-                    case 'topRight':    this.anchor.x -= this.radius.x;   this.anchor.y += this.radius.y;   break;
-
-                    case 'right':       this.anchor.x -= this.radius.x;   /*     ... do nothing        */   break;
-
-                    case 'bottomRight': this.anchor.x -= this.radius.x;   this.anchor.y -= this.radius.y;   break;
-
-                    case 'bottom':      /*     ... do nothing        */   this.anchor.y -= this.radius.y;   break;
-
-                    case 'bottomLeft':  this.anchor.x += this.radius.x;   this.anchor.y -= this.radius.y;   break;
-
-                    case 'left':        this.anchor.x += this.radius.x;   /*     ... do nothing        */   break;
-
-                    case 'topLeft':     this.anchor.x += this.radius.x;   this.anchor.y += this.radius.y;   break;
-                }
-
-            else
-
-                switch ( this.anchor.align )
-                {
-                    case 'center':      /*     ... do nothing      */   /*     ... do nothing      */   break;
-
-                    case 'top':         /*     ... do nothing      */   this.anchor.y += this.radius;   break;
-
-                    case 'topRight':    this.anchor.x -= this.radius;   this.anchor.y += this.radius;   break;
-
-                    case 'right':       this.anchor.x -= this.radius;   /*     ... do nothing      */   break;
-
-                    case 'bottomRight': this.anchor.x -= this.radius;   this.anchor.y -= this.radius;   break;
-
-                    case 'bottom':      /*     ... do nothing      */   this.anchor.y -= this.radius;   break;
-
-                    case 'bottomLeft':  this.anchor.x += this.radius;   this.anchor.y -= this.radius;   break;
-
-                    case 'left':        this.anchor.x += this.radius;   /*     ... do nothing      */   break;
-
-                    case 'topLeft':     this.anchor.x += this.radius;   this.anchor.y += this.radius;   break;
-                }
-        }
-
-        /**
-         * Sets fill type of the associated object
-         * @private
-         * @function
-         * @see             {@link UTILITIES.individual.set.fillType}
-         */
-        _setFillType ( ) { }
-
-        /**
-         * Sets shadow properties
-         * @private
-         * @function
-         * @see             {@link UTILITIES.individual.set.shadow}
-         */
-        _setShadow ( ) { }
-
-        /**
-         * Get area of this object
-         * @readOnly
-         * @function
-         * @return          {number}                                    Area of this object
-         */
-        get area ( )
-        {
-            return (  Math.PI * Math.pow ( this.radius, 2 )  );
-        }
-
-        /**
-         * Get diameter of circle
-         * @readOnly
-         * @function
-         * @return          {number}                                    Diameter of circle
-         */
-        get diameter ( )
-        {
-            return (  this.radius * 2  );
-        }
-
-        /**
-         * Get center of this object
-         * @readOnly
-         * @function
-         * @return          {Point}                                     Point coordinates
-         */
-        get center ( )
-        {
-            this._setAnchorPoint ( );
+            /**
+             * Sets anchor's point against this object's point position
+             * @private
+             * @function
+             */
+            _setAnchorPoint ( )
+            {
+                [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
 
 
-            let _x = this.x - ( this.x - this.anchor.x );
+                if ( this._isPoint ( this.radius ) )
 
-            let _y = this.y - ( this.y - this.anchor.y );
+                    switch ( this.anchor.align )
+                    {
+                        case 'center':      /*     ... do nothing        */   /*     ... do nothing        */   break;
+
+                        case 'top':         /*     ... do nothing        */   this.anchor.y += this.radius.y;   break;
+
+                        case 'topRight':    this.anchor.x -= this.radius.x;   this.anchor.y += this.radius.y;   break;
+
+                        case 'right':       this.anchor.x -= this.radius.x;   /*     ... do nothing        */   break;
+
+                        case 'bottomRight': this.anchor.x -= this.radius.x;   this.anchor.y -= this.radius.y;   break;
+
+                        case 'bottom':      /*     ... do nothing        */   this.anchor.y -= this.radius.y;   break;
+
+                        case 'bottomLeft':  this.anchor.x += this.radius.x;   this.anchor.y -= this.radius.y;   break;
+
+                        case 'left':        this.anchor.x += this.radius.x;   /*     ... do nothing        */   break;
+
+                        case 'topLeft':     this.anchor.x += this.radius.x;   this.anchor.y += this.radius.y;   break;
+                    }
+
+                else
+
+                    switch ( this.anchor.align )
+                    {
+                        case 'center':      /*     ... do nothing      */   /*     ... do nothing      */   break;
+
+                        case 'top':         /*     ... do nothing      */   this.anchor.y += this.radius;   break;
+
+                        case 'topRight':    this.anchor.x -= this.radius;   this.anchor.y += this.radius;   break;
+
+                        case 'right':       this.anchor.x -= this.radius;   /*     ... do nothing      */   break;
+
+                        case 'bottomRight': this.anchor.x -= this.radius;   this.anchor.y -= this.radius;   break;
+
+                        case 'bottom':      /*     ... do nothing      */   this.anchor.y -= this.radius;   break;
+
+                        case 'bottomLeft':  this.anchor.x += this.radius;   this.anchor.y -= this.radius;   break;
+
+                        case 'left':        this.anchor.x += this.radius;   /*     ... do nothing      */   break;
+
+                        case 'topLeft':     this.anchor.x += this.radius;   this.anchor.y += this.radius;   break;
+                    }
+            }
+
+            /**
+             * Sets fill type of the associated object
+             * @private
+             * @function
+             * @see             {@link UTILITIES.individual.set.fillType}
+             */
+            _setFillType ( ) { }
+
+            /**
+             * Sets shadow properties
+             * @private
+             * @function
+             * @see             {@link UTILITIES.individual.set.shadow}
+             */
+            _setShadow ( ) { }
+
+        ////    + PUBLIC    //////////////////////
+
+            /**
+             * Get area of this object
+             * @readOnly
+             * @function
+             * @return          {number}                                    Area of this object
+             */
+            get area ( )
+            {
+                return (  Math.PI * Math.pow ( this.radius, 2 )  );
+            }
+
+            /**
+             * Get diameter of circle
+             * @readOnly
+             * @function
+             * @return          {number}                                    Diameter of circle
+             */
+            get diameter ( )
+            {
+                return (  this.radius * 2  );
+            }
+
+            /**
+             * Get center of this object
+             * @readOnly
+             * @function
+             * @return          {Point}                                     Point coordinates
+             */
+            get center ( )
+            {
+                this._setAnchorPoint ( );
 
 
-            return new Point ( _x, _y );
-        }
+                let _x = this.x - ( this.x - this.anchor.x );
 
-        /**
-         * Get circumference of circle
-         * @readOnly
-         * @function
-         * @return          {number}                                    Circumference of circle
-         */
-        get circumference ( )
-        {
-            return (  Math.PI * this.diameter ( )  );
-        }
+                let _y = this.y - ( this.y - this.anchor.y );
 
-        /**
-         * Rotate this object
-         * @public
-         * @function
-         * @param           {number} degree                             Distance to rotate; in degrees
-         * @param           {string} [anchor='center']                  Anchoring point during rotation
-         * @param           {number} [clear=true]                       Clear canvas during each rotation
-         * @see             {@link UTILITIES.individual.misc.rotate}
-         */
-        rotate ( ) { }
 
-        /**
-         * Shows coordinates of this object
-         * @public
-         * @function
-         * @param           {number} [offset=10]                        Offset of coordinates y origin
-         * @param           {number} [fontSize=16]                      Coordinates font size
-         * @see             {@link UTILITIES.individual.misc.showCoordinates}
-         */
-        showCoordinates ( ) { }
+                return new Point ( _x, _y );
+            }
+
+            /**
+             * Get circumference of circle
+             * @readOnly
+             * @function
+             * @return          {number}                                    Circumference of circle
+             */
+            get circumference ( )
+            {
+                return (  Math.PI * this.diameter ( )  );
+            }
+
+            /**
+             * Move this object
+             * @public
+             * @function
+             * @param           {number}  degree                            Direction to move; in degrees
+             * @param           {number}  distance                          Distance to move
+             * @see             {@link UTILITIES.individual.misc.move}
+             */
+            move ( ) { }
+
+            /**
+             * Rotate this object
+             * @public
+             * @function
+             * @param           {number} degree                             Distance to rotate; in degrees
+             * @param           {string} [anchor='center']                  Anchoring point during rotation
+             * @param           {number} [clear=true]                       Clear canvas during each rotation
+             * @see             {@link UTILITIES.individual.misc.rotate}
+             */
+            rotate ( ) { }
+
+            /**
+             * Shows coordinates of this object
+             * @public
+             * @function
+             * @param           {number} [offset=10]                        Offset of coordinates y origin
+             * @param           {number} [fontSize=16]                      Coordinates font size
+             * @see             {@link UTILITIES.individual.misc.showCoordinates}
+             */
+            showCoordinates ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 

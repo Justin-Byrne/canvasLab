@@ -38,125 +38,151 @@ class OptionsCollection
         this.coordinates = coordinates;
     }
 
-    ////    [ SHADOW ]  ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set shadow value
-         * @public
-         * @function
-         * @param           {boolean} value                             Shadow; true | false
-         */
-        set shadow ( value )
-        {
-            if ( typeof value === 'boolean' )  this._setAll ( 'shadow', value );
-        }
+        ////    [ SHADOW ]    ////////////////////
 
-        /**
-         * Get shadow value
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   Shadow; true | false
-         */
-        get shadow ( )
-        {
-            return this._shadow;
-        }
+            /**
+             * Set shadow value
+             * @public
+             * @function
+             * @param           {boolean} value                             Shadow; true | false
+             */
+            set shadow ( value )
+            {
+                if ( typeof value === 'boolean' )  this._setAll ( 'shadow', value );
+            }
 
-    ////    [ BORDER ]  ////////////////////////////////////
+            /**
+             * Get shadow value
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Shadow; true | false
+             */
+            get shadow ( )
+            {
+                return this._shadow;
+            }
 
-        /**
-         * Set border value
-         * @public
-         * @function
-         * @param           {boolean} value                             Border; true | false
-         */
-        set border ( value )
-        {
-            if ( typeof value === 'boolean' )  this._setAll ( 'border', value );
-        }
+        ////    [ BORDER ]    ////////////////////
 
-        /**
-         * Get border value
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   Border; true | false
-         */
-        get border ( )
-        {
-            return this._border;
-        }
+            /**
+             * Set border value
+             * @public
+             * @function
+             * @param           {boolean} value                             Border; true | false
+             */
+            set border ( value )
+            {
+                if ( typeof value === 'boolean' )  this._setAll ( 'border', value );
+            }
 
-    ////    [ AXIS ]    ////////////////////////////////////
+            /**
+             * Get border value
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Border; true | false
+             */
+            get border ( )
+            {
+                return this._border;
+            }
 
-        /**
-         * Set axis value
-         * @public
-         * @function
-         * @param           {boolean} value                             Axis; true | false
-         */
-        set axis ( value )
-        {
-            if ( typeof value === 'boolean' )  this._setAll ( 'axis', value );
-        }
+        ////    [ AXIS ]    //////////////////////
 
-        /**
-         * Get axis value
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   Axis; true | false
-         */
-        get axis ( )
-        {
-            return this._axis;
-        }
+            /**
+             * Set axis value
+             * @public
+             * @function
+             * @param           {boolean} value                             Axis; true | false
+             */
+            set axis ( value )
+            {
+                if ( typeof value === 'boolean' )  this._setAll ( 'axis', value );
+            }
 
-    ////    [ COORDINATES ]     ////////////////////////////
+            /**
+             * Get axis value
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Axis; true | false
+             */
+            get axis ( )
+            {
+                return this._axis;
+            }
 
-        /**
-         * Set coordinates value
-         * @public
-         * @function
-         * @param           {boolean} value                             Coordinates; true | false
-         */
-        set coordinates ( value )
-        {
-            if ( typeof value === 'boolean' )  this._setAll ( 'coordinates', value );
-        }
+        ////    [ POINTS ]    ////////////////////
 
-        /**
-         * Get coordinates value
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   Coordinates; true | false
-         */
-        get coordinates ( )
-        {
-            return this._coordinates;
-        }
+            /**
+             * Set points value
+             * @public
+             * @function
+             * @param           {boolean} value                             Points; true | false
+             */
+            set points ( value )
+            {
+                if ( typeof value === 'boolean' )  this._setAll ( 'points', value );
+            }
 
-    ////    [ CONTROL POINTS ]  ////////////////////////////
+            /**
+             * Get points value
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Points; true | false
+             */
+            get points ( )
+            {
+                return this._coordinates;
+            }
 
-        /**
-         * Set control points value
-         * @public
-         * @function
-         * @param           {boolean} value                             Control points; true | false
-         */
-        set controlPoints ( value )
-        {
-            if ( typeof value === 'boolean' )  this._setAll ( 'controlPoints', value );
-        }
+        ////    [ COORDINATES ]    ///////////////
 
-        /**
-         * Get control points value
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   Control points; true | false
-         */
-        get controlPoints ( )
-        {
-            return this._controlPoints;
-        }
+            /**
+             * Set coordinates value
+             * @public
+             * @function
+             * @param           {boolean} value                             Coordinates; true | false
+             */
+            set coordinates ( value )
+            {
+                if ( typeof value === 'boolean' )  this._setAll ( 'coordinates', value );
+            }
+
+            /**
+             * Get coordinates value
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Coordinates; true | false
+             */
+            get coordinates ( )
+            {
+                return this._coordinates;
+            }
+
+        ////    [ CONTROL POINTS ]    ////////////
+
+            /**
+             * Set control points value
+             * @public
+             * @function
+             * @param           {boolean} value                             Control points; true | false
+             */
+            set controlPoints ( value )
+            {
+                if ( typeof value === 'boolean' )  this._setAll ( 'controlPoints', value );
+            }
+
+            /**
+             * Get control points value
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Control points; true | false
+             */
+            get controlPoints ( )
+            {
+                return this._controlPoints;
+            }
 
     ////    UTILITIES   ////////////////////////////////////
 

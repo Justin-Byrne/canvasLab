@@ -11,53 +11,76 @@ class Log
         this.entry ( 'CREATION' );
     }
 
-    ////    [ PAGE ]    ////////////////////////////////////////////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////////////////////////
 
-        /**
-         * Gets entries
-         * @public
-         * @function
-         * @return          {string}                            Page's entries
-         */
-        get entries ( )
-        {
-            return this._entries;
-        }
+        ////    [ ENTRIES ]    /////////////////////////////
 
-    ////    [ UTILITIES ]    ///////////////////////////////////////////////////////////////////////
+            /**
+             * Gets entries
+             * @public
+             * @function
+             * @return          {string}                            Page's entries
+             */
+            get entries ( )
+            {
+                return this._entries;
+            }
 
-        entry ( message )
-        {
-            let _timestamp = `[ ${this._timestamp ( )} ]`;
+    ////    [ UTILITIES ]    ///////////////////////////////////////////////////
 
-            let _entry     = ( typeof message === 'string' ) ? `${_timestamp} => ${message}`
+        ////    PRIVATE    /////////////////////////////////
 
-                                                             : _timestamp;
+            /**
+             * Returns a current timestamp
+             * @private
+             * @function
+             * @return          {string}                            Timestamp
+             */
+            _timestamp ( )
+            {
+                let _date = new Date ( );
 
-
-            this._entries.push ( _entry );
-        }
-
-        view ( )
-        {
-            for ( let _entry of this.entries )
-
-                console.log ( _entry );
-        }
-
-        _timestamp ( )
-        {
-            let _date = new Date ( );
-
-            let _time = ( _date.getMonth        ( ) + 1 ) + "/"
-                        + _date.getDate         ( ) + "/"
-                        + _date.getFullYear     ( ) + " @ "
-                        + _date.getHours        ( ) + ":"
-                        + _date.getMinutes      ( ) + ":"
-                        + _date.getSeconds      ( ) + ":"
-                        + _date.getMilliseconds ( );
+                let _time = ( _date.getMonth        ( ) + 1 ) + "/"
+                            + _date.getDate         ( ) + "/"
+                            + _date.getFullYear     ( ) + " @ "
+                            + _date.getHours        ( ) + ":"
+                            + _date.getMinutes      ( ) + ":"
+                            + _date.getSeconds      ( ) + ":"
+                            + _date.getMilliseconds ( );
 
 
-            return _time;
-        }
+                return _time;
+            }
+
+        ////    PUBLIC    //////////////////////////////////
+
+            /**
+             * Sets a single entry with the passed message param
+             * @public
+             * @function
+             * @param           {string} message                    Message for log entry
+             */
+            entry ( message )
+            {
+                let _timestamp = `[ ${this._timestamp ( )} ]`;
+
+                let _entry     = ( typeof message === 'string' ) ? `${_timestamp} => ${message}`
+
+                                                                 : _timestamp;
+
+
+                this._entries.push ( _entry );
+            }
+
+            /**
+             * View all entries
+             * @public
+             * @function
+             */
+            view ( )
+            {
+                for ( let _entry of this.entries )
+
+                    console.log ( _entry );
+            }
 }

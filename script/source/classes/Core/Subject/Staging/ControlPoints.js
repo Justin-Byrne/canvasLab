@@ -32,129 +32,131 @@ class ControlPoints
         this.p3 = p3;
     }
 
-    ////    [ ONE ]     ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set control point one
-         * @public
-         * @function
-         * @param           {number} value                              Control point one
-         */
-        set p0 ( value )
-        {
-            this._p0 = ( this._isNumber ( value ) ) ? value : this._p0;
-        }
+        ////    [ ONE ]    ///////////////////////
 
-        /**
-         * Get control point one
-         * @readOnly
-         * @function
-         * @return          {number}                                    Control point one
-         */
-        get p0 ( )
-        {
-            return this._p0;
-        }
+            /**
+             * Set control point one
+             * @public
+             * @function
+             * @param           {number} value                              Control point one
+             */
+            set p0 ( value )
+            {
+                this._p0 = ( this._isNumber ( value ) ) ? value : this._p0;
+            }
 
-    ////    [ TWO ]     ////////////////////////////////////
+            /**
+             * Get control point one
+             * @readOnly
+             * @function
+             * @return          {number}                                    Control point one
+             */
+            get p0 ( )
+            {
+                return this._p0;
+            }
 
-        /**
-         * Set control point one
-         * @public
-         * @function
-         * @param           {number} value                              Control point two
-         */
-        set p1 ( value )
-        {
-            this._p1 = ( this._isNumber ( value ) ) ? value : this._p1;
-        }
+        ////    [ TWO ]    ///////////////////////
 
-        /**
-         * Get control point one
-         * @readOnly
-         * @function
-         * @return          {number}                                    Control point two
-         */
-        get p1 ( )
-        {
-            return this._p1;
-        }
+            /**
+             * Set control point one
+             * @public
+             * @function
+             * @param           {number} value                              Control point two
+             */
+            set p1 ( value )
+            {
+                this._p1 = ( this._isNumber ( value ) ) ? value : this._p1;
+            }
 
-    ////    [ THREE ]     //////////////////////////////////
+            /**
+             * Get control point one
+             * @readOnly
+             * @function
+             * @return          {number}                                    Control point two
+             */
+            get p1 ( )
+            {
+                return this._p1;
+            }
 
-        /**
-         * Set control point one
-         * @public
-         * @function
-         * @param           {number} value                              Control point three
-         */
-        set p2 ( value )
-        {
-            this._p2 = ( this._isNumber ( value ) ) ? value : this._p2;
-        }
+        ////    [ THREE ]    /////////////////////
 
-        /**
-         * Get control point one
-         * @readOnly
-         * @function
-         * @return          {number}                                    Control point three
-         */
-        get p2 ( )
-        {
-            return this._p2;
-        }
+            /**
+             * Set control point one
+             * @public
+             * @function
+             * @param           {number} value                              Control point three
+             */
+            set p2 ( value )
+            {
+                this._p2 = ( this._isNumber ( value ) ) ? value : this._p2;
+            }
 
-    ////    [ FOUR ]     ///////////////////////////////////
+            /**
+             * Get control point one
+             * @readOnly
+             * @function
+             * @return          {number}                                    Control point three
+             */
+            get p2 ( )
+            {
+                return this._p2;
+            }
 
-        /**
-         * Set control point one
-         * @public
-         * @function
-         * @param           {number} value                              Control point four
-         */
-        set p3 ( value )
-        {
-            this._p3 = ( this._isNumber ( value ) ) ? value : this._p3;
-        }
+        ////    [ FOUR ]    //////////////////////
 
-        /**
-         * Get control point one
-         * @readOnly
-         * @function
-         * @return          {number}                                    Control point four
-         */
-        get p3 ( )
-        {
-            return this._p3;
-        }
+            /**
+             * Set control point one
+             * @public
+             * @function
+             * @param           {number} value                              Control point four
+             */
+            set p3 ( value )
+            {
+                this._p3 = ( this._isNumber ( value ) ) ? value : this._p3;
+            }
 
-    ////    [ POINTS ]    ///////////////////////////////////
+            /**
+             * Get control point one
+             * @readOnly
+             * @function
+             * @return          {number}                                    Control point four
+             */
+            get p3 ( )
+            {
+                return this._p3;
+            }
 
-        /**
-         * Set points
-         * @public
-         * @function
-         * @param             {number} value                            Points of object
-         */
-        set points ( value )
-        {
-            if ( this._isControlPoint ( value ) )
+        ////    [ POINTS ]    ////////////////////
 
-                [ this.p0, this.p1, this.p2, this.p3 ] = [ value [ 0 ], value [ 1 ], value [ 2 ], value [ 3 ] ];
-        }
+            /**
+             * Set points
+             * @public
+             * @function
+             * @param             {number} value                            Points of object
+             */
+            set points ( value )
+            {
+                if ( this._isControlPoint ( value ) )
 
-        /**
-         * Get points
-         * @public
-         * @function
-         * @return             {number}                                 Points of object
-         */
-        get points ( )
-        {
-            return [ this.p0, this.p1, this.p2, this.p3 ];
-        }
+                    [ this.p0, this.p1, this.p2, this.p3 ] = [ value [ 0 ], value [ 1 ], value [ 2 ], value [ 3 ] ];
+            }
 
-    ////    VALIDATION  ////////////////////////////////////
+            /**
+             * Get points
+             * @public
+             * @function
+             * @return             {number}                                 Points of object
+             */
+            get points ( )
+            {
+                return [ this.p0, this.p1, this.p2, this.p3 ];
+            }
+
+    ////    VALIDATION    //////////////////////////////////
 
         /**
          * Returns whether the passed value is an array of Control Point values

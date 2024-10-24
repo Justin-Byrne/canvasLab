@@ -627,13 +627,15 @@ main {
       main .lab-station .container .col {
         padding-left: 0;
         padding-right: 0;
-        height: 100vh; }
+        flex: unset; }
         main .lab-station .container .col:nth-child(2) {
           z-index: 100; }
     main .lab-station #lab {
       background-color: #1d1f21;
       margin-left: 0;
       margin-right: 0; }
+      main .lab-station #lab .lab-view {
+        height: 100vh; }
       main .lab-station #lab #ruler {
         position: absolute;
         height: 100vh;
@@ -714,12 +716,7 @@ main {
         background-color: transparent;
         opacity: 0;
         transition: opacity 2s ease; }
-      main .lab-station #lab #coordinates {
-        position: absolute;
-        z-index: 1;
-        background-color: transparent;
-        transition: opacity 2s ease; }
-      main .lab-station #lab #angle {
+      main .lab-station #lab #angle, main .lab-station #lab #coordinates {
         position: absolute;
         z-index: 1;
         background-color: transparent;
@@ -733,165 +730,166 @@ main {
       main .lab-station #lab #control-panel {
         display: block;
         width: 100%;
-        height: 55px;
+        height: 93px;
         position: relative;
         padding-left: 1px;
         z-index: 50;
         font-family: 'Gafata';
         text-transform: uppercase;
         background-color: #26282c; }
+        @media (min-width: 1500px) {
+          main .lab-station #lab #control-panel {
+            height: 55px; } }
         main .lab-station #lab #control-panel .container {
           font-size: 14px;
-          display: flex;
-          flex-wrap: nowrap;
+          display: block;
           background: #484f56; }
-          main .lab-station #lab #control-panel .container.data {
-            margin-bottom: 3px; }
-          main .lab-station #lab #control-panel .container.execute {
-            border-radius: 3px; }
-        main .lab-station #lab #control-panel .control {
-          color: white;
-          text-shadow: 0px 0px 1px black;
-          outline: 1px solid black;
-          opacity: 0.85;
-          margin: 0 auto;
-          padding-top: 2px;
-          flex-grow: 1; }
-          main .lab-station #lab #control-panel .control:first-child {
-            border-radius: 3px 0 0 3px; }
-          main .lab-station #lab #control-panel .control:last-child {
-            border-radius: 0 3px 3px 0; }
-          main .lab-station #lab #control-panel .control.button {
-            padding: 0;
-            text-align: center; }
-          main .lab-station #lab #control-panel .control .name {
-            padding: 0px 6px;
-            border-right: 1px solid gray; }
-          main .lab-station #lab #control-panel .control .value {
-            display: inline-block;
-            min-width: 22px;
-            margin-left: 1px; }
-          main .lab-station #lab #control-panel .control.disabled {
-            cursor: default;
-            background-color: gray; }
-            main .lab-station #lab #control-panel .control.disabled:hover {
-              background-color: gray; }
-        main .lab-station #lab #control-panel .button {
-          cursor: pointer;
-          box-shadow: inset 0px 0px 2px 0px #00253c; }
-          main .lab-station #lab #control-panel .button:hover {
-            background-color: #1a6b98; }
-          main .lab-station #lab #control-panel .button:active {
-            background-color: #1a9698; }
-          main .lab-station #lab #control-panel .button .icon {
-            padding-top: 4px; }
-          main .lab-station #lab #control-panel .button .menu {
-            content: url("../images/svg/General/caret-up.svg"); }
-          main .lab-station #lab #control-panel .button .sidebar {
-            content: url("../images/svg/General/layout-sidebar.svg"); }
-          main .lab-station #lab #control-panel .button .angle {
-            content: url("../images/svg/General/angle.svg"); }
-          main .lab-station #lab #control-panel .button .ruler {
-            content: url("../images/svg/General/ruler.svg"); }
-          main .lab-station #lab #control-panel .button .grid {
-            content: url("../images/svg/General/grid.svg"); }
-          main .lab-station #lab #control-panel .button .coordinates {
-            content: url("../images/svg/General/coordinates.svg"); }
-          main .lab-station #lab #control-panel .button .full-screen {
-            content: url("../images/svg/General/aspect-ratio.svg"); }
-          main .lab-station #lab #control-panel .button .clear {
-            content: url("../images/svg/General/clear.svg"); }
-          main .lab-station #lab #control-panel .button .boolean {
-            content: url("../images/svg/General/boolean.svg"); }
-          main .lab-station #lab #control-panel .button .value-plus {
-            content: url("../images/svg/General/plus.svg"); }
-          main .lab-station #lab #control-panel .button .value-minus {
-            content: url("../images/svg/General/minus.svg"); }
-          main .lab-station #lab #control-panel .button .color-picker {
-            content: url("../images/svg/General/droplet-half.svg"); }
-          main .lab-station #lab #control-panel .button .font-plus {
-            content: url("../images/svg/General/font-plus.svg"); }
-          main .lab-station #lab #control-panel .button .font-minus {
-            content: url("../images/svg/General/font-minus.svg"); }
-          main .lab-station #lab #control-panel .button .word-wrap {
-            content: url("../images/svg/General/word-wrap.svg"); }
-          main .lab-station #lab #control-panel .button .lock {
-            content: url("../images/svg/General/unlock.svg"); }
-          main .lab-station #lab #control-panel .button .download {
-            content: url("../images/svg/General/download.svg"); }
-        main .lab-station #lab #control-panel .picker_wrapper {
-          bottom: 50px !important; }
-          main .lab-station #lab #control-panel .picker_wrapper.popup.popup_top .picker_arrow {
-            left: unset;
-            right: 0px; }
-          main .lab-station #lab #control-panel .picker_wrapper .picker_arrow {
-            transform: rotate(90deg) rotateY(180deg); }
-          main .lab-station #lab #control-panel .picker_wrapper .picker_hue {
-            height: 20px;
-            margin: 5px 5px 0 5px; }
-            main .lab-station #lab #control-panel .picker_wrapper .picker_hue .picker_selector {
-              width: 20px;
-              height: 20px;
-              top: 10px; }
-          main .lab-station #lab #control-panel .picker_wrapper .picker_sl {
-            width: 160px;
-            height: 140px;
-            margin: 7px 0 5px 5px;
-            float: left; }
-            main .lab-station #lab #control-panel .picker_wrapper .picker_sl .picker_selector {
-              width: 20px;
-              height: 20px; }
-          main .lab-station #lab #control-panel .picker_wrapper .picker_alpha {
-            display: inline-block;
-            width: 10%;
-            height: 140px;
-            margin: 7px 5px 5px 0;
-            float: right; }
-            main .lab-station #lab #control-panel .picker_wrapper .picker_alpha .picker_selector {
-              width: 20px;
-              height: 20px;
-              left: 10px; }
-          main .lab-station #lab #control-panel .picker_wrapper .picker_editor input {
-            margin: 0 5px 0 5px; }
-          main .lab-station #lab #control-panel .picker_wrapper .picker_sample {
-            width: 72%;
-            height: 30px;
-            margin: 5px 0 5px 5px;
-            float: left; }
-          main .lab-station #lab #control-panel .picker_wrapper button {
-            width: 20%;
-            height: 30px;
-            margin: 5px 5px 5px 0;
-            float: right; }
-        main .lab-station #lab #control-panel .menu_popup {
-          outline: 1px solid black;
-          position: absolute;
-          bottom: 40px;
-          padding-left: 0px;
-          background: #323232;
-          color: white;
-          list-style: none;
-          letter-spacing: 6px; }
-          main .lab-station #lab #control-panel .menu_popup li {
-            padding: 2px 10px; }
-            main .lab-station #lab #control-panel .menu_popup li:hover {
-              background-color: #646464;
-              cursor: pointer; }
-        main .lab-station #lab #control-panel #execute {
-          content: url("../images/svg/General/play.svg");
-          display: flex;
-          width: 100%;
-          height: 26px;
-          margin: 0 auto;
-          padding: 2px;
-          background: #484f56;
-          border: 1px solid black;
-          border-radius: 3px;
-          opacity: 0.8; }
-          main .lab-station #lab #control-panel #execute:hover {
-            background-color: #1a6b98; }
-          main .lab-station #lab #control-panel #execute:active {
-            background-color: #1a9698; }
+          main .lab-station #lab #control-panel .container.data > .row {
+            margin: 0 !important; }
+            main .lab-station #lab #control-panel .container.data > .row .button {
+              cursor: pointer;
+              display: inline-block;
+              width: 20%;
+              text-align: center;
+              transition: background-color 0.3s ease;
+              box-shadow: inset 0px 0px 2px 0px black; }
+              main .lab-station #lab #control-panel .container.data > .row .button#input-menu {
+                background-color: #374d7a; }
+                main .lab-station #lab #control-panel .container.data > .row .button#input-menu:hover {
+                  background-color: #272727; }
+              main .lab-station #lab #control-panel .container.data > .row .button#input-execute {
+                background-color: #7e2b2b; }
+                main .lab-station #lab #control-panel .container.data > .row .button#input-execute:hover {
+                  background-color: #272727; }
+              main .lab-station #lab #control-panel .container.data > .row .button.bottom.active {
+                background-color: #10718f; }
+              main .lab-station #lab #control-panel .container.data > .row .button.bottom:hover {
+                background-color: #1eddcd; }
+              main .lab-station #lab #control-panel .container.data > .row .button .icon {
+                padding-top: 4px; }
+              main .lab-station #lab #control-panel .container.data > .row .button .menu {
+                content: url("../images/svg/General/caret-up.svg"); }
+              main .lab-station #lab #control-panel .container.data > .row .button .execute {
+                content: url("../images/svg/General/play.svg"); }
+            main .lab-station #lab #control-panel .container.data > .row .control {
+              display: inline-block;
+              margin: 0 auto;
+              padding-top: 2px;
+              width: 20%;
+              color: white;
+              text-shadow: 0px 0px 1px black;
+              box-shadow: inset 0px 0px 2px 0px black;
+              opacity: 0.85; }
+              main .lab-station #lab #control-panel .container.data > .row .control > .name {
+                padding: 0px 6px;
+                border-right: 1px solid gray; }
+              main .lab-station #lab #control-panel .container.data > .row .control > .value {
+                display: inline-block;
+                min-width: 22px;
+                margin-left: 1px; }
+            main .lab-station #lab #control-panel .container.data > .row .menu_popup {
+              outline: 1px solid black;
+              position: absolute;
+              bottom: 78px;
+              padding-left: 0px;
+              padding-right: 0px;
+              width: auto;
+              background: #323232;
+              color: white;
+              cursor: pointer;
+              list-style: none;
+              letter-spacing: 6px; }
+              main .lab-station #lab #control-panel .container.data > .row .menu_popup li {
+                padding: 2px 10px;
+                transition: background 0.35s ease; }
+                main .lab-station #lab #control-panel .container.data > .row .menu_popup li.active {
+                  background-color: #632963; }
+                main .lab-station #lab #control-panel .container.data > .row .menu_popup li:hover {
+                  background-color: #505050; }
+          main .lab-station #lab #control-panel .container.buttons .row {
+            display: flex;
+            margin: 0 !important; }
+            main .lab-station #lab #control-panel .container.buttons .row .col:nth-child(1), main .lab-station #lab #control-panel .container.buttons .row .col:nth-child(2) {
+              text-align: center; }
+            main .lab-station #lab #control-panel .container.buttons .row .button {
+              cursor: pointer;
+              display: inline-block;
+              width: 11.25%;
+              margin-left: -2px;
+              margin-right: -2px;
+              transition: background-color 0.3s ease;
+              box-shadow: inset 0px 0px 2px 0px black; }
+              main .lab-station #lab #control-panel .container.buttons .row .button.active {
+                background-color: #10718f; }
+              main .lab-station #lab #control-panel .container.buttons .row .button:hover {
+                background-color: #272727; }
+              main .lab-station #lab #control-panel .container.buttons .row .button .icon {
+                padding-top: 4px; }
+              main .lab-station #lab #control-panel .container.buttons .row .button .menu {
+                content: url("../images/svg/General/caret-up.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .execute {
+                content: url("../images/svg/General/play.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .sidebar {
+                content: url("../images/svg/General/layout-sidebar.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .angle {
+                content: url("../images/svg/General/angle.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .ruler {
+                content: url("../images/svg/General/ruler.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .grid {
+                content: url("../images/svg/General/grid.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .coordinates {
+                content: url("../images/svg/General/coordinates.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .full-screen {
+                content: url("../images/svg/General/aspect-ratio.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .clear {
+                content: url("../images/svg/General/clear.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .boolean {
+                content: url("../images/svg/General/boolean.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .timing {
+                content: url("../images/svg/General/timing.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .value-plus {
+                content: url("../images/svg/General/plus.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .value-minus {
+                content: url("../images/svg/General/minus.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .color-picker {
+                content: url("../images/svg/General/droplet-half.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .font-plus {
+                content: url("../images/svg/General/font-plus.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .font-minus {
+                content: url("../images/svg/General/font-minus.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .word-wrap {
+                content: url("../images/svg/General/word-wrap.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .lock {
+                content: url("../images/svg/General/unlock.svg"); }
+              main .lab-station #lab #control-panel .container.buttons .row .button .download {
+                content: url("../images/svg/General/download.svg"); }
+          main .lab-station #lab #control-panel .container .picker_wrapper > .picker_hue {
+            height: 25px; }
+          main .lab-station #lab #control-panel .container .picker_wrapper > .picker_sl {
+            float: left;
+            height: 100px;
+            width: 160px; }
+          main .lab-station #lab #control-panel .container .picker_wrapper > .picker_alpha {
+            float: right;
+            height: 100px;
+            width: 25px; }
+          main .lab-station #lab #control-panel .container .timing_popup {
+            outline: 1px solid black;
+            position: absolute;
+            bottom: 78px;
+            right: 0;
+            padding-left: 0px;
+            background: #323232;
+            color: white;
+            cursor: pointer;
+            list-style: none;
+            letter-spacing: 6px; }
+            main .lab-station #lab #control-panel .container .timing_popup li {
+              padding: 2px 10px;
+              text-align: justify;
+              text-transform: none; }
+              main .lab-station #lab #control-panel .container .timing_popup li:hover {
+                background-color: #646464; }
   main #lab-open {
     position: fixed;
     width: 120px;
@@ -1179,6 +1177,10 @@ main {
   animation-delay: 1.7s; }
 .card-delays:nth-child(20) {
   animation-delay: 1.8s; }
+
+@media (min-width: 1500px) {
+  .mq-control-panel-container-buttons.row, main .lab-station #lab #control-panel .container.buttons .row {
+    flex-wrap: unset; } }
 
 @keyframes fadeIn {
   0% {

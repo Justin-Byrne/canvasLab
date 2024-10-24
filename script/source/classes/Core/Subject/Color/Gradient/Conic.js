@@ -31,86 +31,88 @@ class Conic
         this.stops = stops;
     }
 
-    ////    [ ANGLE ]     //////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set angle property
-         * @public
-         * @function
-         * @param           {Angle} value                               Angle object
-         */
-        set angle ( value )
-        {
-            this._angle = ( this._isRadian ( value ) ) ? value : this._angle;
-        }
+        ////    [ ANGLE ]    /////////////////////
 
-        /**
-         * Set angle property
-         * @readOnly
-         * @function
-         * @return          {Angle}                                     Angle object
-         */
-        get angle ( )
-        {
-            return this._angle;
-        }
+            /**
+             * Set angle property
+             * @public
+             * @function
+             * @param           {Angle} value                               Angle object
+             */
+            set angle ( value )
+            {
+                this._angle = ( this._isRadian ( value ) ) ? value : this._angle;
+            }
 
-    ////    [ START ]   ////////////////////////////////////
+            /**
+             * Set angle property
+             * @readOnly
+             * @function
+             * @return          {Angle}                                     Angle object
+             */
+            get angle ( )
+            {
+                return this._angle;
+            }
 
-        /**
-         * Set point
-         * @public
-         * @function
-         * @param           {Point} value                               Point
-         */
-        set point ( value )
-        {
-            this._point = ( this._isPoint ( value ) ) ? value : this._point;
-        }
+        ////    [ START ]    /////////////////////
 
-        /**
-         * Get point
-         * @readOnly
-         * @function
-         * @return          {Point}                                     Point
-         */
-        get point ( )
-        {
-            return this._point;
-        }
+            /**
+             * Set point
+             * @public
+             * @function
+             * @param           {Point} value                               Point
+             */
+            set point ( value )
+            {
+                this._point = ( this._isPoint ( value ) ) ? value : this._point;
+            }
 
-    ////    [ STOPS ]    ///////////////////////////////////
+            /**
+             * Get point
+             * @readOnly
+             * @function
+             * @return          {Point}                                     Point
+             */
+            get point ( )
+            {
+                return this._point;
+            }
 
-        /**
-         * Set color stops
-         * @public
-         * @function
-         * @param           {Array.<Stop>} values                       Color stops
-         */
-        set stops ( value )
-        {
-            if ( Array.isArray ( value ) )
+        ////    [ STOPS ]    /////////////////////
 
-                for ( let _stop of value )
+            /**
+             * Set color stops
+             * @public
+             * @function
+             * @param           {Array.<Stop>} values                       Color stops
+             */
+            set stops ( value )
+            {
+                if ( Array.isArray ( value ) )
 
-                    if ( this._isStop ( _stop ) )
+                    for ( let _stop of value )
 
-                        this._stops.push ( _stop );
-            else
+                        if ( this._isStop ( _stop ) )
 
-                console.warn ( '[ ERROR ]: value is not of type Array !' );
-        }
+                            this._stops.push ( _stop );
+                else
 
-        /**
-         * Get color stops
-         * @readOnly
-         * @function
-         * @return          {Array.<Stop>}                              Color stops
-         */
-        get stops ( )
-        {
-            return this._stops;
-        }
+                    console.warn ( '[ ERROR ]: value is not of type Array !' );
+            }
+
+            /**
+             * Get color stops
+             * @readOnly
+             * @function
+             * @return          {Array.<Stop>}                              Color stops
+             */
+            get stops ( )
+            {
+                return this._stops;
+            }
 
     ////    VALIDATION  ////////////////////////////////////
 

@@ -28,77 +28,79 @@ class Angle
         this.clockwise = clockwise;
     }
 
-    ////    [ START ]   ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set start angle
-         * @public
-         * @function
-         * @param           {number} value                              Start angle; in degrees
-         */
-        set start ( value )
-        {
-            this._start = ( this._isDegree ( value ) ) ? value : this._start;
-        }
+        ////    [ START ]    /////////////////////
 
-        /**
-         * Get start angle
-         * @readOnly
-         * @function
-         * @return          {number}                                    Start value; in degrees
-         */
-        get start ( )
-        {
-            return this._start;
-        }
+            /**
+             * Set start angle
+             * @public
+             * @function
+             * @param           {number} value                              Start angle; in degrees
+             */
+            set start ( value )
+            {
+                this._start = ( this._isDegree ( value ) ) ? value : this._start;
+            }
 
-    ////    [ END ]     ////////////////////////////////////
+            /**
+             * Get start angle
+             * @readOnly
+             * @function
+             * @return          {number}                                    Start value; in degrees
+             */
+            get start ( )
+            {
+                return this._start;
+            }
 
-        /**
-         * Set end angle
-         * @public
-         * @function
-         * @param           {number} value                              End angle; in degrees
-         */
-        set end ( value )
-        {
-            this._end = ( this._isDegree ( value ) ) ? value : this._end;
-        }
+        ////    [ END ]    ///////////////////////
 
-        /**
-         * Get end angle
-         * @readOnly
-         * @function
-         * @return          {number}                                    End angle; in degrees
-         */
-        get end ( )
-        {
-            return this._end;
-        }
+            /**
+             * Set end angle
+             * @public
+             * @function
+             * @param           {number} value                              End angle; in degrees
+             */
+            set end ( value )
+            {
+                this._end = ( this._isDegree ( value ) ) ? value : this._end;
+            }
 
-    ////    [ CLOCKWISE ]   ////////////////////////////////
+            /**
+             * Get end angle
+             * @readOnly
+             * @function
+             * @return          {number}                                    End angle; in degrees
+             */
+            get end ( )
+            {
+                return this._end;
+            }
 
-        /**
-         * Set clockwise
-         * @public
-         * @function
-         * @param           {boolean} value                             Clockwise; true | false
-         */
-        set clockwise ( value )
-        {
-            this._clockwise = ( typeof value === 'boolean' ) ? value : this._clockwise;
-        }
+        ////    [ CLOCKWISE ]    /////////////////
 
-        /**
-         * Get clockwise
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   Clockwise; true | false
-         */
-        get clockwise ( )
-        {
-            return this._clockwise;
-        }
+            /**
+             * Set clockwise
+             * @public
+             * @function
+             * @param           {boolean} value                             Clockwise; true | false
+             */
+            set clockwise ( value )
+            {
+                this._clockwise = ( typeof value === 'boolean' ) ? value : this._clockwise;
+            }
+
+            /**
+             * Get clockwise
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Clockwise; true | false
+             */
+            get clockwise ( )
+            {
+                return this._clockwise;
+            }
 
     ////    VALIDATION  ////////////////////////////////////
 
@@ -124,49 +126,53 @@ class Angle
 
     ////    UTILITIES   ////////////////////////////////////
 
-        /**
-         * Convert radian to degree
-         * @private
-         * @function
-         * @param           {number} value                              Radian
-         * @return          {number}                                    Conversion in degrees
-         */
-        _convert2Degree ( value )
-        {
-            return ( this._isRadian ) ? ( value * ( Math.PI / 180 ) ) : console.warn ( `${value} is not a radian value !` );
-        }
+        ////    - PRIVATE    /////////////////////
 
-        /**
-         * Convert degree to radian
-         * @private
-         * @function
-         * @param           {number} value                              Degree
-         * @return          {number}                                    Conversion in radians
-         */
-        _convert2Radian ( value )
-        {
-            return ( this._isDegree ) ? ( value * ( Math.PI / 180 ) ) : console.warn ( `${value} is not a degree value !` );
-        }
+            /**
+             * Convert radian to degree
+             * @private
+             * @function
+             * @param           {number} value                              Radian
+             * @return          {number}                                    Conversion in degrees
+             */
+            _convert2Degree ( value )
+            {
+                return ( this._isRadian ) ? ( value * ( Math.PI / 180 ) ) : console.warn ( `${value} is not a radian value !` );
+            }
 
-        /**
-         * Get start angle in radians
-         * @readOnly
-         * @function
-         * @return          {number}                                    Start value; to radians
-         */
-        get startInRadians ( )
-        {
-            return this._convert2Radian ( this.start );
-        }
+            /**
+             * Convert degree to radian
+             * @private
+             * @function
+             * @param           {number} value                              Degree
+             * @return          {number}                                    Conversion in radians
+             */
+            _convert2Radian ( value )
+            {
+                return ( this._isDegree ) ? ( value * ( Math.PI / 180 ) ) : console.warn ( `${value} is not a degree value !` );
+            }
 
-        /**
-         * Get end angle in radians
-         * @readOnly
-         * @function
-         * @return          {number}                                    End value; in radians
-         */
-        get endInRadians ( )
-        {
-            return this._convert2Radian ( this.end );
-        }
+        ////    + PUBLIC    //////////////////////
+
+            /**
+             * Get start angle in radians
+             * @readOnly
+             * @function
+             * @return          {number}                                    Start value; to radians
+             */
+            get startInRadians ( )
+            {
+                return this._convert2Radian ( this.start );
+            }
+
+            /**
+             * Get end angle in radians
+             * @readOnly
+             * @function
+             * @return          {number}                                    End value; in radians
+             */
+            get endInRadians ( )
+            {
+                return this._convert2Radian ( this.end );
+            }
 }

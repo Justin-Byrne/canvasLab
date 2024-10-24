@@ -1,41 +1,44 @@
 /**
  * @class           {Object}            Position 				Position object
- * @property        {Point}             point 					Original X & Y coordinates for an object's position
+ * @property        {Point}             origin 					Origin X & Y coordinates for an object's position
+ * @property        {Point}             start 					Origin start X & Y coordinates for a Line object's position
+ * @property        {Point}             end 					Origin end X & Y coordinates for a Line object's position
  * @property        {number}            distance 				Distance from origin to destination
  * @property        {number}            direction 				Direction to move towards destination; in degrees
- * @property        {Stroke}            stroke 					Stroke properties
- * @property        {Fill}              fill 					Fill properties
- * @property        {Shadow}            shadow 					Shadow properties
- * @property        {HTMLCanvasElement} canvas                  2D canvas context
+ * @property        {number}            rotation 				Amount object (including canvas) has been rotated
+ * @property        {Aspect}            aspect 					Original aspect value(s) for a rectangular object
+ * @property        {ControlPoints}     controlPoints 			Original control point values for a Line object
+ * @property        {number}            fontSize 				Original fontSize value for a Text object
  * @property        {clObject} 			master 					Master object
  */
 class Position
 {
-	_origin          = undefined;
+	_origin        = undefined;
 
-	_start           = undefined;
-	_end             = undefined;
+	_start         = undefined;
+	_end           = undefined;
 
-	_distance        = undefined;
-	_direction       = undefined;
+	_distance      = undefined;
+	_direction     = undefined;
 
-	_rotation        = 0;
+	_rotation      = 0;
 
-	_aspect          = new Aspect;
+	_aspect        = new Aspect;
 
-	_controlPoints   = new ControlPoints;
+	_controlPoints = new ControlPoints;
 
-	_fontSize        = 0;
+	_fontSize      = 0;
 
-	_master          = undefined;
+	_stroke        = undefined;
+
+	_fill          = undefined;
+
+	_master        = undefined;
 
 	/**
 	 * Create a Position object
-	 * @property        {Point}  point                              Original X & Y coordinates for an object's position
-	 * @property        {number} distance                  			Distance from origin to destination
-	 * @property        {number} direction 							Direction to move towards destination; in degrees
 	 */
-	constructor ( origin, distance, direction )
+	constructor ( )
 	{
 		////    COMPOSITION    /////////////////////////////
 
@@ -49,255 +52,301 @@ class Position
 			this._isHeight 			= VALIDATION.isHeight
 
 			Object.defineProperty ( this, 'master', PROPERTY_BLOCKS.individual.master  );
-
-		this.origin    = origin;
-		this.distance  = distance;
-		this.direction = direction;
 	}
 
-	////    [ ORIGIN ]    //////////////////////////////////
+	////    PROPERTIES    //////////////////////////////////
 
-		/**
-		 * Set origin
-		 * @public
-		 * @function
-		 * @param 			{Point} value 								X & Y coordinates
-		 */
-		set origin ( value )
-		{
-			this._origin = value;
-		}
+		////    [ ORIGIN ]    ////////////////////////
 
-		/**
-         * Get origin
-         * @public
-         * @function
-         * @return          {Point}                                     X & Y coordinates
-         */
-		get origin ( )
-		{
-			return this._origin;
-		}
+			/**
+			 * Set origin
+			 * @public
+			 * @function
+			 * @param 			{Point} value 								X & Y coordinates
+			 */
+			set origin ( value )
+			{
+				this._origin = value;
+			}
 
-	////    [ DISTANCE ]    ////////////////////////////////
+			/**
+	         * Get origin
+	         * @public
+	         * @function
+	         * @return          {Point}                                     X & Y coordinates
+	         */
+			get origin ( )
+			{
+				return this._origin;
+			}
 
-		/**
-		 * Set distance
-		 * @public
-		 * @function
-		 * @param 			{number} value 								Distance from origin to destination
-		 */
-		set distance ( value )
-		{
-			if ( value != undefined  &&  this._isPoint ( value ) )
+		////    [ DISTANCE ]    //////////////////////
 
-                this._distance = Math.sqrt (
-                                               ( Math.pow ( value.x - this.master.x, 2 ) ) +
+			/**
+			 * Set distance
+			 * @public
+			 * @function
+			 * @param 			{number} value 								Distance from origin to destination
+			 */
+			set distance ( value )
+			{
+				if ( value != undefined  &&  this._isPoint ( value ) )
 
-                                               ( Math.pow ( value.y - this.master.y, 2 ) )
-                                           );
-		}
+	                this._distance = Math.sqrt (
+	                                               ( Math.pow ( value.x - this.master.x, 2 ) ) +
 
-		/**
-		 * Get distance
-		 * @public
-		 * @function
-		 * @return 			{number} 									Distance from origin to destination
-		 */
-		get distance ( )
-		{
-			return this._distance;
-		}
+	                                               ( Math.pow ( value.y - this.master.y, 2 ) )
+	                                           );
+			}
 
-	////    [ DIRECTION ]    ///////////////////////////////
+			/**
+			 * Get distance
+			 * @public
+			 * @function
+			 * @return 			{number} 									Distance from origin to destination
+			 */
+			get distance ( )
+			{
+				return this._distance;
+			}
 
-		/**
-		 * Set direction
-		 * @public
-		 * @function
-		 * @param 			{number} value 								Direction in degrees
-		 */
-		set direction ( value )
-		{
-			if ( value != undefined  &&  this._isPoint ( value ) )
+		////    [ DIRECTION ]    /////////////////////
 
-				this._direction = Math.atan2 ( value.y - this.master.y, value.x - this.master.x );
-		}
+			/**
+			 * Set direction
+			 * @public
+			 * @function
+			 * @param 			{number} value 								Direction in degrees
+			 */
+			set direction ( value )
+			{
+				if ( value != undefined  &&  this._isPoint ( value ) )
 
-		/**
-		 * Get direction
-		 * @public
-		 * @function
-		 * @return 			{number}									Direction in degrees
-		 */
-		get direction ( )
-		{
-			return this._direction;
-		}
+					this._direction = Math.atan2 ( value.y - this.master.y, value.x - this.master.x );
+			}
 
-	////    [ ROTATION ]    ////////////////////////////////
+			/**
+			 * Get direction
+			 * @public
+			 * @function
+			 * @return 			{number}									Direction in degrees
+			 */
+			get direction ( )
+			{
+				return this._direction;
+			}
 
-		/**
-		 * Set rotation
-		 * @public
-		 * @function
-		 * @param 			{number} value 								Direction in degrees
-		 */
-		set rotation ( value )
-		{
-			this._rotation = value;
-		}
+		////    [ ROTATION ]    //////////////////////
 
-		/**
-		 * Get rotation
-		 * @public
-		 * @function
-		 * @return 			{number}									Direction in degrees
-		 */
-		get rotation ( )
-		{
-			return this._rotation;
-		}
+			/**
+			 * Set rotation
+			 * @public
+			 * @function
+			 * @param 			{number} value 								Direction in degrees
+			 */
+			set rotation ( value )
+			{
+				this._rotation = value;
+			}
 
-	////    [ ASPECT ]    //////////////////////////////////
+			/**
+			 * Get rotation
+			 * @public
+			 * @function
+			 * @return 			{number}									Direction in degrees
+			 */
+			get rotation ( )
+			{
+				return this._rotation;
+			}
 
-	    /**
-	     * Set aspect
-	     * @public
-	     * @function
-	     * @param 			{number} value 								Aspect of object
-	     */
-	    set aspect ( value )
-	    {
-	        this._aspect = ( this._isAspect ( value ) ) ? value : this._aspect;
-	    }
+		////    [ ASPECT ]    ////////////////////////
 
-	    /**
-	     * Get aspect
-	     * @public
-	     * @function
-	     * @return 			{number} 									Aspect of object
-	     */
-	    get aspect ( )
-	    {
-	        return this._aspect;
-	    }
+		    /**
+		     * Set aspect
+		     * @public
+		     * @function
+		     * @param 			{number} value 								Aspect of object
+		     */
+		    set aspect ( value )
+		    {
+		        this._aspect = ( this._isAspect ( value ) ) ? value : this._aspect;
+		    }
 
-	////    [ WIDTH ]    ///////////////////////////////////
+		    /**
+		     * Get aspect
+		     * @public
+		     * @function
+		     * @return 			{number} 									Aspect of object
+		     */
+		    get aspect ( )
+		    {
+		        return this._aspect;
+		    }
 
-		/**
-		 * Set width
-		 * @public
-		 * @function
-		 * @param 			{number} value 								Width of object
-		 */
-		set width ( value )
-		{
-			this._aspect.width = value;
-		}
+		////    [ WIDTH ]    /////////////////////////
 
-		/**
-		 * Get width
-		 * @public
-		 * @function
-		 * @return 			{number}									Width of object
-		 */
-		get width ( )
-		{
-			return this._aspect.width;
-		}
+			/**
+			 * Set width
+			 * @public
+			 * @function
+			 * @param 			{number} value 								Width of object
+			 */
+			set width ( value )
+			{
+				this._aspect.width = value;
+			}
 
-	////    [ HEIGHT ]    //////////////////////////////////
+			/**
+			 * Get width
+			 * @public
+			 * @function
+			 * @return 			{number}									Width of object
+			 */
+			get width ( )
+			{
+				return this._aspect.width;
+			}
 
-	    /**
-	     * Set height
-	     * @public
-	     * @function
-	     * @param 			{number} value 								Height of object
-	     */
-	    set height ( value )
-	    {
-	        this._aspect.height = value;
-	    }
+		////    [ HEIGHT ]    ////////////////////////
 
-	    /**
-	     * Get height
-	     * @public
-	     * @function
-	     * @return 			{number}									Height of object
-	     */
-	    get height ( )
-	    {
-	        return this._aspect.height;
-	    }
+		    /**
+		     * Set height
+		     * @public
+		     * @function
+		     * @param 			{number} value 								Height of object
+		     */
+		    set height ( value )
+		    {
+		        this._aspect.height = value;
+		    }
 
-	////    [ CONTROLPOINTS ]    ///////////////////////////
+		    /**
+		     * Get height
+		     * @public
+		     * @function
+		     * @return 			{number}									Height of object
+		     */
+		    get height ( )
+		    {
+		        return this._aspect.height;
+		    }
 
-	    /**
-	     * Set controlPoints
-	     * @public
-	     * @function
-	     * @param 			{Array.<number>} value 						ControlPoints of object
-	     */
-	    set controlPoints ( value )
-	    {
-	        this._controlPoints = ( this._isControlPoint ( value ) ) ? value : this._controlPoints;
-	    }
+		////    [ CONTROLPOINTS ]    /////////////////
 
-	    /**
-	     * Get controlPoints
-	     * @public
-	     * @function
-	     * @return 			{Array.<number>} 							ControlPoints of object
-	     */
-	    get controlPoints ( )
-	    {
-	        return this._controlPoints;
-	    }
+		    /**
+		     * Set controlPoints
+		     * @public
+		     * @function
+		     * @param 			{Array.<number>} value 						ControlPoints of object
+		     */
+		    set controlPoints ( value )
+		    {
+		        this._controlPoints = ( this._isControlPoint ( value ) ) ? value : this._controlPoints;
+		    }
 
-	////    [ FONTSIZE ]    ////////////////////////////////
+		    /**
+		     * Get controlPoints
+		     * @public
+		     * @function
+		     * @return 			{Array.<number>} 							ControlPoints of object
+		     */
+		    get controlPoints ( )
+		    {
+		        return this._controlPoints;
+		    }
 
-	    /**
-	     * Set fontSize
-	     * @public
-	     * @function
-	     * @param 			{number} value 								FontSize of object
-	     */
-	    set fontSize ( value )
-	    {
-	        this._fontSize = this._isNumber ( value ) ? value : this._fontSize;
-	    }
+		////    [ FONTSIZE ]    //////////////////////
 
-	    /**
-	     * Get fontSize
-	     * @public
-	     * @function
-	     * @return 			{number}									FontSize of object
-	     */
-	    get fontSize ( )
-	    {
-	        return this._fontSize;
-	    }
+		    /**
+		     * Set fontSize
+		     * @public
+		     * @function
+		     * @param 			{number} value 								FontSize of object
+		     */
+		    set fontSize ( value )
+		    {
+		        this._fontSize = this._isNumber ( value ) ? value : this._fontSize;
+		    }
 
-	////    [ MASTER ]    //////////////////////////////////
+		    /**
+		     * Get fontSize
+		     * @public
+		     * @function
+		     * @return 			{number}									FontSize of object
+		     */
+		    get fontSize ( )
+		    {
+		        return this._fontSize;
+		    }
 
-		/**
-		 * Set master object
-		 * @public
-		 * @function
-		 * @param 			{clObject} value 							Canvas Lab object
-		 * @see             {@link PROPERTY_BLOCKS.individual.master}
-		 */
-		set master ( value ) { }
+		////    [ MASTER ]    ////////////////////////
 
-		/**
-         * Get master object
-         * @public
-         * @function
-         * @return          {clObject} 									Master Canvas Lab object
-         * @see             {@link PROPERTY_BLOCKS.individual.master}
-         */
-		get master ( ) { }
+			/**
+			 * Set master object
+			 * @public
+			 * @function
+			 * @param 			{clObject} value 							Canvas Lab object
+			 * @see             {@link PROPERTY_BLOCKS.individual.master}
+			 */
+			set master ( value ) { }
+
+			/**
+	         * Get master object
+	         * @public
+	         * @function
+	         * @return          {clObject} 									Master Canvas Lab object
+	         * @see             {@link PROPERTY_BLOCKS.individual.master}
+	         */
+			get master ( ) { }
+
+		////    [ STROKE ]    ////////////////////////
+
+		    /**
+		     * Set stroke
+		     * @public
+		     * @function
+		     * @param 			{number} value 								Stroke of object
+		     */
+		    set stroke ( value )
+		    {
+		        this._stroke = value;
+		    }
+
+		    /**
+		     * Get stroke
+		     * @public
+		     * @function
+		     * @return 			{number}									Stroke of object
+		     */
+		    get stroke ( )
+		    {
+		        return this._stroke;
+		    }
+
+		////    [ FILL ]    /////////////////////////
+
+		    /**
+		     * Set fill
+		     * @public
+		     * @function
+		     * @param 			{number} value 								Fill of object
+		     */
+		    set fill ( value )
+		    {
+		        this._fill = value;
+		    }
+
+		    /**
+		     * Get fill
+		     * @public
+		     * @function
+		     * @return 			{number}									Fill of object
+		     */
+		    get fill ( )
+		    {
+		        return this._fill;
+		    }
 
 	////    VALIDATION    //////////////////////////////////
 

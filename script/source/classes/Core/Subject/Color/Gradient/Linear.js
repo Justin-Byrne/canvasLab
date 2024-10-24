@@ -24,93 +24,95 @@ class Linear
             this._isPoint      = VALIDATION.isPoint;
             this._isStop       = VALIDATION.isStop;
 
-            this._stopColorCycle = UTILITIES.individual.color.cycle.stop;
+            this.__stopColorCycle = UTILITIES.individual.color.cycle.stop;
 
         this.start = start;
         this.end   = end;
         this.stops = stops;
     }
 
-    ////    [ START ]   ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set starting point
-         * @public
-         * @function
-         * @param           {Point} value                               Starting point
-         */
-        set start ( value )
-        {
-            this._start = ( this._isPoint ( value ) ) ? value : this._start;
-        }
+        ////    [ START ]    /////////////////////
 
-        /**
-         * Set starting point
-         * @readOnly
-         * @function
-         * @return          {Point}                                     Starting point
-         */
-        get start ( )
-        {
-            return this._start;
-        }
+            /**
+             * Set starting point
+             * @public
+             * @function
+             * @param           {Point} value                               Starting point
+             */
+            set start ( value )
+            {
+                this._start = ( this._isPoint ( value ) ) ? value : this._start;
+            }
 
-    ////    [ END ]     ////////////////////////////////////
+            /**
+             * Set starting point
+             * @readOnly
+             * @function
+             * @return          {Point}                                     Starting point
+             */
+            get start ( )
+            {
+                return this._start;
+            }
 
-        /**
-         * Set ending point
-         * @public
-         * @function
-         * @param           {Point} value                               Ending point
-         */
-        set end ( value )
-        {
-            this._end = ( this._isPoint ( value ) ) ? value : this._end;
-        }
+        ////    [ END ]    ///////////////////////
 
-        /**
-         * Set ending point
-         * @readOnly
-         * @function
-         * @return          {Point}                                     Ending point
-         */
-        get end ( )
-        {
-            return this._end;
-        }
+            /**
+             * Set ending point
+             * @public
+             * @function
+             * @param           {Point} value                               Ending point
+             */
+            set end ( value )
+            {
+                this._end = ( this._isPoint ( value ) ) ? value : this._end;
+            }
 
-    ////    [ STOPS ]    ///////////////////////////////////
+            /**
+             * Set ending point
+             * @readOnly
+             * @function
+             * @return          {Point}                                     Ending point
+             */
+            get end ( )
+            {
+                return this._end;
+            }
 
-        /**
-         * Set color stops
-         * @public
-         * @function
-         * @param           {Array.<Stop>} values                       Color stops
-         */
-        set stops ( value )
-        {
-            if ( Array.isArray ( value ) )
+        ////    [ STOPS ]    /////////////////////
 
-                for ( let _stop of value )
+            /**
+             * Set color stops
+             * @public
+             * @function
+             * @param           {Array.<Stop>} values                       Color stops
+             */
+            set stops ( value )
+            {
+                if ( Array.isArray ( value ) )
 
-                    if ( this._isStop ( _stop ) )
+                    for ( let _stop of value )
 
-                        this._stops.push ( _stop );
-            else
+                        if ( this._isStop ( _stop ) )
 
-                console.warn ( '[ ERROR ]: value is not of type Array !' );
-        }
+                            this._stops.push ( _stop );
+                else
 
-        /**
-         * Get color stops
-         * @readOnly
-         * @function
-         * @return          {Array.<Stop>}                              Color stops
-         */
-        get stops ( )
-        {
-            return this._stops;
-        }
+                    console.warn ( '[ ERROR ]: value is not of type Array !' );
+            }
+
+            /**
+             * Get color stops
+             * @readOnly
+             * @function
+             * @return          {Array.<Stop>}                              Color stops
+             */
+            get stops ( )
+            {
+                return this._stops;
+            }
 
     ////    VALIDATION  ////////////////////////////////////
 
@@ -148,7 +150,7 @@ class Linear
 
         /**
          * Cycle colors for gradient stop(s)
-         * @public
+         * @private
          * @function
          * @param           {Object}   start                            Color model & values
          * @param           {Object}   end                              Color model & values
@@ -159,5 +161,5 @@ class Linear
          * @param           {function} draw                             Draw callback from root object
          * @see             {@link UTILITIES.individual.color.cycle.stop}
          */
-        stopColorCycle ( ) { }
+        _stopColorCycle ( ) { }
 }

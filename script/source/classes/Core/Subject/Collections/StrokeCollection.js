@@ -34,129 +34,131 @@ class StrokeCollection
             Object.defineProperty ( this, 'master', PROPERTY_BLOCKS.individual.master );
     }
 
-    ////    [ COLOR ]   ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set color value
-         * @public
-         * @function
-         * @param           {string} value                              RGB color value
-         */
-        set color ( value )
-        {
-            if ( this._isColorModel ( value ) )
+        ////    [ COLOR ]    /////////////////////
 
-                this._setAll ( 'color', value );
-        }
+            /**
+             * Set color value
+             * @public
+             * @function
+             * @param           {string} value                              RGB color value
+             */
+            set color ( value )
+            {
+                if ( this._isColorModel ( value ) )
 
-        /**
-         * Get color value
-         * @public
-         * @function
-         * @return          {string}                                    RGB color value
-         */
-        get color ( )
-        {
-            return this._color;
-        }
+                    this._setAll ( 'color', value );
+            }
 
-    ////    [ TYPE ]    ////////////////////////////////////
+            /**
+             * Get color value
+             * @public
+             * @function
+             * @return          {string}                                    RGB color value
+             */
+            get color ( )
+            {
+                return this._color;
+            }
 
-        /**
-         * Set type
-         * @public
-         * @function
-         * @param           {number} value                              Type: (0) Solid or (1) Dashed
-         */
-        set type ( value )
-        {
-            if ( this._isStrokeType ( value ) )
+        ////    [ TYPE ]    //////////////////////
 
-                this._setAll ( 'type', value );
-        }
+            /**
+             * Set type
+             * @public
+             * @function
+             * @param           {number} value                              Type: (0) Solid or (1) Dashed
+             */
+            set type ( value )
+            {
+                if ( this._isStrokeType ( value ) )
 
-        /**
-         * Get type
-         * @readOnly
-         * @function
-         * @return          {number}                                    Type: (0) Solid or (1) Dashed
-         */
-        get type ( )
-        {
-            return this._type;
-        }
+                    this._setAll ( 'type', value );
+            }
 
-    ////    [ SEGMENTS ]    ////////////////////////////////
+            /**
+             * Get type
+             * @readOnly
+             * @function
+             * @return          {number}                                    Type: (0) Solid or (1) Dashed
+             */
+            get type ( )
+            {
+                return this._type;
+            }
 
-        /**
-         * Set segment value
-         * @public
-         * @function
-         * @param           {Array} value                               Dashed line segment distance(s)
-         */
-        set segments ( value )
-        {
-            if ( this._isSegments ( value ) )
+        ////    [ SEGMENTS ]    //////////////////
 
-                this._setAll ( 'segments', value );
-        }
+            /**
+             * Set segment value
+             * @public
+             * @function
+             * @param           {Array} value                               Dashed line segment distance(s)
+             */
+            set segments ( value )
+            {
+                if ( this._isSegments ( value ) )
 
-        /**
-         * Get segment value
-         * @readOnly
-         * @function
-         * @return          {Array}                                     Dashed line segment distance(s)
-         */
-        get segments ( )
-        {
-            return this._segments;
-        }
+                    this._setAll ( 'segments', value );
+            }
 
-    ////    [ WIDTH ]   ////////////////////////////////////
+            /**
+             * Get segment value
+             * @readOnly
+             * @function
+             * @return          {Array}                                     Dashed line segment distance(s)
+             */
+            get segments ( )
+            {
+                return this._segments;
+            }
 
-        /**
-         * Set width value
-         * @public
-         * @function
-         * @param           {number} value                              Thickness of stroke
-         */
-        set width ( value )
-        {
-            if ( this._isWidth ( value ) )
+        ////    [ WIDTH ]    /////////////////////
 
-                this._setAll ( 'width', value );
-        }
+            /**
+             * Set width value
+             * @public
+             * @function
+             * @param           {number} value                              Thickness of stroke
+             */
+            set width ( value )
+            {
+                if ( this._isWidth ( value ) )
 
-        /**
-         * Get width value
-         * @readOnly
-         * @function
-         * @return          {number}                                    Thickness of stroke
-         */
-        get width ( )
-        {
-            return this._width;
-        }
+                    this._setAll ( 'width', value );
+            }
 
-    ////    [ MASTER ]  ////////////////////////////////////
+            /**
+             * Get width value
+             * @readOnly
+             * @function
+             * @return          {number}                                    Thickness of stroke
+             */
+            get width ( )
+            {
+                return this._width;
+            }
 
-        /**
-         * Set master object
-         * @public
-         * @function
-         * @param           {clObject} value                            Canvas Lab object
-         * @see             {@link PROPERTY_BLOCKS.individual.master}
-         */
-        set master ( value ) { }
+        ////    [ MASTER ]    ////////////////////
 
-        /**
-         * Get master object
-         * @public
-         * @function
-         * @return          {clObject}                                  Master Canvas Lab object
-         * @see             {@link PROPERTY_BLOCKS.individual.master}
-         */
-        get master ( ) { }
+            /**
+             * Set master object
+             * @public
+             * @function
+             * @param           {clObject} value                            Canvas Lab object
+             * @see             {@link PROPERTY_BLOCKS.individual.master}
+             */
+            set master ( value ) { }
+
+            /**
+             * Get master object
+             * @public
+             * @function
+             * @return          {clObject}                                  Master Canvas Lab object
+             * @see             {@link PROPERTY_BLOCKS.individual.master}
+             */
+            get master ( ) { }
 
     ////    VALIDATION  ////////////////////////////////////
 

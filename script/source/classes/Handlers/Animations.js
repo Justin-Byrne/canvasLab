@@ -15,7 +15,7 @@ class Animations
 
     #timings =
     {
-        ////    EASE-IN    /////////////////////////////////////
+        ////    EASE-IN    /////////////////////////////////
 
             'easeInSine':       ( timeFraction ) => 1 - Math.cos ( ( timeFraction * Math.PI ) / 2 ),
             'easeInCubic':      ( timeFraction ) => timeFraction * timeFraction * timeFraction,
@@ -27,7 +27,7 @@ class Animations
             'easeInExpo':       ( timeFraction ) => ( timeFraction === 0 ) ? 0 : Math.pow ( 2, 10 * timeFraction - 10 ),
             'easeInBack':       ( timeFraction ) => ( 1.70158 + 1 ) * timeFraction * timeFraction * timeFraction - 1.70158 * timeFraction * timeFraction,
 
-        ////    EASE-OUT    ////////////////////////////////////
+        ////    EASE-OUT    ////////////////////////////////
 
             'easeOutSine':      ( timeFraction ) => Math.sin ( ( timeFraction * Math.PI ) / 2 ),
             'easeOutCubic':     ( timeFraction ) => 1 - Math.pow ( 1 - timeFraction, 3 ),
@@ -39,7 +39,7 @@ class Animations
             'easeOutExpo':      ( timeFraction ) => ( timeFraction === 1 ) ? 1 : 1 - Math.pow ( 2, -10 * timeFraction ),
             'easeOutBack':      ( timeFraction ) => 1 + ( 1.70158 + 1 ) * Math.pow ( timeFraction - 1, 3 ) + 1.70158 * Math.pow ( timeFraction - 1, 2 ),
 
-        ////    EASE-IN-OUT    /////////////////////////////////
+        ////    EASE-IN-OUT    /////////////////////////////
 
             'easeInOutSine':    ( timeFraction ) => - ( Math.cos ( Math.PI * timeFraction ) - 1 ) / 2,
             'easeInOutCubic':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
@@ -54,8 +54,9 @@ class Animations
 
     _options =
     {
-        cache:  false,
-        active: false
+        cache:     false,
+        active:    false,
+        normalize: false
     }
 
     _queue = new Queue;
@@ -90,163 +91,165 @@ class Animations
         this._options.active = true;
     }
 
-    ////    [ OBJECT ]    //////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set objects to animate
-         * @public
-         * @function
-         * @param           {clObject} value                            Canvas Lab objects
-         */
-        set objects ( value )
-        {
-            this._objects = value;
-        }
+        ////    [ OBJECT ]    ////////////////////
 
-        /**
-         * Get objects
-         * @readOnly
-         * @function
-         * @return          {clObject}                                  Canvas Lab objects
-         */
-        get objects ( )
-        {
-            return this._objects;
-        }
-
-    ////    [ TIMING ]    //////////////////////////////////
-
-        /**
-         * Set timings
-         * @public
-         * @function
-         * @param           {string|Function} value                     Timing function
-         */
-        set timings ( value )
-        {
-            if ( Array.isArray ( value ) )
+            /**
+             * Set objects to animate
+             * @public
+             * @function
+             * @param           {clObject} value                            Canvas Lab objects
+             */
+            set objects ( value )
             {
-                let _results = new Array;
-
-
-                for ( let _entry of value )
-
-                    ( typeof _entry === 'string' )
-
-                        ? _results.push ( this.#timings [ _entry ] )
-
-                        : _results.push ( _entry );
-
-
-                this._timings = _results;
+                this._objects = value;
             }
-            else
 
-                this._timings = ( value != undefined )
+            /**
+             * Get objects
+             * @readOnly
+             * @function
+             * @return          {clObject}                                  Canvas Lab objects
+             */
+            get objects ( )
+            {
+                return this._objects;
+            }
 
-                                    ? ( typeof value === 'string' )
+        ////    [ TIMING ]    ////////////////////
 
-                                          ? this.#timings [ value ]
+            /**
+             * Set timings
+             * @public
+             * @function
+             * @param           {string|Function} value                     Timing function
+             */
+            set timings ( value )
+            {
+                if ( Array.isArray ( value ) )
+                {
+                    let _results = new Array;
 
-                                          : value
 
-                                    : this._timings;
-        }
+                    for ( let _entry of value )
 
-        /**
-         * Get timing
-         * @readOnly
-         * @function
-         * @return          {Function}                                  Timing function
-         */
-        get timings ( )
-        {
-            return this._timings;
-        }
+                        ( typeof _entry === 'string' )
 
-    ////    [ PERIOD ]    //////////////////////////////////
+                            ? _results.push ( this.#timings [ _entry ] )
 
-        /**
-         * Set period of animation
-         * @public
-         * @function
-         * @param           {number} value                              Period of animation-time
-         * @see             {@link PROPERTY_BLOCKS.animation.period}
-         */
-        set period ( value ) { }
+                            : _results.push ( _entry );
 
-        /**
-         * Get period of animation
-         * @readOnly
-         * @function
-         * @return          {number}                                    Period of animation-time
-         * @see             {@link PROPERTY_BLOCKS.animation.period}
-         */
-        get period ( ) { }
 
-    ////    [ CHANGE ]    //////////////////////////////////
+                    this._timings = _results;
+                }
+                else
 
-        /**
-         * Set changes
-         * @public
-         * @function
-         * @param           {clChange} value                            Canvas Lab changes object
-         */
-        set changes ( value )
-        {
-            this._changes = value;
-        }
+                    this._timings = ( value != undefined )
 
-        /**
-         * Get changes
-         * @readOnly
-         * @function
-         * @return          {clChange}                                  Canvas Lab changes object
-         */
-        get changes ( )
-        {
-            return this._changes;
-        }
+                                        ? ( typeof value === 'string' )
 
-    ////    [ CACHE ]    ///////////////////////////////////
+                                              ? this.#timings [ value ]
 
-        /**
-         * Set cache
-         * @public
-         * @function
-         * @param           {boolean} value                             True || False
-         * @see             {@link PROPERTY_BLOCKS.animation.cache}
-         */
-        set cache ( value ) { }
+                                              : value
 
-        /**
-         * Get cache
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   True || False
-         * @see             {@link PROPERTY_BLOCKS.animation.cache}
-         */
-        get cache ( ) { }
+                                        : this._timings;
+            }
 
-    ////    [ QUEUE ]    ///////////////////////////////////
+            /**
+             * Get timing
+             * @readOnly
+             * @function
+             * @return          {Function}                                  Timing function
+             */
+            get timings ( )
+            {
+                return this._timings;
+            }
 
-        /**
-         * Set queue
-         * @public
-         * @function
-         * @param           {Queue} value                               Queue object
-         * @see             {@link PROPERTY_BLOCKS.animation.queue}
-         */
-        set queue ( value ) { }
+        ////    [ PERIOD ]    ////////////////////
 
-        /**
-         * Get queue
-         * @readOnly
-         * @function
-         * @return          {Queue}                                     Queue object
-         * @see             {@link PROPERTY_BLOCKS.animation.queue}
-         */
-        get queue ( ) { }
+            /**
+             * Set period of animation
+             * @public
+             * @function
+             * @param           {number} value                              Period of animation-time
+             * @see             {@link PROPERTY_BLOCKS.animation.period}
+             */
+            set period ( value ) { }
+
+            /**
+             * Get period of animation
+             * @readOnly
+             * @function
+             * @return          {number}                                    Period of animation-time
+             * @see             {@link PROPERTY_BLOCKS.animation.period}
+             */
+            get period ( ) { }
+
+        ////    [ CHANGE ]    ////////////////////
+
+            /**
+             * Set changes
+             * @public
+             * @function
+             * @param           {clChange} value                            Canvas Lab changes object
+             */
+            set changes ( value )
+            {
+                this._changes = value;
+            }
+
+            /**
+             * Get changes
+             * @readOnly
+             * @function
+             * @return          {clChange}                                  Canvas Lab changes object
+             */
+            get changes ( )
+            {
+                return this._changes;
+            }
+
+        ////    [ CACHE ]    /////////////////////
+
+            /**
+             * Set cache
+             * @public
+             * @function
+             * @param           {boolean} value                             True || False
+             * @see             {@link PROPERTY_BLOCKS.animation.cache}
+             */
+            set cache ( value ) { }
+
+            /**
+             * Get cache
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   True || False
+             * @see             {@link PROPERTY_BLOCKS.animation.cache}
+             */
+            get cache ( ) { }
+
+        ////    [ QUEUE ]    /////////////////////
+
+            /**
+             * Set queue
+             * @public
+             * @function
+             * @param           {Queue} value                               Queue object
+             * @see             {@link PROPERTY_BLOCKS.animation.queue}
+             */
+            set queue ( value ) { }
+
+            /**
+             * Get queue
+             * @readOnly
+             * @function
+             * @return          {Queue}                                     Queue object
+             * @see             {@link PROPERTY_BLOCKS.animation.queue}
+             */
+            get queue ( ) { }
 
     ////    VALIDATION  ////////////////////////////////////
 
@@ -262,293 +265,459 @@ class Animations
 
     ////    UTILITIES   ////////////////////////////////////
 
-        /**
-         * Cache object
-         * @private
-         * @function
-         * @param           {clObject} object                           Canvas Lab object
-         */
-        _cacheObjects ( id )
-        {
-            let _object = this.objects [ id ];
+        ////    - PRIVATE    /////////////////////
 
-
-            switch ( _object.constructor.name )
+            /**
+             * Cache object
+             * @private
+             * @function
+             * @param           {clObject} object                           Canvas Lab object
+             */
+            _cacheObjects ( id )
             {
-                case 'Circle':
+                let _object = this.objects [ id ];
 
-                    _object = new Circle ( _object.point, _object.radius, undefined, _object.stroke );
+                let _point  = new Point ( _object.x, _object.y );
 
-                    break;
+                let _stroke = new Stroke ( _object.stroke.color );
 
-                case 'Ellipse':
-
-                    _object = new Ellipse ( _object.point, undefined, undefined, _object.stroke );
-
-                    break;
-
-                case 'Rectangle':
-
-                    _object = new Rectangle ( _object.point, undefined, undefined, _object.stroke );
-
-                    break;
-
-                case 'RoundedRectangle':
-
-                    _object = new RoundedRectangle ( _object.point, undefined, undefined, _object.stroke );
-
-                    break;
-
-                case 'Text':
-
-                    _object = new Text (
-                                  _object.point,
-                                  _object.text,
-                                  _object.type,
-                                  _object.size,
-                                  _object.weight,
-                                  _object.maxWidth,
-                                  _object.offset,
-                                  _object.stroke,
-                                  _object.fill,
-                                  _object.shadow,
-                                  _object.canvas
-                              );
-
-                    break;
-            }
+                let _fill   = new Fill ( _object.fill.color );
 
 
-            this.#cache.push ( _object );
-        }
-
-        /**
-         * Checks whether queue is set
-         * @private
-         * @function
-         */
-        _checkQueue ( )
-        {
-            if ( this.queue.isSet )
-            {
-                let _transition = this.queue.next;          // Get initial ( and subsequent ) queue entries
-
-
-                this.objects = this._getObjects ( _transition );
-
-                this.timings = this._getTimings ( _transition );
-
-                this.period  = _transition.period;
-
-                this.changes = _transition.change;
-            }
-        }
-
-        /**
-         * Clears canvas
-         * @private
-         * @function
-         * @param           {clObject} object                           Canvas Lab object
-         */
-        _clearCanvas ( )
-        {
-            let _object = this.objects [ 0 ];
-
-            let _canvas = document.getElementById ( _object.canvas );
-
-
-            if ( _canvas )  // @TODO: identify why this check has to take place periodically !
-
-                _object._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
-        }
-
-        /**
-         * Draw cached object(s)
-         * @private
-         * @function
-         */
-        _drawCache ( )
-        {
-            if ( this.#cache.length > 0 )
-
-                for ( let _entry of this.#cache )
+                switch ( _object.constructor.name )
                 {
-                    _entry.stroke.color.alpha = 0.35;
+                    case 'Circle':
 
-                    _entry.draw ( );
+                        _object = new Circle ( _point, _object.radius, undefined, _stroke, _fill );
 
-                    _entry.stroke.color.alpha = 1;
+                        break;
+
+                    case 'Ellipse':
+
+                        _object = new Ellipse ( _point, undefined, undefined, _stroke, _fill );
+
+                        break;
+
+                    case 'Rectangle':
+
+                        _object = new Rectangle ( _point, undefined, undefined, _stroke, _fill );
+
+                        break;
+
+                    case 'RoundedRectangle':
+
+                        _object = new RoundedRectangle ( _point, undefined, undefined, _stroke, _fill );
+
+                        break;
+
+                    case 'Text':
+
+                        _object = new Text (
+                                      _object.point,
+                                      _object.text,
+                                      _object.type,
+                                      _object.size,
+                                      _object.weight,
+                                      _object.maxWidth,
+                                      _object.offset,
+                                      _object.stroke,
+                                      _object.fill,
+                                      _object.shadow,
+                                      _object.canvas
+                                  );
+
+                        break;
                 }
-        }
-
-        /**
-         * End animation
-         * @private
-         * @function
-         * @see             {@link UTILITIES.animation.end}
-         */
-        _end ( ) { }
-
-        /**
-         * Returns an inverted angle; of 360 degrees
-         * @private
-         * @function
-         * @param           {number} angle                              Angle to convert
-         * @return          {number}                                    Inverted angle
-         * @see             {@link UTILITIES.animation.getInvertedAngle}
-         */
-        _getInvertedAngle ( angle ) { }
-
-        /**
-         * Returns an array of objects based on the transitions object type
-         * @private
-         * @function
-         * @param           {Transition} transition                     Animation transition instance
-         * @return          {Array}                                     Array of objects
-         */
-        _getObjects ( transition )
-        {
-            let _collections = [ 'Circles', 'Ellipses', 'Rectangles', 'RoundedRectangles', 'Texts' ]
-
-            let _array       = new Array;
-
-            let _type        = transition.object.constructor.name;
 
 
-            return ( _collections.includes ( _type ) ) ? _array.concat ( transition.object )
-
-                                                       : transition.object;
-        }
-
-        /**
-         * Returns an array of timings based on the transition timing type
-         * @private
-         * @function
-         * @param           {Transition} transition                     Animation transition instance
-         * @return          {Array}                                     Array of timings
-         */
-        _getTimings ( transition )
-        {
-            let _results = undefined;
-
-
-            if ( Array.isArray ( transition.timing ) )
-
-                _results = transition.timing;
-
-            else
-            {
-                let _length  = this.objects.length;
-
-                    _results = new Array;
-
-
-                for ( let _i = 0; _i < _length; _i++ )
-
-                    _results.push ( transition.timing );
+                this.#cache.push ( _object );
             }
 
-
-            return _results;
-        }
-
-        /**
-         * Returns a point based off of the direction & distance passed
-         * @private
-         * @function
-         * @param           {number} direction                          Direction to point; in degrees
-         * @param           {number} distance                           Distance to point
-         * @return          {Point}                                     X & Y coordinates
-         */
-        _getPointByDegreeNDistance ( id, direction, distance )
-        {
-            let _point = new Point;
-
-            let _angle = ( direction % 360 );
-
-
-                _point.x = this.objects [ id ].position.origin.x - Math.cos ( _angle * Math.PI / 180 ) * distance;
-
-                _point.y = this.objects [ id ].position.origin.y - Math.sin ( _angle * Math.PI / 180 ) * distance;
-
-
-            return _point;
-        }
-
-        /**
-         * Caches current objects
-         * @private
-         * @function
-         */
-        _setCache ( )
-        {
-            if ( this.queue.isSet  &&  ! this.queue.isEnd )
+            /**
+             * Checks whether queue is set
+             * @private
+             * @function
+             */
+            _checkQueue ( )
             {
-                for ( let _id in this.changes )
-
-                    if ( this.changes [ _id ].cache )
-
-                        this._cacheObjects ( _id );
+                if ( this.queue.isSet )
+                {
+                    let _transition = this.queue.next;          // Get initial ( and subsequent ) queue entries
 
 
-                this.animate ( );
+                    this.objects = this._getObjects ( _transition );
+
+                    this.timings = this._getTimings ( _transition );
+
+                    this.period  = _transition.period;
+
+                    this.changes = _transition.change;
+                }
             }
-            else
 
-                console.info ( 'animations complete !' );
-        }
-
-        /**
-         * Set Position data
-         * @private
-         * @function
-         */
-        _setPositionData ( )
-        {
-            for ( let _id in this.objects )
+            /**
+             * Clears canvas
+             * @private
+             * @function
+             * @param           {clObject} object                           Canvas Lab object
+             */
+            _clearCanvas ( )
             {
-                let _object = this.objects [ _id ];
+                let _object = this.objects [ 0 ];
 
-                let _change = this.changes [ _id ];
+                let _canvas = document.getElementById ( _object.canvas );
+
+
+                if ( _canvas )  // @TODO: identify why this check has to take place periodically !
+
+                    _object._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
+            }
+
+            /**
+             * Draw cached object(s)
+             * @private
+             * @function
+             */
+            _drawCache ( )
+            {
+                if ( this.#cache.length > 0 )
+
+                    for ( let _entry of this.#cache )
+                    {
+                        _entry.stroke.color.alpha = 0.35;
+
+                        _entry.draw ( );
+
+                        _entry.stroke.color.alpha = 1;
+                    }
+            }
+
+            /**
+             * End animation
+             * @private
+             * @function
+             * @see             {@link UTILITIES.animation.end}
+             */
+            _end ( ) { }
+
+            /**
+             * Returns an inverted angle; of 360 degrees
+             * @private
+             * @function
+             * @param           {number} angle                              Angle to convert
+             * @return          {number}                                    Inverted angle
+             * @see             {@link UTILITIES.animation.getInvertedAngle}
+             */
+            _getInvertedAngle ( angle ) { }
+
+            /**
+             * Returns an array of objects based on the transitions object type
+             * @private
+             * @function
+             * @param           {Transition} transition                     Animation transition instance
+             * @return          {Array}                                     Array of objects
+             */
+            _getObjects ( transition )
+            {
+                let _collections = [ 'Circles', 'Ellipses', 'Rectangles', 'RoundedRectangles', 'Texts' ]
+
+                let _array       = new Array;
+
+                let _type        = transition.object.constructor.name;
+
+
+                return ( _collections.includes ( _type ) ) ? _array.concat ( transition.object )
+
+                                                           : transition.object;
+            }
+
+            /**
+             * Returns an array of timings based on the transition timing type
+             * @private
+             * @function
+             * @param           {Transition} transition                     Animation transition instance
+             * @return          {Array}                                     Array of timings
+             */
+            _getTimings ( transition )
+            {
+                let _results = undefined;
+
+
+                if ( Array.isArray ( transition.timing ) )
+
+                    _results = transition.timing;
+
+                else
+                {
+                    let _length  = this.objects.length;
+
+                        _results = new Array;
+
+
+                    for ( let _i = 0; _i < _length; _i++ )
+
+                        _results.push ( transition.timing );
+                }
+
+
+                return _results;
+            }
+
+            /**
+             * Returns a point based off of the direction & distance passed
+             * @private
+             * @function
+             * @param           {number} direction                          Direction to point; in degrees
+             * @param           {number} distance                           Distance to point
+             * @return          {Point}                                     X & Y coordinates
+             */
+            _getPointByDegreeNDistance ( id, direction, distance )
+            {
+                let _point = new Point;
+
+                let _angle = ( direction % 360 );
+
+
+                    _point.x = this.objects [ id ].position.origin.x - Math.cos ( _angle * Math.PI / 180 ) * distance;
+
+                    _point.y = this.objects [ id ].position.origin.y - Math.sin ( _angle * Math.PI / 180 ) * distance;
+
+
+                return _point;
+            }
+
+            /**
+             * Caches current objects
+             * @private
+             * @function
+             */
+            _setCache ( )
+            {
+                if ( this.queue.isSet  &&  ! this.queue.isEnd )
+                {
+                    for ( let _id in this.changes )
+
+                        if ( this.changes [ _id ].cache )
+
+                            this._cacheObjects ( _id );
+
+
+                    this.animate ( );
+                }
+                else
+
+                    console.info ( '. animations complete !' );
+            }
+
+            /**
+             * Set Position data
+             * @private
+             * @function
+             */
+            _setPositionData ( )
+            {
+                for ( let _id in this.objects )
+                {
+                    let _object = this.objects [ _id ];
+
+                    let _change = this.changes [ _id ];
+
+
+                    for ( let _type in _change )
+                    {
+                        let _difference = _change [ _type ];
+
+
+                        switch ( _type )
+                        {
+                            case 'point':
+
+                                _object.position.origin    = _object.point;
+
+                                _object.position.distance  = _difference;
+
+                                _object.position.direction = _difference;
+
+                                break;
+
+                            case 'pointFrom':
+
+                                _object.position.origin    = _difference;
+
+                                _object.position.distance  = _difference;
+
+                                _object.position.direction = _difference;
+
+                                break;
+
+                            case 'move':
+
+                                _object.position.origin = _object.point;
+
+
+                                // Whether to invert degree
+                                let _point = ( _difference.invert ) ? this._getPointByDegreeNDistance ( _id, this._getInvertedAngle ( _difference.degree ), _difference.distance )
+
+                                                                    : this._getPointByDegreeNDistance ( _id, _difference.degree, _difference.distance );
+
+
+                                _object.position.distance  = _point;
+
+                                _object.position.direction = _point;
+
+                                break;
+
+                            case 'radius':
+
+                                // code . . .
+
+                                break;
+
+                            case 'rotate':
+
+                                // code . . .
+
+                                break;
+
+                            case 'strokeColor':
+
+                                // code . . .
+
+                                break;
+
+                            case 'strokeAlpha':
+
+                                // code . . .
+
+                                break;
+
+                            case 'fillColor':
+
+                                // code . . .
+
+                                break;
+
+                            case 'fillAlpha':
+
+                                // code . . .
+
+                                break;
+
+                            case 'fillLinear':
+                            case 'fillRadial':
+                            case 'fillConic':
+
+                                // code . . .
+
+                                break;
+
+                            case 'cache':
+
+                                this.cache = _difference;
+
+                                break;
+                        }
+                    }
+                }
+            }
+
+            /**
+             * Calculates an animation transition
+             * @private
+             * @async
+             * @function
+             * @param           {clObject} object                           Canvas Lab object
+             * @param           {number}   progress                         Progress of transition; 0 - 1
+             */
+            async _transition ( id, progress )
+            {
+                let _object = this._objects [ id ];
+
+                let _change = this._changes [ id ];
 
 
                 for ( let _type in _change )
                 {
-                    let _difference = _change [ _type ];
+                    let _amount = _change [ _type ];
 
 
                     switch ( _type )
                     {
                         case 'point':
+                        case 'move':
 
-                            _object.position.origin    = _object.point;
+                            _object.point =
+                            {
+                                x: _object.position.origin.x + ( _object.position.distance * progress ) * Math.cos ( _object.position.direction ),
 
-                            _object.position.distance  = _difference;
-
-                            _object.position.direction = _difference;
+                                y: _object.position.origin.y + ( _object.position.distance * progress ) * Math.sin ( _object.position.direction )
+                            }
 
                             break;
 
-                        case 'move':
+                        case 'pointFrom':
 
-                            _object.position.origin = _object.point;
+                            _object.point =
+                            {
+                                x: _amount.x + ( _object.position.distance * progress ) * Math.cos ( _object.position.direction ),
 
-
-                            // Whether to invert degree
-                            let _point = ( _difference.invert ) ? this._getPointByDegreeNDistance ( _id, this._getInvertedAngle ( _difference.degree ), _difference.distance )
-
-                                                                : this._getPointByDegreeNDistance ( _id, _difference.degree, _difference.distance );
-
-
-                            _object.position.distance  = _point;
-
-                            _object.position.direction = _point;
+                                y: _amount.y + ( _object.position.distance * progress ) * Math.sin ( _object.position.direction )
+                            }
 
                             break;
 
                         case 'radius':
 
-                            // code . . .
+                            let _progress = ( progress < 0 ) ? 0 : progress;
+
+
+                            _object.radius = _amount * _progress;
+
+                            break;
+
+                        case 'rotate':
+
+                            _object.rotate ( _amount );
+
+                            break;
+
+                        case 'strokeColor':
+
+                            _object.stroke.color.cycle ( _object.stroke.color, _amount, progress, 1 );
+
+                            break;
+
+                        case 'strokeAlpha':
+
+                            _object.stroke.color.alpha = _amount * progress;
+
+                            break;
+
+                        case 'fillColor':
+
+                            _object.fill.color.cycle ( _object.fill.color, _amount, progress, 1 );
+
+                            break;
+
+                        case 'fillAlpha':
+
+                            _object.fill.color.alpha = _amount * progress;
+
+                            break;
+
+                        case 'fillLinear':
+                        case 'fillRadial':
+                        case 'fillConic':
+
+                            for ( let _entry in _amount )
+                            {
+                                let _start = _object.fill.gradient.stops [ _entry ];
+
+                                let _end   = _amount [ _entry ];
+
+
+                                _object.fill.gradient.stops [ _entry ].color.cycle ( _start.color, _end.color, progress, 1 );
+                            }
 
                             break;
 
@@ -558,171 +727,56 @@ class Animations
 
                             break;
 
-                        case 'strokeColor':
+                        case 'lineTo':
 
-                            // code . . .
+                            let _lines = new Lines;
 
-                            break;
 
-                        case 'strokeAlpha':
+                            if ( Array.isArray ( _amount ) )
+                            {
+                                for ( let _entry of _amount )
+                                {
+                                    let _line = new Line (
+                                                    _object.point,              /* Start   */
+                                                    _entry.point,               /* End     */
+                                                    undefined,                  /* Stroke  */
+                                                    undefined,                  /* Shadow  */
+                                                    undefined,                  /* lineCap */
+                                                    _object.canvas              /* canvas  */
+                                                );
 
-                            // code . . .
+                                        _line.draw ( );
+                                }
+                            }
+                            else
+                            {
+                                let _line = new Line (
+                                                _object.point,                  /* Start   */
+                                                _amount.point,                  /* End     */
+                                                undefined,                      /* Stroke  */
+                                                undefined,                      /* Shadow  */
+                                                undefined,                      /* lineCap */
+                                                _object.canvas                  /* canvas  */
+                                            );
 
-                            break;
+                                    _line.draw ( );
+                            }
 
-                        case 'fillColor':
-
-                            // code . . .
-
-                            break;
-
-                        case 'fillAlpha':
-
-                            // code . . .
-
-                            break;
-
-                        case 'fillLinear':
-                        case 'fillRadial':
-                        case 'fillConic':
-
-                            // code . . .
-
-                            break;
-
-                        case 'cache':
-
-                            this.cache = _difference;
 
                             break;
                     }
                 }
             }
-        }
 
-        /**
-         * Calculates an animation transition
-         * @private
-         * @async
-         * @function
-         * @param           {clObject} object                           Canvas Lab object
-         * @param           {number}   progress                         Progress of transition; 0 - 1
-         */
-        async _transition ( id, progress )
-        {
-            let _object = this._objects [ id ];
+        ////    + PUBLIC    //////////////////////
 
-            let _change = this._changes [ id ];
-
-
-            for ( let _type in _change )
-            {
-                let _amount = _change [ _type ];
-
-
-                switch ( _type )
-                {
-                    case 'point':
-                    case 'move':
-
-                        _object.point =
-                        {
-                            x: _object.position.origin.x + ( _object.position.distance * progress ) * Math.cos ( _object.position.direction ),
-
-                            y: _object.position.origin.y + ( _object.position.distance * progress ) * Math.sin ( _object.position.direction )
-                        }
-
-                        break;
-
-                    case 'radius':
-
-                        _object.radius = _amount * progress;
-
-                        break;
-
-                    case 'rotate':
-
-                        _object.rotate ( _amount );
-
-                        break;
-
-                    case 'strokeColor':
-
-                        _object.stroke.color.cycle ( _object.stroke.color, _amount, progress, 1 );
-
-                        break;
-
-                    case 'strokeAlpha':
-
-                        _object.stroke.color.alpha = _amount * progress;
-
-                        break;
-
-                    case 'fillColor':
-
-                        _object.fill.color.cycle ( _object.fill.color, _amount, progress, 1 );
-
-                        break;
-
-                    case 'fillAlpha':
-
-                        _object.fill.color.alpha = _amount * progress;
-
-                        break;
-
-                    case 'fillLinear':
-                    case 'fillRadial':
-                    case 'fillConic':
-
-                        for ( let _entry in _amount )
-                        {
-                            let _start = _object.fill.gradient.stops [ _entry ];
-
-                            let _end   = _amount [ _entry ];
-
-
-                            _object.fill.gradient.stops [ _entry ].color.cycle ( _start.color, _end.color, progress, 1 );
-                        }
-
-                        break;
-
-                    case 'rotate':
-
-                        // code . . .
-
-                        break;
-
-                    case 'lineTo':
-
-                        if ( Array.isArray ( _amount ) )
-                        {
-                            for ( let _entry of _amount )
-                            {
-                                let _line = new Line ( _object.point, _entry.point );
-
-                                    _line.draw ( );
-                            }
-                        }
-                        else
-                        {
-                            let _line = new Line ( _object.point, _amount.point );
-
-                                _line.draw ( );
-                        }
-
-
-                        break;
-                }
-            }
-        }
-
-        /**
-         * Cancels animation
-         * @readOnly
-         * @function
-         * @see             {@link PROPERTY_BLOCKS.animation.cancel}
-         */
-        get cancel ( ) { }
+            /**
+             * Cancels animation
+             * @readOnly
+             * @function
+             * @see             {@link PROPERTY_BLOCKS.animation.cancel}
+             */
+            get cancel ( ) { }
 
     ////    ANIMATE    /////////////////////////////////////
 
@@ -749,7 +803,7 @@ class Animations
 
                 let _changes = this._changes;
 
-                let _active  = this._options.active;
+                let _options = this._options;
 
             ////    FUNCTIONS    ///////////////////////////
 
@@ -796,24 +850,27 @@ class Animations
 
                                 _progress     = _timing ( _timeFraction );      // calculate the current animation state
 
-                /* normalize */ _progress     = ( true && _progress < 0 ) ? 0 : _progress;
+
+                                if ( _options.normalize )
+
+                                    _progress = ( _progress < 0 ) ? 0 : _progress;
 
 
                                 _transition ( _id, _progress );
 
-                                _object.draw ( );
-
                                 _drawCache ( );
+
+                                _object.draw ( );
                             }
 
 
-                            ( _active ) ? ( _timeFraction < 1 )                 // Resolve
+                            ( _options.active ) ? ( _timeFraction < 1 )         // Resolve
 
-                                              ? requestAnimationFrame ( animate )
+                                                      ? requestAnimationFrame ( animate )
 
-                                              : _setCache ( )
+                                                      : _setCache ( )
 
-                                        : _end ( );
+                                                  : _end ( );
                         }
                     );
                 }

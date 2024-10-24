@@ -44,134 +44,136 @@ class Radial
         this.stops       = stops;
     }
 
-    ////    [ START ]   ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set starting point
-         * @public
-         * @function
-         * @param           {Point} value                               Starting point
-         */
-        set start ( value )
-        {
-            this._start = ( this._isPoint ( value ) ) ? value : this._start;
-        }
+        ////    [ START ]    /////////////////////
 
-        /**
-         * Set starting point
-         * @readOnly
-         * @function
-         * @return          {Point}                                     Starting point
-         */
-        get start ( )
-        {
-            return this._start;
-        }
+            /**
+             * Set starting point
+             * @public
+             * @function
+             * @param           {Point} value                               Starting point
+             */
+            set start ( value )
+            {
+                this._start = ( this._isPoint ( value ) ) ? value : this._start;
+            }
 
-    ////    [ START RADIUS ]     ///////////////////////////
+            /**
+             * Set starting point
+             * @readOnly
+             * @function
+             * @return          {Point}                                     Starting point
+             */
+            get start ( )
+            {
+                return this._start;
+            }
 
-        /**
-         * Set starting radius
-         * @public
-         * @function
-         * @param           {Number} value                              Starting radius
-         */
-        set startRadius ( value )
-        {
-            this._startRadius = ( this._isRadius ( value ) ) ? value : this._startRadius;
-        }
+        ////    [ START RADIUS ]    //////////////
 
-        /**
-         * Set starting radius
-         * @readOnly
-         * @function
-         * @return          {Number}                                    Starting radius
-         */
-        get startRadius ( )
-        {
-            return this._startRadius;
-        }
+            /**
+             * Set starting radius
+             * @public
+             * @function
+             * @param           {Number} value                              Starting radius
+             */
+            set startRadius ( value )
+            {
+                this._startRadius = ( this._isRadius ( value ) ) ? value : this._startRadius;
+            }
 
-    ////    [ END ]     ////////////////////////////////////
+            /**
+             * Set starting radius
+             * @readOnly
+             * @function
+             * @return          {Number}                                    Starting radius
+             */
+            get startRadius ( )
+            {
+                return this._startRadius;
+            }
 
-        /**
-         * Set ending point
-         * @public
-         * @function
-         * @param           {Point} value                               Ending point
-         */
-        set end ( value )
-        {
-            this._end = ( this._isPoint ( value ) ) ? value : this._end;
-        }
+        ////    [ END ]    ///////////////////////
 
-        /**
-         * Set ending point
-         * @readOnly
-         * @function
-         * @return          {Point}                                     Ending point
-         */
-        get end ( )
-        {
-            return this._end;
-        }
+            /**
+             * Set ending point
+             * @public
+             * @function
+             * @param           {Point} value                               Ending point
+             */
+            set end ( value )
+            {
+                this._end = ( this._isPoint ( value ) ) ? value : this._end;
+            }
 
-    ////    [ END RADIUS ]     /////////////////////////////
+            /**
+             * Set ending point
+             * @readOnly
+             * @function
+             * @return          {Point}                                     Ending point
+             */
+            get end ( )
+            {
+                return this._end;
+            }
 
-        /**
-         * Set ending radius
-         * @public
-         * @function
-         * @param           {Number} value                              Ending radius
-         */
-        set endRadius ( value )
-        {
-            this._endRadius = ( this._isRadius ( value ) ) ? value : this._endRadius;
-        }
+        ////    [ END RADIUS ]    ////////////////
 
-        /**
-         * Set ending radius
-         * @readOnly
-         * @function
-         * @return          {Number}                                    Ending radius
-         */
-        get endRadius ( )
-        {
-            return this._endRadius;
-        }
+            /**
+             * Set ending radius
+             * @public
+             * @function
+             * @param           {Number} value                              Ending radius
+             */
+            set endRadius ( value )
+            {
+                this._endRadius = ( this._isRadius ( value ) ) ? value : this._endRadius;
+            }
 
-    ////    [ STOPS ]    ///////////////////////////////////
+            /**
+             * Set ending radius
+             * @readOnly
+             * @function
+             * @return          {Number}                                    Ending radius
+             */
+            get endRadius ( )
+            {
+                return this._endRadius;
+            }
 
-        /**
-         * Set color stops
-         * @public
-         * @function
-         * @param           {Array.<Stop>} value                        Color stops
-         */
-        set stops ( value )
-        {
-            if ( Array.isArray ( value ) )
+        ////    [ STOPS ]    /////////////////////
 
-                for ( let _stop of value )
+            /**
+             * Set color stops
+             * @public
+             * @function
+             * @param           {Array.<Stop>} value                        Color stops
+             */
+            set stops ( value )
+            {
+                if ( Array.isArray ( value ) )
 
-                    if ( this._isStop ( _stop ) )
+                    for ( let _stop of value )
 
-                        this._stops.push ( _stop );
-            else
+                        if ( this._isStop ( _stop ) )
 
-                console.warn ( '[ ERROR ]: value is not of type Array !' );
-        }
+                            this._stops.push ( _stop );
+                else
 
-        /**
-         * Get color stops
-         * @readOnly
-         * @function
-         * @return          {Array.<Stop>}                              Color stops
-         */
-        get stops ( )
-        {
-            return this._stops;
-        }
+                    console.warn ( '[ ERROR ]: value is not of type Array !' );
+            }
+
+            /**
+             * Get color stops
+             * @readOnly
+             * @function
+             * @return          {Array.<Stop>}                              Color stops
+             */
+            get stops ( )
+            {
+                return this._stops;
+            }
 
     ////    VALIDATION  ////////////////////////////////////
 

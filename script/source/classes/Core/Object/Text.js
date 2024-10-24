@@ -101,292 +101,294 @@ class Text extends Font
             this.#position.master = this;
     }
 
-    ////    [ POINT ]   ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set point
-         * @public
-         * @function
-         * @param           {Point} value                               X & Y coordinates
-         * @see             {@link PROPERTY_BLOCKS.individual.point}
-         */
-        set point ( value ) { }
-
-        /**
-         * Get point
-         * @public
-         * @function
-         * @return          {Point}                                     X & Y coordinates
-         * @see             {@link PROPERTY_BLOCKS.individual.point}
-         */
-        get point ( ) { }
-
-
-        /**
-         * Set x-axis value
-         * @public
-         * @function
-         * @param           {number} value                              X coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointX}
-         */
-        set x ( value ) { }
-
-        /**
-         * Get x-axis value
-         * @readOnly
-         * @function
-         * @return          {number}                                    X coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointX}
-         */
-        get x ( ) { }
-
-
-        /**
-         * Set the y-axis value
-         * @public
-         * @function
-         * @param           {number} value                              Y coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointY}
-         */
-        set y ( value ) { }
-
-        /**
-         * Get y-axis value
-         * @readOnly
-         * @function
-         * @return          {number}                                    Y coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointY}
-         */
-        get y ( ) { }
-
-    ////    [ TEXT ]    ////////////////////////////////////
-
-        /**
-         * Set text
-         * @public
-         * @function
-         * @param           {string} value                              Text of object
-         */
-        set text ( value )
-        {
-            this._text = ( typeof value === 'string' ) ? value : undefined;
-        }
-
-        /**
-         * Get text
-         * @readOnly
-         * @function
-         * @return          {string}                                    Text of object
-         */
-        get text ( )
-        {
-            return this._text;
-        }
-
-    ////    [ STROKE ]  ////////////////////////////////////
-
-        /**
-         * Get stroke properties
-         * @public
-         * @function
-         * @return          {Stroke}                                    Stroke properties
-         */
-        get stroke ( )
-        {
-            return this._stroke;
-        }
-
-    ////    [ FILL ]    ////////////////////////////////////
-
-        /**
-         * Get fill properties
-         * @public
-         * @function
-         * @return          {Fill}                                      Fill properties
-         */
-        get fill ( )
-        {
-            return this._fill;
-        }
-
-    ////    [ SHADOW ]  ////////////////////////////////////
-
-        /**
-         * Get shadow properties
-         * @public
-         * @function
-         * @return          {Shadow}                                    Shadow properties
-         */
-        get shadow ( )
-        {
-            return this._shadow;
-        }
-
-    ////    [ CANVAS ]  ////////////////////////////////////
-
-        /**
-         * Set canvas value
-         * @public
-         * @function
-         * @param           {string} value                              Canvas id
-         * @see             {@link PROPERTY_BLOCKS.individual.canvas}
-         */
-        set canvas ( value ) { }
-
-        /**
-         * Get canvas value
-         * @readOnly
-         * @function
-         * @return          {string}                                    Canvas id
-         * @see             {@link PROPERTY_BLOCKS.individual.canvas}
-         */
-        get canvas ( ) { }
-
-    ////    [ OPTIONS ] ////////////////////////////////////
-
-        /**
-         * Get options properties
-         * @public
-         * @function
-         * @return          {Options}                                   Options properties
-         */
-        get options ( )
-        {
-            return this.#options;
-        }
-
-    ////    [ POSITION ]    ////////////////////////////////
-
-        /**
-         * Get position properties
-         * @public
-         * @function
-         * @return          {Position}                                  Position properties
-         */
-        get position ( )
-        {
-            return this.#position;
-        }
-
-    ////    * SUPER *   ////////////////////////////////////
-
-        ////    [ type ]    ////////////////////
+        ////    [ POINT ]   //////////////////////
 
             /**
-             * Set font's type
+             * Set point
              * @public
              * @function
-             * @param           {string} value                              Font's type
+             * @param           {Point} value                               X & Y coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
-            set type ( value ) { super.type = value; }
+            set point ( value ) { }
 
             /**
-             * Get font's type
+             * Get point
+             * @public
+             * @function
+             * @return          {Point}                                     X & Y coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
+             */
+            get point ( ) { }
+
+
+            /**
+             * Set x-axis value
+             * @public
+             * @function
+             * @param           {number} value                              X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
+             */
+            set x ( value ) { }
+
+            /**
+             * Get x-axis value
              * @readOnly
              * @function
-             * @return          {string}                                    Font's type
+             * @return          {number}                                    X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
              */
-            get type ( )       { return super.type;  }
+            get x ( ) { }
 
-        ////    [ size ]    ////////////////////
 
             /**
-             * Set font's size
+             * Set the y-axis value
              * @public
              * @function
-             * @param           {number} value                              Font's size
+             * @param           {number} value                              Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
              */
-            set size ( value ) { super.size = value; }
+            set y ( value ) { }
 
             /**
-             * Get font's size
+             * Get y-axis value
              * @readOnly
              * @function
-             * @return          {number}                                    Font's size
+             * @return          {number}                                    Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
              */
-            get size ( )       { return super.size;  }
+            get y ( ) { }
 
-        ////    [ weight ]    //////////////////
+        ////    [ TEXT ]    //////////////////////
 
             /**
-             * Set font's weight
+             * Set text
              * @public
              * @function
-             * @param           {string} value                              Font's weight
+             * @param           {string} value                              Text of object
              */
-            set weight ( value ) { super.weight = value; }
-
-            /**
-             * Get font's weight
-             * @readOnly
-             * @function
-             * @return          {string}                                    Font's weight
-             */
-            get weight ( )       { return super.weight;  }
-
-        ////    [ maxWidth ]    ////////////////
-
-            /**
-             * Set font's max width
-             * @public
-             * @function
-             * @param           {number} value                              Font's max width
-             */
-            set maxWidth ( value )
+            set text ( value )
             {
-                super.maxWidth = ( value == undefined )
-
-                                     ? ( this._canvas != undefined )
-
-                                           ? this._canvas.measureText ( value )
-
-                                           : value
-
-                                     : value;
+                this._text = ( typeof value === 'string' ) ? value : undefined;
             }
 
             /**
-             * Get font's max width
+             * Get text
              * @readOnly
              * @function
-             * @return          {number}                                    Font's max width
+             * @return          {string}                                    Text of object
              */
-            get maxWidth ( ) { return super.maxWidth; }
-
-        ////    [ offset ]    //////////////////
-
-            /**
-             * Set offset
-             * @public
-             * @function
-             * @param           {Point} value                               Shadow offset
-             * @see             {@link PROPERTY_BLOCKS.individual.offset}
-             */
-            set offset ( value ) { }
-
-            /**
-             * Get offset
-             * @readOnly
-             * @function
-             * @return          {Point}                                     Shadow offset
-             * @see             {@link PROPERTY_BLOCKS.individual.offset}
-             */
-            get offset ( ) { }
-
-        ////    [ font ]    ////////////////////
-
-            /**
-             * Get font
-             * @public
-             * @function
-             * @return          {string}                                    CSS style font property syntax
-             */
-            get font ( )
+            get text ( )
             {
-                return super.font;
+                return this._text;
             }
 
-    ////    VALIDATION  ////////////////////////////////////
+        ////    [ STROKE ]  //////////////////////
+
+            /**
+             * Get stroke properties
+             * @public
+             * @function
+             * @return          {Stroke}                                    Stroke properties
+             */
+            get stroke ( )
+            {
+                return this._stroke;
+            }
+
+        ////    [ FILL ]    //////////////////////
+
+            /**
+             * Get fill properties
+             * @public
+             * @function
+             * @return          {Fill}                                      Fill properties
+             */
+            get fill ( )
+            {
+                return this._fill;
+            }
+
+        ////    [ SHADOW ]  //////////////////////
+
+            /**
+             * Get shadow properties
+             * @public
+             * @function
+             * @return          {Shadow}                                    Shadow properties
+             */
+            get shadow ( )
+            {
+                return this._shadow;
+            }
+
+        ////    [ CANVAS ]  //////////////////////
+
+            /**
+             * Set canvas value
+             * @public
+             * @function
+             * @param           {string} value                              Canvas id
+             * @see             {@link PROPERTY_BLOCKS.individual.canvas}
+             */
+            set canvas ( value ) { }
+
+            /**
+             * Get canvas value
+             * @readOnly
+             * @function
+             * @return          {string}                                    Canvas id
+             * @see             {@link PROPERTY_BLOCKS.individual.canvas}
+             */
+            get canvas ( ) { }
+
+        ////    [ OPTIONS ] //////////////////////
+
+            /**
+             * Get options properties
+             * @public
+             * @function
+             * @return          {Options}                                   Options properties
+             */
+            get options ( )
+            {
+                return this.#options;
+            }
+
+        ////    [ POSITION ]    //////////////////
+
+            /**
+             * Get position properties
+             * @public
+             * @function
+             * @return          {Position}                                  Position properties
+             */
+            get position ( )
+            {
+                return this.#position;
+            }
+
+        ////    * SUPER *   //////////////////////
+
+            ////    [ type ]    ////////
+
+                /**
+                 * Set font's type
+                 * @public
+                 * @function
+                 * @param           {string} value                              Font's type
+                 */
+                set type ( value ) { super.type = value; }
+
+                /**
+                 * Get font's type
+                 * @readOnly
+                 * @function
+                 * @return          {string}                                    Font's type
+                 */
+                get type ( )       { return super.type;  }
+
+            ////    [ size ]    ////////
+
+                /**
+                 * Set font's size
+                 * @public
+                 * @function
+                 * @param           {number} value                              Font's size
+                 */
+                set size ( value ) { super.size = value; }
+
+                /**
+                 * Get font's size
+                 * @readOnly
+                 * @function
+                 * @return          {number}                                    Font's size
+                 */
+                get size ( )       { return super.size;  }
+
+            ////    [ weight ]    //////
+
+                /**
+                 * Set font's weight
+                 * @public
+                 * @function
+                 * @param           {string} value                              Font's weight
+                 */
+                set weight ( value ) { super.weight = value; }
+
+                /**
+                 * Get font's weight
+                 * @readOnly
+                 * @function
+                 * @return          {string}                                    Font's weight
+                 */
+                get weight ( )       { return super.weight;  }
+
+            ////    [ maxWidth ]    ////
+
+                /**
+                 * Set font's max width
+                 * @public
+                 * @function
+                 * @param           {number} value                              Font's max width
+                 */
+                set maxWidth ( value )
+                {
+                    super.maxWidth = ( value == undefined )
+
+                                         ? ( this._canvas != undefined )
+
+                                               ? this._canvas.measureText ( value )
+
+                                               : value
+
+                                         : value;
+                }
+
+                /**
+                 * Get font's max width
+                 * @readOnly
+                 * @function
+                 * @return          {number}                                    Font's max width
+                 */
+                get maxWidth ( ) { return super.maxWidth; }
+
+            ////    [ offset ]    //////
+
+                /**
+                 * Set offset
+                 * @public
+                 * @function
+                 * @param           {Point} value                               Shadow offset
+                 * @see             {@link PROPERTY_BLOCKS.individual.offset}
+                 */
+                set offset ( value ) { }
+
+                /**
+                 * Get offset
+                 * @readOnly
+                 * @function
+                 * @return          {Point}                                     Shadow offset
+                 * @see             {@link PROPERTY_BLOCKS.individual.offset}
+                 */
+                get offset ( ) { }
+
+            ////    [ font ]    ////////
+
+                /**
+                 * Get font
+                 * @public
+                 * @function
+                 * @return          {string}                                    CSS style font property syntax
+                 */
+                get font ( )
+                {
+                    return super.font;
+                }
+
+    ////    VALIDATION    //////////////////////////////////
 
         /**
          * Returns whether the passed value is a degree
@@ -420,184 +422,188 @@ class Text extends Font
 
     ////    UTILITIES   ////////////////////////////////////
 
-        /**
-         * Rotates the origin point by the degree & distance passed
-         * @private
-         * @function
-         * @param           {Point}  origin                             Origin point
-         * @param           {number} degree                             Degree to rotate
-         * @param           {number} distance                           Distance from origin
-         * @see             {@link UTILITIES.individual.misc.rotatePoint}
-         */
-        _rotatePoint ( ) { }
+        ////    - PRIVATE    /////////////////////
 
-        /**
-         * Sets fill type of the associated object
-         * @private
-         * @function
-         * @see             {@link UTILITIES.individual.set.fillType}
-         */
-        _setFillType ( ) { }
+            /**
+             * Rotates the origin point by the degree & distance passed
+             * @private
+             * @function
+             * @param           {Point}  origin                             Origin point
+             * @param           {number} degree                             Degree to rotate
+             * @param           {number} distance                           Distance from origin
+             * @see             {@link UTILITIES.individual.misc.rotatePoint}
+             */
+            _rotatePoint ( ) { }
 
-        /**
-         * Sets shadow properties
-         * @private
-         * @function
-         * @see             {@link UTILITIES.individual.set.shadow}
-         */
-        _setShadow   ( ) { }
+            /**
+             * Sets fill type of the associated object
+             * @private
+             * @function
+             * @see             {@link UTILITIES.individual.set.fillType}
+             */
+            _setFillType ( ) { }
 
-        /**
-         * Draws anchor point
-         * @private
-         * @function
-         * @see             {@link UTILITIES.individual.draw.anchor}
-         */
-        _drawAnchor ( ) { }
+            /**
+             * Sets shadow properties
+             * @private
+             * @function
+             * @see             {@link UTILITIES.individual.set.shadow}
+             */
+            _setShadow   ( ) { }
 
-        /**
-         * Draws axis through center of this object
-         * @private
-         * @function
-         * @param           {number} [offset=10]                        Offset of axis's edges
-         */
-        _drawAxis ( offset = 10 )
-        {
-            let _red        = new Rgb ( 245, 80, 50, 1 );
+            /**
+             * Draws anchor point
+             * @private
+             * @function
+             * @see             {@link UTILITIES.individual.draw.anchor}
+             */
+            _drawAnchor ( ) { }
 
-            let _size       = super.size;
+            /**
+             * Draws axis through center of this object
+             * @private
+             * @function
+             * @param           {number} [offset=10]                        Offset of axis's edges
+             */
+            _drawAxis ( offset = 10 )
+            {
+                let _red        = new Rgb ( 245, 80, 50, 1 );
 
-
-            let _width      = this._canvas.measureText ( this.text ).width;
-
-            let _height     = _size - ( offset / 2 );
+                let _size       = super.size;
 
 
-            let _aspect     = new Aspect ( _width + offset, _height );
+                let _width      = this._canvas.measureText ( this.text ).width;
+
+                let _height     = _size - ( offset / 2 );
 
 
-            let _xAxisStart = new Point ( this.x - ( _aspect.width / 2 ) - ( offset * 2 ), this.y - ( _aspect.height / 2.5 ) );
-
-            let _xAxisEnd   = new Point ( this.x + ( _aspect.width / 2 ) + ( offset * 2 ), this.y - ( _aspect.height / 2.5 ) );
+                let _aspect     = new Aspect ( _width + offset, _height );
 
 
-            let _yAxisStart = new Point ( this.x, this.y - _aspect.height - offset );
+                let _xAxisStart = new Point ( this.x - ( _aspect.width / 2 ) - ( offset * 2 ), this.y - ( _aspect.height / 2.5 ) );
 
-            let _yAxisEnd   = new Point ( this.x, this.y + _aspect.height - ( _size / 2 ) );
-
-
-            let _xAxis = new Line ( _xAxisStart, _xAxisEnd,     /* Point ( Start, End ) */
-                /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
-                /* Shadow     */      undefined,
-                /* LineCap    */      undefined,
-                /* Canvas     */      this.canvas );
-
-            let _yAxis = new Line ( _yAxisStart, _yAxisEnd,     /* Point ( Start, End ) */
-                /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
-                /* Shadow     */      undefined,
-                /* LineCap    */      undefined,
-                /* Canvas     */      this.canvas );
+                let _xAxisEnd   = new Point ( this.x + ( _aspect.width / 2 ) + ( offset * 2 ), this.y - ( _aspect.height / 2.5 ) );
 
 
-                _xAxis.draw ( );
+                let _yAxisStart = new Point ( this.x, this.y - _aspect.height - offset );
 
-                _yAxis.draw ( );
-        }
-
-        /**
-         * Draws border around this object
-         * @private
-         * @function
-         * @param           {number} [offset=10]                        Offset of border's perimeter
-         */
-        _drawBorder ( offset = 10 )
-        {
-            let _red    = new Rgb ( 245, 80, 50, 1 );
-
-            let _clear  = new Rgb ( 0, 0, 0, 0 );
+                let _yAxisEnd   = new Point ( this.x, this.y + _aspect.height - ( _size / 2 ) );
 
 
-            let _size   = super.size;
+                let _xAxis = new Line ( _xAxisStart, _xAxisEnd,     /* Point ( Start, End ) */
+                    /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
+                    /* Shadow     */      undefined,
+                    /* LineCap    */      undefined,
+                    /* Canvas     */      this.canvas );
+
+                let _yAxis = new Line ( _yAxisStart, _yAxisEnd,     /* Point ( Start, End ) */
+                    /* Stroke     */    { color: _red, type: 'solid', segments: undefined, width: 1 },
+                    /* Shadow     */      undefined,
+                    /* LineCap    */      undefined,
+                    /* Canvas     */      this.canvas );
 
 
-            let _width  = this._canvas.measureText ( this.text ).width;
+                    _xAxis.draw ( );
 
-            let _height = _size - ( offset / 2 );
+                    _yAxis.draw ( );
+            }
 
+            /**
+             * Draws border around this object
+             * @private
+             * @function
+             * @param           {number} [offset=10]                        Offset of border's perimeter
+             */
+            _drawBorder ( offset = 10 )
+            {
+                let _red    = new Rgb ( 245, 80, 50, 1 );
 
-            let _aspect = new Aspect ( _width + offset, _height );
-
-
-            let _scaler = ( _size > 60 ) ? 3 : ( _size > 30 ) ? 3.5 : 4.5;
-
-            let _y      = this.y  - ( _height / _scaler ) - ( offset / 2 );
-
-
-            let _point  = new Point  ( this.x, _y );
-
-
-            let _border = new Rectangle (
-                /* Point  */  _point,
-                /* Aspect */  _aspect,
-                /* Round  */  undefined,
-                /* Stroke */  { color: _red,   type: 'solid', segments: undefined,  width: 1 },
-                /* Fill   */  { color: _clear, type: 'solid' },
-                /* Shadow */  undefined,
-                /* Canvas */  this.canvas
-                           );
+                let _clear  = new Rgb ( 0, 0, 0, 0 );
 
 
-                _border.draw ( );
-        }
+                let _size   = super.size;
 
-        /**
-         * Draws associated options
-         * @private
-         * @function
-         */
-        _drawOptions ( )
-        {
-            if ( this.#options.border      ) this._drawBorder      ( );
 
-            if ( this.#options.axis        ) this._drawAxis        ( );
+                let _width  = this._canvas.measureText ( this.text ).width;
 
-            if ( this.#options.anchor      ) this._drawAnchor      ( );
+                let _height = _size - ( offset / 2 );
 
-            if ( this.#options.coordinates ) this.showCoordinates  ( );
-        }
 
-        /**
-         * Move this object
-         * @public
-         * @function
-         * @param           {number}  degree                            Direction to move; in degrees
-         * @param           {number}  distance                          Distance to move
-         * @param           {boolean} [draw=false]                      Draw post movement
-         * @param           {boolean} [clear=false]                     Clear canvas during each movement
-         * @see             {@link UTILITIES.individual.misc.move}
-         */
-        move ( ) { }
+                let _aspect = new Aspect ( _width + offset, _height );
 
-        /**
-         * Rotate this object
-         * @public
-         * @function
-         * @param           {number} degree                             Distance to rotate; in degrees
-         * @param           {string} [anchor='center']                  Anchoring point during rotation
-         * @param           {number} [clear=true]                       Clear canvas during each rotation
-         * @see             {@link UTILITIES.individual.misc.rotate}
-         */
-        rotate ( ) { }
 
-        /**
-         * Shows coordinates of this object
-         * @public
-         * @function
-         * @param           {number} [offset=10]                        Offset of coordinates y origin
-         * @param           {number} [fontSize=16]                      Coordinates font size
-         * @see             {@link UTILITIES.individual.misc.showCoordinates}
-         */
-        showCoordinates ( ) { }
+                let _scaler = ( _size > 60 ) ? 3 : ( _size > 30 ) ? 3.5 : 4.5;
+
+                let _y      = this.y  - ( _height / _scaler ) - ( offset / 2 );
+
+
+                let _point  = new Point  ( this.x, _y );
+
+
+                let _border = new Rectangle (
+                    /* Point  */  _point,
+                    /* Aspect */  _aspect,
+                    /* Round  */  undefined,
+                    /* Stroke */  { color: _red,   type: 'solid', segments: undefined,  width: 1 },
+                    /* Fill   */  { color: _clear, type: 'solid' },
+                    /* Shadow */  undefined,
+                    /* Canvas */  this.canvas
+                               );
+
+
+                    _border.draw ( );
+            }
+
+            /**
+             * Draws associated options
+             * @private
+             * @function
+             */
+            _drawOptions ( )
+            {
+                if ( this.#options.border      ) this._drawBorder      ( );
+
+                if ( this.#options.axis        ) this._drawAxis        ( );
+
+                if ( this.#options.anchor      ) this._drawAnchor      ( );
+
+                if ( this.#options.coordinates ) this.showCoordinates  ( );
+            }
+
+        ////    + PUBLIC    //////////////////////
+
+            /**
+             * Move this object
+             * @public
+             * @function
+             * @param           {number}  degree                            Direction to move; in degrees
+             * @param           {number}  distance                          Distance to move
+             * @param           {boolean} [draw=false]                      Draw post movement
+             * @param           {boolean} [clear=false]                     Clear canvas during each movement
+             * @see             {@link UTILITIES.individual.misc.move}
+             */
+            move ( ) { }
+
+            /**
+             * Rotate this object
+             * @public
+             * @function
+             * @param           {number} degree                             Distance to rotate; in degrees
+             * @param           {string} [anchor='center']                  Anchoring point during rotation
+             * @param           {number} [clear=true]                       Clear canvas during each rotation
+             * @see             {@link UTILITIES.individual.misc.rotate}
+             */
+            rotate ( ) { }
+
+            /**
+             * Shows coordinates of this object
+             * @public
+             * @function
+             * @param           {number} [offset=10]                        Offset of coordinates y origin
+             * @param           {number} [fontSize=16]                      Coordinates font size
+             * @see             {@link UTILITIES.individual.misc.showCoordinates}
+             */
+            showCoordinates ( ) { }
 
     ////    DRAW    ////////////////////////////////////////
 

@@ -38,99 +38,88 @@ class Point
         this.y = y;
     }
 
-    ////    [ X ]   ////////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set x-axis value
-         * @public
-         * @function
-         * @param           {number} value                              X coordinate value
-         */
-        set x ( value )
-        {
-            this._x = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._x;
-        }
+        ////    [ X ]    /////////////////////////
 
-        /**
-         * Get x-axis value
-         * @readOnly
-         * @function
-         * @return          {number}                                    X coordinate value
-         */
-        get x ( )
-        {
-            return this._x;
-        }
+            /**
+             * Set x-axis value
+             * @public
+             * @function
+             * @param           {number} value                              X coordinate value
+             */
+            set x ( value )
+            {
+                this._x = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._x;
+            }
 
-    ////    [ Y ]   ////////////////////////////////////////
+            /**
+             * Get x-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    X coordinate value
+             */
+            get x ( )
+            {
+                return this._x;
+            }
 
-        /**
-         * Set the y-axis value
-         * @public
-         * @function
-         * @param           {number} value                              Y coordinate value
-         */
-        set y ( value )
-        {
-            this._y = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._y;
-        }
+        ////    [ Y ]    /////////////////////////
 
-        /**
-         * Get y-axis value
-         * @readOnly
-         * @function
-         * @return          {number}                                    Y coordinate value
-         */
-        get y ( )
-        {
-            return this._y;
-        }
+            /**
+             * Set the y-axis value
+             * @public
+             * @function
+             * @param           {number} value                              Y coordinate value
+             */
+            set y ( value )
+            {
+                this._y = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._y;
+            }
 
-    ////    [ CANVAS ]  ////////////////////////////////////
+            /**
+             * Get y-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    Y coordinate value
+             */
+            get y ( )
+            {
+                return this._y;
+            }
 
-        /**
-         * Set canvas value
-         * @public
-         * @function
-         * @param           {string} value                              Canvas id
-         * @see             {@link PROPERTY_BLOCKS.individual.canvas}
-         */
-        set canvas ( value ) { }
+        ////    [ CANVAS ]    ////////////////////
 
-        /**
-         * Get canvas value
-         * @readOnly
-         * @function
-         * @return          {string}                                     Canvas id
-         * @see             {@link PROPERTY_BLOCKS.individual.canvas}
-         */
-        get canvas ( ) { }
+            /**
+             * Set canvas value
+             * @public
+             * @function
+             * @param           {string} value                              Canvas id
+             * @see             {@link PROPERTY_BLOCKS.individual.canvas}
+             */
+            set canvas ( value ) { }
 
-    ////    [ OPTIONS ] ////////////////////////////////////
+            /**
+             * Get canvas value
+             * @readOnly
+             * @function
+             * @return          {string}                                     Canvas id
+             * @see             {@link PROPERTY_BLOCKS.individual.canvas}
+             */
+            get canvas ( ) { }
 
-        /**
-         * Get options
-         * @public
-         * @function
-         * @return          {Options}                                   Options object
-         */
-        get options ( )
-        {
-            return this.#_options;
-        }
+        ////    [ OPTIONS ]    ///////////////////
 
-    ////    & EXTEND &  ////////////////////////////////////
-
-        /**
-         * Get center of this object
-         * @readOnly
-         * @function
-         * @return          {Point}                                     Center point coordinates
-         */
-        get center ( )
-        {
-            return new Point ( this.x, this.y );
-        }
+            /**
+             * Get options
+             * @public
+             * @function
+             * @return          {Options}                                   Options object
+             */
+            get options ( )
+            {
+                return this.#_options;
+            }
 
     ////    VALIDATION  ////////////////////////////////////
 
@@ -156,79 +145,94 @@ class Point
 
     ////    UTILITIES   ////////////////////////////////////
 
-        /**
-         * Draws an axis for the associated object
-         * @private
-         * @function
-         * @param           {number} offset                             Offset of axis
-         * @param           {Object} color                              Color model
-         * @param           {number} stop                               Gradient color stop
-         * @see             {@link UTILITIES.individual.draw.axis}
-         */
-        _drawAxis ( ) { }
+        ////    - PRIVATE    /////////////////////
 
-        /**
-         * Draws an axis for the associated object
-         * @private
-         * @function
-         * @param           {Aspect} aspect                             Aspect properties
-         * @param           {Object} color                              Color model
-         * @see             {@link UTILITIES.individual.draw.border}
-         */
-        _drawBorder ( ) { }
+            /**
+             * Draws an axis for the associated object
+             * @private
+             * @function
+             * @param           {number} offset                             Offset of axis
+             * @param           {Object} color                              Color model
+             * @param           {number} stop                               Gradient color stop
+             * @see             {@link UTILITIES.individual.draw.axis}
+             */
+            _drawAxis ( ) { }
 
-        /**
-         * Rotates the origin point by the degree & distance passed
-         * @private
-         * @function
-         * @param           {Point}  origin                             Origin point
-         * @param           {number} degree                             Degree to rotate
-         * @param           {number} distance                           Distance from origin
-         * @see             {@link UTILITIES.individual.misc.rotatePoint}
-         */
-        _rotatePoint ( ) { }
+            /**
+             * Draws an axis for the associated object
+             * @private
+             * @function
+             * @param           {Aspect} aspect                             Aspect properties
+             * @param           {Object} color                              Color model
+             * @see             {@link UTILITIES.individual.draw.border}
+             */
+            _drawBorder ( ) { }
 
-        /**
-         * Draws associated options
-         * @public
-         * @function
-         * @param           {number} offset                             Offset of drawable options
-         */
-        drawOptions ( offset = 20 )
-        {
-            let _aspect = new Aspect ( offset, offset );
+            /**
+             * Rotates the origin point by the degree & distance passed
+             * @private
+             * @function
+             * @param           {Point}  origin                             Origin point
+             * @param           {number} degree                             Degree to rotate
+             * @param           {number} distance                           Distance from origin
+             * @see             {@link UTILITIES.individual.misc.rotatePoint}
+             */
+            _rotatePoint ( ) { }
 
-            ////////////////////////////////////////////////////////////////////
+        ////    + PUBLIC    //////////////////////
 
-            this._drawBorder ( _aspect );
+            /**
+             * Get center of this object
+             * @readOnly
+             * @function
+             * @return          {Point}                                     Center point coordinates
+             */
+            get center ( )
+            {
+                return new Point ( this.x, this.y );
+            }
 
-            this._drawAxis   ( );
-        }
+            /**
+             * Draws associated options
+             * @public
+             * @function
+             * @param           {number} offset                             Offset of drawable options
+             */
+            drawOptions ( offset = 20 )
+            {
+                let _aspect = new Aspect ( offset, offset );
 
-        /**
-         * Invert x & y coordinate values
-         * @public
-         * @function
-         */
-        invert ( )
-        {
-            let _y = this.y;
+                ////////////////////////////////////////////////////////////////////
 
-            [ this.y, this.x ] = [ this.x, _y ];
-        }
+                this._drawBorder ( _aspect );
 
-        /**
-         * Move this object
-         * @public
-         * @function
-         * @param           {number}  degree                            Direction to move; in degrees
-         * @param           {number}  distance                          Distance to move
-         */
-        move ( degree, distance )
-        {
-            let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
+                this._drawAxis   ( );
+            }
+
+            /**
+             * Invert x & y coordinate values
+             * @public
+             * @function
+             */
+            invert ( )
+            {
+                let _y = this.y;
+
+                [ this.y, this.x ] = [ this.x, _y ];
+            }
+
+            /**
+             * Move this object
+             * @public
+             * @function
+             * @param           {number}  degree                            Direction to move; in degrees
+             * @param           {number}  distance                          Distance to move
+             */
+            move ( degree, distance )
+            {
+                let _point = this._rotatePoint ( { x: this.x, y: this.y }, degree, distance );
 
 
-            [ this.x, this.y ] = [ _point.x, _point.y ];
-        }
+                [ this.x, this.y ] = [ _point.x, _point.y ];
+            }
 }

@@ -134,466 +134,515 @@ class Template
 
     constructor ( ) { }
 
-    ////    [ STANDARD ]    ////////////////////////////////////////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////////////////////////
 
-        /**
-         * Returns a standard HTML card template
-         * @readOnly
-         * @function
-         * @return          {string}                            HTML card standard template
-         */
-        get standard ( ) { return this._types.standard; }
+        ////    [ STANDARD ]    ////////////////////////////
 
-    ////    [ BLANK ]    ///////////////////////////////////////////////////////////////////////////
+            /**
+             * Returns a standard HTML card template
+             * @readOnly
+             * @function
+             * @return          {string}                            HTML card standard template
+             */
+            get standard ( ) { return this._types.standard; }
 
-        /**
-         * Returns a blank HTML card template
-         * @readOnly
-         * @function
-         * @return          {string}                            HTML card blank template
-         */
-        get blank ( ) { return this._types.blank; }
+        ////    [ BLANK ]    ///////////////////////////////
 
-    ////    UTILITIES    ///////////////////////////////////////////////////////////////////////////
+            /**
+             * Returns a blank HTML card template
+             * @readOnly
+             * @function
+             * @return          {string}                            HTML card blank template
+             */
+            get blank ( ) { return this._types.blank; }
 
-        /**
-         * Returns the amount of extra cards to embed
-         * @private
-         * @function
-         * @param           {Array.<Object>} cardObjects        Array of card-objects
-         * @return          {number}                            Amount of extra cards
-         */
-        _getBlankCount ( cardObjects )
-        {
-            let _count     = this._getColumnCount ( );
+    ////    UTILITIES    ///////////////////////////////////////////////////////
 
-            let _remainder = cardObjects.length % _count;
+        ////    PRIVATE    /////////////////////////////////
 
-
-            return _count - _remainder;
-        }
-
-        /**
-         * Returns an Array of extra HTML templates; to align cards
-         * @private
-         * @function
-         * @param           {Array.<Object>} cardObjects        Array of card-objects
-         * @return          {Array}                             Array of extra HTML templates for each card-object
-         */
-        _getBlankTemplates ( cardObjects )
-        {
-            let _cards = [ ];
-
-
-            let _columns = this._getColumnCount ( );
-
-            let _blanks  = this._getBlankCount  ( cardObjects );
-
-
-            if ( _columns != _blanks )                      // Blank templates to fill out row of standard templates
-
-                for ( let _i = 0; _i < _blanks; _i++ )
-
-                    _cards.push ( TEMPLATE.blank );
-
-
-            if ( _blanks % _columns === 0 )                 // Blank templates for next row, from adding new standard templates; @see UI._cardPlus ( )
-
-                for ( let _i = 0; _i < _columns; _i++ )
-
-                    _cards.push ( TEMPLATE.blank );
-
-
-            return _cards;
-        }
-
-        /**
-         * Returns rendered HTML for a card-object
-         * @private
-         * @function
-         * @param           {Object} cardObject                 Card-object
-         * @param           {string} template                   HTML card template
-         * @param           {string} count                      Card-object number
-         * @return          {string}                            HTML card template
-         */
-        _getCodeTemplate ( cardObject, template, count )
-        {
-            for ( let _entry in cardObject )
+            /**
+             * Cleans count duplicates (i.e. _00_00... to _00)
+             * @private
+             * @function
+             * @param           {string} code                       Card-object's function
+             * @param           {string} count                      Number for unique variable identifiers
+             */
+            _cleanCountDuplicates ( code, count )
             {
-                if ( _entry === 'code' )
-
-                    cardObject [ _entry ] = ( PAGE.group === 'template' ) ? this._modifyTemplateCode ( cardObject [ _entry ], count )
-
-                                                                          : this._modifyCode     ( cardObject [ _entry ], count );
+                let _regex = new RegExp ( /_\d{2}_\d{2}/g );
 
 
-                let _regex = new RegExp ( `{{${_entry}}}`, 'g' );
+                while ( code.match ( _regex ) )
+
+                    code = code.replace ( _regex, `_${count}` );
 
 
-                template = template.replace ( _regex, cardObject [ _entry ] );
+                return code;
             }
 
-
-            return template;
-        }
-
-        /**
-         * Returns the amount of columns available per the present resolution
-         * @private
-         * @function
-         * @return          {number}                            Number of columns
-         */
-        _getColumnCount ( )
-        {
-            let _count       = 1;
-
-            let _breakpoints = [ 600, 800, 1200, 1500, 1800, 2100, 2600 ];
-
-            let _windowWidth = window.innerWidth;
-
-
-            for ( let _breakpoint of _breakpoints )
+            /**
+             * Returns the amount of extra cards to embed
+             * @private
+             * @function
+             * @param           {Array.<Object>} cardObjects        Array of card-objects
+             * @return          {number}                            Amount of extra cards
+             */
+            _getBlankCount ( cardObjects )
             {
-                if ( _windowWidth < _breakpoint )
+                let _count     = this._getColumnCount ( );
 
-                    return _count;
+                let _remainder = cardObjects.length % _count;
 
 
-                _count++;
+                return _count - _remainder;
             }
-        }
 
-        /**
-         * Return a template with the appropriate canvasLab images embedded
-         * @private
-         * @param           {Object} cardObject                 Card-object
-         * @param           {string} template                   HTML card template
-         */
-        _getImages ( cardObject, template )
-        {
-            this._setImagePaths ( cardObject );
+            /**
+             * Returns an Array of extra HTML templates; to align cards
+             * @private
+             * @function
+             * @param           {Array.<Object>} cardObjects        Array of card-objects
+             * @return          {Array}                             Array of extra HTML templates for each card-object
+             */
+            _getBlankTemplates ( cardObjects )
+            {
+                let _cards = [ ];
 
 
-            if ( cardObject.images )
+                let _columns = this._getColumnCount ( );
 
-                for ( let _entry in cardObject.images )
+                let _blanks  = this._getBlankCount  ( cardObjects );
+
+
+                if ( _columns != _blanks )                      // Blank templates to fill out row of standard templates
+
+                    for ( let _i = 0; _i < _blanks; _i++ )
+
+                        _cards.push ( TEMPLATE.blank );
+
+
+                if ( _blanks % _columns === 0 )                 // Blank templates for next row, from adding new standard templates; @see UI._cardPlus ( )
+
+                    for ( let _i = 0; _i < _columns; _i++ )
+
+                        _cards.push ( TEMPLATE.blank );
+
+
+                return _cards;
+            }
+
+            /**
+             * Returns rendered HTML for a card-object
+             * @private
+             * @function
+             * @param           {Object} cardObject                 Card-object
+             * @param           {string} template                   HTML card template
+             * @param           {string} count                      Card-object number
+             * @return          {string}                            HTML card template
+             */
+            _getCodeTemplate ( cardObject, template, count )
+            {
+                for ( let _entry in cardObject )
                 {
-                    let _type = cardObject.images [ _entry ];
+                    if ( _entry === 'code' )
 
-                        _type = ( _type === 'Cimage' ) ? 'cImage' : _type;
+                        cardObject [ _entry ] = ( PAGE.group === 'template' ) ? this._modifyTemplateCode ( cardObject [ _entry ], count )
+
+                                                                              : this._modifyCode ( cardObject [ _entry ], count );
 
 
-                    switch ( _entry )
+                    let _regex = new RegExp ( `{{${_entry}}}`, 'g' );
+
+
+                    template = template.replace ( _regex, cardObject [ _entry ] );
+                }
+
+
+                return template;
+            }
+
+            /**
+             * Returns the amount of columns available per the present resolution
+             * @private
+             * @function
+             * @return          {number}                            Number of columns
+             */
+            _getColumnCount ( )
+            {
+                let _count       = 1;
+
+                let _breakpoints = [ 600, 800, 1200, 1500, 1800, 2100, 2600 ];
+
+                let _windowWidth = window.innerWidth;
+
+
+                for ( let _breakpoint of _breakpoints )
+                {
+                    if ( _windowWidth < _breakpoint )
+
+                        return _count;
+
+
+                    _count++;
+                }
+            }
+
+            /**
+             * Return a template with the appropriate canvasLab images embedded
+             * @private
+             * @param           {Object} cardObject                 Card-object
+             * @param           {string} template                   HTML card template
+             */
+            _getImages ( cardObject, template )
+            {
+                this._setImagePaths ( cardObject );
+
+
+                if ( cardObject.images )
+
+                    for ( let _entry in cardObject.images )
                     {
-                        case 'easing':      template = template.replace ( /{{easing}}/, _type );                                            break;
+                        let _type = cardObject.images [ _entry ];
 
-                        case 'handler':     template = template.replace ( /{{handler}}/, _type ).replace ( /{{handler}}/, _type );          break;
+                            _type = ( _type === 'Cimage' ) ? 'cImage' : _type;
 
-                        case 'children':
 
-                            for ( let _childType of _type )
-                            {
-                                    _childType  = ( _childType === 'Cimage' ) ? 'cImage' : _childType;
+                        switch ( _entry )
+                        {
+                            case 'easing':      template = template.replace ( /{{easing}}/, _type );                                            break;
 
-                                let _childGroup = TOOL.isCanvasLabObject ( _childType ) ? 'Object' : 'Subject';
+                            case 'handler':     template = template.replace ( /{{handler}}/, _type ).replace ( /{{handler}}/, _type );          break;
 
-                                template        = template.replace ( /{{childGroup}}/, _childGroup ).replace ( /{{childType}}/, _childType ).replace ( /{{childType}}/, _childType );
-                            }
+                            case 'children':
 
-                            break;
+                                for ( let _childType of _type )
+                                {
+                                        _childType  = ( _childType === 'Cimage' ) ? 'cImage' : _childType;
 
-                        default:
+                                    let _childGroup = TOOL.isCanvasLabObject ( _childType ) ? 'Object' : 'Subject';
 
-                            let _group = ( PAGE.group === 'template' ) ? 'Template' : TOOL.isCanvasLabObject ( _type ) ? 'Object' : 'Subject';
+                                    template        = template.replace ( /{{childGroup}}/, _childGroup ).replace ( /{{childType}}/, _childType ).replace ( /{{childType}}/, _childType );
+                                }
 
-                            template   = template.replace ( /{{group}}/, _group ).replace ( /{{type}}/, _type ).replace ( /{{type}}/, _type );
+                                break;
+
+                            default:
+
+                                let _group = ( PAGE.group === 'template' ) ? 'Template' : TOOL.isCanvasLabObject ( _type ) ? 'Object' : 'Subject';
+
+                                template   = template.replace ( /{{group}}/, _group ).replace ( /{{type}}/, _type ).replace ( /{{type}}/, _type );
+                        }
+                    }
+
+
+                // If no children, place slash-square symbol
+                template = ( ! cardObject.images.children ) ? template.replace ( /{{childGroup}}/, 'General' ).replace ( /{{childType}}/, 'slash-square' ).replace ( /{{childType}}/, 'Base' ) : template;
+
+
+                // Clean remaining unused image tags
+                template = template.replaceAll ( new RegExp ( '<img src="images/svg(/Handler)?/{{[^>]+>', 'g' ), '' );
+
+
+                return template;
+            }
+
+            /**
+             * Returns an Array of standard HTML templates for each card-object
+             * @private
+             * @function
+             * @param           {Array.<Object>} cardObjects        Array of card-objects
+             * @return          {Array}                             Array of standard HTML templates for each card-object
+             */
+            _getStandardTemplates ( cardObjects )
+            {
+                let _cards = [ ];
+
+
+                for ( let _iter in cardObjects )
+                {
+                    let _index      = _iter.to2Digits ( );
+
+                    let _cardObject = cardObjects [ _iter ];
+
+
+                    let _template = this.standard.replace ( /{{index}}/g, _index );
+
+                        _template = this._getImages ( _cardObject, _template );
+
+
+                    _cards.push ( this._getCodeTemplate ( _cardObject, _template, _index ) );
+                }
+
+
+                return _cards;
+            }
+
+            /**
+             * Returns a code string with special variable formatting
+             * @private
+             * @function
+             * @param           {string} code                       Code as a string
+             * @param           {number} count                      Card-object number
+             * @return          {string}                            Code string with special variable formatting
+             */
+            _getSpecialVariables ( code, count )
+            {
+                let _specials = [ '_transition' ];
+
+
+                for ( let _special of _specials )
+                {
+                    let _regex = new RegExp ( _special, 'g' );
+
+
+                    if ( _regex.test ( code ) )
+                    {
+                        switch ( _special )
+                        {
+                            case '_transition':
+
+                                let _lineIndex = /let\s_transition[^=]+=/g.exec ( code ).index;
+
+                                let _headCode  = code.substring ( 0, _lineIndex ).trim ( ) + '\n\n';
+
+                                let _temp      = code.match ( /let\s_transition[^,]+,[^,]+[^}]+}[^}]+}[^\w]+canvaslab[^;]+;/g ) [ 0 ].split ( '\n' );
+
+
+                                for ( let _index in _temp )
+
+                                    _temp [ _index ] = ( _index > 0 ) ? _temp [ _index ].slice ( 4 )
+
+                                                                      : _temp [ _index ]
+
+
+                                code = _headCode + _temp.join ( '\n' );
+
+
+                                break;
+                        }
+
+
+                        code = code.replace ( _regex, `${_special}_${count}` );
                     }
                 }
 
 
-            // If no children, place slash-square symbol
-            template = ( ! cardObject.images.children ) ? template.replace ( /{{childGroup}}/, 'General' ).replace ( /{{childType}}/, 'slash-square' ).replace ( /{{childType}}/, 'Base' ) : template;
-
-
-            // Clean remaining unused image tags
-            template = template.replaceAll ( new RegExp ( '<img src="images/svg(/Handler)?/{{[^>]+>', 'g' ), '' );
-
-
-            return template;
-        }
-
-        /**
-         * Returns an Array of standard HTML templates for each card-object
-         * @private
-         * @function
-         * @param           {Array.<Object>} cardObjects        Array of card-objects
-         * @return          {Array}                             Array of standard HTML templates for each card-object
-         */
-        _getStandardTemplates ( cardObjects )
-        {
-            let _cards = [ ];
-
-
-            for ( let _iter in cardObjects )
-            {
-                let _index      = _iter.to2Digits ( );
-
-                let _cardObject = cardObjects [ _iter ];
-
-
-                let _template = this.standard.replace ( /{{index}}/g, _index );
-
-                    _template = this._getImages ( _cardObject, _template );
-
-
-                _cards.push ( this._getCodeTemplate ( _cardObject, _template, _index ) );
+                return code;
             }
 
-
-            return _cards;
-        }
-
-        /**
-         * Returns a code string with special variable formatting
-         * @private
-         * @function
-         * @param           {string} code                       Code as a string
-         * @param           {number} count                      Card-object number
-         * @return          {string}                            Code string with special variable formatting
-         */
-        _getSpecialVariables ( code, count )
-        {
-            let _specials = [ '_transition' ];
-
-
-            for ( let _special of _specials )
+            /**
+             * Match variables via the passed lines & regex params
+             * @private
+             * @function
+             * @param           {RegEx}          regex              Regex to match
+             * @param           {Array.<string>} lines              Lines of code to match
+             * @param           {string}         count              Number for unique variable identifiers
+             */
+            _matchVariables ( regex, lines, count )
             {
-                let _regex = new RegExp ( _special, 'g' );
-
-
-                if ( _regex.test ( code ) )
+                for ( let _index in lines )
                 {
-                    switch ( _special )
+                    let _line = lines [ _index ];
+
+                    let _match = _line.match ( /_\w+/ );
+
+                        _match = ( _match ) ? _match [ 0 ] : undefined;
+
+
+                    if ( regex.test ( _line ) )
                     {
-                        case '_transition':
-
-                            let _lineIndex = /let\s_transition[^=]+=/g.exec ( code ).index;
-
-                            let _headCode  = code.substring ( 0, _lineIndex ).trim ( ) + '\n\n';
-
-                            let _temp      = code.match ( /let\s_transition[^,]+,[^,]+[^}]+}[^}]+}[^\w]+canvaslab[^;]+;/g ) [ 0 ].split ( '\n' );
+                        let _matches = _line.match ( /_\w+/g );
 
 
-                            for ( let _index in _temp )
+                        for ( let _match of _matches )
 
-                                _temp [ _index ] = ( _index > 0 ) ? _temp [ _index ].slice ( 4 )
+                            _line = this._modifyVariables ( _line, _match, count );
 
-                                                                  : _temp [ _index ]
-
-
-                            code = _headCode + _temp.join ( '\n' );
-
-
-                            break;
                     }
-
-
-                    code = code.replace ( _regex, `${_special}_${count}` );
-                }
-            }
-
-
-            return code;
-        }
-
-        /**
-         * Modifies code to include instantiation expressions & unique variable identifiers
-         * @private
-         * @function
-         * @param           {function} code                     Card-object's function
-         * @param           {string}   count                    Number for unique variable identifiers
-         * @return          {string}                            Code string
-         */
-        _modifyCode ( code, count )
-        {
-            let _code     = UI.clean.code ( code );
-
-            let _class    = UI.getClass ( _code );
-
-            let _variable = ( _class === 'RoundedRectangle')  ? '_roundedRectangle'  : `_${_class.toLowerCase ( )}`;
-
-                _variable = ( _class === 'RoundedRectangles') ? '_roundedRectangles' : _variable;
-
-            let _regex    = new RegExp ( _variable, 'g' );
-
-            let _init     = ( PAGE.handler ) ? this._initializer [ PAGE.handler ] [ _class ] : this._initializer [ PAGE.group ] [ _class ];
-
-            switch ( _class )
-            {
-                case 'Lines':               _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Line ( { x:  60, y: 50 }, { x: 160, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 240, y: 100 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
-
-                case 'Circles':             _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                         break;
-
-                case 'Ellipses':            _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Ellipse ( { x:  60, y: 50 } ),\n        new Ellipse ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                         break;
-
-                case 'Rectangles':          _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Rectangle ( { x:  60, y: 50 } ),\n        new Rectangle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                   break;
-
-                case 'RoundedRectangles':   _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new RoundedRectangle ( { x:  60, y: 50 } ),\n        new RoundedRectangle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                   break;
-
-                case 'Texts':               _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Text ( { x:  60, y: 50 } ),\n        new Text ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n\n    ${_variable} [ 0 ].text = ${_variable} [ 1 ].text = 'Text';\n${_code}`;                                             break;
-
-                case 'Group':               _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.lines.push (\n        new Line ( { x:  60, y: 50 }, { x: 120, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 200, y: 100 } )\n    );\n\n     ${_variable}.circles.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.rectangles.push (\n        new Rectangle ( { x:  120, y: 100 } ),\n        new Rectangle ( { x: 200, y: 100 } )\n    );\n\n    ${_variable}.texts.push (\n        new Text ( { x:  60, y: 120 } ),\n        new Text ( { x: 200, y: 50 } )\n    );\n\n    ${_variable}.texts [ 0 ].text = ${_variable}.texts [ 1 ].text = 'Text';\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
-
-                case 'Image':               _code = `let ${_variable} = new cImage ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                     break
-
-                default:                    _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                     break
-            }
-
-
-            _code = _code.replace ( _regex, `${_variable}_${count}` );
-
-            _code = this._getSpecialVariables ( _code, count );
-
-
-            return _code;
-        }
-
-        /**
-         * Modifies code to include instantiation expressions & unique variable identifiers; for Templates only
-         * @private
-         * @function
-         * @param           {function} code                     Card-object's function
-         * @param           {string}   count                    Number for unique variable identifiers
-         * @return          {string}                            Code string
-         */
-        _modifyTemplateCode ( code, count )
-        {
-            let _code  = UI.clean.code ( code );
-
-            let _lines = _code.split ( /\n/ );
-
-            let _regex = ( PAGE.handler === 'animation' ) ? new RegExp ( /_\w+/g )
-
-                                                          : new RegExp ( /_group.(template)\s*=\s*new\s*\w+\s\(\s*[^\)]+\)/g );
-
-            for ( let _index in _lines )
-            {
-                let _line = _lines [ _index ];
-
-
-                let _match = _line.match ( /_\w+/ );
-
-                    _match = ( _match ) ? _match [ 0 ] : undefined;
-
-
-                if ( _regex.test ( _line ) )
-                {
-                    let _matches = _line.match ( /_\w+/g );
-
-
-                    for ( let _match of _matches )
+                    else if ( _match )
 
                         _line = this._modifyVariables ( _line, _match, count );
 
+
+                    lines [ _index ] = _line.replace ( /\s{4}/, '' );
                 }
-                else if ( _match )
-
-                    _line = this._modifyVariables ( _line, _match, count );
 
 
+                if ( ! lines [ 0 ] )              // Trim first line if nothing's present
 
-                _lines [ _index ] = _line;
+                    lines.shift ( );
+
+
+                return lines.join ( '\n' );
             }
 
-
-            _lines = _lines.join ( '\n' );
-
-            _code  = _lines.replace ( /'canvas';/, `'canvas_${count}';` );
-
-
-            return _code;
-        }
-
-        /**
-         * Modifies existing variable name with uniquely identified variable name
-         * @private
-         * @function
-         * @param           {string} line                       Line of code to modify
-         * @param           {string} variable                   Variable name to modify
-         * @param           {string} count                      Number for unique variable identifier
-         */
-        _modifyVariables ( line, variable, count  )
-        {
-            let _variable = `${variable}`;
-
-            let _regex = new RegExp ( _variable, 'g' );
-
-
-            return line.replace ( _regex, `${_variable}_${count}` );
-        }
-
-        /**
-         * Sets image paths for each card-object passed through the param
-         * @private
-         * @function
-         * @param           {Object} cardObject                 Card-object
-         */
-        _setImagePaths ( cardObject )
-        {
-            if ( ! cardObject.images )
-
-                cardObject.images = new Object;
-
-
-            // Type
-            cardObject.images.type = PAGE.type.toTitleCase ( );
-
-
-            // Handler
-            switch ( PAGE.handler )
+            /**
+             * Modifies code to include instantiation expressions & unique variable identifiers
+             * @private
+             * @function
+             * @param           {function} code                     Card-object's function
+             * @param           {string}   count                    Number for unique variable identifiers
+             * @return          {string}                            Code string
+             */
+            _modifyCode ( code, count )
             {
-                case 'animation':
+                let _code     = UI.clean.code ( code );
 
-                    let _timing = cardObject.code.toString ( ).match ( /timing: '([^']+)',/ ) [ 1 ];
+                let _class    = UI.getClass ( _code );
 
-                    let _match  = _timing.match ( /(In|Out)/g );
+                let _variable = ( _class === 'RoundedRectangle')  ? '_roundedRectangle'  : `_${_class.toLowerCase ( )}`;
 
-                    let _path   = ( _match.length < 2 ) ? _match [ 0 ] : _match [ 0 ] + _match [ 1 ];
+                    _variable = ( _class === 'RoundedRectangles') ? '_roundedRectangles' : _variable;
+
+                let _regex    = new RegExp ( _variable, 'g' );
+
+                let _init     = ( PAGE.handler ) ? this._initializer [ PAGE.handler ] [ _class ] : this._initializer [ PAGE.group ] [ _class ];
 
 
-                    cardObject.images.easing  = `Handler/${PAGE.handler.toTitleCase ( )}/Ease/${_path}/${_timing}`;
+                switch ( _class )
+                {
+                    case 'Lines':               _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Line ( { x:  60, y: 50 }, { x: 160, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 240, y: 100 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
 
-                    cardObject.images.handler = PAGE.handler.toTitleCase ( );
+                    case 'Circles':             _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                         break;
 
-                    break;
+                    case 'Ellipses':            _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Ellipse ( { x:  60, y: 50 } ),\n        new Ellipse ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                         break;
+
+                    case 'Rectangles':          _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Rectangle ( { x:  60, y: 50 } ),\n        new Rectangle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                   break;
+
+                    case 'RoundedRectangles':   _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new RoundedRectangle ( { x:  60, y: 50 } ),\n        new RoundedRectangle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                                   break;
+
+                    case 'Texts':               _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.push (\n        new Text ( { x:  60, y: 50 } ),\n        new Text ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.canvas = 'canvas_${count}';\n\n    ${_variable} [ 0 ].text = ${_variable} [ 1 ].text = 'Text';\n${_code}`;                                             break;
+
+                    case 'Group':               _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.lines.push (\n        new Line ( { x:  60, y: 50 }, { x: 120, y: 100 } ),\n        new Line ( { x: 140, y: 50 }, { x: 200, y: 100 } )\n    );\n\n     ${_variable}.circles.push (\n        new Circle ( { x:  60, y: 50 } ),\n        new Circle ( { x: 140, y: 50 } )\n    );\n\n    ${_variable}.rectangles.push (\n        new Rectangle ( { x:  120, y: 100 } ),\n        new Rectangle ( { x: 200, y: 100 } )\n    );\n\n    ${_variable}.texts.push (\n        new Text ( { x:  60, y: 120 } ),\n        new Text ( { x: 200, y: 50 } )\n    );\n\n    ${_variable}.texts [ 0 ].text = ${_variable}.texts [ 1 ].text = 'Text';\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;     break;
+
+                    case 'Image':               _code = `let ${_variable} = new cImage ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                     break
+
+                    default:                    _code = `let ${_variable} = new ${_class} ( ${_init} );\n\n    ${_variable}.canvas = 'canvas_${count}';\n${_code}`;                     break
+                }
+
+
+                _code = _code.replace ( _regex, `${_variable}_${count}` );
+
+                _code = this._getSpecialVariables ( _code, count );
+
+
+                return _code;
             }
 
-            // Children
-            if ( cardObject.children )
+            /**
+             * Modifies code to include instantiation expressions & unique variable identifiers; for Templates only
+             * @private
+             * @function
+             * @param           {function} code                     Card-object's function
+             * @param           {string}   count                    Number for unique variable identifiers
+             * @return          {string}                            Code string
+             */
+            _modifyTemplateCode ( code, count )
             {
-                cardObject.images.children = new Array;
+                let _code  = UI.clean.code ( code );
+
+                let _lines = _code.split ( /\n/ );
+
+                let _regex = ( PAGE.handler === 'animation' ) ? new RegExp ( /_\w+/g )
+
+                                                              : new RegExp ( /_group.(template)\s*=\s*new\s*\w+\s\(\s*[^\)]+\)/g );
+
+                    _lines = this._matchVariables ( _regex, _lines, count );
+
+                    _code  = _lines.replace ( /'canvas';/, `'canvas_${count}';` );
+
+                    _code  = this._cleanCountDuplicates ( _code, count );
 
 
-                for ( let _child of cardObject.children )
-
-                    cardObject.images.children.push ( _child.toTitleCase ( ) );
+                return _code;
             }
-        }
 
-        /**
-         * Returns an Array of standard & extra HTML templates for each card-object
-         * @public
-         * @function
-         * @param           {Array.<Object>} cardObjects        Array of card-objects
-         * @return          {Array}                             Array of HTML templates for each card-object
-         */
-        getCards ( cardObjects )
-        {
-            let _cards = this._getStandardTemplates ( cardObjects );
+            /**
+             * Modifies existing variable name with uniquely identified variable name
+             * @private
+             * @function
+             * @param           {string} line                       Line of code to modify
+             * @param           {string} variable                   Variable name to modify
+             * @param           {string} count                      Number for unique variable identifier
+             */
+            _modifyVariables ( line, variable, count  )
+            {
+                let _variable = `${variable}`;
 
-            let _extra = this._getBlankTemplates    ( cardObjects );
+                let _regex = new RegExp ( _variable, 'g' );
 
 
-            return _cards.concat ( _extra );
-        }
+                return line.replace ( _regex, `${_variable}_${count}` );
+            }
+
+            /**
+             * Sets image paths for each card-object passed through the param
+             * @private
+             * @function
+             * @param           {Object} cardObject                 Card-object
+             */
+            _setImagePaths ( cardObject )
+            {
+                if ( ! cardObject.images )
+
+                    cardObject.images = new Object;
+
+
+                // Type
+                cardObject.images.type = PAGE.type.toTitleCase ( );
+
+
+                // Handler
+                switch ( PAGE.handler )
+                {
+                    case 'animation':
+
+                        let _timing = cardObject.code.toString ( ).match ( /timing:\s*'([^']+)',/ );
+
+                            _timing = ( ! _timing ) ? cardObject.code.toString ( ).match ( /_timing[^=]+=\s*'([^']+)'/ ) [ 1 ]
+
+                                                    : _timing = _timing [ 1 ];
+
+                        let _match  = _timing.match ( /(In|Out)/g );
+
+                        let _path   = ( _match.length < 2 ) ? _match [ 0 ] : _match [ 0 ] + _match [ 1 ];
+
+
+                        cardObject.images.easing  = `Handler/${PAGE.handler.toTitleCase ( )}/Ease/${_path}/${_timing}`;
+
+                        cardObject.images.handler = PAGE.handler.toTitleCase ( );
+
+                        break;
+                }
+
+                // Children
+                if ( cardObject.children )
+                {
+                    cardObject.images.children = new Array;
+
+
+                    for ( let _child of cardObject.children )
+
+                        cardObject.images.children.push ( _child.toTitleCase ( ) );
+                }
+            }
+
+        ////    PUBLIC    //////////////////////////////////
+
+            /**
+             * Returns an Array of standard & extra HTML templates for each card-object
+             * @public
+             * @function
+             * @param           {Array.<Object>} cardObjects        Array of card-objects
+             * @return          {Array}                             Array of HTML templates for each card-object
+             */
+            getCards ( cardObjects )
+            {
+                let _cards = this._getStandardTemplates ( cardObjects );
+
+                let _extra = this._getBlankTemplates    ( cardObjects );
+
+
+                return _cards.concat ( _extra );
+            }
 }

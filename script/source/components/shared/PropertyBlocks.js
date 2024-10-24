@@ -319,6 +319,58 @@ const PROPERTY_BLOCKS =
                 return this._radius;
             }
         },
+        /** @function PROPERTY_BLOCKS.individual.template                                        **/
+        template:
+        {
+            /**
+             * Set template
+             * @public
+             * @function
+             * @param           {Template} value                            Template object
+             */
+            set ( value )
+            {
+                this._template = ( this._isTemplate ( value ) ) ? value : this._template;
+            },
+
+            /**
+             * Get template
+             * @public
+             * @function
+             * @return          {Template}                                  Template object
+             */
+            get ( )
+            {
+                return this._template;
+            }
+        },
+        /** @function PROPERTY_BLOCKS.individual.transitions                                     **/
+        transitions:
+        {
+            /**
+             * Set transitions
+             * @public
+             * @function
+             * @param           {Template} value                            Template object
+             */
+            set ( value )
+            {
+                if ( this._isTransition ( value ) )
+
+                    [ this._transitions, value.template ] = [ value, this ];
+            },
+
+            /**
+             * Get transitions
+             * @public
+             * @function
+             * @return          {Template}                                  Template object
+             */
+            get ( )
+            {
+                return this._transitions;
+            }
+        },
     },
 
     /**
@@ -637,5 +689,5 @@ const PROPERTY_BLOCKS =
                 return this._queue;
             }
         }
-    }
+    },
 }

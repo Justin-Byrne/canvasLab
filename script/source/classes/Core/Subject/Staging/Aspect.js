@@ -25,68 +25,70 @@ class Aspect
         this.height = height;
     }
 
-    ////    [ WIDTH ]   ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set width
-         * @public
-         * @function
-         * @param           {number} value                              Width value
-         */
-        set width ( value )
-        {
-            this._width = ( typeof value === 'number' && value > 0 ) ? value : this._width;
-        }
+        ////    [ WIDTH ]    /////////////////////
 
-        /**
-         * Get width
-         * @readOnly
-         * @function
-         * @return          {number}                                    Width value
-         */
-        get width ( )
-        {
-            return this._width;
-        }
+            /**
+             * Set width
+             * @public
+             * @function
+             * @param           {number} value                              Width value
+             */
+            set width ( value )
+            {
+                this._width = ( typeof value === 'number' && value > 0 ) ? value : this._width;
+            }
 
-    ////    [ HEIGHT ]  ////////////////////////////////////
+            /**
+             * Get width
+             * @readOnly
+             * @function
+             * @return          {number}                                    Width value
+             */
+            get width ( )
+            {
+                return this._width;
+            }
 
-        /**
-         * Set height
-         * @public
-         * @function
-         * @param           {number} value                              Height value
-         */
-        set height ( value )
-        {
-            this._height = ( typeof value === 'number' && value > 0 ) ? value : this._height;
-        }
+        ////    [ HEIGHT ]    ////////////////////
 
-        /**
-         * Get height
-         * @readOnly
-         * @function
-         * @return          {number}                                    Height value
-         */
-        get height ( )
-        {
-            return this._height;
-        }
+            /**
+             * Set height
+             * @public
+             * @function
+             * @param           {number} value                              Height value
+             */
+            set height ( value )
+            {
+                this._height = ( typeof value === 'number' && value > 0 ) ? value : this._height;
+            }
 
-    ////    [ OFFSET ]  ////////////////////////////////////
+            /**
+             * Get height
+             * @readOnly
+             * @function
+             * @return          {number}                                    Height value
+             */
+            get height ( )
+            {
+                return this._height;
+            }
 
-        /**
-         * Get offset
-         * @readOnly
-         * @function
-         * @return          {Point}                                     Aspect offset
-         */
-        get offset ( )
-        {
-            return this.#offset;
-        }
+        ////    [ OFFSET ]    ////////////////////
 
-    ////    VALIDATION  ////////////////////////////////////
+            /**
+             * Get offset
+             * @readOnly
+             * @function
+             * @return          {Point}                                     Aspect offset
+             */
+            get offset ( )
+            {
+                return this.#offset;
+            }
+
+    ////    VALIDATION    //////////////////////////////////
 
         /**
          * Returns whether the passed value is a Point
@@ -98,7 +100,7 @@ class Aspect
          */
         _isPoint  ( ) { }
 
-    ////    UTILITIES   ////////////////////////////////////
+    ////    UTILITIES    ///////////////////////////////////
 
         /**
          * Get center of aspect

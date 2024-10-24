@@ -24,53 +24,55 @@ class Stop
         this.offset = offset;
     }
 
-    ////    [ COLOR ]     //////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set color value
-         * @public
-         * @function
-         * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
-         */
-        set color ( value )
-        {
-            this._color = ( this._isColorModel ( value ) ) ? value : this._color;
-        }
+        ////    [ COLOR ]     ////////////////////
 
-        /**
-         * Get color value
-         * @public
-         * @function
-         * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
-         */
-        get color ( )
-        {
-            return this._color;
-        }
+            /**
+             * Set color value
+             * @public
+             * @function
+             * @param           {Object} value                              Color model; Rgb, Hsl, Hwb
+             */
+            set color ( value )
+            {
+                this._color = ( this._isColorModel ( value ) ) ? value : this._color;
+            }
 
-    ////    [ OFFSET ]   ///////////////////////////////////
+            /**
+             * Get color value
+             * @public
+             * @function
+             * @return          {Object}                                    Color model; Rgb, Hsl, Hwb
+             */
+            get color ( )
+            {
+                return this._color;
+            }
 
-        /**
-         * Set offset value
-         * @public
-         * @function
-         * @param           {number} value                              Offset value
-         */
-        set offset ( value )
-        {
-            this._offset = ( this._isDecimal ( value ) ) ? value : this._offset;
-        }
+        ////    [ OFFSET ]    ////////////////////
 
-        /**
-         * Get offset value
-         * @readOnly
-         * @function
-         * @return          {number}                                    Offset value
-         */
-        get offset ( )
-        {
-            return this._offset;
-        }
+            /**
+             * Set offset value
+             * @public
+             * @function
+             * @param           {number} value                              Offset value
+             */
+            set offset ( value )
+            {
+                this._offset = ( this._isDecimal ( value ) ) ? value : this._offset;
+            }
+
+            /**
+             * Get offset value
+             * @readOnly
+             * @function
+             * @return          {number}                                    Offset value
+             */
+            get offset ( )
+            {
+                return this._offset;
+            }
 
     ////    VALIDATION  ////////////////////////////////////
 

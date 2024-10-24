@@ -33,99 +33,101 @@ class Rgb
 		this.alpha = ( alpha === undefined ) ? 1 : alpha;
 	}
 
-	////    [ RED ]    /////////////////////////////////////
+	////    PROPERTIES    //////////////////////////////////
 
-		/**
-		 * Sets the red value
-		 * @public
-		 * @function
-		 * @param           {number} red                        		Red value; 0 - 255
-		 */
-		set red ( value )
-		{
-			this._red = this._is256 ( value ) ? Math.round ( value ) : this._red;
-		}
+		////    [ RED ]    ///////////////////////////
 
-		/**
-		 * Gets the red value
-		 * @readOnly
-		 * @function
-		 * @return 			{number}									Red value; 0 - 255
-		 */
-		get red ( )
-		{
-			return this._red;
-		}
+			/**
+			 * Sets the red value
+			 * @public
+			 * @function
+			 * @param           {number} red                        		Red value; 0 - 255
+			 */
+			set red ( value )
+			{
+				this._red = this._is256 ( value ) ? Math.round ( value ) : this._red;
+			}
 
-	////    [ GREEN ]    ///////////////////////////////////
+			/**
+			 * Gets the red value
+			 * @readOnly
+			 * @function
+			 * @return 			{number}									Red value; 0 - 255
+			 */
+			get red ( )
+			{
+				return this._red;
+			}
 
-		/**
-		 * Sets the green value
-		 * @public
-		 * @function
-		 * @param 			{number} green 								Green value; 0 - 255
-		 */
-		set green ( value )
-		{
-			this._green = this._is256 ( value ) ? Math.round ( value ) : this._green;
-		}
+		////    [ GREEN ]    /////////////////////////
 
-		/**
-		 * Gets the green value
-		 * @readOnly
-		 * @function
-		 * @return 			{number} 									Green value; 0 - 255
-		 */
-		get green ( )
-		{
-			return this._green;
-		}
+			/**
+			 * Sets the green value
+			 * @public
+			 * @function
+			 * @param 			{number} green 								Green value; 0 - 255
+			 */
+			set green ( value )
+			{
+				this._green = this._is256 ( value ) ? Math.round ( value ) : this._green;
+			}
 
-	////    [ BLUE ]    ////////////////////////////////////
+			/**
+			 * Gets the green value
+			 * @readOnly
+			 * @function
+			 * @return 			{number} 									Green value; 0 - 255
+			 */
+			get green ( )
+			{
+				return this._green;
+			}
 
-		/**
-		 * Sets the blue value
-		 * @public
-		 * @function
-		 * @param 			{number} blue 								Blue value; 0 - 255
-		 */
-		set blue ( value )
-		{
-			this._blue = this._is256 ( value ) ? Math.round ( value ) : this._blue;
-		}
+		////    [ BLUE ]    //////////////////////////
 
-		/**
-		 * Gets the blue value
-		 * @readOnly
-		 * @function
-		 * @return 			{number} 									Blue value; 0 - 255
-		 */
-		get blue ( )
-		{
-			return this._blue;
-		}
+			/**
+			 * Sets the blue value
+			 * @public
+			 * @function
+			 * @param 			{number} blue 								Blue value; 0 - 255
+			 */
+			set blue ( value )
+			{
+				this._blue = this._is256 ( value ) ? Math.round ( value ) : this._blue;
+			}
 
-	////    [ ALPHA ]    ///////////////////////////////////
+			/**
+			 * Gets the blue value
+			 * @readOnly
+			 * @function
+			 * @return 			{number} 									Blue value; 0 - 255
+			 */
+			get blue ( )
+			{
+				return this._blue;
+			}
 
-		/**
-		 * Set alpha value
-		 * @public
-		 * @function
-		 * @param  			{number} value 								Alpha value; 0 - 1
-		 * @see             {@link PROPERTY_BLOCKS.individual.alpha}
-		 */
-		set alpha ( value ) { }
+		////    [ ALPHA ]    /////////////////////////
 
-		/**
-		 * Set alpha value
-		 * @public
-		 * @function
-		 * @return  		{number} 									Alpha value; 0 - 1
-		 * @see             {@link PROPERTY_BLOCKS.individual.alpha}
-		 */
-		get alpha ( ) { }
+			/**
+			 * Set alpha value
+			 * @public
+			 * @function
+			 * @param  			{number} value 								Alpha value; 0 - 1
+			 * @see             {@link PROPERTY_BLOCKS.individual.alpha}
+			 */
+			set alpha ( value ) { }
 
-	////    [ VALIDATION ]    //////////////////////////////
+			/**
+			 * Set alpha value
+			 * @public
+			 * @function
+			 * @return  		{number} 									Alpha value; 0 - 1
+			 * @see             {@link PROPERTY_BLOCKS.individual.alpha}
+			 */
+			get alpha ( ) { }
+
+	////    VALIDATION    //////////////////////////////////
 
 		/**
 	     * Returns whether the passed value is a 256 color value; 0 - 255
@@ -137,62 +139,66 @@ class Rgb
 	     */
 		_is256 ( ) { }
 
-	////    [ UTILITIES ]    ///////////////////////////////
+	////    UTILITIES    ///////////////////////////////////
 
-		/**
-		 * Linear interpolation color transitions
-		 * @private
-		 * @function
-		 * @param  			{Object} start 								Color model & values
-		 * @param  			{Object} end 								Color model & values
-		 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
-		 * @param 			{number} max 								Maximum number of steps between interpolation
-		 */
-		_lerp ( start, end, progress, max )
-		{
-			return Math.round ( start + ( end - start ) * progress / max );
-		}
+		////    - PRIVATE    /////////////////////
 
-		/**
-		 * Linear interpolation of Rgb values
-		 * @private
-		 * @function
-		 * @param  			{Object} start 								Color model & values
-		 * @param  			{Object} end 								Color model & values
-		 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
-		 * @param 			{number} max 								Maximum number of steps between interpolation
-		 */
-		_lerpRgb ( start, end, progress, max )
-	    {
-	    	this._red   = this._lerp ( start.red,   end.red,   progress, max );
+			/**
+			 * Linear interpolation color transitions
+			 * @private
+			 * @function
+			 * @param  			{Object} start 								Color model & values
+			 * @param  			{Object} end 								Color model & values
+			 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
+			 * @param 			{number} max 								Maximum number of steps between interpolation
+			 */
+			_lerp ( start, end, progress, max )
+			{
+				return Math.round ( start + ( end - start ) * progress / max );
+			}
 
-	    	this._green = this._lerp ( start.green, end.green, progress, max );
+			/**
+			 * Linear interpolation of Rgb values
+			 * @private
+			 * @function
+			 * @param  			{Object} start 								Color model & values
+			 * @param  			{Object} end 								Color model & values
+			 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
+			 * @param 			{number} max 								Maximum number of steps between interpolation
+			 */
+			_lerpRgb ( start, end, progress, max )
+		    {
+		    	this._red   = this._lerp ( start.red,   end.red,   progress, max );
 
-	    	this._blue  = this._lerp ( start.blue,  end.blue,  progress, max );
-		}
+		    	this._green = this._lerp ( start.green, end.green, progress, max );
 
-		/**
-		 * Color cycling
-		 * @public
-		 * @function
-		 * @param  			{Rgb}    start								Color model & values
-		 * @param  			{Rgb}    end 								Color model & values
-		 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
-		 * @param 			{number} max 								Maximum number of steps between interpolation
-		 */
-		cycle ( start, end, progress, max )
-	    {
-	    	this._lerpRgb ( start, end, progress, max );
-		}
+		    	this._blue  = this._lerp ( start.blue,  end.blue,  progress, max );
+			}
 
-		/**
-		 * Returns a CSS compatible <color> string value
-		 * @public
-		 * @function
-		 * @return 			{string} 									CSS <color> string
-		 */
-		toCss ( )
-		{
-			return `rgb(${this.red} ${this.green} ${this.blue} / ${this.alpha * 100}%)`;
-		}
+		////    + PUBLIC    //////////////////////
+
+			/**
+			 * Color cycling
+			 * @public
+			 * @function
+			 * @param  			{Rgb}    start								Color model & values
+			 * @param  			{Rgb}    end 								Color model & values
+			 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
+			 * @param 			{number} max 								Maximum number of steps between interpolation
+			 */
+			cycle ( start, end, progress, max )
+		    {
+		    	this._lerpRgb ( start, end, progress, max );
+			}
+
+			/**
+			 * Returns a CSS compatible <color> string value
+			 * @public
+			 * @function
+			 * @return 			{string} 									CSS <color> string
+			 */
+			toCss ( )
+			{
+				return `rgb(${this.red} ${this.green} ${this.blue} / ${this.alpha * 100}%)`;
+			}
 }

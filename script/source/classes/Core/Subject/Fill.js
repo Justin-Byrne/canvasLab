@@ -33,137 +33,139 @@ class Fill
         this.gradient = gradient;
     }
 
-    ////    [ COLOR ]    ///////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set color type
-         * @public
-         * @function
-         * @param           {Object} value                              Color model; Rgb
-         */
-        set color ( value )
-        {
-            this._color = this._isColorModel ( value ) ? value : this._color;
-        }
+        ////    [ COLOR ]    /////////////////////
 
-        /**
-         * Get color type
-         * @readOnly
-         * @function
-         * @return          {Object}                                    Color model; Rgb
-         */
-        get color ( )
-        {
-            return this._color;
-        }
-
-    ////    [ TYPE ]    ////////////////////////////////////
-
-        /**
-         * Set type value
-         * @public
-         * @function
-         * @param           {string} value                              Fill type value
-         */
-        set type ( value )
-        {
-            this._type = ( this._isFillType ( value ) ) ? value : this._type;
-        }
-
-        /**
-         * Get type value
-         * @readOnly
-         * @function
-         * @return          {string}                                    Fill type value
-         */
-        get type ( )
-        {
-            return this._type;
-        }
-
-    ////    [ GRADIENT ]   /////////////////////////////////
-
-        /**
-         * Set gradient gradient properties
-         * @public
-         * @function
-         * @param           {Object} value                              Gradient object & properties
-         */
-        set gradient ( value )
-        {
-            this._gradient = ( this._isGradient ( value ) ) ? value : this._gradient;
-
-            this._type     = ( this._isGradient ( value ) ) ? value.constructor.name.toLowerCase ( ) : this._type;
-        }
-
-        /**
-         * Get gradient gradient properties
-         * @readOnly
-         * @function
-         * @return          {Object}                                    Gradient object & properties
-         */
-        get gradient ( )
-        {
-            return this._gradient;
-        }
-
-    ////    [ PATTERN ]   //////////////////////////////////
-
-        /**
-         * Sets pattern property value
-         * @public
-         * @function
-         * @param           {string} value                              Path of image to pattern
-         */
-        set pattern ( value )
-        {
-            if ( typeof value === 'string' )
+            /**
+             * Set color type
+             * @public
+             * @function
+             * @param           {Object} value                              Color model; Rgb
+             */
+            set color ( value )
             {
-                let _image = new Image;
-
-                    _image.src = value;
-
-
-                this._pattern = _image;
-
-                this.type     = 'pattern';
+                this._color = this._isColorModel ( value ) ? value : this._color;
             }
-        }
 
-        /**
-         * Gets pattern property value
-         * @readOnly
-         * @function
-         * @return          {Pattern}                                   Pattern fill object
-         */
-        get pattern ( )
-        {
-            return this._pattern;
-        }
+            /**
+             * Get color type
+             * @readOnly
+             * @function
+             * @return          {Object}                                    Color model; Rgb
+             */
+            get color ( )
+            {
+                return this._color;
+            }
 
-    ////    [ REPITION ]    ////////////////////////////////
+        ////    [ TYPE ]    //////////////////////
 
-        /**
-         * Sets repetition property value
-         * @public
-         * @function
-         * @param           {string} value                              Repetition property value
-         */
-        set repetition ( value )
-        {
-            this._repetition = ( this._isRepetition ( value ) ) ? value : this._repetition;
-        }
+            /**
+             * Set type value
+             * @public
+             * @function
+             * @param           {string} value                              Fill type value
+             */
+            set type ( value )
+            {
+                this._type = ( this._isFillType ( value ) ) ? value : this._type;
+            }
 
-        /**
-         * Gets repetition property value
-         * @readOnly
-         * @function
-         * @return          {string}                                    Repetition property value
-         */
-        get repetition ( )
-        {
-            return this._repetition;
-        }
+            /**
+             * Get type value
+             * @readOnly
+             * @function
+             * @return          {string}                                    Fill type value
+             */
+            get type ( )
+            {
+                return this._type;
+            }
+
+        ////    [ GRADIENT ]   ///////////////////
+
+            /**
+             * Set gradient gradient properties
+             * @public
+             * @function
+             * @param           {Object} value                              Gradient object & properties
+             */
+            set gradient ( value )
+            {
+                this._gradient = ( this._isGradient ( value ) ) ? value : this._gradient;
+
+                this._type     = ( this._isGradient ( value ) ) ? value.constructor.name.toLowerCase ( ) : this._type;
+            }
+
+            /**
+             * Get gradient gradient properties
+             * @readOnly
+             * @function
+             * @return          {Object}                                    Gradient object & properties
+             */
+            get gradient ( )
+            {
+                return this._gradient;
+            }
+
+        ////    [ PATTERN ]   ////////////////////
+
+            /**
+             * Sets pattern property value
+             * @public
+             * @function
+             * @param           {string} value                              Path of image to pattern
+             */
+            set pattern ( value )
+            {
+                if ( typeof value === 'string' )
+                {
+                    let _image = new Image;
+
+                        _image.src = value;
+
+
+                    this._pattern = _image;
+
+                    this.type     = 'pattern';
+                }
+            }
+
+            /**
+             * Gets pattern property value
+             * @readOnly
+             * @function
+             * @return          {Pattern}                                   Pattern fill object
+             */
+            get pattern ( )
+            {
+                return this._pattern;
+            }
+
+        ////    [ REPITION ]    //////////////////
+
+            /**
+             * Sets repetition property value
+             * @public
+             * @function
+             * @param           {string} value                              Repetition property value
+             */
+            set repetition ( value )
+            {
+                this._repetition = ( this._isRepetition ( value ) ) ? value : this._repetition;
+            }
+
+            /**
+             * Gets repetition property value
+             * @readOnly
+             * @function
+             * @return          {string}                                    Repetition property value
+             */
+            get repetition ( )
+            {
+                return this._repetition;
+            }
 
     ////    VALIDATION    //////////////////////////////////
 

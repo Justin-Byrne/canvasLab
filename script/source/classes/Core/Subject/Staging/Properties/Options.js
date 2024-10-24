@@ -48,169 +48,171 @@ class Options
         this.shadow        = shadow;
     }
 
-    ////    [ ANCHOR ]  ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set anchor value
-         * @public
-         * @function
-         * @param           {boolean} value                             Anchor; true | false
-         */
-        set anchor ( value )
-        {
-            this._anchor = ( typeof value == 'boolean' ) ? value : this._anchor;
-        }
+        ////    [ ANCHOR ]    ////////////////////
 
-        /**
-         * Get anchor value
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   Anchor; true | false
-         */
-        get anchor ( )
-        {
-            return this._anchor;
-        }
+            /**
+             * Set anchor value
+             * @public
+             * @function
+             * @param           {boolean} value                             Anchor; true | false
+             */
+            set anchor ( value )
+            {
+                this._anchor = ( typeof value == 'boolean' ) ? value : this._anchor;
+            }
 
-    ////    [ AXIS ]    ////////////////////////////////////
+            /**
+             * Get anchor value
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Anchor; true | false
+             */
+            get anchor ( )
+            {
+                return this._anchor;
+            }
 
-        /**
-         * Set axis value
-         * @public
-         * @function
-         * @param           {boolean} value                             Axis; true | false
-         */
-        set axis ( value )
-        {
-            this._axis = ( typeof value === 'boolean' ) ? value : this._axis;
-        }
+        ////    [ AXIS ]    //////////////////////
 
-        /**
-         * Get axis value
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   Axis; true | false
-         */
-        get axis ( )
-        {
-            return this._axis;
-        }
+            /**
+             * Set axis value
+             * @public
+             * @function
+             * @param           {boolean} value                             Axis; true | false
+             */
+            set axis ( value )
+            {
+                this._axis = ( typeof value === 'boolean' ) ? value : this._axis;
+            }
 
-    ////    [ BORDER ]  ////////////////////////////////////
+            /**
+             * Get axis value
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Axis; true | false
+             */
+            get axis ( )
+            {
+                return this._axis;
+            }
 
-        /**
-         * Set border value
-         * @public
-         * @function
-         * @param           {boolean} value                             Border; true | false
-         */
-        set border ( value )
-        {
-            this._border = ( typeof value === 'boolean' ) ? value : this._border;
-        }
+        ////    [ BORDER ]    ////////////////////
 
-        /**
-         * Get border value
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   Border; true | false
-         */
-        get border ( )
-        {
-            return this._border;
-        }
+            /**
+             * Set border value
+             * @public
+             * @function
+             * @param           {boolean} value                             Border; true | false
+             */
+            set border ( value )
+            {
+                this._border = ( typeof value === 'boolean' ) ? value : this._border;
+            }
 
-    ////    [ COORDINATES ]     ////////////////////////////
+            /**
+             * Get border value
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Border; true | false
+             */
+            get border ( )
+            {
+                return this._border;
+            }
 
-        /**
-         * Set coordinates value
-         * @public
-         * @function
-         * @param           {boolean} value                             Coordinates; true | false
-         */
-        set coordinates ( value )
-        {
-            this._coordinates = ( typeof value === 'boolean' ) ? value : this._coordinates;
-        }
+        ////    [ COORDINATES ]    //////////////
 
-        /**
-         * Get coordinates value
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   Coordinates; true | false
-         */
-        get coordinates ( )
-        {
-            return this._coordinates;
-        }
+            /**
+             * Set coordinates value
+             * @public
+             * @function
+             * @param           {boolean} value                             Coordinates; true | false
+             */
+            set coordinates ( value )
+            {
+                this._coordinates = ( typeof value === 'boolean' ) ? value : this._coordinates;
+            }
 
-    ////    [ CONTROL POINTS ]  ////////////////////////////
+            /**
+             * Get coordinates value
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Coordinates; true | false
+             */
+            get coordinates ( )
+            {
+                return this._coordinates;
+            }
 
-        /**
-         * Set control points value
-         * @public
-         * @function
-         * @param           {boolean} value                             Control points; true | false
-         */
-        set controlPoints ( value )
-        {
-            this._controlPoints = ( typeof value === 'boolean' ) ? value : this._controlPoints;
-        }
+        ////    [ CONTROL POINTS ]    ////////////
 
-        /**
-         * Get control points value
-         * @readOnly
-         * @function
-         * @return          {boolean}                                   Control points; true | false
-         */
-        get controlPoints ( )
-        {
-            return this._controlPoints;
-        }
+            /**
+             * Set control points value
+             * @public
+             * @function
+             * @param           {boolean} value                             Control points; true | false
+             */
+            set controlPoints ( value )
+            {
+                this._controlPoints = ( typeof value === 'boolean' ) ? value : this._controlPoints;
+            }
 
-    ////    [ SHADOW ]  ////////////////////////////////////
+            /**
+             * Get control points value
+             * @readOnly
+             * @function
+             * @return          {boolean}                                   Control points; true | false
+             */
+            get controlPoints ( )
+            {
+                return this._controlPoints;
+            }
 
-        /**
-         * Set shadow value
-         * @public
-         * @function
-         * @param           {boolean} value                             Shadow; true | false
-         */
-        set shadow ( value )
-        {
-            this._shadow = ( typeof value === 'boolean' ) ? value : this._shadow;
-        }
+        ////    [ SHADOW ]    ////////////////////
 
-        /**
-         * Get shadow value
-         * @public
-         * @function
-         * @return          {boolean}                                   Shadow; true | false
-         */
-        get shadow ( )
-        {
-            return this._shadow;
-        }
+            /**
+             * Set shadow value
+             * @public
+             * @function
+             * @param           {boolean} value                             Shadow; true | false
+             */
+            set shadow ( value )
+            {
+                this._shadow = ( typeof value === 'boolean' ) ? value : this._shadow;
+            }
 
-    ////    [ MASTER ]  ////////////////////////////////////
+            /**
+             * Get shadow value
+             * @public
+             * @function
+             * @return          {boolean}                                   Shadow; true | false
+             */
+            get shadow ( )
+            {
+                return this._shadow;
+            }
 
-        /**
-         * Set master object
-         * @public
-         * @function
-         * @param           {clObject} value                            Canvas Lab object
-         * @see             {@link PROPERTY_BLOCKS.individual.master}
-         */
-        set master ( value ) { }
+        ////    [ MASTER ]    ////////////////////
 
-        /**
-         * Get master object
-         * @public
-         * @function
-         * @return          {clObject}                                  Master Canvas Lab object
-         * @see             {@link PROPERTY_BLOCKS.individual.master}
-         */
-        get master ( ) { }
+            /**
+             * Set master object
+             * @public
+             * @function
+             * @param           {clObject} value                            Canvas Lab object
+             * @see             {@link PROPERTY_BLOCKS.individual.master}
+             */
+            set master ( value ) { }
+
+            /**
+             * Get master object
+             * @public
+             * @function
+             * @return          {clObject}                                  Master Canvas Lab object
+             * @see             {@link PROPERTY_BLOCKS.individual.master}
+             */
+            get master ( ) { }
 
     ////    VALIDATION  ////////////////////////////////////
 

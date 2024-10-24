@@ -16,145 +16,147 @@ class Font
 
     #_options = {  weight: [ 'normal', 'bold', 'italic' ]  }
 
-    ////    [ TYPE ]    ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set font type
-         * @public
-         * @function
-         * @param           {string} value                              Type face; typography name
-         */
-        set type ( value )
-        {
-            this._type = ( typeof value === 'string' ) ? value : this._type;
+        ////    [ TYPE ]    //////////////////////
 
-
-            if ( value === undefined )
-
-                if ( window.canvaslab instanceof canvasLab )
-                {
-                    let _regex = /(\w+(\s))?(?<size>\d+)px\s(?<type>\w.+)/;
-
-                    let _font  = canvaslab.font;
-
-
-                    this._type = ( _regex.test ( _font ) )
-
-                                     ? _regex.exec ( _font ).groups [ 'type' ]
-
-                                     : this._type;
-                }
-                else
-
-                    console.warn ( 'canvaslab is not instantiated !' );
-        }
-
-        /**
-         * Get type
-         * @readOnly
-         * @function
-         * @return          {string}                                    Type face; typography name
-         */
-        get type ( )
-        {
-            return this._type;
-        }
-
-    ////    [ SIZE ]    ////////////////////////////////////
-
-        /**
-         * Set font size
-         * @public
-         * @function
-         * @param           {number} value                              Font size
-         */
-        set size ( value )
-        {
-            this._size = ( typeof value === 'number'  ) ? value : this._size;
-        }
-
-        /**
-         * Get font size
-         * @readOnly
-         * @function
-         * @return          {number}                                    Font size
-         */
-        get size ( )
-        {
-            return this._size;
-        }
-
-    ////    [ WEIGHT ]  ////////////////////////////////////
-
-        /**
-         * Set font weight
-         * @public
-         * @function
-         * @param           {number} value                              Font weight
-         */
-        set weight ( value )
-        {
-            let _currentValue = this._weight;
-
-
-            for ( let _option of this.#_options.weight )
+            /**
+             * Set font type
+             * @public
+             * @function
+             * @param           {string} value                              Type face; typography name
+             */
+            set type ( value )
             {
-                this._weight = ( value == _option ) ? value : this._weight;
+                this._type = ( typeof value === 'string' ) ? value : this._type;
 
 
-                if ( this._weight != _currentValue ) break;
+                if ( value === undefined )
+
+                    if ( window.canvaslab instanceof canvasLab )
+                    {
+                        let _regex = /(\w+(\s))?(?<size>\d+)px\s(?<type>\w.+)/;
+
+                        let _font  = canvaslab.font;
+
+
+                        this._type = ( _regex.test ( _font ) )
+
+                                         ? _regex.exec ( _font ).groups [ 'type' ]
+
+                                         : this._type;
+                    }
+                    else
+
+                        console.warn ( 'canvaslab is not instantiated !' );
             }
-        }
 
-        /**
-         * Get font weight
-         * @readOnly
-         * @function
-         * @return          {number}                                    Font weight
-         */
-        get weight ( )
-        {
-            return this._weight;
-        }
+            /**
+             * Get type
+             * @readOnly
+             * @function
+             * @return          {string}                                    Type face; typography name
+             */
+            get type ( )
+            {
+                return this._type;
+            }
 
-    ////    [ MAXWIDTH ]    ////////////////////////////////
+        ////    [ SIZE ]    //////////////////////
 
-        /**
-         * Set font's max width
-         * @public
-         * @function
-         * @param           {number} value                              Max width
-         */
-        set maxWidth ( value )
-        {
-            this._maxWidth = ( typeof value === 'number' ) ? value : this._maxWidth;
-        }
+            /**
+             * Set font size
+             * @public
+             * @function
+             * @param           {number} value                              Font size
+             */
+            set size ( value )
+            {
+                this._size = ( typeof value === 'number'  ) ? value : this._size;
+            }
 
-        /**
-         * Get font's max width
-         * @readOnly
-         * @function
-         * @return          {number}                                    Max width
-         */
-        get maxWidth ( )
-        {
-            return this._maxWidth;
-        }
+            /**
+             * Get font size
+             * @readOnly
+             * @function
+             * @return          {number}                                    Font size
+             */
+            get size ( )
+            {
+                return this._size;
+            }
 
-    ////    [ OFFSET ]   ///////////////////////////////////
+        ////    [ WEIGHT ]    ////////////////////
 
-        /**
-         * Get font's offset
-         * @public
-         * @function
-         * @return          {Point}                                     Font's offset; ( x, y )
-         */
-        get offset ( )
-        {
-            return this._offset;
-        }
+            /**
+             * Set font weight
+             * @public
+             * @function
+             * @param           {number} value                              Font weight
+             */
+            set weight ( value )
+            {
+                let _currentValue = this._weight;
 
-    ////    & EXTEND &   ///////////////////////////////////
+
+                for ( let _option of this.#_options.weight )
+                {
+                    this._weight = ( value == _option ) ? value : this._weight;
+
+
+                    if ( this._weight != _currentValue ) break;
+                }
+            }
+
+            /**
+             * Get font weight
+             * @readOnly
+             * @function
+             * @return          {number}                                    Font weight
+             */
+            get weight ( )
+            {
+                return this._weight;
+            }
+
+        ////    [ MAXWIDTH ]    //////////////////
+
+            /**
+             * Set font's max width
+             * @public
+             * @function
+             * @param           {number} value                              Max width
+             */
+            set maxWidth ( value )
+            {
+                this._maxWidth = ( typeof value === 'number' ) ? value : this._maxWidth;
+            }
+
+            /**
+             * Get font's max width
+             * @readOnly
+             * @function
+             * @return          {number}                                    Max width
+             */
+            get maxWidth ( )
+            {
+                return this._maxWidth;
+            }
+
+        ////    [ OFFSET ]    ////////////////////
+
+            /**
+             * Get font's offset
+             * @public
+             * @function
+             * @return          {Point}                                     Font's offset; ( x, y )
+             */
+            get offset ( )
+            {
+                return this._offset;
+            }
+
+    ////    UTILITIES   ////////////////////////////////////
 
         /**
          * Set font

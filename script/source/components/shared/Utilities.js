@@ -88,6 +88,41 @@ const UTILITIES =
         },
 
         /**
+         * Get all or specific points throughout this collection
+         * @public
+         * @function
+         * @param           {Array.<number>} indexes                    Indexes of points
+         * @param           {Rgb}            color                      Color to colorize objects selected points
+         */
+        getPoints ( indexes, color = new Rgb ( 200, 20, 20, 1 ) )
+        {
+            let _results = new Array;
+
+
+            if ( Array.isArray ( indexes ) )
+
+                for ( let _index of indexes )
+                {
+                    this [ _index ].stroke.color = color;
+
+                    this [ _index ].stroke.width = 5;
+
+                    this [ _index ].draw ( );
+
+                    _results.push ( this [ _index ].point );
+                }
+
+            else
+
+                for ( let _index of this )
+
+                    _results.push ( _index.point );
+
+
+            return _results;
+        },
+
+        /**
          * Pushes child object(s) into this collection
          * @public
          * @function

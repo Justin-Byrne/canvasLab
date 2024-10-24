@@ -726,6 +726,33 @@ const VALIDATION =
     },
 
     /**
+     * Returns whether the passed value is a Transition
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {Transition} value                          Transition object
+     * @return          {boolean}                                   True || False
+     */
+    isTransition ( value )
+    {
+        if ( value != undefined )
+        {
+            let _instance    = eval ( `new ${value.constructor.name};` );
+
+
+            let _transitions = ( Object.hasOwn ( _instance, '_transitions' ) );
+
+            let _template    = ( Object.hasOwn ( _instance, '_template' ) );
+
+
+            return ( _transitions && _template );
+        }
+        else
+
+            return false;
+    },
+
+    /**
      * Returns whether the passed value is a width value
      * @public
      * @memberof VALIDATION

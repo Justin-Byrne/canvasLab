@@ -257,7 +257,7 @@
 
                 <span>Version</span>
 
-                <span>0.7.179</span>
+                <span>0.7.196</span>
 
             </div>  <!-- #version -->
 
@@ -380,7 +380,7 @@
 
                 <div id="lab" class="row row-cols-2 g-3">
 
-                    <div class="col">
+                    <div class="col lab-view">
 
                         <div id="ruler">
 
@@ -470,147 +470,189 @@
 
                             <div class="container data">
 
-                                <ul class="menu_popup" style="display: none;"></ul>
+                                <div class="row">
 
-                                <span class="control button" id="input-menu" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toglle Menu">
+                                    <ul class="menu_popup" style="display: none;"></ul>
 
-                                    <span class="icon menu"></span>
+                                    <span class="button" id="input-menu" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toglle Menu">
 
-                                </span>
+                                        <span class="icon menu"></span>
 
-                                <span class="control" id="output-row">
+                                    </span>
 
-                                    <span class="name">r</span>
+                                    <span class="button" id="input-execute" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toglle Menu" onclick="devSuite.runLabStationCode ( )">
 
-                                    <span class="value">0</span>
+                                        <span class="icon execute"></span>
 
-                                </span>
+                                    </span>
 
-                                <span class="control" id="output-column">
+                                    <!-- <button id="execute" onclick="devSuite.runLabStationCode ( )">&nbsp;</button> -->
 
-                                    <span class="name">c</span>
+                                    <span class="control" id="output-row">
 
-                                    <span class="value">0</span>
+                                        <span class="name">r</span>
 
-                                </span>
+                                        <span class="value">0</span>
 
-                                <span class="control" id="output-lines">
+                                    </span>
 
-                                    <span class="name">l</span>
+                                    <span class="control" id="output-column">
 
-                                    <span class="value">0</span>
+                                        <span class="name">c</span>
 
-                                </span>
+                                        <span class="value">0</span>
 
-                                <span class="control button" id="input-grid" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Grid">
+                                    </span>
 
-                                    <span class="icon grid"></span>
+                                    <span class="control" id="output-lines">
 
-                                </span>
+                                        <span class="name">l</span>
 
-                                <span class="control button" id="input-coordinates" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Mouse Coordinates">
+                                        <span class="value">0</span>
 
-                                    <span class="icon coordinates"></span>
+                                    </span>
 
-                                </span>
+                                </div> <!-- .row -->
 
-                                <span class="control button" id="input-angle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Mouse Angle">
+                            </div> <!-- .data -->
 
-                                    <span class="icon angle"></span>
+                            <div class="container buttons">
 
-                                </span>
+                                <div class="row">
 
-                                <span class="control button" id="input-ruler" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Ruler">
+                                    <div class="col">
 
-                                    <span class="icon ruler"></span>
+                                        <span class="button" id="input-grid" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Grid">
 
-                                </span>
+                                            <span class="icon grid"></span>
 
-                                <span class="control button" id="input-sidebar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Sidebar">
+                                        </span>
 
-                                    <span class="icon sidebar"></span>
+                                        <span class="button" id="input-coordinates" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Mouse Coordinates">
 
-                                </span>
+                                            <span class="icon coordinates"></span>
 
-                                <span class="control button" id="input-full-screen" data-bs-toggle="tooltip" data-bs-placement="top" title="Toggle Full-Screen">
+                                        </span>
 
-                                    <span class="icon full-screen"></span>
+                                        <span class="button" id="input-angle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Mouse Angle">
 
-                                </span>
+                                            <span class="icon angle"></span>
 
-                                <span class="control button" id="input-clear" data-bs-toggle="tooltip" data-bs-placement="top" title="Clear console before run">
+                                        </span>
 
-                                    <span class="icon clear"></span>
+                                        <span class="button" id="input-ruler" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Ruler">
 
-                                </span>
+                                            <span class="icon ruler"></span>
 
-                                <span class="control button" id="input-boolean" data-bs-toggle="tooltip" data-bs-placement="top" title="Toggle Boolean">
+                                        </span>
 
-                                    <span class="icon boolean"></span>
+                                        <span class="button" id="input-sidebar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Toggle Sidebar">
 
-                                </span>
+                                            <span class="icon sidebar"></span>
 
-                                <span class="control button" id="input-value-minus" data-bs-toggle="tooltip" data-bs-placement="top" title="Increment -">
+                                        </span>
 
-                                    <span class="icon value-minus"></span>
+                                        <span class="button" id="input-full-screen" data-bs-toggle="tooltip" data-bs-placement="top" title="Toggle Full-Screen">
 
-                                </span>
+                                            <span class="icon full-screen"></span>
 
-                                <span class="control button" id="input-value-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Increment +">
+                                        </span>
 
-                                    <span class="icon value-plus"></span>
+                                        <span class="button" id="input-clear" data-bs-toggle="tooltip" data-bs-placement="top" title="Clear console before run">
 
-                                </span>
+                                            <span class="icon clear"></span>
 
-                                <span class="control button" id="input-color-picker" data-bs-toggle="tooltip" data-bs-placement="top" title="Color-Picker">
+                                        </span>
 
-                                    <span class="icon color-picker"></span>
+                                        <span class="button" id="input-boolean" data-bs-toggle="tooltip" data-bs-placement="top" title="Toggle Boolean">
 
-                                </span>
+                                            <span class="icon boolean"></span>
 
-                                <span class="control button" id="input-font-minus" data-bs-toggle="tooltip" data-bs-placement="top" title="Font Decrease">
+                                        </span>
 
-                                    <span class="icon font-minus"></span>
+                                        <ul class="timing_popup" style="display: none;"></ul>
 
-                                </span>
+                                        <span class="button" id="input-timing" data-bs-toggle="tooltip" data-bs-placement="top" title="Timing Options">
 
-                                <span class="control button" id="input-font-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Font Increase">
+                                            <span class="icon timing"></span>
 
-                                    <span class="icon font-plus"></span>
+                                        </span>
 
-                                </span>
+                                    </div> <!-- .col -->
 
-                                <span class="control button" id="input-word-wrap" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Word-Wrap">
+                                    <div class="col">
 
-                                    <span class="icon word-wrap"></span>
+                                        <span class="button" id="input-value-minus" data-bs-toggle="tooltip" data-bs-placement="top" title="Increment -">
 
-                                </span>
+                                            <span class="icon value-minus"></span>
 
-                                <span class="control button" id="input-lock" data-bs-toggle="tooltip" data-bs-placement="top" title="Lock Script">
+                                        </span>
 
-                                    <span class="icon lock"></span>
+                                        <span class="button" id="input-value-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Increment +">
 
-                                </span>
+                                            <span class="icon value-plus"></span>
 
-                                <span class="control button" id="input-download" data-bs-toggle="tooltip" data-bs-placement="top" title="Download Script">
+                                        </span>
 
-                                    <span class="icon download"></span>
+                                        <span class="button" id="input-color-picker" data-bs-toggle="tooltip" data-bs-placement="top" title="Color-Picker">
 
-                                </span>
+                                            <span class="icon color-picker"></span>
 
-                            </div>
+                                        </span>
 
-                            <button id="execute" onclick="devSuite.runLabStationCode ( )">&nbsp;</button>
+                                        <span class="button" id="input-font-minus" data-bs-toggle="tooltip" data-bs-placement="top" title="Font Decrease">
 
-                        </div>
+                                            <span class="icon font-minus"></span>
 
-                    </div>
+                                        </span>
 
-                </div>  <!-- .row -->
+                                        <span class="button" id="input-font-plus" data-bs-toggle="tooltip" data-bs-placement="top" title="Font Increase">
+
+                                            <span class="icon font-plus"></span>
+
+                                        </span>
+
+                                        <span class="button" id="input-word-wrap" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-active="false" title="Word-Wrap">
+
+                                            <span class="icon word-wrap"></span>
+
+                                        </span>
+
+                                        <span class="button" id="input-lock" data-bs-toggle="tooltip" data-bs-placement="top" title="Lock Script">
+
+                                            <span class="icon lock"></span>
+
+                                        </span>
+
+                                        <span class="button" id="input-download" data-bs-toggle="tooltip" data-bs-placement="top" title="Download Script">
+
+                                            <span class="icon download"></span>
+
+                                        </span>
+
+                                        <span class="button" id="input-blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Blank">
+
+                                            <span class="icon blank"></span>
+
+                                        </span>
+
+                                    </div> <!-- .col -->
+
+                                </div> <!-- .row -->
+
+                            </div> <!-- .buttons -->
+
+                            <!-- <button id="execute" onclick="devSuite.runLabStationCode ( )">&nbsp;</button> -->
+
+                        </div> <!-- #control-panel -->
+
+                    </div> <!-- .col -->
+
+                </div>  <!-- #lab -->
 
             </div>  <!-- .container -->
 
-        </div>
+        </div> <!-- #lab-station -->
 
         <a id="lab-open" style="display: none;"></a>
 

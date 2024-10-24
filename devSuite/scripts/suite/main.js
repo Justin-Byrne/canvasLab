@@ -5,11 +5,6 @@
  */
 ( ( window ) =>
 {
-    let _config =
-    {
-        labMode: false
-    }
-
     let _classes = [ 'Template', 'Page', 'Tool', 'Ui', 'Lab' ];
 
     /**
@@ -375,17 +370,17 @@
                     ]
                 },
                 // templates
-                // {
-                //     title: 'Templates',
-                //     links:
-                //     [
-                //         {
-                //             title:   'SacredCircles',
-                //             group:   'Template',
-                //             handler: 'Animation'
-                //         },
-                //     ]
-                // },
+                {
+                    title: 'Templates',
+                    links:
+                    [
+                        {
+                            title:   'SacredCircles',
+                            group:   'Template',
+                            handler: 'Animation'
+                        },
+                    ]
+                },
             ]
         },
     ]
@@ -6832,9 +6827,7 @@
 
                         let _radius     = 25;
 
-                        let _iterations = 15;
-
-                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
+                        let _iterations = 6;
 
                         let _alpha      = 0.40;
 
@@ -6850,15 +6843,18 @@
                             new Rgb (   0,   0,   0, _alpha ),      // Black
                         ]
 
+                        let _fills   = new Array;
+
                         ////    POPULATION    //////////////////////////
 
-                        let _group = new Group;
+                        let _group          = new Group;
 
-                            _group.canvas = 'canvas';
+                            _group.canvas   = 'canvas';
 
-                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+                            _group.template = new SacredCircles ( _center, _radius, _iterations, new Rgb ( 0, 0, 0, 1 ), _colors );
 
                             _group.draw ( );
+
                     }
                 },
                 // draw circles
@@ -6874,17 +6870,15 @@
 
                         let _radius     = 25;
 
-                        let _iterations = 15;
-
-                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
+                        let _iterations = 6;
 
                         ////    POPULATION    //////////////////////////
 
                         let _group = new Group;
 
-                            _group.canvas = 'canvas';
+                            _group.canvas   = 'canvas';
 
-                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                            _group.template = new SacredCircles ( _center, _radius, _iterations, new Rgb ( 0, 0, 0, 1 ), new Rgb ( 0, 0, 0, 0 ) );
 
                             _group.circles.draw ( );
                     }
@@ -6902,9 +6896,7 @@
 
                         let _radius     = 25;
 
-                        let _iterations = 15;
-
-                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
+                        let _iterations = 6;
 
                         let _alpha      = 0.40;
 
@@ -6924,9 +6916,9 @@
 
                         let _group = new Group;
 
-                            _group.canvas = 'canvas';
+                            _group.canvas   = 'canvas';
 
-                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+                            _group.template = new SacredCircles ( _center, _radius, _iterations, new Rgb ( 0, 0, 0, 1 ), _colors );
 
                             _group.circles.draw ( );
                     }
@@ -6944,17 +6936,15 @@
 
                         let _radius     = 25;
 
-                        let _iterations = 15;
-
-                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
+                        let _iterations = 6;
 
                         ////    POPULATION    //////////////////////////
 
                         let _group = new Group;
 
-                            _group.canvas = 'canvas';
+                            _group.canvas   = 'canvas';
 
-                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                            _group.template = new SacredCircles ( _center, _radius, _iterations, new Rgb ( 0, 0, 0, 1 ), new Rgb ( 0, 0, 0, 0 ) );
 
                             _group.ellipses.draw ( );
                     }
@@ -6972,9 +6962,7 @@
 
                         let _radius     = 25;
 
-                        let _iterations = 15;
-
-                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
+                        let _iterations = 6;
 
                         let _alpha      = 0.40;
 
@@ -6994,9 +6982,9 @@
 
                         let _group = new Group;
 
-                            _group.canvas = 'canvas';
+                            _group.canvas   = 'canvas';
 
-                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+                            _group.template = new SacredCircles ( _center, _radius, _iterations, new Rgb ( 0, 0, 0, 1 ), _colors );
 
                             _group.ellipses.draw ( );
                     }
@@ -7014,17 +7002,15 @@
 
                         let _radius     = 25;
 
-                        let _iterations = 15;
-
-                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
+                        let _iterations = 6;
 
                         ////    POPULATION    //////////////////////////
 
                         let _group = new Group;
 
-                            _group.canvas = 'canvas';
+                            _group.canvas   = 'canvas';
 
-                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                            _group.template = new SacredCircles ( _center, _radius, _iterations, new Rgb ( 0, 0, 0, 1 ), new Rgb ( 0, 0, 0, 0 ) );
 
                             _group.rectangles.draw ( );
                     }
@@ -7042,9 +7028,7 @@
 
                         let _radius     = 25;
 
-                        let _iterations = 15;
-
-                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
+                        let _iterations = 6;
 
                         let _alpha      = 0.40;
 
@@ -7064,9 +7048,9 @@
 
                         let _group = new Group;
 
-                            _group.canvas = 'canvas';
+                            _group.canvas   = 'canvas';
 
-                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+                            _group.template = new SacredCircles ( _center, _radius, _iterations, new Rgb ( 0, 0, 0, 1 ), _colors );
 
                             _group.rectangles.draw ( );
                     }
@@ -7084,17 +7068,15 @@
 
                         let _radius     = 25;
 
-                        let _iterations = 15;
-
-                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
+                        let _iterations = 6;
 
                         ////    POPULATION    //////////////////////////
 
                         let _group = new Group;
 
-                            _group.canvas = 'canvas';
+                            _group.canvas   = 'canvas';
 
-                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                            _group.template = new SacredCircles ( _center, _radius, _iterations, new Rgb ( 0, 0, 0, 1 ), new Rgb ( 0, 0, 0, 0 ) );
 
                             _group.roundedRectangles.draw ( );
                     }
@@ -7112,9 +7094,7 @@
 
                         let _radius     = 25;
 
-                        let _iterations = 15;
-
-                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
+                        let _iterations = 6;
 
                         let _alpha      = 0.40;
 
@@ -7134,9 +7114,9 @@
 
                         let _group = new Group;
 
-                            _group.canvas = 'canvas';
+                            _group.canvas   = 'canvas';
 
-                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, _colors );
+                            _group.template = new SacredCircles ( _center, _radius, _iterations, new Rgb ( 0, 0, 0, 1 ), _colors );
 
                             _group.roundedRectangles.draw ( );
                     }
@@ -7154,7 +7134,7 @@
 
                 //         let _radius     = 25;
 
-                //         let _iterations = 15;
+                //         let _iterations = 6;
 
                 //         let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
@@ -7164,7 +7144,7 @@
 
                 //             _group.canvas = 'canvas';
 
-                //             _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                //             _group.template = new SacredCircles ( _center, _radius, _iterations, _degrees, new Rgb ( 0, 0, 0, 1 ), new Rgb ( 0, 0, 0, 0 ) );
 
                 //             _group.lines.draw ( );
                 //     }
@@ -7182,17 +7162,15 @@
 
                         let _radius     = 25;
 
-                        let _iterations = 15;
-
-                        let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
+                        let _iterations = 6;
 
                         ////    POPULATION    //////////////////////////
 
                         let _group = new Group;
 
-                            _group.canvas = 'canvas';
+                            _group.canvas   = 'canvas';
 
-                            _group.template   = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                            _group.template = new SacredCircles ( _center, _radius, _iterations, new Rgb ( 0, 0, 0, 1 ), new Rgb ( 0, 0, 0, 0 ) );
 
                             _group.texts.draw ( );
                     }
@@ -8389,6 +8367,26 @@
                             canvaslab.animate ( _transition );
                         }
                     },
+                    // // radius
+                    // {
+                    //     title: 'Radius',
+                    //     text: 'easeInOutElastic',
+                    //     code: ( ) =>
+                    //     {
+                    //         let _transition =
+                    //         {
+                    //             object: _ellipse,
+                    //             timing: 'easeInOutElastic',
+                    //             period: 1750,
+                    //             change:
+                    //             {
+                    //                 radius: 50
+                    //             }
+                    //         }
+
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
                     // stroke color
                     {
                         title: 'Stroke Color',
@@ -15808,34 +15806,299 @@
             {
                 sacredcircles:
                 [
-                    // get transitions
+                    // transitions hop
                     {
-                        title:   'Get Transitions',
+                        title:   'hop',
                         text:    'blah... blah... blah...',
-                        children: [ 'circle', 'template' ],
+                        children: [ 'circle', 'fill', 'stroke', 'rgb' ],
                         code: ( ) =>
                         {
-                            ////    OBJECT    //////////////////////////////
+                            ////    INPUT    ///////////////////////////////
 
-                            let _center       = canvaslab.center;
+                            let _center     = canvaslab.center;
 
-                            let _object       = new Circle ( _center );
+                            let _iterations = 2;
 
-                                _object.alpha = 0;
+                            let _timing     = 'easeOutBack';
 
-                            ////    PROPERTIES    //////////////////////////
+                            let _period     = 500;
 
-                            let _iterations   = 25;
+                            let _radius     = 25;
 
-                            let _timing       = 'easeOutSine';
+                            let _alpha      = 0.4;
 
-                            let _period       = 300;
+                            let _strokes    = new Rgb ( 0, 0, 0, 1 );
 
-                            let _radius       = 25;
+                            let _fills      =
+                            [
+                                new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                                new Rgb (   0,  0,  255, _alpha ),      // Blue
+                                new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                                new Rgb (   0, 255,   0, _alpha ),      // Green
+                                new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                                new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                                new Rgb ( 255,   0,   0, _alpha ),      // Red
+                                new Rgb (   0,   0,   0, _alpha ),      // Black
+                            ]
+
+                            let _degrees    = undefined;
+
+                            ////    DEFINE    //////////////////////////////
+
+                            let _group          = new Group;
+
+                                _group.canvas   = 'canvas';
+
+                                _group.template = new SacredCircles ( _center, _radius, _iterations, _strokes, _fills, _degrees, new myTransitions );
 
                             ////    ANIMATION    ///////////////////////////
 
-                            let _transitions  = new SacredCircles ( ).getTransitions ( _object, _timing, _period, _radius, _iterations );
+                            let _transitions    = _group.template.transitions.hop ( _group.circles [ 0 ], _group.circles, _timing, _period, _center );
+
+
+                            canvaslab.animate ( _transitions );
+                        }
+                    },
+                    // transitions skip
+                    {
+                        title:   'skip',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'fill', 'stroke', 'rgb' ],
+                        code: ( ) =>
+                        {
+                            ////    INPUT    ///////////////////////////////
+
+                            let _center     = canvaslab.center;
+
+                            let _iterations = 2;
+
+                            let _timing     = 'easeOutBack';
+
+                            let _period     = 500;
+
+                            let _radius     = 25;
+
+                            let _alpha      = 0.4;
+
+                            let _strokes    = new Rgb ( 0, 0, 0, 1 );
+
+                            let _fills      =
+                            [
+                                new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                                new Rgb (   0,  0,  255, _alpha ),      // Blue
+                                new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                                new Rgb (   0, 255,   0, _alpha ),      // Green
+                                new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                                new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                                new Rgb ( 255,   0,   0, _alpha ),      // Red
+                                new Rgb (   0,   0,   0, _alpha ),      // Black
+                            ]
+
+                            let _degrees    = undefined;
+
+                            ////    DEFINE    //////////////////////////////
+
+                            let _group          = new Group;
+
+                                _group.canvas   = 'canvas';
+
+                                _group.template = new SacredCircles ( _center, _radius, _iterations, _strokes, _fills, _degrees, new myTransitions );
+
+                            ////    ANIMATION    ///////////////////////////
+
+                            let _transitions    = _group.template.transitions.skip ( _group.circles [ 0 ], _group.circles, _timing, _period, _center );
+
+
+                            canvaslab.animate ( _transitions );
+                        }
+                    },
+                    // transitions bloom out
+                    {
+                        title:   'bloom out',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'fill', 'stroke', 'rgb' ],
+                        code: ( ) =>
+                        {
+                            ////    INPUT    ///////////////////////////////
+
+                            let _center     = canvaslab.center;
+
+                            let _iterations = 2;
+
+                            let _timing     = 'easeInSine';
+
+                            let _period     = 3500;
+
+                            let _radius     = 25;
+
+                            let _alpha      = 0.4;
+
+                            let _strokes    = new Rgb ( 0, 0, 0, 1 );
+
+                            let _fills      =
+                            [
+                                new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                                new Rgb (   0,  0,  255, _alpha ),      // Blue
+                                new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                                new Rgb (   0, 255,   0, _alpha ),      // Green
+                                new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                                new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                                new Rgb ( 255,   0,   0, _alpha ),      // Red
+                                new Rgb (   0,   0,   0, _alpha ),      // Black
+                            ]
+
+                            let _degrees    = undefined;
+
+                            ////    DEFINE    //////////////////////////////
+
+                            let _group          = new Group;
+
+                                _group.canvas   = 'canvas';
+
+                                _group.template = new SacredCircles ( _center, _radius, _iterations, _strokes, _fills, _degrees, new myTransitions );
+
+                            ////    ANIMATION    ///////////////////////////
+
+                            let _transitions = _group.template.transitions.bloom ( _group.circles, _timing, _period );
+
+
+                            canvaslab.animate ( _transitions );
+                        }
+                    },
+                    // transitions bloom in
+                    {
+                        title:   'bloom in',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'fill', 'stroke', 'rgb' ],
+                        code: ( ) =>
+                        {
+                            ////    INPUT    ///////////////////////////////
+
+                            let _center     = canvaslab.center;
+
+                            let _iterations = 2;
+
+                            let _timing     = 'easeInSine';
+
+                            let _period     = 3500;
+
+                            let _radius     = 25;
+
+                            let _alpha      = 0.4;
+
+                            let _strokes    = new Rgb ( 0, 0, 0, 1 );
+
+                            let _fills      =
+                            [
+                                new Rgb ( 255,  0,  255, _alpha ),      // Magenta
+                                new Rgb (   0,  0,  255, _alpha ),      // Blue
+                                new Rgb (   0, 255, 255, _alpha ),      // Cyan
+                                new Rgb (   0, 255,   0, _alpha ),      // Green
+                                new Rgb ( 255, 255,   0, _alpha ),      // Yellow
+                                new Rgb ( 255, 125,   0, _alpha ),      // Orange
+                                new Rgb ( 255,   0,   0, _alpha ),      // Red
+                                new Rgb (   0,   0,   0, _alpha ),      // Black
+                            ]
+
+                            let _degrees    = undefined;
+
+                            ////    DEFINE    //////////////////////////////
+
+                            let _group          = new Group;
+
+                                _group.canvas   = 'canvas';
+
+                                _group.template = new SacredCircles ( _center, _radius, _iterations, _strokes, _fills, _degrees, new myTransitions );
+
+                            ////    ANIMATION    ///////////////////////////
+
+                            let _transitions = _group.template.transitions.bloom ( _group.circles, _timing, _period, false );
+
+
+                            canvaslab.animate ( _transitions );
+                        }
+                    },
+                    // transitions shape implicit
+                    {
+                        title:   'shape implicit',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'fill', 'stroke', 'rgb' ],
+                        code: ( ) =>
+                        {
+                            ////    INPUT    ///////////////////////////////
+
+                            let _center     = canvaslab.center;
+
+                            let _iterations = 2;
+
+                            let _seed       = null;
+
+                            let _timing     = 'easeInSine';
+
+                            let _period     = 3500;
+
+                            let _radius     = 50;
+
+                            let _strokes    = new Rgb ( 0, 0, 0, 0.3 );
+
+                            let _fills      = new Rgb ( 0, 0, 0, 0 );
+
+                            let _degrees    = undefined;
+
+                            ////    DEFINE    //////////////////////////////
+
+                            let _group          = new Group;
+
+                                _group.canvas   = 'canvas';
+
+                                _group.template = new SacredCircles ( canvaslab.center, _radius, _iterations, _strokes, _fills, _degrees, new myTransitions );
+
+                            ////    ANIMATION    ///////////////////////////
+
+                            let _transitions    = _group.template.transitions.shape ( _seed, _group.circles, _timing, _period );
+
+
+                            canvaslab.animate ( _transitions );
+                        }
+                    },
+                    // transitions shape explicit
+                    {
+                        title:   'shape explicit',
+                        text:    'blah... blah... blah...',
+                        children: [ 'circle', 'fill', 'stroke', 'rgb' ],
+                        code: ( ) =>
+                        {
+                            ////    INPUT    ///////////////////////////////
+
+                            let _center     = canvaslab.center;
+
+                            let _iterations = 5;
+
+                            let _seed       = [ 37, 39, 59, 9, 0, 17, 11, 15, 13, 49 ];
+
+                            let _timing     = 'easeInSine';
+
+                            let _period     = 3500;
+
+                            let _radius     = 15;
+
+                            let _strokes    = new Rgb ( 0, 0, 0, 0.3 );
+
+                            let _fills      = new Rgb ( 0, 0, 0, 0 );
+
+                            let _degrees    = undefined;
+
+                            ////    DEFINE    //////////////////////////////
+
+                            let _group          = new Group;
+
+                                _group.canvas   = 'canvas';
+
+                                _group.template = new SacredCircles ( canvaslab.center, _radius, _iterations, _strokes, _fills, _degrees, new myTransitions );
+
+                            ////    ANIMATION    ///////////////////////////
+
+                            let _transitions    = _group.template.transitions.shape ( _seed, _group.circles, _timing, _period );
 
 
                             canvaslab.animate ( _transitions );
@@ -15855,7 +16118,7 @@
     {
         seedOfLife: ( ) =>
         {
-            ////    INPUTS    //////////////////////////////
+            ////    INPUT    ///////////////////////////////
 
             let _center     = canvaslab.center;
 
@@ -15865,164 +16128,177 @@
 
             let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
 
-            ////    POPULATION    //////////////////////////
+            let _stroke     = new Rgb ( 0, 0, 0, 1 );
+
+            let _fill       = new Rgb ( 0, 0, 0, 0 );
+
+            ////    DEFINE    //////////////////////////////
 
             let _group      = new Group;
 
-                _group.template = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
+                _group.template = new SacredCircles ( _center, _radius, _iterations, _stroke, _fill, _degrees );
+
+            ////    DRAW    ////////////////////////////////
 
                 _group.circles.draw ( );
         },
-        // seedOfLife2: ( ) =>
+        // seedOfLifeGetPoints: ( ) =>
         // {
-        //     ////    INPUTS    //////////////////////////////
+        //     ////    INPUT    ///////////////////////////////
 
-        //     let _center     = canvaslab.center;
+        //     let _center        = canvaslab.center;
 
-        //     let _radius     = 25;
+        //     let _radius        = 35;
 
-        //     let _iterations = 10;
+        //     let _iterations    = 10;
 
-        //     let _degrees    = [ 90, 330, 270, 210, 150, 90, 30 ];
-
-        //     ////    POPULATION    //////////////////////////
-
-        //     let _group      = new Group;
-
-        //         _group.template = new SacredCircles ( _center, _radius, _iterations, _degrees, undefined );
-
-
-
-        //     let _items = [ 37, 39, 59, 9, 0, 17, 11, 15, 13, 49 ]
-
-        //     for ( let _item of _items )
+        //     let _symbolsOfLife =
         //     {
-        //         _group.circles [ _item ].fill.color = new Rgb ( 0, 0, 0, 1 );
-
-        //         console.log ( 'x:', _group.circles [ _item ].point.x, 'y:', _group.circles [ _item ].point.y );
+        //         seedStages:
+        //         {
+        //             zero:   [ 0                   ],    // Day 0 - Spherical Octahedron
+        //             one:    [ 0, 1                ],    // Day 1 - Vescia Piscis
+        //             two:    [ 0, 1, 2             ],    // Day 2 - Tripod of Life / Triquetra
+        //             three:  [ 0, 1, 2, 3          ],    // Day 3
+        //             four:   [ 0, 1, 2, 3, 4       ],    // Day 4
+        //             five:   [ 0, 1, 2, 3, 4, 5    ],    // Day 5
+        //             six:    [ 0, 1, 2, 3, 4, 5, 6 ],    // Day 6 - Seed of Life
+        //         },
+        //         egg:     [ 0, 8, 10, 12, 14, 16, 18 ],
+        //         fruit:   [ 0, 7, 9, 11, 13, 15, 17, 37, 41, 45, 49, 53, 57 ],
+        //         fruity:  [ 0, 7, 9, 11, 13, 15, 17, 37, 41, 45, 49, 53, 57, 94, 100, 106, 112, 118, 124 ],
+        //         fruitie: [ 0, 7, 9, 11, 13, 15, 17, 37, 41, 45, 49, 53, 57, 94, 100, 106, 112, 118, 124, 127, 134, 141, 148, 155, 162 ],
+        //         down:    [ 9, 17, 13 ],
+        //         downn:   [ 9, 17, 13, 37, 45, 53 ],
+        //         up:      [ 7, 11, 15 ],
+        //         upp:     [ 7, 11, 15, 41, 57, 49 ],
+        //         flower:  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ],
+        //         tree:    [ 37, 39, 59, 9, 0, 17, 11, 15, 13, 49 ],   // Kabbalah
+        //         yinyang: [ 0, 10, 16, 37, 44, 49, 56, 71, 86, 143, 164, 169, 176, 178, 184, 186, 193, 200, 202, 208, 210, 219, 221, 223, 229, 230, 231, 232, 238, 240, 242, 246, 248, 250, 256, 257, 258, 259, 265, 267, 269 ]
         //     }
 
-        //     _group.circles.draw ( );
+        //     ////    DEFINE    //////////////////////////////
+
+        //     let _group          = new Group;
+
+        //         _group.template = new SacredCircles ( _center, _radius, _iterations, new Rgb ( 0, 0, 0, 1 ), new Rgb ( 0, 0, 0, 0 ) );
+
+        //         _group.circles.draw ( );
+
+        //         _group.texts.draw ( );
+
+        //     ////    POINTS    //////////////////////////////
+
+        //     let _points = _group.circles.getPoints ( _symbolsOfLife.downn );
         // },
-        seedOfLifeAnimation: ( ) =>
+        animations: ( ) =>
         {
-            ////    OBJECT    //////////////////////////////
+            ////    INPUT    ///////////////////////////////
 
-            let _center       = canvaslab.center;
+            let _center = canvaslab.center;
 
-            let _object       = new Circle ( _center );
+            let _alpha  = 1;
 
-                _object.alpha = 0;
+            let _colors =
+            {
+                blue:    new Rgb (   0,  0,  255, _alpha ),
+                green:   new Rgb (   0, 255,   0, _alpha ),
+                red:     new Rgb ( 255,   0,   0, _alpha )
+            }
 
-            ////    PROPERTIES    //////////////////////////
+            ////    DEFINE    //////////////////////////////
 
-            let _iterations   = 25;
+            let _circleOne    = new Circle ( new Point ( _center.x - 50, _center.y ) );
 
-            let _timing       = 'easeOutSine';
+            let _circleTwo    = new Circle ( new Point ( _center.x, _center.y  - 50 ) );
 
-            let _period       = 300;
+            let _rectangleOne = new Rectangle ( new Point ( _center.x + 50, _center.y ) );
 
-            let _radius       = 25;
+            let _rectangleTwo = new Rectangle ( new Point ( _center.x, _center.y + 50 ) );
+
+
+                _circleOne.fill.color    = _colors.red;
+
+                _rectangleOne.fill.color = _colors.green;
+
+                _rectangleTwo.fill.color = _colors.blue;
 
             ////    ANIMATION    ///////////////////////////
 
-            let _transitions  = new SacredCircles ( ).getTransitions ( _object, _timing, _period, _radius, _iterations );
-
-
-            canvaslab.animate ( _transitions );
-        },
-        multipleAnimations: ( ) =>
-        {
-            let _center = canvaslab.center;
-
-            let _objectA = new Circle ( new Point ( _center.x - 50, _center.y ) );
-
-            let _objectB = new Rectangle ( new Point ( _center.x + 50, _center.y ) );
-
-            let _objectC = new Circle ( new Point ( _center.x, _center.y  - 50 ) );
-
-            let _objectD = new Rectangle ( new Point ( _center.x, _center.y + 50 ) );
-
             let _transition =
             {
-                object: [ _objectA, _objectB, _objectC, _objectD ],
+                object: [ _circleOne, _rectangleOne, _circleTwo, _rectangleTwo ],
                 timing: [ 'easeOutElastic', 'easeOutExpo', 'easeOutElastic', 'easeOutExpo' ],
                 period: 1750,
                 change:
                 [
-                    {
-                        move: { degree: 270, distance: 100 }
-                    },
-                    {
-                        move: { degree: 90, distance: 100 }
-                    },
-                    {
-                        move: { degree: 0, distance: 100 }
-                    },
-                    {
-                        move: { degree: 180, distance: 100 }
-                    }
+                    { move: { degree: 270, distance: 100 } },
+                    { move: { degree:  90, distance: 100 } },
+                    { move: { degree:   0, distance: 100 } },
+                    { move: { degree: 180, distance: 100 } }
                 ]
             }
 
             canvaslab.animate ( _transition );
         },
-        multipleAnimationsQueue: ( ) =>
+        animationsArray: ( ) =>
         {
+            ////    INPUT    ///////////////////////////////
+
             let _center = canvaslab.center;
 
-            ////    OBJECTS    //////////////////////////////////////////////////////////////
+            let _alpha  = 1;
 
-            let _objectA = new Circle ( new Point ( _center.x - 50, _center.y ) );
+            let _colors =
+            {
+                blue:    new Rgb (   0,  0,  255, _alpha ),
+                green:   new Rgb (   0, 255,   0, _alpha ),
+                red:     new Rgb ( 255,   0,   0, _alpha )
+            }
 
-            let _objectB = new Rectangle ( new Point ( _center.x + 50, _center.y ) );
+            ////    DEFINE    //////////////////////////////
 
-            let _objectC = new Circle ( new Point ( _center.x, _center.y  - 50 ) );
+            let _circleOne    = new Circle ( new Point ( _center.x - 50, _center.y ) );
 
-            let _objectD = new Rectangle ( new Point ( _center.x, _center.y + 50 ) );
+            let _circleTwo    = new Circle ( new Point ( _center.x, _center.y  - 50 ) );
 
-            ////    ANIMATION    ///////////////////////////////////////////////////////////
+            let _rectangleOne = new Rectangle ( new Point ( _center.x + 50, _center.y ) );
+
+            let _rectangleTwo = new Rectangle ( new Point ( _center.x, _center.y + 50 ) );
+
+
+                _circleOne.fill.color    = _colors.red;
+
+                _rectangleOne.fill.color = _colors.green;
+
+                _rectangleTwo.fill.color = _colors.blue;
+
+            ////    ANIMATION    ///////////////////////////
 
             let _transitions =
             [
                 {
-                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    object: [ _circleOne, _rectangleOne, _circleTwo, _rectangleTwo ],
                     timing: [ 'easeOutElastic', 'easeOutExpo', 'easeOutElastic', 'easeOutExpo' ],
                     period: 1750,
                     change:
                     [
-                        {
-                            move: { degree: 270, distance: 100 }
-                        },
-                        {
-                            move: { degree:  90, distance: 100 }
-                        },
-                        {
-                            move: { degree:   0, distance: 100 }
-                        },
-                        {
-                            move: { degree: 180, distance: 100 }
-                        }
+                        { move: { degree: 270, distance: 100 } },
+                        { move: { degree:  90, distance: 100 } },
+                        { move: { degree:   0, distance: 100 } },
+                        { move: { degree: 180, distance: 100 } }
                     ]
                 },
                 {
-                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    object: [ _circleOne, _rectangleOne, _circleTwo, _rectangleTwo ],
                     timing: [ 'easeOutExpo', 'easeOutElastic', 'easeOutExpo', 'easeOutElastic' ],
                     period: 1750,
                     change:
                     [
-                        {
-                            move: { degree:  90, distance: 100 }
-                        },
-                        {
-                            move: { degree: 270, distance: 100 }
-                        },
-                        {
-                            move: { degree: 180, distance: 100 }
-                        },
-                        {
-                            move: { degree:   0, distance: 100 }
-                        }
+                        { move: { degree:  90, distance: 100 } },
+                        { move: { degree: 270, distance: 100 } },
+                        { move: { degree: 180, distance: 100 } },
+                        { move: { degree:   0, distance: 100 } }
                     ]
                 }
             ]
@@ -16030,142 +16306,100 @@
 
             canvaslab.animate ( _transitions );
         },
-        multipleAnimationsQueue2: ( ) =>
+        animationsArrayCache: ( ) =>
         {
+            ////    INPUT    ///////////////////////////////
+
             let _center = canvaslab.center;
 
-            ////    OBJECTS    //////////////////////////////////////////////////////////////
+            let _alpha  = 1;
 
-            let _objectA = new Circle ( new Point ( _center.x - 50, _center.y ) );
+            let _colors =
+            {
+                blue:    new Rgb (   0,  0,  255, _alpha ),
+                green:   new Rgb (   0, 255,   0, _alpha ),
+                red:     new Rgb ( 255,   0,   0, _alpha )
+            }
 
-            let _objectB = new Rectangle ( new Point ( _center.x + 50, _center.y ) );
+            ////    DEFINE    //////////////////////////////
 
-            let _objectC = new Circle ( new Point ( _center.x, _center.y  - 50 ) );
+            let _circleOne    = new Circle ( new Point ( _center.x - 50, _center.y ) );
 
-            let _objectD = new Rectangle ( new Point ( _center.x, _center.y + 50 ) );
+            let _circleTwo    = new Circle ( new Point ( _center.x, _center.y  - 50 ) );
 
-            ////    ANIMATION    ///////////////////////////////////////////////////////////
+            let _rectangleOne = new Rectangle ( new Point ( _center.x + 50, _center.y ) );
+
+            let _rectangleTwo = new Rectangle ( new Point ( _center.x, _center.y + 50 ) );
+
+
+                _circleOne.fill.color    = _colors.red;
+
+                _rectangleOne.fill.color = _colors.green;
+
+                _rectangleTwo.fill.color = _colors.blue;
+
+            ////    ANIMATION    ///////////////////////////
 
             let _transitions =
             [
                 {
-                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    object: [ _circleOne, _rectangleOne, _circleTwo, _rectangleTwo ],
                     timing: [ 'easeOutElastic', 'easeOutExpo', 'easeOutElastic', 'easeOutExpo' ],
                     period: 350,
                     change:
                     [
-                        {
-                            move: { degree: 270, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree:  90, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree:   0, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree: 180, distance: 100 },
-                            cache: true
-                        }
+                        { move: { degree: 270, distance: 100 }, cache: true },
+                        { move: { degree:  90, distance: 100 }, cache: true },
+                        { move: { degree:   0, distance: 100 }, cache: true },
+                        { move: { degree: 180, distance: 100 }, cache: true }
                     ]
                 },
                 {
-                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    object: [ _circleOne, _rectangleOne, _circleTwo, _rectangleTwo ],
                     timing: [ 'easeOutSine', 'easeOutSine', 'easeOutSine', 'easeOutSine' ],
                     period: 700,
                     change:
                     [
-                        {
-                            move: { degree:   0, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree: 180, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree:   0, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree: 180, distance: 100 },
-                            cache: true
-                        }
+                        { move: { degree:   0, distance: 100 }, cache: true },
+                        { move: { degree: 180, distance: 100 }, cache: true },
+                        { move: { degree:   0, distance: 100 }, cache: true },
+                        { move: { degree: 180, distance: 100 }, cache: true }
                     ]
                 },
                 {
-                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    object: [ _circleOne, _rectangleOne, _circleTwo, _rectangleTwo ],
                     timing: [ 'easeOutElastic', 'easeOutExpo', 'easeOutElastic', 'easeOutExpo' ],
                     period: 950,
                     change:
                     [
-                        {
-                            move: { degree:  90, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree: 270, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree:  90, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree: 270, distance: 100 },
-                            cache: true
-                        }
+                        { move: { degree:  90, distance: 100 }, cache: true },
+                        { move: { degree: 270, distance: 100 }, cache: true },
+                        { move: { degree:  90, distance: 100 }, cache: true },
+                        { move: { degree: 270, distance: 100 }, cache: true }
                     ]
                 },
                 {
-                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    object: [ _circleOne, _rectangleOne, _circleTwo, _rectangleTwo ],
                     timing: [ 'easeOutSine', 'easeOutSine', 'easeOutSine', 'easeOutSine' ],
                     period: 1400,
                     change:
                     [
-                        {
-                            move: { degree: 180, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree:   0, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree: 180, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree:   0, distance: 100 },
-                            cache: true
-                        }
+                        { move: { degree: 180, distance: 100 }, cache: true },
+                        { move: { degree:   0, distance: 100 }, cache: true },
+                        { move: { degree: 180, distance: 100 }, cache: true },
+                        { move: { degree:   0, distance: 100 }, cache: true }
                     ]
                 },
                 {
-                    object: [ _objectA, _objectB, _objectC, _objectD ],
+                    object: [ _circleOne, _rectangleOne, _circleTwo, _rectangleTwo ],
                     timing: [ 'easeOutExpo', 'easeOutElastic', 'easeOutExpo', 'easeOutElastic' ],
                     period: 1750,
                     change:
                     [
-                        {
-                            move: { degree: 270, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree:  90, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree: 270, distance: 100 },
-                            cache: true
-                        },
-                        {
-                            move: { degree:  90, distance: 100 },
-                            cache: true
-                        }
+                        { move: { degree: 270, distance: 100 }, cache: true },
+                        { move: { degree:  90, distance: 100 }, cache: true },
+                        { move: { degree: 270, distance: 100 }, cache: true },
+                        { move: { degree:  90, distance: 100 }, cache: true }
                     ]
                 }
             ]
@@ -16173,48 +16407,7 @@
 
             canvaslab.animate ( _transitions );
         },
-        multipleAnimationsShape: ( ) =>
-        {
-            ////    OBJECTS    //////////////////////////////////////////////////////////////
-
-            let _center  = canvaslab.center;
-
-            let _amount  = 10;
-
-            let _objects = new Circles;
-
-            for ( let _i = 0; _i < _amount; _i++ )
-
-                _objects.push ( new Circle ( _center ) );
-
-            ////    ANIMATION    ///////////////////////////////////////////////////////////
-
-            let _transitions =
-            [
-                {
-                    object: _objects,
-                    timing: 'easeOutElastic',
-                    period: 1750,
-                    change:
-                    [
-                        { move: { degree:  90, distance: 100 }, cache: true },  //  1
-                        { move: { degree:  60, distance:  87 }, cache: true },  //  2
-                        { move: { degree: 120, distance:  87 }, cache: true },  //  3
-                        { move: { degree:  30, distance:  50 }, cache: true },  //  4
-                        { move: { degree: 150, distance:  50 }, cache: true },  //  5
-                        { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
-                        { move: { degree: 330, distance:  50 }, cache: true },  //  7
-                        { move: { degree: 210, distance:  50 }, cache: true },  //  8
-                        { move: { degree: 270, distance:  50 }, cache: true },  //  9
-                        { move: { degree: 270, distance: 100 }, cache: true },  // 10
-                    ]
-                }
-            ]
-
-
-            canvaslab.animate ( _transitions );
-        },
-        multipleAnimationsShape2: ( ) =>
+        animationsArrayCache2: ( ) =>
         {
             ////    FUNCTIONS    ////////////////////////////////////////////////////////////
 
@@ -16233,6 +16426,7 @@
             let _radius  = 10;
 
             let _objects = new Circles;
+
 
             for ( let _i = 0; _i < _amount; _i++ )
 
@@ -16347,7 +16541,7 @@
 
             canvaslab.animate ( _transitions );
         },
-        multipleAnimationsShape3: ( ) =>
+        animationsArrayLineTos: ( ) =>
         {
             ////    OBJECTS    //////////////////////////////////////////////////////////////
 
@@ -16362,6 +16556,7 @@
             let _radius  = 10;
 
             let _objects = new Circles;
+
 
             for ( let _i = 0; _i < _amount; _i++ )
 
@@ -16550,7 +16745,7 @@
 
             LAB.setCanvasSize ( );
 
-            LAB.setLabDefaults ( [ 'clear', 'grid', 'sidebar' ] );
+            LAB.setLabDefaults ( [ 'sidebar' ] );
 
 
             window.addEventListener ( 'resize', LAB.setCanvasSize );
@@ -16600,7 +16795,7 @@
                  * @function
                  * @param           {HTMLElement} element               HTML DOM Element
                  */
-                _lib.toggleCardButton      = ( element )                => UI.toggle.cardButton ( element );
+                _lib.toggleCardButton      = ( element )               => UI.toggle.cardButton ( element );
 
                 /**
                  * Toggles lab from each card-object
@@ -16608,7 +16803,7 @@
                  * @function
                  * @param           {HTMLElement} element               HTML DOM Element
                  */
-                _lib.toggleLab             = ( element )                => UI.toggle.lab ( element );
+                _lib.toggleLab             = ( element )               => UI.toggle.lab ( element );
 
 
             return _lib;
@@ -16636,7 +16831,7 @@
                 LAB.init ( _scripts.seedOfLife );
 
 
-                if ( _config.labMode )
+                if ( false )
 
                     _setLabMode ( );
             }

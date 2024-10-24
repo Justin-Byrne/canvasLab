@@ -19,77 +19,79 @@ class Page
         if ( button ) this._setPropertiesBy ( button )
     }
 
-    ////    [ PAGE ]    ////////////////////////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////////////////////////
 
-        /**
-         * Sets type
-         * @public
-         * @function
-         * @param           {string} value                      Page's type
-         */
-        set type ( value )
-        {
-            this._type = ( typeof value === 'string' ) ? value : this._type;
-        }
+        ////    [ PAGE ]    ////////////////////////////////
 
-        /**
-         * Gets type
-         * @readOnly
-         * @function
-         * @return          {string}                            Page's type
-         */
-        get type ( )
-        {
-            return this._type;
-        }
+            /**
+             * Sets type
+             * @public
+             * @function
+             * @param           {string} value                      Page's type
+             */
+            set type ( value )
+            {
+                this._type = ( typeof value === 'string' ) ? value : this._type;
+            }
 
-    ////    [ GROUP ]    ///////////////////////////////////////////////////////
+            /**
+             * Gets type
+             * @readOnly
+             * @function
+             * @return          {string}                            Page's type
+             */
+            get type ( )
+            {
+                return this._type;
+            }
 
-        /**
-         * Sets group
-         * @public
-         * @function
-         * @param           {string} value                      Page's group
-         */
-        set group ( value )
-        {
-            this._group = ( typeof value === 'string' ) ? value : this._group;
-        }
+        ////    [ GROUP ]    ///////////////////////////////
 
-        /**
-         * Gets group
-         * @readOnly
-         * @function
-         * @return          {string}                            Page's group
-         */
-        get group ( )
-        {
-            return this._group;
-        }
+            /**
+             * Sets group
+             * @public
+             * @function
+             * @param           {string} value                      Page's group
+             */
+            set group ( value )
+            {
+                this._group = ( typeof value === 'string' ) ? value : this._group;
+            }
 
-    ////    [ HANDLER ]    /////////////////////////////////////////////////////
+            /**
+             * Gets group
+             * @readOnly
+             * @function
+             * @return          {string}                            Page's group
+             */
+            get group ( )
+            {
+                return this._group;
+            }
 
-        /**
-         * Sets handler
-         * @public
-         * @function
-         * @param           {string} value                      Page's handler
-         */
-        set handler ( value )
-        {
-            this._handler = ( typeof value === 'string' ) ? value : this._handler;
-        }
+        ////    [ HANDLER ]    /////////////////////////////
 
-        /**
-         * Gets handler
-         * @readOnly
-         * @function
-         * @return          {string}                            Page's handler
-         */
-        get handler ( )
-        {
-            return this._handler;
-        }
+            /**
+             * Sets handler
+             * @public
+             * @function
+             * @param           {string} value                      Page's handler
+             */
+            set handler ( value )
+            {
+                this._handler = ( typeof value === 'string' ) ? value : this._handler;
+            }
+
+            /**
+             * Gets handler
+             * @readOnly
+             * @function
+             * @return          {string}                            Page's handler
+             */
+            get handler ( )
+            {
+                return this._handler;
+            }
 
     ////    UTILITIES    ///////////////////////////////////////////////////////
 

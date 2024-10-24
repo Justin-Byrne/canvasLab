@@ -13,7 +13,9 @@ declare WITH_DOCUMENTS=false
 
 declare WITH_MD2JSON=false
 
-declare WITH_PLANTUML=false
+declare WITH_GIST=false
+
+# declare WITH_PLANTUML=false
 
 ## PROJECT SPECIFIC ################## ヽ(•‿•)ノ ##################
 
@@ -127,6 +129,7 @@ declare HANDLERS_FOLERS=(
 )
 
 declare TEMPLATES_FOLDER=(
+    "${INPUT_FOLDER}/classes/Templates/Transitions"
     "${INPUT_FOLDER}/classes/Templates"
 )
 
@@ -187,7 +190,10 @@ main ()
 
     compile_minified
 
-    # create_gist
+    if $WITH_GIST
+    then
+        create_gist
+    fi
 
     remove_legacy_distros
 
@@ -206,13 +212,13 @@ main ()
     then
         compile_md2json
 
-        source ../devSuite/build/compile.sh
+        touch ../devSuite/scripts/suite/main.js
     fi
 
-    if $WITH_PLANTUML
-    then
-        compile_plantuml
-    fi
+    # if $WITH_PLANTUML
+    # then
+    #     compile_plantuml
+    # fi
 
     compile_readme
 
@@ -376,9 +382,13 @@ function create_gist()
 {
     FILE_MIN=${OUTPUT_DIRECTORY}/${VC_PACKAGE}.min.js
 
-    echo $FILE_MIN
+    GIST_ID=b1065cb201fb846b7512d06cc98e6844
 
-    gh gist create --filename ${FILE_MIN} --desc $VC_BRIEF --public
+    echo "\n${PROMPT_A} ${TITLE_PACKAGE} Created Gist ${TITLE_BASH}\t\t\t${FG_BLUE}[${FILE_MIN}]${NOCOLOR}\n"
+
+    # gh gist create --public ${FILE_MIN} --desc "${VC_PACKAGE} - ${VERSION}"
+
+    gh gist edit ${GIST_ID} ${FILE_MIN} --desc "${VC_PACKAGE} - ${VERSION}"
 }
 
 function compile_readme ()
@@ -545,7 +555,7 @@ function update_lead_js_file ()
 
 function update_lead_html_file ()
 {
-    sed -r -i '' -e 's/'${VC_PACKAGE}'-v.+/'${VC_PACKAGE}'-v'${VERSION}'-min.js"><\/script>/' ${1}
+    sed -r -i '' -e 's/'${VC_PACKAGE}'-v.+/'${VC_PACKAGE}'-v'${VERSION}'.js"><\/script>/' ${1}
     sed -r -i '' -e 's/<[^>]*>[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+<[^>]*>/<span>'${VERSION}'<\/span>/' ${1}
 }
 

@@ -24,88 +24,94 @@ class PointCollection
             delete this.#_options._border;
     }
 
-    ////    [ X ]   ////////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set x-axis value
-         * @public
-         * @function
-         * @param           {number} value                              X coordinate value
-         */
-        set x ( value )
-        {
-            if ( typeof value === 'number' )  this._setAll ( 'x', value );
-        }
+        ////    [ X ]    /////////////////////////
 
-        /**
-         * Get x-axis value
-         * @readOnly
-         * @function
-         * @return          {number}                                    X coordinate value
-         */
-        get x ( )
-        {
-            return this._x;
-        }
+            /**
+             * Set x-axis value
+             * @public
+             * @function
+             * @param           {number} value                              X coordinate value
+             */
+            set x ( value )
+            {
+                if ( typeof value === 'number' )  this._setAll ( 'x', value );
+            }
 
-    ////    [ Y ]   ////////////////////////////////////////
+            /**
+             * Get x-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    X coordinate value
+             */
+            get x ( )
+            {
+                return this._x;
+            }
 
-        /**
-         * Set the y-axis value
-         * @public
-         * @function
-         * @param           {number} value                              Y coordinate value
-         */
-        set y ( value )
-        {
-            if ( typeof value === 'number' )  this._setAll ( 'y', value );
-        }
+        ////    [ Y ]    /////////////////////////
 
-        /**
-         * Get y-axis value
-         * @readOnly
-         * @function
-         * @return          {number}                                    Y coordinate value
-         */
-        get y ( )
-        {
-            return this._y;
-        }
+            /**
+             * Set the y-axis value
+             * @public
+             * @function
+             * @param           {number} value                              Y coordinate value
+             */
+            set y ( value )
+            {
+                if ( typeof value === 'number' )  this._setAll ( 'y', value );
+            }
 
-    ////    [ OPTIONS ] ////////////////////////////////////
+            /**
+             * Get y-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    Y coordinate value
+             */
+            get y ( )
+            {
+                return this._y;
+            }
 
-        /**
-         * Get options
-         * @public
-         * @function
-         * @return          {OptionsCollection}                         Options collection object
-         */
-        get options ( )
-        {
-            return this.#_options;
-        }
+        ////    [ OPTIONS ]    ///////////////////
+
+            /**
+             * Get options
+             * @public
+             * @function
+             * @return          {OptionsCollection}                         Options collection object
+             */
+            get options ( )
+            {
+                return this.#_options;
+            }
 
     ////    UTILITIES   ////////////////////////////////////
 
-        /**
-         * Sets all option values throughout a collection
-         * @private
-         * @function
-         * @param           {string}  property                          Option property
-         * @param           {boolean} value                             True || False
-         * @see             {@link UTILITIES.individual.set.all}
-         */
-        _setAll ( ) { }
+        ////    - PRIVATE    /////////////////////
 
-        /**
-         * Invert x & y coordinate values
-         * @public
-         * @function
-         */
-        invert ( )
-        {
-            let _y = this.y;
+            /**
+             * Sets all option values throughout a collection
+             * @private
+             * @function
+             * @param           {string}  property                          Option property
+             * @param           {boolean} value                             True || False
+             * @see             {@link UTILITIES.individual.set.all}
+             */
+            _setAll ( ) { }
 
-            [ this.y, this.x ] = [ this.x, _y ];
-        }
+        ////    + PUBLIC    //////////////////////
+
+            /**
+             * Invert x & y coordinate values
+             * @public
+             * @function
+             */
+            invert ( )
+            {
+                let _y = this.y;
+
+                [ this.y, this.x ] = [ this.x, _y ];
+            }
 }

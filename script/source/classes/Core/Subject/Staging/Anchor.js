@@ -20,87 +20,89 @@ class Anchor
             Object.defineProperty ( this, 'y',     PROPERTY_BLOCKS.individual.pointY );
 	}
 
-	////    [ POINT ]   ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set point
-         * @public
-         * @function
-         * @param           {Point} point                               X & Y axis coordinates
-         * @see             {@link PROPERTY_BLOCKS.individual.point}
-         */
-        set point ( value ) { }
+    	////    [ POINT ]    ////////////////////
 
-        /**
-         * Get point
-         * @public
-         * @function
-         * @return          {Point}                                     X & Y axis coordinates
-         * @see             {@link PROPERTY_BLOCKS.individual.point}
-         */
-        get point ( ) { }
+            /**
+             * Set point
+             * @public
+             * @function
+             * @param           {Point} point                               X & Y axis coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
+             */
+            set point ( value ) { }
 
-
-		/**
-         * Set x-axis value
-         * @public
-         * @function
-         * @param           {number} value                              X coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointX}
-         */
-        set x ( value ) { }
-
-        /**
-         * Get x-axis value
-         * @readOnly
-         * @function
-         * @return          {number}                                    X coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointX}
-         */
-        get x ( ) { }
+            /**
+             * Get point
+             * @public
+             * @function
+             * @return          {Point}                                     X & Y axis coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
+             */
+            get point ( ) { }
 
 
-        /**
-         * Set y-axis value
-         * @public
-         * @function
-         * @param           {number} value                              Y coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointY}
-         */
-        set y ( value ) { }
+    		/**
+             * Set x-axis value
+             * @public
+             * @function
+             * @param           {number} value                              X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
+             */
+            set x ( value ) { }
 
-        /**
-         * Get y-axis value
-         * @readOnly
-         * @function
-         * @return          {number}                                    Y coordinate value
-         * @see             {@link PROPERTY_BLOCKS.individual.pointY}
-         */
-        get y ( ) { }
+            /**
+             * Get x-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
+             */
+            get x ( ) { }
 
-    ////    [ TYPE ]    ////////////////////////////////////
 
-        /**
-         * Set anchor alignment
-         * @public
-         * @function
-         * @param           {string} value                              Anchor alignment
-         */
-        set align ( value )
-        {
-            this._align = ( this._isAlign ( value ) ) ? value : this._align;
-        }
+            /**
+             * Set y-axis value
+             * @public
+             * @function
+             * @param           {number} value                              Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
+             */
+            set y ( value ) { }
 
-        /**
-         * Get anchor alignment
-         * @readOnly
-         * @function
-         * @return          {string}                                    Anchor alignment
-         */
-        get align ( )
-        {
-            return this._align;
-        }
+            /**
+             * Get y-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
+             */
+            get y ( ) { }
+
+        ////    [ ALIGN ]    /////////////////////
+
+            /**
+             * Set anchor alignment
+             * @public
+             * @function
+             * @param           {string} value                              Anchor alignment
+             */
+            set align ( value )
+            {
+                this._align = ( this._isAlign ( value ) ) ? value : this._align;
+            }
+
+            /**
+             * Get anchor alignment
+             * @readOnly
+             * @function
+             * @return          {string}                                    Anchor alignment
+             */
+            get align ( )
+            {
+                return this._align;
+            }
 
     ////    VALIDATION  ////////////////////////////////////
 
