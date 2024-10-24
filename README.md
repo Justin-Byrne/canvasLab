@@ -171,7 +171,7 @@ Please [open an issue](https://github.com/Justin-Byrne/canvasLab/issues/new) for
 │   └── JSDoc.md
 ├── script
 │   ├── distro
-│   │   ├── canvasLab-v0.7.196.js    [ 540 kb ]
+│   │   ├── canvasLab-v0.7.196.js    [ 580 kb ]
 │   │   ├── canvasLab.min.js         [ 104 kb ]
 │   │   └── canvasLab.min.js.map
 │   └── source

@@ -65,9 +65,6 @@
 <dt><a href="#labButton">labButton(element)</a></dt>
 <dd><p>Toggles lab buttons active state</p>
 </dd>
-<dt><a href="#labMenu">labMenu()</a></dt>
-<dd><p>Toggles visibility of lab menu</p>
-</dd>
 <dt><a href="#navigation">navigation()</a></dt>
 <dd><p>Toggles visibility of navigation menu</p>
 </dd>
@@ -111,15 +108,15 @@ Call main module
 * [Lab](#Lab)
     * [.editor(editor)](#Lab+editor)
     * [.editor()](#Lab+editor) ⇒ <code>Object</code>
-    * [.setAngle()](#Lab+setAngle)
-    * [.setCoordinates()](#Lab+setCoordinates)
-    * [.setGrid()](#Lab+setGrid)
-    * [.setLabDefaults(defaults)](#Lab+setLabDefaults)
     * [._copyToClipboard(contents)](#Lab+_copyToClipboard)
     * [._rotatePoint(origin, degree, distance)](#Lab+_rotatePoint)
     * [.loadScript(script)](#Lab+loadScript)
     * [.runCode()](#Lab+runCode)
     * [.scripts()](#Lab+scripts)
+    * [.setAngle()](#Lab+setAngle)
+    * [.setCoordinates()](#Lab+setCoordinates)
+    * [.setGrid()](#Lab+setGrid)
+    * [.setLabDefaults(defaults)](#Lab+setLabDefaults)
     * [.init(script)](#Lab+init)
 
 <a name="Lab+editor"></a>
@@ -142,39 +139,6 @@ Gets editor
 **Kind**: instance method of [<code>Lab</code>](#Lab)  
 **Returns**: <code>Object</code> - Primary ace-editor object  
 **Access**: public  
-<a name="Lab+setAngle"></a>
-
-### lab.setAngle()
-Sets angle overlay
-
-**Kind**: instance method of [<code>Lab</code>](#Lab)  
-**Access**: public  
-<a name="Lab+setCoordinates"></a>
-
-### lab.setCoordinates()
-Sets coordinates overlay
-
-**Kind**: instance method of [<code>Lab</code>](#Lab)  
-**Access**: public  
-<a name="Lab+setGrid"></a>
-
-### lab.setGrid()
-Sets grid overlay
-
-**Kind**: instance method of [<code>Lab</code>](#Lab)  
-**Access**: public  
-<a name="Lab+setLabDefaults"></a>
-
-### lab.setLabDefaults(defaults)
-Sets lab default options
-
-**Kind**: instance method of [<code>Lab</code>](#Lab)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| defaults | <code>Array.&lt;string&gt;</code> | Array of default options |
-
 <a name="Lab+_copyToClipboard"></a>
 
 ### lab.\_copyToClipboard(contents)
@@ -227,6 +191,39 @@ Returns an object of lab-station specific scripts
 
 **Kind**: instance method of [<code>Lab</code>](#Lab)  
 **Access**: public  
+<a name="Lab+setAngle"></a>
+
+### lab.setAngle()
+Sets angle overlay
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+<a name="Lab+setCoordinates"></a>
+
+### lab.setCoordinates()
+Sets coordinates overlay
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+<a name="Lab+setGrid"></a>
+
+### lab.setGrid()
+Sets grid overlay
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+<a name="Lab+setLabDefaults"></a>
+
+### lab.setLabDefaults(defaults)
+Sets lab default options
+
+**Kind**: instance method of [<code>Lab</code>](#Lab)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| defaults | <code>Array.&lt;string&gt;</code> | Array of default options |
+
 <a name="Lab+init"></a>
 
 ### lab.init(script)
@@ -251,6 +248,12 @@ Sets lab & ace-editor
 | --- | --- | --- |
 | entries | <code>string</code> | Log entries |
 
+
+* [Log](#Log)
+    * [.entries()](#Log+entries) ⇒ <code>string</code>
+    * [.entry(message)](#Log+entry)
+    * [.view()](#Log+view)
+
 <a name="Log+entries"></a>
 
 ### log.entries() ⇒ <code>string</code>
@@ -258,6 +261,25 @@ Gets entries
 
 **Kind**: instance method of [<code>Log</code>](#Log)  
 **Returns**: <code>string</code> - Page's entries  
+**Access**: public  
+<a name="Log+entry"></a>
+
+### log.entry(message)
+Sets a single entry with the passed message param
+
+**Kind**: instance method of [<code>Log</code>](#Log)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| message | <code>string</code> | Message for log entry |
+
+<a name="Log+view"></a>
+
+### log.view()
+View all entries
+
+**Kind**: instance method of [<code>Log</code>](#Log)  
 **Access**: public  
 <a name="Page"></a>
 
@@ -492,10 +514,10 @@ Simple programmatic delay
 * [Ui](#Ui)
     * [.toggle()](#Ui+toggle) ⇒ <code>Object</code>
     * [.clean()](#Ui+clean) ⇒ <code>Object</code>
-    * [.getClass(code)](#Ui+getClass) ⇒ <code>string</code>
-    * [.setNavLinks(element, links)](#Ui+setNavLinks)
     * [.alert(message, type)](#Ui+alert)
     * [.clearScreen(setCardAlbum)](#Ui+clearScreen)
+    * [.getClass(code)](#Ui+getClass) ⇒ <code>string</code>
+    * [.setNavLinks(element, links)](#Ui+setNavLinks)
     * [.init()](#Ui+init)
     * [.runEasingAnimation(easingFunction, index)](#Ui+runEasingAnimation)
 
@@ -515,6 +537,31 @@ Gets clean object
 **Kind**: instance method of [<code>Ui</code>](#Ui)  
 **Returns**: <code>Object</code> - Clean object  
 **Access**: public  
+<a name="Ui+alert"></a>
+
+### ui.alert(message, type)
+Displays an alert message within the modal
+
+**Kind**: instance method of [<code>Ui</code>](#Ui)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| message | <code>string</code> | Message to display |
+| type | <code>string</code> | Type of message; success || failure |
+
+<a name="Ui+clearScreen"></a>
+
+### ui.clearScreen(setCardAlbum)
+Clears screen prior to rebuilding
+
+**Kind**: instance method of [<code>Ui</code>](#Ui)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| setCardAlbum | [<code>boolean</code>](#boolean) | <code>false</code> | Sets card album display to block (true) || none (false) |
+
 <a name="Ui+getClass"></a>
 
 ### ui.getClass(code) ⇒ <code>string</code>
@@ -540,31 +587,6 @@ Sets navigation links
 | --- | --- | --- |
 | element | <code>HTMLElement</code> | Parent navigation element |
 | links | <code>Array.&lt;Object&gt;</code> | Array of Objects containing navigation link data |
-
-<a name="Ui+alert"></a>
-
-### ui.alert(message, type)
-Displays an alert message within the modal
-
-**Kind**: instance method of [<code>Ui</code>](#Ui)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| message | <code>string</code> | Message to display |
-| type | <code>string</code> | Type of message; success || failure |
-
-<a name="Ui+clearScreen"></a>
-
-### ui.clearScreen(setCardAlbum)
-Clears screen prior to rebuilding
-
-**Kind**: instance method of [<code>Ui</code>](#Ui)  
-**Access**: public  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| setCardAlbum | [<code>boolean</code>](#boolean) | <code>false</code> | Sets card album display to block (true) || none (false) |
 
 <a name="Ui+init"></a>
 
@@ -698,13 +720,6 @@ Toggles lab buttons active state
 | --- | --- | --- |
 | element | <code>HTMLElement</code> | HTML DOM Element |
 
-<a name="labMenu"></a>
-
-## labMenu()
-Toggles visibility of lab menu
-
-**Kind**: global function  
-**Access**: public  
 <a name="navigation"></a>
 
 ## navigation()

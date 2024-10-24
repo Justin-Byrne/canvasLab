@@ -118,8 +118,10 @@
 <dt><a href="#Application">Application</a></dt>
 <dd><p>{Object}   Application                      Application handler</p>
 </dd>
+<dt><a href="#myTransitions">myTransitions</a></dt>
+<dd></dd>
 <dt><a href="#SacredCircles">SacredCircles</a></dt>
-<dd><p>{Object} SacredCircles                      SacredCircles template</p>
+<dd><p>{Object}           SacredCircles            SacredCircles template</p>
 </dd>
 </dl>
 
@@ -1574,7 +1576,6 @@ Get color stops
     * [.end()](#Linear+end) ⇒ [<code>Point</code>](#Point)
     * [.stops(values)](#Linear+stops)
     * [.stops()](#Linear+stops) ⇒ [<code>Array.&lt;Stop&gt;</code>](#Stop)
-    * [.stopColorCycle(start, end, progress, stop, max, clear, draw)](#Linear+stopColorCycle)
 
 <a name="new_Linear_new"></a>
 
@@ -1641,25 +1642,6 @@ Get color stops
 **Kind**: instance method of [<code>Linear</code>](#Linear)  
 **Returns**: [<code>Array.&lt;Stop&gt;</code>](#Stop) - Color stops  
 **Read only**: true  
-<a name="Linear+stopColorCycle"></a>
-
-### linear.stopColorCycle(start, end, progress, stop, max, clear, draw)
-Cycle colors for gradient stop(s)
-
-**Kind**: instance method of [<code>Linear</code>](#Linear)  
-**Access**: public  
-**See**: [stop](#UTILITIES.individual.color.cycle.stop)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| start | <code>Object</code> | Color model & values |
-| end | <code>Object</code> | Color model & values |
-| progress | <code>number</code> | Progress time unit; 0.00 - 1.00 |
-| stop | <code>number</code> | Color stop to cycle |
-| max | <code>number</code> | Maximum number of steps between interpolation |
-| clear | <code>function</code> | Clear callback from root object |
-| draw | <code>function</code> | Draw callback from root object |
-
 <a name="Radial"></a>
 
 ## Radial
@@ -2231,6 +2213,8 @@ Get width value
     * [.border()](#OptionsCollection+border) ⇒ <code>boolean</code>
     * [.axis(value)](#OptionsCollection+axis)
     * [.axis()](#OptionsCollection+axis) ⇒ <code>boolean</code>
+    * [.points(value)](#OptionsCollection+points)
+    * [.points()](#OptionsCollection+points) ⇒ <code>boolean</code>
     * [.coordinates(value)](#OptionsCollection+coordinates)
     * [.coordinates()](#OptionsCollection+coordinates) ⇒ <code>boolean</code>
     * [.controlPoints(value)](#OptionsCollection+controlPoints)
@@ -2309,6 +2293,26 @@ Get axis value
 
 **Kind**: instance method of [<code>OptionsCollection</code>](#OptionsCollection)  
 **Returns**: <code>boolean</code> - Axis; true | false  
+**Read only**: true  
+<a name="OptionsCollection+points"></a>
+
+### optionsCollection.points(value)
+Set points value
+
+**Kind**: instance method of [<code>OptionsCollection</code>](#OptionsCollection)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>boolean</code> | Points; true | false |
+
+<a name="OptionsCollection+points"></a>
+
+### optionsCollection.points() ⇒ <code>boolean</code>
+Get points value
+
+**Kind**: instance method of [<code>OptionsCollection</code>](#OptionsCollection)  
+**Returns**: <code>boolean</code> - Points; true | false  
 **Read only**: true  
 <a name="OptionsCollection+coordinates"></a>
 
@@ -2715,13 +2719,15 @@ Get master object
 
 | Name | Type | Description |
 | --- | --- | --- |
-| point | [<code>Point</code>](#Point) | Original X & Y coordinates for an object's position |
+| origin | [<code>Point</code>](#Point) | Origin X & Y coordinates for an object's position |
+| start | [<code>Point</code>](#Point) | Origin start X & Y coordinates for a Line object's position |
+| end | [<code>Point</code>](#Point) | Origin end X & Y coordinates for a Line object's position |
 | distance | <code>number</code> | Distance from origin to destination |
 | direction | <code>number</code> | Direction to move towards destination; in degrees |
-| stroke | [<code>Stroke</code>](#Stroke) | Stroke properties |
-| fill | [<code>Fill</code>](#Fill) | Fill properties |
-| shadow | [<code>Shadow</code>](#Shadow) | Shadow properties |
-| canvas | <code>HTMLCanvasElement</code> | 2D canvas context |
+| rotation | <code>number</code> | Amount object (including canvas) has been rotated |
+| aspect | [<code>Aspect</code>](#Aspect) | Original aspect value(s) for a rectangular object |
+| controlPoints | [<code>ControlPoints</code>](#ControlPoints) | Original control point values for a Line object |
+| fontSize | <code>number</code> | Original fontSize value for a Text object |
 | master | [<code>clObject</code>](#clObject) | Master object |
 
 
@@ -2747,6 +2753,10 @@ Get master object
     * [.fontSize()](#Position+fontSize) ⇒ <code>number</code>
     * [.master(value)](#Position+master)
     * [.master()](#Position+master) ⇒ [<code>clObject</code>](#clObject)
+    * [.stroke(value)](#Position+stroke)
+    * [.stroke()](#Position+stroke) ⇒ <code>number</code>
+    * [.fill(value)](#Position+fill)
+    * [.fill()](#Position+fill) ⇒ <code>number</code>
 
 <a name="new_Position_new"></a>
 
@@ -2955,6 +2965,46 @@ Get master object
 **Returns**: [<code>clObject</code>](#clObject) - Master Canvas Lab object  
 **Access**: public  
 **See**: [master](#PROPERTY_BLOCKS.individual.master)  
+<a name="Position+stroke"></a>
+
+### position.stroke(value)
+Set stroke
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Stroke of object |
+
+<a name="Position+stroke"></a>
+
+### position.stroke() ⇒ <code>number</code>
+Get stroke
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - Stroke of object  
+**Access**: public  
+<a name="Position+fill"></a>
+
+### position.fill(value)
+Set fill
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Fill of object |
+
+<a name="Position+fill"></a>
+
+### position.fill() ⇒ <code>number</code>
+Get fill
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - Fill of object  
+**Access**: public  
 <a name="Circle"></a>
 
 ## Circle
@@ -3001,6 +3051,7 @@ Get master object
     * [.diameter()](#Circle+diameter) ⇒ <code>number</code>
     * [.center()](#Circle+center) ⇒ [<code>Point</code>](#Point)
     * [.circumference()](#Circle+circumference) ⇒ <code>number</code>
+    * [.move(degree, distance)](#Circle+move)
     * [.rotate(degree, [anchor], [clear])](#Circle+rotate)
     * [.showCoordinates([offset], [fontSize])](#Circle+showCoordinates)
     * [.draw(canvas)](#Circle+draw)
@@ -3219,6 +3270,20 @@ Get circumference of circle
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
 **Returns**: <code>number</code> - Circumference of circle  
 **Read only**: true  
+<a name="Circle+move"></a>
+
+### circle.move(degree, distance)
+Move this object
+
+**Kind**: instance method of [<code>Circle</code>](#Circle)  
+**Access**: public  
+**See**: [move](#UTILITIES.individual.misc.move)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| degree | <code>number</code> | Direction to move; in degrees |
+| distance | <code>number</code> | Distance to move |
+
 <a name="Circle+rotate"></a>
 
 ### circle.rotate(degree, [anchor], [clear])
@@ -3302,6 +3367,7 @@ Draw this object
     * [.diameter()](#Circle+diameter) ⇒ <code>number</code>
     * [.center()](#Circle+center) ⇒ [<code>Point</code>](#Point)
     * [.circumference()](#Circle+circumference) ⇒ <code>number</code>
+    * [.move(degree, distance)](#Circle+move)
     * [.rotate(degree, [anchor], [clear])](#Circle+rotate)
     * [.showCoordinates([offset], [fontSize])](#Circle+showCoordinates)
     * [.draw(canvas)](#Circle+draw)
@@ -3485,6 +3551,20 @@ Get circumference of circle
 **Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
 **Returns**: <code>number</code> - Circumference of circle  
 **Read only**: true  
+<a name="Circle+move"></a>
+
+### ellipse.move(degree, distance)
+Move this object
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Access**: public  
+**See**: [move](#UTILITIES.individual.misc.move)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| degree | <code>number</code> | Direction to move; in degrees |
+| distance | <code>number</code> | Distance to move |
+
 <a name="Circle+rotate"></a>
 
 ### ellipse.rotate(degree, [anchor], [clear])
@@ -5379,6 +5459,7 @@ Draw this object
     * [.center()](#Circles+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Circles+endPoint) ⇒ [<code>Point</code>](#Point)
     * [.perimeter()](#Circles+perimeter) ⇒ <code>number</code>
+    * [.getPoints(indexes, color)](#Circles+getPoints)
     * [.push()](#Circles+push)
     * [.draw(canvas)](#Circles+draw)
 
@@ -5614,6 +5695,20 @@ Get perimeter of this object
 **Returns**: <code>number</code> - Perimeter of rectangle  
 **Read only**: true  
 **See**: [perimeter](#PROPERTY_BLOCKS.collection.perimeter)  
+<a name="Circles+getPoints"></a>
+
+### circles.getPoints(indexes, color)
+Get all or specific points throughout this collection
+
+**Kind**: instance method of [<code>Circles</code>](#Circles)  
+**Access**: public  
+**See**: [getPoints](#UTILITIES.collection.getPoints)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| indexes | <code>Array.&lt;number&gt;</code> | Indexes of points |
+| color | [<code>Rgb</code>](#Rgb) | Color to colorize objects selected points |
+
 <a name="Circles+push"></a>
 
 ### circles.push()
@@ -5674,6 +5769,7 @@ Draw function for collections
     * [.center()](#Circles+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Circles+endPoint) ⇒ [<code>Point</code>](#Point)
     * [.perimeter()](#Circles+perimeter) ⇒ <code>number</code>
+    * [.getPoints(indexes, color)](#Circles+getPoints)
     * [.push()](#Circles+push)
     * [.draw(canvas)](#Circles+draw)
 
@@ -5857,6 +5953,20 @@ Get perimeter of this object
 **Returns**: <code>number</code> - Perimeter of rectangle  
 **Read only**: true  
 **See**: [perimeter](#PROPERTY_BLOCKS.collection.perimeter)  
+<a name="Circles+getPoints"></a>
+
+### ellipses.getPoints(indexes, color)
+Get all or specific points throughout this collection
+
+**Kind**: instance method of [<code>Ellipses</code>](#Ellipses)  
+**Access**: public  
+**See**: [getPoints](#UTILITIES.collection.getPoints)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| indexes | <code>Array.&lt;number&gt;</code> | Indexes of points |
+| color | [<code>Rgb</code>](#Rgb) | Color to colorize objects selected points |
+
 <a name="Circles+push"></a>
 
 ### ellipses.push()
@@ -6165,6 +6275,7 @@ Draw this group
     * [.center()](#Lines+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Lines+endPoint) ⇒ [<code>Point</code>](#Point)
     * [.perimeter()](#Lines+perimeter) ⇒ <code>number</code>
+    * [.getPoints(indexes, color)](#Lines+getPoints)
     * [.push()](#Lines+push)
     * [.draw(canvas)](#Lines+draw)
 
@@ -6419,6 +6530,20 @@ Get perimeter of this object
 **Returns**: <code>number</code> - Perimeter of rectangle  
 **Read only**: true  
 **See**: [perimeter](#PROPERTY_BLOCKS.collection.perimeter)  
+<a name="Lines+getPoints"></a>
+
+### lines.getPoints(indexes, color)
+Get all or specific points throughout this collection
+
+**Kind**: instance method of [<code>Lines</code>](#Lines)  
+**Access**: public  
+**See**: [getPoints](#UTILITIES.collection.getPoints)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| indexes | <code>Array.&lt;number&gt;</code> | Indexes of points |
+| color | [<code>Rgb</code>](#Rgb) | Color to colorize objects selected points |
+
 <a name="Lines+push"></a>
 
 ### lines.push()
@@ -6485,6 +6610,7 @@ Draw function for collections
     * [.center()](#Rectangles+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Rectangles+endPoint) ⇒ [<code>Point</code>](#Point)
     * [.perimeter()](#Rectangles+perimeter) ⇒ <code>number</code>
+    * [.getPoints(indexes, color)](#Rectangles+getPoints)
     * [.push()](#Rectangles+push)
     * [.draw(canvas)](#Rectangles+draw)
 
@@ -6720,6 +6846,20 @@ Get perimeter of this object
 **Returns**: <code>number</code> - Perimeter of rectangle  
 **Read only**: true  
 **See**: [perimeter](#PROPERTY_BLOCKS.collection.perimeter)  
+<a name="Rectangles+getPoints"></a>
+
+### rectangles.getPoints(indexes, color)
+Get all or specific points throughout this collection
+
+**Kind**: instance method of [<code>Rectangles</code>](#Rectangles)  
+**Access**: public  
+**See**: [getPoints](#UTILITIES.collection.getPoints)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| indexes | <code>Array.&lt;number&gt;</code> | Indexes of points |
+| color | [<code>Rgb</code>](#Rgb) | Color to colorize objects selected points |
+
 <a name="Rectangles+push"></a>
 
 ### rectangles.push()
@@ -6780,6 +6920,7 @@ Draw function for collections
     * [.center()](#Rectangles+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Rectangles+endPoint) ⇒ [<code>Point</code>](#Point)
     * [.perimeter()](#Rectangles+perimeter) ⇒ <code>number</code>
+    * [.getPoints(indexes, color)](#Rectangles+getPoints)
     * [.push()](#Rectangles+push)
     * [.draw(canvas)](#Rectangles+draw)
 
@@ -6963,6 +7104,20 @@ Get perimeter of this object
 **Returns**: <code>number</code> - Perimeter of rectangle  
 **Read only**: true  
 **See**: [perimeter](#PROPERTY_BLOCKS.collection.perimeter)  
+<a name="Rectangles+getPoints"></a>
+
+### roundedRectangles.getPoints(indexes, color)
+Get all or specific points throughout this collection
+
+**Kind**: instance method of [<code>RoundedRectangles</code>](#RoundedRectangles)  
+**Access**: public  
+**See**: [getPoints](#UTILITIES.collection.getPoints)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| indexes | <code>Array.&lt;number&gt;</code> | Indexes of points |
+| color | [<code>Rgb</code>](#Rgb) | Color to colorize objects selected points |
+
 <a name="Rectangles+push"></a>
 
 ### roundedRectangles.push()
@@ -7029,6 +7184,7 @@ Draw function for collections
     * [.center()](#Texts+center) ⇒ [<code>Point</code>](#Point)
     * [.endPoint()](#Texts+endPoint) ⇒ [<code>Point</code>](#Point)
     * [.perimeter()](#Texts+perimeter) ⇒ <code>number</code>
+    * [.getPoints(indexes, color)](#Texts+getPoints)
     * [.push()](#Texts+push)
     * [.draw(canvas)](#Texts+draw)
 
@@ -7264,6 +7420,20 @@ Get perimeter of this object
 **Returns**: <code>number</code> - Perimeter of rectangle  
 **Read only**: true  
 **See**: [perimeter](#PROPERTY_BLOCKS.collection.perimeter)  
+<a name="Texts+getPoints"></a>
+
+### texts.getPoints(indexes, color)
+Get all or specific points throughout this collection
+
+**Kind**: instance method of [<code>Texts</code>](#Texts)  
+**Access**: public  
+**See**: [getPoints](#UTILITIES.collection.getPoints)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| indexes | <code>Array.&lt;number&gt;</code> | Indexes of points |
+| color | [<code>Rgb</code>](#Rgb) | Color to colorize objects selected points |
+
 <a name="Texts+push"></a>
 
 ### texts.push()
@@ -7848,10 +8018,140 @@ Get dom details
 **Kind**: instance method of [<code>Application</code>](#Application)  
 **Returns**: <code>Object</code> - DOM details  
 **Read only**: true  
+<a name="myTransitions"></a>
+
+## myTransitions
+**Kind**: global class  
+
+* [myTransitions](#myTransitions)
+    * [new myTransitions()](#new_myTransitions_new)
+    * [.transitions()](#myTransitions+transitions) ⇒ <code>number</code>
+    * [.template(value)](#myTransitions+template)
+    * [.template()](#myTransitions+template) ⇒ [<code>Template</code>](#Template)
+    * [._shape(shape, collection, timing, period, lineTos, optimal)](#myTransitions+_shape)
+    * [.skip(object, collection, timing, period)](#myTransitions+skip)
+    * [.hop(object, collection, timing, period)](#myTransitions+hop)
+    * [.bloom(collection, timing, period, out)](#myTransitions+bloom)
+    * [.shape(shape, collection, timing, period, lineTos, optimal)](#myTransitions+shape)
+
+<a name="new_myTransitions_new"></a>
+
+### new myTransitions()
+Create myTransitions object
+
+<a name="myTransitions+transitions"></a>
+
+### myTransitions.transitions() ⇒ <code>number</code>
+Get transitions
+
+**Kind**: instance method of [<code>myTransitions</code>](#myTransitions)  
+**Returns**: <code>number</code> - Transitions of object  
+**Access**: public  
+<a name="myTransitions+template"></a>
+
+### myTransitions.template(value)
+Set template
+
+**Kind**: instance method of [<code>myTransitions</code>](#myTransitions)  
+**Access**: public  
+**See**: [template](#PROPERTY_BLOCKS.individual.template)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Template</code>](#Template) | Template object |
+
+<a name="myTransitions+template"></a>
+
+### myTransitions.template() ⇒ [<code>Template</code>](#Template)
+Get template
+
+**Kind**: instance method of [<code>myTransitions</code>](#myTransitions)  
+**Returns**: [<code>Template</code>](#Template) - Template object  
+**Access**: public  
+**See**: [template](#PROPERTY_BLOCKS.individual.template)  
+<a name="myTransitions+_shape"></a>
+
+### myTransitions.\_shape(shape, collection, timing, period, lineTos, optimal)
+Creates shape from array of numbers
+
+**Kind**: instance method of [<code>myTransitions</code>](#myTransitions)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| shape | <code>Array</code> |  | Array of collection indexes |
+| collection | <code>ClCollection</code> |  | Canvas Lab collection |
+| timing | <code>string</code> \| <code>function</code> |  | Timing function |
+| period | <code>number</code> |  | Period of timer |
+| lineTos | <code>boolean</code> | <code>true</code> | Draw lines connecting shapes |
+| optimal | <code>boolean</code> | <code>false</code> | Optimal line draws |
+
+<a name="myTransitions+skip"></a>
+
+### myTransitions.skip(object, collection, timing, period)
+Returns transitions for skip animation
+
+**Kind**: instance method of [<code>myTransitions</code>](#myTransitions)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object | [<code>clObject</code>](#clObject) | Canvas Lab object |
+| collection | <code>ClCollection</code> | Canvas Lab collection |
+| timing | <code>string</code> \| <code>function</code> | Timing function |
+| period | <code>number</code> | Period of timer |
+
+<a name="myTransitions+hop"></a>
+
+### myTransitions.hop(object, collection, timing, period)
+Returns transitions for hop animation
+
+**Kind**: instance method of [<code>myTransitions</code>](#myTransitions)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object | [<code>clObject</code>](#clObject) | Canvas Lab object |
+| collection | <code>ClCollection</code> | Canvas Lab collection |
+| timing | <code>string</code> \| <code>function</code> | Timing function |
+| period | <code>number</code> | Period of timer |
+
+<a name="myTransitions+bloom"></a>
+
+### myTransitions.bloom(collection, timing, period, out)
+Returns transitions for bloom animation
+
+**Kind**: instance method of [<code>myTransitions</code>](#myTransitions)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| collection | <code>ClCollection</code> |  | Canvas Lab collection |
+| timing | <code>string</code> \| <code>function</code> |  | Timing function |
+| period | <code>number</code> |  | Period of timer |
+| out | <code>boolean</code> | <code>true</code> | Whether to bloom out, or in |
+
+<a name="myTransitions+shape"></a>
+
+### myTransitions.shape(shape, collection, timing, period, lineTos, optimal)
+Creates shape from array of numbers
+
+**Kind**: instance method of [<code>myTransitions</code>](#myTransitions)  
+**Access**: public  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| shape | <code>Array</code> |  | Array of collection indexes |
+| collection | <code>ClCollection</code> |  | Canvas Lab collection |
+| timing | <code>string</code> \| <code>function</code> |  | Timing function |
+| period | <code>number</code> |  | Period of timer |
+| lineTos | <code>boolean</code> | <code>true</code> | Draw lines connecting shapes |
+| optimal | <code>boolean</code> | <code>false</code> | Optimal line draws |
+
 <a name="SacredCircles"></a>
 
 ## SacredCircles
-{Object} SacredCircles                      SacredCircles template
+{Object}           SacredCircles            SacredCircles template
 
 **Kind**: global class  
 **Properties**
@@ -7861,8 +8161,9 @@ Get dom details
 | point | [<code>Point</code>](#Point) |  | X & Y axis coordinates |
 | [radius] | <code>number</code> | <code>25</code> | Radius of circle |
 | iterations | <code>number</code> |  | Amount of iterations |
+| strokes | [<code>Rgb</code>](#Rgb) \| [<code>Stroke</code>](#Stroke) \| [<code>Queue</code>](#Queue) |  | Stroke colors |
+| fills | [<code>Rgb</code>](#Rgb) \| [<code>Fill</code>](#Fill) \| [<code>Queue</code>](#Queue) |  | Fill colors |
 | degrees | [<code>Queue</code>](#Queue) |  | Degrees for generation |
-| colors | [<code>Queue</code>](#Queue) |  | Colors for generation |
 | master | <code>Object</code> |  | Master object |
 
 
@@ -7876,11 +8177,14 @@ Get dom details
     * [.iterations()](#SacredCircles+iterations) ⇒ <code>number</code>
     * [.degrees(value)](#SacredCircles+degrees)
     * [.degrees()](#SacredCircles+degrees) ⇒ [<code>Queue</code>](#Queue)
-    * [.colors(value)](#SacredCircles+colors)
-    * [.colors()](#SacredCircles+colors) ⇒ [<code>Queue</code>](#Queue)
+    * [.strokes(value)](#SacredCircles+strokes)
+    * [.strokes()](#SacredCircles+strokes) ⇒ [<code>Queue</code>](#Queue)
+    * [.fills(value)](#SacredCircles+fills)
+    * [.fills()](#SacredCircles+fills) ⇒ [<code>Queue</code>](#Queue)
+    * [.transitions(value)](#SacredCircles+transitions)
+    * [.transitions()](#SacredCircles+transitions) ⇒ <code>Transitions</code>
     * [.master(value)](#SacredCircles+master)
     * [.master()](#SacredCircles+master) ⇒ [<code>clObject</code>](#clObject)
-    * [.getTransitions(object, timing, period, radius, iterations)](#SacredCircles+getTransitions)
     * [.totalObjects()](#SacredCircles+totalObjects) ⇒ <code>number</code>
     * [.init()](#SacredCircles+init)
 
@@ -7973,26 +8277,68 @@ Get degrees value
 **Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
 **Returns**: [<code>Queue</code>](#Queue) - Queue of degrees  
 **Read only**: true  
-<a name="SacredCircles+colors"></a>
+<a name="SacredCircles+strokes"></a>
 
-### sacredCircles.colors(value)
-Set colors value
+### sacredCircles.strokes(value)
+Set strokes value
 
 **Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
 **Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| value | <code>Array</code> | Array of colors |
+| value | <code>Array</code> | Array of strokes |
 
-<a name="SacredCircles+colors"></a>
+<a name="SacredCircles+strokes"></a>
 
-### sacredCircles.colors() ⇒ [<code>Queue</code>](#Queue)
-Get colors value
+### sacredCircles.strokes() ⇒ [<code>Queue</code>](#Queue)
+Get strokes value
 
 **Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
-**Returns**: [<code>Queue</code>](#Queue) - Queue of colors  
+**Returns**: [<code>Queue</code>](#Queue) - Queue of strokes  
 **Read only**: true  
+<a name="SacredCircles+fills"></a>
+
+### sacredCircles.fills(value)
+Set fills value
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Array</code> | Array of fills |
+
+<a name="SacredCircles+fills"></a>
+
+### sacredCircles.fills() ⇒ [<code>Queue</code>](#Queue)
+Get fills value
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Returns**: [<code>Queue</code>](#Queue) - Queue of fills  
+**Read only**: true  
+<a name="SacredCircles+transitions"></a>
+
+### sacredCircles.transitions(value)
+Set transitions
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Access**: public  
+**See**: [transitions](#PROPERTY_BLOCKS.individual.transitions)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Transitions</code> | Transitions object |
+
+<a name="SacredCircles+transitions"></a>
+
+### sacredCircles.transitions() ⇒ <code>Transitions</code>
+Get transitions
+
+**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
+**Returns**: <code>Transitions</code> - Transitions object  
+**Access**: public  
+**See**: [transitions](#PROPERTY_BLOCKS.individual.transitions)  
 <a name="SacredCircles+master"></a>
 
 ### sacredCircles.master(value)
@@ -8015,22 +8361,6 @@ Get master object
 **Returns**: [<code>clObject</code>](#clObject) - Master Canvas Lab object  
 **Access**: public  
 **See**: [master](#PROPERTY_BLOCKS.individual.master)  
-<a name="SacredCircles+getTransitions"></a>
-
-### sacredCircles.getTransitions(object, timing, period, radius, iterations)
-Returns an array of transitions based on the passed params
-
-**Kind**: instance method of [<code>SacredCircles</code>](#SacredCircles)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| object | [<code>clObject</code>](#clObject) | Canvas Lab object |
-| timing | <code>string</code> \| <code>function</code> | Timing function |
-| period | <code>number</code> | Period of animation-time |
-| radius | <code>number</code> | Radius of circle |
-| iterations | <code>number</code> | Amount of iterations |
-
 <a name="SacredCircles+totalObjects"></a>
 
 ### sacredCircles.totalObjects() ⇒ <code>number</code>
@@ -8095,6 +8425,12 @@ Base module for shared accessors & mutators
         * [.radius()](#PROPERTY_BLOCKS.individual.radius)
             * [.set(value)](#PROPERTY_BLOCKS.individual.radius.set)
             * [.get()](#PROPERTY_BLOCKS.individual.radius.get) ⇒ <code>number</code>
+        * [.template()](#PROPERTY_BLOCKS.individual.template)
+            * [.set(value)](#PROPERTY_BLOCKS.individual.template.set)
+            * [.get()](#PROPERTY_BLOCKS.individual.template.get) ⇒ [<code>Template</code>](#Template)
+        * [.transitions()](#PROPERTY_BLOCKS.individual.transitions)
+            * [.set(value)](#PROPERTY_BLOCKS.individual.transitions.set)
+            * [.get()](#PROPERTY_BLOCKS.individual.transitions.get) ⇒ [<code>Template</code>](#Template)
     * [.collection](#PROPERTY_BLOCKS.collection) : <code>Object</code>
         * [.anchor()](#PROPERTY_BLOCKS.collection.anchor)
             * [.set(value)](#PROPERTY_BLOCKS.collection.anchor.set)
@@ -8180,6 +8516,12 @@ Individual property accessors & mutators
     * [.radius()](#PROPERTY_BLOCKS.individual.radius)
         * [.set(value)](#PROPERTY_BLOCKS.individual.radius.set)
         * [.get()](#PROPERTY_BLOCKS.individual.radius.get) ⇒ <code>number</code>
+    * [.template()](#PROPERTY_BLOCKS.individual.template)
+        * [.set(value)](#PROPERTY_BLOCKS.individual.template.set)
+        * [.get()](#PROPERTY_BLOCKS.individual.template.get) ⇒ [<code>Template</code>](#Template)
+    * [.transitions()](#PROPERTY_BLOCKS.individual.transitions)
+        * [.set(value)](#PROPERTY_BLOCKS.individual.transitions.set)
+        * [.get()](#PROPERTY_BLOCKS.individual.transitions.get) ⇒ [<code>Template</code>](#Template)
 
 <a name="PROPERTY_BLOCKS.individual.area"></a>
 
@@ -8533,6 +8875,64 @@ Get radius
 **Kind**: static method of [<code>radius</code>](#PROPERTY_BLOCKS.individual.radius)  
 **Returns**: <code>number</code> - Radius of circle  
 **Read only**: true  
+<a name="PROPERTY_BLOCKS.individual.template"></a>
+
+#### individual.template()
+**Kind**: static method of [<code>individual</code>](#PROPERTY_BLOCKS.individual)  
+
+* [.template()](#PROPERTY_BLOCKS.individual.template)
+    * [.set(value)](#PROPERTY_BLOCKS.individual.template.set)
+    * [.get()](#PROPERTY_BLOCKS.individual.template.get) ⇒ [<code>Template</code>](#Template)
+
+<a name="PROPERTY_BLOCKS.individual.template.set"></a>
+
+##### template.set(value)
+Set template
+
+**Kind**: static method of [<code>template</code>](#PROPERTY_BLOCKS.individual.template)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Template</code>](#Template) | Template object |
+
+<a name="PROPERTY_BLOCKS.individual.template.get"></a>
+
+##### template.get() ⇒ [<code>Template</code>](#Template)
+Get template
+
+**Kind**: static method of [<code>template</code>](#PROPERTY_BLOCKS.individual.template)  
+**Returns**: [<code>Template</code>](#Template) - Template object  
+**Access**: public  
+<a name="PROPERTY_BLOCKS.individual.transitions"></a>
+
+#### individual.transitions()
+**Kind**: static method of [<code>individual</code>](#PROPERTY_BLOCKS.individual)  
+
+* [.transitions()](#PROPERTY_BLOCKS.individual.transitions)
+    * [.set(value)](#PROPERTY_BLOCKS.individual.transitions.set)
+    * [.get()](#PROPERTY_BLOCKS.individual.transitions.get) ⇒ [<code>Template</code>](#Template)
+
+<a name="PROPERTY_BLOCKS.individual.transitions.set"></a>
+
+##### transitions.set(value)
+Set transitions
+
+**Kind**: static method of [<code>transitions</code>](#PROPERTY_BLOCKS.individual.transitions)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Template</code>](#Template) | Template object |
+
+<a name="PROPERTY_BLOCKS.individual.transitions.get"></a>
+
+##### transitions.get() ⇒ [<code>Template</code>](#Template)
+Get transitions
+
+**Kind**: static method of [<code>transitions</code>](#PROPERTY_BLOCKS.individual.transitions)  
+**Returns**: [<code>Template</code>](#Template) - Template object  
+**Access**: public  
 <a name="PROPERTY_BLOCKS.collection"></a>
 
 ### PROPERTY_BLOCKS.collection : <code>Object</code>
@@ -8867,6 +9267,7 @@ Shared utility functions
         * [.draw(canvas)](#UTILITIES.collection.draw)
         * [.drawAnchor()](#UTILITIES.collection.drawAnchor)
         * [.drawOptionsPost()](#UTILITIES.collection.drawOptionsPost)
+        * [.getPoints(indexes, color)](#UTILITIES.collection.getPoints)
         * [.push()](#UTILITIES.collection.push)
         * [.setAnchorPoint()](#UTILITIES.collection.setAnchorPoint)
         * [.setPointOffset(Object)](#UTILITIES.collection.setPointOffset)
@@ -8906,6 +9307,7 @@ Utilities for collection functions
     * [.draw(canvas)](#UTILITIES.collection.draw)
     * [.drawAnchor()](#UTILITIES.collection.drawAnchor)
     * [.drawOptionsPost()](#UTILITIES.collection.drawOptionsPost)
+    * [.getPoints(indexes, color)](#UTILITIES.collection.getPoints)
     * [.push()](#UTILITIES.collection.push)
     * [.setAnchorPoint()](#UTILITIES.collection.setAnchorPoint)
     * [.setPointOffset(Object)](#UTILITIES.collection.setPointOffset)
@@ -8936,6 +9338,19 @@ Draws associated options
 
 **Kind**: static method of [<code>collection</code>](#UTILITIES.collection)  
 **Access**: public  
+<a name="UTILITIES.collection.getPoints"></a>
+
+#### collection.getPoints(indexes, color)
+Get all or specific points throughout this collection
+
+**Kind**: static method of [<code>collection</code>](#UTILITIES.collection)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| indexes | <code>Array.&lt;number&gt;</code> | Indexes of points |
+| color | [<code>Rgb</code>](#Rgb) | Color to colorize objects selected points |
+
 <a name="UTILITIES.collection.push"></a>
 
 #### collection.push()
@@ -9308,6 +9723,7 @@ Shared validation functions
     * [.isStop(value)](#VALIDATION.isStop) ⇒ <code>boolean</code>
     * [.isStrokeType(value)](#VALIDATION.isStrokeType) ⇒ <code>boolean</code>
     * [.isTemplate(value)](#VALIDATION.isTemplate) ⇒ <code>boolean</code>
+    * [.isTransition(value)](#VALIDATION.isTransition) ⇒ <code>boolean</code>
     * [.isWidth(value)](#VALIDATION.isWidth) ⇒ <code>boolean</code>
     * [.Fill#_isRepetition(value)](#VALIDATION.Fill+_isRepetition) ⇒ <code>boolean</code>
     * [.Position#_isNumber(value)](#VALIDATION.Position+_isNumber) ⇒ <code>boolean</code>
@@ -9652,6 +10068,19 @@ Returns whether the passed value is a Template
 | Param | Type | Description |
 | --- | --- | --- |
 | value | [<code>Template</code>](#Template) | Template object |
+
+<a name="VALIDATION.isTransition"></a>
+
+### VALIDATION.isTransition(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a Transition
+
+**Kind**: static method of [<code>VALIDATION</code>](#VALIDATION)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Transition</code>](#Transition) | Transition object |
 
 <a name="VALIDATION.isWidth"></a>
 

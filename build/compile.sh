@@ -9,11 +9,11 @@ declare NO_ERRORS=true
 
 declare RELOAD_CHROME=true
 
-declare WITH_DOCUMENTS=false
+declare WITH_DOCUMENTS=true
 
-declare WITH_MD2JSON=false
+declare WITH_MD2JSON=true
 
-declare WITH_GIST=false
+declare WITH_GIST=true
 
 # declare WITH_PLANTUML=false
 
@@ -384,7 +384,7 @@ function create_gist()
 
     GIST_ID=b1065cb201fb846b7512d06cc98e6844
 
-    echo "\n${PROMPT_A} ${TITLE_PACKAGE} Created Gist ${TITLE_BASH}\t\t\t${FG_BLUE}[${FILE_MIN}]${NOCOLOR}\n"
+    echo "\n${PROMPT_A} ${TITLE_PACKAGE} Created Gist ${TITLE_BASH}\t\t${FG_BLUE}[${FILE_MIN}]${NOCOLOR}\n"
 
     # gh gist create --public ${FILE_MIN} --desc "${VC_PACKAGE} - ${VERSION}"
 
