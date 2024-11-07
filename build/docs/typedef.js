@@ -1,6 +1,11 @@
 /**
- * Canvas Lab objects, for Objects & Collections
+ * Canvas Lab object
  * @typedef 		{Object} clObject
+ */
+
+/**
+ * Canvas Lab collection
+ * @typedef 		{Object} clCollection
  */
 
 /**
@@ -13,7 +18,7 @@
 
 /**
  * Change, for animation changes through a transition
- * @typedef 		{Object<Object>} clChange
+ * @typedef 		{Object} clChange
  */
 
 /**

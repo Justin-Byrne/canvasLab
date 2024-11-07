@@ -4,6 +4,22 @@ class myTransitions
 
 	_template    = undefined;
 
+
+	_numbers = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ]
+	_symbols = [ '𓆗', '𓁳', '𓅓', '𓃠', '𓃶', '𓆣', '𓁈', '𓆃', '𓂀', '𓋹'  ]
+	_clocks  =
+	{
+		one: [ '🕛', '🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚' ],
+		two: [ '🕧', '🕜', '🕝', '🕞', '🕟', '🕠', '🕡', '🕢', '🕣', '🕤', '🕥', '🕦' ]
+	}
+
+	_characters = new Queue ( this._symbols );
+
+	_config =
+	{
+		optimal: false
+	}
+
 	/**
 	 * Create myTransitions object
 	 */
@@ -68,75 +84,242 @@ class myTransitions
 
 		////    [ PRIVATE ]    ///////////////////
 
+       		/**
+       		 * Returns a new object based on the passed clClass, mirroring properties from the passed object
+       		 * @private
+       		 * @function
+       		 * @param 			{object}   clClass 							Canvas Lab object class
+       		 * @param 			{clObject} object 							Canvas Lab object
+       		 */
+        	_getNewObjectFromType ( clClass, object )
+        	{
+        		let _result = undefined;
+
+        		let _class  = new clClass;
+
+        		let _type   = _class.constructor.name;
+
+
+				switch ( _type )
+        		{
+	        		case 'Circle':
+
+        				_result        = new Circle;
+
+		        		_result.point  = this.template.point;
+
+		        		_result.radius = this.template.radius;
+
+		        		_result.stroke = this.template.strokes.next;
+
+		        		_result.fill   = this.template.fills.next;
+
+		        		_result.canvas = object.canvas;
+
+	        			break;
+
+	        		case 'Ellipse':
+
+	        			_result        = new Ellipse;
+
+		        		_result.point  = this.template.point;
+
+		        		_result.radius = new Point ( this.template.radius * 0.75, this.template.radius );
+
+		        		_result.stroke = this.template.strokes.next;
+
+		        		_result.fill   = this.template.fills.next;
+
+		        		_result.canvas = object.canvas;
+
+	        			break;
+
+	        		case 'Rectangle':
+
+	        			_result        = new Rectangle;
+
+		        		_result.point  = this.template.point;
+
+		        		_result.aspect = new Aspect ( this.template.radius * 2, this.template.radius * 2 );
+
+		        		_result.stroke = this.template.strokes.next;
+
+		        		_result.fill   = this.template.fills.next;
+
+		        		_result.canvas = object.canvas;
+
+	        			break;
+
+	        		case 'RoundedRectangle':
+
+	        			_result        = new RoundedRectangle;
+
+		        		_result.point  = this.template.point;
+
+		        		_result.aspect = new Aspect ( this.template.radius * 2, this.template.radius * 2 );
+
+		        		_result.stroke = this.template.strokes.next;
+
+		        		_result.fill   = this.template.fills.next;
+
+		        		_result.canvas = object.canvas;
+
+	        			break;
+
+	        		case 'Text':
+
+	        			_result        = new Text;
+
+		        		_result.point  = this.template.point;
+
+		        		_result.text   = this._characters.next;
+
+		        		_result.size   = this.template.radius;
+
+		        		_result.stroke = this.template.strokes.next;
+
+		        		_result.fill   = this.template.fills.next;
+
+		        		_result.canvas = object.canvas;
+
+	        			break;
+        		}
+
+
+        		return _result;
+        	}
+
+        	/**
+        	 * Returns an array of new objects & changes created from the collection
+        	 * @private
+        	 * @function
+			 * @param           {Array} 		  shape                     Array of collection indexes
+			 * @param           {clCollection}    collection                Canvas Lab collection
+			 * @param           {object} 		  clClass 					Canvas Lab object class
+			 * @return 		    {Object} 		  		 					Objects & changes for the shape passed
+        	 */
+        	_getShapeObjectData ( shape, collection, clClass )
+        	{
+        		let _results =
+        		{
+        			objects: new Array,
+        			changes: new Array
+        		}
+
+
+    			for ( let _i = 0; _i < shape.length; _i++ )
+		        {
+			        let _index  = shape [ _i ];
+
+					let _object = collection [ _index ];
+
+
+				    let _newObject = this._getNewObjectFromType ( clClass, _object );
+
+				    let _change    = { point: _object.point, cache: true };
+
+
+				    _results.objects.push ( _newObject );
+
+				    _results.changes.push ( _change );
+		        }
+
+
+		        return _results;
+        	}
+
+        	/**
+        	 * Returns an array of lines & changes linking the objects & collections together
+        	 */
+        	_getShapeLineData ( shape, objects, collection )
+        	{
+        		let _results =
+        		{
+        			objects: new Array,
+        			changes: new Array
+        		}
+
+
+        		for ( let _i = 0; _i < objects.length; _i++ )
+
+        			for ( let _j = 0; _j < objects.length; _j++ )
+        			{
+        				if ( this._config.optimal )
+        				{
+        					if ( _i === _j ) continue;
+
+	        				if (  _i > _j  ) continue;
+        				}
+
+
+        				let _start  = collection [ shape [ _i ] ];
+
+        				let _end    = objects [ _j ];
+
+
+        				let _object = new Line;
+
+        					_object.start  = _start.point;
+
+        					_object.end    = _end.point;
+
+        					_object.canvas = objects [ 0 ].canvas;
+
+        					_object.stroke = this.template.strokes.next;
+
+
+        				let _change = { endPointLink: _end };
+
+
+        				_results.objects.push ( _object );
+
+        				_results.changes.push ( _change );
+        			}
+
+
+        		return _results;
+        	}
+
 			/**
 		     * Creates shape from array of numbers
-		     * @public
+		     * @private
 		     * @function
 		     * @param           {Array} 		  shape                     Array of collection indexes
-		     * @param           {ClCollection}    collection                Canvas Lab collection
+		     * @param           {clCollection}    collection                Canvas Lab collection
 		     * @param           {string|Function} timing                    Timing function
 		     * @param           {number}          period                    Period of timer
-		     * @param           {boolean}         lineTos                   Draw lines connecting shapes
-		     * @param           {boolean}         optimal                   Optimal line draws
+		     * @param           {object} 		  clClass 					Canvas Lab object class
 		     */
-		    _shape ( shape, collection, timing, period, lineTos = true, optimal = false )
+		    _shape ( shape, collection, timing, period, clClass )
 		    {
+		    	this.template.strokes.reset;
+
+
 		    	this._transitions = new Array;
 
 
 		        let _objects = new Array;
 
-		        let _changes = new Object;
-
-		        let _matrix  = new Array;
+		        let _changes = new Array;
 
 
-				for ( let _i = 0; _i < shape.length; _i++ )
-		        {
-		        	let _index  = shape [ _i ];
+		        ////    SHAPE    ///////////////////////////
 
-		        	let _object = collection [ _index ];
-
-		        	let _circle = new Circle (
-		        					  this.template.point, 							/* Point  */
-		        					  _object.radius,  								/* Radius */
-		        					  undefined,  									/* Angle  */
-		        					  new Stroke ( _object.stroke.color ),  		/* Stroke */
-		        					  new Fill   ( _object.fill.color   ),  		/* Fill   */
-		        					  undefined, 									/* Shadow */
-		        					  _object.canvas 								/* Canvas */
-		        				  );
+		        let _shapeData = this._getShapeObjectData ( shape, collection, clClass );
 
 
-		        	_objects.push ( _circle );
+		        	_objects.push.apply ( _objects, _shapeData.objects );
 
-		        	_changes [ _i ] = { point: _object.point, cache: true }
+		        	_changes.push.apply ( _changes, _shapeData.changes );
 
+		        ////    LINES    ///////////////////////////
 
-		        	////    LINETOS    /////////////////////////////////////
-
-			        	if ( lineTos )
-			        	{
-			        		_changes [ _i ].lineTo = new Array;
+	        	let _lineData = this._getShapeLineData ( shape, _objects, collection );
 
 
-			        		for ( let _j = 0; _j < shape.length; _j++ )
-			        		{
-			        			if ( _i === _j ) continue; 		// Skip the first _object's point, because it cannot draw a line to itself
+	        		_objects.push.apply ( _objects, _lineData.objects );
 
-
-			        			if ( optimal ) 					// Skip every object's first, second, third to skip duplicate objects that have already had a line drawn to it.
-
-			        				if ( _j < _i ) continue;
-
-
-			        			_matrix.push ( { objectA: _i, objectB: _j } );
-
-
-			        			_changes [ _i ].lineTo.push ( collection [ shape [ _j ] ] )
-			        		}
-			        	}
-		        }
+	        		_changes.push.apply ( _changes, _lineData.changes );
 
 
 	            let _result =
@@ -289,15 +472,14 @@ class myTransitions
 		     * @param           {ClCollection}    collection                Canvas Lab collection
 		     * @param           {string|Function} timing                    Timing function
 		     * @param           {number}          period                    Period of timer
-		     * @param           {boolean}         lineTos                   Draw lines connecting shapes
-		     * @param           {boolean}         optimal                   Optimal line draws
+		     * @param           {object} 		  clClass 					Canvas Lab object class
 		     */
-		    shape ( shape, collection, timing, period, lineTos = true, optimal = false )
+		    shape ( shape, collection, timing, period, clClass )
 		    {
 		        let _shapeArray = new Array;
 
 
-		        if ( ! shape )
+		        if ( ! shape ) 	// @NOTE: If no shape, generate shape based off of it's length
 		        {
 		        	for ( let _i = 0; _i < collection.length; _i++ )
 
@@ -311,6 +493,6 @@ class myTransitions
 	    			_shapeArray = shape;
 
 
-				return this._shape ( _shapeArray, collection, timing, period, lineTos, optimal );
+				return this._shape ( _shapeArray, collection, timing, period, clClass );
 		    }
 }

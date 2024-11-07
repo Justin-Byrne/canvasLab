@@ -438,6 +438,32 @@ const VALIDATION =
     },
 
     /**
+     * Returns whether the passed value is a Fill property object
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {Object} value                              Fill
+     * @return          {boolean}                                   True || False
+     */
+    isFill ( value )
+    {
+        if ( value instanceof Fill ) return true;
+
+
+        let _length = Object.keys ( value ).length;
+
+            _length = ( _length > 1 && _length < 6 );
+
+
+        let _color  = ( value.hasOwnProperty ( 'color' ) ) ? ( value.color instanceof Rgb ) : false;
+
+        let _type   = ( value.hasOwnProperty ( 'type'  ) ) ? ( typeof value.type === 'string' ) : false;
+
+
+        return ( _length && _color && _type );
+    },
+
+    /**
      * Returns whether the passed value is a fill type
      * @public
      * @memberof VALIDATION
@@ -646,6 +672,34 @@ const VALIDATION =
 
 
         return ( _object && _offset && _color );
+    },
+
+    /**
+     * Returns whether the passed value is a Stroke property object
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {Object} value                              Stroke
+     * @return          {boolean}                                   True || False
+     */
+    isStroke ( value )
+    {
+        if ( value instanceof Stroke ) return true;
+
+
+        let _length = Object.keys ( value ).length;
+
+            _length = ( _length > 1 && _length < 5 );
+
+
+        let _color  = ( value.hasOwnProperty ( 'color' ) ) ? ( value.color instanceof Rgb ) : false;
+
+        let _type   = ( value.hasOwnProperty ( 'type'  ) ) ? ( typeof value.type  === 'string' ) : false;
+
+        let _width  = ( value.hasOwnProperty ( 'width' ) ) ? ( typeof value.width === 'number' ) : false;
+
+
+        return ( _length && _color && _type && _width );
     },
 
     /**

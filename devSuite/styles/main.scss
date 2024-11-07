@@ -418,9 +418,11 @@ nav
 
 #nav-open
 {
+    // outline: 1px solid red;
+
     position:   fixed;
     width:      128px;
-    height:     64px;
+    height:     128px;
     top:        0;
     left:       0;
     z-index:    10;

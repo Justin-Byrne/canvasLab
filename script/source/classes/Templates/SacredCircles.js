@@ -26,6 +26,11 @@ class SacredCircles
     #tangents    = undefined;
     #counter     = -1;              /* Counter to define the gaps between each circle: @see this.create ( ) */
 
+    #config =
+    {
+        reverse: false
+    }
+
     /**
      * Create a SacredCircles template
      * @property        {Point}            point                    X & Y axis coordinates
@@ -164,19 +169,11 @@ class SacredCircles
                 {
                     switch ( value.constructor.name )
                     {
-                        case 'Rgb':
+                        case 'Rgb':     this._strokes = new Queue ( new Array ( new Stroke ( value ) ) );   break;
 
-                            this._strokes = new Queue ( new Array ( new Stroke ( value ) ) );
+                        case 'Stroke':  this._strokes = new Queue ( new Array ( value ) );                  break;
 
-                            break;
-
-                        case 'Stroke':
-
-                            this._strokes = new Queue ( new Array ( value ) );
-
-                        case 'Queue':
-
-                            this._strokes = value;
+                        case 'Queue':   this._strokes = value;                                              break;
 
                         default:
 
@@ -185,9 +182,14 @@ class SacredCircles
                                 let _result = new Array;
 
 
-                                for ( let _item of value )
+                                for ( let _entry of value )
 
-                                    _result.push ( new Stroke ( _item ) );
+                                    switch ( _entry.constructor.name )
+                                    {
+                                        case 'Rgb':         _result.push ( new Stroke ( _entry ) );         break;
+
+                                        case 'Stroke':      _result.push ( _entry );                        break;
+                                    }
 
 
                                 this._strokes = new Queue ( _result );
@@ -224,21 +226,31 @@ class SacredCircles
                 {
                     switch ( value.constructor.name )
                     {
-                        case 'Rgb':
+                        case 'Rgb':     this._fills = new Queue ( new Array ( new Fill ( value ) ) );   break;
 
-                            this._fills = new Queue ( new Array ( new Fill ( value ) ) );
+                        case 'Fill':    this._fills = new Queue ( new Array ( _array ) );               break;
 
-                            break;
-
-                        case 'Fill':
-
-                            this._fills = new Queue ( new Array ( _array ) );
-
-                        case 'Queue':
-
-                            this._fills = value;
+                        case 'Queue':   this._fills = value;                                            break;
 
                         default:
+
+                            Array.isArray ( value )
+                            {
+                                let _result = new Array;
+
+
+                                for ( let _entry of value )
+
+                                    switch ( _entry.constructor.name )
+                                    {
+                                        case 'Rgb':     _result.push ( new Fill ( _entry ) );   break;
+
+                                        case 'Fill':    _result.push ( _entry );                break;
+                                    }
+
+
+                                this._fills = new Queue ( _result );
+                            }
 
                             Array.isArray ( value )
                             {
@@ -323,6 +335,17 @@ class SacredCircles
                 this.#numbers = ( Array.isArray ( value ) ) ? new Queue ( value ) : this.#numbers;
             }
 
+            /**
+             * Get numbers value
+             * @private
+             * @function
+             * @param           {Queue}                                     Array of numbers
+             */
+            get _numbers ( )
+            {
+                return this.#numbers;
+            }
+
         ////    [ TANGENTS ]    //////////////////
 
             /**
@@ -381,72 +404,6 @@ class SacredCircles
     ////    UTILITIES    ///////////////////////////////////
 
         ////    # PROTECTED    ///////////////////
-
-            /**
-             * Returns a Circle object
-             * @protected
-             * @function
-             * @param           {Point}  point                              X & Y Coordinates
-             * @param           {Stroke} stroke                             Stroke properties
-             * @param           {Fill}   fill                               Fill properties
-             * @return          {Circle}                                    Circle object
-             */
-            #getCircle           = ( point, stroke, fill )  => new Circle ( point, this.radius, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
-
-            /**
-             * Returns a Ellipse object
-             * @protected
-             * @function
-             * @param           {Point}  point                              X & Y Coordinates
-             * @param           {Stroke} stroke                             Stroke properties
-             * @param           {Fill}   fill                               Fill properties
-             * @return          {Ellipse}                                   Ellipse object
-             */
-            #getEllipse          = ( point, stroke, fill )  => new Ellipse ( point, new Point ( this.radius, this.radius * 0.5 ), undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
-
-            /**
-             * Returns a Rectangle object
-             * @protected
-             * @function
-             * @param           {Point}  point                              X & Y Coordinates
-             * @param           {Stroke} stroke                             Stroke properties
-             * @param           {Fill}   fill                               Fill properties
-             * @return          {Rectangle}                                 Rectangle object
-             */
-            #getRectangle        = ( point, stroke, fill )  => new Rectangle ( point, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
-
-            /**
-             * Returns a RoundedRectangle object
-             * @protected
-             * @function
-             * @param           {Point}  point                              X & Y Coordinates
-             * @param           {Stroke} stroke                             Stroke properties
-             * @param           {Fill}   fill                               Fill properties
-             * @return          {RoundedRectangle}                          Rounded rectangle object
-             */
-            #getRoundedRectangle = ( point, stroke, fill )  => new RoundedRectangle ( point, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
-
-            /**
-             * Returns a Text object
-             * @protected
-             * @function
-             * @param           {Point}  point                              X & Y Coordinates
-             * @param           {Stroke} stroke                             Stroke properties
-             * @param           {Fill}   fill                               Fill properties
-             * @return          {Text}                                      Text object
-             */
-            #getText             = ( point, stroke, fill )  => new Text ( point, this.#numbers.next, undefined, undefined, undefined, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined );
-
-            /**
-             * Returns a Line object
-             * @protected
-             * @function
-             * @param           {Point} startPoint                          Starting point of line
-             * @param           {Point} endPoint                            Ending point of line
-             * @return          {Line}                                      Line object
-             */
-            #getLine             = ( startPoint, endPoint ) => new Line ( startPoint, endPoint, undefined, undefined, undefined, undefined );
-
 
             /**
              * Insert initial object
@@ -533,30 +490,32 @@ class SacredCircles
 
                 let _result         = undefined;
 
+                let _text           = this.#numbers.next;
+
 
                 switch ( _collectionType )
                 {
-                    case 'Circles':             _result = this.#getCircle ( point, stroke, fill );                 break;
+                    case 'Circles':             _result = canvaslab.get.circle ( point, stroke, fill );                   break;
 
-                    case 'Ellipses':            _result = this.#getEllipse ( point, stroke, fill );                break;
+                    case 'Ellipses':            _result = canvaslab.get.ellipse ( point, stroke, fill );                  break;
 
-                    case 'Rectangles':          _result = this.#getRectangle ( point, stroke, fill );              break;
+                    case 'Rectangles':          _result = canvaslab.get.rectangle ( point, stroke, fill );                break;
 
-                    case 'RoundedRectangles':   _result = this.#getRoundedRectangle ( point, stroke, fill );       break;
+                    case 'RoundedRectangles':   _result = canvaslab.get.roundedRectangle ( point, stroke, fill );         break;
 
-                    case 'Texts':               _result = this.#getText ( point, stroke, fill );                   break;
+                    case 'Texts':               _result = canvaslab.get.text ( point, _text, stroke, fill );  break;
 
                     case 'Group':
 
-                                            let _objectA = this.#getCircle ( point, stroke, fill );
+                                            let _objectA = canvaslab.get.circle ( point, stroke, fill );
 
-                                            let _objectB = this.#getEllipse ( point, stroke, fill );
+                                            let _objectB = canvaslab.get.ellipse ( point, stroke, fill );
 
-                                            let _objectC = this.#getRectangle ( point, stroke, fill );
+                                            let _objectC = canvaslab.get.rectangle ( point, stroke, fill );
 
-                                            let _objectD = this.#getRoundedRectangle ( point, stroke, fill );
+                                            let _objectD = canvaslab.get.roundedRectangle ( point, stroke, fill );
 
-                                            let _objectE = this.#getText ( point, stroke, fill );
+                                            let _objectE = canvaslab.get.text ( point, _text, stroke, fill );
 
 
                                                 _result  = new Array ( _objectA, _objectB, _objectC, _objectD, _objectE );
@@ -621,121 +580,6 @@ class SacredCircles
             }
 
         ////    + PUBLIC    //////////////////////
-
-            // /**
-            //  * Returns transitions for hop animation
-            //  * @public
-            //  * @function
-            //  * @param           {clObject}        object                    Canvas Lab object
-            //  * @param           {ClCollection}    collection                Canvas Lab collection
-            //  * @param           {string|Function} timing                    Timing function
-            //  * @param           {number}          period                    Period of timer
-            //  */
-            // getHopTransitions ( object, collection, timing, period )
-            // {
-            //     let _transitions = new Array;
-
-
-            //     for ( let _i = 0; _i < collection.length; _i++ )
-            //     {
-            //         let _result =
-            //         {
-            //             object: object,
-            //             timing: timing,
-            //             period: period,
-            //             change:
-            //             {
-            //                 point: new Point ( collection [ _i ].point.x, collection [ _i ].point.y ),
-            //                 cache: true,
-            //                 fillColor: collection [ _i ].fill.color
-            //             }
-            //         }
-
-
-            //         _transitions.push ( _result );
-            //     }
-
-
-            //     return _transitions;
-            // }
-
-            // /**
-            //  * Creates shape from array of numbers
-            //  * @public
-            //  * @function
-            //  * @param           {Array}           shape                     Array of collection indexes
-            //  * @param           {ClCollection}    collection                Canvas Lab collection
-            //  * @param           {string|Function} timing                    Timing function
-            //  * @param           {number}          period                    Period of timer
-            //  */
-            // getSkipTransition ( shape, collection, timing, period )
-            // {
-            //     let _transitions = new Array;
-
-
-            //     for ( let _i = 0; _i < collection.length; _i++ )
-            //     {
-            //         let _object = new Circle ( canvaslab.center );
-
-            //         let _result =
-            //         {
-            //             object: _object,
-            //             timing: timing,
-            //             period: period,
-            //             change:
-            //             {
-            //                 point: new Point ( collection [ _i ].point.x, collection [ _i ].point.y ),
-            //                 cache: true
-            //             }
-            //         }
-
-
-            //         _transitions.push ( _result );
-            //     }
-
-
-            //     return _transitions;
-            // }
-
-            // /**
-            //  * Creates shape from array of numbers
-            //  * @public
-            //  * @function
-            //  * @param           {Array}           shape                     Array of collection indexes
-            //  * @param           {ClCollection}    collection                Canvas Lab collection
-            //  * @param           {string|Function} timing                    Timing function
-            //  * @param           {number}          period                    Period of timer
-            //  */
-            // getShapeTransition ( shape, collection, timing, period )
-            // {
-            //     // @TODO: Pass in Array index of collection
-
-            //     let _transitions = new Array;
-
-
-            //     for ( let _i = 0; _i < collection.length; _i++ )
-            //     {
-            //         let _object = new Circle ( canvaslab.center );
-
-            //         let _result =
-            //         {
-            //             object: _object,
-            //             timing: timing,
-            //             period: period,
-            //             change:
-            //             {
-            //                 point: new Point ( collection [ _i ].point.x, collection [ _i ].point.y ),
-            //                 cache: true
-            //             }
-            //         }
-
-
-            //         _transitions.push ( _result );
-            //     }
-
-
-            //     return _transitions;
-            // }
 
             /**
              * Get number of total objects
@@ -830,14 +674,15 @@ class SacredCircles
             }
 
 
-            ////    REVERSE COLLECTIONS    /////////////////
+            if ( this.#config.reverse )
+            {
+                this.master.circles.reverse ( );
 
-            // this.master.circles.reverse ( );
+                this.master.ellipses.reverse ( );
 
-            // this.master.ellipses.reverse ( );
+                this.master.rectangles.reverse ( );
 
-            // this.master.rectangles.reverse ( );
-
-            // this.master.roundedRectangles.reverse ( );
+                this.master.roundedRectangles.reverse ( );
+            }
         }
 }

@@ -723,7 +723,7 @@ class Animation
 
                             _amount.degree = ( this.change.rotatePoint ) ? _amount.degree + this.change.rotatePoint
 
-                                                                             : _amount.degree;
+                                                                         : _amount.degree;
 
 
                             let _point = this._getPointByDegreeNDistance ( _amount.degree, _amount.distance );

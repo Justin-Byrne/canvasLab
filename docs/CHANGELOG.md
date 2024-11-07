@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.7.201] - 2024-11-07
+### Added
+- **canvasLab**
+  - :sunny: `Circle`, `Rectangle`, & `Text` classes, supplemented `_isStroke` & `_isFill` functions with `Validation.isStroke` & `Validation.isFill`.
+  - :sunny: `Line` class, supplemented `_isStroke` function with `Validation.isStroke`
+  - :sunny: `myTransitions` class,
+    - `_getNewObjectFromType` function, to return a new object based on the passed clClass, mirroring properties from the passed object
+    - `_getShapeObjectData` function, to return an array of new objects & changes created from the collection
+    - `_getShapeLineData` function, to return an array of lines & changes linking the objects & collections together
+
+### Refactored
+- **canvasLab**
+  - :last_quarter_moon: `myTransitions` class, `_shape` function, for a clearer separation of duties
+
+### Fixed
+- **canvasLab**
+  - :dragon: `SacredCircles` class, fixed `strokes` & `fills` setters to appropriately parse their respective object types
+
 ## [0.7.196] - 2024-10-24
 ### Added
 - **canvasLab**
@@ -878,7 +896,8 @@ All notable changes to this project will be documented in this file.
 
 | Version     | Date         | Commit                                                                | Comments                                                                                                                     |
 | :---------  | :----------: | :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `[0.7.196]` | `2024-10-24` | `CURRENT`                                                             | <sup>Added myTransitions class, fixed minor errors in Group & Animation(s) classes, and general refactoring.</sup>           |
+| `[0.7.201]` | `2024-11-07` | `CURRENT`                                                             | <sup>Optimized myTransistions class, fixed minor errors in core objects.</sup>                                               |
+| `[0.7.196]` | `2024-10-24` | [`7d8ec76`](https://github.com/Justin-Byrne/canvasLab/commit/7d8ec76) | <sup>Added myTransitions class, fixed minor errors in Group & Animation(s) classes, and general refactoring.</sup>           |
 | `[0.7.179]` | `2024-09-27` | [`647b2b8`](https://github.com/Justin-Byrne/canvasLab/commit/647b2b8) | <sup>Added numerous animation functions to the Animation & Position classes, and general refactoring.</sup>                  |
 | `[0.7.173]` | `2024-09-18` | [`d47997c`](https://github.com/Justin-Byrne/canvasLab/commit/d47997c) | <sup>Added angle & coordinate system to Lab, small additions to several Object classes, and general refactoring.</sup>       |
 | `[0.7.163]` | `2024-09-10` | [`377e925`](https://github.com/Justin-Byrne/canvasLab/commit/377e925) | <sup>Added Animations class, fixed angle orientation(s) for 360 degree rotation(s), and general refactoring.</sup>           |

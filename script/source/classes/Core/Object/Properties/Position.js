@@ -19,7 +19,14 @@ class Position
 	_end           = undefined;
 
 	_distance      = undefined;
+
+	_startDistance = undefined;
+	_endDistance   = undefined;
+
 	_direction     = undefined;
+
+	_startDirection = undefined;
+	_endDirection   = undefined;
 
 	_rotation      = 0;
 
@@ -80,6 +87,54 @@ class Position
 				return this._origin;
 			}
 
+		////    [ START ]    /////////////////////////
+
+		    /**
+		     * Set start
+		     * @public
+		     * @function
+		     * @param 			{number} value 								Start of object
+		     */
+		    set start ( value )
+		    {
+		        this._start = value;
+		    }
+
+		    /**
+		     * Get start
+		     * @public
+		     * @function
+		     * @return 			{number}									Start of object
+		     */
+		    get start ( )
+		    {
+		        return this._start;
+		    }
+
+		////    [ END ]    ///////////////////////////////////
+
+		    /**
+		     * Set end
+		     * @public
+		     * @function
+		     * @param 			{number} value 								End of object
+		     */
+		    set end ( value )
+		    {
+		        this._end = value;
+		    }
+
+		    /**
+		     * Get end
+		     * @public
+		     * @function
+		     * @return 			{number}									End of object
+		     */
+		    get end ( )
+		    {
+		        return this._end;
+		    }
+
 		////    [ DISTANCE ]    //////////////////////
 
 			/**
@@ -110,6 +165,66 @@ class Position
 				return this._distance;
 			}
 
+		////    [ START DISTANCE ]    ////////////////
+
+		    /**
+		     * Set startDistance
+		     * @public
+		     * @function
+		     * @param 			{number} value 								StartDistance of object
+		     */
+		    set startDistance ( value )
+		    {
+		        if ( value != undefined  &&  this._isPoint ( value ) )
+
+	                this._startDistance = Math.sqrt (
+	                                               ( Math.pow ( value.x - this.master.x, 2 ) ) +
+
+	                                               ( Math.pow ( value.y - this.master.y, 2 ) )
+	                                           );
+		    }
+
+		    /**
+		     * Get startDistance
+		     * @public
+		     * @function
+		     * @return 			{number}									StartDistance of object
+		     */
+		    get startDistance ( )
+		    {
+		        return this._startDistance;
+		    }
+
+		////    [ END DISTANCE ]    //////////////////
+
+		    /**
+		     * Set endDistance
+		     * @public
+		     * @function
+		     * @param 			{number} value 								EndDistance of object
+		     */
+		    set endDistance ( value )
+		    {
+		        if ( value != undefined  &&  this._isPoint ( value ) )
+
+	                this._endDistance = Math.sqrt (
+	                                               ( Math.pow ( value.x - this.master.x, 2 ) ) +
+
+	                                               ( Math.pow ( value.y - this.master.y, 2 ) )
+	                                           );
+		    }
+
+		    /**
+		     * Get endDistance
+		     * @public
+		     * @function
+		     * @return 			{number}									EndDistance of object
+		     */
+		    get endDistance ( )
+		    {
+		        return this._endDistance;
+		    }
+
 		////    [ DIRECTION ]    /////////////////////
 
 			/**
@@ -135,6 +250,58 @@ class Position
 			{
 				return this._direction;
 			}
+
+		////    [ START DIRECTION ]    ///////////////
+
+		    /**
+		     * Set startDirection
+		     * @public
+		     * @function
+		     * @param 			{number} value 								StartDirection of object
+		     */
+		    set startDirection ( value )
+		    {
+		        if ( value != undefined  &&  this._isPoint ( value ) )
+
+					this._startDirection = Math.atan2 ( value.y - this.master.y, value.x - this.master.x );
+		    }
+
+		    /**
+		     * Get startDirection
+		     * @public
+		     * @function
+		     * @return 			{number}									StartDirection of object
+		     */
+		    get startDirection ( )
+		    {
+		        return this._startDirection;
+		    }
+
+		////    [ END DIRECTION ]    /////////////////
+
+		    /**
+		     * Set endDirection
+		     * @public
+		     * @function
+		     * @param 			{number} value 								EndDirection of object
+		     */
+		    set endDirection ( value )
+		    {
+		        if ( value != undefined  &&  this._isPoint ( value ) )
+
+					this._endDirection = Math.atan2 ( value.y - this.master.y, value.x - this.master.x );
+		    }
+
+		    /**
+		     * Get endDirection
+		     * @public
+		     * @function
+		     * @return 			{number}									EndDirection of object
+		     */
+		    get endDirection ( )
+		    {
+		        return this._endDirection;
+		    }
 
 		////    [ ROTATION ]    //////////////////////
 

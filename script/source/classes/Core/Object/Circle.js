@@ -51,9 +51,11 @@ class Circle
             this._isAspect = VALIDATION.isAspect;
             this._isAnchor = VALIDATION.isAnchor;
             this._isDegree = VALIDATION.isDegree;
+            this._isFill   = VALIDATION.isFill;
             this._isInDom  = VALIDATION.isInDom;
             this._isNumber = VALIDATION.isNumber;
             this._isPoint  = VALIDATION.isPoint;
+            this._isStroke = VALIDATION.isStroke;
 
             this._drawAnchor  = UTILITIES.individual.draw.anchor;
             this._drawAxis    = UTILITIES.individual.draw.axis;
@@ -202,6 +204,17 @@ class Circle
         ////    [ STROKE ]    ////////////////////////
 
             /**
+             * Set stroke properties
+             * @public
+             * @function
+             * @param             {Stroke} value                            Stroke properties
+             */
+            set stroke ( value )
+            {
+                this._stroke = ( this._isStroke ( value ) ) ? value : this._stroke;
+            }
+
+            /**
              * Get stroke properties
              * @public
              * @function
@@ -213,6 +226,17 @@ class Circle
             }
 
         ////    [ FILL ]    //////////////////////////
+
+            /**
+             * Set fill properties
+             * @public
+             * @function
+             * @param             {Fill} value                              Fill properties
+             */
+            set fill ( value )
+            {
+                this._fill = (this._isFill ( value ) ) ? value : this._fill;
+            }
 
             /**
              * Get fill properties
@@ -332,6 +356,16 @@ class Circle
             _isDegree ( ) { }
 
             /**
+             * Returns whether the passed value is a Fill property object
+             * @private
+             * @function
+             * @param           {Object} value                              Fill
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isFill}
+             */
+            _isFill ( ) { }
+
+            /**
              * Returns whether the passed value is an element id within the DOM
              * @private
              * @function
@@ -339,7 +373,7 @@ class Circle
              * @return          {boolean}                                   True || False
              * @see             {@link VALIDATION.isInDom}
              */
-            _isInDom  ( ) { }
+            _isInDom ( ) { }
 
             /**
              * Returns whether the passed value is a Number value
@@ -359,7 +393,17 @@ class Circle
              * @return          {boolean}                                   True || False
              * @see             {@link VALIDATION.isPoint}
              */
-            _isPoint  ( ) { }
+            _isPoint ( ) { }
+
+            /**
+             * Returns whether the passed value is a Stroke property object
+             * @private
+             * @function
+             * @param           {Object} value                              Stroke
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isStroke}
+             */
+            _isStroke ( ) { }
 
         ////    + PUBLIC    //////////////////////
 

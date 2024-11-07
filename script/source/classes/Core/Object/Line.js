@@ -51,6 +51,7 @@ class Line
             this._isInDom  = VALIDATION.isInDom;
             this._isNumber = VALIDATION.isNumber;
             this._isPoint  = VALIDATION.isPoint;
+            this._isStroke = VALIDATION.isStroke;
 
             this._drawAxis    = UTILITIES.individual.draw.axis;
             this._drawBorder  = UTILITIES.individual.draw.border;
@@ -78,7 +79,6 @@ class Line
                     this.start.x = this.end.x = end.x;
                 }
             }
-
 
             if ( end != undefined )                             // End
             {
@@ -185,6 +185,17 @@ class Line
             }
 
         ////    [ STROKE ]    ////////////////////
+
+            /**
+             * Set stroke properties
+             * @public
+             * @function
+             * @param             {Stroke} value                            Stroke properties
+             */
+            set stroke ( value )
+            {
+                this._stroke = ( this._isStroke ( value ) ) ? value : this._stroke;
+            }
 
             /**
              * Get stroke properties
@@ -440,7 +451,7 @@ class Line
              * @return          {boolean}                                   True || False
              * @see             {@link VALIDATION.isInDom}
              */
-            _isInDom  ( ) { }
+            _isInDom ( ) { }
 
             /**
              * Returns whether the passed value is a Number value
@@ -460,7 +471,17 @@ class Line
              * @return          {boolean}                                   True || False
              * @see             {@link VALIDATION.isPoint}
              */
-            _isPoint  ( ) { }
+            _isPoint ( ) { }
+
+            /**
+             * Returns whether the passed value is a Stroke property object
+             * @private
+             * @function
+             * @param           {Object} value                              Stroke
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isStroke}
+             */
+            _isStroke ( ) { }
 
         ////    + PUBLIC    //////////////////////
 
@@ -902,6 +923,8 @@ class Line
                 this._canvas.setLineDash ( ( this.stroke.type === 'solid' ) ? new Array : this.stroke.segments );
 
                 this._canvas.beginPath   ( );
+
+
 
                 this._canvas.moveTo      ( this.start.x + _straddle, this.start.y + _straddle );
 

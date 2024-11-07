@@ -21,7 +21,7 @@ class Lab
         }
     }
 
-    _mouse =
+    #mouse =
     {
         click: false,
         hold:  false,
@@ -579,14 +579,14 @@ class Lab
 
                             if ( _labColLeft.clientWidth + _navWidth > event.clientX  &&  _labColLeft.clientHeight > event.clientY )
                             {
-                                if ( ! this._mouse.click )
+                                if ( ! this.#mouse.click )
                                 {
-                                    this._mouse.point = new Point ( event.clientX, event.clientY );
+                                    this.#mouse.point = new Point ( event.clientX, event.clientY );
 
-                                    this._mouse.click = true;
+                                    this.#mouse.click = true;
 
 
-                                    TOOL.delay ( 1000 ).then ( ( ) => this._mouse.hold = true );
+                                    TOOL.delay ( 1000 ).then ( ( ) => this.#mouse.hold = true );
                                 }
                             }
                         } );
@@ -610,28 +610,46 @@ class Lab
                                     _content += '\n' + JSON.stringify ( this._clipboard.coordinates );
 
 
-                                if ( this._mouse.hold )
+                                if ( this.#mouse.hold )
                                 {
-                                    let _degree   = this._getAngle ( this._mouse.point, new Point ( event.clientX, event.clientY ) );
+                                    let _degree   = this._getAngle ( this.#mouse.point, new Point ( event.clientX, event.clientY ) );
 
-                                    let _distance = this._getDistance ( this._mouse.point, new Point ( event.clientX, event.clientY ) );
+                                    let _distance = this._getDistance ( this.#mouse.point, new Point ( event.clientX, event.clientY ) );
 
 
-                                    _content += '\n' + JSON.stringify ( this._mouse.point );
+                                    _content += '\n' + JSON.stringify ( this.#mouse.point );
 
                                     _content += '\n' + JSON.stringify ( { degree: _degree, distance: _distance } );
 
 
-                                    this._mouse.hold = false;
+                                    this.#mouse.hold = false;
                                 }
 
 
                                 this._copyToClipboard ( _content );
 
 
-                                this._mouse.click = false;
+                                this.#mouse.click = false;
                             }
                         } );
+
+                    case 'inputEvents':
+
+                        // function _onMouseEvent ( event )
+                        // {
+                        //     console.log ( event.type );
+                        // }
+
+                        // let _canvas = document.getElementById ( 'canvas' );
+
+                        // let _events = [ 'mousedown', 'mouseup', 'click', 'dblclick', 'mousewheel', 'mousemove', 'mouseover', 'mouseout' ]
+
+
+                        // for ( let _event of _events )
+
+                        //     _canvas.addEventListener ( event, _onMouseEvent );
+
+                        // document.getElementById ( 'canvas' ).addEventListener ( 'mousemove', ( ) => console.log ( 'move !' ) );
 
                     case 'keyboardCommands':
 
@@ -1018,7 +1036,7 @@ class Lab
 
                     let _navWidth = 225;
 
-                    let _color    = new Rgb ( 150, 50, 200, 1 );
+                    let _color    = new Rgb ( 0, 175, 125, 1 );
 
 
                     let _line = new Line;
@@ -1065,12 +1083,9 @@ class Lab
 
                         [ _line.start,         _line.end            ] = [ canvaslab.center, _endPoint            ];
 
-
                         [ _circle.point,       _circle.radius       ] = [ _endPoint,        _circleDistance / 30 ];
 
-
-                        [ _dotCircle.point,    _dotCircle.radius    ] = [ _dotPoint,        _dotDistance / 50    ];
-
+                        [ _dotCircle.point,    _dotCircle.radius    ] = [ _dotPoint,        _dotDistance    / 50 ];
 
                         [ _centerCircle.point, _centerCircle.radius ] = [ canvaslab.center, _circleDistance / 2  ];
 
@@ -1089,14 +1104,14 @@ class Lab
 
                         ////    MEASURING LINE    //////////////////////////////////
 
-                        if ( this._mouse.click )
+                        if ( this.#mouse.click )
                         {
-                            let _point = ( UI._isNavOpen ( ) ) ? new Point ( this._mouse.point.x - _navWidth, this._mouse.point.y )
+                            let _point = ( UI._isNavOpen ( ) ) ? new Point ( this.#mouse.point.x - _navWidth, this.#mouse.point.y )
 
-                                                               : this._mouse.point;
+                                                               : this.#mouse.point;
 
 
-                            let _lineDegree   = this._getAngle ( _point, new Point ( _x, _y ) );
+                            let _lineDegree   = this._getAngle    ( _point, new Point ( _x, _y ) );
 
                             let _lineDistance = this._getDistance ( _point, new Point ( _x, _y ) );
 

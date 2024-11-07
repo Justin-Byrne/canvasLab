@@ -50,9 +50,11 @@ class Text extends Font
 
         ////    COMPOSITION     ////////////////////////////
 
-            this._isDegree   = VALIDATION.isDegree;
-            this._isInDom    = VALIDATION.isInDom;
-            this._isPoint    = VALIDATION.isPoint;
+            this._isDegree = VALIDATION.isDegree;
+            this._isFill   = VALIDATION.isFill;
+            this._isInDom  = VALIDATION.isInDom;
+            this._isPoint  = VALIDATION.isPoint;
+            this._isStroke = VALIDATION.isStroke;
 
             this._drawAnchor  = UTILITIES.individual.draw.anchor;
             this._rotatePoint = UTILITIES.individual.misc.rotatePoint;
@@ -188,6 +190,17 @@ class Text extends Font
         ////    [ STROKE ]  //////////////////////
 
             /**
+             * Set stroke properties
+             * @public
+             * @function
+             * @return          {Stroke} value                              Stroke properties
+             */
+            set stroke ( value )
+            {
+                this._stroke = ( this._isStroke ( value ) ) ? value : this._stroke;
+            }
+
+            /**
              * Get stroke properties
              * @public
              * @function
@@ -199,6 +212,17 @@ class Text extends Font
             }
 
         ////    [ FILL ]    //////////////////////
+
+            /**
+             * Set fill properties
+             * @public
+             * @function
+             * @return          {Fill} value                                Fill properties
+             */
+            set fill ( value )
+            {
+                this._fill = ( this._isFill ( value ) ) ? value : this._isFill;
+            }
 
             /**
              * Get fill properties
@@ -401,6 +425,16 @@ class Text extends Font
         _isDegree ( ) { }
 
         /**
+         * Returns whether the passed value is a Fill property object
+         * @private
+         * @function
+         * @param           {Object} value                              Fill
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isFill}
+         */
+        _isFill ( ) { }
+
+        /**
          * Returns whether the passed value is an element id within the DOM
          * @private
          * @function
@@ -419,6 +453,16 @@ class Text extends Font
          * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
+
+        /**
+         * Returns whether the passed value is a Stroke property object
+         * @private
+         * @function
+         * @param           {Object} value                              Stroke
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isStroke}
+         */
+        _isStroke ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
@@ -449,7 +493,7 @@ class Text extends Font
              * @function
              * @see             {@link UTILITIES.individual.set.shadow}
              */
-            _setShadow   ( ) { }
+            _setShadow ( ) { }
 
             /**
              * Draws anchor point
@@ -626,9 +670,11 @@ class Text extends Font
                 [ this.x, this.y ] = [  ( this.x + this.offset.x ), ( this.y + this.offset.y )  ];  // Incorporate offset from super class
 
 
-                this._canvas.font      = this.font;
+                this._canvas.font         = this.font;
 
-                this._canvas.textAlign = 'center';
+                this._canvas.textAlign    = 'center';
+
+                this._canvas.textBaseline = 'middle';
 
                 this._setFillType ( );
 

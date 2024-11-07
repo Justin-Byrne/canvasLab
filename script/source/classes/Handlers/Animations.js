@@ -525,7 +525,7 @@ class Animations
 
                     for ( let _type in _change )
                     {
-                        let _difference = _change [ _type ];
+                        let _amount = _change [ _type ];
 
 
                         switch ( _type )
@@ -534,19 +534,39 @@ class Animations
 
                                 _object.position.origin    = _object.point;
 
-                                _object.position.distance  = _difference;
+                                _object.position.distance  = _amount;
 
-                                _object.position.direction = _difference;
+                                _object.position.direction = _amount;
 
                                 break;
 
                             case 'pointFrom':
 
-                                _object.position.origin    = _difference;
+                                _object.position.origin    = _amount;
 
-                                _object.position.distance  = _difference;
+                                _object.position.distance  = _amount;
 
-                                _object.position.direction = _difference;
+                                _object.position.direction = _amount;
+
+                                break;
+
+                            case 'startPoint':
+
+                                _object.position.start          = _object.start;
+
+                                _object.position.startDistance  = _amount;
+
+                                _object.position.startDirection = _amount;
+
+                                break;
+
+                            case 'endPoint':
+
+                                _object.position.end          = _object.end;
+
+                                _object.position.endDistance  = _amount;
+
+                                _object.position.endDirection = _amount;
 
                                 break;
 
@@ -556,9 +576,9 @@ class Animations
 
 
                                 // Whether to invert degree
-                                let _point = ( _difference.invert ) ? this._getPointByDegreeNDistance ( _id, this._getInvertedAngle ( _difference.degree ), _difference.distance )
+                                let _point = ( _amount.invert ) ? this._getPointByDegreeNDistance ( _id, this._getInvertedAngle ( _amount.degree ), _amount.distance )
 
-                                                                    : this._getPointByDegreeNDistance ( _id, _difference.degree, _difference.distance );
+                                                                    : this._getPointByDegreeNDistance ( _id, _amount.degree, _amount.distance );
 
 
                                 _object.position.distance  = _point;
@@ -613,7 +633,7 @@ class Animations
 
                             case 'cache':
 
-                                this.cache = _difference;
+                                this.cache = _amount;
 
                                 break;
                         }
@@ -652,6 +672,40 @@ class Animations
 
                                 y: _object.position.origin.y + ( _object.position.distance * progress ) * Math.sin ( _object.position.direction )
                             }
+
+                            break;
+
+                        case 'startPoint':
+
+                            _object.start =
+                            {
+                                x: _object.position.start.x + ( _object.position.startDistance * progress ) * Math.cos ( _object.position.startDirection ),
+
+                                y: _object.position.start.y + ( _object.position.startDistance * progress ) * Math.sin ( _object.position.startDirection )
+                            }
+
+                            break;
+
+                        case 'startPointLink':
+
+                            _object.start = _amount.point;
+
+                            break;
+
+                        case 'endPoint':
+
+                            _object.end =
+                            {
+                                x: _object.position.end.x + ( _object.position.endDistance * progress ) * Math.cos ( _object.position.endDirection ),
+
+                                y: _object.position.end.y + ( _object.position.endDistance * progress ) * Math.sin ( _object.position.endDirection )
+                            }
+
+                            break;
+
+                        case 'endPointLink':
+
+                            _object.end = _amount.point;
 
                             break;
 
@@ -726,44 +780,6 @@ class Animations
                             // code . . .
 
                             break;
-
-                        case 'lineTo':
-
-                            let _lines = new Lines;
-
-
-                            if ( Array.isArray ( _amount ) )
-                            {
-                                for ( let _entry of _amount )
-                                {
-                                    let _line = new Line (
-                                                    _object.point,              /* Start   */
-                                                    _entry.point,               /* End     */
-                                                    undefined,                  /* Stroke  */
-                                                    undefined,                  /* Shadow  */
-                                                    undefined,                  /* lineCap */
-                                                    _object.canvas              /* canvas  */
-                                                );
-
-                                        _line.draw ( );
-                                }
-                            }
-                            else
-                            {
-                                let _line = new Line (
-                                                _object.point,                  /* Start   */
-                                                _amount.point,                  /* End     */
-                                                undefined,                      /* Stroke  */
-                                                undefined,                      /* Shadow  */
-                                                undefined,                      /* lineCap */
-                                                _object.canvas                  /* canvas  */
-                                            );
-
-                                    _line.draw ( );
-                            }
-
-
-                            break;
                     }
                 }
             }
@@ -792,6 +808,8 @@ class Animations
                 this._checkQueue ( );
 
                 this._setPositionData ( );
+
+                // this._setBriefChanges ( );
 
             ////    PROPERTIES    //////////////////////////
 

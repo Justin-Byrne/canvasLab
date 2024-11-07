@@ -495,7 +495,16 @@ const UTILITIES =
              */
             showCoordinates ( offset = 10, fontSize = 16 )
             {
-                let _text  = new Text ( this.point, `( ${this.x}, ${this.y} )` );
+                let _x = Math.round ( this.x );
+
+                let _y = Math.round ( this.y );
+
+
+                let _text  = new Text;
+
+                    _text.text           = `( ${_x}, ${_y} )`;
+
+                    _text.point          = this.point;
 
                     _text.canvas         =  this.canvas;
 
@@ -676,7 +685,6 @@ const UTILITIES =
                 }
             },
         },
-
     },
 
     /**

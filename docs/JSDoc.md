@@ -142,6 +142,24 @@
 ## Functions
 
 <dl>
+<dt><a href="#circle">circle(point, stroke, fill)</a> ⇒ <code><a href="#Circle">Circle</a></code></dt>
+<dd><p>Returns a Circle object</p>
+</dd>
+<dt><a href="#ellipse">ellipse(point, stroke, fill)</a> ⇒ <code><a href="#Ellipse">Ellipse</a></code></dt>
+<dd><p>Returns a Ellipse object</p>
+</dd>
+<dt><a href="#rectangle">rectangle(point, stroke, fill)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></dt>
+<dd><p>Returns a Rectangle object</p>
+</dd>
+<dt><a href="#roundedRectangle">roundedRectangle(point, stroke, fill)</a> ⇒ <code><a href="#RoundedRectangle">RoundedRectangle</a></code></dt>
+<dd><p>Returns a RoundedRectangle object</p>
+</dd>
+<dt><a href="#text">text(point, stroke, fill)</a> ⇒ <code><a href="#Text">Text</a></code></dt>
+<dd><p>Returns a Text object</p>
+</dd>
+<dt><a href="#line">line(startPoint, endPoint)</a> ⇒ <code><a href="#Line">Line</a></code></dt>
+<dd><p>Returns a Line object</p>
+</dd>
 <dt><a href="#initCanvasLab">initCanvasLab([canvas])</a></dt>
 <dd><p>Initiates canvasLab</p>
 </dd>
@@ -151,12 +169,15 @@
 
 <dl>
 <dt><a href="#clObject">clObject</a> : <code>Object</code></dt>
-<dd><p>Canvas Lab objects, for Objects &amp; Collections</p>
+<dd><p>Canvas Lab object</p>
+</dd>
+<dt><a href="#clCollection">clCollection</a> : <code>Object</code></dt>
+<dd><p>Canvas Lab collection</p>
 </dd>
 <dt><a href="#Template">Template</a> : <code>Object</code></dt>
 <dd><p>Canvas Lab Template, for the creation of objects through a collection</p>
 </dd>
-<dt><a href="#clChange">clChange</a> : <code>Object.&lt;Object&gt;</code></dt>
+<dt><a href="#clChange">clChange</a> : <code>Object</code></dt>
 <dd><p>Change, for animation changes through a transition</p>
 </dd>
 <dt><a href="#Transition">Transition</a> : <code>Object</code></dt>
@@ -187,7 +208,10 @@
     * [.canvases()](#canvasLab+canvases) ⇒ <code>Array</code>
     * [.font(font)](#canvasLab+font)
     * [.font()](#canvasLab+font) ⇒ <code>string</code>
+    * [.rotation(value)](#canvasLab+rotation)
+    * [.rotation()](#canvasLab+rotation) ⇒ <code>number</code>
     * [.application()](#canvasLab+application) ⇒ [<code>Application</code>](#Application)
+    * [.get()](#canvasLab+get) ⇒ <code>Object</code>
     * [.dom()](#canvasLab+dom) ⇒ <code>Object</code>
     * [.center()](#canvasLab+center) ⇒ [<code>Point</code>](#Point)
     * [.animate()](#canvasLab+animate)
@@ -258,6 +282,26 @@ Get main font type
 **Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
 **Returns**: <code>string</code> - font                               Main font type  
 **Read only**: true  
+<a name="canvasLab+rotation"></a>
+
+### canvasLab.rotation(value)
+Sets rotation property value
+
+**Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Rotation value |
+
+<a name="canvasLab+rotation"></a>
+
+### canvasLab.rotation() ⇒ <code>number</code>
+Get rotation property value
+
+**Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
+**Returns**: <code>number</code> - Rotation value  
+**Access**: public  
 <a name="canvasLab+application"></a>
 
 ### canvasLab.application() ⇒ [<code>Application</code>](#Application)
@@ -266,6 +310,14 @@ Returns this application
 **Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
 **Returns**: [<code>Application</code>](#Application) - Canvas Lab application  
 **Read only**: true  
+<a name="canvasLab+get"></a>
+
+### canvasLab.get() ⇒ <code>Object</code>
+Get getters
+
+**Kind**: instance method of [<code>canvasLab</code>](#canvasLab)  
+**Returns**: <code>Object</code> - Get getters  
+**Access**: public  
 <a name="canvasLab+dom"></a>
 
 ### canvasLab.dom() ⇒ <code>Object</code>
@@ -2735,10 +2787,22 @@ Get master object
     * [new Position()](#new_Position_new)
     * [.origin(value)](#Position+origin)
     * [.origin()](#Position+origin) ⇒ [<code>Point</code>](#Point)
+    * [.start(value)](#Position+start)
+    * [.start()](#Position+start) ⇒ <code>number</code>
+    * [.end(value)](#Position+end)
+    * [.end()](#Position+end) ⇒ <code>number</code>
     * [.distance(value)](#Position+distance)
     * [.distance()](#Position+distance) ⇒ <code>number</code>
+    * [.startDistance(value)](#Position+startDistance)
+    * [.startDistance()](#Position+startDistance) ⇒ <code>number</code>
+    * [.endDistance(value)](#Position+endDistance)
+    * [.endDistance()](#Position+endDistance) ⇒ <code>number</code>
     * [.direction(value)](#Position+direction)
     * [.direction()](#Position+direction) ⇒ <code>number</code>
+    * [.startDirection(value)](#Position+startDirection)
+    * [.startDirection()](#Position+startDirection) ⇒ <code>number</code>
+    * [.endDirection(value)](#Position+endDirection)
+    * [.endDirection()](#Position+endDirection) ⇒ <code>number</code>
     * [.rotation(value)](#Position+rotation)
     * [.rotation()](#Position+rotation) ⇒ <code>number</code>
     * [.aspect(value)](#Position+aspect)
@@ -2783,6 +2847,46 @@ Get origin
 **Kind**: instance method of [<code>Position</code>](#Position)  
 **Returns**: [<code>Point</code>](#Point) - X & Y coordinates  
 **Access**: public  
+<a name="Position+start"></a>
+
+### position.start(value)
+Set start
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Start of object |
+
+<a name="Position+start"></a>
+
+### position.start() ⇒ <code>number</code>
+Get start
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - Start of object  
+**Access**: public  
+<a name="Position+end"></a>
+
+### position.end(value)
+Set end
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | End of object |
+
+<a name="Position+end"></a>
+
+### position.end() ⇒ <code>number</code>
+Get end
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - End of object  
+**Access**: public  
 <a name="Position+distance"></a>
 
 ### position.distance(value)
@@ -2803,6 +2907,46 @@ Get distance
 **Kind**: instance method of [<code>Position</code>](#Position)  
 **Returns**: <code>number</code> - Distance from origin to destination  
 **Access**: public  
+<a name="Position+startDistance"></a>
+
+### position.startDistance(value)
+Set startDistance
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | StartDistance of object |
+
+<a name="Position+startDistance"></a>
+
+### position.startDistance() ⇒ <code>number</code>
+Get startDistance
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - StartDistance of object  
+**Access**: public  
+<a name="Position+endDistance"></a>
+
+### position.endDistance(value)
+Set endDistance
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | EndDistance of object |
+
+<a name="Position+endDistance"></a>
+
+### position.endDistance() ⇒ <code>number</code>
+Get endDistance
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - EndDistance of object  
+**Access**: public  
 <a name="Position+direction"></a>
 
 ### position.direction(value)
@@ -2822,6 +2966,46 @@ Get direction
 
 **Kind**: instance method of [<code>Position</code>](#Position)  
 **Returns**: <code>number</code> - Direction in degrees  
+**Access**: public  
+<a name="Position+startDirection"></a>
+
+### position.startDirection(value)
+Set startDirection
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | StartDirection of object |
+
+<a name="Position+startDirection"></a>
+
+### position.startDirection() ⇒ <code>number</code>
+Get startDirection
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - StartDirection of object  
+**Access**: public  
+<a name="Position+endDirection"></a>
+
+### position.endDirection(value)
+Set endDirection
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | EndDirection of object |
+
+<a name="Position+endDirection"></a>
+
+### position.endDirection() ⇒ <code>number</code>
+Get endDirection
+
+**Kind**: instance method of [<code>Position</code>](#Position)  
+**Returns**: <code>number</code> - EndDirection of object  
 **Access**: public  
 <a name="Position+rotation"></a>
 
@@ -3038,7 +3222,9 @@ Get fill
     * [.radius(value)](#Circle+radius)
     * [.radius()](#Circle+radius) ⇒ <code>number</code> \| [<code>Point</code>](#Point)
     * [.angle()](#Circle+angle) ⇒ [<code>Angle</code>](#Angle)
+    * [.stroke(value)](#Circle+stroke)
     * [.stroke()](#Circle+stroke) ⇒ [<code>Stroke</code>](#Stroke)
+    * [.fill(value)](#Circle+fill)
     * [.fill()](#Circle+fill) ⇒ [<code>Fill</code>](#Fill)
     * [.shadow()](#Circle+shadow) ⇒ [<code>Shadow</code>](#Shadow)
     * [.canvas(value)](#Circle+canvas)
@@ -3157,12 +3343,36 @@ Get angle properties
 **Access**: public  
 <a name="Circle+stroke"></a>
 
+### circle.stroke(value)
+Set stroke properties
+
+**Kind**: instance method of [<code>Circle</code>](#Circle)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Stroke</code>](#Stroke) | Stroke properties |
+
+<a name="Circle+stroke"></a>
+
 ### circle.stroke() ⇒ [<code>Stroke</code>](#Stroke)
 Get stroke properties
 
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
 **Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
 **Access**: public  
+<a name="Circle+fill"></a>
+
+### circle.fill(value)
+Set fill properties
+
+**Kind**: instance method of [<code>Circle</code>](#Circle)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Fill</code>](#Fill) | Fill properties |
+
 <a name="Circle+fill"></a>
 
 ### circle.fill() ⇒ [<code>Fill</code>](#Fill)
@@ -3355,8 +3565,8 @@ Draw this object
     * [.x(value)](#Circle+x)
     * [.y(value)](#Circle+y)
     * [.angle()](#Circle+angle) ⇒ [<code>Angle</code>](#Angle)
-    * [.stroke()](#Circle+stroke) ⇒ [<code>Stroke</code>](#Stroke)
-    * [.fill()](#Circle+fill) ⇒ [<code>Fill</code>](#Fill)
+    * [.stroke(value)](#Circle+stroke)
+    * [.fill(value)](#Circle+fill)
     * [.shadow()](#Circle+shadow) ⇒ [<code>Shadow</code>](#Shadow)
     * [.canvas(value)](#Circle+canvas)
     * [.anchor()](#Circle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
@@ -3446,20 +3656,30 @@ Get angle properties
 **Access**: public  
 <a name="Circle+stroke"></a>
 
-### ellipse.stroke() ⇒ [<code>Stroke</code>](#Stroke)
-Get stroke properties
+### ellipse.stroke(value)
+Set stroke properties
 
 **Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
-**Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
+**Overrides**: [<code>stroke</code>](#Circle+stroke)  
 **Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Stroke</code>](#Stroke) | Stroke properties |
+
 <a name="Circle+fill"></a>
 
-### ellipse.fill() ⇒ [<code>Fill</code>](#Fill)
-Get fill properties
+### ellipse.fill(value)
+Set fill properties
 
 **Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
-**Returns**: [<code>Fill</code>](#Fill) - Fill properties  
+**Overrides**: [<code>fill</code>](#Circle+fill)  
 **Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Fill</code>](#Fill) | Fill properties |
+
 <a name="Circle+shadow"></a>
 
 ### ellipse.shadow() ⇒ [<code>Shadow</code>](#Shadow)
@@ -3633,6 +3853,7 @@ Draw this object
     * [.start()](#Line+start) ⇒ [<code>Point</code>](#Point)
     * [.end(value)](#Line+end)
     * [.end()](#Line+end) ⇒ [<code>Point</code>](#Point)
+    * [.stroke(value)](#Line+stroke)
     * [.stroke()](#Line+stroke) ⇒ [<code>Stroke</code>](#Stroke)
     * [.shadow()](#Line+shadow) ⇒ [<code>Shadow</code>](#Shadow)
     * [.lineCap(value)](#Line+lineCap)
@@ -3704,6 +3925,18 @@ Set ending point
 **Kind**: instance method of [<code>Line</code>](#Line)  
 **Returns**: [<code>Point</code>](#Point) - Ending point  
 **Access**: public  
+<a name="Line+stroke"></a>
+
+### line.stroke(value)
+Set stroke properties
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Stroke</code>](#Stroke) | Stroke properties |
+
 <a name="Line+stroke"></a>
 
 ### line.stroke() ⇒ [<code>Stroke</code>](#Stroke)
@@ -4000,7 +4233,9 @@ Draw this object
     * [.height()](#Rectangle+height) ⇒ <code>number</code>
     * [.round(value)](#Rectangle+round)
     * [.round()](#Rectangle+round) ⇒ <code>Array</code>
+    * [.stroke(value)](#Rectangle+stroke)
     * [.stroke()](#Rectangle+stroke) ⇒ [<code>Stroke</code>](#Stroke)
+    * [.fill(value)](#Rectangle+fill)
     * [.fill()](#Rectangle+fill) ⇒ [<code>Fill</code>](#Fill)
     * [.shadow()](#Rectangle+shadow) ⇒ [<code>Shadow</code>](#Shadow)
     * [.canvas(value)](#Rectangle+canvas)
@@ -4171,12 +4406,36 @@ Get round properties
 **Read only**: true  
 <a name="Rectangle+stroke"></a>
 
+### rectangle.stroke(value)
+Set stroke properties
+
+**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Stroke</code>](#Stroke) | Stroke properties |
+
+<a name="Rectangle+stroke"></a>
+
 ### rectangle.stroke() ⇒ [<code>Stroke</code>](#Stroke)
 Get stroke properties
 
 **Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
 **Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
 **Access**: public  
+<a name="Rectangle+fill"></a>
+
+### rectangle.fill(value)
+Get fill properties
+
+**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Fill</code>](#Fill) | Fill properties |
+
 <a name="Rectangle+fill"></a>
 
 ### rectangle.fill() ⇒ [<code>Fill</code>](#Fill)
@@ -4391,8 +4650,8 @@ Draw this object
     * [.width(value)](#Rectangle+width)
     * [.height(value)](#Rectangle+height)
     * [.round(value)](#Rectangle+round)
-    * [.stroke()](#Rectangle+stroke) ⇒ [<code>Stroke</code>](#Stroke)
-    * [.fill()](#Rectangle+fill) ⇒ [<code>Fill</code>](#Fill)
+    * [.stroke(value)](#Rectangle+stroke)
+    * [.fill(value)](#Rectangle+fill)
     * [.shadow()](#Rectangle+shadow) ⇒ [<code>Shadow</code>](#Shadow)
     * [.canvas(value)](#Rectangle+canvas)
     * [.anchor()](#Rectangle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
@@ -4504,20 +4763,30 @@ Set round properties
 
 <a name="Rectangle+stroke"></a>
 
-### roundedRectangle.stroke() ⇒ [<code>Stroke</code>](#Stroke)
-Get stroke properties
+### roundedRectangle.stroke(value)
+Set stroke properties
 
 **Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
-**Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
+**Overrides**: [<code>stroke</code>](#Rectangle+stroke)  
 **Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Stroke</code>](#Stroke) | Stroke properties |
+
 <a name="Rectangle+fill"></a>
 
-### roundedRectangle.fill() ⇒ [<code>Fill</code>](#Fill)
+### roundedRectangle.fill(value)
 Get fill properties
 
 **Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
-**Returns**: [<code>Fill</code>](#Fill) - Fill properties  
+**Overrides**: [<code>fill</code>](#Rectangle+fill)  
 **Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | [<code>Fill</code>](#Fill) | Fill properties |
+
 <a name="Rectangle+shadow"></a>
 
 ### roundedRectangle.shadow() ⇒ [<code>Shadow</code>](#Shadow)
@@ -4716,6 +4985,8 @@ Draw this object
     * [.text(value)](#Text+text)
     * [.text()](#Text+text) ⇒ <code>string</code>
     * [.stroke()](#Text+stroke) ⇒ [<code>Stroke</code>](#Stroke)
+    * [.stroke()](#Text+stroke) ⇒ [<code>Stroke</code>](#Stroke)
+    * [.fill()](#Text+fill) ⇒ [<code>Fill</code>](#Fill)
     * [.fill()](#Text+fill) ⇒ [<code>Fill</code>](#Fill)
     * [.shadow()](#Text+shadow) ⇒ [<code>Shadow</code>](#Shadow)
     * [.canvas(value)](#Text+canvas)
@@ -4847,10 +5118,26 @@ Get text
 <a name="Text+stroke"></a>
 
 ### text.stroke() ⇒ [<code>Stroke</code>](#Stroke)
+Set stroke properties
+
+**Kind**: instance method of [<code>Text</code>](#Text)  
+**Returns**: [<code>Stroke</code>](#Stroke) - value                              Stroke properties  
+**Access**: public  
+<a name="Text+stroke"></a>
+
+### text.stroke() ⇒ [<code>Stroke</code>](#Stroke)
 Get stroke properties
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
+**Access**: public  
+<a name="Text+fill"></a>
+
+### text.fill() ⇒ [<code>Fill</code>](#Fill)
+Set fill properties
+
+**Kind**: instance method of [<code>Text</code>](#Text)  
+**Returns**: [<code>Fill</code>](#Fill) - value                                Fill properties  
 **Access**: public  
 <a name="Text+fill"></a>
 
@@ -8028,11 +8315,11 @@ Get dom details
     * [.transitions()](#myTransitions+transitions) ⇒ <code>number</code>
     * [.template(value)](#myTransitions+template)
     * [.template()](#myTransitions+template) ⇒ [<code>Template</code>](#Template)
-    * [._shape(shape, collection, timing, period, lineTos, optimal)](#myTransitions+_shape)
+    * [._getShapeLineData()](#myTransitions+_getShapeLineData)
     * [.skip(object, collection, timing, period)](#myTransitions+skip)
     * [.hop(object, collection, timing, period)](#myTransitions+hop)
     * [.bloom(collection, timing, period, out)](#myTransitions+bloom)
-    * [.shape(shape, collection, timing, period, lineTos, optimal)](#myTransitions+shape)
+    * [.shape(shape, collection, timing, period, clClass)](#myTransitions+shape)
 
 <a name="new_myTransitions_new"></a>
 
@@ -8069,23 +8356,12 @@ Get template
 **Returns**: [<code>Template</code>](#Template) - Template object  
 **Access**: public  
 **See**: [template](#PROPERTY_BLOCKS.individual.template)  
-<a name="myTransitions+_shape"></a>
+<a name="myTransitions+_getShapeLineData"></a>
 
-### myTransitions.\_shape(shape, collection, timing, period, lineTos, optimal)
-Creates shape from array of numbers
+### myTransitions.\_getShapeLineData()
+Returns an array of lines & changes linking the objects & collections together
 
 **Kind**: instance method of [<code>myTransitions</code>](#myTransitions)  
-**Access**: public  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| shape | <code>Array</code> |  | Array of collection indexes |
-| collection | <code>ClCollection</code> |  | Canvas Lab collection |
-| timing | <code>string</code> \| <code>function</code> |  | Timing function |
-| period | <code>number</code> |  | Period of timer |
-| lineTos | <code>boolean</code> | <code>true</code> | Draw lines connecting shapes |
-| optimal | <code>boolean</code> | <code>false</code> | Optimal line draws |
-
 <a name="myTransitions+skip"></a>
 
 ### myTransitions.skip(object, collection, timing, period)
@@ -8133,20 +8409,19 @@ Returns transitions for bloom animation
 
 <a name="myTransitions+shape"></a>
 
-### myTransitions.shape(shape, collection, timing, period, lineTos, optimal)
+### myTransitions.shape(shape, collection, timing, period, clClass)
 Creates shape from array of numbers
 
 **Kind**: instance method of [<code>myTransitions</code>](#myTransitions)  
 **Access**: public  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| shape | <code>Array</code> |  | Array of collection indexes |
-| collection | <code>ClCollection</code> |  | Canvas Lab collection |
-| timing | <code>string</code> \| <code>function</code> |  | Timing function |
-| period | <code>number</code> |  | Period of timer |
-| lineTos | <code>boolean</code> | <code>true</code> | Draw lines connecting shapes |
-| optimal | <code>boolean</code> | <code>false</code> | Optimal line draws |
+| Param | Type | Description |
+| --- | --- | --- |
+| shape | <code>Array</code> | Array of collection indexes |
+| collection | <code>ClCollection</code> | Canvas Lab collection |
+| timing | <code>string</code> \| <code>function</code> | Timing function |
+| period | <code>number</code> | Period of timer |
+| clClass | <code>object</code> | Canvas Lab object class |
 
 <a name="SacredCircles"></a>
 
@@ -9710,6 +9985,7 @@ Shared validation functions
     * [.isControlPoint(value)](#VALIDATION.isControlPoint) ⇒ <code>boolean</code>
     * [.isDecimal(value)](#VALIDATION.isDecimal) ⇒ <code>boolean</code>
     * [.isDegree(value)](#VALIDATION.isDegree) ⇒ <code>boolean</code>
+    * [.isFill(value)](#VALIDATION.isFill) ⇒ <code>boolean</code>
     * [.isFillType(value)](#VALIDATION.isFillType) ⇒ <code>boolean</code>
     * [.isGradient(value)](#VALIDATION.isGradient) ⇒ <code>boolean</code>
     * [.isInDom(value)](#VALIDATION.isInDom) ⇒ <code>boolean</code>
@@ -9721,6 +9997,7 @@ Shared validation functions
     * [.isRepetition(value)](#VALIDATION.isRepetition) ⇒ <code>boolean</code>
     * [.isSegments(value)](#VALIDATION.isSegments) ⇒ <code>boolean</code>
     * [.isStop(value)](#VALIDATION.isStop) ⇒ <code>boolean</code>
+    * [.isStroke(value)](#VALIDATION.isStroke) ⇒ <code>boolean</code>
     * [.isStrokeType(value)](#VALIDATION.isStrokeType) ⇒ <code>boolean</code>
     * [.isTemplate(value)](#VALIDATION.isTemplate) ⇒ <code>boolean</code>
     * [.isTransition(value)](#VALIDATION.isTransition) ⇒ <code>boolean</code>
@@ -9898,6 +10175,19 @@ Returns whether the passed value is a degree
 | --- | --- | --- |
 | value | <code>number</code> | Degree |
 
+<a name="VALIDATION.isFill"></a>
+
+### VALIDATION.isFill(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a Fill property object
+
+**Kind**: static method of [<code>VALIDATION</code>](#VALIDATION)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | Fill |
+
 <a name="VALIDATION.isFillType"></a>
 
 ### VALIDATION.isFillType(value) ⇒ <code>boolean</code>
@@ -10043,6 +10333,19 @@ Returns whether the passed value is a Stop or object equivalent
 | --- | --- | --- |
 | value | <code>Object</code> | Stop or object equivalent |
 
+<a name="VALIDATION.isStroke"></a>
+
+### VALIDATION.isStroke(value) ⇒ <code>boolean</code>
+Returns whether the passed value is a Stroke property object
+
+**Kind**: static method of [<code>VALIDATION</code>](#VALIDATION)  
+**Returns**: <code>boolean</code> - True || False  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>Object</code> | Stroke |
+
 <a name="VALIDATION.isStrokeType"></a>
 
 ### VALIDATION.isStrokeType(value) ⇒ <code>boolean</code>
@@ -10137,6 +10440,95 @@ Returns whether the passed value is a CanvasLab object; Line, Circle, Rectangle,
 | --- | --- | --- |
 | value | <code>Object</code> | CanvasLab object; Line, Circle, Rectangle, Text |
 
+<a name="circle"></a>
+
+## circle(point, stroke, fill) ⇒ [<code>Circle</code>](#Circle)
+Returns a Circle object
+
+**Kind**: global function  
+**Returns**: [<code>Circle</code>](#Circle) - Circle object  
+**Access**: protected  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| point | [<code>Point</code>](#Point) | X & Y Coordinates |
+| stroke | [<code>Stroke</code>](#Stroke) | Stroke properties |
+| fill | [<code>Fill</code>](#Fill) | Fill properties |
+
+<a name="ellipse"></a>
+
+## ellipse(point, stroke, fill) ⇒ [<code>Ellipse</code>](#Ellipse)
+Returns a Ellipse object
+
+**Kind**: global function  
+**Returns**: [<code>Ellipse</code>](#Ellipse) - Ellipse object  
+**Access**: protected  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| point | [<code>Point</code>](#Point) | X & Y Coordinates |
+| stroke | [<code>Stroke</code>](#Stroke) | Stroke properties |
+| fill | [<code>Fill</code>](#Fill) | Fill properties |
+
+<a name="rectangle"></a>
+
+## rectangle(point, stroke, fill) ⇒ [<code>Rectangle</code>](#Rectangle)
+Returns a Rectangle object
+
+**Kind**: global function  
+**Returns**: [<code>Rectangle</code>](#Rectangle) - Rectangle object  
+**Access**: protected  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| point | [<code>Point</code>](#Point) | X & Y Coordinates |
+| stroke | [<code>Stroke</code>](#Stroke) | Stroke properties |
+| fill | [<code>Fill</code>](#Fill) | Fill properties |
+
+<a name="roundedRectangle"></a>
+
+## roundedRectangle(point, stroke, fill) ⇒ [<code>RoundedRectangle</code>](#RoundedRectangle)
+Returns a RoundedRectangle object
+
+**Kind**: global function  
+**Returns**: [<code>RoundedRectangle</code>](#RoundedRectangle) - Rounded rectangle object  
+**Access**: protected  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| point | [<code>Point</code>](#Point) | X & Y Coordinates |
+| stroke | [<code>Stroke</code>](#Stroke) | Stroke properties |
+| fill | [<code>Fill</code>](#Fill) | Fill properties |
+
+<a name="text"></a>
+
+## text(point, stroke, fill) ⇒ [<code>Text</code>](#Text)
+Returns a Text object
+
+**Kind**: global function  
+**Returns**: [<code>Text</code>](#Text) - Text object  
+**Access**: protected  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| point | [<code>Point</code>](#Point) | X & Y Coordinates |
+| stroke | [<code>Stroke</code>](#Stroke) | Stroke properties |
+| fill | [<code>Fill</code>](#Fill) | Fill properties |
+
+<a name="line"></a>
+
+## line(startPoint, endPoint) ⇒ [<code>Line</code>](#Line)
+Returns a Line object
+
+**Kind**: global function  
+**Returns**: [<code>Line</code>](#Line) - Line object  
+**Access**: protected  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| startPoint | [<code>Point</code>](#Point) | Starting point of line |
+| endPoint | [<code>Point</code>](#Point) | Ending point of line |
+
 <a name="initCanvasLab"></a>
 
 ## initCanvasLab([canvas])
@@ -10151,7 +10543,13 @@ Initiates canvasLab
 <a name="clObject"></a>
 
 ## clObject : <code>Object</code>
-Canvas Lab objects, for Objects & Collections
+Canvas Lab object
+
+**Kind**: global typedef  
+<a name="clCollection"></a>
+
+## clCollection : <code>Object</code>
+Canvas Lab collection
 
 **Kind**: global typedef  
 <a name="Template"></a>
@@ -10170,7 +10568,7 @@ Canvas Lab Template, for the creation of objects through a collection
 
 <a name="clChange"></a>
 
-## clChange : <code>Object.&lt;Object&gt;</code>
+## clChange : <code>Object</code>
 Change, for animation changes through a transition
 
 **Kind**: global typedef  

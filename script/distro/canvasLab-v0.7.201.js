@@ -2,7 +2,7 @@
 // @brief: 			HTML5 canvas illustration & animation framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.7.196 
+// @version: 		0.7.201 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -10,8 +10,13 @@
 ////    TYPEDEFS    ////////////////////////////////////////
  
 /**
- * Canvas Lab objects, for Objects & Collections
+ * Canvas Lab object
  * @typedef 		{Object} clObject
+ */
+
+/**
+ * Canvas Lab collection
+ * @typedef 		{Object} clCollection
  */
 
 /**
@@ -24,7 +29,7 @@
 
 /**
  * Change, for animation changes through a transition
- * @typedef 		{Object<Object>} clChange
+ * @typedef 		{Object} clChange
  */
 
 /**
@@ -1229,7 +1234,16 @@ const UTILITIES =
              */
             showCoordinates ( offset = 10, fontSize = 16 )
             {
-                let _text  = new Text ( this.point, `( ${this.x}, ${this.y} )` );
+                let _x = Math.round ( this.x );
+
+                let _y = Math.round ( this.y );
+
+
+                let _text  = new Text;
+
+                    _text.text           = `( ${_x}, ${_y} )`;
+
+                    _text.point          = this.point;
 
                     _text.canvas         =  this.canvas;
 
@@ -1410,7 +1424,6 @@ const UTILITIES =
                 }
             },
         },
-
     },
 
     /**
@@ -1889,6 +1902,32 @@ const VALIDATION =
     },
 
     /**
+     * Returns whether the passed value is a Fill property object
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {Object} value                              Fill
+     * @return          {boolean}                                   True || False
+     */
+    isFill ( value )
+    {
+        if ( value instanceof Fill ) return true;
+
+
+        let _length = Object.keys ( value ).length;
+
+            _length = ( _length > 1 && _length < 6 );
+
+
+        let _color  = ( value.hasOwnProperty ( 'color' ) ) ? ( value.color instanceof Rgb ) : false;
+
+        let _type   = ( value.hasOwnProperty ( 'type'  ) ) ? ( typeof value.type === 'string' ) : false;
+
+
+        return ( _length && _color && _type );
+    },
+
+    /**
      * Returns whether the passed value is a fill type
      * @public
      * @memberof VALIDATION
@@ -2100,6 +2139,34 @@ const VALIDATION =
     },
 
     /**
+     * Returns whether the passed value is a Stroke property object
+     * @public
+     * @memberof VALIDATION
+     * @function
+     * @param           {Object} value                              Stroke
+     * @return          {boolean}                                   True || False
+     */
+    isStroke ( value )
+    {
+        if ( value instanceof Stroke ) return true;
+
+
+        let _length = Object.keys ( value ).length;
+
+            _length = ( _length > 1 && _length < 5 );
+
+
+        let _color  = ( value.hasOwnProperty ( 'color' ) ) ? ( value.color instanceof Rgb ) : false;
+
+        let _type   = ( value.hasOwnProperty ( 'type'  ) ) ? ( typeof value.type  === 'string' ) : false;
+
+        let _width  = ( value.hasOwnProperty ( 'width' ) ) ? ( typeof value.width === 'number' ) : false;
+
+
+        return ( _length && _color && _type && _width );
+    },
+
+    /**
      * Returns whether the passed value is a stroke type
      * @public
      * @memberof VALIDATION
@@ -2235,6 +2302,94 @@ class canvasLab
 
     #application = new Application;
 
+    #inputEvents = undefined;
+
+    #get =
+    {
+        /**
+         * Returns a Circle object
+         * @protected
+         * @function
+         * @param           {Point}  point                              X & Y Coordinates
+         * @param           {Stroke} stroke                             Stroke properties
+         * @param           {Fill}   fill                               Fill properties
+         * @return          {Circle}                                    Circle object
+         */
+        circle ( point, stroke, fill )
+        {
+            return new Circle ( point, this.radius, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
+        },
+
+        /**
+         * Returns a Ellipse object
+         * @protected
+         * @function
+         * @param           {Point}  point                              X & Y Coordinates
+         * @param           {Stroke} stroke                             Stroke properties
+         * @param           {Fill}   fill                               Fill properties
+         * @return          {Ellipse}                                   Ellipse object
+         */
+        ellipse ( point, stroke, fill )
+        {
+            return new Ellipse ( point, new Point ( this.radius, this.radius * 0.5 ), undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
+        },
+
+        /**
+         * Returns a Rectangle object
+         * @protected
+         * @function
+         * @param           {Point}  point                              X & Y Coordinates
+         * @param           {Stroke} stroke                             Stroke properties
+         * @param           {Fill}   fill                               Fill properties
+         * @return          {Rectangle}                                 Rectangle object
+         */
+        rectangle ( point, stroke, fill )
+        {
+            return new Rectangle ( point, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
+        },
+
+        /**
+         * Returns a RoundedRectangle object
+         * @protected
+         * @function
+         * @param           {Point}  point                              X & Y Coordinates
+         * @param           {Stroke} stroke                             Stroke properties
+         * @param           {Fill}   fill                               Fill properties
+         * @return          {RoundedRectangle}                          Rounded rectangle object
+         */
+        roundedRectangle ( point, stroke, fill )
+        {
+            return new RoundedRectangle ( point, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
+        },
+
+        /**
+         * Returns a Text object
+         * @protected
+         * @function
+         * @param           {Point}  point                              X & Y Coordinates
+         * @param           {Stroke} stroke                             Stroke properties
+         * @param           {Fill}   fill                               Fill properties
+         * @return          {Text}                                      Text object
+         */
+        text ( point, text, stroke, fill )
+        {
+            return new Text ( point, text, undefined, undefined, undefined, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined );
+        },
+
+        /**
+         * Returns a Line object
+         * @protected
+         * @function
+         * @param           {Point} startPoint                          Starting point of line
+         * @param           {Point} endPoint                            Ending point of line
+         * @return          {Line}                                      Line object
+         */
+        line ( startPoint, endPoint )
+        {
+            return new Line ( startPoint, endPoint, undefined, undefined, undefined, undefined );
+        }
+    }
+
     /**
      * Create a canvasLab object
      * @property        {string} canvasId                           Canvas identifier
@@ -2250,130 +2405,157 @@ class canvasLab
         this.canvas = canvas;
     }
 
-    ////    [ CANVAS ]  ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set canvas value
-         * @public
-         * @function
-         * @param           {string} value                              Canvas identifier
-         */
-        set canvas ( value )
-        {
-            this._canvas = ( this._isInDom ( value ) ) ? document.getElementById ( value ).getContext ( '2d' )
+        ////    [ CANVAS ]  //////////////////////
 
-                                                       : this._canvas;
-        }
+            /**
+             * Set canvas value
+             * @public
+             * @function
+             * @param           {string} value                              Canvas identifier
+             */
+            set canvas ( value )
+            {
+                this._canvas = ( this._isInDom ( value ) ) ? document.getElementById ( value ).getContext ( '2d' )
 
-        /**
-         * Get canvas value
-         * @readOnly
-         * @function
-         * @return          {string}                                    Canvas identifier
-         * @see             {@link discrete.canvas}
-         */
-        get canvas ( )
-        {
-            return this._canvas.canvas.id;
-        }
+                                                           : this._canvas;
+            }
 
-    ////    [ CANVASES ]    ////////////////////////////////
+            /**
+             * Get canvas value
+             * @readOnly
+             * @function
+             * @return          {string}                                    Canvas identifier
+             * @see             {@link discrete.canvas}
+             */
+            get canvas ( )
+            {
+                return this._canvas.canvas.id;
+            }
 
-        /**
-         * Set canvas value
-         * @public
-         * @function
-         * @param           {string} canvasId                           Canvas identifier
-         */
-        set canvases ( canvasId )
-        {
-            let _canvas = ( this._isInDom ( canvasId ) ) ? document.getElementById ( canvasId ).getContext ( '2d' )
+        ////    [ CANVASES ]    //////////////////
 
-                                                         : undefined;
+            /**
+             * Set canvas value
+             * @public
+             * @function
+             * @param           {string} canvasId                           Canvas identifier
+             */
+            set canvases ( canvasId )
+            {
+                let _canvas = ( this._isInDom ( canvasId ) ) ? document.getElementById ( canvasId ).getContext ( '2d' )
 
-
-            if ( this._canvases == undefined )
-
-                this._canvases = new Array;
+                                                             : undefined;
 
 
-            if ( _canvas != undefined )
+                if ( this._canvases == undefined )
 
-                this._canvases.push ( _canvas );
-        }
+                    this._canvases = new Array;
 
-        /**
-         * Set canvas value
-         * @readOnly
-         * @function
-         * @return          {Array}                                     Array of canvas contexts
-         */
-        get canvases ( )
-        {
-            return this._canvases;
-        }
 
-    ////    [ FONT ]    ////////////////////////////////////
+                if ( _canvas != undefined )
 
-        /**
-         * Set main font type
-         * @public
-         * @function
-         * @param           {string} font                               Main font type
-         */
-        set font ( value )
-        {
-            this._font = ( typeof value === 'string' ) ? value : this._font;
-        }
+                    this._canvases.push ( _canvas );
+            }
 
-        /**
-         * Get main font type
-         * @readOnly
-         * @function
-         * @return          {string} font                               Main font type
-         */
-        get font ( )
-        {
-            return this._canvas.font;
-        }
+            /**
+             * Set canvas value
+             * @readOnly
+             * @function
+             * @return          {Array}                                     Array of canvas contexts
+             */
+            get canvases ( )
+            {
+                return this._canvases;
+            }
 
-    ////    [ ROTATION ]    ////////////////////////////////
+        ////    [ FONT ]    //////////////////////
 
-        set rotation ( value )
-        {
-            this._rotation = value;
-        }
+            /**
+             * Set main font type
+             * @public
+             * @function
+             * @param           {string} font                               Main font type
+             */
+            set font ( value )
+            {
+                this._font = ( typeof value === 'string' ) ? value : this._font;
+            }
 
-        get rotation ( )
-        {
-            return this._rotation;
-        }
+            /**
+             * Get main font type
+             * @readOnly
+             * @function
+             * @return          {string} font                               Main font type
+             */
+            get font ( )
+            {
+                return this._canvas.font;
+            }
 
-    ////    [ APPLICATION ]    /////////////////////////////
+        ////    [ ROTATION ]    //////////////////
 
-        /**
-         * Returns this application
-         * @readOnly
-         * @function
-         * @return          {Application}                               Canvas Lab application
-         */
-        get application ( )
-        {
-            return this.#application;
-        }
+            /**
+             * Sets rotation property value
+             * @public
+             * @function
+             * @param           {number} value                              Rotation value
+             */
+            set rotation ( value )
+            {
+                this._rotation = value;
+            }
 
-    ////    DOM    /////////////////////////////////////////
+            /**
+             * Get rotation property value
+             * @public
+             * @function
+             * @return          {number}                                    Rotation value
+             */
+            get rotation ( )
+            {
+                return this._rotation;
+            }
 
-        /**
-         * Get dom details
-         * @readOnly
-         * @function
-         * @return          {Object}                                    DOM details
-         */
-        get dom ( )
-        {
-            return this.#application.dom;
-        }
+        ////    [ APPLICATION ]    ///////////////
+
+            /**
+             * Returns this application
+             * @readOnly
+             * @function
+             * @return          {Application}                               Canvas Lab application
+             */
+            get application ( )
+            {
+                return this.#application;
+            }
+
+        ////    [ GET ]    ///////////////////////
+
+            /**
+             * Get getters
+             * @public
+             * @function
+             * @return             {Object}                                    Get getters
+             */
+            get get ( )
+            {
+                return this.#get;
+            }
+
+        ////    DOM    ///////////////////////////
+
+            /**
+             * Get dom details
+             * @readOnly
+             * @function
+             * @return          {Object}                                    DOM details
+             */
+            get dom ( )
+            {
+                return this.#application.dom;
+            }
 
     ////    VALIDATION  ////////////////////////////////////
 
@@ -2389,47 +2571,74 @@ class canvasLab
 
     ////    UTILITIES   ////////////////////////////////////
 
-        /**
-         * Returns the center X & Y coordinates of the present canvas
-         * @public
-         * @function
-         * @return          {Point}                                     Center X & Y coordinates
-         */
-        get center ( )
-        {
-            return new Point (
+        ////    PRIVATE    ///////////////////////
 
-                           this._canvas.canvas.clientWidth  / 2,                // X coordinate
-
-                           this._canvas.canvas.clientHeight / 2                 // Y coordinate
-                       );
-        }
-
-        /**
-         * Clears canvas
-         * @private
-         * @function
-         */
-        clearCanvas ( )
-        {
-            let _canvas = document.getElementById ( this.canvas );
+            /**
+             * Sets the canvas and canvases properties
+             * @private
+             * @function
+             */
+            _setCanvases ( )
+            {
+                let _canvases = document.getElementsByTagName ( 'canvas' );
 
 
-            if ( _canvas )  // @TODO: identify why this check has to take place periodically !
+                if ( typeof _canvases === 'object' && this._canvases === undefined )
 
-                this._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
-        }
+                    for ( let _id in _canvases )
 
-        /**
-         * Animate the transition passed
-         * @property        {Transition} transition                     Transition animation
-         */
-        animate ( transition = { object, timing, period, change } )
-        {
-            if ( transition )
+                        if ( _id == 0 )
 
-                this.#application.animation = transition;
-        }
+                            this.canvas   = _canvases [ _id ].id;
+
+                        else
+
+                            this.canvases = _canvases [ _id ].id;
+            }
+
+        ////    PUBLIC    ////////////////////////
+
+            /**
+             * Returns the center X & Y coordinates of the present canvas
+             * @public
+             * @function
+             * @return          {Point}                                     Center X & Y coordinates
+             */
+            get center ( )
+            {
+                return new Point (
+
+                               this._canvas.canvas.clientWidth  / 2,                // X coordinate
+
+                               this._canvas.canvas.clientHeight / 2                 // Y coordinate
+                           );
+            }
+
+            /**
+             * Clears canvas
+             * @private
+             * @function
+             */
+            clearCanvas ( )
+            {
+                let _canvas = document.getElementById ( this.canvas );
+
+
+                if ( _canvas )  // @TODO: identify why this check has to take place periodically !
+
+                    this._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
+            }
+
+            /**
+             * Animate the transition passed
+             * @property        {Transition} transition                     Transition animation
+             */
+            animate ( transition = { object, timing, period, change } )
+            {
+                if ( transition )
+
+                    this.#application.animation = transition;
+            }
 
     ////    INITIALIZE  ////////////////////////////////////
 
@@ -2440,20 +2649,7 @@ class canvasLab
          */
         _init ( )
         {
-            let _canvases = document.getElementsByTagName ( 'canvas' );
-
-
-            if ( typeof _canvases === 'object' && this._canvases === undefined )
-
-                for ( let _id in _canvases )
-
-                    if ( _id == 0 )
-
-                        this.canvas   = _canvases [ _id ].id;
-
-                    else
-
-                        this.canvases = _canvases [ _id ].id;
+            this._setCanvases ( );
         }
 }
 
@@ -5915,7 +6111,14 @@ class Position
 	_end           = undefined;
 
 	_distance      = undefined;
+
+	_startDistance = undefined;
+	_endDistance   = undefined;
+
 	_direction     = undefined;
+
+	_startDirection = undefined;
+	_endDirection   = undefined;
 
 	_rotation      = 0;
 
@@ -5976,6 +6179,54 @@ class Position
 				return this._origin;
 			}
 
+		////    [ START ]    /////////////////////////
+
+		    /**
+		     * Set start
+		     * @public
+		     * @function
+		     * @param 			{number} value 								Start of object
+		     */
+		    set start ( value )
+		    {
+		        this._start = value;
+		    }
+
+		    /**
+		     * Get start
+		     * @public
+		     * @function
+		     * @return 			{number}									Start of object
+		     */
+		    get start ( )
+		    {
+		        return this._start;
+		    }
+
+		////    [ END ]    ///////////////////////////////////
+
+		    /**
+		     * Set end
+		     * @public
+		     * @function
+		     * @param 			{number} value 								End of object
+		     */
+		    set end ( value )
+		    {
+		        this._end = value;
+		    }
+
+		    /**
+		     * Get end
+		     * @public
+		     * @function
+		     * @return 			{number}									End of object
+		     */
+		    get end ( )
+		    {
+		        return this._end;
+		    }
+
 		////    [ DISTANCE ]    //////////////////////
 
 			/**
@@ -6006,6 +6257,66 @@ class Position
 				return this._distance;
 			}
 
+		////    [ START DISTANCE ]    ////////////////
+
+		    /**
+		     * Set startDistance
+		     * @public
+		     * @function
+		     * @param 			{number} value 								StartDistance of object
+		     */
+		    set startDistance ( value )
+		    {
+		        if ( value != undefined  &&  this._isPoint ( value ) )
+
+	                this._startDistance = Math.sqrt (
+	                                               ( Math.pow ( value.x - this.master.x, 2 ) ) +
+
+	                                               ( Math.pow ( value.y - this.master.y, 2 ) )
+	                                           );
+		    }
+
+		    /**
+		     * Get startDistance
+		     * @public
+		     * @function
+		     * @return 			{number}									StartDistance of object
+		     */
+		    get startDistance ( )
+		    {
+		        return this._startDistance;
+		    }
+
+		////    [ END DISTANCE ]    //////////////////
+
+		    /**
+		     * Set endDistance
+		     * @public
+		     * @function
+		     * @param 			{number} value 								EndDistance of object
+		     */
+		    set endDistance ( value )
+		    {
+		        if ( value != undefined  &&  this._isPoint ( value ) )
+
+	                this._endDistance = Math.sqrt (
+	                                               ( Math.pow ( value.x - this.master.x, 2 ) ) +
+
+	                                               ( Math.pow ( value.y - this.master.y, 2 ) )
+	                                           );
+		    }
+
+		    /**
+		     * Get endDistance
+		     * @public
+		     * @function
+		     * @return 			{number}									EndDistance of object
+		     */
+		    get endDistance ( )
+		    {
+		        return this._endDistance;
+		    }
+
 		////    [ DIRECTION ]    /////////////////////
 
 			/**
@@ -6031,6 +6342,58 @@ class Position
 			{
 				return this._direction;
 			}
+
+		////    [ START DIRECTION ]    ///////////////
+
+		    /**
+		     * Set startDirection
+		     * @public
+		     * @function
+		     * @param 			{number} value 								StartDirection of object
+		     */
+		    set startDirection ( value )
+		    {
+		        if ( value != undefined  &&  this._isPoint ( value ) )
+
+					this._startDirection = Math.atan2 ( value.y - this.master.y, value.x - this.master.x );
+		    }
+
+		    /**
+		     * Get startDirection
+		     * @public
+		     * @function
+		     * @return 			{number}									StartDirection of object
+		     */
+		    get startDirection ( )
+		    {
+		        return this._startDirection;
+		    }
+
+		////    [ END DIRECTION ]    /////////////////
+
+		    /**
+		     * Set endDirection
+		     * @public
+		     * @function
+		     * @param 			{number} value 								EndDirection of object
+		     */
+		    set endDirection ( value )
+		    {
+		        if ( value != undefined  &&  this._isPoint ( value ) )
+
+					this._endDirection = Math.atan2 ( value.y - this.master.y, value.x - this.master.x );
+		    }
+
+		    /**
+		     * Get endDirection
+		     * @public
+		     * @function
+		     * @return 			{number}									EndDirection of object
+		     */
+		    get endDirection ( )
+		    {
+		        return this._endDirection;
+		    }
 
 		////    [ ROTATION ]    //////////////////////
 
@@ -6385,9 +6748,11 @@ class Circle
             this._isAspect = VALIDATION.isAspect;
             this._isAnchor = VALIDATION.isAnchor;
             this._isDegree = VALIDATION.isDegree;
+            this._isFill   = VALIDATION.isFill;
             this._isInDom  = VALIDATION.isInDom;
             this._isNumber = VALIDATION.isNumber;
             this._isPoint  = VALIDATION.isPoint;
+            this._isStroke = VALIDATION.isStroke;
 
             this._drawAnchor  = UTILITIES.individual.draw.anchor;
             this._drawAxis    = UTILITIES.individual.draw.axis;
@@ -6536,6 +6901,17 @@ class Circle
         ////    [ STROKE ]    ////////////////////////
 
             /**
+             * Set stroke properties
+             * @public
+             * @function
+             * @param             {Stroke} value                            Stroke properties
+             */
+            set stroke ( value )
+            {
+                this._stroke = ( this._isStroke ( value ) ) ? value : this._stroke;
+            }
+
+            /**
              * Get stroke properties
              * @public
              * @function
@@ -6547,6 +6923,17 @@ class Circle
             }
 
         ////    [ FILL ]    //////////////////////////
+
+            /**
+             * Set fill properties
+             * @public
+             * @function
+             * @param             {Fill} value                              Fill properties
+             */
+            set fill ( value )
+            {
+                this._fill = (this._isFill ( value ) ) ? value : this._fill;
+            }
 
             /**
              * Get fill properties
@@ -6666,6 +7053,16 @@ class Circle
             _isDegree ( ) { }
 
             /**
+             * Returns whether the passed value is a Fill property object
+             * @private
+             * @function
+             * @param           {Object} value                              Fill
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isFill}
+             */
+            _isFill ( ) { }
+
+            /**
              * Returns whether the passed value is an element id within the DOM
              * @private
              * @function
@@ -6673,7 +7070,7 @@ class Circle
              * @return          {boolean}                                   True || False
              * @see             {@link VALIDATION.isInDom}
              */
-            _isInDom  ( ) { }
+            _isInDom ( ) { }
 
             /**
              * Returns whether the passed value is a Number value
@@ -6693,7 +7090,17 @@ class Circle
              * @return          {boolean}                                   True || False
              * @see             {@link VALIDATION.isPoint}
              */
-            _isPoint  ( ) { }
+            _isPoint ( ) { }
+
+            /**
+             * Returns whether the passed value is a Stroke property object
+             * @private
+             * @function
+             * @param           {Object} value                              Stroke
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isStroke}
+             */
+            _isStroke ( ) { }
 
         ////    + PUBLIC    //////////////////////
 
@@ -7106,6 +7513,7 @@ class Line
             this._isInDom  = VALIDATION.isInDom;
             this._isNumber = VALIDATION.isNumber;
             this._isPoint  = VALIDATION.isPoint;
+            this._isStroke = VALIDATION.isStroke;
 
             this._drawAxis    = UTILITIES.individual.draw.axis;
             this._drawBorder  = UTILITIES.individual.draw.border;
@@ -7133,7 +7541,6 @@ class Line
                     this.start.x = this.end.x = end.x;
                 }
             }
-
 
             if ( end != undefined )                             // End
             {
@@ -7240,6 +7647,17 @@ class Line
             }
 
         ////    [ STROKE ]    ////////////////////
+
+            /**
+             * Set stroke properties
+             * @public
+             * @function
+             * @param             {Stroke} value                            Stroke properties
+             */
+            set stroke ( value )
+            {
+                this._stroke = ( this._isStroke ( value ) ) ? value : this._stroke;
+            }
 
             /**
              * Get stroke properties
@@ -7495,7 +7913,7 @@ class Line
              * @return          {boolean}                                   True || False
              * @see             {@link VALIDATION.isInDom}
              */
-            _isInDom  ( ) { }
+            _isInDom ( ) { }
 
             /**
              * Returns whether the passed value is a Number value
@@ -7515,7 +7933,17 @@ class Line
              * @return          {boolean}                                   True || False
              * @see             {@link VALIDATION.isPoint}
              */
-            _isPoint  ( ) { }
+            _isPoint ( ) { }
+
+            /**
+             * Returns whether the passed value is a Stroke property object
+             * @private
+             * @function
+             * @param           {Object} value                              Stroke
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isStroke}
+             */
+            _isStroke ( ) { }
 
         ////    + PUBLIC    //////////////////////
 
@@ -7958,6 +8386,8 @@ class Line
 
                 this._canvas.beginPath   ( );
 
+
+
                 this._canvas.moveTo      ( this.start.x + _straddle, this.start.y + _straddle );
 
 
@@ -8030,8 +8460,10 @@ class Rectangle
 
             this._isAspect = VALIDATION.isAspect;
             this._isDegree = VALIDATION.isDegree;
+            this._isFill   = VALIDATION.isFill;
             this._isInDom  = VALIDATION.isInDom;
             this._isPoint  = VALIDATION.isPoint;
+            this._isStroke = VALIDATION.isStroke;
 
             this._drawAnchor     = UTILITIES.individual.draw.anchor;
             this._drawAxis       = UTILITIES.individual.draw.axis;
@@ -8238,6 +8670,17 @@ class Rectangle
         ////    [ STROKE ]    ////////////////////
 
             /**
+             * Set stroke properties
+             * @public
+             * @function
+             * @param           {Stroke} value                              Stroke properties
+             */
+            set stroke ( value )
+            {
+                this._stroke = ( this._isStroke ( value ) ) ? value : this._stroke;
+            }
+
+            /**
              * Get stroke properties
              * @public
              * @function
@@ -8249,6 +8692,17 @@ class Rectangle
             }
 
         ////    [ FILL ]    //////////////////////
+
+            /**
+             * Get fill properties
+             * @public
+             * @function
+             * @param           {Fill} value                                Fill properties
+             */
+            set fill ( value )
+            {
+                this._fill = ( this._isFill ( value ) ) ? value : this._fill;
+            }
 
             /**
              * Get fill properties
@@ -8352,6 +8806,16 @@ class Rectangle
             _isDegree ( ) { }
 
             /**
+             * Returns whether the passed value is a Fill property object
+             * @private
+             * @function
+             * @param           {Object} value                              Fill
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isFill}
+             */
+            _isFill ( ) { }
+
+            /**
              * Returns whether the passed value is an element id within the DOM
              * @private
              * @function
@@ -8370,6 +8834,16 @@ class Rectangle
              * @see             {@link VALIDATION.isPoint}
              */
             _isPoint ( ) { }
+
+            /**
+             * Returns whether the passed value is a Stroke property object
+             * @private
+             * @function
+             * @param           {Object} value                              Stroke
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isStroke}
+             */
+            _isStroke ( ) { }
 
         ////    + PUBLIC    //////////////////////
 
@@ -8701,9 +9175,11 @@ class Text extends Font
 
         ////    COMPOSITION     ////////////////////////////
 
-            this._isDegree   = VALIDATION.isDegree;
-            this._isInDom    = VALIDATION.isInDom;
-            this._isPoint    = VALIDATION.isPoint;
+            this._isDegree = VALIDATION.isDegree;
+            this._isFill   = VALIDATION.isFill;
+            this._isInDom  = VALIDATION.isInDom;
+            this._isPoint  = VALIDATION.isPoint;
+            this._isStroke = VALIDATION.isStroke;
 
             this._drawAnchor  = UTILITIES.individual.draw.anchor;
             this._rotatePoint = UTILITIES.individual.misc.rotatePoint;
@@ -8839,6 +9315,17 @@ class Text extends Font
         ////    [ STROKE ]  //////////////////////
 
             /**
+             * Set stroke properties
+             * @public
+             * @function
+             * @return          {Stroke} value                              Stroke properties
+             */
+            set stroke ( value )
+            {
+                this._stroke = ( this._isStroke ( value ) ) ? value : this._stroke;
+            }
+
+            /**
              * Get stroke properties
              * @public
              * @function
@@ -8850,6 +9337,17 @@ class Text extends Font
             }
 
         ////    [ FILL ]    //////////////////////
+
+            /**
+             * Set fill properties
+             * @public
+             * @function
+             * @return          {Fill} value                                Fill properties
+             */
+            set fill ( value )
+            {
+                this._fill = ( this._isFill ( value ) ) ? value : this._isFill;
+            }
 
             /**
              * Get fill properties
@@ -9052,6 +9550,16 @@ class Text extends Font
         _isDegree ( ) { }
 
         /**
+         * Returns whether the passed value is a Fill property object
+         * @private
+         * @function
+         * @param           {Object} value                              Fill
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isFill}
+         */
+        _isFill ( ) { }
+
+        /**
          * Returns whether the passed value is an element id within the DOM
          * @private
          * @function
@@ -9070,6 +9578,16 @@ class Text extends Font
          * @see             {@link VALIDATION.isPoint}
          */
         _isPoint  ( ) { }
+
+        /**
+         * Returns whether the passed value is a Stroke property object
+         * @private
+         * @function
+         * @param           {Object} value                              Stroke
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isStroke}
+         */
+        _isStroke ( ) { }
 
     ////    UTILITIES   ////////////////////////////////////
 
@@ -9100,7 +9618,7 @@ class Text extends Font
              * @function
              * @see             {@link UTILITIES.individual.set.shadow}
              */
-            _setShadow   ( ) { }
+            _setShadow ( ) { }
 
             /**
              * Draws anchor point
@@ -9277,9 +9795,11 @@ class Text extends Font
                 [ this.x, this.y ] = [  ( this.x + this.offset.x ), ( this.y + this.offset.y )  ];  // Incorporate offset from super class
 
 
-                this._canvas.font      = this.font;
+                this._canvas.font         = this.font;
 
-                this._canvas.textAlign = 'center';
+                this._canvas.textAlign    = 'center';
+
+                this._canvas.textBaseline = 'middle';
 
                 this._setFillType ( );
 
@@ -13432,7 +13952,7 @@ class Animation
 
                             _amount.degree = ( this.change.rotatePoint ) ? _amount.degree + this.change.rotatePoint
 
-                                                                             : _amount.degree;
+                                                                         : _amount.degree;
 
 
                             let _point = this._getPointByDegreeNDistance ( _amount.degree, _amount.distance );
@@ -14426,7 +14946,7 @@ class Animations
 
                     for ( let _type in _change )
                     {
-                        let _difference = _change [ _type ];
+                        let _amount = _change [ _type ];
 
 
                         switch ( _type )
@@ -14435,19 +14955,39 @@ class Animations
 
                                 _object.position.origin    = _object.point;
 
-                                _object.position.distance  = _difference;
+                                _object.position.distance  = _amount;
 
-                                _object.position.direction = _difference;
+                                _object.position.direction = _amount;
 
                                 break;
 
                             case 'pointFrom':
 
-                                _object.position.origin    = _difference;
+                                _object.position.origin    = _amount;
 
-                                _object.position.distance  = _difference;
+                                _object.position.distance  = _amount;
 
-                                _object.position.direction = _difference;
+                                _object.position.direction = _amount;
+
+                                break;
+
+                            case 'startPoint':
+
+                                _object.position.start          = _object.start;
+
+                                _object.position.startDistance  = _amount;
+
+                                _object.position.startDirection = _amount;
+
+                                break;
+
+                            case 'endPoint':
+
+                                _object.position.end          = _object.end;
+
+                                _object.position.endDistance  = _amount;
+
+                                _object.position.endDirection = _amount;
 
                                 break;
 
@@ -14457,9 +14997,9 @@ class Animations
 
 
                                 // Whether to invert degree
-                                let _point = ( _difference.invert ) ? this._getPointByDegreeNDistance ( _id, this._getInvertedAngle ( _difference.degree ), _difference.distance )
+                                let _point = ( _amount.invert ) ? this._getPointByDegreeNDistance ( _id, this._getInvertedAngle ( _amount.degree ), _amount.distance )
 
-                                                                    : this._getPointByDegreeNDistance ( _id, _difference.degree, _difference.distance );
+                                                                    : this._getPointByDegreeNDistance ( _id, _amount.degree, _amount.distance );
 
 
                                 _object.position.distance  = _point;
@@ -14514,7 +15054,7 @@ class Animations
 
                             case 'cache':
 
-                                this.cache = _difference;
+                                this.cache = _amount;
 
                                 break;
                         }
@@ -14553,6 +15093,40 @@ class Animations
 
                                 y: _object.position.origin.y + ( _object.position.distance * progress ) * Math.sin ( _object.position.direction )
                             }
+
+                            break;
+
+                        case 'startPoint':
+
+                            _object.start =
+                            {
+                                x: _object.position.start.x + ( _object.position.startDistance * progress ) * Math.cos ( _object.position.startDirection ),
+
+                                y: _object.position.start.y + ( _object.position.startDistance * progress ) * Math.sin ( _object.position.startDirection )
+                            }
+
+                            break;
+
+                        case 'startPointLink':
+
+                            _object.start = _amount.point;
+
+                            break;
+
+                        case 'endPoint':
+
+                            _object.end =
+                            {
+                                x: _object.position.end.x + ( _object.position.endDistance * progress ) * Math.cos ( _object.position.endDirection ),
+
+                                y: _object.position.end.y + ( _object.position.endDistance * progress ) * Math.sin ( _object.position.endDirection )
+                            }
+
+                            break;
+
+                        case 'endPointLink':
+
+                            _object.end = _amount.point;
 
                             break;
 
@@ -14627,44 +15201,6 @@ class Animations
                             // code . . .
 
                             break;
-
-                        case 'lineTo':
-
-                            let _lines = new Lines;
-
-
-                            if ( Array.isArray ( _amount ) )
-                            {
-                                for ( let _entry of _amount )
-                                {
-                                    let _line = new Line (
-                                                    _object.point,              /* Start   */
-                                                    _entry.point,               /* End     */
-                                                    undefined,                  /* Stroke  */
-                                                    undefined,                  /* Shadow  */
-                                                    undefined,                  /* lineCap */
-                                                    _object.canvas              /* canvas  */
-                                                );
-
-                                        _line.draw ( );
-                                }
-                            }
-                            else
-                            {
-                                let _line = new Line (
-                                                _object.point,                  /* Start   */
-                                                _amount.point,                  /* End     */
-                                                undefined,                      /* Stroke  */
-                                                undefined,                      /* Shadow  */
-                                                undefined,                      /* lineCap */
-                                                _object.canvas                  /* canvas  */
-                                            );
-
-                                    _line.draw ( );
-                            }
-
-
-                            break;
                     }
                 }
             }
@@ -14693,6 +15229,8 @@ class Animations
                 this._checkQueue ( );
 
                 this._setPositionData ( );
+
+                // this._setBriefChanges ( );
 
             ////    PROPERTIES    //////////////////////////
 
@@ -14816,9 +15354,9 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Oct, 24 2024',
-            Version:   '0.7.196',
-            Copyright: 'Copyright (c) 2023 Justin Don Byrne'
+            Updated:   'Nov, 07 2024',
+            Version:   '0.7.201',
+            Copyright: 'Copyright (c) 2024 Justin Don Byrne'
         }
     }
 
@@ -15057,6 +15595,22 @@ class myTransitions
 
 	_template    = undefined;
 
+
+	_numbers = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ]
+	_symbols = [ '𓆗', '𓁳', '𓅓', '𓃠', '𓃶', '𓆣', '𓁈', '𓆃', '𓂀', '𓋹'  ]
+	_clocks  =
+	{
+		one: [ '🕛', '🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚' ],
+		two: [ '🕧', '🕜', '🕝', '🕞', '🕟', '🕠', '🕡', '🕢', '🕣', '🕤', '🕥', '🕦' ]
+	}
+
+	_characters = new Queue ( this._symbols );
+
+	_config =
+	{
+		optimal: false
+	}
+
 	/**
 	 * Create myTransitions object
 	 */
@@ -15121,75 +15675,242 @@ class myTransitions
 
 		////    [ PRIVATE ]    ///////////////////
 
+       		/**
+       		 * Returns a new object based on the passed clClass, mirroring properties from the passed object
+       		 * @private
+       		 * @function
+       		 * @param 			{object}   clClass 							Canvas Lab object class
+       		 * @param 			{clObject} object 							Canvas Lab object
+       		 */
+        	_getNewObjectFromType ( clClass, object )
+        	{
+        		let _result = undefined;
+
+        		let _class  = new clClass;
+
+        		let _type   = _class.constructor.name;
+
+
+				switch ( _type )
+        		{
+	        		case 'Circle':
+
+        				_result        = new Circle;
+
+		        		_result.point  = this.template.point;
+
+		        		_result.radius = this.template.radius;
+
+		        		_result.stroke = this.template.strokes.next;
+
+		        		_result.fill   = this.template.fills.next;
+
+		        		_result.canvas = object.canvas;
+
+	        			break;
+
+	        		case 'Ellipse':
+
+	        			_result        = new Ellipse;
+
+		        		_result.point  = this.template.point;
+
+		        		_result.radius = new Point ( this.template.radius * 0.75, this.template.radius );
+
+		        		_result.stroke = this.template.strokes.next;
+
+		        		_result.fill   = this.template.fills.next;
+
+		        		_result.canvas = object.canvas;
+
+	        			break;
+
+	        		case 'Rectangle':
+
+	        			_result        = new Rectangle;
+
+		        		_result.point  = this.template.point;
+
+		        		_result.aspect = new Aspect ( this.template.radius * 2, this.template.radius * 2 );
+
+		        		_result.stroke = this.template.strokes.next;
+
+		        		_result.fill   = this.template.fills.next;
+
+		        		_result.canvas = object.canvas;
+
+	        			break;
+
+	        		case 'RoundedRectangle':
+
+	        			_result        = new RoundedRectangle;
+
+		        		_result.point  = this.template.point;
+
+		        		_result.aspect = new Aspect ( this.template.radius * 2, this.template.radius * 2 );
+
+		        		_result.stroke = this.template.strokes.next;
+
+		        		_result.fill   = this.template.fills.next;
+
+		        		_result.canvas = object.canvas;
+
+	        			break;
+
+	        		case 'Text':
+
+	        			_result        = new Text;
+
+		        		_result.point  = this.template.point;
+
+		        		_result.text   = this._characters.next;
+
+		        		_result.size   = this.template.radius;
+
+		        		_result.stroke = this.template.strokes.next;
+
+		        		_result.fill   = this.template.fills.next;
+
+		        		_result.canvas = object.canvas;
+
+	        			break;
+        		}
+
+
+        		return _result;
+        	}
+
+        	/**
+        	 * Returns an array of new objects & changes created from the collection
+        	 * @private
+        	 * @function
+			 * @param           {Array} 		  shape                     Array of collection indexes
+			 * @param           {clCollection}    collection                Canvas Lab collection
+			 * @param           {object} 		  clClass 					Canvas Lab object class
+			 * @return 		    {Object} 		  		 					Objects & changes for the shape passed
+        	 */
+        	_getShapeObjectData ( shape, collection, clClass )
+        	{
+        		let _results =
+        		{
+        			objects: new Array,
+        			changes: new Array
+        		}
+
+
+    			for ( let _i = 0; _i < shape.length; _i++ )
+		        {
+			        let _index  = shape [ _i ];
+
+					let _object = collection [ _index ];
+
+
+				    let _newObject = this._getNewObjectFromType ( clClass, _object );
+
+				    let _change    = { point: _object.point, cache: true };
+
+
+				    _results.objects.push ( _newObject );
+
+				    _results.changes.push ( _change );
+		        }
+
+
+		        return _results;
+        	}
+
+        	/**
+        	 * Returns an array of lines & changes linking the objects & collections together
+        	 */
+        	_getShapeLineData ( shape, objects, collection )
+        	{
+        		let _results =
+        		{
+        			objects: new Array,
+        			changes: new Array
+        		}
+
+
+        		for ( let _i = 0; _i < objects.length; _i++ )
+
+        			for ( let _j = 0; _j < objects.length; _j++ )
+        			{
+        				if ( this._config.optimal )
+        				{
+        					if ( _i === _j ) continue;
+
+	        				if (  _i > _j  ) continue;
+        				}
+
+
+        				let _start  = collection [ shape [ _i ] ];
+
+        				let _end    = objects [ _j ];
+
+
+        				let _object = new Line;
+
+        					_object.start  = _start.point;
+
+        					_object.end    = _end.point;
+
+        					_object.canvas = objects [ 0 ].canvas;
+
+        					_object.stroke = this.template.strokes.next;
+
+
+        				let _change = { endPointLink: _end };
+
+
+        				_results.objects.push ( _object );
+
+        				_results.changes.push ( _change );
+        			}
+
+
+        		return _results;
+        	}
+
 			/**
 		     * Creates shape from array of numbers
-		     * @public
+		     * @private
 		     * @function
 		     * @param           {Array} 		  shape                     Array of collection indexes
-		     * @param           {ClCollection}    collection                Canvas Lab collection
+		     * @param           {clCollection}    collection                Canvas Lab collection
 		     * @param           {string|Function} timing                    Timing function
 		     * @param           {number}          period                    Period of timer
-		     * @param           {boolean}         lineTos                   Draw lines connecting shapes
-		     * @param           {boolean}         optimal                   Optimal line draws
+		     * @param           {object} 		  clClass 					Canvas Lab object class
 		     */
-		    _shape ( shape, collection, timing, period, lineTos = true, optimal = false )
+		    _shape ( shape, collection, timing, period, clClass )
 		    {
+		    	this.template.strokes.reset;
+
+
 		    	this._transitions = new Array;
 
 
 		        let _objects = new Array;
 
-		        let _changes = new Object;
-
-		        let _matrix  = new Array;
+		        let _changes = new Array;
 
 
-				for ( let _i = 0; _i < shape.length; _i++ )
-		        {
-		        	let _index  = shape [ _i ];
+		        ////    SHAPE    ///////////////////////////
 
-		        	let _object = collection [ _index ];
-
-		        	let _circle = new Circle (
-		        					  this.template.point, 							/* Point  */
-		        					  _object.radius,  								/* Radius */
-		        					  undefined,  									/* Angle  */
-		        					  new Stroke ( _object.stroke.color ),  		/* Stroke */
-		        					  new Fill   ( _object.fill.color   ),  		/* Fill   */
-		        					  undefined, 									/* Shadow */
-		        					  _object.canvas 								/* Canvas */
-		        				  );
+		        let _shapeData = this._getShapeObjectData ( shape, collection, clClass );
 
 
-		        	_objects.push ( _circle );
+		        	_objects.push.apply ( _objects, _shapeData.objects );
 
-		        	_changes [ _i ] = { point: _object.point, cache: true }
+		        	_changes.push.apply ( _changes, _shapeData.changes );
 
+		        ////    LINES    ///////////////////////////
 
-		        	////    LINETOS    /////////////////////////////////////
-
-			        	if ( lineTos )
-			        	{
-			        		_changes [ _i ].lineTo = new Array;
+	        	let _lineData = this._getShapeLineData ( shape, _objects, collection );
 
 
-			        		for ( let _j = 0; _j < shape.length; _j++ )
-			        		{
-			        			if ( _i === _j ) continue; 		// Skip the first _object's point, because it cannot draw a line to itself
+	        		_objects.push.apply ( _objects, _lineData.objects );
 
-
-			        			if ( optimal ) 					// Skip every object's first, second, third to skip duplicate objects that have already had a line drawn to it.
-
-			        				if ( _j < _i ) continue;
-
-
-			        			_matrix.push ( { objectA: _i, objectB: _j } );
-
-
-			        			_changes [ _i ].lineTo.push ( collection [ shape [ _j ] ] )
-			        		}
-			        	}
-		        }
+	        		_changes.push.apply ( _changes, _lineData.changes );
 
 
 	            let _result =
@@ -15342,15 +16063,14 @@ class myTransitions
 		     * @param           {ClCollection}    collection                Canvas Lab collection
 		     * @param           {string|Function} timing                    Timing function
 		     * @param           {number}          period                    Period of timer
-		     * @param           {boolean}         lineTos                   Draw lines connecting shapes
-		     * @param           {boolean}         optimal                   Optimal line draws
+		     * @param           {object} 		  clClass 					Canvas Lab object class
 		     */
-		    shape ( shape, collection, timing, period, lineTos = true, optimal = false )
+		    shape ( shape, collection, timing, period, clClass )
 		    {
 		        let _shapeArray = new Array;
 
 
-		        if ( ! shape )
+		        if ( ! shape ) 	// @NOTE: If no shape, generate shape based off of it's length
 		        {
 		        	for ( let _i = 0; _i < collection.length; _i++ )
 
@@ -15364,7 +16084,7 @@ class myTransitions
 	    			_shapeArray = shape;
 
 
-				return this._shape ( _shapeArray, collection, timing, period, lineTos, optimal );
+				return this._shape ( _shapeArray, collection, timing, period, clClass );
 		    }
 }
  
@@ -15395,6 +16115,11 @@ class SacredCircles
     #numbers     = undefined;
     #tangents    = undefined;
     #counter     = -1;              /* Counter to define the gaps between each circle: @see this.create ( ) */
+
+    #config =
+    {
+        reverse: false
+    }
 
     /**
      * Create a SacredCircles template
@@ -15534,19 +16259,11 @@ class SacredCircles
                 {
                     switch ( value.constructor.name )
                     {
-                        case 'Rgb':
+                        case 'Rgb':     this._strokes = new Queue ( new Array ( new Stroke ( value ) ) );   break;
 
-                            this._strokes = new Queue ( new Array ( new Stroke ( value ) ) );
+                        case 'Stroke':  this._strokes = new Queue ( new Array ( value ) );                  break;
 
-                            break;
-
-                        case 'Stroke':
-
-                            this._strokes = new Queue ( new Array ( value ) );
-
-                        case 'Queue':
-
-                            this._strokes = value;
+                        case 'Queue':   this._strokes = value;                                              break;
 
                         default:
 
@@ -15555,9 +16272,14 @@ class SacredCircles
                                 let _result = new Array;
 
 
-                                for ( let _item of value )
+                                for ( let _entry of value )
 
-                                    _result.push ( new Stroke ( _item ) );
+                                    switch ( _entry.constructor.name )
+                                    {
+                                        case 'Rgb':         _result.push ( new Stroke ( _entry ) );         break;
+
+                                        case 'Stroke':      _result.push ( _entry );                        break;
+                                    }
 
 
                                 this._strokes = new Queue ( _result );
@@ -15594,21 +16316,31 @@ class SacredCircles
                 {
                     switch ( value.constructor.name )
                     {
-                        case 'Rgb':
+                        case 'Rgb':     this._fills = new Queue ( new Array ( new Fill ( value ) ) );   break;
 
-                            this._fills = new Queue ( new Array ( new Fill ( value ) ) );
+                        case 'Fill':    this._fills = new Queue ( new Array ( _array ) );               break;
 
-                            break;
-
-                        case 'Fill':
-
-                            this._fills = new Queue ( new Array ( _array ) );
-
-                        case 'Queue':
-
-                            this._fills = value;
+                        case 'Queue':   this._fills = value;                                            break;
 
                         default:
+
+                            Array.isArray ( value )
+                            {
+                                let _result = new Array;
+
+
+                                for ( let _entry of value )
+
+                                    switch ( _entry.constructor.name )
+                                    {
+                                        case 'Rgb':     _result.push ( new Fill ( _entry ) );   break;
+
+                                        case 'Fill':    _result.push ( _entry );                break;
+                                    }
+
+
+                                this._fills = new Queue ( _result );
+                            }
 
                             Array.isArray ( value )
                             {
@@ -15693,6 +16425,17 @@ class SacredCircles
                 this.#numbers = ( Array.isArray ( value ) ) ? new Queue ( value ) : this.#numbers;
             }
 
+            /**
+             * Get numbers value
+             * @private
+             * @function
+             * @param           {Queue}                                     Array of numbers
+             */
+            get _numbers ( )
+            {
+                return this.#numbers;
+            }
+
         ////    [ TANGENTS ]    //////////////////
 
             /**
@@ -15751,72 +16494,6 @@ class SacredCircles
     ////    UTILITIES    ///////////////////////////////////
 
         ////    # PROTECTED    ///////////////////
-
-            /**
-             * Returns a Circle object
-             * @protected
-             * @function
-             * @param           {Point}  point                              X & Y Coordinates
-             * @param           {Stroke} stroke                             Stroke properties
-             * @param           {Fill}   fill                               Fill properties
-             * @return          {Circle}                                    Circle object
-             */
-            #getCircle           = ( point, stroke, fill )  => new Circle ( point, this.radius, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
-
-            /**
-             * Returns a Ellipse object
-             * @protected
-             * @function
-             * @param           {Point}  point                              X & Y Coordinates
-             * @param           {Stroke} stroke                             Stroke properties
-             * @param           {Fill}   fill                               Fill properties
-             * @return          {Ellipse}                                   Ellipse object
-             */
-            #getEllipse          = ( point, stroke, fill )  => new Ellipse ( point, new Point ( this.radius, this.radius * 0.5 ), undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
-
-            /**
-             * Returns a Rectangle object
-             * @protected
-             * @function
-             * @param           {Point}  point                              X & Y Coordinates
-             * @param           {Stroke} stroke                             Stroke properties
-             * @param           {Fill}   fill                               Fill properties
-             * @return          {Rectangle}                                 Rectangle object
-             */
-            #getRectangle        = ( point, stroke, fill )  => new Rectangle ( point, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
-
-            /**
-             * Returns a RoundedRectangle object
-             * @protected
-             * @function
-             * @param           {Point}  point                              X & Y Coordinates
-             * @param           {Stroke} stroke                             Stroke properties
-             * @param           {Fill}   fill                               Fill properties
-             * @return          {RoundedRectangle}                          Rounded rectangle object
-             */
-            #getRoundedRectangle = ( point, stroke, fill )  => new RoundedRectangle ( point, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
-
-            /**
-             * Returns a Text object
-             * @protected
-             * @function
-             * @param           {Point}  point                              X & Y Coordinates
-             * @param           {Stroke} stroke                             Stroke properties
-             * @param           {Fill}   fill                               Fill properties
-             * @return          {Text}                                      Text object
-             */
-            #getText             = ( point, stroke, fill )  => new Text ( point, this.#numbers.next, undefined, undefined, undefined, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined );
-
-            /**
-             * Returns a Line object
-             * @protected
-             * @function
-             * @param           {Point} startPoint                          Starting point of line
-             * @param           {Point} endPoint                            Ending point of line
-             * @return          {Line}                                      Line object
-             */
-            #getLine             = ( startPoint, endPoint ) => new Line ( startPoint, endPoint, undefined, undefined, undefined, undefined );
-
 
             /**
              * Insert initial object
@@ -15903,30 +16580,32 @@ class SacredCircles
 
                 let _result         = undefined;
 
+                let _text           = this.#numbers.next;
+
 
                 switch ( _collectionType )
                 {
-                    case 'Circles':             _result = this.#getCircle ( point, stroke, fill );                 break;
+                    case 'Circles':             _result = canvaslab.get.circle ( point, stroke, fill );                   break;
 
-                    case 'Ellipses':            _result = this.#getEllipse ( point, stroke, fill );                break;
+                    case 'Ellipses':            _result = canvaslab.get.ellipse ( point, stroke, fill );                  break;
 
-                    case 'Rectangles':          _result = this.#getRectangle ( point, stroke, fill );              break;
+                    case 'Rectangles':          _result = canvaslab.get.rectangle ( point, stroke, fill );                break;
 
-                    case 'RoundedRectangles':   _result = this.#getRoundedRectangle ( point, stroke, fill );       break;
+                    case 'RoundedRectangles':   _result = canvaslab.get.roundedRectangle ( point, stroke, fill );         break;
 
-                    case 'Texts':               _result = this.#getText ( point, stroke, fill );                   break;
+                    case 'Texts':               _result = canvaslab.get.text ( point, _text, stroke, fill );  break;
 
                     case 'Group':
 
-                                            let _objectA = this.#getCircle ( point, stroke, fill );
+                                            let _objectA = canvaslab.get.circle ( point, stroke, fill );
 
-                                            let _objectB = this.#getEllipse ( point, stroke, fill );
+                                            let _objectB = canvaslab.get.ellipse ( point, stroke, fill );
 
-                                            let _objectC = this.#getRectangle ( point, stroke, fill );
+                                            let _objectC = canvaslab.get.rectangle ( point, stroke, fill );
 
-                                            let _objectD = this.#getRoundedRectangle ( point, stroke, fill );
+                                            let _objectD = canvaslab.get.roundedRectangle ( point, stroke, fill );
 
-                                            let _objectE = this.#getText ( point, stroke, fill );
+                                            let _objectE = canvaslab.get.text ( point, _text, stroke, fill );
 
 
                                                 _result  = new Array ( _objectA, _objectB, _objectC, _objectD, _objectE );
@@ -15991,121 +16670,6 @@ class SacredCircles
             }
 
         ////    + PUBLIC    //////////////////////
-
-            // /**
-            //  * Returns transitions for hop animation
-            //  * @public
-            //  * @function
-            //  * @param           {clObject}        object                    Canvas Lab object
-            //  * @param           {ClCollection}    collection                Canvas Lab collection
-            //  * @param           {string|Function} timing                    Timing function
-            //  * @param           {number}          period                    Period of timer
-            //  */
-            // getHopTransitions ( object, collection, timing, period )
-            // {
-            //     let _transitions = new Array;
-
-
-            //     for ( let _i = 0; _i < collection.length; _i++ )
-            //     {
-            //         let _result =
-            //         {
-            //             object: object,
-            //             timing: timing,
-            //             period: period,
-            //             change:
-            //             {
-            //                 point: new Point ( collection [ _i ].point.x, collection [ _i ].point.y ),
-            //                 cache: true,
-            //                 fillColor: collection [ _i ].fill.color
-            //             }
-            //         }
-
-
-            //         _transitions.push ( _result );
-            //     }
-
-
-            //     return _transitions;
-            // }
-
-            // /**
-            //  * Creates shape from array of numbers
-            //  * @public
-            //  * @function
-            //  * @param           {Array}           shape                     Array of collection indexes
-            //  * @param           {ClCollection}    collection                Canvas Lab collection
-            //  * @param           {string|Function} timing                    Timing function
-            //  * @param           {number}          period                    Period of timer
-            //  */
-            // getSkipTransition ( shape, collection, timing, period )
-            // {
-            //     let _transitions = new Array;
-
-
-            //     for ( let _i = 0; _i < collection.length; _i++ )
-            //     {
-            //         let _object = new Circle ( canvaslab.center );
-
-            //         let _result =
-            //         {
-            //             object: _object,
-            //             timing: timing,
-            //             period: period,
-            //             change:
-            //             {
-            //                 point: new Point ( collection [ _i ].point.x, collection [ _i ].point.y ),
-            //                 cache: true
-            //             }
-            //         }
-
-
-            //         _transitions.push ( _result );
-            //     }
-
-
-            //     return _transitions;
-            // }
-
-            // /**
-            //  * Creates shape from array of numbers
-            //  * @public
-            //  * @function
-            //  * @param           {Array}           shape                     Array of collection indexes
-            //  * @param           {ClCollection}    collection                Canvas Lab collection
-            //  * @param           {string|Function} timing                    Timing function
-            //  * @param           {number}          period                    Period of timer
-            //  */
-            // getShapeTransition ( shape, collection, timing, period )
-            // {
-            //     // @TODO: Pass in Array index of collection
-
-            //     let _transitions = new Array;
-
-
-            //     for ( let _i = 0; _i < collection.length; _i++ )
-            //     {
-            //         let _object = new Circle ( canvaslab.center );
-
-            //         let _result =
-            //         {
-            //             object: _object,
-            //             timing: timing,
-            //             period: period,
-            //             change:
-            //             {
-            //                 point: new Point ( collection [ _i ].point.x, collection [ _i ].point.y ),
-            //                 cache: true
-            //             }
-            //         }
-
-
-            //         _transitions.push ( _result );
-            //     }
-
-
-            //     return _transitions;
-            // }
 
             /**
              * Get number of total objects
@@ -16200,14 +16764,15 @@ class SacredCircles
             }
 
 
-            ////    REVERSE COLLECTIONS    /////////////////
+            if ( this.#config.reverse )
+            {
+                this.master.circles.reverse ( );
 
-            // this.master.circles.reverse ( );
+                this.master.ellipses.reverse ( );
 
-            // this.master.ellipses.reverse ( );
+                this.master.rectangles.reverse ( );
 
-            // this.master.rectangles.reverse ( );
-
-            // this.master.roundedRectangles.reverse ( );
+                this.master.roundedRectangles.reverse ( );
+            }
         }
 }

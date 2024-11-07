@@ -14,6 +14,94 @@ class canvasLab
 
     #application = new Application;
 
+    #inputEvents = undefined;
+
+    #get =
+    {
+        /**
+         * Returns a Circle object
+         * @protected
+         * @function
+         * @param           {Point}  point                              X & Y Coordinates
+         * @param           {Stroke} stroke                             Stroke properties
+         * @param           {Fill}   fill                               Fill properties
+         * @return          {Circle}                                    Circle object
+         */
+        circle ( point, stroke, fill )
+        {
+            return new Circle ( point, this.radius, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
+        },
+
+        /**
+         * Returns a Ellipse object
+         * @protected
+         * @function
+         * @param           {Point}  point                              X & Y Coordinates
+         * @param           {Stroke} stroke                             Stroke properties
+         * @param           {Fill}   fill                               Fill properties
+         * @return          {Ellipse}                                   Ellipse object
+         */
+        ellipse ( point, stroke, fill )
+        {
+            return new Ellipse ( point, new Point ( this.radius, this.radius * 0.5 ), undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
+        },
+
+        /**
+         * Returns a Rectangle object
+         * @protected
+         * @function
+         * @param           {Point}  point                              X & Y Coordinates
+         * @param           {Stroke} stroke                             Stroke properties
+         * @param           {Fill}   fill                               Fill properties
+         * @return          {Rectangle}                                 Rectangle object
+         */
+        rectangle ( point, stroke, fill )
+        {
+            return new Rectangle ( point, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
+        },
+
+        /**
+         * Returns a RoundedRectangle object
+         * @protected
+         * @function
+         * @param           {Point}  point                              X & Y Coordinates
+         * @param           {Stroke} stroke                             Stroke properties
+         * @param           {Fill}   fill                               Fill properties
+         * @return          {RoundedRectangle}                          Rounded rectangle object
+         */
+        roundedRectangle ( point, stroke, fill )
+        {
+            return new RoundedRectangle ( point, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined, undefined );
+        },
+
+        /**
+         * Returns a Text object
+         * @protected
+         * @function
+         * @param           {Point}  point                              X & Y Coordinates
+         * @param           {Stroke} stroke                             Stroke properties
+         * @param           {Fill}   fill                               Fill properties
+         * @return          {Text}                                      Text object
+         */
+        text ( point, text, stroke, fill )
+        {
+            return new Text ( point, text, undefined, undefined, undefined, undefined, undefined, new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width ), new Fill ( fill.color, fill.type ), undefined );
+        },
+
+        /**
+         * Returns a Line object
+         * @protected
+         * @function
+         * @param           {Point} startPoint                          Starting point of line
+         * @param           {Point} endPoint                            Ending point of line
+         * @return          {Line}                                      Line object
+         */
+        line ( startPoint, endPoint )
+        {
+            return new Line ( startPoint, endPoint, undefined, undefined, undefined, undefined );
+        }
+    }
+
     /**
      * Create a canvasLab object
      * @property        {string} canvasId                           Canvas identifier
@@ -29,130 +117,157 @@ class canvasLab
         this.canvas = canvas;
     }
 
-    ////    [ CANVAS ]  ////////////////////////////////////
+    ////    PROPERTIES    //////////////////////////////////
 
-        /**
-         * Set canvas value
-         * @public
-         * @function
-         * @param           {string} value                              Canvas identifier
-         */
-        set canvas ( value )
-        {
-            this._canvas = ( this._isInDom ( value ) ) ? document.getElementById ( value ).getContext ( '2d' )
+        ////    [ CANVAS ]  //////////////////////
 
-                                                       : this._canvas;
-        }
+            /**
+             * Set canvas value
+             * @public
+             * @function
+             * @param           {string} value                              Canvas identifier
+             */
+            set canvas ( value )
+            {
+                this._canvas = ( this._isInDom ( value ) ) ? document.getElementById ( value ).getContext ( '2d' )
 
-        /**
-         * Get canvas value
-         * @readOnly
-         * @function
-         * @return          {string}                                    Canvas identifier
-         * @see             {@link discrete.canvas}
-         */
-        get canvas ( )
-        {
-            return this._canvas.canvas.id;
-        }
+                                                           : this._canvas;
+            }
 
-    ////    [ CANVASES ]    ////////////////////////////////
+            /**
+             * Get canvas value
+             * @readOnly
+             * @function
+             * @return          {string}                                    Canvas identifier
+             * @see             {@link discrete.canvas}
+             */
+            get canvas ( )
+            {
+                return this._canvas.canvas.id;
+            }
 
-        /**
-         * Set canvas value
-         * @public
-         * @function
-         * @param           {string} canvasId                           Canvas identifier
-         */
-        set canvases ( canvasId )
-        {
-            let _canvas = ( this._isInDom ( canvasId ) ) ? document.getElementById ( canvasId ).getContext ( '2d' )
+        ////    [ CANVASES ]    //////////////////
 
-                                                         : undefined;
+            /**
+             * Set canvas value
+             * @public
+             * @function
+             * @param           {string} canvasId                           Canvas identifier
+             */
+            set canvases ( canvasId )
+            {
+                let _canvas = ( this._isInDom ( canvasId ) ) ? document.getElementById ( canvasId ).getContext ( '2d' )
 
-
-            if ( this._canvases == undefined )
-
-                this._canvases = new Array;
+                                                             : undefined;
 
 
-            if ( _canvas != undefined )
+                if ( this._canvases == undefined )
 
-                this._canvases.push ( _canvas );
-        }
+                    this._canvases = new Array;
 
-        /**
-         * Set canvas value
-         * @readOnly
-         * @function
-         * @return          {Array}                                     Array of canvas contexts
-         */
-        get canvases ( )
-        {
-            return this._canvases;
-        }
 
-    ////    [ FONT ]    ////////////////////////////////////
+                if ( _canvas != undefined )
 
-        /**
-         * Set main font type
-         * @public
-         * @function
-         * @param           {string} font                               Main font type
-         */
-        set font ( value )
-        {
-            this._font = ( typeof value === 'string' ) ? value : this._font;
-        }
+                    this._canvases.push ( _canvas );
+            }
 
-        /**
-         * Get main font type
-         * @readOnly
-         * @function
-         * @return          {string} font                               Main font type
-         */
-        get font ( )
-        {
-            return this._canvas.font;
-        }
+            /**
+             * Set canvas value
+             * @readOnly
+             * @function
+             * @return          {Array}                                     Array of canvas contexts
+             */
+            get canvases ( )
+            {
+                return this._canvases;
+            }
 
-    ////    [ ROTATION ]    ////////////////////////////////
+        ////    [ FONT ]    //////////////////////
 
-        set rotation ( value )
-        {
-            this._rotation = value;
-        }
+            /**
+             * Set main font type
+             * @public
+             * @function
+             * @param           {string} font                               Main font type
+             */
+            set font ( value )
+            {
+                this._font = ( typeof value === 'string' ) ? value : this._font;
+            }
 
-        get rotation ( )
-        {
-            return this._rotation;
-        }
+            /**
+             * Get main font type
+             * @readOnly
+             * @function
+             * @return          {string} font                               Main font type
+             */
+            get font ( )
+            {
+                return this._canvas.font;
+            }
 
-    ////    [ APPLICATION ]    /////////////////////////////
+        ////    [ ROTATION ]    //////////////////
 
-        /**
-         * Returns this application
-         * @readOnly
-         * @function
-         * @return          {Application}                               Canvas Lab application
-         */
-        get application ( )
-        {
-            return this.#application;
-        }
+            /**
+             * Sets rotation property value
+             * @public
+             * @function
+             * @param           {number} value                              Rotation value
+             */
+            set rotation ( value )
+            {
+                this._rotation = value;
+            }
 
-    ////    DOM    /////////////////////////////////////////
+            /**
+             * Get rotation property value
+             * @public
+             * @function
+             * @return          {number}                                    Rotation value
+             */
+            get rotation ( )
+            {
+                return this._rotation;
+            }
 
-        /**
-         * Get dom details
-         * @readOnly
-         * @function
-         * @return          {Object}                                    DOM details
-         */
-        get dom ( )
-        {
-            return this.#application.dom;
-        }
+        ////    [ APPLICATION ]    ///////////////
+
+            /**
+             * Returns this application
+             * @readOnly
+             * @function
+             * @return          {Application}                               Canvas Lab application
+             */
+            get application ( )
+            {
+                return this.#application;
+            }
+
+        ////    [ GET ]    ///////////////////////
+
+            /**
+             * Get getters
+             * @public
+             * @function
+             * @return             {Object}                                    Get getters
+             */
+            get get ( )
+            {
+                return this.#get;
+            }
+
+        ////    DOM    ///////////////////////////
+
+            /**
+             * Get dom details
+             * @readOnly
+             * @function
+             * @return          {Object}                                    DOM details
+             */
+            get dom ( )
+            {
+                return this.#application.dom;
+            }
 
     ////    VALIDATION  ////////////////////////////////////
 
@@ -168,47 +283,74 @@ class canvasLab
 
     ////    UTILITIES   ////////////////////////////////////
 
-        /**
-         * Returns the center X & Y coordinates of the present canvas
-         * @public
-         * @function
-         * @return          {Point}                                     Center X & Y coordinates
-         */
-        get center ( )
-        {
-            return new Point (
+        ////    PRIVATE    ///////////////////////
 
-                           this._canvas.canvas.clientWidth  / 2,                // X coordinate
-
-                           this._canvas.canvas.clientHeight / 2                 // Y coordinate
-                       );
-        }
-
-        /**
-         * Clears canvas
-         * @private
-         * @function
-         */
-        clearCanvas ( )
-        {
-            let _canvas = document.getElementById ( this.canvas );
+            /**
+             * Sets the canvas and canvases properties
+             * @private
+             * @function
+             */
+            _setCanvases ( )
+            {
+                let _canvases = document.getElementsByTagName ( 'canvas' );
 
 
-            if ( _canvas )  // @TODO: identify why this check has to take place periodically !
+                if ( typeof _canvases === 'object' && this._canvases === undefined )
 
-                this._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
-        }
+                    for ( let _id in _canvases )
 
-        /**
-         * Animate the transition passed
-         * @property        {Transition} transition                     Transition animation
-         */
-        animate ( transition = { object, timing, period, change } )
-        {
-            if ( transition )
+                        if ( _id == 0 )
 
-                this.#application.animation = transition;
-        }
+                            this.canvas   = _canvases [ _id ].id;
+
+                        else
+
+                            this.canvases = _canvases [ _id ].id;
+            }
+
+        ////    PUBLIC    ////////////////////////
+
+            /**
+             * Returns the center X & Y coordinates of the present canvas
+             * @public
+             * @function
+             * @return          {Point}                                     Center X & Y coordinates
+             */
+            get center ( )
+            {
+                return new Point (
+
+                               this._canvas.canvas.clientWidth  / 2,                // X coordinate
+
+                               this._canvas.canvas.clientHeight / 2                 // Y coordinate
+                           );
+            }
+
+            /**
+             * Clears canvas
+             * @private
+             * @function
+             */
+            clearCanvas ( )
+            {
+                let _canvas = document.getElementById ( this.canvas );
+
+
+                if ( _canvas )  // @TODO: identify why this check has to take place periodically !
+
+                    this._canvas.clearRect ( 0, 0, _canvas.width, _canvas.height );
+            }
+
+            /**
+             * Animate the transition passed
+             * @property        {Transition} transition                     Transition animation
+             */
+            animate ( transition = { object, timing, period, change } )
+            {
+                if ( transition )
+
+                    this.#application.animation = transition;
+            }
 
     ////    INITIALIZE  ////////////////////////////////////
 
@@ -219,19 +361,6 @@ class canvasLab
          */
         _init ( )
         {
-            let _canvases = document.getElementsByTagName ( 'canvas' );
-
-
-            if ( typeof _canvases === 'object' && this._canvases === undefined )
-
-                for ( let _id in _canvases )
-
-                    if ( _id == 0 )
-
-                        this.canvas   = _canvases [ _id ].id;
-
-                    else
-
-                        this.canvases = _canvases [ _id ].id;
+            this._setCanvases ( );
         }
 }

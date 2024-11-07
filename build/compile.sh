@@ -9,11 +9,11 @@ declare NO_ERRORS=true
 
 declare RELOAD_CHROME=true
 
-declare WITH_DOCUMENTS=true
+declare WITH_DOCUMENTS=false
 
-declare WITH_MD2JSON=true
+declare WITH_MD2JSON=false
 
-declare WITH_GIST=true
+declare WITH_GIST=false
 
 # declare WITH_PLANTUML=false
 

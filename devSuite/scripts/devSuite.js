@@ -93,7 +93,7 @@ class Lab
         }
     }
 
-    _mouse =
+    #mouse =
     {
         click: false,
         hold:  false,
@@ -651,14 +651,14 @@ class Lab
 
                             if ( _labColLeft.clientWidth + _navWidth > event.clientX  &&  _labColLeft.clientHeight > event.clientY )
                             {
-                                if ( ! this._mouse.click )
+                                if ( ! this.#mouse.click )
                                 {
-                                    this._mouse.point = new Point ( event.clientX, event.clientY );
+                                    this.#mouse.point = new Point ( event.clientX, event.clientY );
 
-                                    this._mouse.click = true;
+                                    this.#mouse.click = true;
 
 
-                                    TOOL.delay ( 1000 ).then ( ( ) => this._mouse.hold = true );
+                                    TOOL.delay ( 1000 ).then ( ( ) => this.#mouse.hold = true );
                                 }
                             }
                         } );
@@ -682,28 +682,46 @@ class Lab
                                     _content += '\n' + JSON.stringify ( this._clipboard.coordinates );
 
 
-                                if ( this._mouse.hold )
+                                if ( this.#mouse.hold )
                                 {
-                                    let _degree   = this._getAngle ( this._mouse.point, new Point ( event.clientX, event.clientY ) );
+                                    let _degree   = this._getAngle ( this.#mouse.point, new Point ( event.clientX, event.clientY ) );
 
-                                    let _distance = this._getDistance ( this._mouse.point, new Point ( event.clientX, event.clientY ) );
+                                    let _distance = this._getDistance ( this.#mouse.point, new Point ( event.clientX, event.clientY ) );
 
 
-                                    _content += '\n' + JSON.stringify ( this._mouse.point );
+                                    _content += '\n' + JSON.stringify ( this.#mouse.point );
 
                                     _content += '\n' + JSON.stringify ( { degree: _degree, distance: _distance } );
 
 
-                                    this._mouse.hold = false;
+                                    this.#mouse.hold = false;
                                 }
 
 
                                 this._copyToClipboard ( _content );
 
 
-                                this._mouse.click = false;
+                                this.#mouse.click = false;
                             }
                         } );
+
+                    case 'inputEvents':
+
+                        // function _onMouseEvent ( event )
+                        // {
+                        //     console.log ( event.type );
+                        // }
+
+                        // let _canvas = document.getElementById ( 'canvas' );
+
+                        // let _events = [ 'mousedown', 'mouseup', 'click', 'dblclick', 'mousewheel', 'mousemove', 'mouseover', 'mouseout' ]
+
+
+                        // for ( let _event of _events )
+
+                        //     _canvas.addEventListener ( event, _onMouseEvent );
+
+                        // document.getElementById ( 'canvas' ).addEventListener ( 'mousemove', ( ) => console.log ( 'move !' ) );
 
                     case 'keyboardCommands':
 
@@ -1090,7 +1108,7 @@ class Lab
 
                     let _navWidth = 225;
 
-                    let _color    = new Rgb ( 150, 50, 200, 1 );
+                    let _color    = new Rgb ( 0, 175, 125, 1 );
 
 
                     let _line = new Line;
@@ -1137,12 +1155,9 @@ class Lab
 
                         [ _line.start,         _line.end            ] = [ canvaslab.center, _endPoint            ];
 
-
                         [ _circle.point,       _circle.radius       ] = [ _endPoint,        _circleDistance / 30 ];
 
-
-                        [ _dotCircle.point,    _dotCircle.radius    ] = [ _dotPoint,        _dotDistance / 50    ];
-
+                        [ _dotCircle.point,    _dotCircle.radius    ] = [ _dotPoint,        _dotDistance    / 50 ];
 
                         [ _centerCircle.point, _centerCircle.radius ] = [ canvaslab.center, _circleDistance / 2  ];
 
@@ -1161,14 +1176,14 @@ class Lab
 
                         ////    MEASURING LINE    //////////////////////////////////
 
-                        if ( this._mouse.click )
+                        if ( this.#mouse.click )
                         {
-                            let _point = ( UI._isNavOpen ( ) ) ? new Point ( this._mouse.point.x - _navWidth, this._mouse.point.y )
+                            let _point = ( UI._isNavOpen ( ) ) ? new Point ( this.#mouse.point.x - _navWidth, this.#mouse.point.y )
 
-                                                               : this._mouse.point;
+                                                               : this.#mouse.point;
 
 
-                            let _lineDegree   = this._getAngle ( _point, new Point ( _x, _y ) );
+                            let _lineDegree   = this._getAngle    ( _point, new Point ( _x, _y ) );
 
                             let _lineDistance = this._getDistance ( _point, new Point ( _x, _y ) );
 
@@ -20278,8 +20293,7 @@ class Ui
 
                             ////    ANIMATION    ///////////////////////////
 
-                            let _transitions    = _group.template.transitions.shape ( _seed, _group.circles, _timing, _period );
-
+                            let _transitions    = _group.template.transitions.shape ( _seed, _group.circles, _timing, _period, Circle );
 
                             canvaslab.animate ( _transitions );
                         }
@@ -20321,7 +20335,7 @@ class Ui
 
                             ////    ANIMATION    ///////////////////////////
 
-                            let _transitions    = _group.template.transitions.shape ( _seed, _group.circles, _timing, _period );
+                            let _transitions    = _group.template.transitions.shape ( _seed, _group.circles, _timing, _period, Circle );
 
 
                             canvaslab.animate ( _transitions );
@@ -20626,292 +20640,6 @@ class Ui
                     ]
                 }
             ]
-
-
-            canvaslab.animate ( _transitions );
-        },
-        animationsArrayCache2: ( ) =>
-        {
-            ////    FUNCTIONS    ////////////////////////////////////////////////////////////
-
-            let _getInvertedAngle = ( angle ) => ( angle + 180 ) % 360;
-
-            ////    OBJECTS    //////////////////////////////////////////////////////////////
-
-            let _center  = canvaslab.center;
-
-            let _amount  = 10;
-
-            let _multiA  = 0.5;
-
-            let _multiB  = 0.1;
-
-            let _radius  = 10;
-
-            let _objects = new Circles;
-
-
-            for ( let _i = 0; _i < _amount; _i++ )
-
-                _objects.push ( new Circle ( _center, _radius ) );
-
-            ////    ANIMATION    ///////////////////////////////////////////////////////////
-
-            let _transitions =
-            [
-                {
-                    object: _objects,
-                    timing: 'easeOutSine',
-                    period: 300,
-                    change:
-                    [
-                        { move: { degree:  90, distance: 100 }, cache: true },  //  1
-                        { move: { degree:  60, distance:  87 }, cache: true },  //  2
-                        { move: { degree: 120, distance:  87 }, cache: true },  //  3
-                        { move: { degree:  30, distance:  50 }, cache: true },  //  4
-                        { move: { degree: 150, distance:  50 }, cache: true },  //  5
-                        { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
-                        { move: { degree: 330, distance:  50 }, cache: true },  //  7
-                        { move: { degree: 210, distance:  50 }, cache: true },  //  8
-                        { move: { degree: 270, distance:  50 }, cache: true },  //  9
-                        { move: { degree: 270, distance: 100 }, cache: true },  // 10
-                    ]
-                },  // Out - Normal
-                {
-                    object: _objects,
-                    timing: 'easeOutSine',
-                    period: 1750,
-                    change:
-                    [
-                        { move: { degree:  90, distance: 100 }, cache: true },  //  1
-                        { move: { degree:  60, distance:  87 }, cache: true },  //  2
-                        { move: { degree: 120, distance:  87 }, cache: true },  //  3
-                        { move: { degree:  30, distance:  50 }, cache: true },  //  4
-                        { move: { degree: 150, distance:  50 }, cache: true },  //  5
-                        { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
-                        { move: { degree: 330, distance:  50 }, cache: true },  //  7
-                        { move: { degree: 210, distance:  50 }, cache: true },  //  8
-                        { move: { degree: 270, distance:  50 }, cache: true },  //  9
-                        { move: { degree: 270, distance: 100 }, cache: true },  // 10
-                    ]
-                },  // Out - Fast
-                {
-                    object: _objects,
-                    timing: 'easeOutSine',
-                    period: 300,
-                    change:
-                    [
-                        { move: { degree:  90, invert: true, distance: 100 * _multiA }, cache: true },  //  1
-                        { move: { degree:  60, invert: true, distance:  87 * _multiA }, cache: true },  //  2
-                        { move: { degree: 120, invert: true, distance:  87 * _multiA }, cache: true },  //  3
-                        { move: { degree:  30, invert: true, distance:  50 * _multiA }, cache: true },  //  4
-                        { move: { degree: 150, invert: true, distance:  50 * _multiA }, cache: true },  //  5
-                        { move: { degree: 180, invert: true, distance:   0 * _multiA }, cache: true },  //  6 - 0
-                        { move: { degree: 330, invert: true, distance:  50 * _multiA }, cache: true },  //  7
-                        { move: { degree: 210, invert: true, distance:  50 * _multiA }, cache: true },  //  8
-                        { move: { degree: 270, invert: true, distance:  50 * _multiA }, cache: true },  //  9
-                        { move: { degree: 270, invert: true, distance: 100 * _multiA }, cache: true },  // 10
-                    ]
-                },  // Out - Normal
-                {
-                    object: _objects,
-                    timing: 'easeInSine',
-                    period: 1000,
-                    change:
-                    [
-                        { move: { degree:  90, distance: 100 }, cache: true },  //  1
-                        { move: { degree:  60, distance:  87 }, cache: true },  //  2
-                        { move: { degree: 120, distance:  87 }, cache: true },  //  3
-                        { move: { degree:  30, distance:  50 }, cache: true },  //  4
-                        { move: { degree: 150, distance:  50 }, cache: true },  //  5
-                        { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
-                        { move: { degree: 330, distance:  50 }, cache: true },  //  7
-                        { move: { degree: 210, distance:  50 }, cache: true },  //  8
-                        { move: { degree: 270, distance:  50 }, cache: true },  //  9
-                        { move: { degree: 270, distance: 100 }, cache: true },  // 10
-                    ]
-                },  // Out - Normal
-                {
-                    object: _objects,
-                    timing: 'easeInOutQuart',
-                    period: 60,
-                    change:
-                    [
-                        { move: { degree:  90, distance: 100 }, cache: true },  //  1
-                        { move: { degree:  60, distance:  87 }, cache: true },  //  2
-                        { move: { degree: 120, distance:  87 }, cache: true },  //  3
-                        { move: { degree:  30, distance:  50 }, cache: true },  //  4
-                        { move: { degree: 150, distance:  50 }, cache: true },  //  5
-                        { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
-                        { move: { degree: 330, distance:  50 }, cache: true },  //  7
-                        { move: { degree: 210, distance:  50 }, cache: true },  //  8
-                        { move: { degree: 270, distance:  50 }, cache: true },  //  9
-                        { move: { degree: 270, distance: 100 }, cache: true },  // 10
-                    ]
-                },  // Out Trail - Fast
-            ]
-
-            ////    TRAIL    ///////////////////////////////////////////////////////////////
-
-            let _location = 5;
-
-            let _repeat   = 10;
-
-            for ( let _i = _location; _i < _location + _repeat; _i++ )
-
-                _transitions [ _i ] = _transitions [ _location - 1 ];
-
-
-            canvaslab.animate ( _transitions );
-        },
-        animationsArrayLineTos: ( ) =>
-        {
-            ////    OBJECTS    //////////////////////////////////////////////////////////////
-
-            let _center  = canvaslab.center;
-
-            let _amount  = 10;
-
-            let _multiA  = 0.5;
-
-            let _multiB  = 0.1;
-
-            let _radius  = 10;
-
-            let _objects = new Circles;
-
-
-            for ( let _i = 0; _i < _amount; _i++ )
-
-                _objects.push ( new Circle ( _center, _radius, undefined, undefined, new Fill ( new Rgb ( 255, 255, 255, 1 ) ) ) );
-
-            ////    ANIMATION    ///////////////////////////////////////////////////////////
-
-            let _transitions =
-            [
-                {
-                    object: _objects,
-                    timing: 'easeOutSine',
-                    period: 1750,
-                    change:
-                    [
-                        { move: { degree:  90, distance: 100 }, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
-                        { move: { degree:  60, distance:  87 }, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
-                        { move: { degree: 120, distance:  87 }, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
-                        { move: { degree:  30, distance:  50 }, lineTo: _objects [ 4 ], },  //  4
-                        { move: { degree: 150, distance:  50 }, lineTo: _objects [ 7 ] },  //  5
-                        { move: { degree: 180, distance:   0 }, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
-                        { move: { degree: 330, distance:  50 }, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
-                        { move: { degree: 210, distance:  50 }, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
-                        { move: { degree: 270, distance:  50 }, lineTo: _objects [ 5 ] },  //  9
-                        { move: { degree: 270, distance: 100 }, lineTo: _objects [ 5 ] },  // 10
-                    ]
-                },  // Out
-                {
-                    object: _objects,
-                    timing: 'easeOutElastic',
-                    period: 1750,
-                    change:
-                    [
-                        { move: { degree:  90, distance: 100 }, radius: 25, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
-                        { move: { degree:  60, distance:  87 }, radius: 25, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
-                        { move: { degree: 120, distance:  87 }, radius: 25, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
-                        { move: { degree:  30, distance:  50 }, radius: 25, lineTo: _objects [ 4 ], },  //  4
-                        { move: { degree: 150, distance:  50 }, radius: 25, lineTo: _objects [ 7 ] },  //  5
-                        { move: { degree: 180, distance:   0 }, radius: 25, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
-                        { move: { degree: 330, distance:  50 }, radius: 25, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
-                        { move: { degree: 210, distance:  50 }, radius: 25, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
-                        { move: { degree: 270, distance:  50 }, radius: 25, lineTo: _objects [ 5 ] },  //  9
-                        { move: { degree: 270, distance: 100 }, radius: 25, lineTo: _objects [ 5 ] },  // 10
-                    ]
-                },  // Out
-                {
-                    object: _objects,
-                    timing: 'easeOutExpo',
-                    period: 1750,
-                    change:
-                    [
-                        { move: { degree:  90, distance: 100 }, radius: 75, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
-                        { move: { degree:  60, distance:  87 }, radius: 75, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
-                        { move: { degree: 120, distance:  87 }, radius: 75, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
-                        { move: { degree:  30, distance:  50 }, radius: 75, lineTo: _objects [ 4 ], },  //  4
-                        { move: { degree: 150, distance:  50 }, radius: 75, lineTo: _objects [ 7 ] },  //  5
-                        { move: { degree: 180, distance:   0 }, radius: 75, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
-                        { move: { degree: 330, distance:  50 }, radius: 75, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
-                        { move: { degree: 210, distance:  50 }, radius: 75, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
-                        { move: { degree: 270, distance:  50 }, radius: 75, lineTo: _objects [ 5 ] },  //  9
-                        { move: { degree: 270, distance: 100 }, radius: 75, lineTo: _objects [ 5 ] },  // 10
-                    ]
-                },  // Out
-                {
-                    object: _objects,
-                    timing: 'easeInSine',
-                    period: 1750,
-                    change:
-                    [
-                        { move: { degree:  90, invert: true, distance: 100 }, radius: 25, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
-                        { move: { degree:  60, invert: true, distance:  87 }, radius: 25, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
-                        { move: { degree: 120, invert: true, distance:  87 }, radius: 25, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
-                        { move: { degree:  30, invert: true, distance:  50 }, radius: 25, lineTo: _objects [ 4 ], },  //  4
-                        { move: { degree: 150, invert: true, distance:  50 }, radius: 25, lineTo: _objects [ 7 ] },  //  5
-                        { move: { degree: 180, invert: true, distance:   0 }, radius: 25, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
-                        { move: { degree: 330, invert: true, distance:  50 }, radius: 25, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
-                        { move: { degree: 210, invert: true, distance:  50 }, radius: 25, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
-                        { move: { degree: 270, invert: true, distance:  50 }, radius: 25, lineTo: _objects [ 5 ] },  //  9
-                        { move: { degree: 270, invert: true, distance: 100 }, radius: 25, lineTo: _objects [ 5 ] },  // 10
-                    ]
-                },  // In
-                {
-                    object: _objects,
-                    timing: 'easeOutElastic',
-                    period: 1750,
-                    change:
-                    [
-                        { move: { degree:  90, invert: true, distance: 100 }, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
-                        { move: { degree:  60, invert: true, distance:  87 }, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
-                        { move: { degree: 120, invert: true, distance:  87 }, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
-                        { move: { degree:  30, invert: true, distance:  50 }, lineTo: _objects [ 4 ], },  //  4
-                        { move: { degree: 150, invert: true, distance:  50 }, lineTo: _objects [ 7 ] },  //  5
-                        { move: { degree: 180, invert: true, distance:   0 }, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
-                        { move: { degree: 330, invert: true, distance:  50 }, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
-                        { move: { degree: 210, invert: true, distance:  50 }, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
-                        { move: { degree: 270, invert: true, distance:  50 }, lineTo: _objects [ 5 ] },  //  9
-                        { move: { degree: 270, invert: true, distance: 100 }, lineTo: _objects [ 5 ] },  // 10
-                    ]
-                },  // In
-                {
-                    object: _objects,
-                    timing: 'easeInExpo',
-                    period: 1750,
-                    change:
-                    [
-                        { move: { degree:  90, invert: true, distance: 100 }, radius: 10, lineTo: [ _objects [ 1 ], _objects [ 2 ], _objects [ 5 ] ] },  //  1
-                        { move: { degree:  60, invert: true, distance:  87 }, radius: 10, lineTo: [ _objects [ 3 ], _objects [ 2 ], _objects [ 5 ] ] },  //  2
-                        { move: { degree: 120, invert: true, distance:  87 }, radius: 10, lineTo: [ _objects [ 4 ], _objects [ 5 ] ] },  //  3
-                        { move: { degree:  30, invert: true, distance:  50 }, radius: 10, lineTo: _objects [ 4 ], },  //  4
-                        { move: { degree: 150, invert: true, distance:  50 }, radius: 10, lineTo: _objects [ 7 ] },  //  5
-                        { move: { degree: 180, invert: true, distance:   0 }, radius: 10, lineTo: [ _objects [ 6 ], _objects [ 4 ], _objects [ 7 ], _objects [ 3 ] ] },  //  6 - 0
-                        { move: { degree: 330, invert: true, distance:  50 }, radius: 10, lineTo: [ _objects [ 3 ], _objects [ 8 ], _objects [ 9 ] ] },  //  7
-                        { move: { degree: 210, invert: true, distance:  50 }, radius: 10, lineTo: [ _objects [ 6 ], _objects [ 8 ], _objects [ 9 ] ] },  //  8
-                        { move: { degree: 270, invert: true, distance:  50 }, radius: 10, lineTo: _objects [ 5 ] },  //  9
-                        { move: { degree: 270, invert: true, distance: 100 }, radius: 10, lineTo: _objects [ 5 ] },  // 10
-                    ]
-                },  // In
-            ]
-
-            ////    REPEAT    //////////////////////////////////////////////////////////////
-
-            let _repeat = 4;
-
-            let _items  = [ 0, 1, 2, 3, 4, 5 ]
-
-            let _start  = 6;
-
-            for ( let _i = 0; _i < _repeat; _i++ )
-
-                for ( let _item of _items )
-
-                    [ _transitions [ _start ], _start ] = [ _transitions [ _item ], _start + 1 ];
 
 
             canvaslab.animate ( _transitions );
