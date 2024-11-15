@@ -152,7 +152,7 @@ const UTILITIES =
             this._setAspect ( );
 
 
-            this._anchor = this.center;
+            this.anchor.point = this.center;
 
 
             switch ( this.anchor.type )
@@ -565,7 +565,7 @@ const UTILITIES =
              */
             anchorPoint ( )
             {
-                [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
+                [ this.anchor.x, this.anchor.y ] = [ this.x, this.y ];
 
 
                 switch ( this.anchor.align )

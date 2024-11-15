@@ -11631,29 +11631,29 @@ class Ui
                             canvaslab.animate ( _transition );
                         }
                     },
-                    // rotate anchor
-                    {
-                        title: 'Rotate Anchor',
-                        text: 'easeInSine',
-                        children: [ 'anchor' ],
-                        code: ( ) =>
-                        {
-                                _line.options.anchor = true;  // [ Optional ]
+                    // // rotate anchor
+                    // {
+                    //     title: 'Rotate Anchor',
+                    //     text: 'easeInSine',
+                    //     children: [ 'anchor' ],
+                    //     code: ( ) =>
+                    //     {
+                    //             _line.options.anchor = true;  // [ Optional ]
 
-                            let _transition =
-                            {
-                                object: _line,
-                                timing: 'easeInSine',
-                                period: 2000,
-                                change:
-                                {
-                                    rotate: 180,
-                                }
-                            }
+                    //         let _transition =
+                    //         {
+                    //             object: _line,
+                    //             timing: 'easeInSine',
+                    //             period: 2000,
+                    //             change:
+                    //             {
+                    //                 rotate: 180,
+                    //             }
+                    //         }
 
-                            canvaslab.animate ( _transition );
-                        }
-                    },
+                    //         canvaslab.animate ( _transition );
+                    //     }
+                    // },
                     // // rotate anchor align
                     // {
                     //     title: 'rotate anchor align',

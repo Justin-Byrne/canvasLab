@@ -1,55 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    
-    <meta charset="utf-8">
-    <title>canvasLab-v0.7.201.js - Documentation</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
-    <script src="scripts/nav.js" defer></script>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav >
-    
-    
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Anchor.html">Anchor</a><ul class='methods'><li data-type='method'><a href="Anchor.html#align">align</a></li><li data-type='method'><a href="Anchor.html#align">align</a></li><li data-type='method'><a href="Anchor.html#point">point</a></li><li data-type='method'><a href="Anchor.html#point">point</a></li><li data-type='method'><a href="Anchor.html#x">x</a></li><li data-type='method'><a href="Anchor.html#x">x</a></li><li data-type='method'><a href="Anchor.html#y">y</a></li><li data-type='method'><a href="Anchor.html#y">y</a></li></ul></li><li><a href="Angle.html">Angle</a><ul class='methods'><li data-type='method'><a href="Angle.html#clockwise">clockwise</a></li><li data-type='method'><a href="Angle.html#clockwise">clockwise</a></li><li data-type='method'><a href="Angle.html#end">end</a></li><li data-type='method'><a href="Angle.html#end">end</a></li><li data-type='method'><a href="Angle.html#endInRadians">endInRadians</a></li><li data-type='method'><a href="Angle.html#start">start</a></li><li data-type='method'><a href="Angle.html#start">start</a></li><li data-type='method'><a href="Angle.html#startInRadians">startInRadians</a></li></ul></li><li><a href="Animation.html">Animation</a><ul class='methods'><li data-type='method'><a href="Animation.html#animate">animate</a></li><li data-type='method'><a href="Animation.html#cache">cache</a></li><li data-type='method'><a href="Animation.html#cache">cache</a></li><li data-type='method'><a href="Animation.html#cancel">cancel</a></li><li data-type='method'><a href="Animation.html#change">change</a></li><li data-type='method'><a href="Animation.html#change">change</a></li><li data-type='method'><a href="Animation.html#object">object</a></li><li data-type='method'><a href="Animation.html#object">object</a></li><li data-type='method'><a href="Animation.html#period">period</a></li><li data-type='method'><a href="Animation.html#period">period</a></li><li data-type='method'><a href="Animation.html#queue">queue</a></li><li data-type='method'><a href="Animation.html#queue">queue</a></li><li data-type='method'><a href="Animation.html#timing">timing</a></li><li data-type='method'><a href="Animation.html#timing">timing</a></li></ul></li><li><a href="Animations.html">Animations</a><ul class='methods'><li data-type='method'><a href="Animations.html#animate">animate</a></li><li data-type='method'><a href="Animations.html#cache">cache</a></li><li data-type='method'><a href="Animations.html#cache">cache</a></li><li data-type='method'><a href="Animations.html#cancel">cancel</a></li><li data-type='method'><a href="Animations.html#changes">changes</a></li><li data-type='method'><a href="Animations.html#changes">changes</a></li><li data-type='method'><a href="Animations.html#objects">objects</a></li><li data-type='method'><a href="Animations.html#objects">objects</a></li><li data-type='method'><a href="Animations.html#period">period</a></li><li data-type='method'><a href="Animations.html#period">period</a></li><li data-type='method'><a href="Animations.html#queue">queue</a></li><li data-type='method'><a href="Animations.html#queue">queue</a></li><li data-type='method'><a href="Animations.html#timings">timings</a></li><li data-type='method'><a href="Animations.html#timings">timings</a></li></ul></li><li><a href="Application.html">Application</a><ul class='methods'><li data-type='method'><a href="Application.html#about">about</a></li><li data-type='method'><a href="Application.html#animation">animation</a></li><li data-type='method'><a href="Application.html#canvas">canvas</a></li><li data-type='method'><a href="Application.html#canvas">canvas</a></li><li data-type='method'><a href="Application.html#dom">dom</a></li></ul></li><li><a href="Aspect.html">Aspect</a><ul class='methods'><li data-type='method'><a href="Aspect.html#center">center</a></li><li data-type='method'><a href="Aspect.html#height">height</a></li><li data-type='method'><a href="Aspect.html#height">height</a></li><li data-type='method'><a href="Aspect.html#heightCenter">heightCenter</a></li><li data-type='method'><a href="Aspect.html#offset">offset</a></li><li data-type='method'><a href="Aspect.html#width">width</a></li><li data-type='method'><a href="Aspect.html#width">width</a></li><li data-type='method'><a href="Aspect.html#widthCenter">widthCenter</a></li></ul></li><li><a href="Circle.html">Circle</a><ul class='methods'><li data-type='method'><a href="Circle.html#anchor">anchor</a></li><li data-type='method'><a href="Circle.html#angle">angle</a></li><li data-type='method'><a href="Circle.html#area">area</a></li><li data-type='method'><a href="Circle.html#canvas">canvas</a></li><li data-type='method'><a href="Circle.html#canvas">canvas</a></li><li data-type='method'><a href="Circle.html#center">center</a></li><li data-type='method'><a href="Circle.html#circumference">circumference</a></li><li data-type='method'><a href="Circle.html#diameter">diameter</a></li><li data-type='method'><a href="Circle.html#draw">draw</a></li><li data-type='method'><a href="Circle.html#fill">fill</a></li><li data-type='method'><a href="Circle.html#fill">fill</a></li><li data-type='method'><a href="Circle.html#isThere">isThere</a></li><li data-type='method'><a href="Circle.html#move">move</a></li><li data-type='method'><a href="Circle.html#options">options</a></li><li data-type='method'><a href="Circle.html#point">point</a></li><li data-type='method'><a href="Circle.html#point">point</a></li><li data-type='method'><a href="Circle.html#position">position</a></li><li data-type='method'><a href="Circle.html#radius">radius</a></li><li data-type='method'><a href="Circle.html#radius">radius</a></li><li data-type='method'><a href="Circle.html#rotate">rotate</a></li><li data-type='method'><a href="Circle.html#shadow">shadow</a></li><li data-type='method'><a href="Circle.html#showCoordinates">showCoordinates</a></li><li data-type='method'><a href="Circle.html#stroke">stroke</a></li><li data-type='method'><a href="Circle.html#stroke">stroke</a></li><li data-type='method'><a href="Circle.html#x">x</a></li><li data-type='method'><a href="Circle.html#x">x</a></li><li data-type='method'><a href="Circle.html#y">y</a></li><li data-type='method'><a href="Circle.html#y">y</a></li></ul></li><li><a href="Circles.html">Circles</a><ul class='methods'><li data-type='method'><a href="Circles.html#anchor">anchor</a></li><li data-type='method'><a href="Circles.html#anchor">anchor</a></li><li data-type='method'><a href="Circles.html#area">area</a></li><li data-type='method'><a href="Circles.html#aspect">aspect</a></li><li data-type='method'><a href="Circles.html#canvas">canvas</a></li><li data-type='method'><a href="Circles.html#canvas">canvas</a></li><li data-type='method'><a href="Circles.html#center">center</a></li><li data-type='method'><a href="Circles.html#draw">draw</a></li><li data-type='method'><a href="Circles.html#endPoint">endPoint</a></li><li data-type='method'><a href="Circles.html#getPoints">getPoints</a></li><li data-type='method'><a href="Circles.html#height">height</a></li><li data-type='method'><a href="Circles.html#options">options</a></li><li data-type='method'><a href="Circles.html#perimeter">perimeter</a></li><li data-type='method'><a href="Circles.html#point">point</a></li><li data-type='method'><a href="Circles.html#point">point</a></li><li data-type='method'><a href="Circles.html#push">push</a></li><li data-type='method'><a href="Circles.html#shadow">shadow</a></li><li data-type='method'><a href="Circles.html#storageType">storageType</a></li><li data-type='method'><a href="Circles.html#stroke">stroke</a></li><li data-type='method'><a href="Circles.html#template">template</a></li><li data-type='method'><a href="Circles.html#template">template</a></li><li data-type='method'><a href="Circles.html#width">width</a></li><li data-type='method'><a href="Circles.html#x">x</a></li><li data-type='method'><a href="Circles.html#x">x</a></li><li data-type='method'><a href="Circles.html#y">y</a></li><li data-type='method'><a href="Circles.html#y">y</a></li></ul></li><li><a href="Conic.html">Conic</a><ul class='methods'><li data-type='method'><a href="Conic.html#angle">angle</a></li><li data-type='method'><a href="Conic.html#angle">angle</a></li><li data-type='method'><a href="Conic.html#point">point</a></li><li data-type='method'><a href="Conic.html#point">point</a></li><li data-type='method'><a href="Conic.html#stops">stops</a></li><li data-type='method'><a href="Conic.html#stops">stops</a></li></ul></li><li><a href="ControlPoints.html">ControlPoints</a><ul class='methods'><li data-type='method'><a href="ControlPoints.html#p0">p0</a></li><li data-type='method'><a href="ControlPoints.html#p0">p0</a></li><li data-type='method'><a href="ControlPoints.html#p1">p1</a></li><li data-type='method'><a href="ControlPoints.html#p1">p1</a></li><li data-type='method'><a href="ControlPoints.html#p2">p2</a></li><li data-type='method'><a href="ControlPoints.html#p2">p2</a></li><li data-type='method'><a href="ControlPoints.html#p3">p3</a></li><li data-type='method'><a href="ControlPoints.html#p3">p3</a></li><li data-type='method'><a href="ControlPoints.html#points">points</a></li><li data-type='method'><a href="ControlPoints.html#points">points</a></li></ul></li><li><a href="Ellipse.html">Ellipse</a><ul class='methods'><li data-type='method'><a href="Ellipse.html#anchor">anchor</a></li><li data-type='method'><a href="Ellipse.html#angle">angle</a></li><li data-type='method'><a href="Ellipse.html#area">area</a></li><li data-type='method'><a href="Ellipse.html#canvas">canvas</a></li><li data-type='method'><a href="Ellipse.html#center">center</a></li><li data-type='method'><a href="Ellipse.html#circumference">circumference</a></li><li data-type='method'><a href="Ellipse.html#diameter">diameter</a></li><li data-type='method'><a href="Ellipse.html#draw">draw</a></li><li data-type='method'><a href="Ellipse.html#fill">fill</a></li><li data-type='method'><a href="Ellipse.html#isThere">isThere</a></li><li data-type='method'><a href="Ellipse.html#move">move</a></li><li data-type='method'><a href="Ellipse.html#options">options</a></li><li data-type='method'><a href="Ellipse.html#point">point</a></li><li data-type='method'><a href="Ellipse.html#position">position</a></li><li data-type='method'><a href="Ellipse.html#radius">radius</a></li><li data-type='method'><a href="Ellipse.html#radius">radius</a></li><li data-type='method'><a href="Ellipse.html#rotate">rotate</a></li><li data-type='method'><a href="Ellipse.html#shadow">shadow</a></li><li data-type='method'><a href="Ellipse.html#showCoordinates">showCoordinates</a></li><li data-type='method'><a href="Ellipse.html#stroke">stroke</a></li><li data-type='method'><a href="Ellipse.html#x">x</a></li><li data-type='method'><a href="Ellipse.html#y">y</a></li></ul></li><li><a href="Ellipses.html">Ellipses</a><ul class='methods'><li data-type='method'><a href="Ellipses.html#anchor">anchor</a></li><li data-type='method'><a href="Ellipses.html#area">area</a></li><li data-type='method'><a href="Ellipses.html#aspect">aspect</a></li><li data-type='method'><a href="Ellipses.html#canvas">canvas</a></li><li data-type='method'><a href="Ellipses.html#center">center</a></li><li data-type='method'><a href="Ellipses.html#draw">draw</a></li><li data-type='method'><a href="Ellipses.html#endPoint">endPoint</a></li><li data-type='method'><a href="Ellipses.html#getPoints">getPoints</a></li><li data-type='method'><a href="Ellipses.html#height">height</a></li><li data-type='method'><a href="Ellipses.html#options">options</a></li><li data-type='method'><a href="Ellipses.html#perimeter">perimeter</a></li><li data-type='method'><a href="Ellipses.html#point">point</a></li><li data-type='method'><a href="Ellipses.html#push">push</a></li><li data-type='method'><a href="Ellipses.html#shadow">shadow</a></li><li data-type='method'><a href="Ellipses.html#storageType">storageType</a></li><li data-type='method'><a href="Ellipses.html#stroke">stroke</a></li><li data-type='method'><a href="Ellipses.html#template">template</a></li><li data-type='method'><a href="Ellipses.html#width">width</a></li><li data-type='method'><a href="Ellipses.html#x">x</a></li><li data-type='method'><a href="Ellipses.html#y">y</a></li></ul></li><li><a href="Fill.html">Fill</a><ul class='methods'><li data-type='method'><a href="Fill.html#color">color</a></li><li data-type='method'><a href="Fill.html#color">color</a></li><li data-type='method'><a href="Fill.html#gradient">gradient</a></li><li data-type='method'><a href="Fill.html#gradient">gradient</a></li><li data-type='method'><a href="Fill.html#pattern">pattern</a></li><li data-type='method'><a href="Fill.html#pattern">pattern</a></li><li data-type='method'><a href="Fill.html#repetition">repetition</a></li><li data-type='method'><a href="Fill.html#repetition">repetition</a></li><li data-type='method'><a href="Fill.html#type">type</a></li><li data-type='method'><a href="Fill.html#type">type</a></li></ul></li><li><a href="Font.html">Font</a><ul class='methods'><li data-type='method'><a href="Font.html#font">font</a></li><li data-type='method'><a href="Font.html#font">font</a></li><li data-type='method'><a href="Font.html#maxWidth">maxWidth</a></li><li data-type='method'><a href="Font.html#maxWidth">maxWidth</a></li><li data-type='method'><a href="Font.html#offset">offset</a></li><li data-type='method'><a href="Font.html#size">size</a></li><li data-type='method'><a href="Font.html#size">size</a></li><li data-type='method'><a href="Font.html#type">type</a></li><li data-type='method'><a href="Font.html#type">type</a></li><li data-type='method'><a href="Font.html#weight">weight</a></li><li data-type='method'><a href="Font.html#weight">weight</a></li></ul></li><li><a href="Group.html">Group</a><ul class='methods'><li data-type='method'><a href="Group.html#canvas">canvas</a></li><li data-type='method'><a href="Group.html#canvas">canvas</a></li><li data-type='method'><a href="Group.html#circles">circles</a></li><li data-type='method'><a href="Group.html#draw">draw</a></li><li data-type='method'><a href="Group.html#ellipses">ellipses</a></li><li data-type='method'><a href="Group.html#lines">lines</a></li><li data-type='method'><a href="Group.html#point">point</a></li><li data-type='method'><a href="Group.html#point">point</a></li><li data-type='method'><a href="Group.html#pop">pop</a></li><li data-type='method'><a href="Group.html#push">push</a></li><li data-type='method'><a href="Group.html#rectangles">rectangles</a></li><li data-type='method'><a href="Group.html#roundedRectangles">roundedRectangles</a></li><li data-type='method'><a href="Group.html#template">template</a></li><li data-type='method'><a href="Group.html#template">template</a></li><li data-type='method'><a href="Group.html#texts">texts</a></li><li data-type='method'><a href="Group.html#x">x</a></li><li data-type='method'><a href="Group.html#x">x</a></li><li data-type='method'><a href="Group.html#y">y</a></li><li data-type='method'><a href="Group.html#y">y</a></li></ul></li><li><a href="Line.html">Line</a><ul class='methods'><li data-type='method'><a href="Line.html#anchor">anchor</a></li><li data-type='method'><a href="Line.html#canvas">canvas</a></li><li data-type='method'><a href="Line.html#canvas">canvas</a></li><li data-type='method'><a href="Line.html#center">center</a></li><li data-type='method'><a href="Line.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="Line.html#curve">curve</a></li><li data-type='method'><a href="Line.html#draw">draw</a></li><li data-type='method'><a href="Line.html#drawPoints">drawPoints</a></li><li data-type='method'><a href="Line.html#end">end</a></li><li data-type='method'><a href="Line.html#end">end</a></li><li data-type='method'><a href="Line.html#isThere">isThere</a></li><li data-type='method'><a href="Line.html#lineCap">lineCap</a></li><li data-type='method'><a href="Line.html#lineCap">lineCap</a></li><li data-type='method'><a href="Line.html#move">move</a></li><li data-type='method'><a href="Line.html#options">options</a></li><li data-type='method'><a href="Line.html#point">point</a></li><li data-type='method'><a href="Line.html#point">point</a></li><li data-type='method'><a href="Line.html#position">position</a></li><li data-type='method'><a href="Line.html#rotate">rotate</a></li><li data-type='method'><a href="Line.html#shadow">shadow</a></li><li data-type='method'><a href="Line.html#showControlPoints">showControlPoints</a></li><li data-type='method'><a href="Line.html#showCoordinates">showCoordinates</a></li><li data-type='method'><a href="Line.html#start">start</a></li><li data-type='method'><a href="Line.html#start">start</a></li><li data-type='method'><a href="Line.html#stroke">stroke</a></li><li data-type='method'><a href="Line.html#stroke">stroke</a></li><li data-type='method'><a href="Line.html#x">x</a></li><li data-type='method'><a href="Line.html#x">x</a></li><li data-type='method'><a href="Line.html#y">y</a></li><li data-type='method'><a href="Line.html#y">y</a></li></ul></li><li><a href="Linear.html">Linear</a><ul class='methods'><li data-type='method'><a href="Linear.html#end">end</a></li><li data-type='method'><a href="Linear.html#end">end</a></li><li data-type='method'><a href="Linear.html#start">start</a></li><li data-type='method'><a href="Linear.html#start">start</a></li><li data-type='method'><a href="Linear.html#stops">stops</a></li><li data-type='method'><a href="Linear.html#stops">stops</a></li></ul></li><li><a href="Lines.html">Lines</a><ul class='methods'><li data-type='method'><a href="Lines.html#anchor">anchor</a></li><li data-type='method'><a href="Lines.html#anchor">anchor</a></li><li data-type='method'><a href="Lines.html#area">area</a></li><li data-type='method'><a href="Lines.html#aspect">aspect</a></li><li data-type='method'><a href="Lines.html#canvas">canvas</a></li><li data-type='method'><a href="Lines.html#canvas">canvas</a></li><li data-type='method'><a href="Lines.html#center">center</a></li><li data-type='method'><a href="Lines.html#draw">draw</a></li><li data-type='method'><a href="Lines.html#endPoint">endPoint</a></li><li data-type='method'><a href="Lines.html#getPoints">getPoints</a></li><li data-type='method'><a href="Lines.html#height">height</a></li><li data-type='method'><a href="Lines.html#lineCap">lineCap</a></li><li data-type='method'><a href="Lines.html#lineCap">lineCap</a></li><li data-type='method'><a href="Lines.html#options">options</a></li><li data-type='method'><a href="Lines.html#perimeter">perimeter</a></li><li data-type='method'><a href="Lines.html#point">point</a></li><li data-type='method'><a href="Lines.html#point">point</a></li><li data-type='method'><a href="Lines.html#push">push</a></li><li data-type='method'><a href="Lines.html#shadow">shadow</a></li><li data-type='method'><a href="Lines.html#storageType">storageType</a></li><li data-type='method'><a href="Lines.html#stroke">stroke</a></li><li data-type='method'><a href="Lines.html#template">template</a></li><li data-type='method'><a href="Lines.html#template">template</a></li><li data-type='method'><a href="Lines.html#width">width</a></li><li data-type='method'><a href="Lines.html#x">x</a></li><li data-type='method'><a href="Lines.html#x">x</a></li><li data-type='method'><a href="Lines.html#y">y</a></li><li data-type='method'><a href="Lines.html#y">y</a></li></ul></li><li><a href="Options.html">Options</a><ul class='methods'><li data-type='method'><a href="Options.html#anchor">anchor</a></li><li data-type='method'><a href="Options.html#anchor">anchor</a></li><li data-type='method'><a href="Options.html#axis">axis</a></li><li data-type='method'><a href="Options.html#axis">axis</a></li><li data-type='method'><a href="Options.html#border">border</a></li><li data-type='method'><a href="Options.html#border">border</a></li><li data-type='method'><a href="Options.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="Options.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="Options.html#coordinates">coordinates</a></li><li data-type='method'><a href="Options.html#coordinates">coordinates</a></li><li data-type='method'><a href="Options.html#master">master</a></li><li data-type='method'><a href="Options.html#master">master</a></li><li data-type='method'><a href="Options.html#shadow">shadow</a></li><li data-type='method'><a href="Options.html#shadow">shadow</a></li></ul></li><li><a href="OptionsCollection.html">OptionsCollection</a><ul class='methods'><li data-type='method'><a href="OptionsCollection.html#axis">axis</a></li><li data-type='method'><a href="OptionsCollection.html#axis">axis</a></li><li data-type='method'><a href="OptionsCollection.html#border">border</a></li><li data-type='method'><a href="OptionsCollection.html#border">border</a></li><li data-type='method'><a href="OptionsCollection.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="OptionsCollection.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="OptionsCollection.html#coordinates">coordinates</a></li><li data-type='method'><a href="OptionsCollection.html#coordinates">coordinates</a></li><li data-type='method'><a href="OptionsCollection.html#points">points</a></li><li data-type='method'><a href="OptionsCollection.html#points">points</a></li><li data-type='method'><a href="OptionsCollection.html#shadow">shadow</a></li><li data-type='method'><a href="OptionsCollection.html#shadow">shadow</a></li></ul></li><li><a href="Point.html">Point</a><ul class='methods'><li data-type='method'><a href="Point.html#canvas">canvas</a></li><li data-type='method'><a href="Point.html#canvas">canvas</a></li><li data-type='method'><a href="Point.html#center">center</a></li><li data-type='method'><a href="Point.html#drawOptions">drawOptions</a></li><li data-type='method'><a href="Point.html#invert">invert</a></li><li data-type='method'><a href="Point.html#move">move</a></li><li data-type='method'><a href="Point.html#options">options</a></li><li data-type='method'><a href="Point.html#x">x</a></li><li data-type='method'><a href="Point.html#x">x</a></li><li data-type='method'><a href="Point.html#y">y</a></li><li data-type='method'><a href="Point.html#y">y</a></li></ul></li><li><a href="PointCollection.html">PointCollection</a><ul class='methods'><li data-type='method'><a href="PointCollection.html#invert">invert</a></li><li data-type='method'><a href="PointCollection.html#options">options</a></li><li data-type='method'><a href="PointCollection.html#x">x</a></li><li data-type='method'><a href="PointCollection.html#x">x</a></li><li data-type='method'><a href="PointCollection.html#y">y</a></li><li data-type='method'><a href="PointCollection.html#y">y</a></li></ul></li><li><a href="Position.html">Position</a><ul class='methods'><li data-type='method'><a href="Position.html#aspect">aspect</a></li><li data-type='method'><a href="Position.html#aspect">aspect</a></li><li data-type='method'><a href="Position.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="Position.html#controlPoints">controlPoints</a></li><li data-type='method'><a href="Position.html#direction">direction</a></li><li data-type='method'><a href="Position.html#direction">direction</a></li><li data-type='method'><a href="Position.html#distance">distance</a></li><li data-type='method'><a href="Position.html#distance">distance</a></li><li data-type='method'><a href="Position.html#end">end</a></li><li data-type='method'><a href="Position.html#end">end</a></li><li data-type='method'><a href="Position.html#endDirection">endDirection</a></li><li data-type='method'><a href="Position.html#endDirection">endDirection</a></li><li data-type='method'><a href="Position.html#endDistance">endDistance</a></li><li data-type='method'><a href="Position.html#endDistance">endDistance</a></li><li data-type='method'><a href="Position.html#fill">fill</a></li><li data-type='method'><a href="Position.html#fill">fill</a></li><li data-type='method'><a href="Position.html#fontSize">fontSize</a></li><li data-type='method'><a href="Position.html#fontSize">fontSize</a></li><li data-type='method'><a href="Position.html#height">height</a></li><li data-type='method'><a href="Position.html#height">height</a></li><li data-type='method'><a href="Position.html#master">master</a></li><li data-type='method'><a href="Position.html#master">master</a></li><li data-type='method'><a href="Position.html#origin">origin</a></li><li data-type='method'><a href="Position.html#origin">origin</a></li><li data-type='method'><a href="Position.html#rotation">rotation</a></li><li data-type='method'><a href="Position.html#rotation">rotation</a></li><li data-type='method'><a href="Position.html#start">start</a></li><li data-type='method'><a href="Position.html#start">start</a></li><li data-type='method'><a href="Position.html#startDirection">startDirection</a></li><li data-type='method'><a href="Position.html#startDirection">startDirection</a></li><li data-type='method'><a href="Position.html#startDistance">startDistance</a></li><li data-type='method'><a href="Position.html#startDistance">startDistance</a></li><li data-type='method'><a href="Position.html#stroke">stroke</a></li><li data-type='method'><a href="Position.html#stroke">stroke</a></li><li data-type='method'><a href="Position.html#width">width</a></li><li data-type='method'><a href="Position.html#width">width</a></li></ul></li><li><a href="Queue.html">Queue</a><ul class='methods'><li data-type='method'><a href="Queue.html#entries">entries</a></li><li data-type='method'><a href="Queue.html#entries">entries</a></li><li data-type='method'><a href="Queue.html#entry">entry</a></li><li data-type='method'><a href="Queue.html#entry">entry</a></li><li data-type='method'><a href="Queue.html#index">index</a></li><li data-type='method'><a href="Queue.html#isEnd">isEnd</a></li><li data-type='method'><a href="Queue.html#isLast">isLast</a></li><li data-type='method'><a href="Queue.html#isSet">isSet</a></li><li data-type='method'><a href="Queue.html#next">next</a></li><li data-type='method'><a href="Queue.html#reset">reset</a></li></ul></li><li><a href="Radial.html">Radial</a><ul class='methods'><li data-type='method'><a href="Radial.html#end">end</a></li><li data-type='method'><a href="Radial.html#end">end</a></li><li data-type='method'><a href="Radial.html#endRadius">endRadius</a></li><li data-type='method'><a href="Radial.html#endRadius">endRadius</a></li><li data-type='method'><a href="Radial.html#start">start</a></li><li data-type='method'><a href="Radial.html#start">start</a></li><li data-type='method'><a href="Radial.html#startRadius">startRadius</a></li><li data-type='method'><a href="Radial.html#startRadius">startRadius</a></li><li data-type='method'><a href="Radial.html#stops">stops</a></li><li data-type='method'><a href="Radial.html#stops">stops</a></li></ul></li><li><a href="Rectangle.html">Rectangle</a><ul class='methods'><li data-type='method'><a href="Rectangle.html#anchor">anchor</a></li><li data-type='method'><a href="Rectangle.html#area">area</a></li><li data-type='method'><a href="Rectangle.html#aspect">aspect</a></li><li data-type='method'><a href="Rectangle.html#aspect">aspect</a></li><li data-type='method'><a href="Rectangle.html#canvas">canvas</a></li><li data-type='method'><a href="Rectangle.html#canvas">canvas</a></li><li data-type='method'><a href="Rectangle.html#center">center</a></li><li data-type='method'><a href="Rectangle.html#draw">draw</a></li><li data-type='method'><a href="Rectangle.html#fill">fill</a></li><li data-type='method'><a href="Rectangle.html#fill">fill</a></li><li data-type='method'><a href="Rectangle.html#fillColorCycle">fillColorCycle</a></li><li data-type='method'><a href="Rectangle.html#gradientColorCycle">gradientColorCycle</a></li><li data-type='method'><a href="Rectangle.html#height">height</a></li><li data-type='method'><a href="Rectangle.html#height">height</a></li><li data-type='method'><a href="Rectangle.html#isThere">isThere</a></li><li data-type='method'><a href="Rectangle.html#move">move</a></li><li data-type='method'><a href="Rectangle.html#options">options</a></li><li data-type='method'><a href="Rectangle.html#perimeter">perimeter</a></li><li data-type='method'><a href="Rectangle.html#point">point</a></li><li data-type='method'><a href="Rectangle.html#point">point</a></li><li data-type='method'><a href="Rectangle.html#rotate">rotate</a></li><li data-type='method'><a href="Rectangle.html#round">round</a></li><li data-type='method'><a href="Rectangle.html#round">round</a></li><li data-type='method'><a href="Rectangle.html#shadow">shadow</a></li><li data-type='method'><a href="Rectangle.html#showCoordinates">showCoordinates</a></li><li data-type='method'><a href="Rectangle.html#stroke">stroke</a></li><li data-type='method'><a href="Rectangle.html#stroke">stroke</a></li><li data-type='method'><a href="Rectangle.html#width">width</a></li><li data-type='method'><a href="Rectangle.html#width">width</a></li><li data-type='method'><a href="Rectangle.html#x">x</a></li><li data-type='method'><a href="Rectangle.html#x">x</a></li><li data-type='method'><a href="Rectangle.html#y">y</a></li><li data-type='method'><a href="Rectangle.html#y">y</a></li></ul></li><li><a href="Rectangles.html">Rectangles</a><ul class='methods'><li data-type='method'><a href="Rectangles.html#anchor">anchor</a></li><li data-type='method'><a href="Rectangles.html#anchor">anchor</a></li><li data-type='method'><a href="Rectangles.html#area">area</a></li><li data-type='method'><a href="Rectangles.html#aspect">aspect</a></li><li data-type='method'><a href="Rectangles.html#canvas">canvas</a></li><li data-type='method'><a href="Rectangles.html#canvas">canvas</a></li><li data-type='method'><a href="Rectangles.html#center">center</a></li><li data-type='method'><a href="Rectangles.html#draw">draw</a></li><li data-type='method'><a href="Rectangles.html#endPoint">endPoint</a></li><li data-type='method'><a href="Rectangles.html#getPoints">getPoints</a></li><li data-type='method'><a href="Rectangles.html#height">height</a></li><li data-type='method'><a href="Rectangles.html#options">options</a></li><li data-type='method'><a href="Rectangles.html#perimeter">perimeter</a></li><li data-type='method'><a href="Rectangles.html#point">point</a></li><li data-type='method'><a href="Rectangles.html#point">point</a></li><li data-type='method'><a href="Rectangles.html#push">push</a></li><li data-type='method'><a href="Rectangles.html#shadow">shadow</a></li><li data-type='method'><a href="Rectangles.html#storageType">storageType</a></li><li data-type='method'><a href="Rectangles.html#stroke">stroke</a></li><li data-type='method'><a href="Rectangles.html#template">template</a></li><li data-type='method'><a href="Rectangles.html#template">template</a></li><li data-type='method'><a href="Rectangles.html#width">width</a></li><li data-type='method'><a href="Rectangles.html#x">x</a></li><li data-type='method'><a href="Rectangles.html#x">x</a></li><li data-type='method'><a href="Rectangles.html#y">y</a></li><li data-type='method'><a href="Rectangles.html#y">y</a></li></ul></li><li><a href="Rgb.html">Rgb</a><ul class='methods'><li data-type='method'><a href="Rgb.html#alpha">alpha</a></li><li data-type='method'><a href="Rgb.html#alpha">alpha</a></li><li data-type='method'><a href="Rgb.html#blue">blue</a></li><li data-type='method'><a href="Rgb.html#blue">blue</a></li><li data-type='method'><a href="Rgb.html#cycle">cycle</a></li><li data-type='method'><a href="Rgb.html#green">green</a></li><li data-type='method'><a href="Rgb.html#green">green</a></li><li data-type='method'><a href="Rgb.html#red">red</a></li><li data-type='method'><a href="Rgb.html#red">red</a></li><li data-type='method'><a href="Rgb.html#toCss">toCss</a></li></ul></li><li><a href="RoundedRectangle.html">RoundedRectangle</a><ul class='methods'><li data-type='method'><a href="RoundedRectangle.html#anchor">anchor</a></li><li data-type='method'><a href="RoundedRectangle.html#area">area</a></li><li data-type='method'><a href="RoundedRectangle.html#aspect">aspect</a></li><li data-type='method'><a href="RoundedRectangle.html#canvas">canvas</a></li><li data-type='method'><a href="RoundedRectangle.html#center">center</a></li><li data-type='method'><a href="RoundedRectangle.html#draw">draw</a></li><li data-type='method'><a href="RoundedRectangle.html#fill">fill</a></li><li data-type='method'><a href="RoundedRectangle.html#fillColorCycle">fillColorCycle</a></li><li data-type='method'><a href="RoundedRectangle.html#gradientColorCycle">gradientColorCycle</a></li><li data-type='method'><a href="RoundedRectangle.html#height">height</a></li><li data-type='method'><a href="RoundedRectangle.html#isThere">isThere</a></li><li data-type='method'><a href="RoundedRectangle.html#move">move</a></li><li data-type='method'><a href="RoundedRectangle.html#options">options</a></li><li data-type='method'><a href="RoundedRectangle.html#perimeter">perimeter</a></li><li data-type='method'><a href="RoundedRectangle.html#point">point</a></li><li data-type='method'><a href="RoundedRectangle.html#rotate">rotate</a></li><li data-type='method'><a href="RoundedRectangle.html#round">round</a></li><li data-type='method'><a href="RoundedRectangle.html#shadow">shadow</a></li><li data-type='method'><a href="RoundedRectangle.html#showCoordinates">showCoordinates</a></li><li data-type='method'><a href="RoundedRectangle.html#stroke">stroke</a></li><li data-type='method'><a href="RoundedRectangle.html#width">width</a></li><li data-type='method'><a href="RoundedRectangle.html#x">x</a></li><li data-type='method'><a href="RoundedRectangle.html#y">y</a></li></ul></li><li><a href="RoundedRectangles.html">RoundedRectangles</a><ul class='methods'><li data-type='method'><a href="RoundedRectangles.html#anchor">anchor</a></li><li data-type='method'><a href="RoundedRectangles.html#area">area</a></li><li data-type='method'><a href="RoundedRectangles.html#aspect">aspect</a></li><li data-type='method'><a href="RoundedRectangles.html#canvas">canvas</a></li><li data-type='method'><a href="RoundedRectangles.html#center">center</a></li><li data-type='method'><a href="RoundedRectangles.html#draw">draw</a></li><li data-type='method'><a href="RoundedRectangles.html#endPoint">endPoint</a></li><li data-type='method'><a href="RoundedRectangles.html#getPoints">getPoints</a></li><li data-type='method'><a href="RoundedRectangles.html#height">height</a></li><li data-type='method'><a href="RoundedRectangles.html#options">options</a></li><li data-type='method'><a href="RoundedRectangles.html#perimeter">perimeter</a></li><li data-type='method'><a href="RoundedRectangles.html#point">point</a></li><li data-type='method'><a href="RoundedRectangles.html#push">push</a></li><li data-type='method'><a href="RoundedRectangles.html#shadow">shadow</a></li><li data-type='method'><a href="RoundedRectangles.html#storageType">storageType</a></li><li data-type='method'><a href="RoundedRectangles.html#stroke">stroke</a></li><li data-type='method'><a href="RoundedRectangles.html#template">template</a></li><li data-type='method'><a href="RoundedRectangles.html#width">width</a></li><li data-type='method'><a href="RoundedRectangles.html#x">x</a></li><li data-type='method'><a href="RoundedRectangles.html#y">y</a></li></ul></li><li><a href="SacredCircles.html">SacredCircles</a><ul class='methods'><li data-type='method'><a href="SacredCircles.html#degrees">degrees</a></li><li data-type='method'><a href="SacredCircles.html#degrees">degrees</a></li><li data-type='method'><a href="SacredCircles.html#fills">fills</a></li><li data-type='method'><a href="SacredCircles.html#fills">fills</a></li><li data-type='method'><a href="SacredCircles.html#init">init</a></li><li data-type='method'><a href="SacredCircles.html#iterations">iterations</a></li><li data-type='method'><a href="SacredCircles.html#iterations">iterations</a></li><li data-type='method'><a href="SacredCircles.html#master">master</a></li><li data-type='method'><a href="SacredCircles.html#master">master</a></li><li data-type='method'><a href="SacredCircles.html#point">point</a></li><li data-type='method'><a href="SacredCircles.html#point">point</a></li><li data-type='method'><a href="SacredCircles.html#radius">radius</a></li><li data-type='method'><a href="SacredCircles.html#radius">radius</a></li><li data-type='method'><a href="SacredCircles.html#strokes">strokes</a></li><li data-type='method'><a href="SacredCircles.html#strokes">strokes</a></li><li data-type='method'><a href="SacredCircles.html#totalObjects">totalObjects</a></li><li data-type='method'><a href="SacredCircles.html#transitions">transitions</a></li><li data-type='method'><a href="SacredCircles.html#transitions">transitions</a></li></ul></li><li><a href="Shadow.html">Shadow</a><ul class='methods'><li data-type='method'><a href="Shadow.html#blur">blur</a></li><li data-type='method'><a href="Shadow.html#blur">blur</a></li><li data-type='method'><a href="Shadow.html#color">color</a></li><li data-type='method'><a href="Shadow.html#color">color</a></li><li data-type='method'><a href="Shadow.html#offset">offset</a></li><li data-type='method'><a href="Shadow.html#offset">offset</a></li><li data-type='method'><a href="Shadow.html#x">x</a></li><li data-type='method'><a href="Shadow.html#x">x</a></li><li data-type='method'><a href="Shadow.html#y">y</a></li><li data-type='method'><a href="Shadow.html#y">y</a></li></ul></li><li><a href="ShadowCollection.html">ShadowCollection</a><ul class='methods'><li data-type='method'><a href="ShadowCollection.html#blur">blur</a></li><li data-type='method'><a href="ShadowCollection.html#blur">blur</a></li><li data-type='method'><a href="ShadowCollection.html#color">color</a></li><li data-type='method'><a href="ShadowCollection.html#color">color</a></li><li data-type='method'><a href="ShadowCollection.html#offset">offset</a></li><li data-type='method'><a href="ShadowCollection.html#offset">offset</a></li><li data-type='method'><a href="ShadowCollection.html#x">x</a></li><li data-type='method'><a href="ShadowCollection.html#x">x</a></li><li data-type='method'><a href="ShadowCollection.html#y">y</a></li><li data-type='method'><a href="ShadowCollection.html#y">y</a></li></ul></li><li><a href="Stop.html">Stop</a><ul class='methods'><li data-type='method'><a href="Stop.html#color">color</a></li><li data-type='method'><a href="Stop.html#color">color</a></li><li data-type='method'><a href="Stop.html#offset">offset</a></li><li data-type='method'><a href="Stop.html#offset">offset</a></li></ul></li><li><a href="Stroke.html">Stroke</a><ul class='methods'><li data-type='method'><a href="Stroke.html#color">color</a></li><li data-type='method'><a href="Stroke.html#color">color</a></li><li data-type='method'><a href="Stroke.html#segments">segments</a></li><li data-type='method'><a href="Stroke.html#segments">segments</a></li><li data-type='method'><a href="Stroke.html#type">type</a></li><li data-type='method'><a href="Stroke.html#type">type</a></li><li data-type='method'><a href="Stroke.html#width">width</a></li><li data-type='method'><a href="Stroke.html#width">width</a></li></ul></li><li><a href="StrokeCollection.html">StrokeCollection</a><ul class='methods'><li data-type='method'><a href="StrokeCollection.html#color">color</a></li><li data-type='method'><a href="StrokeCollection.html#color">color</a></li><li data-type='method'><a href="StrokeCollection.html#master">master</a></li><li data-type='method'><a href="StrokeCollection.html#master">master</a></li><li data-type='method'><a href="StrokeCollection.html#segments">segments</a></li><li data-type='method'><a href="StrokeCollection.html#segments">segments</a></li><li data-type='method'><a href="StrokeCollection.html#type">type</a></li><li data-type='method'><a href="StrokeCollection.html#type">type</a></li><li data-type='method'><a href="StrokeCollection.html#width">width</a></li><li data-type='method'><a href="StrokeCollection.html#width">width</a></li></ul></li><li><a href="Text.html">Text</a><ul class='methods'><li data-type='method'><a href="Text.html#canvas">canvas</a></li><li data-type='method'><a href="Text.html#canvas">canvas</a></li><li data-type='method'><a href="Text.html#draw">draw</a></li><li data-type='method'><a href="Text.html#fill">fill</a></li><li data-type='method'><a href="Text.html#fill">fill</a></li><li data-type='method'><a href="Text.html#font">font</a></li><li data-type='method'><a href="Text.html#maxWidth">maxWidth</a></li><li data-type='method'><a href="Text.html#maxWidth">maxWidth</a></li><li data-type='method'><a href="Text.html#move">move</a></li><li data-type='method'><a href="Text.html#offset">offset</a></li><li data-type='method'><a href="Text.html#offset">offset</a></li><li data-type='method'><a href="Text.html#options">options</a></li><li data-type='method'><a href="Text.html#point">point</a></li><li data-type='method'><a href="Text.html#point">point</a></li><li data-type='method'><a href="Text.html#position">position</a></li><li data-type='method'><a href="Text.html#rotate">rotate</a></li><li data-type='method'><a href="Text.html#shadow">shadow</a></li><li data-type='method'><a href="Text.html#showCoordinates">showCoordinates</a></li><li data-type='method'><a href="Text.html#size">size</a></li><li data-type='method'><a href="Text.html#size">size</a></li><li data-type='method'><a href="Text.html#stroke">stroke</a></li><li data-type='method'><a href="Text.html#stroke">stroke</a></li><li data-type='method'><a href="Text.html#text">text</a></li><li data-type='method'><a href="Text.html#text">text</a></li><li data-type='method'><a href="Text.html#type">type</a></li><li data-type='method'><a href="Text.html#type">type</a></li><li data-type='method'><a href="Text.html#weight">weight</a></li><li data-type='method'><a href="Text.html#weight">weight</a></li><li data-type='method'><a href="Text.html#x">x</a></li><li data-type='method'><a href="Text.html#x">x</a></li><li data-type='method'><a href="Text.html#y">y</a></li><li data-type='method'><a href="Text.html#y">y</a></li></ul></li><li><a href="Texts.html">Texts</a><ul class='methods'><li data-type='method'><a href="Texts.html#anchor">anchor</a></li><li data-type='method'><a href="Texts.html#anchor">anchor</a></li><li data-type='method'><a href="Texts.html#area">area</a></li><li data-type='method'><a href="Texts.html#aspect">aspect</a></li><li data-type='method'><a href="Texts.html#canvas">canvas</a></li><li data-type='method'><a href="Texts.html#canvas">canvas</a></li><li data-type='method'><a href="Texts.html#center">center</a></li><li data-type='method'><a href="Texts.html#draw">draw</a></li><li data-type='method'><a href="Texts.html#endPoint">endPoint</a></li><li data-type='method'><a href="Texts.html#getPoints">getPoints</a></li><li data-type='method'><a href="Texts.html#height">height</a></li><li data-type='method'><a href="Texts.html#options">options</a></li><li data-type='method'><a href="Texts.html#perimeter">perimeter</a></li><li data-type='method'><a href="Texts.html#point">point</a></li><li data-type='method'><a href="Texts.html#point">point</a></li><li data-type='method'><a href="Texts.html#push">push</a></li><li data-type='method'><a href="Texts.html#shadow">shadow</a></li><li data-type='method'><a href="Texts.html#storageType">storageType</a></li><li data-type='method'><a href="Texts.html#stroke">stroke</a></li><li data-type='method'><a href="Texts.html#template">template</a></li><li data-type='method'><a href="Texts.html#template">template</a></li><li data-type='method'><a href="Texts.html#width">width</a></li><li data-type='method'><a href="Texts.html#x">x</a></li><li data-type='method'><a href="Texts.html#x">x</a></li><li data-type='method'><a href="Texts.html#y">y</a></li><li data-type='method'><a href="Texts.html#y">y</a></li></ul></li><li><a href="cImage.html">cImage</a><ul class='methods'><li data-type='method'><a href="cImage.html#anchor">anchor</a></li><li data-type='method'><a href="cImage.html#area">area</a></li><li data-type='method'><a href="cImage.html#aspect">aspect</a></li><li data-type='method'><a href="cImage.html#aspect">aspect</a></li><li data-type='method'><a href="cImage.html#canvas">canvas</a></li><li data-type='method'><a href="cImage.html#canvas">canvas</a></li><li data-type='method'><a href="cImage.html#center">center</a></li><li data-type='method'><a href="cImage.html#draw">draw</a></li><li data-type='method'><a href="cImage.html#height">height</a></li><li data-type='method'><a href="cImage.html#move">move</a></li><li data-type='method'><a href="cImage.html#options">options</a></li><li data-type='method'><a href="cImage.html#perimeter">perimeter</a></li><li data-type='method'><a href="cImage.html#point">point</a></li><li data-type='method'><a href="cImage.html#point">point</a></li><li data-type='method'><a href="cImage.html#position">position</a></li><li data-type='method'><a href="cImage.html#primary">primary</a></li><li data-type='method'><a href="cImage.html#primary">primary</a></li><li data-type='method'><a href="cImage.html#rotate">rotate</a></li><li data-type='method'><a href="cImage.html#secondary">secondary</a></li><li data-type='method'><a href="cImage.html#secondary">secondary</a></li><li data-type='method'><a href="cImage.html#showCoordinates">showCoordinates</a></li><li data-type='method'><a href="cImage.html#source">source</a></li><li data-type='method'><a href="cImage.html#source">source</a></li><li data-type='method'><a href="cImage.html#width">width</a></li><li data-type='method'><a href="cImage.html#x">x</a></li><li data-type='method'><a href="cImage.html#x">x</a></li><li data-type='method'><a href="cImage.html#y">y</a></li><li data-type='method'><a href="cImage.html#y">y</a></li></ul></li><li><a href="canvasLab.html">canvasLab</a><ul class='methods'><li data-type='method'><a href="canvasLab.html#animate">animate</a></li><li data-type='method'><a href="canvasLab.html#application">application</a></li><li data-type='method'><a href="canvasLab.html#canvas">canvas</a></li><li data-type='method'><a href="canvasLab.html#canvas">canvas</a></li><li data-type='method'><a href="canvasLab.html#canvases">canvases</a></li><li data-type='method'><a href="canvasLab.html#canvases">canvases</a></li><li data-type='method'><a href="canvasLab.html#center">center</a></li><li data-type='method'><a href="canvasLab.html#dom">dom</a></li><li data-type='method'><a href="canvasLab.html#font">font</a></li><li data-type='method'><a href="canvasLab.html#font">font</a></li><li data-type='method'><a href="canvasLab.html#get">get</a></li><li data-type='method'><a href="canvasLab.html#rotation">rotation</a></li><li data-type='method'><a href="canvasLab.html#rotation">rotation</a></li></ul></li><li><a href="myTransitions.html">myTransitions</a><ul class='methods'><li data-type='method'><a href="myTransitions.html#_getShapeLineData">_getShapeLineData</a></li><li data-type='method'><a href="myTransitions.html#bloom">bloom</a></li><li data-type='method'><a href="myTransitions.html#hop">hop</a></li><li data-type='method'><a href="myTransitions.html#shape">shape</a></li><li data-type='method'><a href="myTransitions.html#skip">skip</a></li><li data-type='method'><a href="myTransitions.html#template">template</a></li><li data-type='method'><a href="myTransitions.html#template">template</a></li><li data-type='method'><a href="myTransitions.html#transitions">transitions</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="PROPERTY_BLOCKS.html">PROPERTY_BLOCKS</a></li><li><a href="UTILITIES.html">UTILITIES</a><ul class='methods'><li data-type='method'><a href="UTILITIES.html#.animation">animation</a></li><li data-type='method'><a href="UTILITIES.html#.collection">collection</a></li><li data-type='method'><a href="UTILITIES.html#.individual">individual</a></li></ul></li><li><a href="VALIDATION.html">VALIDATION</a><ul class='methods'><li data-type='method'><a href="VALIDATION.html#.Fill#_isRepetition">Fill#_isRepetition</a></li><li data-type='method'><a href="VALIDATION.html#.Group#_isCanvasLabObject">Group#_isCanvasLabObject</a></li><li data-type='method'><a href="VALIDATION.html#.Position#_isNumber">Position#_isNumber</a></li><li data-type='method'><a href="VALIDATION.html#.is256">is256</a></li><li data-type='method'><a href="VALIDATION.html#.isAlign">isAlign</a></li><li data-type='method'><a href="VALIDATION.html#.isAlpha">isAlpha</a></li><li data-type='method'><a href="VALIDATION.html#.isAnchor">isAnchor</a></li><li data-type='method'><a href="VALIDATION.html#.isAngle">isAngle</a></li><li data-type='method'><a href="VALIDATION.html#.isAspect">isAspect</a></li><li data-type='method'><a href="VALIDATION.html#.isBlur">isBlur</a></li><li data-type='method'><a href="VALIDATION.html#.isCanvasLabObject">isCanvasLabObject</a></li><li data-type='method'><a href="VALIDATION.html#.isColorModel">isColorModel</a></li><li data-type='method'><a href="VALIDATION.html#.isColorName">isColorName</a></li><li data-type='method'><a href="VALIDATION.html#.isControlPoint">isControlPoint</a></li><li data-type='method'><a href="VALIDATION.html#.isDecimal">isDecimal</a></li><li data-type='method'><a href="VALIDATION.html#.isDegree">isDegree</a></li><li data-type='method'><a href="VALIDATION.html#.isFill">isFill</a></li><li data-type='method'><a href="VALIDATION.html#.isFillType">isFillType</a></li><li data-type='method'><a href="VALIDATION.html#.isGradient">isGradient</a></li><li data-type='method'><a href="VALIDATION.html#.isInDom">isInDom</a></li><li data-type='method'><a href="VALIDATION.html#.isNumber">isNumber</a></li><li data-type='method'><a href="VALIDATION.html#.isPoint">isPoint</a></li><li data-type='method'><a href="VALIDATION.html#.isPointNAspect">isPointNAspect</a></li><li data-type='method'><a href="VALIDATION.html#.isRadian">isRadian</a></li><li data-type='method'><a href="VALIDATION.html#.isRadius">isRadius</a></li><li data-type='method'><a href="VALIDATION.html#.isRepetition">isRepetition</a></li><li data-type='method'><a href="VALIDATION.html#.isSegments">isSegments</a></li><li data-type='method'><a href="VALIDATION.html#.isStop">isStop</a></li><li data-type='method'><a href="VALIDATION.html#.isStroke">isStroke</a></li><li data-type='method'><a href="VALIDATION.html#.isStrokeType">isStrokeType</a></li><li data-type='method'><a href="VALIDATION.html#.isTemplate">isTemplate</a></li><li data-type='method'><a href="VALIDATION.html#.isTransition">isTransition</a></li><li data-type='method'><a href="VALIDATION.html#.isWidth">isWidth</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#circle">circle</a></li><li><a href="global.html#ellipse">ellipse</a></li><li><a href="global.html#initCanvasLab">initCanvasLab</a></li><li><a href="global.html#line">line</a></li><li><a href="global.html#rectangle">rectangle</a></li><li><a href="global.html#roundedRectangle">roundedRectangle</a></li><li><a href="global.html#text">text</a></li></ul>
-    
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">canvasLab-v0.7.201.js</h1>
-    
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>// @program: 		canvasLab 
-// @brief: 			HTML5 canvas illustration &amp; animation framework 
+// @program: 		canvasLab 
+// @brief: 			HTML5 canvas illustration & animation framework 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.7.201 
+// @version: 		0.7.207 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -69,7 +22,7 @@
 /**
  * Canvas Lab Template, for the creation of objects through a collection
  * @typedef 		{Object}   Template
- * @property 		{Point}    point 							X &amp; Y coordinates
+ * @property 		{Point}    point 							X & Y coordinates
  * @property 		{clObject} master 							Master Canvas Lab object
  * @property 		{Function} init 							Initialization of Template
  */
@@ -91,13 +44,13 @@
 ////    COMPONENTS    //////////////////////////////////////
  
 /**
- * Base module for shared accessors &amp; mutators
+ * Base module for shared accessors & mutators
  * @namespace       PROPERTY_BLOCKS
  */
 const PROPERTY_BLOCKS =
 {
     /**
-     * Individual property accessors &amp; mutators
+     * Individual property accessors & mutators
      * @var             {Object} PROPERTY_BLOCKS.individual
      */
     individual:
@@ -113,7 +66,7 @@ const PROPERTY_BLOCKS =
              */
             set ( value )
             {
-                this._alpha = ( value &lt;= 1  &amp;&amp;  value >= 0 ) ? value : this._alpha;
+                this._alpha = ( value <= 1  &&  value >= 0 ) ? value : this._alpha;
             },
 
             /**
@@ -128,7 +81,7 @@ const PROPERTY_BLOCKS =
             }
         },
         /** @function PROPERTY_BLOCKS.individual.area                                            **/
-        /** @notes for &lt;Rectangle>, &lt;cImage>                                                     **/
+        /** @notes for <Rectangle>, <cImage>                                                     **/
         area:
         {
             /**
@@ -178,7 +131,7 @@ const PROPERTY_BLOCKS =
             }
         },
         /** @function PROPERTY_BLOCKS.individual.center                                          **/
-        /** @notes for &lt;Rectangle>, &lt;cImage>                                                     **/
+        /** @notes for <Rectangle>, <cImage>                                                     **/
         center:
         {
             /**
@@ -304,7 +257,7 @@ const PROPERTY_BLOCKS =
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              */
             set ( value )
             {
@@ -315,7 +268,7 @@ const PROPERTY_BLOCKS =
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              */
             get ( )
             {
@@ -397,7 +350,7 @@ const PROPERTY_BLOCKS =
              */
             set ( value )
             {
-                this._radius = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._radius;
+                this._radius = ( typeof value === 'number' && value > 0 ) ? value : this._radius;
             },
 
             /**
@@ -466,7 +419,7 @@ const PROPERTY_BLOCKS =
     },
 
     /**
-     * Collection property accessors &amp; mutators
+     * Collection property accessors & mutators
      * @var             {Object} PROPERTY_BLOCKS.collection
      */
     collection:
@@ -587,7 +540,7 @@ const PROPERTY_BLOCKS =
                                                : this._canvas;
 
 
-                if ( ( this.length > 0 )  &amp;&amp;  ( this._canvas instanceof CanvasRenderingContext2D ) )
+                if ( ( this.length > 0 )  &&  ( this._canvas instanceof CanvasRenderingContext2D ) )
 
                     for ( let _object of this )
 
@@ -631,7 +584,7 @@ const PROPERTY_BLOCKS =
              * Returns the last Point within this Array
              * @public
              * @function
-             * @return          {Point}                                     Last Array element's X &amp; Y Coordinates
+             * @return          {Point}                                     Last Array element's X & Y Coordinates
              */
             get ( )
             {
@@ -688,7 +641,7 @@ const PROPERTY_BLOCKS =
     },
 
     /**
-     * Animation property accessors &amp; mutators
+     * Animation property accessors & mutators
      * @var             {Object} PROPERTY_BLOCKS.animation
      */
     animation:
@@ -877,7 +830,7 @@ const UTILITIES =
          * Get all or specific points throughout this collection
          * @public
          * @function
-         * @param           {Array.&lt;number>} indexes                    Indexes of points
+         * @param           {Array.<number>} indexes                    Indexes of points
          * @param           {Rgb}            color                      Color to colorize objects selected points
          */
         getPoints ( indexes, color = new Rgb ( 200, 20, 20, 1 ) )
@@ -915,7 +868,7 @@ const UTILITIES =
          */
         push ( )
         {
-            for ( let _i = 0; _i &lt; arguments.length; _i++ )
+            for ( let _i = 0; _i < arguments.length; _i++ )
 
                 if ( arguments [ _i ] instanceof this.storageType )
 
@@ -938,7 +891,7 @@ const UTILITIES =
             this._setAspect ( );
 
 
-            this._anchor = this.center;
+            this.anchor.point = this.center;
 
 
             switch ( this.anchor.type )
@@ -1041,8 +994,8 @@ const UTILITIES =
                  * Cycle colors for gradient stop(s)
                  * @public
                  * @function
-                 * @param           {Rgb}      start                            Color model &amp; values
-                 * @param           {Rgb}      end                              Color model &amp; values
+                 * @param           {Rgb}      start                            Color model & values
+                 * @param           {Rgb}      end                              Color model & values
                  * @param           {number}   progress                         Progress time unit; 0.00 - 1.00
                  * @param           {number}   stop                             Color stop to cycle
                  * @param           {number}   max                              Maximum number of steps between interpolation
@@ -1250,7 +1203,7 @@ const UTILITIES =
             },
 
             /**
-             * Rotates the origin point by the degree &amp; distance passed
+             * Rotates the origin point by the degree & distance passed
              * @public
              * @function
              * @param           {Point}  origin                             Origin point
@@ -1347,11 +1300,11 @@ const UTILITIES =
              * Sets anchor's point against this object's point location
              * @public
              * @function
-             * @notes for Rectangle &amp; cImage only
+             * @notes for Rectangle & cImage only
              */
             anchorPoint ( )
             {
-                [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
+                [ this.anchor.x, this.anchor.y ] = [ this.x, this.y ];
 
 
                 switch ( this.anchor.align )
@@ -1404,7 +1357,7 @@ const UTILITIES =
                  * @public
                  * @function
                  * @param           {Object}        gradient                    [description]
-                 * @param           {Array.&lt;Stops>} stops                       [description]
+                 * @param           {Array.<Stops>} stops                       [description]
                  */
                 function _setStops ( gradient, stops )
                 {
@@ -1525,7 +1478,7 @@ const VALIDATION =
      */
     is256 ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 255 ) );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 255 ) );
     },
 
     /**
@@ -1560,7 +1513,7 @@ const VALIDATION =
         if ( value instanceof Angle ) return true;
 
 
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value &lt;= 360 ) );
+        return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
     },
 
     /**
@@ -1592,7 +1545,7 @@ const VALIDATION =
      */
     isAlpha ( value )
     {
-        return (  ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 1  )  );
+        return (  ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  )  );
     },
 
     /**
@@ -1616,7 +1569,7 @@ const VALIDATION =
         let _height = ( value.hasOwnProperty ( 'height' ) ) ? ( typeof value.height === 'number' ) : false;
 
 
-        return ( _width &amp;&amp; _height &amp;&amp; _length );
+        return ( _width && _height && _length );
     },
 
     /**
@@ -1629,7 +1582,7 @@ const VALIDATION =
      */
     isBlur ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 ) );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );
     },
 
     /**
@@ -1898,7 +1851,7 @@ const VALIDATION =
      * @public
      * @memberof VALIDATION
      * @function
-     * @param           {Array.&lt;number>} value                      Array of Control Points
+     * @param           {Array.<number>} value                      Array of Control Points
      * @return          {boolean}                                   True || False
      */
     isControlPoint ( value )
@@ -1932,7 +1885,7 @@ const VALIDATION =
      */
     isDecimal ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 1  ) );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 1  ) );
     },
 
     /**
@@ -1945,7 +1898,7 @@ const VALIDATION =
      */
     isDegree ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value &lt;= 360 ) );
+        return ( ( typeof value === 'number' )  &&  ( value <= 360 ) );
     },
 
     /**
@@ -1963,7 +1916,7 @@ const VALIDATION =
 
         let _length = Object.keys ( value ).length;
 
-            _length = ( _length > 1 &amp;&amp; _length &lt; 6 );
+            _length = ( _length > 1 && _length < 6 );
 
 
         let _color  = ( value.hasOwnProperty ( 'color' ) ) ? ( value.color instanceof Rgb ) : false;
@@ -1971,7 +1924,7 @@ const VALIDATION =
         let _type   = ( value.hasOwnProperty ( 'type'  ) ) ? ( typeof value.type === 'string' ) : false;
 
 
-        return ( _length &amp;&amp; _color &amp;&amp; _type );
+        return ( _length && _color && _type );
     },
 
     /**
@@ -2030,7 +1983,7 @@ const VALIDATION =
      */
     isNumber ( value )
     {
-        return ( ( typeof value === 'number')  &amp;&amp;  !isNaN ( value ) );
+        return ( ( typeof value === 'number')  &&  !isNaN ( value ) );
     },
 
     /**
@@ -2054,11 +2007,11 @@ const VALIDATION =
         let _y      = ( value.hasOwnProperty ( 'y' ) ) ? ( typeof value.y === 'number' ) : false;
 
 
-        return ( _length &amp;&amp; _x &amp;&amp; _y );
+        return ( _length && _x && _y );
     },
 
     /**
-     * Returns whether the passed value is a Point &amp; Aspect
+     * Returns whether the passed value is a Point & Aspect
      * @public
      * @memberof VALIDATION
      * @function
@@ -2088,7 +2041,7 @@ const VALIDATION =
             }
 
 
-        return ( _point  &amp;&amp;  _aspect );
+        return ( _point  &&  _aspect );
     },
 
     /**
@@ -2101,7 +2054,7 @@ const VALIDATION =
      */
     isRadian ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 &amp;&amp; value &lt;= 6.283185307179586 ) );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 && value <= 6.283185307179586 ) );
     },
 
     /**
@@ -2114,7 +2067,7 @@ const VALIDATION =
      */
     isRadius ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value > 0 ) );
+        return ( ( typeof value === 'number' )  &&  ( value > 0 ) );
     },
 
     /**
@@ -2135,7 +2088,7 @@ const VALIDATION =
      * @public
      * @memberof VALIDATION
      * @function
-     * @param           {Array.&lt;number>} value                      Array of segment values
+     * @param           {Array.<number>} value                      Array of segment values
      * @return          {boolean}                                   True || False
      */
     isSegments ( value )
@@ -2175,14 +2128,14 @@ const VALIDATION =
 
         // // // // // // // // // // // // // // // // // // // // // // // //
 
-        let _object = ( typeof value === 'object'  &amp;&amp;  ! Array.isArray ( value ) );
+        let _object = ( typeof value === 'object'  &&  ! Array.isArray ( value ) );
 
         let _offset = ( value.hasOwnProperty ( 'offset' ) ) ? VALIDATION.isNumber     ( value.offset ) : false;
 
         let _color  = ( value.hasOwnProperty ( 'color'  ) ) ? VALIDATION.isColorModel ( value.color  ) : false;
 
 
-        return ( _object &amp;&amp; _offset &amp;&amp; _color );
+        return ( _object && _offset && _color );
     },
 
     /**
@@ -2200,7 +2153,7 @@ const VALIDATION =
 
         let _length = Object.keys ( value ).length;
 
-            _length = ( _length > 1 &amp;&amp; _length &lt; 5 );
+            _length = ( _length > 1 && _length < 5 );
 
 
         let _color  = ( value.hasOwnProperty ( 'color' ) ) ? ( value.color instanceof Rgb ) : false;
@@ -2210,7 +2163,7 @@ const VALIDATION =
         let _width  = ( value.hasOwnProperty ( 'width' ) ) ? ( typeof value.width === 'number' ) : false;
 
 
-        return ( _length &amp;&amp; _color &amp;&amp; _type &amp;&amp; _width );
+        return ( _length && _color && _type && _width );
     },
 
     /**
@@ -2223,7 +2176,7 @@ const VALIDATION =
      */
     isStrokeType ( value )
     {
-        return ( ( typeof value === 'string' )  &amp;&amp;  [ 'solid', 'dashed' ].includes ( value ) );
+        return ( ( typeof value === 'string' )  &&  [ 'solid', 'dashed' ].includes ( value ) );
     },
 
     /**
@@ -2259,7 +2212,7 @@ const VALIDATION =
 
                 _results = _results.sort ( ).filter ( ( element, i, array ) =>
                            {
-                               if ( element != array [ i + 1 ] &amp;&amp; typeof object [ element ] == 'function' )
+                               if ( element != array [ i + 1 ] && typeof object [ element ] == 'function' )
 
                                     return true;
                            } );
@@ -2283,7 +2236,7 @@ const VALIDATION =
             let _init   = _functions.includes ( 'init' );
 
 
-            return ( _point &amp;&amp; _master &amp;&amp; _init );
+            return ( _point && _master && _init );
         }
         else
 
@@ -2310,7 +2263,7 @@ const VALIDATION =
             let _template    = ( Object.hasOwn ( _instance, '_template' ) );
 
 
-            return ( _transitions &amp;&amp; _template );
+            return ( _transitions && _template );
         }
         else
 
@@ -2327,7 +2280,7 @@ const VALIDATION =
      */
     isWidth ( value )
     {
-        return ( ( typeof value === 'number' )  &amp;&amp;  ( value >= 0 ) );
+        return ( ( typeof value === 'number' )  &&  ( value >= 0 ) );
     }
 }
 
@@ -2357,7 +2310,7 @@ class canvasLab
          * Returns a Circle object
          * @protected
          * @function
-         * @param           {Point}  point                              X &amp; Y Coordinates
+         * @param           {Point}  point                              X & Y Coordinates
          * @param           {Stroke} stroke                             Stroke properties
          * @param           {Fill}   fill                               Fill properties
          * @return          {Circle}                                    Circle object
@@ -2371,7 +2324,7 @@ class canvasLab
          * Returns a Ellipse object
          * @protected
          * @function
-         * @param           {Point}  point                              X &amp; Y Coordinates
+         * @param           {Point}  point                              X & Y Coordinates
          * @param           {Stroke} stroke                             Stroke properties
          * @param           {Fill}   fill                               Fill properties
          * @return          {Ellipse}                                   Ellipse object
@@ -2385,7 +2338,7 @@ class canvasLab
          * Returns a Rectangle object
          * @protected
          * @function
-         * @param           {Point}  point                              X &amp; Y Coordinates
+         * @param           {Point}  point                              X & Y Coordinates
          * @param           {Stroke} stroke                             Stroke properties
          * @param           {Fill}   fill                               Fill properties
          * @return          {Rectangle}                                 Rectangle object
@@ -2399,7 +2352,7 @@ class canvasLab
          * Returns a RoundedRectangle object
          * @protected
          * @function
-         * @param           {Point}  point                              X &amp; Y Coordinates
+         * @param           {Point}  point                              X & Y Coordinates
          * @param           {Stroke} stroke                             Stroke properties
          * @param           {Fill}   fill                               Fill properties
          * @return          {RoundedRectangle}                          Rounded rectangle object
@@ -2413,7 +2366,7 @@ class canvasLab
          * Returns a Text object
          * @protected
          * @function
-         * @param           {Point}  point                              X &amp; Y Coordinates
+         * @param           {Point}  point                              X & Y Coordinates
          * @param           {Stroke} stroke                             Stroke properties
          * @param           {Fill}   fill                               Fill properties
          * @return          {Text}                                      Text object
@@ -2630,7 +2583,7 @@ class canvasLab
                 let _canvases = document.getElementsByTagName ( 'canvas' );
 
 
-                if ( typeof _canvases === 'object' &amp;&amp; this._canvases === undefined )
+                if ( typeof _canvases === 'object' && this._canvases === undefined )
 
                     for ( let _id in _canvases )
 
@@ -2646,10 +2599,10 @@ class canvasLab
         ////    PUBLIC    ////////////////////////
 
             /**
-             * Returns the center X &amp; Y coordinates of the present canvas
+             * Returns the center X & Y coordinates of the present canvas
              * @public
              * @function
-             * @return          {Point}                                     Center X &amp; Y coordinates
+             * @return          {Point}                                     Center X & Y coordinates
              */
             get center ( )
             {
@@ -2851,8 +2804,8 @@ class Rgb
 			 * Linear interpolation color transitions
 			 * @private
 			 * @function
-			 * @param  			{Object} start 								Color model &amp; values
-			 * @param  			{Object} end 								Color model &amp; values
+			 * @param  			{Object} start 								Color model & values
+			 * @param  			{Object} end 								Color model & values
 			 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
 			 * @param 			{number} max 								Maximum number of steps between interpolation
 			 */
@@ -2865,8 +2818,8 @@ class Rgb
 			 * Linear interpolation of Rgb values
 			 * @private
 			 * @function
-			 * @param  			{Object} start 								Color model &amp; values
-			 * @param  			{Object} end 								Color model &amp; values
+			 * @param  			{Object} start 								Color model & values
+			 * @param  			{Object} end 								Color model & values
 			 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
 			 * @param 			{number} max 								Maximum number of steps between interpolation
 			 */
@@ -2885,8 +2838,8 @@ class Rgb
 			 * Color cycling
 			 * @public
 			 * @function
-			 * @param  			{Rgb}    start								Color model &amp; values
-			 * @param  			{Rgb}    end 								Color model &amp; values
+			 * @param  			{Rgb}    start								Color model & values
+			 * @param  			{Rgb}    end 								Color model & values
 			 * @param 			{number} progress 							Progress time unit; 0.00 - 1.00
 			 * @param 			{number} max 								Maximum number of steps between interpolation
 			 */
@@ -2896,10 +2849,10 @@ class Rgb
 			}
 
 			/**
-			 * Returns a CSS compatible &lt;color> string value
+			 * Returns a CSS compatible <color> string value
 			 * @public
 			 * @function
-			 * @return 			{string} 									CSS &lt;color> string
+			 * @return 			{string} 									CSS <color> string
 			 */
 			toCss ( )
 			{
@@ -3138,7 +3091,7 @@ class Options
  
 /**
  * @class           {Object} Anchor                             Anchor object
- * @property        {Point}  point                              X &amp; Y axis coordinates
+ * @property        {Point}  point                              X & Y axis coordinates
  * @property        {string} align                              Anchor alignment
  */
 class Anchor
@@ -3152,6 +3105,7 @@ class Anchor
 		//// 	COMPOSITION 	////////////////////////////
 
 			this._isAlign = VALIDATION.isAlign;
+            this._isPoint = VALIDATION.isPoint;
 
             Object.defineProperty ( this, 'point', PROPERTY_BLOCKS.individual.point  );
             Object.defineProperty ( this, 'x',     PROPERTY_BLOCKS.individual.pointX );
@@ -3160,13 +3114,13 @@ class Anchor
 
     ////    PROPERTIES    //////////////////////////////////
 
-    	////    [ POINT ]    ////////////////////
+    	////    [ POINT ]    /////////////////////
 
             /**
              * Set point
              * @public
              * @function
-             * @param           {Point} point                               X &amp; Y axis coordinates
+             * @param           {Point} point                               X & Y axis coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             set point ( value ) { }
@@ -3175,7 +3129,7 @@ class Anchor
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y axis coordinates
+             * @return          {Point}                                     X & Y axis coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             get point ( ) { }
@@ -3253,6 +3207,16 @@ class Anchor
          * @see             {@link VALIDATION.isAnchor}
          */
         _isAnchor ( ) { }
+
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isPoint}
+         */
+        _isPoint ( ) { }
 }
  
 /**
@@ -3473,7 +3437,7 @@ class Aspect
              */
             set width ( value )
             {
-                this._width = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._width;
+                this._width = ( typeof value === 'number' && value > 0 ) ? value : this._width;
             }
 
             /**
@@ -3497,7 +3461,7 @@ class Aspect
              */
             set height ( value )
             {
-                this._height = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._height;
+                this._height = ( typeof value === 'number' && value > 0 ) ? value : this._height;
             }
 
             /**
@@ -3739,7 +3703,7 @@ class ControlPoints
          * @private
          * @memberof VALIDATION
          * @function
-         * @param           {Array.&lt;number>} value                      Array of Control Points
+         * @param           {Array.<number>} value                      Array of Control Points
          * @return          {boolean}                                   True || False
          * @see             {@link VALIDATION.isControlPoint}
          */
@@ -3793,7 +3757,7 @@ class Font
 
                     if ( window.canvaslab instanceof canvasLab )
                     {
-                        let _regex = /(\w+(\s))?(?&lt;size>\d+)px\s(?&lt;type>\w.+)/;
+                        let _regex = /(\w+(\s))?(?<size>\d+)px\s(?<type>\w.+)/;
 
                         let _font  = canvaslab.font;
 
@@ -3940,7 +3904,7 @@ class Font
 }
  
 /**
- * @class           {Object}  Point                             X &amp; Y coordinates for an object
+ * @class           {Object}  Point                             X & Y coordinates for an object
  * @property        {number}  [x=0]                             X - x-axis coordinate
  * @property        {number}  [y=0]                             Y - y-axis coordinate
  * @property        {Options} options                           Ancillary properties
@@ -3991,7 +3955,7 @@ class Point
              */
             set x ( value )
             {
-                this._x = (  ( typeof value === 'number' )  &amp;&amp;  !isNaN ( value )  ) ? value : this._x;
+                this._x = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._x;
             }
 
             /**
@@ -4015,7 +3979,7 @@ class Point
              */
             set y ( value )
             {
-                this._y = (  ( typeof value === 'number' )  &amp;&amp;  !isNaN ( value )  ) ? value : this._y;
+                this._y = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._y;
             }
 
             /**
@@ -4110,7 +4074,7 @@ class Point
             _drawBorder ( ) { }
 
             /**
-             * Rotates the origin point by the degree &amp; distance passed
+             * Rotates the origin point by the degree & distance passed
              * @private
              * @function
              * @param           {Point}  origin                             Origin point
@@ -4151,7 +4115,7 @@ class Point
             }
 
             /**
-             * Invert x &amp; y coordinate values
+             * Invert x & y coordinate values
              * @public
              * @function
              */
@@ -4180,8 +4144,8 @@ class Point
  
 /**
  * @class           {Object} Stop                               Color stop properties for associated array(s)
- * @property        {string} [color=&lt;Rgb>]                      Color model &amp; value
- * @property        {number} offset                             Representation of the color stop position; 0 = start, &amp; 1 = end
+ * @property        {string} [color=<Rgb>]                      Color model & value
+ * @property        {number} offset                             Representation of the color stop position; 0 = start, & 1 = end
  */
 class Stop
 {
@@ -4279,9 +4243,9 @@ class Stop
  
 /**
  * @class           {Object}       Conic                        Conic gradient object type and properties
- * @property        {Point}        point                        X &amp; Y axis coordinates
+ * @property        {Point}        point                        X & Y axis coordinates
  * @property        {number}       angle                        Angle in radians
- * @property        {Array.&lt;Stop>} stops                        Array of color stops
+ * @property        {Array.<Stop>} stops                        Array of color stops
  */
 class Conic
 {
@@ -4293,7 +4257,7 @@ class Conic
      * Create a Conic gradient object type
      * @property        {number}       angle                        Angle in radians
      * @property        {Point}        point                        Starting point of linear gradient
-     * @property        {Array.&lt;Stop>} stops                        Array of color stops
+     * @property        {Array.<Stop>} stops                        Array of color stops
      */
     constructor ( angle, point, stops )
     {
@@ -4366,7 +4330,7 @@ class Conic
              * Set color stops
              * @public
              * @function
-             * @param           {Array.&lt;Stop>} values                       Color stops
+             * @param           {Array.<Stop>} values                       Color stops
              */
             set stops ( value )
             {
@@ -4386,7 +4350,7 @@ class Conic
              * Get color stops
              * @readOnly
              * @function
-             * @return          {Array.&lt;Stop>}                              Color stops
+             * @return          {Array.<Stop>}                              Color stops
              */
             get stops ( )
             {
@@ -4431,8 +4395,8 @@ class Conic
          * Cycle colors for gradient stop(s)
          * @private
          * @function
-         * @param           {Object}   start                            Color model &amp; values
-         * @param           {Object}   end                              Color model &amp; values
+         * @param           {Object}   start                            Color model & values
+         * @param           {Object}   end                              Color model & values
          * @param           {number}   progress                         Progress time unit; 0.00 - 1.00
          * @param           {number}   stop                             Color stop to cycle
          * @param           {number}   max                              Maximum number of steps between interpolation
@@ -4445,9 +4409,9 @@ class Conic
  
 /**
  * @class           {Object}       Linear                       Linear gradient object type and properties
- * @property        {Point}        start                        Start X &amp; Y axis coordinates
- * @property        {Point}        end                          End X &amp; Y axis coordinates
- * @property        {Array.&lt;Stop>} stops                        Array of color stops
+ * @property        {Point}        start                        Start X & Y axis coordinates
+ * @property        {Point}        end                          End X & Y axis coordinates
+ * @property        {Array.<Stop>} stops                        Array of color stops
  */
 class Linear
 {
@@ -4459,7 +4423,7 @@ class Linear
      * Create a Linear gradient object type
      * @property        {Point}        start                        Starting point of linear gradient
      * @property        {Point}        end                          Ending point of linear gradient
-     * @property        {Array.&lt;Stop>} stops                        Array of color stops
+     * @property        {Array.<Stop>} stops                        Array of color stops
      */
     constructor ( start, end, stops )
     {
@@ -4532,7 +4496,7 @@ class Linear
              * Set color stops
              * @public
              * @function
-             * @param           {Array.&lt;Stop>} values                       Color stops
+             * @param           {Array.<Stop>} values                       Color stops
              */
             set stops ( value )
             {
@@ -4552,7 +4516,7 @@ class Linear
              * Get color stops
              * @readOnly
              * @function
-             * @return          {Array.&lt;Stop>}                              Color stops
+             * @return          {Array.<Stop>}                              Color stops
              */
             get stops ( )
             {
@@ -4597,8 +4561,8 @@ class Linear
          * Cycle colors for gradient stop(s)
          * @private
          * @function
-         * @param           {Object}   start                            Color model &amp; values
-         * @param           {Object}   end                              Color model &amp; values
+         * @param           {Object}   start                            Color model & values
+         * @param           {Object}   end                              Color model & values
          * @param           {number}   progress                         Progress time unit; 0.00 - 1.00
          * @param           {number}   stop                             Color stop to cycle
          * @param           {number}   max                              Maximum number of steps between interpolation
@@ -4611,11 +4575,11 @@ class Linear
  
 /**
  * @class           {Object}       Radial                       Radial gradient object type and properties
- * @property        {Point}        start                        Start X &amp; Y axis coordinates
+ * @property        {Point}        start                        Start X & Y axis coordinates
  * @property        {Number}       startRadius                  Starting radius of linear gradient
- * @property        {Point}        end                          End X &amp; Y axis coordinates
+ * @property        {Point}        end                          End X & Y axis coordinates
  * @property        {Number}       endRadius                    Ending radius of linear gradient gradient
- * @property        {Array.&lt;Stop>} stops                        Array of color stops
+ * @property        {Array.<Stop>} stops                        Array of color stops
  */
 class Radial
 {
@@ -4633,7 +4597,7 @@ class Radial
      * @property        {Number}       startRadius                  Starting radius of linear gradient gradient
      * @property        {Point}        end                          Ending point of linear gradient
      * @property        {Number}       endRadius                    Ending radius of linear gradient gradient
-     * @property        {Array.&lt;Stop>} stops                        Array of color stops
+     * @property        {Array.<Stop>} stops                        Array of color stops
      */
     constructor ( start, startRadius, end, endRadius, stops )
     {
@@ -4759,7 +4723,7 @@ class Radial
              * Set color stops
              * @public
              * @function
-             * @param           {Array.&lt;Stop>} value                        Color stops
+             * @param           {Array.<Stop>} value                        Color stops
              */
             set stops ( value )
             {
@@ -4779,7 +4743,7 @@ class Radial
              * Get color stops
              * @readOnly
              * @function
-             * @return          {Array.&lt;Stop>}                              Color stops
+             * @return          {Array.<Stop>}                              Color stops
              */
             get stops ( )
             {
@@ -4834,8 +4798,8 @@ class Radial
          * Cycle colors for gradient stop(s)
          * @private
          * @function
-         * @param           {Object}   start                            Color model &amp; values
-         * @param           {Object}   end                              Color model &amp; values
+         * @param           {Object}   start                            Color model & values
+         * @param           {Object}   end                              Color model & values
          * @param           {number}   progress                         Progress time unit; 0.00 - 1.00
          * @param           {number}   stop                             Color stop to cycle
          * @param           {number}   max                              Maximum number of steps between interpolation
@@ -4848,7 +4812,7 @@ class Radial
  
 /**
  * @class           {Object}  Fill                              Fill container for various fill types
- * @property        {Object} [color=&lt;Rgb>]                      Color model &amp; value
+ * @property        {Object} [color=<Rgb>]                      Color model & value
  * @property        {string} [type='solid']                     Fill type; solid | linear | radial | conic | pattern
  * @property        {Object}  gradient                          Gradient object; Linear | Radial | Conic
  * @property        {Pattern} pattern                           Pattern fill object
@@ -4863,7 +4827,7 @@ class Fill
 
     /**
      * Create a fill type
-     * @param           {Object} [color=&lt;Rgb>]                      Color model &amp; value
+     * @param           {Object} [color=<Rgb>]                      Color model & value
      * @param           {string} [type='solid']                     Fill type
      * @param           {Object}  gradient                          Gradient object
      */
@@ -4937,7 +4901,7 @@ class Fill
              * Set gradient gradient properties
              * @public
              * @function
-             * @param           {Object} value                              Gradient object &amp; properties
+             * @param           {Object} value                              Gradient object & properties
              */
             set gradient ( value )
             {
@@ -4950,7 +4914,7 @@ class Fill
              * Get gradient gradient properties
              * @readOnly
              * @function
-             * @return          {Object}                                    Gradient object &amp; properties
+             * @return          {Object}                                    Gradient object & properties
              */
             get gradient ( )
             {
@@ -5061,7 +5025,7 @@ class Fill
  
 /**
  * @class           {Object} Shadow                             Shadow of associated object
- * @property        {Object} [color=&lt;Rgb>]                      RGB color value; r, g, b
+ * @property        {Object} [color=<Rgb>]                      RGB color value; r, g, b
  * @property        {number} [blur=3]                           Blur strength
  * @property        {Point}  offset                             Point offset coordinates
  */
@@ -5237,7 +5201,7 @@ class Shadow
  
 /**
  * @class           {Object}   Stroke                           Stroke properties of associated object
- * @property        {Object}   [color=&lt;Rgb>]                    Color model &amp; value
+ * @property        {Object}   [color=<Rgb>]                    Color model & value
  * @property        {string}   [type='solid']                   Stroke type; 'solid' || 'dashed'
  * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s)
  * @property        {number}   [width=2]                        Thickness of stroke
@@ -5305,7 +5269,7 @@ class Stroke
              * Set segment value
              * @public
              * @function
-             * @param           {Array.&lt;number>} value                      Dashed line segment distance(s)
+             * @param           {Array.<number>} value                      Dashed line segment distance(s)
              */
             set segments ( value )
             {
@@ -5316,7 +5280,7 @@ class Stroke
              * Get segment value
              * @readOnly
              * @function
-             * @return          {Array.&lt;number>}                            Dashed line segment distance(s)
+             * @return          {Array.<number>}                            Dashed line segment distance(s)
              */
             get segments ( )
             {
@@ -5387,7 +5351,7 @@ class Stroke
          * Returns whether the passed value is an Array of segment values
          * @private
          * @function
-         * @param           {Array.&lt;number>} value                      Array of segment values
+         * @param           {Array.<number>} value                      Array of segment values
          * @return          {boolean}                                   True || False
          * @see             {@link VALIDATION.isSegments}
          */
@@ -5614,7 +5578,7 @@ class OptionsCollection
 }
  
 /**
- * @class           {Object}            PointCollection         X &amp; Y coordinates for an object
+ * @class           {Object}            PointCollection         X & Y coordinates for an object
  * @property        {number}            [x=0]                   X - x-axis coordinate
  * @property        {number}            [y=0]                   Y - y-axis coordinate
  * @property        {OptionsCollection} options                 Ancillary properties
@@ -5719,7 +5683,7 @@ class PointCollection
         ////    + PUBLIC    //////////////////////
 
             /**
-             * Invert x &amp; y coordinate values
+             * Invert x & y coordinate values
              * @public
              * @function
              */
@@ -5733,7 +5697,7 @@ class PointCollection
  
 /**
  * @class           {Object} ShadowCollection                   Shadow of associated object
- * @property        {Object} [color=&lt;Rgb>]                      Color model &amp; value
+ * @property        {Object} [color=<Rgb>]                      Color model & value
  * @property        {number} blur                               Blur strength
  * @property        {Point}  offset                             Point offset coordinates
  */
@@ -5920,7 +5884,7 @@ class ShadowCollection
  
 /**
  * @class           {Object}   StrokeCollection                 Stroke properties of associated object
- * @property        {Object}   [color=&lt;Rgb>]                    Color model &amp; value
+ * @property        {Object}   [color=<Rgb>]                    Color model & value
  * @property        {string}   [type='solid']                   Stroke type; solid | dashed
  * @property        {number[]} [segments=[5, 5]]                Dashed line segment distance(s)
  * @property        {number}   [alpha=1]                        Alpha (transparency); number/decimal
@@ -6096,7 +6060,7 @@ class StrokeCollection
          * Returns whether the passed value is an Array of segment values
          * @private
          * @function
-         * @param           {Array.&lt;number>} value                      Array of segment values
+         * @param           {Array.<number>} value                      Array of segment values
          * @return          {boolean}                                   True || False
          * @see             {@link VALIDATION.isSegments}
          */
@@ -6139,9 +6103,9 @@ class StrokeCollection
  
 /**
  * @class           {Object}            Position 				Position object
- * @property        {Point}             origin 					Origin X &amp; Y coordinates for an object's position
- * @property        {Point}             start 					Origin start X &amp; Y coordinates for a Line object's position
- * @property        {Point}             end 					Origin end X &amp; Y coordinates for a Line object's position
+ * @property        {Point}             origin 					Origin X & Y coordinates for an object's position
+ * @property        {Point}             start 					Origin start X & Y coordinates for a Line object's position
+ * @property        {Point}             end 					Origin end X & Y coordinates for a Line object's position
  * @property        {number}            distance 				Distance from origin to destination
  * @property        {number}            direction 				Direction to move towards destination; in degrees
  * @property        {number}            rotation 				Amount object (including canvas) has been rotated
@@ -6208,7 +6172,7 @@ class Position
 			 * Set origin
 			 * @public
 			 * @function
-			 * @param 			{Point} value 								X &amp; Y coordinates
+			 * @param 			{Point} value 								X & Y coordinates
 			 */
 			set origin ( value )
 			{
@@ -6219,7 +6183,7 @@ class Position
 	         * Get origin
 	         * @public
 	         * @function
-	         * @return          {Point}                                     X &amp; Y coordinates
+	         * @return          {Point}                                     X & Y coordinates
 	         */
 			get origin ( )
 			{
@@ -6284,7 +6248,7 @@ class Position
 			 */
 			set distance ( value )
 			{
-				if ( value != undefined  &amp;&amp;  this._isPoint ( value ) )
+				if ( value != undefined  &&  this._isPoint ( value ) )
 
 	                this._distance = Math.sqrt (
 	                                               ( Math.pow ( value.x - this.master.x, 2 ) ) +
@@ -6314,7 +6278,7 @@ class Position
 		     */
 		    set startDistance ( value )
 		    {
-		        if ( value != undefined  &amp;&amp;  this._isPoint ( value ) )
+		        if ( value != undefined  &&  this._isPoint ( value ) )
 
 	                this._startDistance = Math.sqrt (
 	                                               ( Math.pow ( value.x - this.master.x, 2 ) ) +
@@ -6344,7 +6308,7 @@ class Position
 		     */
 		    set endDistance ( value )
 		    {
-		        if ( value != undefined  &amp;&amp;  this._isPoint ( value ) )
+		        if ( value != undefined  &&  this._isPoint ( value ) )
 
 	                this._endDistance = Math.sqrt (
 	                                               ( Math.pow ( value.x - this.master.x, 2 ) ) +
@@ -6374,7 +6338,7 @@ class Position
 			 */
 			set direction ( value )
 			{
-				if ( value != undefined  &amp;&amp;  this._isPoint ( value ) )
+				if ( value != undefined  &&  this._isPoint ( value ) )
 
 					this._direction = Math.atan2 ( value.y - this.master.y, value.x - this.master.x );
 			}
@@ -6400,7 +6364,7 @@ class Position
 		     */
 		    set startDirection ( value )
 		    {
-		        if ( value != undefined  &amp;&amp;  this._isPoint ( value ) )
+		        if ( value != undefined  &&  this._isPoint ( value ) )
 
 					this._startDirection = Math.atan2 ( value.y - this.master.y, value.x - this.master.x );
 		    }
@@ -6426,7 +6390,7 @@ class Position
 		     */
 		    set endDirection ( value )
 		    {
-		        if ( value != undefined  &amp;&amp;  this._isPoint ( value ) )
+		        if ( value != undefined  &&  this._isPoint ( value ) )
 
 					this._endDirection = Math.atan2 ( value.y - this.master.y, value.x - this.master.x );
 		    }
@@ -6544,7 +6508,7 @@ class Position
 		     * Set controlPoints
 		     * @public
 		     * @function
-		     * @param 			{Array.&lt;number>} value 						ControlPoints of object
+		     * @param 			{Array.<number>} value 						ControlPoints of object
 		     */
 		    set controlPoints ( value )
 		    {
@@ -6555,7 +6519,7 @@ class Position
 		     * Get controlPoints
 		     * @public
 		     * @function
-		     * @return 			{Array.&lt;number>} 							ControlPoints of object
+		     * @return 			{Array.<number>} 							ControlPoints of object
 		     */
 		    get controlPoints ( )
 		    {
@@ -6692,7 +6656,7 @@ class Position
 	     * @private
 	     * @memberof VALIDATION
 	     * @function
-	     * @param           {Array.&lt;number>} value                      Array of Control Points
+	     * @param           {Array.<number>} value                      Array of Control Points
 	     * @return          {boolean}                                   True || False
 	     * @see             {@link VALIDATION.isControlPoint}
 	     */
@@ -6744,7 +6708,7 @@ class Position
  
 /**
  * @class           {Object}            Circle                  Circle object
- * @property        {Point}             point                   X &amp; Y axis coordinates
+ * @property        {Point}             point                   X & Y axis coordinates
  * @property        {number|Point}     [radius=25]              Radius of circle
  * @property        {Angle}             angle                   Angle properties
  * @property        {Stroke}            stroke                  Stroke properties
@@ -6766,13 +6730,14 @@ class Circle
 
     _canvas = undefined;
 
-    _anchor   = new Anchor;
+    #anchor   = new Anchor;
     #options  = new Options;
     #position = new Position;
+    #velocity = new Point;
 
     /**
      * Create a Circle object
-     * @property        {Point}             point                   X &amp; Y axis coordinates
+     * @property        {Point}             point                   X & Y axis coordinates
      * @property        {number|Point}      radius                  Radius of circle
      * @property        {Angle}             angle                   Angle properties
      * @property        {Stroke}            stroke                  Stroke properties
@@ -6838,20 +6803,20 @@ class Circle
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#options.shadow  = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
+            this.#options.shadow  = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
 
             this.#position.master = this;
     }
 
     ////    PROPERTIES    //////////////////////////////////
 
-        ////    [ POINT ]   //////////////////////////
+        ////    [ POINT ]   /////////////////////
 
             /**
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             set point ( value ) { }
@@ -6860,7 +6825,7 @@ class Circle
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             get point ( ) { }
@@ -6903,7 +6868,7 @@ class Circle
              */
             get y ( ) { }
 
-        ////    [ RADIUS ]    ////////////////////////
+        ////    [ RADIUS ]    ////////////////////
 
             /**
              * Set radius value
@@ -6932,7 +6897,7 @@ class Circle
                 return this._radius;
             }
 
-        ////    [ ANGLE ]    /////////////////////////
+        ////    [ ANGLE ]    /////////////////////
 
             /**
              * Get angle properties
@@ -6945,7 +6910,7 @@ class Circle
                 return this._angle;
             }
 
-        ////    [ STROKE ]    ////////////////////////
+        ////    [ STROKE ]    ////////////////////
 
             /**
              * Set stroke properties
@@ -6969,7 +6934,7 @@ class Circle
                 return this._stroke;
             }
 
-        ////    [ FILL ]    //////////////////////////
+        ////    [ FILL ]    //////////////////////
 
             /**
              * Set fill properties
@@ -6993,7 +6958,7 @@ class Circle
                 return this._fill;
             }
 
-        ////    [ SHADOW ]    ////////////////////////
+        ////    [ SHADOW ]    ////////////////////
 
             /**
              * Get shadow properties
@@ -7006,7 +6971,7 @@ class Circle
                 return this._shadow;
             }
 
-        ////    [ CANVAS ]    ////////////////////////
+        ////    [ CANVAS ]    ////////////////////
 
             /**
              * Set canvas value
@@ -7026,7 +6991,7 @@ class Circle
              */
             get canvas ( ) { }
 
-        ////    [ ANCHOR ]    ////////////////////////
+        ////    [ ANCHOR ]    ////////////////////
 
             /**
              * Get anchor
@@ -7036,10 +7001,10 @@ class Circle
              */
             get anchor ( )
             {
-                return this._anchor;
+                return this.#anchor;
             }
 
-        ////    [ OPTIONS ]    ///////////////////////
+        ////    [ OPTIONS ]    ///////////////////
 
             /**
              * Get options properties
@@ -7052,7 +7017,7 @@ class Circle
                 return this.#options;
             }
 
-        ////    [ POSITION ]    //////////////////////
+        ////    [ POSITION ]    //////////////////
 
             /**
              * Get position properties
@@ -7063,6 +7028,30 @@ class Circle
             get position ( )
             {
                 return this.#position;
+            }
+
+        ////    [ VELOCITY ]    //////////////////
+
+            /**
+             * Set velocity
+             * @public
+             * @function
+             * @param             {number} value                                Velocity of object
+             */
+            set velocity ( value )
+            {
+                this.#velocity = ( this._isPoint ( value ) ) ? value : this.#velocity;
+            }
+
+            /**
+             * Get velocity
+             * @public
+             * @function
+             * @return             {number}                                     Velocity of object
+             */
+            get velocity ( )
+            {
+                return this.#velocity;
             }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -7163,9 +7152,9 @@ class Circle
                 if ( circle instanceof this.constructor )
 
                     return (
-                               ( this.point.x == circle.point.x ) &amp;&amp;                // Point X
+                               ( this.point.x == circle.point.x ) &&                // Point X
 
-                               ( this.point.y == circle.point.y ) &amp;&amp;                // Point Y
+                               ( this.point.y == circle.point.y ) &&                // Point Y
 
                                ( this.radius  == circle.radius  )                   // Radius
 
@@ -7234,7 +7223,7 @@ class Circle
             }
 
             /**
-             * Rotates the origin point by the degree &amp; distance passed
+             * Rotates the origin point by the degree & distance passed
              * @private
              * @function
              * @param           {Point}  origin                             Origin point
@@ -7251,7 +7240,7 @@ class Circle
              */
             _setAnchorPoint ( )
             {
-                [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
+                [ this.#anchor.x, this.#anchor.y ] = [ this.x, this.y ];
 
 
                 if ( this._isPoint ( this.radius ) )
@@ -7331,6 +7320,22 @@ class Circle
             }
 
             /**
+             * Get bounds of object
+             * @readOnly
+             * @function
+             * @return          {Object}                                    Bounds of object
+             */
+            get bounds ( )
+            {
+                return {
+                           x: this.x - this.radius,
+                           y: this.y - this.radius,
+                           width:  this.diameter,
+                           height: this.diameter
+                       };
+            }
+
+            /**
              * Get diameter of circle
              * @readOnly
              * @function
@@ -7338,7 +7343,7 @@ class Circle
              */
             get diameter ( )
             {
-                return (  this.radius * 2  );
+                return ( this.radius * 2 );
             }
 
             /**
@@ -7464,8 +7469,8 @@ class Circle
  
 /**
  * @class           {Object}            Ellipse                 Ellipse object
- * @property        {Point}             point                   X &amp; Y axis coordinates
- * @property        {Point}            [radius=&lt;Point&lt;20, 30>]  Radius of ellipse
+ * @property        {Point}             point                   X & Y axis coordinates
+ * @property        {Point}            [radius=<Point<20, 30>]  Radius of ellipse
  * @property        {Angle}             angle                   Angle properties
  * @property        {Stroke}            stroke                  Stroke properties
  * @property        {Fill}              fill                    Fill properties
@@ -7492,7 +7497,7 @@ class Ellipse extends Circle
          */
         set radius ( value )
         {
-            this._radius = ( value  &amp;&amp;  this._isPoint  ( value ) ) ? value : this._radius;
+            this._radius = ( value  &&  this._isPoint  ( value ) ) ? value : this._radius;
         }
 
         /**
@@ -7509,8 +7514,8 @@ class Ellipse extends Circle
  
 /**
  * @class           {Object}            Line                    Line object
- * @property        {Point}             start                   Start X &amp; Y axis coordinates
- * @property        {Point}             end                     End X &amp; Y axis coordinates
+ * @property        {Point}             start                   Start X & Y axis coordinates
+ * @property        {Point}             end                     End X & Y axis coordinates
  * @property        {Stroke}            stroke                  Stroke properties
  * @property        {Shadow}            shadow                  Shadow properties
  * @property        {string}           [lineCap='round']        Line cap's end points shape
@@ -7521,6 +7526,7 @@ class Ellipse extends Circle
  */
 class Line
 {
+    _point   = new Point;
     _start   = new Point;
     _end     = new Point;
     _stroke  = new Stroke;
@@ -7570,6 +7576,9 @@ class Line
             this.rotate       = UTILITIES.individual.misc.rotate;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.individual.canvas );
+            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.individual.point  );
+            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.individual.pointX );
+            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.individual.pointY );
 
         ////    POINT OVERLOADING   ////////////////////////
 
@@ -7582,8 +7591,11 @@ class Line
                 {
                     let _height = ( start / 2 );
 
+
                     this.start.y = end.y - _height;
+
                     this.end.y   = end.y + _height;
+
 
                     this.start.x = this.end.x = end.x;
                 }
@@ -7598,8 +7610,11 @@ class Line
                 {
                     let _width = ( end / 2 );
 
-                    this.start.x = start.x - _width
+
+                    this.start.x = start.x - _width;
+
                     this.end.x   = start.x + _width;
+
 
                     this.start.y = this.end.y = start.y;
                 }
@@ -7612,15 +7627,19 @@ class Line
             this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
 
         this.lineCap = lineCap;
+
         this.canvas  = canvas;
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#options.shadow      = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
-            this.#options.master      = this;
+            this.#options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+
+            this.#options.master = this;
+
 
             this._start.options.master = this;
-              this._end.options.master = this;
+
+            this._end.options.master   = this;
 
 
             Object.defineProperty ( this.#options, "points",
@@ -7632,7 +7651,7 @@ class Line
 
                     this._master._start.options.points = value;
 
-                      this._master._end.options.points = value;
+                    this._master._end.options.points   = value;
                 },
                 get ( )
                 {
@@ -7644,6 +7663,64 @@ class Line
     }
 
     ////    PROPERTIES    //////////////////////////////////
+
+        ////    [ POINT ]   //////////////////////////
+
+            /**
+             * Set point
+             * @public
+             * @function
+             * @param           {Point} value                               X & Y coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
+             */
+            set point ( value ) { }
+
+            /**
+             * Get point
+             * @public
+             * @function
+             * @return          {Point}                                     X & Y coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
+             */
+            get point ( ) { }
+
+
+            /**
+             * Set x-axis value
+             * @public
+             * @function
+             * @param           {number} value                              X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
+             */
+            set x ( value ) { }
+
+            /**
+             * Get x-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
+             */
+            get x ( ) { }
+
+
+            /**
+             * Set y-axis value
+             * @public
+             * @function
+             * @param           {number} value                              Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
+             */
+            set y ( value ) { }
+
+            /**
+             * Get y-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
+             */
+            get y ( ) { }
 
         ////    [ START ]    /////////////////////
 
@@ -7832,7 +7909,7 @@ class Line
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              */
             set point ( value )
             {
@@ -7861,7 +7938,7 @@ class Line
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              */
             get point ( )
             {
@@ -8012,11 +8089,11 @@ class Line
                     let _lineStart = _toString ( line.start.x, line.start.y ), _lineEnd = _toString ( line.end.x, line.end.y );
 
 
-                    return (  ( _thisStart == _lineStart )  &amp;&amp;  ( _thisEnd == _lineEnd )  )
+                    return (  ( _thisStart == _lineStart )  &&  ( _thisEnd == _lineEnd )  )
 
                                ? true
 
-                               : (  ( _thisStart == _lineEnd )  &amp;&amp;  ( _thisEnd == _lineStart )  );
+                               : (  ( _thisStart == _lineEnd )  &&  ( _thisEnd == _lineStart )  );
                 }
                 else
 
@@ -8109,7 +8186,7 @@ class Line
             }
 
             /**
-             * Rotates the origin point by the degree &amp; distance passed
+             * Rotates the origin point by the degree & distance passed
              * @private
              * @function
              * @param           {Point}  origin                             Origin point
@@ -8216,7 +8293,7 @@ class Line
             }
 
             /**
-             * Draws start &amp; end points
+             * Draws start & end points
              * @public
              * @function
              */
@@ -8418,6 +8495,13 @@ class Line
                 let _straddle = 0.5;
 
 
+                this._canvas.save ( );
+
+                this._canvas.translate ( this.x, this.y );
+
+                this._canvas.rotate ( this.position.rotation );
+
+
                 if ( this.#options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
@@ -8431,15 +8515,16 @@ class Line
 
                 this._canvas.setLineDash ( ( this.stroke.type === 'solid' ) ? new Array : this.stroke.segments );
 
-                this._canvas.beginPath   ( );
+
+                this._canvas.beginPath ( );
 
 
-
-                this._canvas.moveTo      ( this.start.x + _straddle, this.start.y + _straddle );
-
+                this._canvas.moveTo ( this.start.x, this.start.y );
 
                 this._setPath ( );
 
+
+                this._canvas.closePath ( );
 
                 this._canvas.stroke ( );
 
@@ -8448,6 +8533,8 @@ class Line
 
 
                 this._drawOptions ( );
+
+                this._canvas.restore ( );
             }
             else
 
@@ -8457,7 +8544,7 @@ class Line
  
 /**
  * @class           {Object}            Rectangle               Rectangle object
- * @property        {Point}             point                   X &amp; Y axis coordinates
+ * @property        {Point}             point                   X & Y axis coordinates
  * @property        {Aspect}            aspect                  Aspect properties
  * @property        {Array}             round                   Rounding properties
  * @property        {Stroke}            stroke                  Stroke properties
@@ -8476,16 +8563,17 @@ class Rectangle
     _stroke = new Stroke;
     _fill   = new Fill;
     _shadow = new Shadow;
-    _anchor = new Anchor;
 
     _canvas = undefined;
 
+    #anchor   = new Anchor;
     #options  = new Options;
     #position = new Position;
+    #velocity = new Point;
 
     /**
      * Create a Rectangle object
-     * @property        {Point}  point                              X &amp; Y axis coordinates
+     * @property        {Point}  point                              X & Y axis coordinates
      * @property        {Aspect} aspect                             Aspect properties
      * @property        {Array}  round                              Rounding properties
      * @property        {Stroke} stroke                             Stroke properties
@@ -8555,7 +8643,7 @@ class Rectangle
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#options.shadow  = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
+            this.#options.shadow  = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
 
             this.#position.master = this;
     }
@@ -8568,7 +8656,7 @@ class Rectangle
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             set point ( value ) { }
@@ -8577,7 +8665,7 @@ class Rectangle
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             get point ( ) { }
@@ -8653,7 +8741,7 @@ class Rectangle
              */
             set width  ( value )
             {
-                this._aspect.width = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._aspect._width;
+                this._aspect.width = ( typeof value === 'number' && value > 0 ) ? value : this._aspect._width;
             }
 
             /**
@@ -8676,7 +8764,7 @@ class Rectangle
              */
             set height ( value )
             {
-                this._aspect.height = ( typeof value === 'number' &amp;&amp; value > 0 ) ? value : this._aspect._height;
+                this._aspect.height = ( typeof value === 'number' && value > 0 ) ? value : this._aspect._height;
             }
 
             /**
@@ -8805,7 +8893,7 @@ class Rectangle
              */
             get anchor ( )
             {
-                return this._anchor;
+                return this.#anchor;
             }
 
         ////    [ OPTIONS ]    ///////////////////
@@ -8826,6 +8914,30 @@ class Rectangle
             get position ( )
             {
                 return this.#position;
+            }
+
+        ////    [ VELOCITY ]    //////////////////
+
+            /**
+             * Set velocity
+             * @public
+             * @function
+             * @param             {number} value                                Velocity of object
+             */
+            set velocity ( value )
+            {
+                this.#velocity = ( this._isPoint ( value ) ) ? value : this.#velocity;
+            }
+
+            /**
+             * Get velocity
+             * @public
+             * @function
+             * @return             {number}                                     Velocity of object
+             */
+            get velocity ( )
+            {
+                return this.#velocity;
             }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -8905,11 +9017,11 @@ class Rectangle
                 if ( rectangle instanceof this.constructor )
 
                     return (
-                               ( this.x      == rectangle.x      ) &amp;&amp;               // Point X
+                               ( this.x      == rectangle.x      ) &&               // Point X
 
-                               ( this.y      == rectangle.y      ) &amp;&amp;               // Point Y
+                               ( this.y      == rectangle.y      ) &&               // Point Y
 
-                               ( this.width  == rectangle.width  ) &amp;&amp;               // Width
+                               ( this.width  == rectangle.width  ) &&               // Width
 
                                ( this.height == rectangle.height )                  // Height
 
@@ -8976,7 +9088,7 @@ class Rectangle
             }
 
             /**
-             * Rotates the origin point by the degree &amp; distance passed
+             * Rotates the origin point by the degree & distance passed
              * @private
              * @function
              * @param           {Point}  origin                             Origin point
@@ -9153,7 +9265,7 @@ class Rectangle
  
 /**
  * @class           {Object}            RoundingRectangle 		RoundingRectangle object
- * @property        {Point}             point 					X &amp; Y axis coordinates
+ * @property        {Point}             point 					X & Y axis coordinates
  * @property        {Aspect}            aspect 					Aspect properties
  * @property        {Array}             [round=[5, 5, 5, 5]] 	Rounding properties
  * @property        {Stroke}            stroke 					Stroke properties
@@ -9171,8 +9283,803 @@ class RoundedRectangle extends Rectangle
 }
  
 /**
+ * @class           {Object}            Ship                    Ship object
+ * @property        {Point}             point                   X & Y axis coordinates
+ * @property        {number|Point}     [radius=25]              Radius of circle
+ * @property        {Angle}             angle                   Angle properties
+ * @property        {Stroke}            stroke                  Stroke properties
+ * @property        {Fill}              fill                    Fill properties
+ * @property        {Shadow}            shadow                  Shadow properties
+ * @property        {HTMLCanvasElement} canvas                  2D canvas context
+ * @property        {Anchor}            anchor                  Anchor properties
+ * @property        {Options}           options                 Options for this object
+ * @property        {Position}          position                Position properties
+ */
+class Ship
+{
+    _point  = new Point;
+    _aspect = new Aspect;
+    _stroke = new Stroke;
+    _fill   = new Fill;
+    _shadow = new Shadow;
+
+    _canvas = undefined;
+
+    #flame    = false;
+    #options  = new Options;
+    #position = new Position;
+    #velocity = new Point;
+
+    /**
+     * Create a Ship object
+     * @property        {Point}             point                   X & Y axis coordinates
+     * @property        {number|Point}      radius                  Radius of circle
+     * @property        {Angle}             angle                   Angle properties
+     * @property        {Stroke}            stroke                  Stroke properties
+     * @property        {Fill}              fill                    Fill properties
+     * @property        {Shadow}            shadow                  Shadow properties
+     * @property        {HTMLCanvasElement} canvas                  Canvas Id
+     */
+    constructor (
+                    point  = { x:     undefined, y:      undefined },
+                    aspect = { width: undefined, height: undefined },
+                    stroke = { color: undefined, type:   undefined, segments:    undefined, width: undefined },
+                    fill   = { color: undefined, type:   undefined },
+                    shadow = { color: undefined, blur:   undefined, offset: { x: undefined, y:     undefined } },
+                    canvas = undefined
+                )
+    {
+        ////    COMPOSITION     ////////////////////////////
+
+            this._isAspect = VALIDATION.isAspect;
+            this._isDegree = VALIDATION.isDegree;
+            this._isFill   = VALIDATION.isFill;
+            this._isInDom  = VALIDATION.isInDom;
+            this._isPoint  = VALIDATION.isPoint;
+            this._isStroke = VALIDATION.isStroke;
+
+            this._drawAnchor  = UTILITIES.individual.draw.anchor;
+            this._drawAxis    = UTILITIES.individual.draw.axis;
+            this._drawBorder  = UTILITIES.individual.draw.border;
+            this._rotatePoint = UTILITIES.individual.misc.rotatePoint;
+            this._setFillType = UTILITIES.individual.set.fillType;
+            this._setShadow   = UTILITIES.individual.set.shadow;
+
+            // this.move            = UTILITIES.individual.misc.move;
+            // this.rotate          = UTILITIES.individual.misc.rotate;
+            this.showCoordinates = UTILITIES.individual.misc.showCoordinates;
+
+            Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.individual.canvas );
+            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.individual.point  );
+            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.individual.pointX );
+            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.individual.pointY );
+
+            delete this.#options._controlPoints;
+            delete this.#options._points;
+            delete this.#options._master;
+
+        this.point  = point;
+
+        this.width  = ( aspect.width  != undefined ) ? aspect.width  : 25;
+        this.height = ( aspect.height != undefined ) ? aspect.height : 20;
+
+        ////    OBJECT INITIALIZER(S)   ////////////////////
+
+            this._stroke = new Stroke ( stroke.color, stroke.type, stroke.segments, stroke.width );
+
+            this._fill   = new Fill   ( fill.color,   fill.type );
+
+            this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
+
+        this.canvas = canvas;
+
+        ////    ANCILLARY   ////////////////////////////////
+
+            this.#options.shadow  = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+
+            this.#position.master = this;
+    }
+
+    ////    PROPERTIES    //////////////////////////////////
+
+        ////    [ POINT ]   //////////////////////////
+
+            /**
+             * Set point
+             * @public
+             * @function
+             * @param           {Point} value                               X & Y coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
+             */
+            set point ( value ) { }
+
+            /**
+             * Get point
+             * @public
+             * @function
+             * @return          {Point}                                     X & Y coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
+             */
+            get point ( ) { }
+
+
+            /**
+             * Set x-axis value
+             * @public
+             * @function
+             * @param           {number} value                              X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
+             */
+            set x ( value ) { }
+
+            /**
+             * Get x-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
+             */
+            get x ( ) { }
+
+
+            /**
+             * Set y-axis value
+             * @public
+             * @function
+             * @param           {number} value                              Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
+             */
+            set y ( value ) { }
+
+            /**
+             * Get y-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
+             */
+            get y ( ) { }
+
+        ////    [ RADIUS ]    ////////////////////////
+
+            /**
+             * Set radius value
+             * @public
+             * @function
+             * @param           {number|Point} value                        Radius of circle
+             */
+            set radius ( value )
+            {
+                if ( value )
+                {
+                    this._radius = ( this._isNumber ( value ) ) ? value : this._radius;
+
+                    this._radius = ( this._isPoint  ( value ) ) ? value : this._radius;
+                }
+            }
+
+            /**
+             * Get radius value
+             * @readOnly
+             * @function
+             * @return          {number|Point}                              Radius of circle
+             */
+            get radius ( )
+            {
+                return this._radius;
+            }
+
+        ////    [ ANGLE ]    /////////////////////////
+
+            /**
+             * Get angle properties
+             * @public
+             * @function
+             * @return          {Angle}                                     Angle properties
+             */
+            get angle ( )
+            {
+                return this._angle;
+            }
+
+        ////    [ STROKE ]    ////////////////////////
+
+            /**
+             * Set stroke properties
+             * @public
+             * @function
+             * @param             {Stroke} value                            Stroke properties
+             */
+            set stroke ( value )
+            {
+                this._stroke = ( this._isStroke ( value ) ) ? value : this._stroke;
+            }
+
+            /**
+             * Get stroke properties
+             * @public
+             * @function
+             * @return          {Stroke}                                    Stroke properties
+             */
+            get stroke ( )
+            {
+                return this._stroke;
+            }
+
+        ////    [ FILL ]    //////////////////////////
+
+            /**
+             * Set fill properties
+             * @public
+             * @function
+             * @param             {Fill} value                              Fill properties
+             */
+            set fill ( value )
+            {
+                this._fill = (this._isFill ( value ) ) ? value : this._fill;
+            }
+
+            /**
+             * Get fill properties
+             * @public
+             * @function
+             * @return          {Fill}                                      Fill properties
+             */
+            get fill ( )
+            {
+                return this._fill;
+            }
+
+        ////    [ SHADOW ]    ////////////////////////
+
+            /**
+             * Get shadow properties
+             * @public
+             * @function
+             * @return          {Shadow}                                    Shadow properties
+             */
+            get shadow ( )
+            {
+                return this._shadow;
+            }
+
+        ////    [ CANVAS ]    ////////////////////////
+
+            /**
+             * Set canvas value
+             * @public
+             * @function
+             * @param           {string} value                              Canvas id
+             * @see             {@link individual.canvas}
+             */
+            set canvas ( value ) { }
+
+            /**
+             * Get canvas value
+             * @readOnly
+             * @function
+             * @return          {string}                                    Canvas id
+             * @see             {@link individual.canvas}
+             */
+            get canvas ( ) { }
+
+        ////    [ FLAME ]    /////////////////////////
+
+            /**
+             * Set flame
+             * @public
+             * @function
+             * @param             {boolean} value                               True || False
+             */
+            set flame ( value )
+            {
+                this.#flame = value;
+            }
+
+            /**
+             * Get flame
+             * @public
+             * @function
+             * @return             {boolean}                                    True || False
+             */
+            get flame ( )
+            {
+                return this.#flame;
+            }
+
+        ////    [ ANCHOR ]    ////////////////////////
+
+            /**
+             * Get anchor
+             * @public
+             * @function
+             * @return          {Anchor}                                    Anchor properties
+             */
+            get anchor ( )
+            {
+                return this._anchor;
+            }
+
+        ////    [ OPTIONS ]    ///////////////////////
+
+            /**
+             * Get options properties
+             * @public
+             * @function
+             * @return          {Options}                                   Options properties
+             */
+            get options ( )
+            {
+                return this.#options;
+            }
+
+        ////    [ POSITION ]    //////////////////////
+
+            /**
+             * Get position properties
+             * @public
+             * @function
+             * @return          {Position}                                  Position properties
+             */
+            get position ( )
+            {
+                return this.#position;
+            }
+
+        ////    [ VELOCITY ]    //////////////////////
+
+            /**
+             * Set velocity
+             * @public
+             * @function
+             * @param             {number} value                                Velocity of object
+             */
+            set velocity ( value )
+            {
+                this.#velocity = value;
+            }
+
+            /**
+             * Get velocity
+             * @public
+             * @function
+             * @return             {number}                                     Velocity of object
+             */
+            get velocity ( )
+            {
+                return this.#velocity;
+            }
+
+    ////    VALIDATION  ////////////////////////////////////
+
+        ////    - PRIVATE    /////////////////////
+
+            /**
+             * Returns whether the passed value is an Anchor alignment
+             * @private
+             * @function
+             * @param           {string} value                              Anchor alignment
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isAnchor}
+             */
+            _isAnchor ( ) { }
+
+            /**
+             * Returns whether the passed value is an Aspect
+             * @private
+             * @function
+             * @param           {Object} value                              Aspect or object equivalent
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isAspect}
+             */
+            _isAspect ( ) { }
+
+            /**
+             * Returns whether the passed value is a degree
+             * @private
+             * @function
+             * @param           {number} value                              Degree
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isDegree}
+             */
+            _isDegree ( ) { }
+
+            /**
+             * Returns whether the passed value is a Fill property object
+             * @private
+             * @function
+             * @param           {Object} value                              Fill
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isFill}
+             */
+            _isFill ( ) { }
+
+            /**
+             * Returns whether the passed value is an element id within the DOM
+             * @private
+             * @function
+             * @param           {string} value                              Element id
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isInDom}
+             */
+            _isInDom ( ) { }
+
+            /**
+             * Returns whether the passed value is a Number value
+             * @private
+             * @function
+             * @param           {number} value                              Number value
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isNumber}
+             */
+            _isNumber ( ) { }
+
+            /**
+             * Returns whether the passed value is a Point
+             * @private
+             * @function
+             * @param           {Object} value                              Point or object equivalent
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isPoint}
+             */
+            _isPoint ( ) { }
+
+            /**
+             * Returns whether the passed value is a Stroke property object
+             * @private
+             * @function
+             * @param           {Object} value                              Stroke
+             * @return          {boolean}                                   True || False
+             * @see             {@link VALIDATION.isStroke}
+             */
+            _isStroke ( ) { }
+
+        ////    + PUBLIC    //////////////////////
+
+            /**
+             * Check whether the passed object is already present
+             * @public
+             * @function
+             * @param           {Ship} circle                             Object to validate
+             * @return          {boolean}                                   True || False
+             */
+            isThere ( circle )
+            {
+                if ( circle instanceof this.constructor )
+
+                    return (
+                               ( this.point.x == circle.point.x ) &&                // Point X
+
+                               ( this.point.y == circle.point.y ) &&                // Point Y
+
+                               ( this.radius  == circle.radius  )                   // Radius
+
+                           ) ? true : false;
+
+                else
+
+                    console.warn ( `"${circle.constructor.name}" is not of type ${this.constructor.name}` );
+            }
+
+    ////    UTILITIES   ////////////////////////////////////
+
+        ////    - PRIVATE    /////////////////////
+
+            /**
+             * Draws anchor point
+             * @private
+             * @function
+             * @see             {@link UTILITIES.individual.draw.anchor}
+             */
+            _drawAnchor ( ) { }
+
+            /**
+             * Draws an axis for the associated object
+             * @private
+             * @function
+             * @param           {number} offset                             Offset of axis
+             * @param           {Object} color                              Color model
+             * @param           {number} stop                               Gradient color stop
+             * @see             {@link UTILITIES.individual.draw.axis}
+             */
+            _drawAxis ( ) { }
+
+            /**
+             * Draws an axis for the associated object
+             * @private
+             * @function
+             * @param           {Aspect} aspect                             Aspect properties
+             * @param           {Object} color                              Color model
+             * @see             {@link UTILITIES.individual.draw.border}
+             */
+            _drawBorder ( ) { }
+
+            /**
+             * Draws associated options
+             * @private
+             * @function
+             */
+            _drawOptions ( )
+            {
+                let _offset = 20;
+
+                let _aspect = ( this._isPoint ( this.radius ) ) ? new Aspect ( ( this.radius.x * 2 ) + _offset, ( this.radius.y * 2 ) + _offset )
+
+                                                                : new Aspect ( ( this.radius   * 2 ) + _offset, ( this.radius   * 2 ) + _offset );
+
+                ////////////////////////////////////////////////////////////////////
+
+                if ( this.#options.border      ) this._drawBorder     ( _aspect );
+
+                if ( this.#options.axis        ) this._drawAxis       ( _offset );
+
+                if ( this.#options.anchor      ) this._drawAnchor     ( );
+
+                if ( this.#options.coordinates ) this.showCoordinates ( );
+            }
+
+            /**
+             * Rotates the origin point by the degree & distance passed
+             * @private
+             * @function
+             * @param           {Point}  origin                             Origin point
+             * @param           {number} degree                             Degree to rotate
+             * @param           {number} distance                           Distance from origin
+             * @see             {@link UTILITIES.individual.misc.rotatePoint}
+             */
+            _rotatePoint ( ) { }
+
+            /**
+             * Sets anchor's point against this object's point position
+             * @private
+             * @function
+             */
+            _setAnchorPoint ( )
+            {
+                [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
+
+
+                if ( this._isPoint ( this.radius ) )
+
+                    switch ( this.anchor.align )
+                    {
+                        case 'center':      /*     ... do nothing        */   /*     ... do nothing        */   break;
+
+                        case 'top':         /*     ... do nothing        */   this.anchor.y += this.radius.y;   break;
+
+                        case 'topRight':    this.anchor.x -= this.radius.x;   this.anchor.y += this.radius.y;   break;
+
+                        case 'right':       this.anchor.x -= this.radius.x;   /*     ... do nothing        */   break;
+
+                        case 'bottomRight': this.anchor.x -= this.radius.x;   this.anchor.y -= this.radius.y;   break;
+
+                        case 'bottom':      /*     ... do nothing        */   this.anchor.y -= this.radius.y;   break;
+
+                        case 'bottomLeft':  this.anchor.x += this.radius.x;   this.anchor.y -= this.radius.y;   break;
+
+                        case 'left':        this.anchor.x += this.radius.x;   /*     ... do nothing        */   break;
+
+                        case 'topLeft':     this.anchor.x += this.radius.x;   this.anchor.y += this.radius.y;   break;
+                    }
+
+                else
+
+                    switch ( this.anchor.align )
+                    {
+                        case 'center':      /*     ... do nothing      */   /*     ... do nothing      */   break;
+
+                        case 'top':         /*     ... do nothing      */   this.anchor.y += this.radius;   break;
+
+                        case 'topRight':    this.anchor.x -= this.radius;   this.anchor.y += this.radius;   break;
+
+                        case 'right':       this.anchor.x -= this.radius;   /*     ... do nothing      */   break;
+
+                        case 'bottomRight': this.anchor.x -= this.radius;   this.anchor.y -= this.radius;   break;
+
+                        case 'bottom':      /*     ... do nothing      */   this.anchor.y -= this.radius;   break;
+
+                        case 'bottomLeft':  this.anchor.x += this.radius;   this.anchor.y -= this.radius;   break;
+
+                        case 'left':        this.anchor.x += this.radius;   /*     ... do nothing      */   break;
+
+                        case 'topLeft':     this.anchor.x += this.radius;   this.anchor.y += this.radius;   break;
+                    }
+            }
+
+            /**
+             * Sets fill type of the associated object
+             * @private
+             * @function
+             * @see             {@link UTILITIES.individual.set.fillType}
+             */
+            _setFillType ( ) { }
+
+            /**
+             * Sets shadow properties
+             * @private
+             * @function
+             * @see             {@link UTILITIES.individual.set.shadow}
+             */
+            _setShadow ( ) { }
+
+        ////    + PUBLIC    //////////////////////
+
+            /**
+             * Get area of this object
+             * @readOnly
+             * @function
+             * @return          {number}                                    Area of this object
+             */
+            get area ( )
+            {
+                return (  Math.PI * Math.pow ( this.radius, 2 )  );
+            }
+
+            /**
+             * Get bounds of this object
+             * @readOnly
+             * @function
+             * @return          {Object}                                    Bounds of this object
+             */
+            get bounds ( )
+            {
+                return {
+                           x: this.x - this.radius,
+                           y: this.y - this.radius,
+                           width:  this.diameter,
+                           height: this.diameter
+                       };
+            }
+
+            /**
+             * Get diameter of circle
+             * @readOnly
+             * @function
+             * @return          {number}                                    Diameter of circle
+             */
+            get diameter ( )
+            {
+                return ( this.radius * 2 );
+            }
+
+            /**
+             * Get center of this object
+             * @readOnly
+             * @function
+             * @return          {Point}                                     Point coordinates
+             */
+            get center ( )
+            {
+                this._setAnchorPoint ( );
+
+
+                let _x = this.x - ( this.x - this.anchor.x );
+
+                let _y = this.y - ( this.y - this.anchor.y );
+
+
+                return new Point ( _x, _y );
+            }
+
+            /**
+             * Get circumference of circle
+             * @readOnly
+             * @function
+             * @return          {number}                                    Circumference of circle
+             */
+            get circumference ( )
+            {
+                return (  Math.PI * this.diameter ( )  );
+            }
+
+            /**
+             * Move this object
+             * @public
+             * @function
+             * @param           {number}  degree                            Direction to move; in degrees
+             * @param           {number}  distance                          Distance to move
+             * @see             {@link UTILITIES.individual.misc.move}
+             */
+            move ( ) { }
+
+            /**
+             * Rotate this object
+             * @public
+             * @function
+             * @param           {number} degree                             Distance to rotate; in degrees
+             * @param           {string} [anchor='center']                  Anchoring point during rotation
+             * @param           {number} [clear=true]                       Clear canvas during each rotation
+             * @see             {@link UTILITIES.individual.misc.rotate}
+             */
+            rotate ( ) { }
+
+            /**
+             * Shows coordinates of this object
+             * @public
+             * @function
+             * @param           {number} [offset=10]                        Offset of coordinates y origin
+             * @param           {number} [fontSize=16]                      Coordinates font size
+             * @see             {@link UTILITIES.individual.misc.showCoordinates}
+             */
+            showCoordinates ( ) { }
+
+    ////    DRAW    ////////////////////////////////////////
+
+        /**
+         * Draw this object
+         * @public
+         * @function
+         * @param           {string} canvas                             Canvas Id
+         */
+        draw ( canvas )
+        {
+            if ( canvas != undefined ) this.canvas = canvas;
+
+
+            if ( this._canvas instanceof CanvasRenderingContext2D )
+            {
+                this._canvas.save ( );
+
+                this._canvas.translate ( this.x, this.y );
+
+                this._canvas.rotate ( this.position.rotation );
+
+
+                if ( this.#options.shadow ) this._setShadow ( );                                    // Set: shadow
+
+
+                this._canvas.strokeStyle = this.stroke.color.toCss ( );
+
+                this._setFillType ( );
+
+                this._canvas.lineWidth   = this.stroke.width;
+
+                ////////////////////////////////////////////////////////////////
+
+                this._canvas.setLineDash ( ( this.stroke.type === 'solid' ) ? new Array : this.stroke.segments );
+
+                this._canvas.beginPath ( );
+
+                this._canvas.moveTo ( 10, 0 );
+                this._canvas.lineTo ( -10, 10 );
+                this._canvas.lineTo ( -5, 0 );
+                this._canvas.lineTo ( -10, -10 );
+                this._canvas.lineTo ( 10, 0 );
+                this._canvas.stroke (  );
+
+                if ( this.flame )
+                {
+                    this._canvas.beginPath ( );
+                    this._canvas.moveTo ( -7.5, -5 );
+                    this._canvas.lineTo ( -15, 0 );
+                    this._canvas.lineTo ( -7.5, 5 );
+                    this._canvas.stroke ( );
+                }
+
+                this._canvas.stroke ( );
+
+
+                if ( this.fill.type != 'pattern' )
+
+                    this._canvas.fill ( );
+
+
+                if ( this.#options.shadow ) this._canvas.shadowColor = new Rgb ( 0, 0, 0, 0 ).toCss ( );         // Reset: shadow
+
+
+                // this._drawOptions ( );
+
+                this._canvas.restore ( );
+            }
+            else
+
+                console.warn ( `'canvas' property is not set for ${this.constructor.name} !` );
+        }
+}
+ 
+/**
  * @class           {Object}            Text                    Text element to render within a canvas element
- * @property        {Point}             point                   X &amp; Y axis coordinates
+ * @property        {Point}             point                   X & Y axis coordinates
  * @property        {string}            text                    Text to display
  * @property        {Stroke}            stroke                  Stroke properties
  * @property        {Fill}              fill                    Fill properties
@@ -9193,10 +10100,11 @@ class Text extends Font
 
     #options  = new Options;
     #position = new Position;
+    #velocity = new Point;
 
     /**
      * Create a Text object
-     * @param           {Point}  point                              X &amp; Y axis coordinates
+     * @param           {Point}  point                              X & Y axis coordinates
      * @param           {string} text                               Text of text object
      * @param           {string} type                               Font type
      * @param           {number} size                               Font size
@@ -9270,7 +10178,7 @@ class Text extends Font
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#options.shadow  = ( shadow.offset.x != undefined &amp;&amp; shadow.offset.y != undefined );
+            this.#options.shadow  = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
 
             this.#position.master = this;
     }
@@ -9283,7 +10191,7 @@ class Text extends Font
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             set point ( value ) { }
@@ -9292,7 +10200,7 @@ class Text extends Font
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             get point ( ) { }
@@ -9464,6 +10372,30 @@ class Text extends Font
             get position ( )
             {
                 return this.#position;
+            }
+
+        ////    [ VELOCITY ]    //////////////////
+
+            /**
+             * Set velocity
+             * @public
+             * @function
+             * @param             {number} value                                Velocity of object
+             */
+            set velocity ( value )
+            {
+                this.#velocity = ( this._isPoint ( value ) ) ? value : this.#velocity;
+            }
+
+            /**
+             * Get velocity
+             * @public
+             * @function
+             * @return             {number}                                     Velocity of object
+             */
+            get velocity ( )
+            {
+                return this.#velocity;
             }
 
         ////    * SUPER *   //////////////////////
@@ -9641,7 +10573,7 @@ class Text extends Font
         ////    - PRIVATE    /////////////////////
 
             /**
-             * Rotates the origin point by the degree &amp; distance passed
+             * Rotates the origin point by the degree & distance passed
              * @private
              * @function
              * @param           {Point}  origin                             Origin point
@@ -9908,9 +10840,10 @@ class cImage
 
 	_canvas = undefined;
 
-    _anchor   = new Anchor;
+    #anchor   = new Anchor;
 	#options  = new Options;
     #position = new Position;
+    #velocity = new Point;
 
 	/**
      * Create a cImage object
@@ -10005,7 +10938,7 @@ class cImage
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              */
             set point ( value )
             {
@@ -10016,7 +10949,7 @@ class cImage
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              */
             get point ( )
             {
@@ -10198,7 +11131,7 @@ class cImage
              */
             get anchor ( )
             {
-                return this._anchor;
+                return this.#anchor;
             }
 
         ////    [ OPTIONS ] //////////////////////////
@@ -10225,6 +11158,30 @@ class cImage
             get position ( )
             {
                 return this.#position;
+            }
+
+        ////    [ VELOCITY ]    //////////////////////
+
+            /**
+             * Set velocity
+             * @public
+             * @function
+             * @param             {number} value                                Velocity of object
+             */
+            set velocity ( value )
+            {
+                this.#velocity = ( this._isPoint ( value ) ) ? value : this.#velocity;
+            }
+
+            /**
+             * Get velocity
+             * @public
+             * @function
+             * @return             {number}                                     Velocity of object
+             */
+            get velocity ( )
+            {
+                return this.#velocity;
             }
 
     ////    VALIDATION    //////////////////////////////////
@@ -10260,11 +11217,11 @@ class cImage
         _isPoint ( ) { }
 
 	    /**
-	     * Returns whether the passed value is a Point &amp; Aspect
+	     * Returns whether the passed value is a Point & Aspect
 	     * @private
 	     * @memberof VALIDATION
 	     * @function
-	     * @param           {Object} value                              Object of a Point &amp; Aspect
+	     * @param           {Object} value                              Object of a Point & Aspect
 	     * @param           {Point}  value.point                        Point object
 	     * @param           {Aspect} value.aspect                       Aspect object
 	     * @return          {boolean}                                   True || False
@@ -10327,7 +11284,7 @@ class cImage
             }
 
             /**
-             * Rotates the origin point by the degree &amp; distance passed
+             * Rotates the origin point by the degree & distance passed
              * @private
              * @function
              * @param           {Point}  origin                             Origin point
@@ -10410,7 +11367,7 @@ class cImage
 	////    DRAW    ////////////////////////////////////////
 
         /**
-         * Draws image depending on primary &amp; secondary property settings
+         * Draws image depending on primary & secondary property settings
          * @private
          * @function
          */
@@ -10436,7 +11393,7 @@ class cImage
             if ( canvas != undefined ) this.canvas = canvas;
 
 
-            if ( this.source.onload === null  &amp;&amp;  this._canvas instanceof CanvasRenderingContext2D )
+            if ( this.source.onload === null  &&  this._canvas instanceof CanvasRenderingContext2D )
 
                 this.source.onload = ( ) =>
                 {
@@ -10460,7 +11417,7 @@ class cImage
  
 /**
  * @class           {Array}             Circles                 Collection of circle elements within an array
- * @property        {Point}             point                   X &amp; Y axis coordinates
+ * @property        {Point}             point                   X & Y axis coordinates
  * @property        {StrokeCollection}  stroke                  Stroke collection properties
  * @property        {ShadowCollection}  shadow                  Shadow collection properties
  * @property        {Aspect}            aspect                  Aspect properties
@@ -10485,7 +11442,7 @@ class Circles extends Array
 
     /**
      * Create Circles object
-     * @property        {Point}             point                   X &amp; Y axis coordinates
+     * @property        {Point}             point                   X & Y axis coordinates
      * @property        {HTMLCanvasElement} canvas                  Canvas Id
      * @property        {Template}          template                Canvas Lab Template object
      */
@@ -10543,7 +11500,7 @@ class Circles extends Array
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             set point ( value ) { }
@@ -10552,7 +11509,7 @@ class Circles extends Array
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             get point ( ) { }
@@ -10888,11 +11845,11 @@ class Circles extends Array
 
                         for ( let _object of this )
                         {
-                            _left   = ( _object.x - _object.radius.x &lt; _left   ) ? _object.x - _object.radius.x : _left;
+                            _left   = ( _object.x - _object.radius.x < _left   ) ? _object.x - _object.radius.x : _left;
 
                             _right  = ( _object.x + _object.radius.x > _right  ) ? _object.x + _object.radius.x : _right;
 
-                            _top    = ( _object.y - _object.radius.y &lt; _top    ) ? _object.y - _object.radius.y : _top;
+                            _top    = ( _object.y - _object.radius.y < _top    ) ? _object.y - _object.radius.y : _top;
 
                             _bottom = ( _object.y + _object.radius.y > _bottom ) ? _object.y + _object.radius.y : _bottom;
                         }
@@ -10901,11 +11858,11 @@ class Circles extends Array
 
                         for ( let _object of this )
                         {
-                            _left   = ( _object.x - _object.radius &lt; _left   ) ? _object.x - _object.radius : _left;
+                            _left   = ( _object.x - _object.radius < _left   ) ? _object.x - _object.radius : _left;
 
                             _right  = ( _object.x + _object.radius > _right  ) ? _object.x + _object.radius : _right;
 
-                            _top    = ( _object.y - _object.radius &lt; _top    ) ? _object.y - _object.radius : _top;
+                            _top    = ( _object.y - _object.radius < _top    ) ? _object.y - _object.radius : _top;
 
                             _bottom = ( _object.y + _object.radius > _bottom ) ? _object.y + _object.radius : _bottom;
                         }
@@ -10953,7 +11910,7 @@ class Circles extends Array
              * Returns the last Point within this Array
              * @public
              * @function
-             * @return          {Point}                                     Last Array element's X &amp; Y Coordinates
+             * @return          {Point}                                     Last Array element's X & Y Coordinates
              * @see             {@link PROPERTY_BLOCKS.collection.endPoint}
              */
             get endPoint ( ) { }
@@ -10971,7 +11928,7 @@ class Circles extends Array
              * Get all or specific points throughout this collection
              * @public
              * @function
-             * @param           {Array.&lt;number>} indexes                    Indexes of points
+             * @param           {Array.<number>} indexes                    Indexes of points
              * @param           {Rgb}            color                      Color to colorize objects selected points
              * @see             {@link UTILITIES.collection.getPoints}
              */
@@ -10999,7 +11956,7 @@ class Circles extends Array
  
 /**
  * @class           {Array}             Ellipses                Collection of circle elements within an array
- * @property        {Point}             point                   X &amp; Y axis coordinates
+ * @property        {Point}             point                   X & Y axis coordinates
  * @property        {StrokeCollection}  stroke                  Stroke collection properties
  * @property        {ShadowCollection}  shadow                  Shadow collection properties
  * @property        {Aspect}            aspect                  Aspect properties
@@ -11028,8 +11985,8 @@ class Ellipses extends Circles
 }
  
 /**
- * @class           {Array}             Group                   Collection of Line, Circle, Rectangle &amp; Text objects
- * @property        {Point}             point                   X &amp; Y axis coordinates
+ * @class           {Array}             Group                   Collection of Line, Circle, Rectangle & Text objects
+ * @property        {Point}             point                   X & Y axis coordinates
  * @property        {Array}             lines                   Collection of Line objects
  * @property        {Array}             circles                 Collection of Circle objects
  * @property        {Array}             ellipses                Collection of Ellipse objects
@@ -11057,7 +12014,7 @@ class Group extends Array
 
     /**
      * Create Group object
-     * @property        {Point}             point                   X &amp; Y axis coordinates
+     * @property        {Point}             point                   X & Y axis coordinates
      * @property        {HTMLCanvasElement} canvas                  Canvas Id
      * @property        {Template}          template                Canvas Lab Template object
      */
@@ -11091,7 +12048,7 @@ class Group extends Array
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             set point ( value ) { }
@@ -11100,7 +12057,7 @@ class Group extends Array
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             get point ( ) { }
@@ -11250,7 +12207,7 @@ class Group extends Array
 
                 for ( let _type of this.#storage.types )
 
-                    if ( ( this [ _type ].length > 0 )  &amp;&amp;  ( this._canvas instanceof CanvasRenderingContext2D ) )
+                    if ( ( this [ _type ].length > 0 )  &&  ( this._canvas instanceof CanvasRenderingContext2D ) )
 
                         for ( let _object of this [ _type ] )
 
@@ -11479,7 +12436,7 @@ class Group extends Array
  
 /**
  * @class           {Array}             Lines                   Collection of Line objects
- * @property        {Point}             point                   X &amp; Y axis coordinates
+ * @property        {Point}             point                   X & Y axis coordinates
  * @property        {StrokeCollection}  stroke                  Stroke collection properties
  * @property        {ShadowCollection}  shadow                  Shadow collection properties
  * @property        {string}            lineCap                 Shape of end points
@@ -11505,7 +12462,7 @@ class Lines extends Array
 
     /**
      * Create a Lines object
-     * @property        {Point}             point                   X &amp; Y axis coordinates
+     * @property        {Point}             point                   X & Y axis coordinates
      * @property        {HTMLCanvasElement} canvas                  Canvas Id
      * @property        {Template}          template                Canvas Lab Template object
      */
@@ -11567,7 +12524,7 @@ class Lines extends Array
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             set point ( value ) { }
@@ -11576,7 +12533,7 @@ class Lines extends Array
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             get point ( ) { }
@@ -11922,9 +12879,9 @@ class Lines extends Array
 
                     for ( let _object of this )
                     {
-                        _left   = ( _object.start.x &lt; _left   ) ? _object.start.x : _left;
+                        _left   = ( _object.start.x < _left   ) ? _object.start.x : _left;
 
-                        _left   = ( _object.end.x   &lt; _left   ) ? _object.end.x   : _left;
+                        _left   = ( _object.end.x   < _left   ) ? _object.end.x   : _left;
 
 
                         _right  = ( _object.start.x > _right  ) ? _object.start.x : _right;
@@ -11932,9 +12889,9 @@ class Lines extends Array
                         _right  = ( _object.end.x   > _right  ) ? _object.end.x   : _right;
 
 
-                        _top    = ( _object.start.y &lt; _top    ) ? _object.start.y : _top;
+                        _top    = ( _object.start.y < _top    ) ? _object.start.y : _top;
 
-                        _top    = ( _object.end.y   &lt; _top    ) ? _object.end.y   : _top;
+                        _top    = ( _object.end.y   < _top    ) ? _object.end.y   : _top;
 
 
                         _bottom = ( _object.start.y > _bottom ) ? _object.start.y : _bottom;
@@ -11987,7 +12944,7 @@ class Lines extends Array
              */
             get center ( )
             {
-                const getMin = ( value, start, end ) => ( value === undefined ) ? start : ( start &lt; end ) ? ( start &lt; value ) ? start : value : ( end &lt; value ) ? end : value;
+                const getMin = ( value, start, end ) => ( value === undefined ) ? start : ( start < end ) ? ( start < value ) ? start : value : ( end < value ) ? end : value;
 
                 let _x, _y = undefined;
 
@@ -12010,7 +12967,7 @@ class Lines extends Array
              * Returns the last Point within this Array
              * @public
              * @function
-             * @return          {Point}                                     Last Array element's X &amp; Y Coordinates
+             * @return          {Point}                                     Last Array element's X & Y Coordinates
              * @see             {@link PROPERTY_BLOCKS.collection.endPoint}
              */
             get endPoint ( ) { }
@@ -12028,7 +12985,7 @@ class Lines extends Array
              * Get all or specific points throughout this collection
              * @public
              * @function
-             * @param           {Array.&lt;number>} indexes                    Indexes of points
+             * @param           {Array.<number>} indexes                    Indexes of points
              * @param           {Rgb}            color                      Color to colorize objects selected points
              * @see             {@link UTILITIES.collection.getPoints}
              */
@@ -12056,7 +13013,7 @@ class Lines extends Array
  
 /**
  * @class           {Array}             Rectangles              Collection of Rectangle objects
- * @property        {Point}             point                   X &amp; Y axis coordinates
+ * @property        {Point}             point                   X & Y axis coordinates
  * @property        {StrokeCollection}  stroke                  Stroke collection properties
  * @property        {ShadowCollection}  shadow                  Shadow collection properties
  * @property        {Aspect}            aspect                  Aspect properties
@@ -12081,7 +13038,7 @@ class Rectangles extends Array
 
     /**
      * Create Rectangles object
-     * @property        {Point}             point                   X &amp; Y axis coordinates
+     * @property        {Point}             point                   X & Y axis coordinates
      * @property        {HTMLCanvasElement} canvas                  Canvas Id
      * @property        {Template}          template                Canvas Lab Template object
      */
@@ -12137,7 +13094,7 @@ class Rectangles extends Array
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             set point ( value ) { }
@@ -12146,7 +13103,7 @@ class Rectangles extends Array
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             get point ( ) { }
@@ -12470,11 +13427,11 @@ class Rectangles extends Array
 
                     for ( let _object of this )
                     {
-                        _left   = ( _object.x &lt; _left                    ) ? _object.x                  : _left;
+                        _left   = ( _object.x < _left                    ) ? _object.x                  : _left;
 
                         _right  = ( _object.x + _object.width > _right   ) ? _object.x + _object.width  : _right;
 
-                        _top    = ( _object.y &lt; _top                     ) ? _object.y                  : _top;
+                        _top    = ( _object.y < _top                     ) ? _object.y                  : _top;
 
                         _bottom = ( _object.y + _object.height > _bottom ) ? _object.y + _object.height : _bottom;
                     }
@@ -12522,7 +13479,7 @@ class Rectangles extends Array
              * Returns the last Point within this Array
              * @public
              * @function
-             * @return          {Point}                                     Last Array element's X &amp; Y Coordinates
+             * @return          {Point}                                     Last Array element's X & Y Coordinates
              * @see             {@link PROPERTY_BLOCKS.collection.endPoint}
              */
             get endPoint ( ) { }
@@ -12540,7 +13497,7 @@ class Rectangles extends Array
              * Get all or specific points throughout this collection
              * @public
              * @function
-             * @param           {Array.&lt;number>} indexes                    Indexes of points
+             * @param           {Array.<number>} indexes                    Indexes of points
              * @param           {Rgb}            color                      Color to colorize objects selected points
              * @see             {@link UTILITIES.collection.getPoints}
              */
@@ -12568,7 +13525,7 @@ class Rectangles extends Array
  
 /**
  * @class           {Array}             RoundedRectangles       Collection of Rounded Rectangle objects
- * @property        {Point}             point                   X &amp; Y axis coordinates
+ * @property        {Point}             point                   X & Y axis coordinates
  * @property        {StrokeCollection}  stroke                  Stroke collection properties
  * @property        {ShadowCollection}  shadow                  Shadow collection properties
  * @property        {Aspect}            aspect                  Aspect properties
@@ -12598,7 +13555,7 @@ class RoundedRectangles extends Rectangles
  
 /**
  * @class           {Array}             Texts                   Collection of Text objects
- * @property        {Point}             point                   X &amp; Y axis coordinates
+ * @property        {Point}             point                   X & Y axis coordinates
  * @property        {StrokeCollection}  stroke                  Stroke collection properties
  * @property        {ShadowCollection}  shadow                  Shadow collection properties
  * @property        {Aspect}            aspect                  Aspect properties
@@ -12623,7 +13580,7 @@ class Texts extends Array
 
     /**
      * Create Texts object
-     * @property        {Point}             point                   X &amp; Y axis coordinates
+     * @property        {Point}             point                   X & Y axis coordinates
      * @property        {HTMLCanvasElement} canvas                  Canvas Id
      * @property        {Template}          template                Canvas Lab Template object
      */
@@ -12679,7 +13636,7 @@ class Texts extends Array
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             set point ( value ) { }
@@ -12688,7 +13645,7 @@ class Texts extends Array
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             get point ( ) { }
@@ -13007,11 +13964,11 @@ class Texts extends Array
                         let _height = this._canvas.fontBoundingBoxAscent + this._canvas.fontBoundingBoxDescent;
 
 
-                        _left   = ( _object.x &lt; _left             ) ? _object.x           : _left;
+                        _left   = ( _object.x < _left             ) ? _object.x           : _left;
 
                         _right  = ( _object.x + _width > _right   ) ? _object.x + _width  : _right;
 
-                        _top    = ( _object.y &lt; _top              ) ? _object.y           : _top;
+                        _top    = ( _object.y < _top              ) ? _object.y           : _top;
 
                         _bottom = ( _object.y + _height > _bottom ) ? _object.y + _height : _bottom;
                     }
@@ -13059,7 +14016,7 @@ class Texts extends Array
              * Returns the last Point within this Array
              * @public
              * @function
-             * @return          {Point}                                     Last Array element's X &amp; Y Coordinates
+             * @return          {Point}                                     Last Array element's X & Y Coordinates
              * @see             {@link PROPERTY_BLOCKS.collection.endPoint}
              */
             get endPoint ( ) { }
@@ -13077,7 +14034,7 @@ class Texts extends Array
              * Get all or specific points throughout this collection
              * @public
              * @function
-             * @param           {Array.&lt;number>} indexes                    Indexes of points
+             * @param           {Array.<number>} indexes                    Indexes of points
              * @param           {Rgb}            color                      Color to colorize objects selected points
              * @see             {@link UTILITIES.collection.getPoints}
              */
@@ -13208,7 +14165,7 @@ class Queue
          */
         get isEnd ( )
         {
-            return ( this.#touched  &amp;&amp;  this._index === 0 );
+            return ( this.#touched  &&  this._index === 0 );
         }
 
         /**
@@ -13318,14 +14275,14 @@ class Animation
         ////    EASE-IN-OUT    /////////////////////////////////
 
             'easeInOutSine':    ( timeFraction ) => - ( Math.cos ( Math.PI * timeFraction ) - 1 ) / 2,
-            'easeInOutCubic':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
-            'easeInOutQuint':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
-            'easeInOutCirc':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
-            'easeInOutElastic': ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction &lt; 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
-            'easeInOutQuad':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
-            'easeInOutQuart':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
-            'easeInOutExpo':    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction &lt; 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
-            'easeInOutBack':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
+            'easeInOutCubic':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
+            'easeInOutQuint':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
+            'easeInOutCirc':    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
+            'easeInOutElastic': ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
+            'easeInOutQuad':    ( timeFraction ) => ( timeFraction < 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
+            'easeInOutQuart':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
+            'easeInOutExpo':    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
+            'easeInOutBack':    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
     }
 
     _options =
@@ -13569,7 +14526,7 @@ class Animation
 
                         _object.angle.clockwise = this.object.angle.clockwise;
 
-                        // stroke = color: {Rgb}, type: {string}, segments: {Array.&lt;number>}, width: {number}
+                        // stroke = color: {Rgb}, type: {string}, segments: {Array.<number>}, width: {number}
 
                         _object.stroke.color    = new Rgb (
                                                       this.object.stroke.color.red,
@@ -13634,7 +14591,7 @@ class Animation
 
                         _object.angle.clockwise = this.object.angle.clockwise;
 
-                        // stroke = color: {Rgb}, type: {string}, segments: {Array.&lt;number>}, width: {number}
+                        // stroke = color: {Rgb}, type: {string}, segments: {Array.<number>}, width: {number}
 
                         _object.stroke.color    = new Rgb (
                                                       this.object.stroke.color.red,
@@ -13691,7 +14648,7 @@ class Animation
 
                         _object.radius = this.object.radius;
 
-                        // stroke = color: {Rgb}, type: {string}, segments: {Array.&lt;number>}, width: {number}
+                        // stroke = color: {Rgb}, type: {string}, segments: {Array.<number>}, width: {number}
 
                         _object.stroke.color    = new Rgb (
                                                       this.object.stroke.color.red,
@@ -13748,7 +14705,7 @@ class Animation
 
                         _object.radius = this.object.radius;
 
-                        // stroke = color: {Rgb}, type: {string}, segments: {Array.&lt;number>}, width: {number}
+                        // stroke = color: {Rgb}, type: {string}, segments: {Array.<number>}, width: {number}
 
                         _object.stroke.color    = new Rgb (
                                                       this.object.stroke.color.red,
@@ -13887,12 +14844,12 @@ class Animation
             _getInvertedAngle ( angle ) { }
 
             /**
-             * Returns a point based off of the direction &amp; distance passed
+             * Returns a point based off of the direction & distance passed
              * @private
              * @function
              * @param           {number} direction                          Direction to point; in degrees
              * @param           {number} distance                           Distance to point
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              */
             _getPointByDegreeNDistance ( direction, distance )
             {
@@ -13931,7 +14888,7 @@ class Animation
              */
             _setCache ( )
             {
-                if ( this.queue.isSet  &amp;&amp;  ! this.queue.isEnd )
+                if ( this.queue.isSet  &&  ! this.queue.isEnd )
                 {
                     if ( this.change.cache )
 
@@ -14172,7 +15129,7 @@ class Animation
 
                         case 'radius':
 
-                            let _progress = ( progress &lt; 0 ) ? 0 : progress;
+                            let _progress = ( progress < 0 ) ? 0 : progress;
 
 
                             object.radius = _amount * _progress;
@@ -14432,7 +15389,7 @@ class Animation
 
                             if ( _options.normalize )
 
-                                _progress = ( _progress &lt; 0 ) ? 0 : _progress;
+                                _progress = ( _progress < 0 ) ? 0 : _progress;
 
 
                             _transition ( _object, _progress );
@@ -14442,7 +15399,7 @@ class Animation
                             _object.draw ( );
 
 
-                            ( _options.active ) ? ( _timeFraction &lt; 1 )                 // Resolve
+                            ( _options.active ) ? ( _timeFraction < 1 )                 // Resolve
 
                                                       ? requestAnimationFrame ( animate )
 
@@ -14456,7 +15413,7 @@ class Animation
             ////////////////////////////////////////////////
             ////    INITIALIZE    //////////////////////////
 
-                if ( this._object  &amp;&amp;  this._period )
+                if ( this._object  &&  this._period )
 
                     _animate ( );
 
@@ -14468,10 +15425,10 @@ class Animation
  
 /**
  * @class           {Object}                  Animations        Animations handler; for drawing multiple objects in one instance
- * @property        {Array.&lt;clObject>}        objects           CanvasLab objects
- * @property        {Array.&lt;string|Function>} timings           Timing functions
+ * @property        {Array.<clObject>}        objects           CanvasLab objects
+ * @property        {Array.<string|Function>} timings           Timing functions
  * @property        {number}                  periods           Period of time
- * @property        {Array.&lt;Object>}          changes           Changes an object
+ * @property        {Array.<Object>}          changes           Changes an object
  * @property        {Object}                  options           Options for this object
  */
 class Animations
@@ -14510,14 +15467,14 @@ class Animations
         ////    EASE-IN-OUT    /////////////////////////////
 
             'easeInOutSine':    ( timeFraction ) => - ( Math.cos ( Math.PI * timeFraction ) - 1 ) / 2,
-            'easeInOutCubic':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
-            'easeInOutQuint':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
-            'easeInOutCirc':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
-            'easeInOutElastic': ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction &lt; 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
-            'easeInOutQuad':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
-            'easeInOutQuart':   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
-            'easeInOutExpo':    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction &lt; 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
-            'easeInOutBack':    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
+            'easeInOutCubic':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
+            'easeInOutQuint':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
+            'easeInOutCirc':    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
+            'easeInOutElastic': ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
+            'easeInOutQuad':    ( timeFraction ) => ( timeFraction < 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
+            'easeInOutQuart':   ( timeFraction ) => ( timeFraction < 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
+            'easeInOutExpo':    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
+            'easeInOutBack':    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
     }
 
     _options =
@@ -14532,10 +15489,10 @@ class Animations
 
     /**
      * Creates an animation instance
-     * @property        {Array.&lt;clObject>}        objects           CanvasLab objects
-     * @property        {Array.&lt;string|Function>} timings           Timing functions
+     * @property        {Array.<clObject>}        objects           CanvasLab objects
+     * @property        {Array.<string|Function>} timings           Timing functions
      * @property        {number}                  period            Period of time
-     * @property        {Array.&lt;Object>}          changes           Changes an objects
+     * @property        {Array.<Object>}          changes           Changes an objects
      */
     constructor ( objects, timings, period, changes )
     {
@@ -14922,7 +15879,7 @@ class Animations
                         _results = new Array;
 
 
-                    for ( let _i = 0; _i &lt; _length; _i++ )
+                    for ( let _i = 0; _i < _length; _i++ )
 
                         _results.push ( transition.timing );
                 }
@@ -14932,12 +15889,12 @@ class Animations
             }
 
             /**
-             * Returns a point based off of the direction &amp; distance passed
+             * Returns a point based off of the direction & distance passed
              * @private
              * @function
              * @param           {number} direction                          Direction to point; in degrees
              * @param           {number} distance                           Distance to point
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              */
             _getPointByDegreeNDistance ( id, direction, distance )
             {
@@ -14961,7 +15918,7 @@ class Animations
              */
             _setCache ( )
             {
-                if ( this.queue.isSet  &amp;&amp;  ! this.queue.isEnd )
+                if ( this.queue.isSet  &&  ! this.queue.isEnd )
                 {
                     for ( let _id in this.changes )
 
@@ -15190,7 +16147,7 @@ class Animations
 
                         case 'radius':
 
-                            let _progress = ( progress &lt; 0 ) ? 0 : progress;
+                            let _progress = ( progress < 0 ) ? 0 : progress;
 
 
                             _object.radius = _amount * _progress;
@@ -15339,7 +16296,7 @@ class Animations
 
                                 if ( _options.normalize )
 
-                                    _progress = ( _progress &lt; 0 ) ? 0 : _progress;
+                                    _progress = ( _progress < 0 ) ? 0 : _progress;
 
 
                                 _transition ( _id, _progress );
@@ -15350,7 +16307,7 @@ class Animations
                             }
 
 
-                            ( _options.active ) ? ( _timeFraction &lt; 1 )         // Resolve
+                            ( _options.active ) ? ( _timeFraction < 1 )         // Resolve
 
                                                       ? requestAnimationFrame ( animate )
 
@@ -15364,7 +16321,7 @@ class Animations
             ////////////////////////////////////////////////
             ////    INITIALIZE    //////////////////////////
 
-                if ( this._objects  &amp;&amp;  this._period )
+                if ( this._objects  &&  this._period )
 
                     _animate ( );
 
@@ -15382,7 +16339,7 @@ class Application
     _animation  = undefined;
 
     /**
-     * Application configurations &amp; details
+     * Application configurations & details
      * @type            {Object}
      * @property        {boolean} debug                             Whether to debug application
      * @property        {Object}  about                             About properties
@@ -15401,8 +16358,8 @@ class Application
             Author:    'Justin Don Byrne',
             Created:   'October, 2 2023',
             Library:   'Canvas Lab',
-            Updated:   'Nov, 07 2024',
-            Version:   '0.7.201',
+            Updated:   'Nov, 15 2024',
+            Version:   '0.7.207',
             Copyright: 'Copyright (c) 2024 Justin Don Byrne'
         }
     }
@@ -15415,7 +16372,7 @@ class Application
      * @property        {Object} window                             Window properties
      * @property        {number} window.width                       Window's width
      * @property        {number} window.height                      Window's height
-     * @property        {Object} window.center                      Window's center X &amp; Y coordinates
+     * @property        {Object} window.center                      Window's center X & Y coordinates
      * @property        {number} window.center.x                    X-axis coordinate
      * @property        {number} window.center.y                    Y-axis coordinate
      * @property        {Object} mouse                              Mouse properties
@@ -15557,10 +16514,10 @@ class Application
     ////    UTILITIES   ////////////////////////////////////
 
         /**
-         * Returns center ( x &amp; y coordinates ) for the present window
+         * Returns center ( x & y coordinates ) for the present window
          * @private
          * @function
-         * @return          {Object}                                    X &amp; Y Coordinates
+         * @return          {Object}                                    X & Y Coordinates
          */
         get _center ( )
         {
@@ -15577,7 +16534,7 @@ class Application
 
         /**
          * Creates a new animation instance
-         * @param           {Transition|Queue} transition                   Contains timing, draw, &amp; duration values &amp; functions
+         * @param           {Transition|Queue} transition                   Contains timing, draw, & duration values & functions
          * @param           {number}           transition.object            CanvasLab Object
          * @param           {Function}         transition.timing            Timing function
          * @param           {number}           transition.period            Period of time
@@ -15629,7 +16586,7 @@ class Application
  */
 let initCanvasLab = ( canvas ) =>
 {
-    if ( typeof canvasLab === 'function' &amp;&amp; typeof window.canvaslab  === 'undefined' )
+    if ( typeof canvasLab === 'function' && typeof window.canvaslab  === 'undefined' )
 
         window.canvaslab = new canvasLab ( canvas );
 }
@@ -15828,13 +16785,13 @@ class myTransitions
         	}
 
         	/**
-        	 * Returns an array of new objects &amp; changes created from the collection
+        	 * Returns an array of new objects & changes created from the collection
         	 * @private
         	 * @function
 			 * @param           {Array} 		  shape                     Array of collection indexes
 			 * @param           {clCollection}    collection                Canvas Lab collection
 			 * @param           {object} 		  clClass 					Canvas Lab object class
-			 * @return 		    {Object} 		  		 					Objects &amp; changes for the shape passed
+			 * @return 		    {Object} 		  		 					Objects & changes for the shape passed
         	 */
         	_getShapeObjectData ( shape, collection, clClass )
         	{
@@ -15845,7 +16802,7 @@ class myTransitions
         		}
 
 
-    			for ( let _i = 0; _i &lt; shape.length; _i++ )
+    			for ( let _i = 0; _i < shape.length; _i++ )
 		        {
 			        let _index  = shape [ _i ];
 
@@ -15867,7 +16824,7 @@ class myTransitions
         	}
 
         	/**
-        	 * Returns an array of lines &amp; changes linking the objects &amp; collections together
+        	 * Returns an array of lines & changes linking the objects & collections together
         	 */
         	_getShapeLineData ( shape, objects, collection )
         	{
@@ -15878,9 +16835,9 @@ class myTransitions
         		}
 
 
-        		for ( let _i = 0; _i &lt; objects.length; _i++ )
+        		for ( let _i = 0; _i < objects.length; _i++ )
 
-        			for ( let _j = 0; _j &lt; objects.length; _j++ )
+        			for ( let _j = 0; _j < objects.length; _j++ )
         			{
         				if ( this._config.optimal )
         				{
@@ -15991,7 +16948,7 @@ class myTransitions
 		        this._transitions = new Array;
 
 
-		        for ( let _i = 0; _i &lt; collection.length; _i++ )
+		        for ( let _i = 0; _i < collection.length; _i++ )
 		        {
 		            let _result =
 		            {
@@ -16028,7 +16985,7 @@ class myTransitions
 		        this._transitions = new Array;
 
 
-		        for ( let _i = 0; _i &lt; collection.length; _i++ )
+		        for ( let _i = 0; _i < collection.length; _i++ )
 		        {
 		            let _object = new Circle (
 		            				  object.point,
@@ -16085,13 +17042,13 @@ class myTransitions
 
 		        if ( out )
 
-		        	for ( let _i = 0; _i &lt; collection.length; _i++ )
+		        	for ( let _i = 0; _i < collection.length; _i++ )
 
 		            		_result.change.push ( { pointFrom: collection [ 0 ].point } );
 
 		        else
 
-		        	for ( let _i = 0; _i &lt; collection.length; _i++ )
+		        	for ( let _i = 0; _i < collection.length; _i++ )
 
 		            		_result.change.push ( { point: collection [ 0 ].point } );
 
@@ -16119,7 +17076,7 @@ class myTransitions
 
 		        if ( ! shape ) 	// @NOTE: If no shape, generate shape based off of it's length
 		        {
-		        	for ( let _i = 0; _i &lt; collection.length; _i++ )
+		        	for ( let _i = 0; _i < collection.length; _i++ )
 
 	    				_shapeArray.push ( Array.from ( { length: _i }, ( _, i ) => i + 1 ) );
 
@@ -16137,7 +17094,7 @@ class myTransitions
  
 /**
  * @class           {Object}           SacredCircles            SacredCircles template
- * @property        {Point}            point                    X &amp; Y axis coordinates
+ * @property        {Point}            point                    X & Y axis coordinates
  * @property        {number}           [radius=25]              Radius of circle
  * @property        {number}           iterations               Amount of iterations
  * @property        {Rgb|Stroke|Queue} strokes                  Stroke colors
@@ -16170,7 +17127,7 @@ class SacredCircles
 
     /**
      * Create a SacredCircles template
-     * @property        {Point}            point                    X &amp; Y axis coordinates
+     * @property        {Point}            point                    X & Y axis coordinates
      * @property        {number}           [radius=25]              Radius of circle
      * @property        {number}           iterations               Amount of iterations
      * @property        {Rgb|Stroke|Queue} strokes                  Stroke colors
@@ -16210,7 +17167,7 @@ class SacredCircles
              * Set point
              * @public
              * @function
-             * @param           {Point} value                               X &amp; Y coordinates
+             * @param           {Point} value                               X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             set point ( value ) { }
@@ -16219,7 +17176,7 @@ class SacredCircles
              * Get point
              * @public
              * @function
-             * @return          {Point}                                     X &amp; Y coordinates
+             * @return          {Point}                                     X & Y coordinates
              * @see             {@link PROPERTY_BLOCKS.individual.point}
              */
             get point ( ) { }
@@ -16546,7 +17503,7 @@ class SacredCircles
              * Insert initial object
              * @protected
              * @function
-             * @param           {Point}  point                              X &amp; Y Coordinate(s)
+             * @param           {Point}  point                              X & Y Coordinate(s)
              * @param           {number} degree                             Degree of movement
              * @param           {Stroke} stroke                             Stroke properties
              * @param           {Fill}   fill                               Fill properties
@@ -16595,7 +17552,7 @@ class SacredCircles
                 let _count   = 0;
 
 
-                for ( let _i = 1; _i &lt;= this.iterations; _i++ )
+                for ( let _i = 1; _i <= this.iterations; _i++ )
                 {
                     _results.push ( _count * 6 );
 
@@ -16617,7 +17574,7 @@ class SacredCircles
              * Returns a clObject based on the current collection type
              * @private
              * @function
-             * @param           {Point}  point                              X &amp; Y Coordinates
+             * @param           {Point}  point                              X & Y Coordinates
              * @param           {Stroke} stroke                             Stroke properties
              * @param           {Fill}   fill                               Fill properties
              */
@@ -16663,7 +17620,7 @@ class SacredCircles
             }
 
             /**
-             * Moves the passed object in a specific degree &amp; distance
+             * Moves the passed object in a specific degree & distance
              * @private
              * @function
              * @param           {clObject} object                           Canvas Lab object
@@ -16746,7 +17703,7 @@ class SacredCircles
             this._numbers = Array.from ( { length: this.totalObjects }, ( element, index ) => index.toString ( ) );
 
 
-            for ( let _i = 0; _i &lt; this.iterations; _i++ )
+            for ( let _i = 0; _i < this.iterations; _i++ )
             {
                 this.degrees.reset;
 
@@ -16755,7 +17712,7 @@ class SacredCircles
                 let [ _degree, _stroke, _fill ] = [ this.degrees.next, this.strokes.next, this.fills.next ];
 
 
-                for ( let _stone = 0; _stone &lt; 1; _stone++ )
+                for ( let _stone = 0; _stone < 1; _stone++ )
 
                      this.#insertInitialObject ( this.point, _i, _degree, _stroke, _fill );
 
@@ -16764,7 +17721,7 @@ class SacredCircles
                     [ _degree, _stroke, _fill ] = [ this.degrees.next, this.strokes.next, this.fills.next ];        // Number: 01, Degree: 150
 
 
-                for ( let _stone = 0; _stone &lt;= ( _i - 1 ); _stone++ )
+                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
 
                      this.#insertEnsuingObjects ( _degree, _stroke, _fill );
 
@@ -16772,7 +17729,7 @@ class SacredCircles
                     [ _degree, _stroke, _fill ] = [ this.degrees.next, this.strokes.next, this.fills.next ];        // Number: 02,  Degree: 90
 
 
-                for ( let _stone = 0; _stone &lt;= ( _i - 1 ); _stone++ )
+                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
 
                     this.#insertEnsuingObjects ( _degree, _stroke, _fill );
 
@@ -16780,7 +17737,7 @@ class SacredCircles
                     [ _degree, _stroke, _fill ] = [ this.degrees.next, this.strokes.next, this.fills.next ];        // Number: 03,  Degree: 30
 
 
-                for ( let _stone = 0; _stone &lt;= ( _i - 1 ); _stone++ )
+                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
 
                   this.#insertEnsuingObjects ( _degree, _stroke, _fill );
 
@@ -16788,7 +17745,7 @@ class SacredCircles
                     [ _degree, _stroke, _fill ] = [ this.degrees.next, this.strokes.next, this.fills.next ];        // Number: 04, Degree: 330
 
 
-                for ( let _stone = 0; _stone &lt;= ( _i - 1 ); _stone++ )
+                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
 
                   this.#insertEnsuingObjects ( _degree, _stroke, _fill );
 
@@ -16796,7 +17753,7 @@ class SacredCircles
                     [ _degree, _stroke, _fill ] = [ this.degrees.next, this.strokes.next, this.fills.next ];        // Number: 05, Degree: 270
 
 
-                for ( let _stone = 0; _stone &lt;= ( _i - 1 ); _stone++ )
+                for ( let _stone = 0; _stone <= ( _i - 1 ); _stone++ )
 
                   this.#insertEnsuingObjects ( _degree, _stroke, _fill );
 
@@ -16805,7 +17762,7 @@ class SacredCircles
                     [ _degree, _stroke, _fill ] = [ this.degrees.next, this.strokes.next, this.fills.next ];        // Number: 06, Degree: 210
 
 
-                for ( let _stone = 0; _stone &lt;= ( _i - 2 ); _stone++ )
+                for ( let _stone = 0; _stone <= ( _i - 2 ); _stone++ )
 
                   this.#insertEnsuingObjects ( _degree, _stroke, _fill );
             }
@@ -16823,28 +17780,3 @@ class SacredCircles
             }
         }
 }
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-    
-    
-</div>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.0</a> on Thu Nov 07 2024 07:11:25 GMT-0800 (Pacific Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
-</footer>
-
-<script>prettyPrint();</script>
-<script src="scripts/polyfill.js"></script>
-<script src="scripts/linenumber.js"></script>
-
-
-
-</body>
-</html>

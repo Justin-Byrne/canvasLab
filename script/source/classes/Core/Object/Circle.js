@@ -22,9 +22,10 @@ class Circle
 
     _canvas = undefined;
 
-    _anchor   = new Anchor;
+    #anchor   = new Anchor;
     #options  = new Options;
     #position = new Position;
+    #velocity = new Point;
 
     /**
      * Create a Circle object
@@ -101,7 +102,7 @@ class Circle
 
     ////    PROPERTIES    //////////////////////////////////
 
-        ////    [ POINT ]   //////////////////////////
+        ////    [ POINT ]   /////////////////////
 
             /**
              * Set point
@@ -159,7 +160,7 @@ class Circle
              */
             get y ( ) { }
 
-        ////    [ RADIUS ]    ////////////////////////
+        ////    [ RADIUS ]    ////////////////////
 
             /**
              * Set radius value
@@ -188,7 +189,7 @@ class Circle
                 return this._radius;
             }
 
-        ////    [ ANGLE ]    /////////////////////////
+        ////    [ ANGLE ]    /////////////////////
 
             /**
              * Get angle properties
@@ -201,7 +202,7 @@ class Circle
                 return this._angle;
             }
 
-        ////    [ STROKE ]    ////////////////////////
+        ////    [ STROKE ]    ////////////////////
 
             /**
              * Set stroke properties
@@ -225,7 +226,7 @@ class Circle
                 return this._stroke;
             }
 
-        ////    [ FILL ]    //////////////////////////
+        ////    [ FILL ]    //////////////////////
 
             /**
              * Set fill properties
@@ -249,7 +250,7 @@ class Circle
                 return this._fill;
             }
 
-        ////    [ SHADOW ]    ////////////////////////
+        ////    [ SHADOW ]    ////////////////////
 
             /**
              * Get shadow properties
@@ -262,7 +263,7 @@ class Circle
                 return this._shadow;
             }
 
-        ////    [ CANVAS ]    ////////////////////////
+        ////    [ CANVAS ]    ////////////////////
 
             /**
              * Set canvas value
@@ -282,7 +283,7 @@ class Circle
              */
             get canvas ( ) { }
 
-        ////    [ ANCHOR ]    ////////////////////////
+        ////    [ ANCHOR ]    ////////////////////
 
             /**
              * Get anchor
@@ -292,10 +293,10 @@ class Circle
              */
             get anchor ( )
             {
-                return this._anchor;
+                return this.#anchor;
             }
 
-        ////    [ OPTIONS ]    ///////////////////////
+        ////    [ OPTIONS ]    ///////////////////
 
             /**
              * Get options properties
@@ -308,7 +309,7 @@ class Circle
                 return this.#options;
             }
 
-        ////    [ POSITION ]    //////////////////////
+        ////    [ POSITION ]    //////////////////
 
             /**
              * Get position properties
@@ -319,6 +320,30 @@ class Circle
             get position ( )
             {
                 return this.#position;
+            }
+
+        ////    [ VELOCITY ]    //////////////////
+
+            /**
+             * Set velocity
+             * @public
+             * @function
+             * @param             {number} value                                Velocity of object
+             */
+            set velocity ( value )
+            {
+                this.#velocity = ( this._isPoint ( value ) ) ? value : this.#velocity;
+            }
+
+            /**
+             * Get velocity
+             * @public
+             * @function
+             * @return             {number}                                     Velocity of object
+             */
+            get velocity ( )
+            {
+                return this.#velocity;
             }
 
     ////    VALIDATION  ////////////////////////////////////
@@ -507,7 +532,7 @@ class Circle
              */
             _setAnchorPoint ( )
             {
-                [ this._anchor.x, this._anchor.y ] = [ this.x, this.y ];
+                [ this.#anchor.x, this.#anchor.y ] = [ this.x, this.y ];
 
 
                 if ( this._isPoint ( this.radius ) )
@@ -587,6 +612,22 @@ class Circle
             }
 
             /**
+             * Get bounds of object
+             * @readOnly
+             * @function
+             * @return          {Object}                                    Bounds of object
+             */
+            get bounds ( )
+            {
+                return {
+                           x: this.x - this.radius,
+                           y: this.y - this.radius,
+                           width:  this.diameter,
+                           height: this.diameter
+                       };
+            }
+
+            /**
              * Get diameter of circle
              * @readOnly
              * @function
@@ -594,7 +635,7 @@ class Circle
              */
             get diameter ( )
             {
-                return (  this.radius * 2  );
+                return ( this.radius * 2 );
             }
 
             /**

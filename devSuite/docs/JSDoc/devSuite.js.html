@@ -20691,140 +20691,6 @@ class Ui
 
             canvaslab.animate ( _transitions );
         },
-        // animationsArrayCache2: ( ) =>
-        // {
-        //     ////    FUNCTIONS    ////////////////////////////////////////////////////////////
-
-        //     let _getInvertedAngle = ( angle ) => ( angle + 180 ) % 360;
-
-        //     ////    OBJECTS    //////////////////////////////////////////////////////////////
-
-        //     let _center  = canvaslab.center;
-
-        //     let _amount  = 10;
-
-        //     let _multiA  = 0.5;
-
-        //     let _multiB  = 0.1;
-
-        //     let _radius  = 10;
-
-        //     let _objects = new Circles;
-
-
-        //     for ( let _i = 0; _i &lt; _amount; _i++ )
-
-        //         _objects.push ( new Circle ( _center, _radius ) );
-
-        //     ////    ANIMATION    ///////////////////////////////////////////////////////////
-
-        //     let _transitions =
-        //     [
-        //         {
-        //             object: _objects,
-        //             timing: 'easeOutSine',
-        //             period: 300,
-        //             change:
-        //             [
-        //                 { move: { degree:  90, distance: 100 }, cache: true },  //  1
-        //                 { move: { degree:  60, distance:  87 }, cache: true },  //  2
-        //                 { move: { degree: 120, distance:  87 }, cache: true },  //  3
-        //                 { move: { degree:  30, distance:  50 }, cache: true },  //  4
-        //                 { move: { degree: 150, distance:  50 }, cache: true },  //  5
-        //                 { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
-        //                 { move: { degree: 330, distance:  50 }, cache: true },  //  7
-        //                 { move: { degree: 210, distance:  50 }, cache: true },  //  8
-        //                 { move: { degree: 270, distance:  50 }, cache: true },  //  9
-        //                 { move: { degree: 270, distance: 100 }, cache: true },  // 10
-        //             ]
-        //         },  // Out - Normal
-        //         {
-        //             object: _objects,
-        //             timing: 'easeOutSine',
-        //             period: 1750,
-        //             change:
-        //             [
-        //                 { move: { degree:  90, distance: 100 }, cache: true },  //  1
-        //                 { move: { degree:  60, distance:  87 }, cache: true },  //  2
-        //                 { move: { degree: 120, distance:  87 }, cache: true },  //  3
-        //                 { move: { degree:  30, distance:  50 }, cache: true },  //  4
-        //                 { move: { degree: 150, distance:  50 }, cache: true },  //  5
-        //                 { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
-        //                 { move: { degree: 330, distance:  50 }, cache: true },  //  7
-        //                 { move: { degree: 210, distance:  50 }, cache: true },  //  8
-        //                 { move: { degree: 270, distance:  50 }, cache: true },  //  9
-        //                 { move: { degree: 270, distance: 100 }, cache: true },  // 10
-        //             ]
-        //         },  // Out - Fast
-        //         {
-        //             object: _objects,
-        //             timing: 'easeOutSine',
-        //             period: 300,
-        //             change:
-        //             [
-        //                 { move: { degree:  90, invert: true, distance: 100 * _multiA }, cache: true },  //  1
-        //                 { move: { degree:  60, invert: true, distance:  87 * _multiA }, cache: true },  //  2
-        //                 { move: { degree: 120, invert: true, distance:  87 * _multiA }, cache: true },  //  3
-        //                 { move: { degree:  30, invert: true, distance:  50 * _multiA }, cache: true },  //  4
-        //                 { move: { degree: 150, invert: true, distance:  50 * _multiA }, cache: true },  //  5
-        //                 { move: { degree: 180, invert: true, distance:   0 * _multiA }, cache: true },  //  6 - 0
-        //                 { move: { degree: 330, invert: true, distance:  50 * _multiA }, cache: true },  //  7
-        //                 { move: { degree: 210, invert: true, distance:  50 * _multiA }, cache: true },  //  8
-        //                 { move: { degree: 270, invert: true, distance:  50 * _multiA }, cache: true },  //  9
-        //                 { move: { degree: 270, invert: true, distance: 100 * _multiA }, cache: true },  // 10
-        //             ]
-        //         },  // Out - Normal
-        //         {
-        //             object: _objects,
-        //             timing: 'easeInSine',
-        //             period: 1000,
-        //             change:
-        //             [
-        //                 { move: { degree:  90, distance: 100 }, cache: true },  //  1
-        //                 { move: { degree:  60, distance:  87 }, cache: true },  //  2
-        //                 { move: { degree: 120, distance:  87 }, cache: true },  //  3
-        //                 { move: { degree:  30, distance:  50 }, cache: true },  //  4
-        //                 { move: { degree: 150, distance:  50 }, cache: true },  //  5
-        //                 { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
-        //                 { move: { degree: 330, distance:  50 }, cache: true },  //  7
-        //                 { move: { degree: 210, distance:  50 }, cache: true },  //  8
-        //                 { move: { degree: 270, distance:  50 }, cache: true },  //  9
-        //                 { move: { degree: 270, distance: 100 }, cache: true },  // 10
-        //             ]
-        //         },  // Out - Normal
-        //         {
-        //             object: _objects,
-        //             timing: 'easeInOutQuart',
-        //             period: 60,
-        //             change:
-        //             [
-        //                 { move: { degree:  90, distance: 100 }, cache: true },  //  1
-        //                 { move: { degree:  60, distance:  87 }, cache: true },  //  2
-        //                 { move: { degree: 120, distance:  87 }, cache: true },  //  3
-        //                 { move: { degree:  30, distance:  50 }, cache: true },  //  4
-        //                 { move: { degree: 150, distance:  50 }, cache: true },  //  5
-        //                 { move: { degree: 180, distance:   0 }, cache: true },  //  6 - 0
-        //                 { move: { degree: 330, distance:  50 }, cache: true },  //  7
-        //                 { move: { degree: 210, distance:  50 }, cache: true },  //  8
-        //                 { move: { degree: 270, distance:  50 }, cache: true },  //  9
-        //                 { move: { degree: 270, distance: 100 }, cache: true },  // 10
-        //             ]
-        //         },  // Out Trail - Fast
-        //     ]
-
-        //     ////    TRAIL    ///////////////////////////////////////////////////////////////
-
-        //     let _location = 5;
-
-        //     let _repeat   = 10;
-
-        //     for ( let _i = _location; _i &lt; _location + _repeat; _i++ )
-
-        //         _transitions [ _i ] = _transitions [ _location - 1 ];
-
-
-        //     canvaslab.animate ( _transitions );
-        // },
     }
 
     ////    SETTERS    /////////////////////////////////////////////////////////////////////////////
@@ -20992,7 +20858,7 @@ class Ui
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.0</a> on Thu Nov 07 2024 07:11:27 GMT-0800 (Pacific Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.0</a> on Fri Nov 15 2024 06:08:32 GMT-0800 (Pacific Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

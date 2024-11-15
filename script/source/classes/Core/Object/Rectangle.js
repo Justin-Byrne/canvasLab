@@ -19,12 +19,13 @@ class Rectangle
     _stroke = new Stroke;
     _fill   = new Fill;
     _shadow = new Shadow;
-    _anchor = new Anchor;
 
     _canvas = undefined;
 
+    #anchor   = new Anchor;
     #options  = new Options;
     #position = new Position;
+    #velocity = new Point;
 
     /**
      * Create a Rectangle object
@@ -348,7 +349,7 @@ class Rectangle
              */
             get anchor ( )
             {
-                return this._anchor;
+                return this.#anchor;
             }
 
         ////    [ OPTIONS ]    ///////////////////
@@ -369,6 +370,30 @@ class Rectangle
             get position ( )
             {
                 return this.#position;
+            }
+
+        ////    [ VELOCITY ]    //////////////////
+
+            /**
+             * Set velocity
+             * @public
+             * @function
+             * @param             {number} value                                Velocity of object
+             */
+            set velocity ( value )
+            {
+                this.#velocity = ( this._isPoint ( value ) ) ? value : this.#velocity;
+            }
+
+            /**
+             * Get velocity
+             * @public
+             * @function
+             * @return             {number}                                     Velocity of object
+             */
+            get velocity ( )
+            {
+                return this.#velocity;
             }
 
     ////    VALIDATION  ////////////////////////////////////

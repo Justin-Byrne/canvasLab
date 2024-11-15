@@ -12,6 +12,7 @@
  */
 class Line
 {
+    _point   = new Point;
     _start   = new Point;
     _end     = new Point;
     _stroke  = new Stroke;
@@ -61,6 +62,9 @@ class Line
             this.rotate       = UTILITIES.individual.misc.rotate;
 
             Object.defineProperty ( this, 'canvas', PROPERTY_BLOCKS.individual.canvas );
+            Object.defineProperty ( this, 'point',  PROPERTY_BLOCKS.individual.point  );
+            Object.defineProperty ( this, 'x',      PROPERTY_BLOCKS.individual.pointX );
+            Object.defineProperty ( this, 'y',      PROPERTY_BLOCKS.individual.pointY );
 
         ////    POINT OVERLOADING   ////////////////////////
 
@@ -73,8 +77,11 @@ class Line
                 {
                     let _height = ( start / 2 );
 
+
                     this.start.y = end.y - _height;
+
                     this.end.y   = end.y + _height;
+
 
                     this.start.x = this.end.x = end.x;
                 }
@@ -89,8 +96,11 @@ class Line
                 {
                     let _width = ( end / 2 );
 
-                    this.start.x = start.x - _width
+
+                    this.start.x = start.x - _width;
+
                     this.end.x   = start.x + _width;
+
 
                     this.start.y = this.end.y = start.y;
                 }
@@ -103,15 +113,19 @@ class Line
             this._shadow = new Shadow ( shadow.color, shadow.blur, { x: shadow.offset.x, y: shadow.offset.y } );
 
         this.lineCap = lineCap;
+
         this.canvas  = canvas;
 
         ////    ANCILLARY   ////////////////////////////////
 
-            this.#options.shadow      = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
-            this.#options.master      = this;
+            this.#options.shadow = ( shadow.offset.x != undefined && shadow.offset.y != undefined );
+
+            this.#options.master = this;
+
 
             this._start.options.master = this;
-              this._end.options.master = this;
+
+            this._end.options.master   = this;
 
 
             Object.defineProperty ( this.#options, "points",
@@ -123,7 +137,7 @@ class Line
 
                     this._master._start.options.points = value;
 
-                      this._master._end.options.points = value;
+                    this._master._end.options.points   = value;
                 },
                 get ( )
                 {
@@ -135,6 +149,64 @@ class Line
     }
 
     ////    PROPERTIES    //////////////////////////////////
+
+        ////    [ POINT ]   //////////////////////////
+
+            /**
+             * Set point
+             * @public
+             * @function
+             * @param           {Point} value                               X & Y coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
+             */
+            set point ( value ) { }
+
+            /**
+             * Get point
+             * @public
+             * @function
+             * @return          {Point}                                     X & Y coordinates
+             * @see             {@link PROPERTY_BLOCKS.individual.point}
+             */
+            get point ( ) { }
+
+
+            /**
+             * Set x-axis value
+             * @public
+             * @function
+             * @param           {number} value                              X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
+             */
+            set x ( value ) { }
+
+            /**
+             * Get x-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    X coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointX}
+             */
+            get x ( ) { }
+
+
+            /**
+             * Set y-axis value
+             * @public
+             * @function
+             * @param           {number} value                              Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
+             */
+            set y ( value ) { }
+
+            /**
+             * Get y-axis value
+             * @readOnly
+             * @function
+             * @return          {number}                                    Y coordinate value
+             * @see             {@link PROPERTY_BLOCKS.individual.pointY}
+             */
+            get y ( ) { }
 
         ////    [ START ]    /////////////////////
 
@@ -909,6 +981,13 @@ class Line
                 let _straddle = 0.5;
 
 
+                this._canvas.save ( );
+
+                this._canvas.translate ( this.x, this.y );
+
+                this._canvas.rotate ( this.position.rotation );
+
+
                 if ( this.#options.shadow ) this._setShadow ( );                                   // Set: shadow
 
 
@@ -922,15 +1001,16 @@ class Line
 
                 this._canvas.setLineDash ( ( this.stroke.type === 'solid' ) ? new Array : this.stroke.segments );
 
-                this._canvas.beginPath   ( );
+
+                this._canvas.beginPath ( );
 
 
-
-                this._canvas.moveTo      ( this.start.x + _straddle, this.start.y + _straddle );
-
+                this._canvas.moveTo ( this.start.x, this.start.y );
 
                 this._setPath ( );
 
+
+                this._canvas.closePath ( );
 
                 this._canvas.stroke ( );
 
@@ -939,6 +1019,8 @@ class Line
 
 
                 this._drawOptions ( );
+
+                this._canvas.restore ( );
             }
             else
 

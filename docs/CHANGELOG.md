@@ -1,11 +1,27 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.7.207] - 2024-11-15
+### Added
+- **canvasLab**
+  - :sunny: `velocity` property, to `Circle`, `Ellipse`, `Rectangle`, `RoundedRectangle`, `Text` & `cImage` classes
+  - :sunny: `Circle` class, `bounds` getter, to get bounds of object
+  - :sunny: `Line` class, `point` property
+  - :sunny: `Anchor` class, supplemented `_isPoint` function with `VALIDATION.isPoint`
+
+### Changed
+- **canvasLab**
+  - :full_moon: `_anchor` property, to `#anchor` property, for `Circle`, `Ellipse`, `Rectangle`, `RoundedRectangle` & `cImage`
+
+### Refactored
+- **canvasLab**
+  - :last_quarter_moon: `UTILITIES.set.anchorPoint` to point to `this.anchor` instead of `this._anchor`
+
 ## [0.7.201] - 2024-11-07
 ### Added
 - **canvasLab**
-  - :sunny: `Circle`, `Rectangle`, & `Text` classes, supplemented `_isStroke` & `_isFill` functions with `Validation.isStroke` & `Validation.isFill`.
-  - :sunny: `Line` class, supplemented `_isStroke` function with `Validation.isStroke`
+  - :sunny: `Circle`, `Rectangle`, & `Text` classes, supplemented `_isStroke` & `_isFill` functions with `VALIDATION.isStroke` & `VALIDATION.isFill`.
+  - :sunny: `Line` class, supplemented `_isStroke` function with `VALIDATION.isStroke`
   - :sunny: `myTransitions` class,
     - `_getNewObjectFromType` function, to return a new object based on the passed clClass, mirroring properties from the passed object
     - `_getShapeObjectData` function, to return an array of new objects & changes created from the collection
@@ -25,10 +41,10 @@ All notable changes to this project will be documented in this file.
   - :sunny: `Animations` class, `_setPositionData` function, `pointFrom` case to animation from a specified point
   - :sunny: `myTransitions` class, for developer defined animation transitions
   - :sunny: `Circles`, `Lines`, `Rectangles`, & `Texts` classes, supplemented `getPoints` function, with `UTILITIES.collection.getPoints`
-  - :sunny: `Circles` class, supplemented `_isDegree` function, with `Validation.isDegree`
+  - :sunny: `Circles` class, supplemented `_isDegree` function, with `VALIDATION.isDegree`
   - :sunny: `Position` class, `stroke` & `fill` properties, accessors & mutators
-  - :sunny: `Utilities` module, `collection.getPoints` function, to get all or specific points throughout this collection
-  - :sunny: `Validation` module,`isTransition` function, to return whether the passed value is a Transition
+  - :sunny: `UTILITIES` module, `collection.getPoints` function, to get all or specific points throughout this collection
+  - :sunny: `VALIDATION` module,`isTransition` function, to return whether the passed value is a Transition
   - :sunny: `PROPERTY_BLOCKS` module,
     - `individual.template` mutator & accessor
     - `individual.transitions` mutator & accessor
@@ -76,7 +92,7 @@ All notable changes to this project will be documented in this file.
   - :sunny: `Animation` class,
     - `_resetCanvasTransform` function, to reset the canvas transform; from rotational transforms
     - `rotate`, `aspect`, `controlPoints`, `fontSize`, `angleStart`, `angleEnd` cases to `_setPositionData` & `_transition` functions
-  - :sunny: `Validation` module, `isControlPoint` function, to return whether the passed value is an array of Control Point values
+  - :sunny: `VALIDATION` module, `isControlPoint` function, to return whether the passed value is an array of Control Point values
 
 - **devSuite**
   - :sunny: `Ui` class,
@@ -89,7 +105,7 @@ All notable changes to this project will be documented in this file.
 - **canvasLab**
   - :sunny: `Line` class, added `point` property, accessor(s) & mutator(s)
   - :sunny: `Position` class, added `rotation` property, accessor(s) & mutator(s)
-  - :sunny: `Text` class, added `_setFillType` function from `Utilities` module
+  - :sunny: `Text` class, added `_setFillType` function from `UTILITIES` module
   - :sunny: `cImage` class, `_drawImage` function, to draw image depending on primary & secondary property settings
   - :sunny: `Animation` class, `startPoint` & `endPoint` cases to `_setPositionData` & `_transition` functions
 
@@ -140,7 +156,7 @@ All notable changes to this project will be documented in this file.
   - :dragon: Inverted 360 degree rotation results; resulting in 90 degrees depicting up rather than down
     - `Animation` class, `_getPointByDegreeNDistance` function
     - `Animations` class, `_getPointByDegreeNDistance` function
-    - `Utilities` module, `misc.rotatePoint` function
+    - `UTILITIES` module, `misc.rotatePoint` function
     - `SacredCircles` class, `degrees` property
 
 ## [0.7.158] - 2024-08-30
@@ -251,7 +267,7 @@ All notable changes to this project will be documented in this file.
 ### Refactored
 - **canvasLab**
   - :last_quarter_moon: `Circle` class, expanded `_setAnchorPoint ( )` to include setting of either a `{number}` or `{Point}` for the internal `radius` property
-  - :last_quarter_moon: `Utilities` module, expanded `draw.axis ( )` & `draw.border ( )` to include `Ellipses` & `RoundedRectangles` classes
+  - :last_quarter_moon: `UTILITIES` module, expanded `draw.axis ( )` & `draw.border ( )` to include `Ellipses` & `RoundedRectangles` classes
 
 - **devSuite**
   - :last_quarter_moon: Included `Ellipse`, `Ellipses`, `RoundedRectangle`, & `RoundedRectangles` types within:
@@ -274,7 +290,7 @@ All notable changes to this project will be documented in this file.
       - `"repeat-x"` (horizontal only)
       - `"repeat-y"` (vertical only)
       - `"no-repeat"` (neither direction)
-  - :sunny: `Validation` module, added `isPointNAspect ( )` to returns whether the passed value is a `Point` & `Aspect`
+  - :sunny: `VALIDATION` module, added `isPointNAspect ( )` to returns whether the passed value is a `Point` & `Aspect`
 
 ### Changed
 - :full_moon: `Rectangle` class,
@@ -327,7 +343,7 @@ All notable changes to this project will be documented in this file.
   - `Application` & `canvasLab` classes, replaced animation keyword `flow`, with `sequence`
   - `Animation` class, `animate ( )` to incorporate multiple consecutive animations
   - `SacredCircles` class, general optimization and refactoring
-  - `Validation` module, `isPlan ( )` to better identify `Group` plans
+  - `VALIDATION` module, `isPlan ( )` to better identify `Group` plans
 
 - **devSuite**
   - `Template` class, replaced animation keyword `flow`, with `sequence`
@@ -340,7 +356,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - **canvasLab**
   - `Group` class, added `_isCanvasLabObject ( )` for validation
-  - `Utilities` module, fixed `_anchor.fill.color` to accept `Rgb` class instances rather than strings
+  - `UTILITIES` module, fixed `_anchor.fill.color` to accept `Rgb` class instances rather than strings
 
 ## [0.4.104] - 2024-07-18
 ### Added
@@ -605,8 +621,8 @@ All notable changes to this project will be documented in this file.
   - `Rgb` class, for RGB color model
   - `Hsl` class, for HSL color model
   - `Hwb` class, for HWB color model
-  - `PropertyBlocks.discrete.alpha ( )` function for alpha setters
-  - **`Validation`**
+  - `PROPERTY_BLOCKS.discrete.alpha ( )` function for alpha setters
+  - **`VALIDATION`**
     - `is256 ( )` to return whether the passed value is a 256 value color integer
     - `isColorModel ( )` to return whether the passed value is a color model
     - `isColorStop ( )` to return whether the passed value is a color stop
@@ -896,7 +912,8 @@ All notable changes to this project will be documented in this file.
 
 | Version     | Date         | Commit                                                                | Comments                                                                                                                     |
 | :---------  | :----------: | :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `[0.7.201]` | `2024-11-07` | `CURRENT`                                                             | <sup>Optimized myTransistions class, fixed minor errors in core objects.</sup>                                               |
+| `[0.7.207]` | `2024-11-15` | `CURRENT`                                                             | <sup>Added velocity property to core object classes, plus general refactoring.</sup>                                         |
+| `[0.7.201]` | `2024-11-07` | [`5a5a78a`](https://github.com/Justin-Byrne/canvasLab/commit/5a5a78a) | <sup>Optimized myTransistions class, fixed minor errors in core objects.</sup>                                               |
 | `[0.7.196]` | `2024-10-24` | [`7d8ec76`](https://github.com/Justin-Byrne/canvasLab/commit/7d8ec76) | <sup>Added myTransitions class, fixed minor errors in Group & Animation(s) classes, and general refactoring.</sup>           |
 | `[0.7.179]` | `2024-09-27` | [`647b2b8`](https://github.com/Justin-Byrne/canvasLab/commit/647b2b8) | <sup>Added numerous animation functions to the Animation & Position classes, and general refactoring.</sup>                  |
 | `[0.7.173]` | `2024-09-18` | [`d47997c`](https://github.com/Justin-Byrne/canvasLab/commit/d47997c) | <sup>Added angle & coordinate system to Lab, small additions to several Object classes, and general refactoring.</sup>       |

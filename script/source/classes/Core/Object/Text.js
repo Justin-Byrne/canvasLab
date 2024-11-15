@@ -21,6 +21,7 @@ class Text extends Font
 
     #options  = new Options;
     #position = new Position;
+    #velocity = new Point;
 
     /**
      * Create a Text object
@@ -292,6 +293,30 @@ class Text extends Font
             get position ( )
             {
                 return this.#position;
+            }
+
+        ////    [ VELOCITY ]    //////////////////
+
+            /**
+             * Set velocity
+             * @public
+             * @function
+             * @param             {number} value                                Velocity of object
+             */
+            set velocity ( value )
+            {
+                this.#velocity = ( this._isPoint ( value ) ) ? value : this.#velocity;
+            }
+
+            /**
+             * Get velocity
+             * @public
+             * @function
+             * @return             {number}                                     Velocity of object
+             */
+            get velocity ( )
+            {
+                return this.#velocity;
             }
 
         ////    * SUPER *   //////////////////////

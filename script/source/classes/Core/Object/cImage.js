@@ -26,9 +26,10 @@ class cImage
 
 	_canvas = undefined;
 
-    _anchor   = new Anchor;
+    #anchor   = new Anchor;
 	#options  = new Options;
     #position = new Position;
+    #velocity = new Point;
 
 	/**
      * Create a cImage object
@@ -316,7 +317,7 @@ class cImage
              */
             get anchor ( )
             {
-                return this._anchor;
+                return this.#anchor;
             }
 
         ////    [ OPTIONS ] //////////////////////////
@@ -343,6 +344,30 @@ class cImage
             get position ( )
             {
                 return this.#position;
+            }
+
+        ////    [ VELOCITY ]    //////////////////////
+
+            /**
+             * Set velocity
+             * @public
+             * @function
+             * @param             {number} value                                Velocity of object
+             */
+            set velocity ( value )
+            {
+                this.#velocity = ( this._isPoint ( value ) ) ? value : this.#velocity;
+            }
+
+            /**
+             * Get velocity
+             * @public
+             * @function
+             * @return             {number}                                     Velocity of object
+             */
+            get velocity ( )
+            {
+                return this.#velocity;
             }
 
     ////    VALIDATION    //////////////////////////////////

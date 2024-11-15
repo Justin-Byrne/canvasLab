@@ -14,6 +14,7 @@ class Anchor
 		//// 	COMPOSITION 	////////////////////////////
 
 			this._isAlign = VALIDATION.isAlign;
+            this._isPoint = VALIDATION.isPoint;
 
             Object.defineProperty ( this, 'point', PROPERTY_BLOCKS.individual.point  );
             Object.defineProperty ( this, 'x',     PROPERTY_BLOCKS.individual.pointX );
@@ -22,7 +23,7 @@ class Anchor
 
     ////    PROPERTIES    //////////////////////////////////
 
-    	////    [ POINT ]    ////////////////////
+    	////    [ POINT ]    /////////////////////
 
             /**
              * Set point
@@ -115,4 +116,14 @@ class Anchor
          * @see             {@link VALIDATION.isAnchor}
          */
         _isAnchor ( ) { }
+
+        /**
+         * Returns whether the passed value is a Point
+         * @private
+         * @function
+         * @param           {Object} value                              Point or object equivalent
+         * @return          {boolean}                                   True || False
+         * @see             {@link VALIDATION.isPoint}
+         */
+        _isPoint ( ) { }
 }
