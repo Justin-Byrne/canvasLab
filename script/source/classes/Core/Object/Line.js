@@ -739,6 +739,73 @@ class Line
         ////    + PUBLIC    //////////////////////
 
             /**
+             * Get bounds of object
+             * @readOnly
+             * @function
+             * @return          {Object}                                    Bounds of object
+             */
+            get bounds ( )
+            {
+                let _min = new Point;
+
+                let _max = new Point;
+
+
+                let _startRotation = new Point;
+
+                let _endRotation   = new Point;
+
+
+                let _result = { x: 0, y: 0, width: 0, height: 0 };
+
+
+                if ( this.position.rotation === 0 )
+                {
+                    _min.x = Math.min ( this.start.x, this.end.x );
+
+                    _min.y = Math.min ( this.start.y, this.end.y );
+
+
+                    _max.x = Math.max ( this.start.x, this.end.x );
+
+                    _max.y = Math.max ( this.start.y, this.end.y );
+
+
+                    [ _result.x,     _result.y      ] = [ this.x + _min.x, this.y + _min.y ];
+
+                    [ _result.width, _result.height ] = [ _max.x - _min.x, _max.y - _min.y ];
+                }
+                else
+                {
+                    let _sin = Math.sin ( this.position.rotation );
+
+                    let _cos = Math.cos ( this.position.rotation );
+
+
+                    _startRotation.x = _cos * this.start.x + _sin * this.start.y;
+
+                    _endRotation.x   = _cos * this.end.x + _sin * this.end.y;
+
+
+                    _startRotation.y = _cos * this.start.y + _sin * this.start.x;
+
+                    _endRotation.y   = _cos * this.end.y + _sin * this.end.x;
+
+
+                    _result.x      = this.x + Math.min ( _startRotation.x, _endRotation.x );
+
+                    _result.y      = this.y + Math.min ( _startRotation.y, _endRotation.y );
+
+                    _result.width  = Math.max ( _startRotation.x, _endRotation.x ) - Math.min ( _startRotation.x, _endRotation.x );
+
+                    _result.height = Math.max ( _startRotation.y, _endRotation.y ) - Math.min ( _startRotation.y, _endRotation.y );
+                }
+
+
+                return _result;
+            }
+
+            /**
              * Get center of this object
              * @readOnly
              * @function

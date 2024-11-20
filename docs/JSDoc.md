@@ -10,6 +10,9 @@
 <dt><a href="#Options">Options</a></dt>
 <dd><p>{Object}  Options                           Options for collections</p>
 </dd>
+<dt><a href="#Range">Range</a></dt>
+<dd><p>{Object} Range                              Range object</p>
+</dd>
 <dt><a href="#Anchor">Anchor</a></dt>
 <dd><p>{Object} Anchor                             Anchor object</p>
 </dd>
@@ -78,9 +81,6 @@
 </dd>
 <dt><a href="#RoundedRectangle">RoundedRectangle</a> ⇐ <code><a href="#Rectangle">Rectangle</a></code></dt>
 <dd><p>{Object}            RoundingRectangle 		RoundingRectangle object</p>
-</dd>
-<dt><a href="#Ship">Ship</a></dt>
-<dd><p>{Object}            Ship                    Ship object</p>
 </dd>
 <dt><a href="#Text">Text</a></dt>
 <dd><p>{Object}            Text                    Text element to render within a canvas element</p>
@@ -691,6 +691,95 @@ Get master object
 **Returns**: [<code>clObject</code>](#clObject) - Master Canvas Lab object  
 **Access**: public  
 **See**: [master](#PROPERTY_BLOCKS.individual.master)  
+<a name="Range"></a>
+
+## Range
+{Object} Range                              Range object
+
+**Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| min | <code>number</code> | Minimum range |
+| max | <code>number</code> | Maximum range |
+| value | <code>number</code> | Current value |
+
+
+* [Range](#Range)
+    * [new Range()](#new_Range_new)
+    * [.min(value)](#Range+min)
+    * [.min()](#Range+min) ⇒ <code>number</code>
+    * [.max(value)](#Range+max)
+    * [.max()](#Range+max) ⇒ <code>number</code>
+    * [.value(value)](#Range+value)
+    * [.value()](#Range+value) ⇒ <code>number</code>
+
+<a name="new_Range_new"></a>
+
+### new Range()
+Create a Range object
+
+<a name="Range+min"></a>
+
+### range.min(value)
+Set min
+
+**Kind**: instance method of [<code>Range</code>](#Range)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Min of object |
+
+<a name="Range+min"></a>
+
+### range.min() ⇒ <code>number</code>
+Get min
+
+**Kind**: instance method of [<code>Range</code>](#Range)  
+**Returns**: <code>number</code> - Min of object  
+**Access**: public  
+<a name="Range+max"></a>
+
+### range.max(value)
+Set max
+
+**Kind**: instance method of [<code>Range</code>](#Range)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Max of object |
+
+<a name="Range+max"></a>
+
+### range.max() ⇒ <code>number</code>
+Get max
+
+**Kind**: instance method of [<code>Range</code>](#Range)  
+**Returns**: <code>number</code> - Max of object  
+**Access**: public  
+<a name="Range+value"></a>
+
+### range.value(value)
+Set value
+
+**Kind**: instance method of [<code>Range</code>](#Range)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Value of object |
+
+<a name="Range+value"></a>
+
+### range.value() ⇒ <code>number</code>
+Get value
+
+**Kind**: instance method of [<code>Range</code>](#Range)  
+**Returns**: <code>number</code> - Value of object  
+**Access**: public  
 <a name="Anchor"></a>
 
 ## Anchor
@@ -3212,6 +3301,8 @@ Get fill
 | anchor | [<code>Anchor</code>](#Anchor) |  | Anchor properties |
 | options | [<code>Options</code>](#Options) |  | Options for this object |
 | position | [<code>Position</code>](#Position) |  | Position properties |
+| mass | <code>number</code> |  | Mass of object |
+| velocity | [<code>Point</code>](#Point) |  | X & Y velocity coordinates |
 
 
 * [Circle](#Circle)
@@ -3235,6 +3326,8 @@ Get fill
     * [.anchor()](#Circle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.options()](#Circle+options) ⇒ [<code>Options</code>](#Options)
     * [.position()](#Circle+position) ⇒ [<code>Position</code>](#Position)
+    * [.mass(value)](#Circle+mass)
+    * [.mass()](#Circle+mass) ⇒ <code>number</code>
     * [.velocity(value)](#Circle+velocity)
     * [.velocity()](#Circle+velocity) ⇒ <code>number</code>
     * [.isThere(circle)](#Circle+isThere) ⇒ <code>boolean</code>
@@ -3441,6 +3534,26 @@ Get position properties
 **Kind**: instance method of [<code>Circle</code>](#Circle)  
 **Returns**: [<code>Position</code>](#Position) - Position properties  
 **Access**: public  
+<a name="Circle+mass"></a>
+
+### circle.mass(value)
+Set mass
+
+**Kind**: instance method of [<code>Circle</code>](#Circle)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Mass of object |
+
+<a name="Circle+mass"></a>
+
+### circle.mass() ⇒ <code>number</code>
+Get mass
+
+**Kind**: instance method of [<code>Circle</code>](#Circle)  
+**Returns**: <code>number</code> - Mass of object  
+**Access**: public  
 <a name="Circle+velocity"></a>
 
 ### circle.velocity(value)
@@ -3606,6 +3719,7 @@ Draw this object
     * [.anchor()](#Circle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.options()](#Circle+options) ⇒ [<code>Options</code>](#Options)
     * [.position()](#Circle+position) ⇒ [<code>Position</code>](#Position)
+    * [.mass(value)](#Circle+mass)
     * [.velocity(value)](#Circle+velocity)
     * [.isThere(circle)](#Circle+isThere) ⇒ <code>boolean</code>
     * [.area()](#Circle+area) ⇒ <code>number</code>
@@ -3762,6 +3876,19 @@ Get position properties
 **Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
 **Returns**: [<code>Position</code>](#Position) - Position properties  
 **Access**: public  
+<a name="Circle+mass"></a>
+
+### ellipse.mass(value)
+Set mass
+
+**Kind**: instance method of [<code>Ellipse</code>](#Ellipse)  
+**Overrides**: [<code>mass</code>](#Circle+mass)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Mass of object |
+
 <a name="Circle+velocity"></a>
 
 ### ellipse.velocity(value)
@@ -3934,6 +4061,7 @@ Draw this object
     * [.y(value)](#Line+y)
     * [.y()](#Line+y) ⇒ <code>number</code>
     * [.isThere(line)](#Line+isThere)
+    * [.bounds()](#Line+bounds) ⇒ <code>Object</code>
     * [.center()](#Line+center) ⇒ [<code>Point</code>](#Point)
     * [.curve(p0, p1, p2, p3)](#Line+curve)
     * [.drawPoints()](#Line+drawPoints)
@@ -4228,6 +4356,14 @@ Check whether the passed object is already present
 | --- | --- | --- |
 | line | [<code>Line</code>](#Line) | Object to validate |
 
+<a name="Line+bounds"></a>
+
+### line.bounds() ⇒ <code>Object</code>
+Get bounds of object
+
+**Kind**: instance method of [<code>Line</code>](#Line)  
+**Returns**: <code>Object</code> - Bounds of object  
+**Read only**: true  
 <a name="Line+center"></a>
 
 ### line.center() ⇒ [<code>Point</code>](#Point)
@@ -4344,6 +4480,8 @@ Draw this object
 | canvas | <code>HTMLCanvasElement</code> | 2D canvas context |
 | options | [<code>Options</code>](#Options) | Options for this object |
 | position | [<code>Position</code>](#Position) | Position properties |
+| mass | <code>number</code> | Mass of object |
+| velocity | [<code>Point</code>](#Point) | X & Y velocity coordinates |
 
 
 * [Rectangle](#Rectangle)
@@ -4371,6 +4509,8 @@ Draw this object
     * [.canvas()](#Rectangle+canvas) ⇒ <code>string</code>
     * [.anchor()](#Rectangle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.options()](#Rectangle+options) ⇒ [<code>Options</code>](#Options)
+    * [.mass(value)](#Rectangle+mass)
+    * [.mass()](#Rectangle+mass) ⇒ <code>number</code>
     * [.velocity(value)](#Rectangle+velocity)
     * [.velocity()](#Rectangle+velocity) ⇒ <code>number</code>
     * [.isThere(rectangle)](#Rectangle+isThere)
@@ -4621,6 +4761,26 @@ Get options properties
 **Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
 **Returns**: [<code>Options</code>](#Options) - Options properties  
 **Access**: public  
+<a name="Rectangle+mass"></a>
+
+### rectangle.mass(value)
+Set mass
+
+**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Mass of object |
+
+<a name="Rectangle+mass"></a>
+
+### rectangle.mass() ⇒ <code>number</code>
+Get mass
+
+**Kind**: instance method of [<code>Rectangle</code>](#Rectangle)  
+**Returns**: <code>number</code> - Mass of object  
+**Access**: public  
 <a name="Rectangle+velocity"></a>
 
 ### rectangle.velocity(value)
@@ -4807,6 +4967,7 @@ Draw this object
     * [.canvas(value)](#Rectangle+canvas)
     * [.anchor()](#Rectangle+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.options()](#Rectangle+options) ⇒ [<code>Options</code>](#Options)
+    * [.mass(value)](#Rectangle+mass)
     * [.velocity(value)](#Rectangle+velocity)
     * [.isThere(rectangle)](#Rectangle+isThere)
     * [.area()](#Rectangle+area) ⇒ <code>number</code>
@@ -4977,6 +5138,19 @@ Get options properties
 **Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
 **Returns**: [<code>Options</code>](#Options) - Options properties  
 **Access**: public  
+<a name="Rectangle+mass"></a>
+
+### roundedRectangle.mass(value)
+Set mass
+
+**Kind**: instance method of [<code>RoundedRectangle</code>](#RoundedRectangle)  
+**Overrides**: [<code>mass</code>](#Rectangle+mass)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Mass of object |
+
 <a name="Rectangle+velocity"></a>
 
 ### roundedRectangle.velocity(value)
@@ -5119,405 +5293,6 @@ Draw this object
 | --- | --- | --- |
 | canvas | <code>string</code> | Canvas Id |
 
-<a name="Ship"></a>
-
-## Ship
-{Object}            Ship                    Ship object
-
-**Kind**: global class  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| point | [<code>Point</code>](#Point) |  | X & Y axis coordinates |
-| [radius] | <code>number</code> \| [<code>Point</code>](#Point) | <code>25</code> | Radius of circle |
-| angle | [<code>Angle</code>](#Angle) |  | Angle properties |
-| stroke | [<code>Stroke</code>](#Stroke) |  | Stroke properties |
-| fill | [<code>Fill</code>](#Fill) |  | Fill properties |
-| shadow | [<code>Shadow</code>](#Shadow) |  | Shadow properties |
-| canvas | <code>HTMLCanvasElement</code> |  | 2D canvas context |
-| anchor | [<code>Anchor</code>](#Anchor) |  | Anchor properties |
-| options | [<code>Options</code>](#Options) |  | Options for this object |
-| position | [<code>Position</code>](#Position) |  | Position properties |
-
-
-* [Ship](#Ship)
-    * [new Ship()](#new_Ship_new)
-    * [.point(value)](#Ship+point)
-    * [.point()](#Ship+point) ⇒ [<code>Point</code>](#Point)
-    * [.x(value)](#Ship+x)
-    * [.x()](#Ship+x) ⇒ <code>number</code>
-    * [.y(value)](#Ship+y)
-    * [.y()](#Ship+y) ⇒ <code>number</code>
-    * [.radius(value)](#Ship+radius)
-    * [.radius()](#Ship+radius) ⇒ <code>number</code> \| [<code>Point</code>](#Point)
-    * [.angle()](#Ship+angle) ⇒ [<code>Angle</code>](#Angle)
-    * [.stroke(value)](#Ship+stroke)
-    * [.stroke()](#Ship+stroke) ⇒ [<code>Stroke</code>](#Stroke)
-    * [.fill(value)](#Ship+fill)
-    * [.fill()](#Ship+fill) ⇒ [<code>Fill</code>](#Fill)
-    * [.shadow()](#Ship+shadow) ⇒ [<code>Shadow</code>](#Shadow)
-    * [.canvas(value)](#Ship+canvas)
-    * [.canvas()](#Ship+canvas) ⇒ <code>string</code>
-    * [.flame(value)](#Ship+flame)
-    * [.flame()](#Ship+flame) ⇒ <code>boolean</code>
-    * [.anchor()](#Ship+anchor) ⇒ [<code>Anchor</code>](#Anchor)
-    * [.options()](#Ship+options) ⇒ [<code>Options</code>](#Options)
-    * [.position()](#Ship+position) ⇒ [<code>Position</code>](#Position)
-    * [.velocity(value)](#Ship+velocity)
-    * [.velocity()](#Ship+velocity) ⇒ <code>number</code>
-    * [.isThere(circle)](#Ship+isThere) ⇒ <code>boolean</code>
-    * [.area()](#Ship+area) ⇒ <code>number</code>
-    * [.bounds()](#Ship+bounds) ⇒ <code>Object</code>
-    * [.diameter()](#Ship+diameter) ⇒ <code>number</code>
-    * [.center()](#Ship+center) ⇒ [<code>Point</code>](#Point)
-    * [.circumference()](#Ship+circumference) ⇒ <code>number</code>
-    * [.move(degree, distance)](#Ship+move)
-    * [.rotate(degree, [anchor], [clear])](#Ship+rotate)
-    * [.showCoordinates([offset], [fontSize])](#Ship+showCoordinates)
-    * [.draw(canvas)](#Ship+draw)
-
-<a name="new_Ship_new"></a>
-
-### new Ship()
-Create a Ship object
-
-<a name="Ship+point"></a>
-
-### ship.point(value)
-Set point
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-**See**: [point](#PROPERTY_BLOCKS.individual.point)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | [<code>Point</code>](#Point) | X & Y coordinates |
-
-<a name="Ship+point"></a>
-
-### ship.point() ⇒ [<code>Point</code>](#Point)
-Get point
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: [<code>Point</code>](#Point) - X & Y coordinates  
-**Access**: public  
-**See**: [point](#PROPERTY_BLOCKS.individual.point)  
-<a name="Ship+x"></a>
-
-### ship.x(value)
-Set x-axis value
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-**See**: [pointX](#PROPERTY_BLOCKS.individual.pointX)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | X coordinate value |
-
-<a name="Ship+x"></a>
-
-### ship.x() ⇒ <code>number</code>
-Get x-axis value
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: <code>number</code> - X coordinate value  
-**Read only**: true  
-**See**: [pointX](#PROPERTY_BLOCKS.individual.pointX)  
-<a name="Ship+y"></a>
-
-### ship.y(value)
-Set y-axis value
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-**See**: [pointY](#PROPERTY_BLOCKS.individual.pointY)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Y coordinate value |
-
-<a name="Ship+y"></a>
-
-### ship.y() ⇒ <code>number</code>
-Get y-axis value
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: <code>number</code> - Y coordinate value  
-**Read only**: true  
-**See**: [pointY](#PROPERTY_BLOCKS.individual.pointY)  
-<a name="Ship+radius"></a>
-
-### ship.radius(value)
-Set radius value
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> \| [<code>Point</code>](#Point) | Radius of circle |
-
-<a name="Ship+radius"></a>
-
-### ship.radius() ⇒ <code>number</code> \| [<code>Point</code>](#Point)
-Get radius value
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: <code>number</code> \| [<code>Point</code>](#Point) - Radius of circle  
-**Read only**: true  
-<a name="Ship+angle"></a>
-
-### ship.angle() ⇒ [<code>Angle</code>](#Angle)
-Get angle properties
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: [<code>Angle</code>](#Angle) - Angle properties  
-**Access**: public  
-<a name="Ship+stroke"></a>
-
-### ship.stroke(value)
-Set stroke properties
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | [<code>Stroke</code>](#Stroke) | Stroke properties |
-
-<a name="Ship+stroke"></a>
-
-### ship.stroke() ⇒ [<code>Stroke</code>](#Stroke)
-Get stroke properties
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: [<code>Stroke</code>](#Stroke) - Stroke properties  
-**Access**: public  
-<a name="Ship+fill"></a>
-
-### ship.fill(value)
-Set fill properties
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | [<code>Fill</code>](#Fill) | Fill properties |
-
-<a name="Ship+fill"></a>
-
-### ship.fill() ⇒ [<code>Fill</code>](#Fill)
-Get fill properties
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: [<code>Fill</code>](#Fill) - Fill properties  
-**Access**: public  
-<a name="Ship+shadow"></a>
-
-### ship.shadow() ⇒ [<code>Shadow</code>](#Shadow)
-Get shadow properties
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: [<code>Shadow</code>](#Shadow) - Shadow properties  
-**Access**: public  
-<a name="Ship+canvas"></a>
-
-### ship.canvas(value)
-Set canvas value
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-**See**: [individual.canvas](individual.canvas)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>string</code> | Canvas id |
-
-<a name="Ship+canvas"></a>
-
-### ship.canvas() ⇒ <code>string</code>
-Get canvas value
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: <code>string</code> - Canvas id  
-**Read only**: true  
-**See**: [individual.canvas](individual.canvas)  
-<a name="Ship+flame"></a>
-
-### ship.flame(value)
-Set flame
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>boolean</code> | True || False |
-
-<a name="Ship+flame"></a>
-
-### ship.flame() ⇒ <code>boolean</code>
-Get flame
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: <code>boolean</code> - True || False  
-**Access**: public  
-<a name="Ship+anchor"></a>
-
-### ship.anchor() ⇒ [<code>Anchor</code>](#Anchor)
-Get anchor
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: [<code>Anchor</code>](#Anchor) - Anchor properties  
-**Access**: public  
-<a name="Ship+options"></a>
-
-### ship.options() ⇒ [<code>Options</code>](#Options)
-Get options properties
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: [<code>Options</code>](#Options) - Options properties  
-**Access**: public  
-<a name="Ship+position"></a>
-
-### ship.position() ⇒ [<code>Position</code>](#Position)
-Get position properties
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: [<code>Position</code>](#Position) - Position properties  
-**Access**: public  
-<a name="Ship+velocity"></a>
-
-### ship.velocity(value)
-Set velocity
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | Velocity of object |
-
-<a name="Ship+velocity"></a>
-
-### ship.velocity() ⇒ <code>number</code>
-Get velocity
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: <code>number</code> - Velocity of object  
-**Access**: public  
-<a name="Ship+isThere"></a>
-
-### ship.isThere(circle) ⇒ <code>boolean</code>
-Check whether the passed object is already present
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: <code>boolean</code> - True || False  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| circle | [<code>Ship</code>](#Ship) | Object to validate |
-
-<a name="Ship+area"></a>
-
-### ship.area() ⇒ <code>number</code>
-Get area of this object
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: <code>number</code> - Area of this object  
-**Read only**: true  
-<a name="Ship+bounds"></a>
-
-### ship.bounds() ⇒ <code>Object</code>
-Get bounds of this object
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: <code>Object</code> - Bounds of this object  
-**Read only**: true  
-<a name="Ship+diameter"></a>
-
-### ship.diameter() ⇒ <code>number</code>
-Get diameter of circle
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: <code>number</code> - Diameter of circle  
-**Read only**: true  
-<a name="Ship+center"></a>
-
-### ship.center() ⇒ [<code>Point</code>](#Point)
-Get center of this object
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: [<code>Point</code>](#Point) - Point coordinates  
-**Read only**: true  
-<a name="Ship+circumference"></a>
-
-### ship.circumference() ⇒ <code>number</code>
-Get circumference of circle
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Returns**: <code>number</code> - Circumference of circle  
-**Read only**: true  
-<a name="Ship+move"></a>
-
-### ship.move(degree, distance)
-Move this object
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-**See**: [move](#UTILITIES.individual.misc.move)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| degree | <code>number</code> | Direction to move; in degrees |
-| distance | <code>number</code> | Distance to move |
-
-<a name="Ship+rotate"></a>
-
-### ship.rotate(degree, [anchor], [clear])
-Rotate this object
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-**See**: [rotate](#UTILITIES.individual.misc.rotate)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| degree | <code>number</code> |  | Distance to rotate; in degrees |
-| [anchor] | <code>string</code> | <code>&quot;&#x27;center&#x27;&quot;</code> | Anchoring point during rotation |
-| [clear] | <code>number</code> | <code>true</code> | Clear canvas during each rotation |
-
-<a name="Ship+showCoordinates"></a>
-
-### ship.showCoordinates([offset], [fontSize])
-Shows coordinates of this object
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-**See**: [showCoordinates](#UTILITIES.individual.misc.showCoordinates)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [offset] | <code>number</code> | <code>10</code> | Offset of coordinates y origin |
-| [fontSize] | <code>number</code> | <code>16</code> | Coordinates font size |
-
-<a name="Ship+draw"></a>
-
-### ship.draw(canvas)
-Draw this object
-
-**Kind**: instance method of [<code>Ship</code>](#Ship)  
-**Access**: public  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| canvas | <code>string</code> | Canvas Id |
-
 <a name="Text"></a>
 
 ## Text
@@ -5536,6 +5311,8 @@ Draw this object
 | canvas | <code>HTMLCanvasElement</code> | 2D canvas context |
 | options | [<code>Options</code>](#Options) | Options for this object |
 | position | [<code>Position</code>](#Position) | Position properties |
+| mass | <code>number</code> | Mass of object |
+| velocity | [<code>Point</code>](#Point) | X & Y velocity coordinates |
 
 
 * [Text](#Text)
@@ -5557,6 +5334,8 @@ Draw this object
     * [.canvas()](#Text+canvas) ⇒ <code>string</code>
     * [.options()](#Text+options) ⇒ [<code>Options</code>](#Options)
     * [.position()](#Text+position) ⇒ [<code>Position</code>](#Position)
+    * [.mass(value)](#Text+mass)
+    * [.mass()](#Text+mass) ⇒ <code>number</code>
     * [.velocity(value)](#Text+velocity)
     * [.velocity()](#Text+velocity) ⇒ <code>number</code>
     * [.type(value)](#Text+type)
@@ -5758,6 +5537,26 @@ Get position properties
 
 **Kind**: instance method of [<code>Text</code>](#Text)  
 **Returns**: [<code>Position</code>](#Position) - Position properties  
+**Access**: public  
+<a name="Text+mass"></a>
+
+### text.mass(value)
+Set mass
+
+**Kind**: instance method of [<code>Text</code>](#Text)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Mass of object |
+
+<a name="Text+mass"></a>
+
+### text.mass() ⇒ <code>number</code>
+Get mass
+
+**Kind**: instance method of [<code>Text</code>](#Text)  
+**Returns**: <code>number</code> - Mass of object  
 **Access**: public  
 <a name="Text+velocity"></a>
 
@@ -5963,6 +5762,8 @@ Draw this object
 | anchor | [<code>Anchor</code>](#Anchor) | Anchor properties |
 | options | [<code>Options</code>](#Options) | Options for this object |
 | position | [<code>Position</code>](#Position) | Position properties |
+| mass | <code>number</code> | Mass of object |
+| velocity | [<code>Point</code>](#Point) | X & Y velocity coordinates |
 
 
 * [cImage](#cImage)
@@ -5988,6 +5789,8 @@ Draw this object
     * [.anchor()](#cImage+anchor) ⇒ [<code>Anchor</code>](#Anchor)
     * [.options()](#cImage+options) ⇒ [<code>Options</code>](#Options)
     * [.position()](#cImage+position) ⇒ [<code>Position</code>](#Position)
+    * [.mass(value)](#cImage+mass)
+    * [.mass()](#cImage+mass) ⇒ <code>number</code>
     * [.velocity(value)](#cImage+velocity)
     * [.velocity()](#cImage+velocity) ⇒ <code>number</code>
     * [.area()](#cImage+area) ⇒ <code>number</code>
@@ -6204,6 +6007,26 @@ Get position properties
 
 **Kind**: instance method of [<code>cImage</code>](#cImage)  
 **Returns**: [<code>Position</code>](#Position) - Position properties  
+**Access**: public  
+<a name="cImage+mass"></a>
+
+### cImage.mass(value)
+Set mass
+
+**Kind**: instance method of [<code>cImage</code>](#cImage)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | Mass of object |
+
+<a name="cImage+mass"></a>
+
+### cImage.mass() ⇒ <code>number</code>
+Get mass
+
+**Kind**: instance method of [<code>cImage</code>](#cImage)  
+**Returns**: <code>number</code> - Mass of object  
 **Access**: public  
 <a name="cImage+velocity"></a>
 

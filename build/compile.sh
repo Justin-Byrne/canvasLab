@@ -9,13 +9,13 @@ declare NO_ERRORS=true
 
 declare RELOAD_CHROME=true
 
+declare OMIT_INCLUDE=false
+
 declare WITH_DOCUMENTS=false
 
 declare WITH_MD2JSON=false
 
 declare WITH_GIST=false
-
-# declare WITH_PLANTUML=false
 
 ## PROJECT SPECIFIC ################## ヽ(•‿•)ノ ##################
 
@@ -41,14 +41,6 @@ declare DEVSUITE_INPUT=../devSuite/scripts/devSuite.js
 
 declare DEVSUITE_OUTPUT_JSDOC=../devSuite/docs/JSDoc.md
 declare DEVSUITE_OUTPUT_JSDOCS=../devSuite/docs/JSDoc
-
-### PLANT UML ######################################
-
-declare PLANT_BUILD=~/Programs/Python/PlantUml/ClassGenerator/source/app
-
-declare PLANT_SOURCE=~/Programs/HTML5/canvasLab/script/source
-
-declare PLANT_OUTPUT=~/Programs/HTML5/canvasLab/docs/PlantUml
 
 ### MD2JSON ########################################
 
@@ -82,6 +74,8 @@ declare HANDLERS
 declare DATA_STRUCTURES
 
 declare TEMPLATES
+
+declare INCLUDES
 
 # ------------------------------------------------------- #
 # Files to be inserted prior to SUBJECTS, OBJECTS, ETC... #
@@ -133,10 +127,6 @@ declare TEMPLATES_FOLDER=(
     "${INPUT_FOLDER}/classes/Templates"
 )
 
-# declare SEQUENCES_FOLDER=(
-#     "${INPUT_FOLDER}/classes/Sequences"
-# )
-
 # ------------------------------------ #
 # Root application file; if available  #
 # ------------------------------------ #
@@ -186,6 +176,13 @@ main ()
 
     get_package_version
 
+
+    if ! $OMIT_INCLUDE
+    then
+        search_includes
+    fi
+
+
     compile_output
 
     compile_minified
@@ -214,11 +211,6 @@ main ()
 
         touch ../devSuite/scripts/suite/main.js
     fi
-
-    # if $WITH_PLANTUML
-    # then
-    #     compile_plantuml
-    # fi
 
     compile_readme
 
@@ -343,13 +335,17 @@ function compile_output ()
         insert_file $FILE
     done
 
+    if ! $OMIT_INCLUDE
+    then
 
-    # echo "\n////    SEQUENCES    ///////////////////////////////////////" >> $OUTPUT
+        echo "\n////    INCLUDES    ////////////////////////////////////////" >> $OUTPUT
 
-    # for FILE in ${SEQUENCES[@]}         # SEQUENCES
-    # do
-    #     insert_file $FILE
-    # done
+        for FILE in ${INCLUDES[@]}          # INCLUDES
+        do
+            insert_file $FILE
+        done
+
+    fi
 
 
     echo "${PROMPT_A} ${TITLE_PACKAGE} Compiling Complete ${TITLE_BASH} \t\t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
@@ -362,6 +358,7 @@ function compile_minified ()
 {
     FILE_MIN=${OUTPUT_DIRECTORY}/${VC_PACKAGE}.min.js
 
+
     if command -v uglifyjs
     then
         if $(uglifyjs ${OUTPUT} --source-map -o ${FILE_MIN} --compress --mangle reserved=['window','_instance']);
@@ -371,9 +368,12 @@ function compile_minified ()
         fi
     fi
 
+
     echo "\n${PROMPT_B} ${TITLE_PACKAGE} Minified ${TITLE_NODE}\t\t\t${FG_BLUE}[${FILE_MIN}]${NOCOLOR}\n"
 
+
     update_minified_js_preamble $FILE_MIN
+
 
     afplay audio/shrink.mp3
 }
@@ -385,8 +385,6 @@ function create_gist()
     GIST_ID=b1065cb201fb846b7512d06cc98e6844
 
     echo "\n${PROMPT_A} ${TITLE_PACKAGE} Created Gist ${TITLE_BASH}\t\t${FG_BLUE}[${FILE_MIN}]${NOCOLOR}\n"
-
-    # gh gist create --public ${FILE_MIN} --desc "${VC_PACKAGE} - ${VERSION}"
 
     gh gist edit ${GIST_ID} ${FILE_MIN} --desc "${VC_PACKAGE} - ${VERSION}"
 }
@@ -446,7 +444,7 @@ function compile_md2json ()
 
     FILES+=(${TEMPLATES[@]})
 
-    # FILES+=(${SEQUENCES[@]})
+    # FILES+=(${INCLUDES[@]})
 
 
     function compile_markdown ()
@@ -510,39 +508,6 @@ function compile_md2json ()
 
 
     $(rm -rf $MD2JSON_SOURCE)
-}
-
-function compile_plantuml ()
-{
-    declare DEFAULT_PATH=$(pwd)
-
-
-    $(rm -r $PLANT_OUTPUT)
-
-
-    if command -v python3
-    then
-
-        if cd $PLANT_BUILD
-        then
-
-            echo "\n"
-
-            echo "python3 BuildClass.py ${PLANT_SOURCE} -m \"png\" -l ${PLANT_OUTPUT}"
-
-            if (python3 BuildClass.py $PLANT_SOURCE -m "png" -l $PLANT_OUTPUT)
-                then echo "\n${PROMPT}  ${FG_PINK}PlantUML Complete ${TITLE_PYTHON}\t\t\t${FG_BLUE}[${PLANT_OUTPUT}]${NOCOLOR}\n"
-            else
-                NO_ERRORS=false
-            fi
-
-            cd $DEFAULT_PATH
-
-        else
-            NO_ERRORS=false
-        fi
-
-    fi
 }
 
 ## UPDATE ########################################################
@@ -643,16 +608,24 @@ function search_folders ()
             [[ $ENTRY =~ $FILE_REGEX ]] && TEMPLATES+="${ENTRY} "
         done
     done
+}
 
-    ####    SEQUENCES    ###################################
+function search_includes ()
+{
+    ####    INCLUDES    ###################################
 
-    # for FOLDER in ${SEQUENCES_FOLDER[@]}
-    # do
-    #     for ENTRY in $FOLDER/*
-    #     do
-    #         [[ $ENTRY =~ $FILE_REGEX ]] && SEQUENCES+="${ENTRY} "
-    #     done
-    # done
+    ROOT=~/Programs/HTML5/canvasLab
+
+    INCLUDES_FOLDER=$(find $ROOT -type d -name "_include")
+
+
+    for FOLDER in ${INCLUDES_FOLDER[@]}
+    do
+        for ENTRY in $FOLDER/*
+        do
+            [[ $ENTRY =~ $FILE_REGEX ]] && INCLUDES+="${ENTRY} "
+        done
+    done
 }
 
 function insert_file ()

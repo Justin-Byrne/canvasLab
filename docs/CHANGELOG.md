@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.7.210] - 2024-11-20
+### Added
+- **canvasLab**
+  - :sunny: `mass` property, to `Circle`, `Ellipse`, `Rectangle`, `RoundedRectangle`, `Text` & `cImage` classes
+  - :sunny: `bounds` property, to `Line` class
+  - :sunny: `Range` class, for range input objects
+
 ## [0.7.207] - 2024-11-15
 ### Added
 - **canvasLab**
@@ -912,7 +919,8 @@ All notable changes to this project will be documented in this file.
 
 | Version     | Date         | Commit                                                                | Comments                                                                                                                     |
 | :---------  | :----------: | :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `[0.7.207]` | `2024-11-15` | `CURRENT`                                                             | <sup>Added velocity property to core object classes, plus general refactoring.</sup>                                         |
+| `[0.7.210]` | `2024-11-20` | `CURRENT`                                                             | <sup>Added Range class, and mass property to objects.</sup>                                                                  |
+| `[0.7.207]` | `2024-11-15` | [`a893a7d`](https://github.com/Justin-Byrne/canvasLab/commit/a893a7d) | <sup>Added velocity property to core object classes, plus general refactoring.</sup>                                         |
 | `[0.7.201]` | `2024-11-07` | [`5a5a78a`](https://github.com/Justin-Byrne/canvasLab/commit/5a5a78a) | <sup>Optimized myTransistions class, fixed minor errors in core objects.</sup>                                               |
 | `[0.7.196]` | `2024-10-24` | [`7d8ec76`](https://github.com/Justin-Byrne/canvasLab/commit/7d8ec76) | <sup>Added myTransitions class, fixed minor errors in Group & Animation(s) classes, and general refactoring.</sup>           |
 | `[0.7.179]` | `2024-09-27` | [`647b2b8`](https://github.com/Justin-Byrne/canvasLab/commit/647b2b8) | <sup>Added numerous animation functions to the Animation & Position classes, and general refactoring.</sup>                  |

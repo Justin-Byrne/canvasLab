@@ -10,6 +10,8 @@
  * @property        {Anchor}            anchor                  Anchor properties
  * @property        {Options}           options                 Options for this object
  * @property        {Position}          position                Position properties
+ * @property        {number}            mass                    Mass of object
+ * @property        {Point}             velocity                X & Y velocity coordinates
  */
 class Circle
 {
@@ -25,6 +27,7 @@ class Circle
     #anchor   = new Anchor;
     #options  = new Options;
     #position = new Position;
+    #mass     = 0;
     #velocity = new Point;
 
     /**
@@ -320,6 +323,30 @@ class Circle
             get position ( )
             {
                 return this.#position;
+            }
+
+        ////    [ MASS ]    //////////////////////
+
+            /**
+             * Set mass
+             * @public
+             * @function
+             * @param             {number} value                                Mass of object
+             */
+            set mass ( value )
+            {
+                this.#mass = ( this._isNumber ( value ) ) ? value : this.#mass;
+            }
+
+            /**
+             * Get mass
+             * @public
+             * @function
+             * @return             {number}                                     Mass of object
+             */
+            get mass ( )
+            {
+                return this.#mass;
             }
 
         ////    [ VELOCITY ]    //////////////////
